@@ -35,15 +35,10 @@ Patch4:		%{name}-string2-pointer-arith.patch
 Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch7:		%{name}-sparc-linux-chown.patch
-Patch8:		%{name}-ldconfig-bklinks.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-use-int-not-arpa.patch
-Patch13:	%{name}-divdi3.patch
-Patch14:	%{name}-nss_dns-overflow.patch
-Patch15:	%{name}-sunrpc-overflow.patch
-Patch16:	%{name}-calloc-overflow.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -67,6 +62,7 @@ Conflicts:	man-pages < 1.43
 Conflicts:	ld.so < 1.9.9-10
 
 %define		debugcflags	-O1 -g
+%define		configuredir	%{u2p:%{_builddir}}/%{name}-%{version}/
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -440,26 +436,25 @@ Zabawka.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-#%patch8 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
 
 chmod +x scripts/cpp
 
 %build
+mkdir builddir
+cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
 %configure2_13 \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
+	--with-tls \
 	--disable-omitfp
+# problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make}
 
@@ -470,6 +465,8 @@ LDFLAGS=" " ; export LDFLAGS
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
 
+cd builddir
+
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
@@ -477,7 +474,7 @@ env LANGUAGE=C LC_ALL=C \
 	mandir=%{_mandir}
 
 env LANGUAGE=C LC_ALL=C \
-%{__make} install-locales -C localedata \
+%{__make} localedata/install-locales \
 	install_root=$RPM_BUILD_ROOT
 
 PICFILES="libc_pic.a libc.map
@@ -491,8 +488,8 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
 mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
-%{__make} -C linuxthreads/man
-install linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
+%{__make} -C ../linuxthreads/man
+install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
@@ -506,8 +503,8 @@ rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
-install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install ../nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+install ../nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
@@ -520,12 +517,12 @@ rm -f %{_mandir}/hu/man7/man.7
 rm -rf documentation
 install -d documentation
 
-cp -f linuxthreads/ChangeLog documentation/ChangeLog.threads
-cp -f linuxthreads/Changes documentation/Changes.threads
-cp -f linuxthreads/README documentation/README.threads
-cp -f crypt/README.ufc-crypt documentation/
+cp -f ../linuxthreads/ChangeLog documentation/ChangeLog.threads
+cp -f ../linuxthreads/Changes documentation/Changes.threads
+cp -f ../linuxthreads/README documentation/README.threads
+cp -f ../crypt/README.ufc-crypt documentation/
 
-cp -f ChangeLog documentation
+cp -f ../ChangeLog documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
@@ -567,6 +564,13 @@ done
 install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/man8
 
 install -m755 postshell $RPM_BUILD_ROOT/sbin
+
+# shutup check-files
+rm -f $RPM_BUILD_ROOT/%{_mandir}/README.*
+rm -f $RPM_BUILD_ROOT/%{_mandir}/diff.*
+rm -f $RPM_BUILD_ROOT/%{_infodir}/dir
+# we don't support kernel without ptys support
+rm -f $RPM_BUILD_ROOT/%{_libdir}/pt_chown
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -647,6 +651,7 @@ fi
 %{_datadir}/zoneinfo
 
 %dir %{_libdir}/locale
+%{_libdir}/locale/locale-archive
 
 %{_mandir}/man1/[^lsg]*
 %{_mandir}/man1/getent.1*
