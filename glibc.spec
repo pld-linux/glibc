@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -32,7 +32,7 @@ BuildRequires:	perl
 BuildRequires:	gd-devel
 BuildRequires:	libpng-devel
 BuildRequires:	texinfo
-BuildRequires:	rpm-build >= 4.0-9
+BuildRequires:	rpm-build >= 4.0-11
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -333,6 +333,7 @@ A toy.
 %patch8 -p1
 
 %build
+LDFLAGS=" " ; export LDFLAGS
 %configure \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
@@ -401,6 +402,9 @@ cp crypt/README.ufc-crypt documentation/
 cp ChangeLog ChangeLog.8 documentation
 
 gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
+
+# strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
+%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
 
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
