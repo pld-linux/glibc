@@ -27,7 +27,7 @@
 
 %if %{with nptl}
 # it seems that nptl uses cmpxchgl (available since i486) on x86
-%ifarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
+%ifarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparcv9 ppc ppc64
 %if "%{min_kernel}" < "2.6.0"
 %global		min_kernel	2.6.0
 %endif
@@ -39,7 +39,7 @@
 %endif
 
 %if %{with tls}
-%ifnarch %{ix86} amd64 ia64 s390 s390x sparc sparcv9 ppc ppc64
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc sparcv9 ppc ppc64
 %undefine	with_tls
 %endif
 %endif
@@ -62,7 +62,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.1%{?with_nptl:+nptl}
+Release:	0.%{_snap}.1%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -513,8 +513,8 @@ Summary(ru):	GNU libc Ó ÐÏÄÄÅÒÖËÏÊ ÐÒÏÆÁÊÌÅÒÁ
 Summary(tr):	Ölçüm desteði olan glibc
 Summary(uk):	GNU libc Ú Ð¦ÄÔÒÉÍËÏÀ ÐÒÏÆÁÊÌÅÒÁ
 Group:		Development/Libraries/Libc
-Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Obsoletes:	libc-profile
 
 %description profile
 When programs are being profiled using gprof, they must use these
