@@ -74,7 +74,7 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package devel
+%package	devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
@@ -109,7 +109,7 @@ objektowe, niezbêdne do kompilacji programów wykonywalnych i innych bibliotek.
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
-%package -n nscd
+%package -n	nscd
 Summary:	Name Service Caching Daemon
 Summary(pl):	Name Service Caching Daemon
 Group:		Networnikng/Daemons
@@ -130,7 +130,7 @@ poprawiæ szybko¶æ dzia³ania NIS+.
 Nie jest mo¿liwe u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów
 po stronie j±dra w ods³udze w±tków.
 
-%package -n utmpd
+%package -n	utmpd
 Summary:	utmp and utmpx synchronizer for libc5 applications.
 Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
 Group:		Daemons
@@ -146,7 +146,7 @@ utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików
 /var/run/utmp i /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania
 ze starszych programów (bazuj±cych na libc5).
 
-%package static
+%package	static
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne 
 Group:		Development/Libraries
@@ -197,6 +197,9 @@ ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
 ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
+
+strip $RPM_BUILD_ROOT/{sbin,usr/{sbin/*,bin/*}} ||:
+strip strip--unneeded $RPM_BUILD_ROOT/lib/*.so.*
 
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
@@ -332,14 +335,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
-%attr(754,root,root) /etc/rc.d/init.d/nscd
+%attr(755,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
 
 %files -n utmpd
 %defattr(644,root,root,755)
 %doc login/README.utmpd.gz
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/utmpd
-%attr(754,root,root) /etc/rc.d/init.d/utmpd
+%attr(755,root,root) /etc/rc.d/init.d/utmpd
 %attr(755,root,root) %{_sbindir}/utmpd
 
 %files static
