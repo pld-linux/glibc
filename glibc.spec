@@ -16,6 +16,7 @@
 # TODO:
 # - localedb-gen man pages(?)
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
+# - fix ld.so.conf (while upgrading glibc it do NOW mv ld.so.conf ld.so.conf.rpmsave)
 #
 # WARNING:
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
@@ -160,14 +161,15 @@ national language (locale) support and timezone databases.
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l es
-Contiene las bibliotecas estándared que son usadas por varios programas
-del sistema. Para ahorrar el espacio en el disco y la memoria, igual que
-para facilitar actualizaciones, código común del sistema se guarda en un
-sitio y es compartido entre los programas. Este paquete contiene las
-bibliotecas compartidas más importantes, es decir la biblioteca C estándar
-y la biblioteca estándar de matemática. Sin éstas, un sistema Linux no
-podrá funcionar. También está incluido soporte de idiomas nacionales
-(locale) y bases de datos de zona de tiempo.
+Contiene las bibliotecas estándared que son usadas por varios
+programas del sistema. Para ahorrar el espacio en el disco y la
+memoria, igual que para facilitar actualizaciones, código común del
+sistema se guarda en un sitio y es compartido entre los programas.
+Este paquete contiene las bibliotecas compartidas más importantes, es
+decir la biblioteca C estándar y la biblioteca estándar de matemática.
+Sin éstas, un sistema Linux no podrá funcionar. También está incluido
+soporte de idiomas nacionales (locale) y bases de datos de zona de
+tiempo.
 
 Puede usarse con: núcleo Linux >= %{min_kernel}.
 
@@ -299,8 +301,8 @@ verwenden (also fast alle), benötigt das System diese Standard-Header-
 und Objektdateien zum Erstellen der ausführbaren Programme.
 
 %description devel -l es
-Para desarrollar programas que utilizan las bibliotecas C estándar
-(lo cual hacen prácticamente todos los programas), el sistema necesita
+Para desarrollar programas que utilizan las bibliotecas C estándar (lo
+cual hacen prácticamente todos los programas), el sistema necesita
 disponer de estos ficheros de cabecera y de objetos para crear los
 ejecutables.
 
@@ -360,11 +362,11 @@ nscd with 2.0 kernels, due to bugs in the kernel-side thread support.
 nscd happens to hit these bugs particularly hard.
 
 %description -n nscd -l es
-nscd guarda las peticiones del servicio de nombres en una caché; eso puede
-aumentar drásticamente las prestaciones de NIS+, y también puede ayudar
-con DNS. No puede usar nscd con núcleos 2.0, por contener éstos errores
-en el soporte de hilos. Resulta que estos errores impactan el nscd de manera
-realmente grave.
+nscd guarda las peticiones del servicio de nombres en una caché; eso
+puede aumentar drásticamente las prestaciones de NIS+, y también puede
+ayudar con DNS. No puede usar nscd con núcleos 2.0, por contener éstos
+errores en el soporte de hilos. Resulta que estos errores impactan el
+nscd de manera realmente grave.
 
 %description -n nscd -l ja
 Nscd ¤Ï¥Í¡¼¥à¥µ¡¼¥Ó¥¹»²¾È¤ò¥­¥ã¥Ã¥·¥å¤·¡¢NIS+ ¤Î¥Ñ¥Õ¥©¡¼¥Þ¥ó¥¹¤ò
@@ -426,12 +428,12 @@ installing localedb-src and regenerating database using localedb-gen
 script (when database is generated, localedb-src can be uninstalled).
 
 %description localedb-all -l es
-Este paquete contiene una base de datos de todos los locales soportados
-por glibc. En glibc 2.3.x ése es un fichero grande (aprox. 39 MB) -- si
-prefiere algo más pequeño, sólo con soporte de unos locales elegidos,
-considérese instalar localedb-src y regenerar la base de datos usando
-el escript localedb-gen (una vez que la base de datos esté creada,
-localedb-src se podrá desinstalar).
+Este paquete contiene una base de datos de todos los locales
+soportados por glibc. En glibc 2.3.x ése es un fichero grande (aprox.
+39 MB) -- si prefiere algo más pequeño, sólo con soporte de unos
+locales elegidos, considérese instalar localedb-src y regenerar la
+base de datos usando el escript localedb-gen (una vez que la base de
+datos esté creada, localedb-src se podrá desinstalar).
 
 %description localedb-all -l pl
 Ten pakiet zawiera bazê danych locale dla wszystkich lokalizacji
@@ -559,10 +561,10 @@ composed of individual shared objects. This is used for creating a
 library which is a smaller subset of the standard libc shared library.
 
 %description pic -l es
-El archivo PIC de la biblioteca glibc contiene una biblioteca archivada
-(un fichero ar) compuesta de individuales objetos compartidos. Es usado
-para crear una biblioteca que sea un subconjunto más pequeño de la
-biblioteca libc compartida estándar.
+El archivo PIC de la biblioteca glibc contiene una biblioteca
+archivada (un fichero ar) compuesta de individuales objetos
+compartidos. Es usado para crear una biblioteca que sea un subconjunto
+más pequeño de la biblioteca libc compartida estándar.
 
 %description pic -l pl
 Archiwum PIC biblioteki GNU C zawiera archiwaln± bibliotekê (plik ar)
@@ -661,7 +663,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 glibc NSS (Name Service Switch) module for NIS+ databases access.
 
 %description -n nss_nisplus -l es
-Módulo NSS (Name Service Switch) de glibc para acceder las bases de datos NIS+.
+Módulo NSS (Name Service Switch) de glibc para acceder las bases de
+datos NIS+.
 
 %description -n nss_nisplus -l pl
 Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS+.
@@ -735,8 +738,8 @@ Development files for 64-bit GNU libc libraries for 64bit
 architecture.
 
 %description -n %{name}64-devel -l es
-Ficheros de desarrollo para las bibliotecas GNU libc de 64 bits para la
-arquitectura 64bit.
+Ficheros de desarrollo para las bibliotecas GNU libc de 64 bits para
+la arquitectura 64bit.
 
 %description -n %{name}64-devel -l pl
 Pliki do programowania z u¿yciem 64-bitowych bibliotek GNU libc dla
@@ -793,8 +796,8 @@ chmod +x scripts/cpp
 
 %build
 # Build glibc
-cp /usr/share/automake/config.sub .
-cp /usr/share/automake/config.sub scripts
+cp %{_datadir}/automake/config.sub .
+cp %{_datadir}/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
 # i786 (aka pentium4) hack
@@ -818,10 +821,10 @@ LDFLAGS=" " ; export LDFLAGS
 %endif
 %if %{with kernelheaders}
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
-	--with-headers=%{_kernelsrcdir}/include 
+	--with-headers=%{_kernelsrcdir}/include
 %else
 	CPPFLAGS="-I%{_includedir}" \
-	--with-headers=%{_includedir} 
+	--with-headers=%{_includedir}
 %endif
 
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
@@ -1049,8 +1052,10 @@ fi
 %ifnarch sparc64
 %ifarch amd64
 %files -n glibc64
+%defattr(644,root,root,755)
 %else
-%files 
+%files
+%defattr(644,root,root,755)
 %endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
