@@ -527,7 +527,7 @@ diff -urN glibc-2.2.4.org/malloc/obstack.c glibc-2.2.4/malloc/obstack.c
  
  /* This function has two names with identical definitions.
     This is the first one, called from non-ANSI code.  */
-@@ -455,45 +458,54 @@
+@@ -455,45 +458,45 @@
  }
  
  /* Define the error handler.  */
@@ -573,19 +573,8 @@ diff -urN glibc-2.2.4.org/malloc/obstack.c glibc-2.2.4/malloc/obstack.c
  __attribute__ ((noreturn))
  print_and_abort ()
  {
--  fputs (_("memory exhausted"), stderr);
--  fputc ('\n', stderr);
-+  /* Don't change any of these strings.  Yes, it would be possible to add
-+     the newline to the string and use fputs or so.  But this must not
-+     happen because the "memory exhausted" message appears in other places
-+     like this and the translation should be reused instead of creating
-+     a very similar string which requires a separate translation.  */
-+# if defined _LIBC && defined USE_IN_LIBIO
-+  if (_IO_fwide (stderr, 0) > 0)
-+    __fwprintf (stderr, L"%s\n", _("memory exhausted"));
-+  else
-+# endif
-+    fprintf (stderr, "%s\n", _("memory exhausted"));
+   fputs (_("memory exhausted"), stderr);
+   fputc ('\n', stderr);
    exit (obstack_exit_failure);
  }
  
