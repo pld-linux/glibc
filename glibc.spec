@@ -202,7 +202,7 @@ Summary:	Kernel header files the glibc has been built with
 Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
 Group:		Development/Libraries
 Obsoletes:	kernel-headers
-Provides:	kernel-headers
+Provides:	kernel-headers = %{_kernel_ver_str}
 
 %description kernel-headers
 Kernel header files the glibc has been built with.
