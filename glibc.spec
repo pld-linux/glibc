@@ -22,6 +22,7 @@ Patch1:		glibc-paths.patch
 Patch2:		glibc-versions.awk_fix.patch
 Patch3:		glibc-pld.patch
 Patch4:		glibc-getaddrinfo.patch
+Patch5:		glibc-gcc-2.95.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -170,6 +171,7 @@ GNU libc-2.1 Static libraries
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 %configure \
