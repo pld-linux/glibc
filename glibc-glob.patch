@@ -1,0 +1,405 @@
+2001-11-29  Jakub Jelinek  <jakub@redhat.com>
+
+	* sysdeps/generic/glob.c (next_brace_sub): Return NULL if braces
+	don't match, fix {{a,b},c} globbing, clean up.
+	Patch by Flavio Veloso <flaviovs@magnux.com>.
+	* posix/globtest.sh: Add new tests.
+
+2001-11-28  Jakub Jelinek  <jakub@redhat.com>
+
+	* sysdeps/sparc/fpu/bits/mathinline.h (__signbitf, __signbit,
+	__signbitl): Only define for ISO C99.
+
+2001-11-26  Ulrich Drepper  <drepper@redhat.com>
+
+	* stdio-common/vfscanf.c: If incomplete nan of inf(inity) strings
+	are found call conv_error and not input_error [PR libc/2669].
+
+2001-11-02  Jakub Jelinek  <jakub@redhat.com>
+
+	* string/bits/string2.h (__strndup): If n is smaller than len, set
+	len to n + 1.
+	* string/tester.c (test_strndup): New function.
+	(main): Call it.
+
+2001-10-31  Ulrich Drepper  <drepper@redhat.com>
+
+	* elf/dl-load.c (_dl_map_object): Make code a bit more compact by
+	avoiding unnecessary duplication.
+
+2001-10-31  Jakub Jelinek  <jakub@redhat.com>
+
+	* elf/dl-load.c (_dl_map_object): If library was found using
+	LD_LIBRARY_PATH, don't try RUNPATH list.
+
+2001-10-26  Ulrich Drepper  <drepper@redhat.com>
+
+	* posix/fnmatch_loop.c: Recognize - at end of bracket expression
+	correctly.
+	* posix/tst-fnmatch.input: Add tests for - at beginning and end of
+	bracket expression.
+
+2001-10-24  H.J. Lu  <hjl@gnu.org>
+
+	* sysdeps/generic/bits/dlfcn.h (DL_CALL_FCT): Cast to void *.
+	Use __BEGIN_DECLS/__END_DECLS around prototypes.
+
+2001-10-26  Ulrich Drepper  <drepper@redhat.com>
+
+	* resolv/gethnamaddr.c (gethostbyaddr): Use ip6.addr for reverse
+	lookup not ip6.int.
+	* resolv/nss_dns/dns-host.c (_nss_dns_gethostbyaddr_r): Likewise.
+	Reported by Martin.v.Loewis@t-online.de [PR libc/2598].
+
+2001-10-04  Ben Collins  <bcollins@debian.org>
+
+	* sysdeps/generic/inttypes.h: Fix typo (define, not defined) in
+	decleration of __need_wchar_t.
+
+--- libc/sysdeps/sparc/fpu/bits/mathinline.h	2001/07/06 04:56:04	1.8
++++ libc/sysdeps/sparc/fpu/bits/mathinline.h	2001/11/28 15:19:39
+@@ -101,7 +101,10 @@
+ /* The gcc, version 2.7 or below, has problems with all this inlining
+    code.  So disable it for this version of the compiler.  */
+ # if __GNUC_PREREQ (2, 8)
+-   /* Test for negative number.  Used in the signbit() macro.  */
++
++#if defined __USE_ISOC99
++
++/* Test for negative number.  Used in the signbit() macro.  */
+ __MATH_INLINE int
+ __signbitf (float __x) __THROW
+ {
+@@ -142,6 +145,8 @@ __signbitl (long double __x) __THROW
+ 
+ #endif /* sparc64 */
+ 
++#endif /* __USE_ISOC99 */
++
+ #ifndef __NO_MATH_INLINES
+ 
+ __MATH_INLINE double
+@@ -171,7 +176,7 @@ sqrtl(long double __x) __THROW
+ }
+ #endif /* sparc64 */
+ 
+-#endif
++#endif /* !__NO_MATH_INLINES */
+ 
+ /* This code is used internally in the GNU libc.  */
+ #ifdef __LIBC_INTERNAL_MATH_INLINES
+--- libc/stdio-common/vfscanf.c	2001/08/24 03:21:13	1.96
++++ libc/stdio-common/vfscanf.c	2001/11/27 02:18:20	1.97
+@@ -1596,7 +1596,8 @@ __vfscanf (FILE *s, const char *format, 
+ 	      if (width == 0 || inchar () == EOF)
+ 		/* EOF is only an input error before we read any chars.  */
+ 		conv_error ();
+-	      if (! ISDIGIT (c) && TOLOWER (c) != L_('i'))
++	      if (! ISDIGIT (c) && TOLOWER (c) != L_('i')
++		  && TOLOWER (c) != L_('n'))
+ 		{
+ #ifdef COMPILE_WSCANF
+ 		  if (c != decimal)
+@@ -1654,12 +1655,12 @@ __vfscanf (FILE *s, const char *format, 
+ 	      /* Maybe "nan".  */
+ 	      ADDW (c);
+ 	      if (width == 0 || inchar () == EOF || TOLOWER (c) != L_('a'))
+-		input_error ();
++		conv_error ();
+ 	      if (width > 0)
+ 		--width;
+ 	      ADDW (c);
+ 	      if (width == 0 || inchar () == EOF || TOLOWER (c) != L_('n'))
+-		input_error ();
++		conv_error ();
+ 	      if (width > 0)
+ 		--width;
+ 	      ADDW (c);
+@@ -1671,12 +1672,12 @@ __vfscanf (FILE *s, const char *format, 
+ 	      /* Maybe "inf" or "infinity".  */
+ 	      ADDW (c);
+ 	      if (width == 0 || inchar () == EOF || TOLOWER (c) != L_('n'))
+-		input_error ();
++		conv_error ();
+ 	      if (width > 0)
+ 		--width;
+ 	      ADDW (c);
+ 	      if (width == 0 || inchar () == EOF || TOLOWER (c) != L_('f'))
+-		input_error ();
++		conv_error ();
+ 	      if (width > 0)
+ 		--width;
+ 	      ADDW (c);
+@@ -1691,25 +1692,25 @@ __vfscanf (FILE *s, const char *format, 
+ 		      ADDW (c);
+ 		      if (width == 0 || inchar () == EOF
+ 			  || TOLOWER (c) != L_('n'))
+-			input_error ();
++			conv_error ();
+ 		      if (width > 0)
+ 			--width;
+ 		      ADDW (c);
+ 		      if (width == 0 || inchar () == EOF
+ 			  || TOLOWER (c) != L_('i'))
+-			input_error ();
++			conv_error ();
+ 		      if (width > 0)
+ 			--width;
+ 		      ADDW (c);
+ 		      if (width == 0 || inchar () == EOF
+ 			  || TOLOWER (c) != L_('t'))
+-			input_error ();
++			conv_error ();
+ 		      if (width > 0)
+ 			--width;
+ 		      ADDW (c);
+ 		      if (width == 0 || inchar () == EOF
+ 			  || TOLOWER (c) != L_('y'))
+-			input_error ();
++			conv_error ();
+ 		      if (width > 0)
+ 			--width;
+ 		      ADDW (c);
+--- libc/string/bits/string2.h	2001/10/07 20:13:12	1.63
++++ libc/string/bits/string2.h	2001/11/03 09:03:47	1.64
+@@ -1216,7 +1216,7 @@ extern char *__strndup (__const char *__
+ 			  size_t __n = (n);				      \
+ 			  char *__retval;				      \
+ 			  if (__n < __len)				      \
+-			    __len = __n;				      \
++			    __len = __n + 1;				      \
+ 			  __retval = (char *) malloc (__len);		      \
+ 			  if (__retval != NULL)				      \
+ 			    {						      \
+--- libc/string/tester.c	2001/08/24 23:51:11	1.39
++++ libc/string/tester.c	2001/11/03 09:04:20	1.40
+@@ -1257,6 +1257,30 @@ test_bzero (void)
+ }
+ 
+ static void
++test_strndup (void)
++{
++  char *p, *q;
++  it = "strndup";
++  p = strndup("abcdef", 12);
++  check(p != NULL, 1);
++  if (p != NULL)
++    {
++      equal(p, "abcdef", 2);
++      q = strndup(p + 1, 2);
++      check(q != NULL, 3);
++      if (q != NULL)
++	equal(q, "bc", 4);
++      free (q);
++    }
++  free (p);
++  p = strndup("abc def", 3);
++  check(p != NULL, 5);
++  if (p != NULL)
++    equal(p, "abc", 6);
++  free (p);
++}
++
++static void
+ test_bcmp (void)
+ {
+   it = "bcmp";
+@@ -1381,6 +1405,9 @@ main (void)
+ 
+   /* bcmp - somewhat like memcmp.  */
+   test_bcmp ();
++
++  /* strndup.  */
++  test_strndup ();
+ 
+   /* strerror - VERY system-dependent.  */
+   test_strerror ();
+--- libc/elf/dl-load.c	2001/09/19 03:18:40	1.175
++++ libc/elf/dl-load.c	2001/11/01 04:43:01	1.176
+@@ -1608,7 +1608,8 @@ _dl_map_object (struct link_map *loader,
+ 			&realname, &fb);
+ 
+       /* Look at the RUNPATH information for this binary.  */
+-      if (loader != NULL && loader->l_runpath_dirs.dirs != (void *) -1)
++      if (fd == -1 && loader != NULL
++	  && loader->l_runpath_dirs.dirs != (void *) -1)
+ 	{
+ 	  if (loader->l_runpath_dirs.dirs == NULL)
+ 	    {
+@@ -1622,13 +1623,10 @@ _dl_map_object (struct link_map *loader,
+ 				   + loader->l_info[DT_RUNPATH]->d_un.d_val);
+ 		  decompose_rpath (&loader->l_runpath_dirs,
+ 				   (const char *) ptrval, loader, "RUNPATH");
+-
+-		  if (loader->l_runpath_dirs.dirs != (void *) -1)
+-		    fd = open_path (name, namelen, preloaded,
+-				    &loader->l_runpath_dirs, &realname, &fb);
+ 		}
+ 	    }
+-	  else if (loader->l_runpath_dirs.dirs != (void *) -1)
++
++	  if (loader->l_runpath_dirs.dirs != (void *) -1)
+ 	    fd = open_path (name, namelen, preloaded,
+ 			    &loader->l_runpath_dirs, &realname, &fb);
+ 	}
+--- libc/posix/fnmatch_loop.c	2001/08/10 05:55:16	1.28
++++ libc/posix/fnmatch_loop.c	2001/10/27 00:37:40	1.29
+@@ -592,7 +592,8 @@ FCT (pattern, string, string_end, no_lea
+ 			/* We have to handling the symbols differently in
+ 			   ranges since then the collation sequence is
+ 			   important.  */
+-			is_range = *p == L('-') && p[1] != L('\0');
++			is_range = (*p == L('-') && p[1] != L('\0')
++				    && p[1] != L(']'));
+ 
+ 			if (!is_range && c == fn)
+ 			  goto matched;
+--- libc/posix/tst-fnmatch.input	2001/07/06 04:55:38	1.12
++++ libc/posix/tst-fnmatch.input	2001/10/27 02:37:27	1.13
+@@ -381,6 +381,14 @@ C		"a"			"a/"                   NOMATCH 
+ C		"a/"			"a"		       NOMATCH PATHNAME
+ C		"//a"			"/a"		       NOMATCH PATHNAME
+ C		"/a"			"//a"		       NOMATCH PATHNAME
++C		"az"			"[a-]z"		       0
++C		"bz"			"[ab-]z"	       0
++C		"cz"			"[ab-]z"	       NOMATCH
++C		"-z"			"[ab-]z"	       0
++C		"az"			"[-a]z"		       0
++C		"bz"			"[-ab]z"	       0
++C		"cz"			"[-ab]z"	       NOMATCH
++C		"-z"			"[-ab]z"	       0
+ 
+ # Following are tests outside the scope of IEEE 2003.2 since they are using
+ # locales other than the C locale.  The main focus of the tests is on the
+--- libc/sysdeps/generic/bits/dlfcn.h	2001/07/06 04:55:50	1.7
++++ libc/sysdeps/generic/bits/dlfcn.h	2001/10/27 00:03:32	1.8
+@@ -1,5 +1,5 @@
+ /* System dependent definitions for run-time dynamic loading.
+-   Copyright (C) 1996, 1997, 1998, 1999, 2000 Free Software Foundation, Inc.
++   Copyright (C) 1996,1997,1998,1999,2000,2001 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+    The GNU C Library is free software; you can redistribute it and/or
+@@ -52,8 +52,13 @@
+         foo = DL_CALL_FCT (fctp, (arg1, arg2));
+ */
+ # define DL_CALL_FCT(fctp, args) \
+-  (_dl_mcount_wrapper_check (fctp), (*(fctp)) args)
++  (_dl_mcount_wrapper_check ((void *) (fctp)), (*(fctp)) args)
+ 
++__BEGIN_DECLS
++
+ /* This function calls the profiling functions.  */
+ extern void _dl_mcount_wrapper_check (void *__selfpc) __THROW;
++
++__END_DECLS
++
+ #endif
+--- libc/resolv/gethnamaddr.c	2001/09/19 03:05:12	1.36
++++ libc/resolv/gethnamaddr.c	2001/10/26 23:49:48	1.37
+@@ -690,7 +690,7 @@ gethostbyaddr(addr, len, af)
+ 				       uaddr[n] & 0xf,
+ 				       (uaddr[n] >> 4) & 0xf));
+ 		}
+-		strcpy(qp, "ip6.int");
++		strcpy(qp, "ip6.arpa");
+ 		break;
+ 	default:
+ 		abort();
+--- libc/resolv/nss_dns/dns-host.c	2001/08/14 23:27:27	1.28
++++ libc/resolv/nss_dns/dns-host.c	2001/10/26 23:49:07	1.29
+@@ -282,7 +282,7 @@ _nss_dns_gethostbyaddr_r (const void *ad
+       qp = qbuf;
+       for (n = IN6ADDRSZ - 1; n >= 0; n--)
+ 	qp += sprintf (qp, "%x.%x.", uaddr[n] & 0xf, (uaddr[n] >> 4) & 0xf);
+-      strcpy (qp, "ip6.int");
++      strcpy (qp, "ip6.arpa");
+       break;
+     default:
+       /* Cannot happen.  */
+--- libc/posix/globtest.sh.jj	Thu Aug 23 18:48:53 2001
++++ libc/posix/globtest.sh	Thu Nov 29 13:32:05 2001
+@@ -146,6 +146,32 @@ if test $failed -ne 0; then
+   result=1
+ fi
+ 
++failed=0
++${elf_objpfx}${rtld_installed_name} --library-path ${library_path} \
++${common_objpfx}posix/globtest -b "$testdir" "{file{1,2},-file3}" |
++sort > $testout
++cat <<"EOF" | cmp - $testout >> $logfile || failed=1
++`-file3'
++`file1'
++`file2'
++EOF
++if test $failed -ne 0; then
++  echo "Braces test 2 failed" >> $logfile
++  result=1
++fi
++
++failed=0
++${elf_objpfx}${rtld_installed_name} --library-path ${library_path} \
++${common_objpfx}posix/globtest -b "$testdir" "{" |
++sort > $testout
++cat <<"EOF" | cmp - $testout >> $logfile || failed=1
++GLOB_NOMATCH
++EOF
++if test $failed -ne 0; then
++  echo "Braces test 3 failed" >> $logfile
++  result=1
++fi
++
+ # Test NOCHECK
+ failed=0
+ ${elf_objpfx}${rtld_installed_name} --library-path ${library_path} \
+--- libc/sysdeps/generic/glob.c.jj	Thu Aug 23 18:49:29 2001
++++ libc/sysdeps/generic/glob.c	Thu Nov 29 13:17:21 2001
+@@ -355,42 +355,14 @@ static
+ inline
+ #endif
+ const char *
+-next_brace_sub (begin)
+-     const char *begin;
++next_brace_sub (cp)
++     const char *cp;
+ {
+   unsigned int depth = 0;
+-  const char *cp = begin;
+-
+-  while (1)
+-    {
+-      if (depth == 0)
+-	{
+-	  if (*cp != ',' && *cp != '}' && *cp != '\0')
+-	    {
+-	      if (*cp == '{')
+-		++depth;
+-	      ++cp;
+-	      continue;
+-	    }
+-	}
+-      else
+-	{
+-	  while (*cp != '\0' && (*cp != '}' || depth > 0))
+-	    {
+-	      if (*cp == '}')
+-		--depth;
+-	      ++cp;
+-	    }
+-	  if (*cp == '\0')
+-	    /* An incorrectly terminated brace expression.  */
+-	    return NULL;
+-
+-	  continue;
+-	}
+-      break;
+-    }
+-
+-  return cp;
++  while (*cp != '\0' && (*cp != '}' || depth--) && (*cp != ',' || depth))
++    if (*cp++ == '{')
++      depth++;
++  return *cp != '\0' ? cp : NULL;
+ }
+ 
+ #endif /* !GLOB_ONLY_P */
