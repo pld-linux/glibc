@@ -1,15 +1,15 @@
---- glibc-2.3.2/nscd/nscd.conf.orig	2003-05-04 08:53:36.000000000 +0200
-+++ glibc-2.3.2/nscd/nscd.conf	2003-09-08 15:41:53.135696416 +0200
-@@ -22,10 +22,10 @@
+--- glibc-2.1.94/nscd/nscd.conf~	Mon May  1 23:56:50 2000
++++ glibc-2.1.94/nscd/nscd.conf	Sat Sep 23 01:18:07 2000
+@@ -21,9 +21,9 @@
  #
  
  
 -#	logfile			/var/log/nscd.log
-+#	logfile			/var/log/nscd
- #	threads			6
- #	server-user		nobody
--#	stat-user		somebody
-+#	stat-user		nobody
+-#	threads			6
+-#	server-user		nobody
++	logfile			/var/log/nscd
++	threads			6
++	server-user		nobody
  	debug-level		0
  
  	enable-cache		passwd		yes
