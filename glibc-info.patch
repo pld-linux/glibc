@@ -9,7 +9,7 @@ diff -Nru glibc-2.1/manual/libc.texinfo glibc-2.1.new/manual/libc.texinfo
 +@dircategory Libraries:
  @direntry
 -* Libc: (libc).                 C library.
-+* Libc: (libc).				C library.
++* Libc: (libc).				C library
  @end direntry
  
  @c This tells texinfo.tex to use the real section titles in xrefs in
