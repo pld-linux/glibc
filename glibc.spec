@@ -982,6 +982,8 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
 rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 
+# no longer supported (/dev/null has the same, but expected behaviour)
+rm -f $RPM_BUILD_ROOT%{_bindir}/glibcbug
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -1078,7 +1080,6 @@ fi
 %attr(755,root,root) /sbin/sln
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/getent
-%attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
 %ifnarch alpha ppc sparc64 amd64
