@@ -928,8 +928,8 @@ install -d ../documentation
 cp -f ../linuxthreads/ChangeLog ../documentation/ChangeLog.threads
 cp -f ../linuxthreads/Changes ../documentation/Changes.threads
 cp -f ../linuxthreads/README ../documentation/README.threads
-cp -f ../crypt/README.ufc-crypt ../documentation/
 %endif
+cp -f ../crypt/README.ufc-crypt ../documentation/
 
 cp -f ../ChangeLog* ../documentation
 
