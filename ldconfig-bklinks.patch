@@ -1,0 +1,19 @@
+--- ldconfig-970926/ldconfig.c.ewt	Tue Oct 21 13:44:27 1997
++++ ldconfig-970926/ldconfig.c	Tue Oct 21 13:45:37 1997
+@@ -182,8 +182,14 @@
+ 	    *islink = S_ISLNK(statbuf.st_mode);
+ 
+ 	    /* then try opening it */
+-	    if (!(file = fopen(buff, "rb")))
+-		warn("can't open %s (%s), skipping", buff, strerror(errno));
++	    if (!(file = fopen(buff, "rb"))) {
++		if (*islink) {
++		    if (strstr(buff, ".so."))
++			unlink(buff);
++		} else {
++		    warn("can't open %s (%s), skipping", buff, strerror(errno));
++		}
++	    }
+ 	    else
+ 	    {
+ 		/* now make sure it's a shared library */
