@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1
-%define		man-pages-ver 1.23
+%define		man_pages_ver 1.23
 Release:	9
 Copyright:	LGPL
 Group:		Libraries
@@ -15,7 +15,7 @@ Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.t
 Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-%{version}.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
-Source5:	ftp://ftp.win.tue.nl/pub/linux/man/man-pages-%{man-pages-ver}.tar.gz
+Source5:	ftp://ftp.win.tue.nl/pub/linux/docs/manpages/man-pages-%{man_pages_ver}.tar.bz2
 Patch0:		glibc-info.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
@@ -341,7 +341,8 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at invalid RH spec file.  [2.1.1-1]
+- start at invalid RH spec file.
+  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
