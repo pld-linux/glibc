@@ -13,13 +13,13 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	23
+Release:	24
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:        %{name}-%{version}.tar.bz2
-# Source0-md5:  5be613d02b934d8e305dd2f93062fa6c
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	5be613d02b934d8e305dd2f93062fa6c
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 # Source1-md5:	33b9ae01d51263867d338adfba105278
 Source2:	nscd.init
@@ -561,14 +561,15 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 				lang=`echo $lang | sed "s,\..*,,"`
 			else
 				lang=`echo $lang | sed "s,_.*,,"`
-			fi 
+			fi
 		fi	
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
 		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
-for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
-         lt lv ms nn pt ro ru sl sr ta uk wa zh_CN ; do
+for i in af ar az be bg cy de_AT el en eo es_ES et eu fi ga gr he hi hr hu id \
+	 is ja_JP.SJIS ka lt lv ms nn pt ro ru sl sq sr ta tg th uk uz vi wa \
+	 zh_CN ; do
 	if [ ! -d $i ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -589,7 +590,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%postun -p /sbin/postshell 
+%postun -p /sbin/postshell
 /sbin/ldconfig
 -/sbin/telinit u
 
