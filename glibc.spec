@@ -19,7 +19,7 @@
 #	in order to use this version!
 #
 %{!?min_kernel:%global		min_kernel	2.2.0}
-%define	gkh_version	1:2.6.0.2
+%define	gkh_version	7:2.6.0.2
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(es):	GNU libc
