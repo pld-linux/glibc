@@ -684,7 +684,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libm*.so
 %attr(755,root,root) %{_libdir}/libns*.so
 %attr(755,root,root) %{_libdir}/lib[p-z]*.so
-%attr(755,root,root) %{_libdir}/*.o
+%attr(755,root,root) %{_libdir}/*crt?.o
 %{_libdir}/libc_nonshared.a
 
 %{_mandir}/man3/*
