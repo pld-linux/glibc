@@ -186,7 +186,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -262,21 +299,30 @@
+@@ -262,22 +299,31 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -2456,7 +2456,7 @@ diff -uNr libc.old/localedata/locales/csb_PL libc/localedata/locales/csb_PL
 diff -uNr libc.old/localedata/locales/el_CY libc/localedata/locales/el_CY
 --- libc.old/localedata/locales/el_CY	2004-07-16 03:07:27.000000000 +0200
 +++ libc/localedata/locales/el_CY	2004-11-14 01:24:38.000000000 +0100
-@@ -1,151 +0,0 @@
+@@ -0,0 +1,151 @@
 +comment_char %
 +escape_char  /
 +%
