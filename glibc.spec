@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	17
+Release:	18
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -429,7 +429,8 @@ cd ldconfig-980708
 
 cd ldconfig-980708
 rm -f ldconfig
-gcc -o ldconfig $RPM_OPT_FLAGS -D_LIBC -static ldconfig.c
+gcc -c $RPM_OPT_FLAGS -D_LIBC ldconfig.c -o ldconfig.o
+gcc -nodefaultlibs -static ldconfig.o ../libc.a -o ldconfig
 
 %install
 rm -rf $RPM_BUILD_ROOT
