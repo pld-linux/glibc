@@ -38,14 +38,14 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-Version:	2.3.2
+Version:	2.3.3
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~djurban/glibc/%{name}-%{version}.tar.bz2
-# Source0-md5:	a71a93d0316ba3f09f196f1672bb58a4
+# Source0-md5:	66f01e9db96651ec82034b9474690e1f
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source1:	http://www.kernel.pl/~djurban/glibc/%{name}-linuxthreads-%{version}.tar.bz2
 # Source1-md5:	1843a3fc138bcd26be946d9423ff5f10
