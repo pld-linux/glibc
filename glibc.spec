@@ -255,7 +255,7 @@ kitaplýðý kullanmak zorundadýrlar.
 	--enable-add-ons=crypt,linuxthreads \
 	--enable-profile \
 	--disable-omitfp
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
