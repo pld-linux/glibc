@@ -113,7 +113,7 @@ Patch29:	%{name}-soversions-fix.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
-Patch50:	%{name}ZA_collate.patch
+Patch50:	%{name}-ZA_collate.patch
 Patch51:	%{name}-fix_tls_linkage.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
