@@ -17,7 +17,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.2
-Release:	0.1@%{_kernel_ver_str}
+Release:	0.2@%{_kernel_ver_str}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -479,7 +479,7 @@ mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
-%configure2_13 \
+%configure \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
