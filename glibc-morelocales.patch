@@ -202,7 +202,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -262,20 +306,29 @@
+@@ -262,22 +306,31 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -226,13 +226,15 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
  sr_CS.UTF-8/UTF-8 \
+ sr_CS.UTF-8@Latn/UTF-8 \
 +sr_CS.UTF-8@ije/UTF-8 \
  sr_CS/ISO-8859-5 \
+ sr_CS@Latn/ISO-8859-2 \
 +sr_CS@ije/ISO-8859-5 \
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -285,28 +338,40 @@
+@@ -287,28 +340,40 @@
  sv_SE/ISO-8859-1 \
  ta_IN/UTF-8 \
  te_IN/UTF-8 \
