@@ -5,7 +5,7 @@
 # Conditional build:
 %bcond_with	omitfp		# build without frame pointer (pass \--enable-omitfp)
 %bcond_without	memusage	# don't build memusage utility
-%bcond_with	kernelheaders	# use headers from kernel-headers instead of
+%bcond_with	kernelheaders	# use headers from %{_kernelsrcdir} instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	nptl		# don't use NPTL (implies using linuxthreads)
 %bcond_without	tls		# don't use tls (implies no NPTL)
