@@ -172,7 +172,7 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaФ.
 Znajduj╠ siЙ tutaj rСwnie© definicje rС©nych informacji dla wielu
 jЙzykСw (locale) oraz definicje stref czasowych.
 
-Przeznaczony dla j╠dra Linux >= %{min_kernel}.
+Przeznaczony dla j╠dra Linuksa >= %{min_kernel}.
 
 %description -l ru
 Содержит стандартные библиотеки, используемые многочисленными
