@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.1
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -33,7 +33,6 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-string2-pointer-arith.patch
 Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
-Patch7:		%{name}-sparc-linux-chown.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
@@ -438,7 +437,6 @@ Zabawka.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
