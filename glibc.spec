@@ -47,7 +47,7 @@
 %endif
 
 %define		llh_version	7:2.6.6.0
-%define		_snap		20041014
+%define		_snap		20041030
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -66,7 +66,7 @@ License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	00e0cec5afd5dd122b89e54b76fcb715
+# Source0-md5:	4e14871efd881fbbf523a0ba16175bc7
 # Source0-size:	13680659
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
@@ -111,7 +111,6 @@ Patch24:	%{name}-morelocales.patch
 Patch25:	%{name}-ppc-getcontext.patch
 Patch26:	%{name}-locale_fixes.patch
 Patch27:	%{name}-LD_DEBUG.patch
-Patch28:	%{name}-soversions-fix.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -810,7 +809,6 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch26 -p1
 # UPDATEME/DROPME
 # %patch27 -p0
-%patch28 -p1
 # DROP
 #%patch30 -p1
 # DROP
