@@ -74,6 +74,7 @@ Patch26:	%{name}-alpha-fix-as-syntax.patch
 Patch27:	%{name}-soinit-EH_FRAME.patch
 Patch30:	%{name}-sparc-errno_fix.patch
 Patch31:	%{name}-make.patch
+Patch32:	%{name}-tests-io-tmp.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -744,6 +745,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch27 -p1
 %patch30
 %patch31 -p1
+%patch32 -p1
 
 chmod +x scripts/cpp
 
