@@ -157,12 +157,12 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
 
 install nss/db-Makefile $RPM_BUILD_ROOT/var/db
 
-cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
+cat << EOF > $RPM_BUILD_ROOT%{_bindir}/create-db
 #!/bin/sh
-/usr/bin/make -f /var/db/db-Makefile
+%{_bindir}/make -f /var/db/db-Makefile
 EOF
 
-ln -sf create-db $RPM_BUILD_ROOT/usr/bin/update-db 
+ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db 
 
 rm -rf documentation
 install -d documentation
@@ -205,7 +205,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) /etc/rc.d/init.d/*
 
 %attr(755,root,root) /sbin/*
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) /usr/sbin/*
 
 %attr(755,root,root) /lib/ld-*
