@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.3.1
-Release:	0.3
+Release:	0.4
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -38,6 +38,7 @@ Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-postshell.patch
+Patch13:	%{name}-broken-ldconfig-on-i386-with-gcc32.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -441,6 +442,7 @@ Zabawka.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
 
 chmod +x scripts/cpp
 
