@@ -56,6 +56,8 @@ Conflicts:	kernel < %{min_kernel}
 Conflicts:	man-pages < 1.43
 Conflicts:	ld.so < 1.9.9-9
 
+%define		debugcflags	-O1 -g
+
 %description
 Contains the standard libraries that are used by multiple programs on
 the system. In order to save disk space and memory, as well as to ease
