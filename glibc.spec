@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2
-Release:	5
+Release:	6
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -39,7 +39,7 @@ Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 Autoreq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Requires:	kernel >= 2.2.17
+Conflict:	kernel < 2.2.17
 
 %description
 Contains the standard libraries that are used by multiple programs on
