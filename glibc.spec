@@ -254,20 +254,22 @@ fi
 %preun -n nscd
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del nscd
-	/etc/rc.d/init.d/nscd stop &>/dev/null
+	/etc/rc.d/init.d/nscd stop
 fi
 
 %post -n utmpd
 /sbin/chkconfig --add utmpd
 
 if [ -f /var/lock/subsys/utmpd ]; then
-	/etc/rc.d/init.d/utmpd restart &>/dev/null
+	/etc/rc.d/init.d/utmpd restart
 fi
 
 %preun -n utmpd
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del utmpd
-	/etc/rc.d/init.d/utmpd stop &>/dev/null
+	/etc/rc.d/init.d/utmpd stop
+else
+	echo "Run \"/etc/rc.d/init.d/utmpd start\" to start utmpd daemon."
 fi
 
 %clean
