@@ -74,7 +74,7 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package	devel
+%package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
@@ -109,7 +109,7 @@ objektowe, niezbêdne do kompilacji programów wykonywalnych i innych bibliotek.
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
-%package -n	nscd
+%package -n nscd
 Summary:	Name Service Caching Daemon
 Summary(pl):	Name Service Caching Daemon
 Group:		Networnikng/Daemons
@@ -130,7 +130,7 @@ poprawiæ szybko¶æ dzia³ania NIS+.
 Nie jest mo¿liwe u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów
 po stronie j±dra w ods³udze w±tków.
 
-%package -n	utmpd
+%package -n utmpd
 Summary:	utmp and utmpx synchronizer for libc5 applications.
 Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
 Group:		Daemons
@@ -146,7 +146,7 @@ utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików
 /var/run/utmp i /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania
 ze starszych programów (bazuj±cych na libc5).
 
-%package	static
+%package static
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne 
 Group:		Development/Libraries
@@ -198,9 +198,6 @@ ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
 
-strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
-strip strip--unneeded $RPM_BUILD_ROOT/lib/*.so.*
-
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
 install %{SOURCE6}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
@@ -230,6 +227,10 @@ cp ChangeLog ChangeLog.8 documentation
 gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
 	documentation/* login/README.utmpd
+
+strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
+strip strip--unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
+	$RPM_BUILD_ROOT/usr/lib/gconv/*.so
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -352,8 +353,10 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 changes from devel and getaddrinfo.patch
 
+Revision 1.54  1999/07/12 23:05:57  kloczek
 - added using CVS keywords in %changelog (for automating them).
 
+- added stripping 
   [2.1.1-3]
 - added stripping /usr/lib/gconv/*.so modules (it saves next ~300KB),
 - added glibc-versions.awk_fix.patch (fix using sort in
