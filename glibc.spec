@@ -23,7 +23,7 @@ Patch2:		glibc-versions.awk_fix.patch
 Patch3:		glibc-pld.patch
 Patch4:		glibc-getaddrinfo.patch
 URL:		http://www.gnu.org/software/libc/
-BuildPrereq:	perl
+BuildRequires:	perl
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
