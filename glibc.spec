@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	17
+Release:	18
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -40,6 +40,7 @@ Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-use-int-not-arpa.patch
 Patch13:	%{name}-divdi3.patch
 Patch14:	%{name}-nss_dns-overflow.patch
+Patch15:	%{name}-sunrpc-overflow.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -441,6 +442,7 @@ Zabawka.
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+%patch15 -p1
 
 chmod +x scripts/cpp
 
