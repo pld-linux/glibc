@@ -16,6 +16,8 @@
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 
+%bcond_without	comdat		# without (unfinished) comdat hacks [for Ac]
+
 #
 # TODO:
 # - localedb-gen man pages(?)
@@ -814,7 +816,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #%patch25 -p1
 # DROP
 #%patch26 -p1
-%patch27 -p1
+%{?with_comdat:%patch27 -p1}
 %patch28 -p1
 %patch29 -p1
 %patch30 -p1
