@@ -57,7 +57,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.1%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
+Release:	0.%{_snap}.2%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -101,6 +101,7 @@ Patch19:	%{name}-new-charsets.patch
 Patch20:	%{name}-sr_CS.patch
 Patch21:	%{name}-sparc64-dl-machine.patch
 Patch22:	%{name}-tzfile-noassert.patch
+Patch23:	%{name}-ifreq.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -788,6 +789,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
+%patch23 -p1
 
 %patch30 -p1
 %patch31 -p1
