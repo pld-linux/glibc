@@ -266,14 +266,14 @@ diff -uNr libc.old/localedata/locales/csb_PL libc/localedata/locales/csb_PL
 +escape_char  /
 +%
 +% Kashubian Language Locale for Poland
-+% by Andrzej Krzysztofowicz <ankry@mif.pg.gda.pl>
-+% Source: information from Leszek Lubecki <leszek@mml.pl>
++% by Andrzej Krzysztofowicz <ankry at mif pg gda pl>
++% Source: information from Leszek Lubecki <leszek at mml pl>
 +%
 +% Distribution and use is free, also for commercial purposes.
 +
 +LC_IDENTIFICATION
 +title      "Kashubian locale for Poland"
-+source     "Leszek Lubecki"
++source     "Information from Leszek Lubecki"
 +address    ""
 +contact    "Andrzej Krzysztofowicz"
 +email      "ankry@mif.pg.gda.pl"
@@ -281,8 +281,8 @@ diff -uNr libc.old/localedata/locales/csb_PL libc/localedata/locales/csb_PL
 +fax        ""
 +language   "Kashubian"
 +territory  "Poland"
-+revision   "0.1"
-+date       "2004-07-25"
++revision   "0.2"
++date       "2004-09-10"
 +%
 +category  i18n:1997;LC_IDENTIFICATION
 +category  i18n:1997;LC_CTYPE
@@ -2468,7 +2468,7 @@ diff -uNr libc.old/localedata/locales/el_CY libc/localedata/locales/el_CY
 +source     "Greek Debian Translation Team"
 +address    "Konstantinos Margaritis, Mesologgiou & M.Asias, Nafplion 21100, Greece"
 +contact    ""
-+email      "bug-glibc@gnu.org"
++email      "libc-locales@sources.redhat.com"
 +tel        ""
 +fax        ""
 +language   "Greek"
@@ -2616,14 +2616,14 @@ diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 +escape_char  /
 +%
 +% Upper Sorbian Language Locale for Germany
-+% by Andrzej Krzysztofowicz <ankry@mif.pg.gda.pl>
-+% Source: information from Michael Wolf <milupo@sorbzilla.de>
++% by Andrzej Krzysztofowicz <ankry at mif pg gda pl>
++% Source: information from Michael Wolf <milupo at sorbzilla de>
 +%
 +% Distribution and use is free, also for commercial purposes.
 +
 +LC_IDENTIFICATION
 +title      "Upper Sorbian locale for Germany"
-+source     "Michael Wolf"
++source     "Information from Michael Wolf"
 +address    ""
 +contact    "Andrzej Krzysztofowicz"
 +email      "ankry@mif.pg.gda.pl"
@@ -5823,7 +5823,7 @@ diff -uNr libc.orig/localedata/locales/or_IN libc/localedata/locales/or_IN
 +source     ""
 +address    ""
 +contact    ""
-+email      "bug-glibc@gnu.org"
++email      "libc-locales@sources.redhat.com"
 +tel        ""
 +fax        ""
 +language   "Oriya"
@@ -6434,7 +6434,7 @@ diff -uNr libc.old/localedata/locales/sr_CS@ije libc/localedata/locales/sr_CS@ij
 +source     "sr_YU locale"
 +address    ""
 +contact    "Danilo Segan"
-+email      "bug-glibc@gnu.org"
++email      "libc-locales@sources.redhat.com"
 +tel        ""
 +fax        ""
 +language   "Serbian"
@@ -6586,7 +6586,7 @@ diff -uNr libc.old/localedata/locales/tr_CY libc/localedata/locales/tr_CY
 +source     "RAP"
 +address    "Sankt J<U00F8>rgens Alle 8, DK-1615 K<U00F8>benhavn V, Danmark"
 +contact    ""
-+email      "bug-glibc-locales@gnu.org"
++email      "libc-locales@sources.redhat.com"
 +tel        ""
 +fax        ""
 +language   "Turkish"
