@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	9
+Release:	10
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -456,7 +456,7 @@ fi
 %{__make}
 
 # this need improvements (like building agains new builded glibc) but works
-%{__cc} -o postshell %{!?debug:-s} %{SOURCE7}
+%{__cc} -o postshell %{rpmcflags} %{rpmldflags} %{SOURCE7}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -541,6 +541,8 @@ install -m755 postshell $RPM_BUILD_ROOT/sbin
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+# not run iconvconfig in %%postun -n iconv because iconvconfig don't exist when %%postun is runned
+
 %post	-p /sbin/postshell
 /sbin/ldconfig
 -/sbin/telinit u
@@ -553,7 +555,6 @@ rm -rf $RPM_BUILD_ROOT
 %postun memusage -p /sbin/ldconfig
 
 %post -n iconv -p %{_sbindir}/iconvconfig
-# not run iconvconfig in %%postun iconv because iconvconfig don't exist when %%postun is runned
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
