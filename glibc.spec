@@ -1,4 +1,23 @@
-%define		min_kernel	2.2.0
+
+# conditional build
+# _without_dist_kernel          without distribution kernel
+
+%define         _kernel_ver     %(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"'
+ -f2)
+%define         _kernel24       %(echo %{_kernel_ver} | grep -q '2\.[012]\.' ; echo $?)
+
+%if %{_kernel24}
+%define         _kernel_series  2.4
+%define		_min_kernel	2.4.5
+%else
+%define         _kernel_series  2.2
+%define		_min_kernel	2.2.0
+%endif
+
+%define		_really_min_kernel	2.2.0
+
+%define         _release        13
+
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -6,7 +25,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	12
+Release:        %{_release}@%{_kernel_series}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -46,6 +65,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
+%{!?_without_dist_kernel:Buildrequires:         kernel-headers >= %{_min_kernel} }
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -55,7 +75,8 @@ Obsoletes:	ldconfig
 Autoreq:	false
 Prereq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Conflicts:	kernel < %{min_kernel}
+Conflicts:	kernel < %{_min_kernel}
+Conflicts:	kernel < %{_really_min_kernel}
 Conflicts:	man-pages < 1.43
 Conflicts:	ld.so < 1.9.9-9
 
@@ -221,6 +242,7 @@ Interface w glibc, czyli z zestawu funkcji z tej biblioteki, które
 umo¿liwiaj± konwersjê kodowania danych z poziomu dowolnego programu.
 
 %package static
+Release:        %{_release}@%{_kernel_series}
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
@@ -232,6 +254,10 @@ Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
 Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
+%if %{_kernel24}
+Conflicts:      kernel < %{_min_kernel}
+%endif
+Conflicts:	kernel < %{_really_min_kernel}
 
 %description static
 GNU libc static libraries.
@@ -240,6 +266,7 @@ GNU libc static libraries.
 Biblioteki statyczne GNU libc.
 
 %package profile
+Release:        %{_release}@%{_kernel_series}
 Summary:	glibc with profiling support
 Summary(de):	glibc mit Profil-Unterstützung
 Summary(fr):	glibc avec support pour profiling
@@ -250,6 +277,10 @@ Group(de):	Entwicklung/Libraries/Libc
 Group(pl):	Programowanie/Biblioteki/Libc
 Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{version}
+%if %{_kernel24}
+Conflicts:      kernel < %{_min_kernel}
+%endif
+Conflicts:	kernel < %{_really_min_kernel}
 
 %description profile
 When programs are being profiled used gprof, they must use these
@@ -276,6 +307,10 @@ Group:		Development/Libraries/Libc
 Group(de):	Entwicklung/Libraries/Libc
 Group(pl):	Programowanie/Biblioteki/Libc
 Requires:	%{name}-devel = %{version}
+%if %{_kernel24}
+Conflicts:      kernel < %{_min_kernel}
+%endif
+Conflicts:	kernel < %{_really_min_kernel}
 
 %description pic
 GNU C Library PIC archive contains an archive library (ar file)
