@@ -24,7 +24,6 @@
 #   linuxthreads/tst-cancel8, debug/backtrace-tst(SEGV)  fail on alpha
 # - problem compiling with --enable-bounded (must be reported to libc-alpha)
 #   (is this comment still valid???)
-
 #
 
 %{!?min_kernel:%global          min_kernel      2.4.6}
@@ -74,7 +73,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.1.1
+Release:	0.%{_snap}.1.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
