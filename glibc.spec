@@ -5,15 +5,13 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1
-Release:	6
+Release:	7
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-#######		ftp://sourceware.cygnus.com/pub/glibc/
-Source0:	%{name}-%{version}.tar.gz
-Source1:	%{name}-linuxthreads-%{version}.tar.gz
-#######:	http://www.ozemail.com.au/~geoffk/glibc-crypt
-Source2:	%{name}-crypt-%{version}.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
+Source2:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-crypt-%{version}.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
@@ -114,6 +112,9 @@ geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 %build
 install -d sunrpc/cpp; ln -s /lib/cpp sunrpc/cpp/cpp 
 CFLAGS="$RPM_OPT_FLAGS -pipe" \
+%ifarch sparc sparc64
+sparc32 \
+%endif
 ./configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
@@ -198,7 +199,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
 %config /etc/rpc
 
-%attr(750,root,root) /etc/rc.d/init.d/*
+%attr(754,root,root) /etc/rc.d/init.d/*
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) /usr/bin/*
@@ -253,6 +254,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man3/*
 
 %changelog
+* Mon Mar 15 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.
+  [2.1-7]
+- on sparc{64} ./configure must be runed throw sparc32 wrapper.
+
 * Sun Mar 14 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.1-6]
 - updated glibc-crypt to version-2.1
@@ -260,7 +265,6 @@ rm -rf $RPM_BUILD_ROOT
 * Sat Mar 06 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.1-5]
 - removed striping of shared libraries -- no debug info in this libs,
-- fixed /etc/rc.d/init.d/* -- Tomek, never again 754 on start scripts... 
 - fixed permission of /var/db directory -- should be 755...
 
 * Mon Feb 22 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
