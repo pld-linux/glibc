@@ -1346,7 +1346,11 @@ fi
 %{_libdir}/librpcsvc.a
 
 %if %{with dual}
-%{_libdir}/nptl
+%dir %{_libdir}/nptl
+# ld scripts
+%{_libdir}/nptl/libc.so
+%{_libdir}/nptl/libpthread.so
+%{_libdir}/nptl/libpthread_nonshared.a
 %{_includedir}/nptl
 %endif
 
@@ -1447,6 +1451,10 @@ fi
 %{_libdir}/libresolv.a
 %{_libdir}/librt.a
 %{_libdir}/libutil.a
+%if %{with dual}
+%{_libdir}/nptl/libc.a
+%{_libdir}/nptl/libpthread.a
+%endif
 
 %if %{with linuxthreads}
 %files profile
