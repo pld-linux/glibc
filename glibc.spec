@@ -4,14 +4,14 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1.94
+Version:	2.1.95
 Release:	1
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.bz2
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -279,6 +279,15 @@ Requires:	%{name} = %{version}
 %description -n nss_nisplus
 Glibc NSS (Name Service Switch) module for NIS+ databases acces.
 
+%package memusage
+Summary:	A toy.
+Group:		Toys
+Requires:	%{name} = %{version}
+Requires:	gd
+
+%description memusage
+A toy.
+
 %prep
 %setup  -q -a 1
 %patch0 -p1
@@ -457,12 +466,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_nisplus*.so*
 
+%files memusage
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/memusage*
+
 %files devel
 %defattr(644,root,root,755)
 %doc documentation/* {NOTES,PROJECTS}.gz
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
-%attr(755,root,root) %{_bindir}/memusage*
 %attr(755,root,root) %{_bindir}/*prof*
 %attr(755,root,root) %{_bindir}/*trace
 
