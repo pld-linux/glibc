@@ -1,0 +1,25 @@
+This patch adds support for br_FR@euro and lg_UG locales by default.
+
+Still not added:
+az_AZ, hy_AM, tt_RU, gd_GB		(TODO or FIXME exists in source file)
+bn_BD, bn_ID, el_GR@euro, zh_SG		(no charset information)
+am_ET, ti_ER, ti_ET  			(syntax errors in LC_COLLATE)
+
+--- glibc-2.3.1/localedata/SUPPORTED.orig	Sat Feb 23 19:30:27 2002
++++ glibc-2.3.1/localedata/SUPPORTED	Fri Feb 21 10:57:35 2003
+@@ -24,6 +25,7 @@
+ be_BY/CP1251 \
+ bg_BG/CP1251 \
+ br_FR/ISO-8859-1 \
++br_FR@euro/ISO-8859-15 \
+ bs_BA/ISO-8859-2 \
+ ca_ES/ISO-8859-1 \
+ ca_ES@euro/ISO-8859-15 \
+@@ -112,6 +114,7 @@
+ ko_KR.EUC-KR/EUC-KR \
+ ko_KR.UTF-8/UTF-8 \
+ kw_GB/ISO-8859-1 \
++lg_UG/ISO-8859-10 \
+ lt_LT/ISO-8859-13 \
+ lv_LV/ISO-8859-13 \
+ mi_NZ/ISO-8859-13 \
