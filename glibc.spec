@@ -970,11 +970,19 @@ rm -rf $RPM_BUILD_ROOT
 # when %%postun is run
 
 %ifnarch sparc64
+%ifarch amd64
+%post	-n %{name}64 -p /%{_lib}/postshell
+%else
 %post	-p /%{_lib}/postshell
+%endif
 /%{_lib}/ldconfig
 -/sbin/telinit u
 
-%postun -p /%{_lib}/postshell
+%ifarch amd64
+%postun	-n %{name}64 -p /%{_lib}/postshell
+%else
+%postun	-p /%{_lib}/postshell
+%endif
 /%{_lib}/ldconfig
 -/sbin/telinit u
 
