@@ -20,11 +20,11 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%bcond_with	nptl # enable new posix thread library (req: kernel 2.5/2.6) 
+%bcond_with	nptl # enable new posix thread library (req: kernel 2.5/2.6)
 		     # instead of linuxthreads
 
 %if %{with nptl}
-%define         min_kernel      2.5.65
+%define		min_kernel	2.5.65
 %endif
 
 %{!?min_kernel:%define		min_kernel	2.2.0}
@@ -61,7 +61,7 @@ Source7:	sln.8
 Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
-# Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
+# Source9-md5:	b48fec281f854627d6b8781cd1dd72d2
 Source10:	ftp://people.redhat.com/drepper/nptl/nptl-0.57.tar.bz2
 # Source10-md5:	82472303a736b53812906f97548e54f1
 Patch0:		%{name}-info.patch
@@ -86,7 +86,7 @@ Patch22:	%{name}-secureexec.patch
 Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-sparc64_pause.patch
 Patch25:	%{name}-linuxthreads.patch
-Patch26:        %{name}-csu-verfix.patch
+Patch26:	%{name}-csu-verfix.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -118,7 +118,7 @@ Conflicts:	rpm < 4.1
 %define		debugcflags	-O1 -g
 %ifarch sparc64
 %define		_without_memusage	1
-%define 	specflags_sparc64	-mvis -fcall-used-g6
+%define		specflags_sparc64	-mvis -fcall-used-g6
 %endif
 
 %description
@@ -651,7 +651,7 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
 %if %{with nptl}
-        CPPFLAGS="-I%{_kernelsrcdir}/include" \
+	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include \
 	--enable-add-ons=nptl \
 	--with-tls \
