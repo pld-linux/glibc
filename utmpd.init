@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 #	/etc/rc.d/init.d/utmpd
 #
@@ -8,8 +8,6 @@
 # description: Utmpd daemon
 # processname: utmpd
 #
-export PATH=/bin:/usr/bin:/sbin:/usr/sbin
-
 # Source function library.
 . /etc/rc.d/init.d/functions
 
