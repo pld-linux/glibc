@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -18,6 +18,8 @@ Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	ldconfig.8
+Source6:	%{name}-man-pages.tgz
+Source7:	%{name}-non-english-man-pages.tgz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
@@ -432,6 +434,8 @@ install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
+tar xzvf %{SOURCE6} -C $RPM_BUILD_ROOT%{_mandir}/
+tar xzvf %{SOURCE7} -C $RPM_BUILD_ROOT%{_mandir}/
 touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -530,7 +534,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_libdir}/locale
 
-%{_mandir}/man8/ldconfig*
+%{_mandir}/man[578]/*
+%lang(cs) %{_mandir}/cs/man[578]/*
+%lang(de) %{_mandir}/de/man[578]/*
+%lang(es) %{_mandir}/es/man[578]/*
+%lang(fr) %{_mandir}/fr/man[578]/*
+%lang(hu) %{_mandir}/hu/man[578]/*
+%lang(it) %{_mandir}/it/man[578]/*
+%lang(ja) %{_mandir}/ja/man[578]/*
+%lang(ko) %{_mandir}/ko/man[578]/*
+%lang(pl) %{_mandir}/pl/man[578]/*
+%lang(pt) %{_mandir}/pt/man[578]/*
+%lang(ru) %{_mandir}/ru/man[578]/*
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
