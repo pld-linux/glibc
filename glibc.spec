@@ -1037,6 +1037,15 @@ fi
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
 %dir %{_libdir}/locale
 
+#%files -n nss_dns
+%defattr(644,root,root,755)
+%attr(755,root,root) /%{_lib}/libnss_dns*.so*
+
+#%files -n nss_files
+%defattr(644,root,root,755)
+%attr(755,root,root) /%{_lib}/libnss_files*.so*
+
+
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
 
@@ -1100,14 +1109,6 @@ fi
 %lang(pt_BR) %{_mandir}/pt_BR/man7/*
 %lang(pt_BR) %{_mandir}/pt_BR/man8/[!n]*
 %lang(ru) %{_mandir}/ru/man[578]/*
-
-#%files -n nss_dns
-%defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_dns*.so*
-
-#%files -n nss_files
-%defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_files*.so*
 
 %files zoneinfo_right
 %defattr(644,root,root,755)
