@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	16
+Release:	17
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -652,6 +652,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sprof
 
 %{_includedir}/*.h
+%ifarch alpha
+%{_includedir}/alpha
+%endif
 %{_includedir}/arpa
 %{_includedir}/bits
 %{_includedir}/gnu
