@@ -4,45 +4,36 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1.3
-Release:	24
+Version:	2.1.97
+Release:	2
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.1.tar.gz
-Source3:	utmpd.init
-Source4:	nscd.init
-Source5:	utmpd.sysconfig
-Source6:	nscd.sysconfig
-Source7:	nscd.logrotate
-Source10:	ftp://ftp.yggdrasil.com/private/hjl/ldconfig-980708.tar.gz
-Source11:	ldconfig.8
-Patch0:		%{name}-2.1-CVS-20000905.patch.bz2
-Patch1:		%{name}-info.patch
-Patch2:		%{name}-versions.awk_fix.patch
-Patch3:		%{name}-pld.patch
-Patch4:		%{name}-crypt-blowfish.patch
-Patch5:		%{name}-string2-pointer-arith.patch
-Patch6:		%{name}-db2-alpha-mutex.patch
-Patch7:		%{name}-linuxthreads-lock.patch
-Patch8:		%{name}-pthread_create-manpage.patch
-Patch9:		%{name}-sparc-linux-chown.patch
-Patch10:	ldconfig-%{name}.patch
-Patch11:	ldconfig-bklinks.patch
-Patch12:	%{name}-cvs-20000824-md5-align-clean.patch.gz
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
+Source2:	nscd.init
+Source3:	nscd.sysconfig
+Source4:	nscd.logrotate
+Source5:	ldconfig.8
+Patch0:		%{name}-info.patch
+Patch1:		%{name}-versions.awk_fix.patch
+Patch2:		%{name}-pld.patch
+Patch3:		%{name}-crypt-blowfish.patch
+Patch4:		%{name}-string2-pointer-arith.patch
+Patch5:		%{name}-linuxthreads-lock.patch
+Patch6:		%{name}-pthread_create-manpage.patch
+Patch7:		%{name}-sparc-linux-chown.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
+BuildRequires:	gd-devel
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
-Prereq:		basesystem
 Autoreq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -135,76 +126,6 @@ C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik
 kitaplýklar.
 
-%package -n nss_compat
-Summary:	Old style NYS NSS glibc module
-Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Requires:	%{name} = %{version}
-
-%description -n nss_compat
-Old style NYS NSS glibc module
-
-%package -n nss_db
-Summary:	Berkeley DB NSS glibc module
-Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Requires:	%{name} = %{version}
-
-%description -n nss_db
-Berkeley DB NSS glibc module.
-
-%package -n nss_dns
-Summary:	BIND NSS glibc module
-Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Requires:	%{name} = %{version}
-
-%description -n nss_dns
-BIND NSS glibc module.
-
-%package -n nss_files
-Summary:	Traditional files databases NSS glibc module
-Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Requires:	%{name} = %{version}
-
-%description -n nss_files
-Traditional files databases NSS glibc module.
-
-%package -n nss_hesiod
-Summary:	Hesiod NSS glibc module
-Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Requires:	%{name} = %{version}
-
-%description -n nss_hesiod
-Glibc NSS (Name Service Switch) module for databases acces.
-
-%package -n nss_nis
-Summary:	NIS(YP) NSS glibc module
-Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Requires:	%{name} = %{version}
-
-%description -n nss_nis
-Glibc NSS (Name Service Switch) module for NIS(YP) databases acces.
-
-%package -n nss_nisplus
-Summary:	NIS+ NSS module
-Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Requires:	%{name} = %{version}
-
-%description -n nss_nisplus
-Glibc NSS (Name Service Switch) module for NIS+ databases acces.
-
 %package -n nscd
 Summary:	Name Service Caching Daemon
 Summary(pl):	Name Service Caching Daemon
@@ -225,24 +146,6 @@ nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
 drastycznie poprawiæ szybko¶æ dzia³ania NIS+. Nie jest mo¿liwe
 u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów po stronie j±dra w
 ods³udze w±tków.
-
-%package -n utmpd
-Summary:	utmp and utmpx synchronizer for libc5 applications.
-Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
-Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
-Prereq:		/sbin/chkconfig
-Requires:	rc-scripts >= 0.2.0
-
-%description -n utmpd
-utmpd is a utmp and utmpx synchronizer. Is only needed for libc5 based
-program with utmp access.
-
-%description -n utmpd -l pl
-utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików /var/run/utmp i
-/var/run/utmpx. Potrzebny jest tylko w przypadku korzystania ze
-starszych programów (bazuj±cych na libc5).
 
 %package -n localedb-src
 Summary:	Souce code locale database
@@ -336,111 +239,78 @@ GNU C Library PIC archive contains an archive library (ar file)
 composed of individual shared objects. This is used for creating a
 library which is a smaller subset of the standard libc shared library.
 
-%package db1
-Summary:	BSD database library for C
-Group:		Libraries
-Group(de):	Libraries
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-PreReq:		/sbin/ldconfig
-Provides:	db1
+%package -n nss_compat
+Summary:	Old style NYS NSS glibc module
+Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
+Requires:	%{name} = %{version}
 
-%description db1
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that
-provides embedded database support for both traditional and
-client/server applications. It should be installed if compatibility is
-needed with databases created with db1. This library used to be part
-of the glibc package.
+%description -n nss_compat
+Old style NYS NSS glibc module
 
-%package db1-devel
-Summary:	Development libraries and header files for Berkeley database library
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Requires:	%{name}-db1 = %{version}
-Provides:	db1-devel
+%package -n nss_dns
+Summary:	BIND NSS glibc module
+Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
+Requires:	%{name} = %{version}
 
-%description db1-devel
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that
-provides embedded database support for both traditional and
-client/server applications. Berkeley DB includes B tree, Hashing,
-Fixed and Variable-length record access methods.
+%description -n nss_dns
+BIND NSS glibc module.
 
-This package contains the header files, libraries, and documentation
-for building programs which use Berkeley DB.
+%package -n nss_files
+Summary:	Traditional files databases NSS glibc module
+Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
+Requires:	%{name} = %{version}
 
-%package db1-static
-Summary:	Static libraries for Berkeley database library
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Requires:	%{name}-db1-devel = %{version}
-Provides:	db1-static
+%description -n nss_files
+Traditional files databases NSS glibc module.
 
-%description db1-static
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that
-provides embedded database support for both traditional and
-client/server applications. Berkeley DB includes B tree, Hashing,
-Fixed and Variable-length record access methods.
+%package -n nss_hesiod
+Summary:	Hesiod NSS glibc module
+Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
+Requires:	%{name} = %{version}
 
-This package contains the static libraries for building programs which
-use Berkeley DB.
+%description -n nss_hesiod
+Glibc NSS (Name Service Switch) module for databases acces.
 
-%package db2
-Summary:	BSD database library for C
-Group:		Libraries
-Group(de):	Libraries
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-PreReq:		/sbin/ldconfig
-Provides:	db2
+%package -n nss_nis
+Summary:	NIS(YP) NSS glibc module
+Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
+Requires:	%{name} = %{version}
 
-%description db2
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that
-provides embedded database support for both traditional and
-client/server applications. This library used to be part of the glibc
-package.
+%description -n nss_nis
+Glibc NSS (Name Service Switch) module for NIS(YP) databases acces.
 
-%package db2-devel
-Summary:	Development libraries and header files for Berkeley database library
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Requires:	%{name}-db2 = %{version}
-Provides:	db2-devel
+%package -n nss_nisplus
+Summary:	NIS+ NSS module
+Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
+Requires:	%{name} = %{version}
 
-%description db2-devel
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that
-provides embedded database support for both traditional and
-client/server applications. Berkeley DB includes B tree, Hashing,
-Fixed and Variable-length record access methods.
+%description -n nss_nisplus
+Glibc NSS (Name Service Switch) module for NIS+ databases acces.
 
-This package contains the header files, libraries, and documentation
-for building programs which use Berkeley DB.
+%package memusage
+Summary:	A toy.
+Group:		Toys
+######		Unknown group!
+Requires:	%{name} = %{version}
+Requires:	gd
 
-%package db2-static
-Summary:	Static libraries for Berkeley database library
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Requires:	%{name}-db2-devel = %{version}
-Provides:	db2-static
-
-%description db2-static
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that
-provides embedded database support for both traditional and
-client/server applications. Berkeley DB includes B tree, Hashing,
-Fixed and Variable-length record access methods.
-
-This package contains the static libraries for building programs which
-use Berkeley DB.
+%description memusage
+A toy.
 
 %prep
-%setup -q -a 1 -a 2 -a 10
+%setup  -q -a 1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -449,40 +319,19 @@ use Berkeley DB.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch12 -p1
-cd ldconfig-980708
-%patch10 -p1
-%patch11 -p1
 
 %build
 %configure \
-	--enable-add-ons=crypt,linuxthreads \
+	--enable-add-ons=linuxthreads \
+%{?kernel:--enable-kernel=%{kernel}} \
 	--enable-profile \
 	--disable-omitfp
 
 %{__make}
 
-cd ldconfig-980708
-rm -f ldconfig
-gcc -c $RPM_OPT_FLAGS -D_LIBC ldconfig.c -o ldconfig.o
-
-%ifarch alpha
-gcc -nostdlib -nostartfiles -static -o ldconfig ../csu/crt1.o \
-	../csu/crti.o ../csu/crtbegin.o ldconfig.o \
-	../libc.a -lgcc ../libc.a ../csu/crtend.o \
-	../csu/crtn.o
-%else
-gcc -nostdlib -nostartfiles -static -o ldconfig ../csu/crt1.o \
-	../csu/crti.o `gcc --print-file-name=crtbegin.o` ldconfig.o \
-	../libc.a -lgcc ../libc.a `gcc --print-file-name=crtend.o` \
-	../csu/crtn.o
-%endif
-
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/{db,log}}
+install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/log}
 
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
@@ -500,6 +349,9 @@ install $PICFILES $RPM_BUILD_ROOT/%{_libdir}
 install elf/soinit.os $RPM_BUILD_ROOT/%{_libdir}/soinit.o
 install elf/sofini.os $RPM_BUILD_ROOT/%{_libdir}/sofini.o
 
+mv -f $RPM_BUILD_ROOT/lib/libmemusage.so $RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so $RPM_BUILD_ROOT%{_libdir}
+
 %{__make} -C linuxthreads/man
 install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
 
@@ -508,42 +360,21 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 ln -sf ../../..%{_sysconfdir}/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
-ln -sf ../../lib/libdb.so.3 $RPM_BUILD_ROOT%{_libdir}/libdb2.so
-ln -sf libdb.so.3 $RPM_BUILD_ROOT/lib/libdb2.so.3
-mv -f $RPM_BUILD_ROOT%{_libdir}/libdb.a $RPM_BUILD_ROOT%{_libdir}/libdb2.a
-
-%ifarch alpha
-ln -sf libdb.so.2.1 $RPM_BUILD_ROOT/lib/libdb.so.2
-%endif
-
-install -d $RPM_BUILD_ROOT%{_includedir}/db2
-mv $RPM_BUILD_ROOT%{_includedir}/db*.h $RPM_BUILD_ROOT%{_includedir}/db2/
+ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
-install %{SOURCE4} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
-install %{SOURCE6} $RPM_BUILD_ROOT/etc/sysconfig/nscd
-install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/utmpd
-install %{SOURCE7} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/nscd
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
-install -s ldconfig-980708/ldconfig $RPM_BUILD_ROOT/sbin/ldconfig
 
-install %{SOURCE11} $RPM_BUILD_ROOT%{_mandir}/man8
+install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
 touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
-install nss/db-Makefile $RPM_BUILD_ROOT/var/db/Makefile
 :> $RPM_BUILD_ROOT/var/log/nscd
-
-cat << EOF > $RPM_BUILD_ROOT%{_bindir}/create-db
-#!/bin/sh
-/usr/bin/make -sC /var/db/
-EOF
-
-ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db
 
 rm -rf documentation
 install -d documentation
@@ -551,22 +382,21 @@ install -d documentation
 cp linuxthreads/ChangeLog  documentation/ChangeLog.threads
 cp linuxthreads/Changes documentation/Changes.threads
 cp linuxthreads/README documentation/README.threads
-cp crypt/README documentation/README.crypt
-cp ldconfig-980708/README ldconfig-980708/README.ldconfig
+cp crypt/README.ufc-crypt documentation/
 
 cp ChangeLog ChangeLog.8 documentation
 
-gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
-	documentation/* login/README.utmpd ldconfig-980708/README.ldconfig
+gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
 
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
 		echo "%lang($lang) $dir" >>glibc.lang
 	fi
+
 done
 
 %post   -p /sbin/ldconfig
@@ -595,39 +425,16 @@ if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del nscd
 fi
 
-%post -n utmpd
-/sbin/chkconfig --add utmpd
-if [ -f /var/lock/subsys/utmpd ]; then
-	/etc/rc.d/init.d/utmpd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/utmpd start\" to start utmpd daemon." 1>&2
-fi
-
-%preun -n utmpd
-if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/utmpd ]; then
-		/etc/rc.d/init.d/utmpd stop 1>&2
-	fi
-	/sbin/chkconfig --del utmpd
-fi
-
-%post db1  -p /sbin/ldconfig
-%postun db1 -p /sbin/ldconfig
-
-%post db2  -p /sbin/ldconfig
-%postun db2 -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -f glibc.lang
 %defattr(644,root,root,755)
-%doc {README,NEWS,FAQ,BUGS,ldconfig-980708/README.ldconfig}.gz
+%doc {README,NEWS,FAQ,BUGS}.gz
 
 %config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nsswitch.conf
-%config %{_sysconfdir}/rpc
-
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ld.so.conf
+%config %{_sysconfdir}/rpc
 %ghost %{_sysconfdir}/ld.so.cache
 
 %attr(755,root,root) /sbin/*
@@ -635,9 +442,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/ldd
-%ifnarch alpha
 %attr(755,root,root) %{_bindir}/lddlibc4
-%endif
 %attr(755,root,root) %{_bindir}/locale
 %attr(755,root,root) %{_bindir}/rpcgen
 %attr(755,root,root) %{_bindir}/tzselect
@@ -651,11 +456,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /lib/libnsl*
 %attr(755,root,root) /lib/lib[BScmprtu]*
 
-%{_mandir}/man8/*
-
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
+
+%dir %{_libdir}/locale
+
+%{_mandir}/man8/ldconfig*
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
@@ -664,14 +471,6 @@ rm -rf $RPM_BUILD_ROOT
 #%files -n nss_files
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_files*.so*
-
-%files -n nss_db
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/update-db
-%attr(755,root,root) %{_bindir}/create-db
-%attr(755,root,root) %{_bindir}/makedb
-%attr(755,root,root) /lib/libnss_db*.so*
-%config /var/db/Makefile
 
 %files -n nss_compat
 %defattr(644,root,root,755)
@@ -690,18 +489,19 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_nisplus*.so*
 
+%files memusage
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/memusage*
+
 %files devel
 %defattr(644,root,root,755)
 %doc documentation/* {NOTES,PROJECTS}.gz
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
-%attr(755,root,root) %{_bindir}/mtrace
-%attr(755,root,root) %{_bindir}/sprof
+%attr(755,root,root) %{_bindir}/*prof*
+%attr(755,root,root) %{_bindir}/*trace
 
 %{_includedir}/*.h
-%ifarch alpha
-%{_includedir}/alpha
-%endif
 %{_includedir}/arpa
 %{_includedir}/bits
 %{_includedir}/gnu
@@ -724,12 +524,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_infodir}/libc.inf*.gz
 
-%attr(755,root,root) %{_libdir}/lib[A-Z]*.so
-%attr(755,root,root) %{_libdir}/libc*.so
-%attr(755,root,root) %{_libdir}/libdl*.so
-%attr(755,root,root) %{_libdir}/libm*.so
-%attr(755,root,root) %{_libdir}/libns*.so
-%attr(755,root,root) %{_libdir}/lib[p-z]*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/*crt*.o
 %{_libdir}/libc_nonshared.a
 
@@ -740,16 +535,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
-%attr(755,root,root) %{_sbindir}/nscd
+%attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
-
-%files -n utmpd
-%defattr(644,root,root,755)
-%doc login/README.utmpd.gz
-%attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/utmpd
-%attr(754,root,root) /etc/rc.d/init.d/utmpd
-%attr(755,root,root) %{_sbindir}/utmpd
 
 %files -n localedb-src
 %defattr(644,root,root,755)
@@ -776,7 +564,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
 %{_libdir}/libnsl.a
-%{_libdir}/libposix.a
 %{_libdir}/libpthread.a
 %{_libdir}/libresolv.a
 %{_libdir}/librpcsvc.a
@@ -785,17 +572,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files profile
 %defattr(644,root,root,755)
-%{_libdir}/libBrokenLocale_p.a
-%{_libdir}/libc_p.a
-%{_libdir}/libcrypt_p.a
-%{_libdir}/libdl_p.a
-%{_libdir}/libm_p.a
-%{_libdir}/libnsl_p.a
-%{_libdir}/libpthread_p.a
-%{_libdir}/libresolv_p.a
-%{_libdir}/librpcsvc_p.a
-%{_libdir}/librt_p.a
-%{_libdir}/libutil_p.a
+%{_libdir}/lib*_p.a
 
 %files pic
 %defattr(644,root,root,755)
@@ -803,44 +580,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.map
 %{_libdir}/soinit.o
 %{_libdir}/sofini.o
-
-%files db1
-%defattr(644,root,root,755)
-%attr(755,root,root) /lib/libdb1*
-%attr(755,root,root) /lib/libdb.so.2
-%ifarch alpha
-%attr(755,root,root) /lib/libdb.so.2.1
-%endif
-
-%files db1-devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/db_dump185
-%attr(755,root,root) %{_libdir}/libdb1.so
-%{_includedir}/db1
-
-%files db1-static
-%defattr(644,root,root,755)
-%{_libdir}/libdb1.a
-
-%files db2
-%defattr(644,root,root,755)
-%attr(755,root,root) /lib/libdb-*
-%attr(755,root,root) /lib/libdb.so.3
-%attr(755,root,root) /lib/libdb2.so.3
-
-%files db2-devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/db_archive
-%attr(755,root,root) %{_bindir}/db_checkpoint
-%attr(755,root,root) %{_bindir}/db_deadlock
-%attr(755,root,root) %{_bindir}/db_dump
-%attr(755,root,root) %{_bindir}/db_load
-%attr(755,root,root) %{_bindir}/db_printlog
-%attr(755,root,root) %{_bindir}/db_recover
-%attr(755,root,root) %{_bindir}/db_stat
-%attr(755,root,root) %{_libdir}/libdb2.so
-%{_includedir}/db2
-
-%files db2-static
-%defattr(644,root,root,755)
-%{_libdir}/libdb2.a
