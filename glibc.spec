@@ -793,6 +793,7 @@ fi
 %attr(755,root,root) /lib/libnss_files*.so*
 
 %files zoneinfo_right
+%defattr(644,root,root,755)
 %{_datadir}/zoneinfo/right
 
 %files -n nss_compat
