@@ -128,6 +128,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
+BuildRequires:	rpmbuild(macros) >= 1.176
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
@@ -1073,7 +1074,9 @@ chmod 640 /var/log/nscd
 if [ -f /var/lock/subsys/nscd ]; then
 	/etc/rc.d/init.d/nscd restart 1>&2
 else
-	echo "Run \"/etc/rc.d/init.d/nscd start\" to start nscd daemon." 1>&2
+	%banner nscd -e << EOF
+Run "/etc/rc.d/init.d/nscd start" to start nscd daemon.
+EOF
 fi
 
 %preun -n nscd
