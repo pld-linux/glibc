@@ -458,7 +458,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/ldd
+%ifnarch alpha
 %attr(755,root,root) %{_bindir}/lddlibc4
+%endif
 %attr(755,root,root) %{_bindir}/locale
 %attr(755,root,root) %{_bindir}/rpcgen
 %attr(755,root,root) %{_bindir}/tzselect
