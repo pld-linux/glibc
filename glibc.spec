@@ -96,6 +96,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
+Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 
 %define		debugcflags	-O1 -g
