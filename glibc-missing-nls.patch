@@ -97,14 +97,14 @@
    { NULL, 0, NULL, 0, NULL, 0 }
  };
  
---- glibc-2.3.1/po/pl.po.orig	Mon Nov 11 14:28:57 2002
-+++ glibc-2.3.1/po/pl.po	Mon Nov 11 14:37:44 2002
+--- glibc-2.3.2/po/pl.po.orig	Mon Nov 11 14:28:57 2002
++++ glibc-2.3.2/po/pl.po	Mon Nov 11 14:37:44 2002
 @@ -1690,7 +1690,7 @@
  msgid "Another string for testing."
  msgstr "Inny ³añcuch do testów."
  
--#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:79
-+#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:79 argp/argp-parse.c:102
+-#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:84
++#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:84 argp/argp-parse.c:102
  msgid "NAME"
  msgstr "NAZWA"
  
@@ -123,117 +123,103 @@
  
  #: argp/argp-parse.c:161
  msgid "Print program version"
-@@ -4138,11 +4142,11 @@
- 
- #: sunrpc/rpc_main.c:1374
- msgid "Cannot use netid flag with inetd flag!\n"
--msgstr "Nie mo¿na u¿ywaæ flagi id_sieci z flag± inetd!\n"
-+msgstr "Nie mo¿na u¿ywaæ flagi netid z flag± inetd!\n"
- 
- #: sunrpc/rpc_main.c:1386
- msgid "Cannot use netid flag without TIRPC!\n"
--msgstr "Flagi id_sieci mo¿na u¿ywaæ tylko z TIRPC!\n"
-+msgstr "Flagi netid mo¿na u¿ywaæ tylko z TIRPC!\n"
- 
- #: sunrpc/rpc_main.c:1393
- msgid "Cannot use table flags with newstyle!\n"
 @@ -4181,6 +4185,102 @@
  msgid "\t%s [-n netid]* [-o outfile] [infile]\n"
  msgstr "\t%s [-n id_sieci]* [-o plik_wy] [plik_we]\n"
  
-+#: sunrpc/rpc_main.c:1443
++#: sunrpc/rpc_main.c:1442
 +msgid "options:\n"
 +msgstr "opcje:\n"
 +
-+#: sunrpc/rpc_main.c:1444
++#: sunrpc/rpc_main.c:1443
 +msgid "-a\t\tgenerate all files, including samples\n"
 +msgstr "-a\t\tgenerowanie wszystkich plików, tak¿e przyk³adów\n"
 +
-+#: sunrpc/rpc_main.c:1445
++#: sunrpc/rpc_main.c:1444
 +msgid "-b\t\tbackward compatibility mode (generates code for SunOS 4.1)\n"
 +msgstr "-b\t\ttryb kompatybilno¶ci wstecznej (generuje kod dla SunOS 4.1)\n"
 +
-+#: sunrpc/rpc_main.c:1446
++#: sunrpc/rpc_main.c:1445
 +msgid "-c\t\tgenerate XDR routines\n"
 +msgstr "-c\t\tgenerowanie funkcji XDR\n"
 +
-+#: sunrpc/rpc_main.c:1447
++#: sunrpc/rpc_main.c:1446
 +msgid "-C\t\tANSI C mode\n"
 +msgstr "-C\t\ttryb ANSI C\n"
 +
-+#: sunrpc/rpc_main.c:1448
++#: sunrpc/rpc_main.c:1447
 +msgid "-Dname[=value]\tdefine a symbol (same as #define)\n"
 +msgstr "-Dnazwa[=warto¶æ]\tdefinicja symbolu (to samo co #define)\n"
 +
-+#: sunrpc/rpc_main.c:1449
++#: sunrpc/rpc_main.c:1448
 +msgid "-h\t\tgenerate header file\n"
 +msgstr "-h\t\tgenerowanie pliku nag³ówkowego\n"
 +
-+#: sunrpc/rpc_main.c:1450
++#: sunrpc/rpc_main.c:1449
 +msgid "-i size\t\tsize at which to start generating inline code\n"
 +msgstr "-i rozmiar\trozmiar przy którym zacz±æ generowaæ kod inline\n"
 +
-+#: sunrpc/rpc_main.c:1451
++#: sunrpc/rpc_main.c:1450
 +msgid "-I\t\tgenerate code for inetd support in server (for SunOS 4.1)\n"
 +msgstr "-I\t\tgenerowanie kodu do obs³ugi inetd w serwerze (dla SunOS 4.1)\n"
 +
-+#: sunrpc/rpc_main.c:1452
++#: sunrpc/rpc_main.c:1451
 +msgid "-K seconds\tserver exits after K seconds of inactivity\n"
 +msgstr "-K sekund\tserwer koñczy pracê po K sekund nieaktywno¶ci\n"
 +
-+#: sunrpc/rpc_main.c:1453
++#: sunrpc/rpc_main.c:1452
 +msgid "-l\t\tgenerate client side stubs\n"
 +msgstr "-l\t\tgenerowanie za¶lepek dla strony klienckiej\n"
 +
-+#: sunrpc/rpc_main.c:1454
++#: sunrpc/rpc_main.c:1453
 +msgid "-L\t\tserver errors will be printed to syslog\n"
 +msgstr "-L\t\tzapisywanie b³êdów serwera do dziennika systemowego\n"
 +
-+#: sunrpc/rpc_main.c:1455
++#: sunrpc/rpc_main.c:1454
 +msgid "-m\t\tgenerate server side stubs\n"
 +msgstr "-m\t\tgenerowanie za¶lepek dla strony serwera\n"
 +
-+#: sunrpc/rpc_main.c:1456
++#: sunrpc/rpc_main.c:1455
 +msgid "-M\t\tgenerate MT-safe code\n"
 +msgstr "-M\t\tgenerowanie kodu bezpiecznego dla w±tków (MT-safe)\n"
 +
-+#: sunrpc/rpc_main.c:1457
++#: sunrpc/rpc_main.c:1456
 +msgid "-n netid\tgenerate server code that supports named netid\n"
 +msgstr "-n id_sieci\tgenerowanie kodu serwera obs³uguj±cego podany id_sieci\n"
 +
-+#: sunrpc/rpc_main.c:1458
++#: sunrpc/rpc_main.c:1457
 +msgid "-N\t\tsupports multiple arguments and call-by-value\n"
 +msgstr "-N\t\tobs³uga wielu argumentów i wywo³ywania przez warto¶æ\n"
 +
-+#: sunrpc/rpc_main.c:1459
++#: sunrpc/rpc_main.c:1458
 +msgid "-o outfile\tname of the output file\n"
 +msgstr "-o plik_wy\tnazwa pliku wyj¶ciowego\n"
 +
-+#: sunrpc/rpc_main.c:1460
++#: sunrpc/rpc_main.c:1459
 +msgid "-s nettype\tgenerate server code that supports named nettype\n"
 +msgstr "-s typ_sieci\tgenerowanie kodu serwera obs³uguj±cego podany typ_sieci\n"
 +
-+#: sunrpc/rpc_main.c:1461
++#: sunrpc/rpc_main.c:1460
 +msgid "-Sc\t\tgenerate sample client code that uses remote procedures\n"
 +msgstr "-Sc\t\tgenerowanie przyk³adowego kodu klienta u¿ywaj±cego procedur zdalnych\n"
 +
-+#: sunrpc/rpc_main.c:1462
++#: sunrpc/rpc_main.c:1461
 +msgid "-Ss\t\tgenerate sample server code that defines remote procedures\n"
 +msgstr "-Ss\t\tgenerowanie przyk³adowego kodu serwera definiuj±cego procedury zdalne\n"
 +
-+#: sunrpc/rpc_main.c:1463
++#: sunrpc/rpc_main.c:1462
 +msgid "-Sm \t\tgenerate makefile template \n"
 +msgstr "-Sm \t\tgenerowanie szablonu makefile\n"
 +
-+#: sunrpc/rpc_main.c:1464
++#: sunrpc/rpc_main.c:1463
 +msgid "-t\t\tgenerate RPC dispatch table\n"
 +msgstr "-t\t\tgenerowanie tablicy wysy³ania RPC\n"
 +
-+#: sunrpc/rpc_main.c:1465
++#: sunrpc/rpc_main.c:1464
 +msgid "-T\t\tgenerate code to support RPC dispatch tables\n"
 +msgstr "-T\t\tgenerowanie kodu obs³uguj±cego tablice wysy³ania RPC\n"
 +
-+#: sunrpc/rpc_main.c:1466
++#: sunrpc/rpc_main.c:1465
 +msgid "-Y path\t\tdirectory name to find C preprocessor (cpp)\n"
 +msgstr "-Y ¶cie¿ka\tnazwa katalogu, w którym znajduje siê preprocesor C (cpp)\n"
 +
