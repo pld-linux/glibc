@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2
-Release:	8
+Release:	9
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -34,6 +34,7 @@ BuildRequires:	perl
 BuildRequires:	gd-static
 BuildRequires:	libpng-static
 BuildRequires:	texinfo
+BuildRequires:	rpm-build >= 4.0-9
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
