@@ -5,9 +5,10 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	20
+Release:	21
 License:	LGPL
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
@@ -20,19 +21,19 @@ Source6:	nscd.sysconfig
 Source7:	nscd.logrotate
 Source10:	ftp://ftp.yggdrasil.com/private/hjl/ldconfig-980708.tar.gz
 Source11:	ldconfig.8
-Patch0:		glibc-2.1-CVS-20000905.patch.bz2
-Patch1:		glibc-info.patch
-Patch2:		glibc-versions.awk_fix.patch
-Patch3:		glibc-pld.patch
-Patch4:		glibc-crypt-blowfish.patch
-Patch5:		glibc-string2-pointer-arith.patch
-Patch6:		glibc-db2-alpha-mutex.patch
-Patch7:		glibc-linuxthreads-lock.patch
-Patch8:		glibc-pthread_create-manpage.patch
-Patch9:		glibc-sparc-linux-chown.patch
-Patch10:	ldconfig-glibc.patch
+Patch0:		%{name}-2.1-CVS-20000905.patch.bz2
+Patch1:		%{name}-info.patch
+Patch2:		%{name}-versions.awk_fix.patch
+Patch3:		%{name}-pld.patch
+Patch4:		%{name}-crypt-blowfish.patch
+Patch5:		%{name}-string2-pointer-arith.patch
+Patch6:		%{name}-db2-alpha-mutex.patch
+Patch7:		%{name}-linuxthreads-lock.patch
+Patch8:		%{name}-pthread_create-manpage.patch
+Patch9:		%{name}-sparc-linux-chown.patch
+Patch10:	ldconfig-%{name}.patch
 Patch11:	ldconfig-bklinks.patch
-Patch12:	glibc-cvs-20000824-md5-align-clean.patch.gz
+Patch12:	%{name}-cvs-20000824-md5-align-clean.patch.gz
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -103,6 +104,7 @@ Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
 Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
 Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -136,6 +138,8 @@ kitaplýklar.
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_compat
@@ -144,6 +148,8 @@ Old style NYS NSS glibc module
 %package -n nss_db
 Summary:	Berkeley DB NSS glibc module
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_db
@@ -152,6 +158,8 @@ Berkeley DB NSS glibc module.
 %package -n nss_dns
 Summary:	BIND NSS glibc module
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_dns
@@ -160,6 +168,8 @@ BIND NSS glibc module.
 %package -n nss_files
 Summary:	Traditional files databases NSS glibc module
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_files
@@ -168,6 +178,8 @@ Traditional files databases NSS glibc module.
 %package -n nss_hesiod
 Summary:	Hesiod NSS glibc module
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_hesiod
@@ -176,6 +188,8 @@ Glibc NSS (Name Service Switch) module for databases acces.
 %package -n nss_nis
 Summary:	NIS(YP) NSS glibc module
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_nis
@@ -184,6 +198,8 @@ Glibc NSS (Name Service Switch) module for NIS(YP) databases acces.
 %package -n nss_nisplus
 Summary:	NIS+ NSS module
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_nisplus
@@ -193,6 +209,7 @@ Glibc NSS (Name Service Switch) module for NIS+ databases acces.
 Summary:	Name Service Caching Daemon
 Summary(pl):	Name Service Caching Daemon
 Group:		Networking/Daemons
+Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Prereq:		/sbin/chkconfig
 Requires:	rc-scripts >= 0.2.0
@@ -213,6 +230,7 @@ ods³udze w±tków.
 Summary:	utmp and utmpx synchronizer for libc5 applications.
 Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
 Group:		Daemons
+Group(de):	Server
 Group(pl):	Serwery
 Prereq:		/sbin/chkconfig
 Requires:	rc-scripts >= 0.2.0
@@ -230,6 +248,7 @@ starszych programów (bazuj±cych na libc5).
 Summary:	Souce code locale database
 Summary(pl):	Kod ¬ród³owy bazy locale
 Group:		Daemons
+Group(de):	Server
 Group(pl):	Serwery
 
 %description -n localedb-src
@@ -249,6 +268,7 @@ wygenerowaæ jak±¶ niestandardow± bazê.
 Summary:	Convert encoding of given files from one encoding to another
 Summary(pl):	Program do konwersji plików tekstowych z jednego enkodingu w inny
 Group:		Daemons
+Group(de):	Server
 Group(pl):	Serwery
 
 %description -n iconv
@@ -269,6 +289,7 @@ umo¿liwiaj± konwersjê enkodingu danych z poziomu dowolnego programu.
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -285,6 +306,7 @@ Summary(de):	glibc mit Profil-Unterstützung
 Summary(fr):	glibc avec support pour profiling
 Summary(tr):	Ölçüm desteði olan glibc
 Group:		Development/Libraries/Libc
+Group(de):	Entwicklung/Libraries/Libc
 Group(pl):	Programowanie/Biblioteki/Libc
 Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{version}
@@ -303,41 +325,47 @@ gprof kullanýlarak ölçülen programlar standart C kitaplýðý yerine bu
 kitaplýðý kullanmak zorundadýrlar.
 
 %package pic
-Summary:        glibc PIC archive 
-Group:          Development/Libraries/Libc
-Group(pl):      Programowanie/Biblioteki/Libc
-Requires:       %{name}-devel = %{version}
+Summary:	glibc PIC archive 
+Group:		Development/Libraries/Libc
+Group(de):	Entwicklung/Libraries/Libc
+Group(pl):	Programowanie/Biblioteki/Libc
+Requires:	%{name}-devel = %{version}
 
 %description pic
-GNU C Library PIC archive contains an archive library (ar file) composed
-of individual shared objects. This is used for creating a library which
-is a smaller subset of the standard libc shared library.
+GNU C Library PIC archive contains an archive library (ar file)
+composed of individual shared objects. This is used for creating a
+library which is a smaller subset of the standard libc shared library.
 
 %package db1
 Summary:	BSD database library for C
 Group:		Libraries
+Group(de):	Libraries
+Group(fr):	Librairies
+Group(pl):	Biblioteki
 PreReq:		/sbin/ldconfig
 Provides:	db1
 
 %description db1
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
-embedded database support for both traditional and client/server applications.
-It should be installed if compatibility is needed with databases created with
-db1. This library used to be part of the glibc package.
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+provides embedded database support for both traditional and
+client/server applications. It should be installed if compatibility is
+needed with databases created with db1. This library used to be part
+of the glibc package.
 
 %package db1-devel
 Summary:	Development libraries and header files for Berkeley database library
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db1 = %{version}
 Provides:	db1-devel
 
 %description db1-devel
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
-embedded database support for both traditional and client/server applications.
-Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
-methods.
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+provides embedded database support for both traditional and
+client/server applications. Berkeley DB includes B tree, Hashing,
+Fixed and Variable-length record access methods.
 
 This package contains the header files, libraries, and documentation
 for building programs which use Berkeley DB.
@@ -345,44 +373,50 @@ for building programs which use Berkeley DB.
 %package db1-static
 Summary:	Static libraries for Berkeley database library
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db1-devel = %{version}
 Provides:	db1-static
 
 %description db1-static
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
-embedded database support for both traditional and client/server applications.
-Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
-methods.
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+provides embedded database support for both traditional and
+client/server applications. Berkeley DB includes B tree, Hashing,
+Fixed and Variable-length record access methods.
 
-This package contains the static libraries for building programs which use
-Berkeley DB.
+This package contains the static libraries for building programs which
+use Berkeley DB.
 
 %package db2
 Summary:	BSD database library for C
 Group:		Libraries
+Group(de):	Libraries
+Group(fr):	Librairies
+Group(pl):	Biblioteki
 PreReq:		/sbin/ldconfig
 Provides:	db2
 
 %description db2
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
-embedded database support for both traditional and client/server applications.
-This library used to be part of the glibc package.
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+provides embedded database support for both traditional and
+client/server applications. This library used to be part of the glibc
+package.
 
 %package db2-devel
 Summary:	Development libraries and header files for Berkeley database library
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db2 = %{version}
 Provides:	db2-devel
 
 %description db2-devel
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
-embedded database support for both traditional and client/server applications.
-Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
-methods.
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+provides embedded database support for both traditional and
+client/server applications. Berkeley DB includes B tree, Hashing,
+Fixed and Variable-length record access methods.
 
 This package contains the header files, libraries, and documentation
 for building programs which use Berkeley DB.
@@ -390,19 +424,20 @@ for building programs which use Berkeley DB.
 %package db2-static
 Summary:	Static libraries for Berkeley database library
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db2-devel = %{version}
 Provides:	db2-static
 
 %description db2-static
-The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
-embedded database support for both traditional and client/server applications.
-Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
-methods.
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+provides embedded database support for both traditional and
+client/server applications. Berkeley DB includes B tree, Hashing,
+Fixed and Variable-length record access methods.
 
-This package contains the static libraries for building programs which use
-Berkeley DB.
+This package contains the static libraries for building programs which
+use Berkeley DB.
 
 %prep
 %setup -q -a 1 -a 2 -a 10
@@ -519,12 +554,7 @@ cp ldconfig-980708/README ldconfig-980708/README.ldconfig
 cp ChangeLog ChangeLog.8 documentation
 
 gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
-	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
 	documentation/* login/README.utmpd ldconfig-980708/README.ldconfig
-
-strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
-strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
-	$RPM_BUILD_ROOT%{_libdir}/gconv/*.so
 
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
