@@ -65,7 +65,8 @@ License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	492f7dbecb7f8e5c03d48dd5443a1e88
+# Source0-md5:	00e0cec5afd5dd122b89e54b76fcb715
+# Source0-size:	13680659
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
 Source2:	nscd.init
@@ -74,9 +75,11 @@ Source4:	nscd.logrotate
 #Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source5:	%{name}-man-pages.tar.bz2
 # Source5-md5:	03bee93e9786b3e7dad2570ccb0cbc5c
+# Source5-size:	283971
 #Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
+# Source6-size:	1322469
 # borrowed from util-linux
 Source7:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
