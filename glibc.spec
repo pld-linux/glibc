@@ -10,7 +10,7 @@
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	nptl		# use nptl instead of linuxthreads
 %bcond_with	tls		# use tls
-%bcond_with	tests		# do not perform "make test"
+%bcond_with	tests		# perform "make test"
 
 #
 # TODO:
