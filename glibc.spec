@@ -53,6 +53,8 @@ Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
 # Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
+Source10:	ftp://alpha.gnu.org/pub/gnu/libidn/libidn-0.2.1.tar.gz
+# Source10-md5:	dedf4baabde459dc6263ca2f38d4f0f9
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -574,7 +576,7 @@ Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %prep
-%setup -q -a 1 -a 9
+%setup -q -a 1 -a 9 -a 10
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
@@ -608,6 +610,13 @@ chmod +x scripts/cpp
 # standardize name
 mv -f localedata/locales/{lug_UG,lg_UG}
 
+# This needs to be carefully checked when new glibc version arrives
+ln -s libidn-* libidn
+cp libidn/libc/Makefile libidn/libc/configure libidn/libc/Versions libidn/
+cp libidn/libc/getaddrinfo.c sysdeps/posix/
+cp libidn/libc/netdb.h resolv/
+echo > libidn/libidn.texi
+
 #make proper symlink for asm in headers
 #cd usr/include
 #%ifarch %{ix86}
@@ -630,7 +639,7 @@ cd builddir
 LDFLAGS=" " ; export LDFLAGS
 #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
-	--enable-add-ons=linuxthreads \
+	--enable-add-ons=linuxthreads,libidn \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
