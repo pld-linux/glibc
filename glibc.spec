@@ -13,7 +13,7 @@
 #   are there any other solutions than revert???
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.11
+%define		rel 2.12
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -201,7 +201,7 @@ Summary(ru):	‰œ–œÃŒ…‘≈ÃÿŒŸ≈ ¬…¬Ã…œ‘≈À…, Œ≈œ¬»œƒ…ÕŸ≈ ƒÃ— ÀœÕ–…Ã—√……
 Summary(tr):	Geli˛tirme iÁin gerekli dier kitapl˝klar
 Summary(uk):	‰œƒ¡‘Àœ◊¶ ¬¶¬Ã¶œ‘≈À…, –œ‘“¶¬Œ¶ ƒÃ— ÀœÕ–¶Ã—√¶ß
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -274,7 +274,7 @@ Group:		Networking/Daemons
 PreReq:		rc-scripts >= 0.2.0
 Requires(post,preun):	/sbin/chkconfig
 Requires(post):	fileutils
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
@@ -309,7 +309,7 @@ Summary:	locale database source code
 Summary(pl):	Kod ºrÛd≥owy bazy locale
 Release:	%{rel}
 Group:		Daemons
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
@@ -325,7 +325,7 @@ Summary:	locale database for all locales supported by glibc
 Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs≥ugiwanych przez glibc
 Release:	%{rel}
 Group:		Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description localedb-all
 This package contains locale database for all locales supported by
@@ -347,7 +347,7 @@ Summary:	Convert encoding of given files from one encoding to another
 Summary(pl):	Program do konwersji plikÛw tekstowych z jednego kodowania do innego
 Release:	%{rel}
 Group:		Applications/Text
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need
@@ -370,7 +370,7 @@ Summary(ru):	Û‘¡‘…ﬁ≈”À…≈ ¬…¬Ã…œ‘≈À… glibc
 Summary(uk):	Û‘¡‘…ﬁŒ¶ ¬¶¬Ã¶œ‘≈À… glibc
 Release:	%{rel}
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 GNU libc static libraries.
@@ -397,7 +397,7 @@ Summary(uk):	GNU libc ⁄ –¶ƒ‘“…ÕÀœ¿ –“œ∆¡ Ã≈“¡
 Release:	%{rel}
 Group:		Development/Libraries/Libc
 Obsoletes:	libc-profile
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description profile
 When programs are being profiled used gprof, they must use these
@@ -436,7 +436,7 @@ Summary:	glibc PIC archive
 Summary(pl):	archiwum PIC glibc
 Release:	%{rel}
 Group:		Development/Libraries/Libc
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description pic
 GNU C Library PIC archive contains an archive library (ar file)
@@ -454,7 +454,7 @@ Summary:	Old style NYS NSS glibc module
 Summary(pl):	Stary modu≥ NYS NSS glibc
 Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_compat
 Old style NYS NSS glibc module.
@@ -467,7 +467,7 @@ Summary:	BIND NSS glibc module
 Summary(pl):	Modu≥ BIND NSS glibc
 Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_dns
 BIND NSS glibc module.
@@ -480,7 +480,7 @@ Summary:	Traditional files databases NSS glibc module
 Summary(pl):	Modu≥ tradycyjnych plikowych baz danych NSS glibc
 Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_files
 Traditional files databases NSS glibc module.
@@ -493,7 +493,7 @@ Summary:	Hesiod NSS glibc module
 Summary(pl):	Modu≥ hesiod NSS glibc
 Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_hesiod
 glibc NSS (Name Service Switch) module for databases access.
@@ -506,7 +506,7 @@ Summary:	NIS(YP) NSS glibc module
 Summary(pl):	Modu≥ NIS(YP) NSS glibc
 Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_nis
 glibc NSS (Name Service Switch) module for NIS(YP) databases access.
@@ -519,7 +519,7 @@ Summary:	NIS+ NSS module
 Summary(pl):	Modu≥ NIS+ NSS
 Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_nisplus
 glibc NSS (Name Service Switch) module for NIS+ databases accesa.
@@ -532,7 +532,7 @@ Summary:	A toy
 Summary(pl):	Zabawka
 Release:	%{rel}
 Group:		Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 Requires:	gd
 
 %description memusage
@@ -546,7 +546,7 @@ Summary:	Non-POSIX (real) time zones
 Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
 Release:	%{rel}
 Group:		Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description zoneinfo_right
 You don't want this. Details at:
