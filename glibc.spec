@@ -112,7 +112,7 @@ Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch16:	%{name}-tests-noproc.patch
 Patch17:	%{name}-new-charsets.patch
-
+Patch18:	%{name}-sr_CS.patch
 Patch19:	%{name}-sparc64-dl-machine.patch
 Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
@@ -813,7 +813,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 
 %patch16 -p1
 %patch17 -p1
-
+%patch18 -p1
 %patch19 -p1
 %patch20 -p1
 %patch21 -p1
