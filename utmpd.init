@@ -2,31 +2,43 @@
 #
 #	/etc/rc.d/init.d/utmpd
 #
-# Starts the utmpd daemon
+# utmp		Starts the utmpd daemon
 #
-# chkconfig: 2345 25 55
-# description: Utmpd daemon
-# processname: utmpd
+# chkconfig:	2345 25 55
+# description:	Utmpd daemon
+# processname:	utmpd
 #
+
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-# Get config..
-if [ -f /etc/sysconfig/utmpd ]; then
-    . /etc/sysconfig/utmpd
-fi    
-#	See how we were called.
-#
+# Get service config - may override defaults
+[ -f /etc/sysconfig/utmpd ] && . /etc/sysconfig/utmpd
+
+
+# See how we were called.
 case "$1" in
   start)
-         show Starting utmpd daemon
-         daemon utmpd
-	 touch /var/lock/subsys/utmpd
-	;;
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/utmpd ]; then
+		msg_starting "utmpd"
+		daemon utmpd
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/utmpd
+	else
+		msg_Already_Running "utmpd"
+		exit 1
+	fi
+        ;;
   stop)
-	show Stopping utmpd daemon
-	killproc utmpd
-	rm -f /var/lock/subsys/utmpd
+	if [ -f /var/lock/subsys/utmpd ]; then
+		msg_stopping "utmpd"
+		killproc utmpd
+		rm -f /var/lock/subsys/utmpd >/dev/null 2>&1
+	else
+		msg_Not_Running "utmpd"
+		exit 1
+	fi	
 	;;
   reload|restart)
 	$0 stop
@@ -36,8 +48,8 @@ case "$1" in
 	status utmpd
 	;;
   *)
-  	echo "Usage: $0 {start|stop|restart|reload|status}"
+	msg_Usage "$0 {start|stop|status|restart|reload}"
 	exit 1
 esac
 
-exit 0
+exit $RETVAL
