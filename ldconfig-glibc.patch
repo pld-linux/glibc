@@ -1,0 +1,15 @@
+diff -Nur ldconfig-980708/ldconfig.c ldconfig-980708.orig/ldconfig.c
+--- ldconfig-980708/ldconfig.c	Wed Jul  8 19:55:57 1998
++++ ldconfig-980708.orig/ldconfig.c	Tue Oct  6 08:07:23 1998
+@@ -33,7 +33,11 @@
+ #include <getopt.h>
+ #include <dirent.h>
+ #include <unistd.h>
++#if ((__GLIBC__ == 2) && (__GLIBC_MINOR__ >= 1))
++#include <linux/a.out.h>
++#else
+ #include <a.out.h>
++#endif /* glibc-2.1 */
+ #ifdef _LIBC
+ #include <link.h>
+ #else
