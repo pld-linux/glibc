@@ -268,8 +268,8 @@ fi
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del utmpd
 	/etc/rc.d/init.d/utmpd stop
-else
-	echo "Run \"/etc/rc.d/init.d/utmpd start\" to start utmpd daemon."
+#else
+#	echo "Run \"/etc/rc.d/init.d/utmpd start\" to start utmpd daemon."
 fi
 
 %clean
