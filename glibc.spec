@@ -1,4 +1,7 @@
 #
+# TODO:
+# - SECURITY: http://securitytracker.com/alerts/2004/Aug/1010975.html
+#
 # You can define min_kernel macro by "rpm --define 'min_kernel version'"
 # default is 2.2.0 (no changes up to 2.3.25)
 
