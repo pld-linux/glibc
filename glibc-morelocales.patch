@@ -176,11 +176,12 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ne_NP/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
  nl_BE/ISO-8859-1 \
-@@ -244,10 +280,16 @@
+@@ -244,10 +280,18 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
 +oc_FR.UTF-8/UTF-8 \
++oc_FR@euro/ISO-8859-15 \
  oc_FR/ISO-8859-1 \
  om_ET/UTF-8 \
 +om_KE.UTF-8/UTF-8 \
@@ -189,11 +190,12 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  pa_IN/UTF-8 \
 +pap_AN.UTF-8/UTF-8 \
 +pap_AN/ISO-8859-1 \
++pap_AN@euro/ISO-8859-15 \
 +pl_PL.ISO-8859-16/ISO-8859-16 \
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  pt_BR.UTF-8/UTF-8 \
-@@ -255,6 +297,7 @@
+@@ -255,6 +299,7 @@
  pt_PT.UTF-8/UTF-8 \
  pt_PT/ISO-8859-1 \
  pt_PT@euro/ISO-8859-15 \
@@ -201,7 +203,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -262,22 +305,31 @@
+@@ -262,22 +307,31 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -233,7 +235,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -287,28 +339,38 @@
+@@ -287,28 +341,38 @@
  sv_SE/ISO-8859-1 \
  ta_IN/UTF-8 \
  te_IN/UTF-8 \
@@ -6372,6 +6374,93 @@ diff -uNr libc.old/localedata/locales/nds_DE@traditional libc/localedata/locales
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
+diff -uNr libc.orig/localedata/locales/oc_FR@euro libc/localedata/locales/oc_FR@euro
+--- libc.orig/localedata/locales/oc_FR@euro	2004-07-16 04:05:52.000000000 +0200
++++ libc/localedata/locales/oc_FR@euro	2004-11-23 22:12:42.000000000 +0100
+@@ -0,0 +1,83 @@
++comment_char %
++escape_char  /
++%
++% Occitan Language Locale for France with Euro
++% Language: oc
++% Territory: FR
++% Option: euro
++% Date: 2004-11-23
++% Users: general
++% Charset: ISO-8859-15
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Occitan locale for France with Euro"
++source     "Free Software Foundation, Inc."
++address    "59 Temple Place - Suite 330, Boston, MA 02111-1307, USA"
++contact    ""
++email      "bug-glibc@gnu.org"
++tel        ""
++fax        ""
++language   "Occitan"
++territory  "France"
++revision   "1.0"
++date       "2004-11-23"
++%
++category  "i18n:2000";LC_IDENTIFICATION
++category  "i18n:2000";LC_CTYPE
++category  "i18n:2000";LC_COLLATE
++category  "i18n:2000";LC_TIME
++category  "i18n:2000";LC_NUMERIC
++category  "i18n:2000";LC_MONETARY
++category  "i18n:2000";LC_MESSAGES
++category  "i18n:2000";LC_PAPER
++category  "i18n:2000";LC_NAME
++category  "i18n:2000";LC_ADDRESS
++category  "i18n:2000";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_MESSAGES
++copy "oc_FR"
++END LC_MESSAGES
++
++LC_MONETARY
++copy "oc_FR"
++END LC_MONETARY
++
++LC_CTYPE
++copy "oc_FR"
++END LC_CTYPE
++
++LC_NUMERIC
++copy "oc_FR"
++END LC_NUMERIC
++
++LC_TIME
++copy "oc_FR"
++END LC_TIME
++
++LC_PAPER
++copy "oc_FR"
++END LC_PAPER
++
++LC_TELEPHONE
++copy "oc_FR"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "oc_FR"
++END LC_MEASUREMENT
++
++LC_NAME
++copy "oc_FR"
++END LC_NAME
++
++LC_ADDRESS
++copy "oc_FR"
++END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/or_IN libc/localedata/locales/or_IN
 --- libc.orig/localedata/locales/or_IN	Thu Jan  1 01:00:00 1970
 +++ libc/localedata/locales/or_IN	Mon Sep 20 02:30:02 2004
@@ -6735,6 +6824,93 @@ diff -uNr libc.old/localedata/locales/pap_AN libc/localedata/locales/pap_AN
 +int_select "00"
 +int_prefix "599"
 +END LC_TELEPHONE
+diff -uNr libc.old/localedata/locales/pap_AN@euro libc/localedata/locales/pap_AN@euro
+--- libc.old/localedata/locales/pap_AN@euro	2004-07-16 04:05:52.000000000 +0200
++++ libc/localedata/locales/pap_AN@euro	2004-11-23 20:19:26.000000000 +0100
+@@ -0,0 +1,83 @@
++comment_char %
++escape_char  /
++%
++% Papiamento Language Locale for the (Netherland) Antilles with Euro
++% Language: pap
++% Territory: AN
++% Option: euro
++% Date: 2004-11-23
++% Users: general
++% Charset: ISO-8859-15
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Papiamento locale for the (Netherland) Antilles with Euro"
++source     "Free Software Foundation, Inc."
++address    "59 Temple Place - Suite 330, Boston, MA 02111-1307, USA"
++contact    ""
++email      "bug-glibc@gnu.org"
++tel        ""
++fax        ""
++language   "Papiamento"
++territory  "Antilles"
++revision   "1.0"
++date       "2004-11-23"
++%
++category  "i18n:2000";LC_IDENTIFICATION
++category  "i18n:2000";LC_CTYPE
++category  "i18n:2000";LC_COLLATE
++category  "i18n:2000";LC_TIME
++category  "i18n:2000";LC_NUMERIC
++category  "i18n:2000";LC_MONETARY
++category  "i18n:2000";LC_MESSAGES
++category  "i18n:2000";LC_PAPER
++category  "i18n:2000";LC_NAME
++category  "i18n:2000";LC_ADDRESS
++category  "i18n:2000";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_MESSAGES
++copy "pap_AN"
++END LC_MESSAGES
++
++LC_MONETARY
++copy "pap_AN"
++END LC_MONETARY
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_NUMERIC
++copy "pap_AN"
++END LC_NUMERIC
++
++LC_TIME
++copy "pap_AN"
++END LC_TIME
++
++LC_PAPER
++copy "pap_AN"
++END LC_PAPER
++
++LC_TELEPHONE
++copy "pap_AN"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "pap_AN"
++END LC_MEASUREMENT
++
++LC_NAME
++copy "pap_AN"
++END LC_NAME
++
++LC_ADDRESS
++copy "pap_AN"
++END LC_ADDRESS
 diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
 --- libc.old/localedata/locales/rw_RW	2004-07-16 01:24:39.000000000 +0100
 +++ libc/localedata/locales/rw_RW	2004-11-14 03:07:27.000000000 +0200
