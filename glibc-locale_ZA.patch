@@ -2729,7 +2729,7 @@ diff -uNr libc.orig/localedata/locales/zu_ZA libc/localedata/locales/zu_ZA
 diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
 --- libc.orig/localedata/SUPPORTED	2004-11-10 00:39:10.000000000 +0100
 +++ libc/localedata/SUPPORTED	2004-11-10 01:28:15.000000000 +0100
-@@ -272,6 +272,10 @@
+@@ -276,6 +276,10 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -2740,7 +2740,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  oc_FR.UTF-8/UTF-8 \
  oc_FR/ISO-8859-1 \
  om_ET/UTF-8 \
-@@ -318,6 +322,8 @@
+@@ -324,6 +328,8 @@
  sr_CS/ISO-8859-5 \
  sr_CS@Latn/ISO-8859-2 \
  sr_CS@ije/ISO-8859-5 \
@@ -2749,12 +2749,14 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -337,8 +343,12 @@
+@@ -343,10 +349,14 @@
  tig_ER/UTF-8 \
  tl_PH.UTF-8/UTF-8 \
  tl_PH/ISO-8859-1 \
 +tn_ZA.UTF-8/UTF-8 \
 +tn_ZA/ISO-8859-10 \
+ tr_CY.UTF-8/UTF-8 \
+ tr_CY/ISO-8859-9 \
  tr_TR.UTF-8/UTF-8 \
  tr_TR/ISO-8859-9 \
 +ts_ZA.UTF-8/UTF-8 \
@@ -2762,7 +2764,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  tt_RU.UTF-8/UTF-8 \
  tt_RU/TATAR-CYR \
  uk_UA.UTF-8/UTF-8 \
-@@ -348,6 +358,7 @@
+@@ -356,6 +366,7 @@
  uz_UZ.UTF-8/UTF-8 \
  uz_UZ/ISO-8859-1 \
  uz_UZ@cyrillic/UTF-8 \
