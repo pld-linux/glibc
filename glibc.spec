@@ -544,7 +544,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/scsi
 %{_includedir}/sys
 
-%{_infodir}/libc.inf*.gz
+%{_infodir}/libc.info*
 
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/*crt*.o
