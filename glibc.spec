@@ -13,8 +13,8 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	3
-Epoch:		7
+Release:	7
+Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
