@@ -1,0 +1,18 @@
+ 2003-06-24  Richard Henderson  <rth@redhat.com>
+
+	* sysdeps/unix/sysv/linux/alpha/syscalls.list (pread, pwrite): Use
+	the 64-bit syscall name.
+
+--- glibc-2.3.2/sysdeps/unix/sysv/linux/alpha/syscalls.list.orig	2003-02-05 21:41:03.000000000 +0000
++++ glibc-2.3.2/sysdeps/unix/sysv/linux/alpha/syscalls.list	2003-12-23 12:24:07.000000000 +0000
+@@ -21,8 +21,8 @@
+ mmap		-	mmap		6	__mmap		mmap __mmap64 mmap64
+ llseek		EXTRA	lseek		C:3	__libc_lseek64	__llseek llseek __lseek64 lseek64
+ posix_fadvise64	-	fadvise64	4	posix_fadvise64	posix_fadvise
+-pread		-	pread		C:4	__libc_pread	__libc_pread64 __pread pread __pread64 pread64
+-pwrite		-	pwrite		C:4	__libc_pwrite	__libc_pwrite64 __pwrite pwrite __pwrite64 pwrite64
++pread		-	pread64		C:4	__libc_pread	__libc_pread64 __pread pread __pread64 pread64
++pwrite		-	pwrite64	C:4	__libc_pwrite	__libc_pwrite64 __pwrite pwrite __pwrite64 pwrite64
+ fstatfs		-	fstatfs		2	__fstatfs	fstatfs __fstatfs64 fstatfs64
+ statfs		-	statfs		2	__statfs	statfs statfs64
+ getrlimit	-	getrlimit	2	__getrlimit	getrlimit getrlimit64
