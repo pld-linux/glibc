@@ -1,0 +1,14 @@
+--- glibc-2.3.2/linuxthreads/Makefile.orig	Sat Feb 22 02:01:16 2003
++++ glibc-2.3.2/linuxthreads/Makefile	Fri May  9 10:01:53 2003
+@@ -73,6 +73,11 @@
+ others: $(objpfx)libpthread_nonshared.a
+ endif
+ 
++ifeq ($(build-omitfp),yes)
++CFLAGS-.o := $(filter-out -fomit-frame-pointer, $(CFLAGS-.o))
++CFLAGS-.os := $(filter-out -fomit-frame-pointer, $(CFLAGS-.os))
++endif
++
+ $(objpfx)libpthread_nonshared.a: $(addprefix $(objpfx),$(addsuffix .os,$(libpthread-nonshared)))
+ 	$(AR) $(ARFLAGS) $@ $^
+ 
