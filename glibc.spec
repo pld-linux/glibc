@@ -44,6 +44,10 @@
 %endif
 %endif
 
+%ifarch sparc64
+%undefine	with_memusage
+%endif
+
 %define		llh_version	7:2.6.4.0
 %define		_snap		20040612
 
@@ -142,7 +146,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
 %ifarch sparc64
-%undefine	with_memusage
 %define 	specflags_sparc64	-mvis -fcall-used-g6
 %define		_libdir			/usr/lib64
 %endif
