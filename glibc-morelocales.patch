@@ -7,14 +7,6 @@ am_ET, ti_ER, ti_ET  			(syntax errors in LC_COLLATE)
 
 --- glibc-2.3.1/localedata/SUPPORTED.orig	Sat Feb 23 19:30:27 2002
 +++ glibc-2.3.1/localedata/SUPPORTED	Fri Feb 21 10:57:35 2003
-@@ -24,6 +25,7 @@
- be_BY/CP1251 \
- bg_BG/CP1251 \
- br_FR/ISO-8859-1 \
-+br_FR@euro/ISO-8859-15 \
- bs_BA/ISO-8859-2 \
- ca_ES/ISO-8859-1 \
- ca_ES@euro/ISO-8859-15 \
 @@ -112,6 +114,7 @@
  ko_KR.EUC-KR/EUC-KR \
  ko_KR.UTF-8/UTF-8 \
