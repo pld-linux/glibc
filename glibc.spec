@@ -328,7 +328,7 @@ A toy.
 %build
 %configure \
 	--enable-add-ons=linuxthreads \
-%{?kernel:--enable-kernel=%{kernel}} \
+	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:2.2.0} \
 	--enable-profile \
 	--disable-omitfp
 
