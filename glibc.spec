@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -31,6 +31,7 @@ Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-ldconfig-bklinks.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
+Patch11:	%{name}-malloc.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -379,6 +380,7 @@ Zabawka.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
