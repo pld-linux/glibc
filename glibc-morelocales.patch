@@ -5399,7 +5399,7 @@ diff -uNr libc.old/localedata/locales/nds_DE@traditional libc/localedata/locales
 diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
 --- libc.old/localedata/locales/si_LK	1970-01-01 01:00:00.000000000 +0100
 +++ libc/localedata/locales/si_LK	2004-09-10 09:29:21.000000000 +0200
-@@ -0,0 +1,222 @@
+@@ -0,0 +1,221 @@
 +escape_char  /
 +comment_char %
 +% Sinhala language locale for Sri Lanka.
