@@ -1,5 +1,4 @@
-[from libc-alpha, not applied yet]
-XXX (SUPPORTED): should default encodings be UTF-8 or ISO-8859-{5,2}?
+[from libc-alpha, not applied yet in glibc CVS]
 
 --- glibc-2.3.3/locale/iso-3166.def.orig	Fri Dec  5 01:25:55 2003
 +++ glibc-2.3.3/locale/iso-3166.def	Mon Jan 19 15:10:04 2004
