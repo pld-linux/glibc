@@ -35,7 +35,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.2
-%define		rel 7
+%define		rel 8
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
