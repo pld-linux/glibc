@@ -255,7 +255,7 @@ glibc-devel ¥Ñ¥Ã¥±¡¼¥¸¤Ï(¤Û¤È¤ó¤É¤¹¤Ù¤Æ¤Î¥×¥í¥°¥é¥à¤Ç»È¤ï¤ì¤ë)É¸½à C
 %description devel -l pl
 Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów
 korzystaj±cych ze standardowej biblioteki C. Znajduj± siê tutaj pliki
-nag³ówkowe oraz pliki objektowe, niezbêdne do kompilacji programów
+nag³ówkowe oraz pliki obiektowe, niezbêdne do kompilacji programów
 wykonywalnych i innych bibliotek.
 
 %description devel -l ru
