@@ -17,22 +17,6 @@ Release:	2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Group(cs):	Knihovny
-Group(da):	Biblioteker
-Group(de):	Bibliotheken
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(is):	Ağgerğasöfn
-Group(it):	Librerie
-Group(ja):	¥é¥¤¥Ö¥é¥ê
-Group(no):	Biblioteker
-Group(pl):	Biblioteki
-Group(pt):	Bibliotecas
-Group(pt_BR):	Bibliotecas
-Group(ru):	âÉÂÌÉÏÔÅËÉ
-Group(sl):	Knji¾nice
-Group(sv):	Bibliotek
-Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
@@ -157,22 +141,6 @@ Summary(ru):	äÏĞÏÌÎÉÔÅÌØÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍĞÉÌÑÃÉÉ
 Summary(tr):	Geliştirme için gerekli diğer kitaplıklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ĞÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍĞ¦ÌÑÃ¦§
 Group:		Development/Libraries
-Group(cs):	Vıvojové prostøedky/Knihovny
-Group(da):	Udvikling/Biblioteker
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(is):	Şróunartól/Ağgerğasöfn
-Group(it):	Sviluppo/Librerie
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
-Group(no):	Utvikling/Bibliotek
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(sl):	Razvoj/Knji¾nice
-Group(sv):	Utveckling/Bibliotek
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
@@ -219,20 +187,6 @@ Summary(pl):	Demon zapamiêtuj±cy odpowiedzi serwisów nazw
 Summary(ru):	ëÜÛÉÒÕÀİÉÊ ÄÅÍÏÎ ÓÅÒ×ÉÓÏ× ÉÍÅÎ
 Summary(uk):	ëÅÛÕÀŞÉÊ ÄÅÍÏÎ ÓÅ×¦Ó¦× ¦ÍÅÎ
 Group:		Networking/Daemons
-Group(cs):	Sí»ové/Démoni
-Group(da):	Netværks/Dæmoner
-Group(de):	Netzwerkwesen/Server
-Group(es):	Red/Servidores
-Group(fr):	Réseau/Serveurs
-Group(is):	Net/Púkar
-Group(it):	Rete/Demoni
-Group(no):	Nettverks/Daemoner
-Group(pl):	Sieciowe/Serwery
-Group(pt):	Rede/Servidores
-Group(ru):	óÅÔØ/äÅÍÏÎÙ
-Group(sl):	Omre¾ni/Stre¾niki
-Group(sv):	Nätverk/Demoner
-Group(uk):	íÅÒÅÖÁ/äÅÍÏÎÉ
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
 Requires:	%{name} = %{version}
@@ -263,21 +217,6 @@ nscd ËÅÛÕ¤ ÒÅÚÕÌØÔÁÔÉ ÚÁĞÒÏÓ¦× ÄÏ ÓÅÒ×¦Ó¦× ¦ÍÅÎ; ÃÅ ÍÏÖÅ ÓÉÌØÎÏ
 Summary:	locale database source code
 Summary(pl):	Kod ¼ród³owy bazy locale
 Group:		Daemons
-Group(cs):	Démoni
-Group(da):	Dæmoner
-Group(de):	Server
-Group(es):	Servidores
-Group(fr):	Serveurs
-Group(is):	Púkar
-Group(it):	Demoni
-Group(ja):	¥Ç¡¼¥â¥ó
-Group(no):	Daemoner
-Group(pl):	Serwery
-Group(pt):	Servidores
-Group(ru):	äÅÍÏÎÙ
-Group(sl):	Stre¾niki
-Group(sv):	Demoner
-Group(uk):	äÅÍÏÎÉ
 Requires:	%{name} = %{version}
 
 %description -n localedb-src
@@ -298,21 +237,6 @@ jakiej¶ niestandardowej bazy.
 Summary:	Convert encoding of given files from one encoding to another
 Summary(pl):	Program do konwersji plików tekstowych z jednego kodowania do innego
 Group:		Daemons
-Group(cs):	Démoni
-Group(da):	Dæmoner
-Group(de):	Server
-Group(es):	Servidores
-Group(fr):	Serveurs
-Group(is):	Púkar
-Group(it):	Demoni
-Group(ja):	¥Ç¡¼¥â¥ó
-Group(no):	Daemoner
-Group(pl):	Serwery
-Group(pt):	Servidores
-Group(ru):	äÅÍÏÎÙ
-Group(sl):	Stre¾niki
-Group(sv):	Demoner
-Group(uk):	äÅÍÏÎÉ
 Requires:	%{name} = %{version}
 
 %description -n iconv
@@ -335,22 +259,6 @@ Summary(pl):	Biblioteki statyczne
 Summary(ru):	óÔÁÔÉŞÅÓËÉÅ ÂÉÂÌÉÏÔÅËÉ glibc
 Summary(uk):	óÔÁÔÉŞÎ¦ Â¦ÂÌ¦ÏÔÅËÉ glibc
 Group:		Development/Libraries
-Group(cs):	Vıvojové prostøedky/Knihovny
-Group(da):	Udvikling/Biblioteker
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(is):	Şróunartól/Ağgerğasöfn
-Group(it):	Sviluppo/Librerie
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
-Group(no):	Utvikling/Bibliotek
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(sl):	Razvoj/Knji¾nice
-Group(sv):	Utveckling/Bibliotek
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -376,22 +284,6 @@ Summary(ru):	GNU libc Ó ĞÏÄÄÅÒÖËÏÊ ĞÒÏÆÁÊÌÅÒÁ
 Summary(tr):	Ölçüm desteği olan glibc
 Summary(uk):	GNU libc Ú Ğ¦ÄÔÒÉÍËÏÀ ĞÒÏÆÁÊÌÅÒÁ
 Group:		Development/Libraries/Libc
-Group(cs):	Vıvojové prostøedky/Knihovny/Libc
-Group(da):	Udvikling/Biblioteker/Libc
-Group(de):	Entwicklung/Bibliotheken/Libc
-Group(es):	Desarrollo/Bibliotecas/Libc
-Group(fr):	Development/Librairies/Libc
-Group(is):	Şróunartól/Ağgerğasöfn/Libc
-Group(it):	Sviluppo/Librerie/Libc
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê/Libc
-Group(no):	Utvikling/Bibliotek/Libc
-Group(pl):	Programowanie/Biblioteki/Libc
-Group(pt_BR):	Desenvolvimento/Bibliotecas/Libc
-Group(pt):	Desenvolvimento/Bibliotecas/Libc
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ/Libc
-Group(sl):	Razvoj/Knji¾nice/Libc
-Group(sv):	Utveckling/Bibliotek/Libc
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ/Libc
 Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{version}
 
@@ -431,22 +323,6 @@ kitaplığı kullanmak zorundadırlar.
 Summary:	glibc PIC archive
 Summary(pl):	archiwum PIC glibc
 Group:		Development/Libraries/Libc
-Group(cs):	Vıvojové prostøedky/Knihovny/Libc
-Group(da):	Udvikling/Biblioteker/Libc
-Group(de):	Entwicklung/Bibliotheken/Libc
-Group(es):	Desarrollo/Bibliotecas/Libc
-Group(fr):	Development/Librairies/Libc
-Group(is):	Şróunartól/Ağgerğasöfn/Libc
-Group(it):	Sviluppo/Librerie/Libc
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê/Libc
-Group(no):	Utvikling/Bibliotek/Libc
-Group(pl):	Programowanie/Biblioteki/Libc
-Group(pt_BR):	Desenvolvimento/Bibliotecas/Libc
-Group(pt):	Desenvolvimento/Bibliotecas/Libc
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ/Libc
-Group(sl):	Razvoj/Knji¾nice/Libc
-Group(sv):	Utveckling/Bibliotek/Libc
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ/Libc
 Requires:	%{name}-devel = %{version}
 
 %description pic
@@ -464,22 +340,6 @@ biblioteki wspó³dzielonej libc.
 Summary:	Old style NYS NSS glibc module
 Summary(pl):	Stary modu³ NYS NSS glibc
 Group:		Base
-Group(cs):	Základ
-Group(da):	Basal
-Group(de):	Grundsätzlich
-Group(es):	Base
-Group(fr):	Base
-Group(is):	Grunnforrit
-Group(it):	Base
-Group(ja):	¥Ù¡¼¥¹
-Group(no):	Basis
-Group(pl):	Podstawowe
-Group(pt):	Base
-Group(pt_BR):	Base
-Group(ru):	âÁÚÁ
-Group(sl):	Osnova
-Group(sv):	Bas
-Group(uk):	âÁÚÁ
 Requires:	%{name} = %{version}
 
 %description -n nss_compat
@@ -492,22 +352,6 @@ Stary modu³ NYS NSS glibc.
 Summary:	BIND NSS glibc module
 Summary(pl):	Modu³ BIND NSS glibc
 Group:		Base
-Group(cs):	Základ
-Group(da):	Basal
-Group(de):	Grundsätzlich
-Group(es):	Base
-Group(fr):	Base
-Group(is):	Grunnforrit
-Group(it):	Base
-Group(ja):	¥Ù¡¼¥¹
-Group(no):	Basis
-Group(pl):	Podstawowe
-Group(pt):	Base
-Group(pt_BR):	Base
-Group(ru):	âÁÚÁ
-Group(sl):	Osnova
-Group(sv):	Bas
-Group(uk):	âÁÚÁ
 Requires:	%{name} = %{version}
 
 %description -n nss_dns
@@ -520,22 +364,6 @@ Modu³ BIND NSS glibc.
 Summary:	Traditional files databases NSS glibc module
 Summary(pl):	Modu³ tradycyjnych plikowych baz danych NSS glibc
 Group:		Base
-Group(cs):	Základ
-Group(da):	Basal
-Group(de):	Grundsätzlich
-Group(es):	Base
-Group(fr):	Base
-Group(is):	Grunnforrit
-Group(it):	Base
-Group(ja):	¥Ù¡¼¥¹
-Group(no):	Basis
-Group(pl):	Podstawowe
-Group(pt):	Base
-Group(pt_BR):	Base
-Group(ru):	âÁÚÁ
-Group(sl):	Osnova
-Group(sv):	Bas
-Group(uk):	âÁÚÁ
 Requires:	%{name} = %{version}
 
 %description -n nss_files
@@ -548,22 +376,6 @@ Modu³ tradycyjnych plikowych baz danych NSS glibc.
 Summary:	Hesiod NSS glibc module
 Summary(pl):	Modu³ hesiod NSS glibc
 Group:		Base
-Group(cs):	Základ
-Group(da):	Basal
-Group(de):	Grundsätzlich
-Group(es):	Base
-Group(fr):	Base
-Group(is):	Grunnforrit
-Group(it):	Base
-Group(ja):	¥Ù¡¼¥¹
-Group(no):	Basis
-Group(pl):	Podstawowe
-Group(pt):	Base
-Group(pt_BR):	Base
-Group(ru):	âÁÚÁ
-Group(sl):	Osnova
-Group(sv):	Bas
-Group(uk):	âÁÚÁ
 Requires:	%{name} = %{version}
 
 %description -n nss_hesiod
@@ -576,22 +388,6 @@ Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych.
 Summary:	NIS(YP) NSS glibc module
 Summary(pl):	Modu³ NIS(YP) NSS glibc
 Group:		Base
-Group(cs):	Základ
-Group(da):	Basal
-Group(de):	Grundsätzlich
-Group(es):	Base
-Group(fr):	Base
-Group(is):	Grunnforrit
-Group(it):	Base
-Group(ja):	¥Ù¡¼¥¹
-Group(no):	Basis
-Group(pl):	Podstawowe
-Group(pt):	Base
-Group(pt_BR):	Base
-Group(ru):	âÁÚÁ
-Group(sl):	Osnova
-Group(sv):	Bas
-Group(uk):	âÁÚÁ
 Requires:	%{name} = %{version}
 
 %description -n nss_nis
@@ -604,22 +400,6 @@ Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS(YP).
 Summary:	NIS+ NSS module
 Summary(pl):	Modu³ NIS+ NSS
 Group:		Base
-Group(cs):	Základ
-Group(da):	Basal
-Group(de):	Grundsätzlich
-Group(es):	Base
-Group(fr):	Base
-Group(is):	Grunnforrit
-Group(it):	Base
-Group(ja):	¥Ù¡¼¥¹
-Group(no):	Basis
-Group(pl):	Podstawowe
-Group(pt):	Base
-Group(pt_BR):	Base
-Group(ru):	âÁÚÁ
-Group(sl):	Osnova
-Group(sv):	Bas
-Group(uk):	âÁÚÁ
 Requires:	%{name} = %{version}
 
 %description -n nss_nisplus
@@ -632,23 +412,6 @@ Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS+.
 Summary:	A toy
 Summary(pl):	Zabawka
 Group:		Applications
-Group(cs):	Aplikace
-Group(da):	Programmer
-Group(de):	Applikationen
-Group(es):	Aplicaciones
-Group(fr):	Applications
-Group(id):	Aplikasi
-Group(is):	Forrit
-Group(it):	Applicazioni
-Group(ja):	¥¢¥×¥ê¥±¡¼¥·¥ç¥ó
-Group(no):	Applikasjoner
-Group(pl):	Aplikacje
-Group(pt):	Aplicações
-Group(pt_BR):	Aplicações
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ
-Group(sl):	Programi
-Group(sv):	Tillämpningar
-Group(uk):	ğÒÉËÌÁÄÎ¦ ğÒÏÇÒÁÍÉ
 Requires:	%{name} = %{version}
 Requires:	gd
 
