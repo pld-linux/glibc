@@ -154,7 +154,6 @@ Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	%{name}-kernel-headers = %{version}-%{release}
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -196,17 +195,15 @@ kitaplýklar.
 
 
 %package kernel-headers
-Summary:	/usr/include/{asm,linux}/*.h
+Summary:	Kernel header files the glibc has been built with
+Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
 Group:		Development/Libraries
 
 %description kernel-headers
-
-Kernel header files: /usr/include/{asm,linux}/*.h.
+Kernel header files the glibc has been built with.
 
 %description kernel-headers -l pl
-
-Pliki nag³ówkowe j±dra: /usr/include/{asm,linux}/*.h.
-
+Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -635,6 +632,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+echo "Please, install glibc-kernel-headers or chosen kernel-headers package"
+echo "or, if you are really brave man, just make appropriate links"
+echo "in /usr/include directory."
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
