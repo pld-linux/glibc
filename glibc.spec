@@ -803,8 +803,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
-# UPDATEME/DROPME
-# %patch24 -p0
+%patch24 -p0
 # DROP
 #%patch25 -p1
 # DROP
