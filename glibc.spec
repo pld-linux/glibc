@@ -4,7 +4,7 @@
 #
 # _without_dist_kernel	build without kernel from the distribution;
 #			headers will be searched in %_kernelsrcdir/include.
-#
+# _without_fp		build without frame pointer (pass --enable-omitfp)
 
 %{!?min_kernel:%define		min_kernel	2.2.0}
 
@@ -44,6 +44,8 @@ Patch13:	%{name}-pl.po-update.patch
 Patch14:	%{name}-missing-nls.patch
 Patch16:	%{name}-java-libc-wait.patch
 Patch17:	%{name}-morelocales.patch
+Patch18:	%{name}-lthrds_noomit.patch
+Patch19:	%{name}-no_opt_override.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -485,6 +487,9 @@ Zabawka.
 %patch14 -p1
 %patch16 -p1
 %patch17 -p1
+%patch18 -p1
+# don't know, if it is good idea, for brave ones
+#%patch19 -p1
 
 chmod +x scripts/cpp
 
@@ -500,7 +505,7 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
-	--disable-omitfp \
+	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
 	--with-headers=%{_kernelsrcdir}/include
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
