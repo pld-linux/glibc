@@ -847,10 +847,6 @@ install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/man8
 
 # localedb-gen infrastructure
 install %{SOURCE8} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
-cat > $RPM_BUILD_ROOT/etc/sysconfig/localedb <<EOF
-# list of supported locales
-#SUPPORTED_LOCALES="pl_PL/ISO-8859-2 de_DE/ISO-8859-2 en_GB/ISO-8859-1 en_US/ISO-8859-1"
-EOF
 install ../localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
@@ -1129,7 +1125,6 @@ fi
 %attr(755,root,root) %{_bindir}/localedb-gen
 %{_datadir}/i18n
 %{_mandir}/man1/localedef*
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/localedb
 
 %files localedb-all
 %defattr(644,root,root,755)
