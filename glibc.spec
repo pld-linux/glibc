@@ -11,6 +11,7 @@
 %bcond_without	nptl		# don't use NPTL (implies using linuxthreads)
 %bcond_without	tls		# don't use tls (implies no NPTL)
 %bcond_with	tests		# perform "make test"
+%bcond_without	localedb	# don't build localedb-all (is time consuming)
 
 #
 # TODO:
@@ -893,10 +894,12 @@ env LANGUAGE=C LC_ALL=C \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
+%if %{with localedb}
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
 	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT
+%endif
 
 PICFILES="libc_pic.a libc.map
 	math/libm_pic.a libm.map
@@ -1115,7 +1118,7 @@ fi
 %attr(755,root,root) /%{_lib}/libdl*
 %attr(755,root,root) /%{_lib}/libnsl*
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
-%dir %{_libdir}/locale
+%{?with_localedb:%dir %{_libdir}/locale}
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %ghost %{_sysconfdir}/ld.so.cache
 
@@ -1361,9 +1364,11 @@ fi
 %{_datadir}/i18n
 %{_mandir}/man1/localedef.1*
 
+%if %{with localedb}
 %files localedb-all
 %defattr(644,root,root,755)
 %{_libdir}/locale/locale-archive
+%endif
 
 %files -n iconv
 %defattr(644,root,root,755)
