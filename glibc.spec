@@ -824,7 +824,6 @@ BuildGlibc() {
 		if [ "`uname -m`" = "x86_64" -o "`uname -m`" = "amd64" ]; then
 			BuildCC="$BuildCC -m32"
 		fi
-		BuildCCFlags="-march=${arch}"
 		;;
 	sparc64)
 		BuildCC="$BuildCC -m64"
@@ -863,7 +862,6 @@ BuildGlibc() {
   #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
   ../%configure \
 	CC="${BuildCC}" \
-	CFLAGS="${BuildCCFlags}" \
 	--build=${arch}-%{_vendor}-%{_target_os} \
 	--libexecdir="%{_prefix}/$glibc_libname" \
 	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
