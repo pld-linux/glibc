@@ -119,10 +119,11 @@ Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-nscd.patch
-Patch27:	%{name}-gcc4.patch
+Patch27:	%{name}-nscd-user.patch
+Patch28:	%{name}-gcc4.patch
 # PaX hacks (dropped)
-#Patch28:	%{name}-pax_iconvconfig.patch
-#Patch29:	%{name}-pax_dl-execstack.patch
+#Patch29:	%{name}-pax_iconvconfig.patch
+#Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -815,6 +816,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
+%patch28 -p1
 
 chmod +x scripts/cpp
 
