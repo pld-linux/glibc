@@ -155,6 +155,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # (hardlinks here are unlikely to be "partial"... and rpm 4.0.2 from Ra was
 # patched not to crash on partial hardlinks too)
 %define		_hack_dontneed_PartialHardlinkSets	1
+%define		_noautochrpath		.*\\(ldconfig\\|sln\\)
 
 %description
 Contains the standard libraries that are used by multiple programs on
