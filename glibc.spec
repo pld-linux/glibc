@@ -6,7 +6,7 @@ Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1
 %define		man-pages-ver 1.23
-Release:	8
+Release:	9
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
