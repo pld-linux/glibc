@@ -476,17 +476,27 @@ done
 %postun memusage -p /sbin/ldconfig
 
 %post devel
-%fix_info_dir
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %postun devel
-%fix_info_dir
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %post -n nscd
+/sbin/chkconfig --add nscd
 touch /var/log/nscd && (chown root.root /var/log/nscd ; chmod 640 /var/log/nscd)
-NAME=nscd; DESC="nscd daemon"; %chkconfig_add
+if [ -f /var/lock/subsys/nscd ]; then
+	/etc/rc.d/init.d/nscd restart 1>&2
+else
+	echo "Run \"/etc/rc.d/init.d/nscd start\" to start nscd daemon." 1>&2
+fi
 
 %preun -n nscd
-NAME=nscd; %chkconfig_del
+if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/nscd ]; then
+		/etc/rc.d/init.d/nscd stop 1>&2
+	fi
+	/sbin/chkconfig --del nscd
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
