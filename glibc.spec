@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.2
-Release:	10
+Release:	11
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -22,6 +22,7 @@ Patch1:		glibc-paths.patch
 Patch2:		glibc-versions.awk_fix.patch
 Patch3:		glibc-pld.patch
 Patch4:		glibc-getaddrinfo.patch
+Patch5:		glibc-crypt-blowfish.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -233,6 +234,7 @@ kitaplýðý kullanmak zorundadýrlar.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 %configure \
