@@ -37,52 +37,55 @@ Autoreq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Contains the standard libraries that are used by multiple programs on the
-system. In order to save disk space and memory, as well as to ease
+Contains the standard libraries that are used by multiple programs on
+the system. In order to save disk space and memory, as well as to ease
 upgrades, common system code is kept in one place and shared between
 programs. This package contains the most important sets of shared
-libraries, the standard C library and the standard math library. Without
-these, a Linux system will not function. It also contains national language
-(locale) support and timezone databases.
+libraries, the standard C library and the standard math library.
+Without these, a Linux system will not function. It also contains
+national language (locale) support and timezone databases.
 
 %description -l de
-Enthält die Standard-Libraries, die von verschiedenen Programmen im System
-benutzt werden. Um Festplatten- und Arbeitsspeicher zu sparen und zur
-Vereinfachung von Upgrades ist der gemeinsame Systemcode an einer einzigen
-Stelle gespeichert und wird von den Programmen gemeinsam genutzt. Dieses
-Paket enthält die wichtigsten Sets der shared Libraries, die
-Standard-C-Library und die Standard-Math-Library, ohne die das Linux-System
-nicht funktioniert. Ferner enthält es den Support für die verschiedenen
-Sprachgregionen (locale) und die Zeitzonen-Datenbank.
+Enthält die Standard-Libraries, die von verschiedenen Programmen im
+System benutzt werden. Um Festplatten- und Arbeitsspeicher zu sparen
+und zur Vereinfachung von Upgrades ist der gemeinsame Systemcode an
+einer einzigen Stelle gespeichert und wird von den Programmen
+gemeinsam genutzt. Dieses Paket enthält die wichtigsten Sets der
+shared Libraries, die Standard-C-Library und die
+Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
+Ferner enthält es den Support für die verschiedenen Sprachgregionen
+(locale) und die Zeitzonen-Datenbank.
 
 %description -l fr
-Contient les bibliothèques standards utilisées par de nombreux programmes
-du système. Afin d'économiser l'espace disque et mémoire, et de faciliter
-les mises à jour, le code commun au système est mis à un endroit et partagé
-entre les programmes. Ce paquetage contient les bibliothèques partagées les
-plus importantes, la bibliothèque standard du C et la bibliothèque
-mathématique standard. Sans celles-ci, un système Linux ne peut
-fonctionner. Il contient aussi la gestion des langues nationales (locales)
-et les bases de données des zones horaires.
+Contient les bibliothèques standards utilisées par de nombreux
+programmes du système. Afin d'économiser l'espace disque et mémoire,
+et de faciliter les mises à jour, le code commun au système est mis à
+un endroit et partagé entre les programmes. Ce paquetage contient les
+bibliothèques partagées les plus importantes, la bibliothèque standard
+du C et la bibliothèque mathématique standard. Sans celles-ci, un
+système Linux ne peut fonctionner. Il contient aussi la gestion des
+langues nationales (locales) et les bases de données des zones
+horaires.
 
 %description -l pl
-W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne programy
-w Twoim systemie. U¿ywanie przez programy bibliotek z tego pakietu
-oszczêdza miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest
-usytuowane w jednym miejscu i dzielone miêdzy wieloma programami. Pakiet
-ten zawiera bardzo wa¿ny zbiór bibliotek standardowych wspó³dzielonych
-(dynamicznych) bibliotek C i matematycznych. Bez glibc system Linux nie
-jest w stanie funkcjonowaæ. Znajduj± siê tutaj równie¿ definicje ró¿nych
-informacji dla wielu jêzyków (locale) oraz definicje stref czasowych.
+W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
+programy w Twoim systemie. U¿ywanie przez programy bibliotek z tego
+pakietu oszczêdza miejsce na dysku i pamiêæ. Wiekszo¶æ kodu
+systemowego jest usytuowane w jednym miejscu i dzielone miêdzy wieloma
+programami. Pakiet ten zawiera bardzo wa¿ny zbiór bibliotek
+standardowych wspó³dzielonych (dynamicznych) bibliotek C i
+matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
+Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
+jêzyków (locale) oraz definicje stref czasowych.
 
 %description -l tr
-Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir. Disk
-alaný ve bellek kullanýmýný azaltmak ve ayný zamanda güncelleme iþlemlerini
-kolaylaþtýrmak için ortak sistem kodlarý tek bir yerde tutulup programlar
-arasýnda paylaþtýrýlýr. Bu paket en önemli ortak kitaplýklarý, standart C
-kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar
-olmadan Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi
-veri tabaný da bu pakette yer alýr.
+Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir.
+Disk alaný ve bellek kullanýmýný azaltmak ve ayný zamanda güncelleme
+iþlemlerini kolaylaþtýrmak için ortak sistem kodlarý tek bir yerde
+tutulup programlar arasýnda paylaþtýrýlýr. Bu paket en önemli ortak
+kitaplýklarý, standart C kitaplýðýný ve standart matematik kitaplýðýný
+içerir. Bu kitaplýklar olmadan Linux sistemi çalýþmayacaktýr. Yerel
+dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -96,29 +99,30 @@ Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
-To develop programs which use the standard C libraries (which nearly all
-programs do), the system needs to have these standard header files and
-object files available for creating the executables.
+To develop programs which use the standard C libraries (which nearly
+all programs do), the system needs to have these standard header files
+and object files available for creating the executables.
 
 %description -l de devel
-Bei der Entwicklung von Programmen, die die Standard-C-Libraries verwenden
-(also fast alle), benötigt das System diese Standard-Header- und
-Objektdateien zum Erstellen der ausführbaren Programme.
+Bei der Entwicklung von Programmen, die die Standard-C-Libraries
+verwenden (also fast alle), benötigt das System diese Standard-Header-
+und Objektdateien zum Erstellen der ausführbaren Programme.
 
 %description -l fr devel
-Pour développer des programmes utilisant les bibliothèques standard du C
-(ce que presque tous les programmes font), le système doit posséder ces
-fichiers en-têtes et objets standards pour créer les exécutables.
+Pour développer des programmes utilisant les bibliothèques standard du
+C (ce que presque tous les programmes font), le système doit posséder
+ces fichiers en-têtes et objets standards pour créer les exécutables.
 
 %description -l pl devel
-Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów korzystaj±cych
-ze standardowej biblioteki C. Znajduj± siê tutaj pliki nag³ówkowe oraz
-pliki objektowe, niezbêdne do kompilacji programów wykonywalnych i innych
-bibliotek.
+Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów
+korzystaj±cych ze standardowej biblioteki C. Znajduj± siê tutaj pliki
+nag³ówkowe oraz pliki objektowe, niezbêdne do kompilacji programów
+wykonywalnych i innych bibliotek.
 
 %description -l tr devel
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
-geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
+geliþtirmek için gereken standart baþlýk dosyalarý ve statik
+kitaplýklar.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -129,15 +133,16 @@ Prereq:		/sbin/chkconfig
 Requires:	rc-scripts >= 0.2.0
 
 %description -n nscd
-nscd caches name service lookups; it can dramatically improve performance
-with NIS+, and may help with DNS as well. You cannot use nscd with 2.0
-kernels, due to bugs in the kernel-side thread support. nscd happens to hit
-these bugs particularly hard.
+nscd caches name service lookups; it can dramatically improve
+performance with NIS+, and may help with DNS as well. You cannot use
+nscd with 2.0 kernels, due to bugs in the kernel-side thread support.
+nscd happens to hit these bugs particularly hard.
 
 %description -n nscd -l pl
-nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala drastycznie
-poprawiæ szybko¶æ dzia³ania NIS+. Nie jest mo¿liwe u¿ywanie nscd z j±drami
-serii 2.0.x z powodu b³adów po stronie j±dra w ods³udze w±tków.
+nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
+drastycznie poprawiæ szybko¶æ dzia³ania NIS+. Nie jest mo¿liwe
+u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów po stronie j±dra w
+ods³udze w±tków.
 
 %package -n utmpd
 Summary:	utmp and utmpx synchronizer for libc5 applications.
@@ -153,8 +158,8 @@ program with utmp access.
 
 %description -n utmpd -l pl
 utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików /var/run/utmp i
-/var/run/utmpx. Potrzebny jest tylko w przypadku korzystania ze starszych
-programów (bazuj±cych na libc5).
+/var/run/utmpx. Potrzebny jest tylko w przypadku korzystania ze
+starszych programów (bazuj±cych na libc5).
 
 %package -n localedb-src
 Summary:	Souce code locale database
@@ -163,16 +168,16 @@ Group:		Daemons
 Group(pl):	Serwery
 
 %description -n localedb-src
-This add-on package contains the data needed to build the locale data files
-to use the internationalization features of the GNU libc. Glibc package
-contains standard set of locale binary database and You need this package
-if want build some non standard locale database.
+This add-on package contains the data needed to build the locale data
+files to use the internationalization features of the GNU libc. Glibc
+package contains standard set of locale binary database and You need
+this package if want build some non standard locale database.
 
 %description -l pl -n localedb-src
 Pakiet ten kod ¼ród³owy baz locale który jest potrzebny do zbudowania
 binarnej wersji baz locale potrzebnej do poprawnego wspierania ró¿nych
-jêzyków przez glibc. Pakiet glibc zawira binarn± wersjê standardowych baz
-locale i ten pakiet jest potrzebny tylko w sytuacji kiedy potrzeba
+jêzyków przez glibc. Pakiet glibc zawira binarn± wersjê standardowych
+baz locale i ten pakiet jest potrzebny tylko w sytuacji kiedy potrzeba
 wygenerowaæ jak±¶ niestandardow± bazê.
 
 %package -n iconv
@@ -182,18 +187,18 @@ Group:		Daemons
 Group(pl):	Serwery
 
 %description -n iconv
-Convert encoding of given files from one encoding to another. You need this
-package if You want to convert some documet from one encoding to another or
-if You have installed some programs which use Generic Character Set
-Conversion Interface.
+Convert encoding of given files from one encoding to another. You need
+this package if You want to convert some documet from one encoding to
+another or if You have installed some programs which use Generic
+Character Set Conversion Interface.
 
 %description -l pl -n iconv
 Program do konwersji plików tekstowych z jednego enkodingu w inny.
 Potrzebujesz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
-dokumentów z jednego enkodingu w inny lub je¿eli masz zainstalowane jakie¶
-programy które korzystaj± z Generic Character Set Conversion Interface w
-glibc, czyli z zestawu funkcji z tej biblioteki, które umo¿liwiaj±
-konwersjê enkodingu danych z poziomu dowolnego programu.
+dokumentów z jednego enkodingu w inny lub je¿eli masz zainstalowane
+jakie¶ programy które korzystaj± z Generic Character Set Conversion
+Interface w glibc, czyli z zestawu funkcji z tej biblioteki, które
+umo¿liwiaj± konwersjê enkodingu danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
@@ -220,9 +225,9 @@ Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{version}
 
 %description profile
-When programs are being profiled used gprof, they must use these libraries
-instead of the standard C libraries for gprof to be able to profile them
-correctly.
+When programs are being profiled used gprof, they must use these
+libraries instead of the standard C libraries for gprof to be able to
+profile them correctly.
 
 %description -l de profile
 Damit Programmprofile mit gprof richtig erstellt werden, müssen diese
