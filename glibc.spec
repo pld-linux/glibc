@@ -75,23 +75,24 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 Source7:	sln.8
 Source8:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-initgroups-overflow.patch
+#Patch1:		%{name}-initgroups-overflow.patch -- obsolete (came from upstream)
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-string2-pointer-arith.patch
 Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch9:		%{name}-paths.patch
-Patch10:	%{name}-vaargs.patch
+#Patch10:	%{name}-vaargs.patch	-- obsolete fix for gcc 2.95/alpha (gcc>=3.2 is BRed)
 Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-postshell.patch
 Patch14:	%{name}-missing-nls.patch
 Patch16:	%{name}-java-libc-wait.patch
 Patch18:	%{name}-lthrds_noomit.patch
 Patch19:	%{name}-no_opt_override.patch
+# this is broken (hardcoded /usr/src/linux)
 Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-includes.patch
-Patch26:	%{name}-alpha-fix-as-syntax.patch
+#Patch26:	%{name}-alpha-fix-as-syntax.patch	-- obsolete (fixed in other way)
 Patch27:	%{name}-soinit-EH_FRAME.patch
 Patch28:	%{name}-fix-asserts.patch
 Patch30:	%{name}-sparc-errno_fix.patch
@@ -753,7 +754,6 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch5 -p1
 %patch6 -p1
 %patch9 -p1
-%patch10 -p1
 #%%patch11 -p1
 %patch12 -p1
 %patch14 -p1
@@ -763,7 +763,6 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #%patch19 -p1
 %{?with_kernelheaders:%patch23}
 %{?!with_kernelheaders:%patch24 -p1}
-%patch26 -p1
 %patch27 -p1
 %patch28 -p1
 %patch30
