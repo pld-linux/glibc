@@ -34,7 +34,7 @@ Provides:	ld.so.2
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
 Autoreq:	false
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Contains the standard libraries that are used by multiple programs on the
