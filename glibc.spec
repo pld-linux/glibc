@@ -832,6 +832,7 @@ cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
+rm -rf builddir
 install -d builddir
 cd builddir
 %if %{with linuxthreads}
@@ -843,12 +844,13 @@ cd builddir
 	--with%{!?with_selinux:out}-selinux \
 	--with%{!?with_tls:out}-tls \
         --enable-add-ons=linuxthreads \
-	--disable-profile
+	--enable-profile
 %{__make}
 %endif
 %if %{with nptl}
 %if %{with dual}
 cd ..
+rm -rf builddir-nptl
 install -d builddir-nptl
 cd builddir-nptl
 %endif
@@ -859,7 +861,7 @@ cd builddir-nptl
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
         --enable-add-ons=nptl \
-	--disable-profile
+	--enable-profile
 # simulate cross-compiling so we can perform dual builds on 2.4.x kernel
 %{__make} \
 	%{?with_dual:cross-compiling=yes}
@@ -1460,11 +1462,10 @@ fi
 %{_libdir}/nptl/libpthread.a
 %endif
 
-%if %{with linuxthreads}
 %files profile
 %defattr(644,root,root,755)
+#{?with_dual:%{_libdir}/nptl/lib*_p.a}
 %{_libdir}/lib*_p.a
-%endif
 
 %files pic
 %defattr(644,root,root,755)
