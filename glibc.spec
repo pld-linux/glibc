@@ -15,6 +15,7 @@
 %bcond_with	tests		# perform "make test"
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
+%bcond_with	cross		# build using crossgcc (libgcc_eh)
 
 #
 # TODO:
@@ -35,14 +36,15 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparc64 sparcv9 ppc64
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc64
 %undefine	with_tls
 %endif
 %endif
 
 %if %{with nptl}
 # nptl on x86 uses cmpxchgl (available since i486)
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc64
+# nptl on sparc64 is broken (doesn't build)
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x ppc64
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -73,7 +75,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.2.1
+Release:	0.%{_snap}.2.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -125,6 +127,8 @@ Patch27:	%{name}-ia64_unwind.patch
 Patch28:	%{name}-ZA_collate.patch
 Patch29:	%{name}-tls_fix.patch
 Patch30:	%{name}-nscd-user.patch
+Patch31:	%{name}-sparc64-errno.patch
+Patch32:	%{name}-cross-gcc_eh.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -160,7 +164,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		rpmldflags	%{nil}
 %ifarch sparc64
-%define 	specflags_sparc64	-mvis -fcall-used-g6
+%define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 %define		_libdir			/usr/lib64
 %endif
 # we don't want perl dependency in glibc-devel
@@ -730,7 +734,7 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
-%ifarch amd64
+%ifarch amd64 sparc64
 Provides:	glibc = %{epoch}:%{version}-%{release}
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %else
@@ -818,6 +822,8 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch28 -p1
 %patch29 -p1
 %patch30 -p1
+%patch31 -p1
+%{?with_cross:%patch32 -p1}
 
 chmod +x scripts/cpp
 
@@ -832,6 +838,13 @@ cp -f /usr/share/automake/config.sub scripts
 %{__autoconf}
 install -d builddir
 cd builddir
+
+CC="%{__cc}"
+# buggy (sparc64)
+%ifarch sparc64
+CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
+%endif
+
 %if %{with linuxthreads}
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
@@ -842,7 +855,7 @@ cd builddir
 	--with%{!?with_tls:out}-tls \
         --enable-add-ons=linuxthreads \
 	--enable-profile
-%{__make}
+%{__make} CC="$CC"
 %endif
 %if %{with nptl}
 %if %{with dual}
@@ -860,7 +873,8 @@ cd builddir-nptl
 	--disable-profile
 # simulate cross-compiling so we can perform dual builds on 2.4.x kernel
 %{__make} \
-	%{?with_dual:cross-compiling=yes}
+	%{?with_dual:cross-compiling=yes} \
+	CC="$CC"
 %endif
 cd ..
 
@@ -950,9 +964,7 @@ rm -rf $RPM_BUILD_ROOT/nptl
 %endif
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
-%ifnarch sparc64
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
-%endif
 
 %if %{with linuxthreads}
 install linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
@@ -1081,8 +1093,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
-%ifnarch sparc64
-%ifarch amd64
+%ifarch amd64 sparc64
 %post	-n %{name}64 -p /sbin/postshell
 %else
 %post	-p /sbin/postshell
@@ -1090,7 +1101,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64
+%ifarch amd64 sparc64
 %postun	-n %{name}64 -p /sbin/postshell
 %else
 %postun	-p /sbin/postshell
@@ -1098,7 +1109,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64
+%ifarch amd64 sparc64
 %triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 %else
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
@@ -1135,10 +1146,8 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del nscd
 fi
-%endif
 
-%ifnarch sparc64
-%ifarch amd64
+%ifarch amd64 sparc64
 %files -n glibc64
 %defattr(644,root,root,755)
 %else
@@ -1470,44 +1479,3 @@ fi
 %{_libdir}/lib*.map
 %{_libdir}/soinit.o
 %{_libdir}/sofini.o
-
-%else
-
-%files -n glibc64
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/ld-*
-%attr(755,root,root) %{_libdir}/libanl*
-%attr(755,root,root) %{_libdir}/libdl*
-%attr(755,root,root) %{_libdir}/libnsl*
-%attr(755,root,root) %{_libdir}/lib[BScmprtu]*
-%attr(755,root,root) %{_libdir}/libnss_dns*.so*
-%attr(755,root,root) %{_libdir}/libnss_files*.so*
-
-%files -n glibc64-devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib[!m]*.so
-%attr(755,root,root) %{_libdir}/libm.so
-%attr(755,root,root) %{_libdir}/*crt*.o
-%{_libdir}/libbsd-compat.a
-%{_libdir}/libbsd.a
-%{_libdir}/libc_nonshared.a
-%{_libdir}/libg.a
-%{_libdir}/libieee.a
-%{_libdir}/libpthread_nonshared.a
-%{_libdir}/librpcsvc.a
-
-%files -n glibc64-static
-%defattr(644,root,root,755)
-%{_libdir}/libanl.a
-%{_libdir}/libBrokenLocale.a
-%{_libdir}/libc.a
-%{_libdir}/libcrypt.a
-%{_libdir}/libdl.a
-%{_libdir}/libm.a
-%{_libdir}/libmcheck.a
-%{_libdir}/libnsl.a
-%{_libdir}/libpthread.a
-%{_libdir}/libresolv.a
-%{_libdir}/librt.a
-%{_libdir}/libutil.a
-%endif
