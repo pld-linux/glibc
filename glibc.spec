@@ -10,11 +10,9 @@ Release:	0.%{pre}
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-#######		ftp://sourceware.cygnus.com/pub/glibc/
-Source0:	%{name}-%{version}%{pre}.tar.gz
-Source1:	%{name}-linuxthreads-%{version}%{pre}.tar.gz
-#######:	http://www.ozemail.com.au/~geoffk/glibc-crypt
-Source2:	%{name}-crypt-2.1.pre1.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}pre3.tar.gz
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}pre3.tar.gz
+Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt%{name}-crypt-2.1.pre1.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
@@ -26,13 +24,13 @@ Autoreq:	false
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-Contains the standard libraries that are used by multiple programs on
-the system. In order to save disk space and memory, as well as to
-ease upgrades, common system code is kept in one place and shared between
-programs. This package contains the most important sets of shared libraries,
-the standard C library and the standard math library. Without these, a
-Linux system will not function. It also contains national language (locale)
-support and timezone databases.
+Contains the standard libraries that are used by multiple programs on the
+system. In order to save disk space and memory, as well as to ease upgrades,
+common system code is kept in one place and shared between programs. This
+package contains the most important sets of shared libraries, the standard C
+library and the standard math library. Without these, a Linux system will
+not function. It also contains national language (locale) support and
+timezone databases.
 
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im System
@@ -73,7 +71,7 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package	devel
+%package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
@@ -136,6 +134,19 @@ Base library in static version.
 Dwie podstawowe (libc.a i libcm.a) biblioteki w wersji statycznej.
 Potrzebne tylko przy kompilacji niektórych programów.
 
+%package -n nscd
+Summary:	Name Service Caching Daemon
+Group:		System Environment/Daemons
+Prereq:		/sbin/chkconfig
+Conflicts:	kernel < 2.2.0
+
+%description -n nscd
+nscd caches name service lookups; it can dramatically improve performance
+with NIS+, and may help with DNS as well.
+
+You cannot use nscd with 2.0 kernels, due to bugs in the kernel-side thread
+support. nscd happens to hit these bugs particularly hard.
+
 %prep 
 %setup -q -a 1 -a 2 -n %{name}-%{version}%{pre}
 %patch -p1
@@ -150,25 +161,21 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,%{_mandir}/man3,var/db}
-
-make \
-    install_root=$RPM_BUILD_ROOT \
-    infodir=%{_infodir} \
-    mandir=%{_mandir} \
-    install
-    
-make \
-    install_root=$RPM_BUILD_ROOT \
-    install-locales -C localedata
+make install \
+	install_root=$RPM_BUILD_ROOT \
+	infodir=%{_infodir} \
+	mandir=%{_mandir}
+make install-locales -C localedata \
+	install_root=$RPM_BUILD_ROOT
 
 make -C linuxthreads/man
 install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf ../../../etc/localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/localtime
-ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixtime
-ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixrules
+ln -sf ../../../etc/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
+ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
 ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
@@ -188,7 +195,7 @@ cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
 /usr/bin/make -f /var/db/db-Makefile
 EOF
 
-ln -sf create-db $RPM_BUILD_ROOT/usr/bin/update-db 
+ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db 
 
 rm -rf documentation
 install -d documentation
@@ -200,8 +207,6 @@ cp login/README.utmpd documentation/
 cp crypt/README documentation/README.crypt
 
 cp ChangeLog ChangeLog.8 documentation
-
-strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
 
 gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
@@ -233,11 +238,14 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
 %config /etc/rpc
 
-%attr(750,root,root) /etc/rc.d/init.d/*
+%attr(754,root,root) /etc/rc.d/init.d/utmpd
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_sbindir}/rpcinfo
+%attr(755,root,root) %{_sbindir}/utmpd
+%attr(755,root,root) %{_sbindir}/zdump
+%attr(755,root,root) %{_sbindir}/zic
 
 %attr(755,root,root) /lib/ld-*
 %attr(755,root,root) /lib/lib*
@@ -294,6 +302,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static -f static.libs
 %defattr(644,root,root,755)
+
+%files -n nscd
+%defattr(644,root,root,755)
+%config /etc/nscd.conf
+%attr(754,root,root) /etc/rc.d/init.d/nscd
+%attr(755,root,root) /usr/sbin/nscd
 
 %changelog
 * Wed May 19 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
@@ -377,10 +391,7 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at invalid RH spec file.  
-
-
-  [2.1.1-1]
+- start at invalid RH spec file.  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
