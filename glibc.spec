@@ -5,6 +5,7 @@
 # _without_dist_kernel	build without kernel from the distribution;
 #			headers will be searched in %_kernelsrcdir/include.
 # _without_fp		build without frame pointer (pass --enable-omitfp)
+# _without_memusage	build without memusage
 
 %{!?min_kernel:%define		min_kernel	2.2.0}
 
@@ -54,7 +55,8 @@ Patch19:	%{name}-no_opt_override.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
-BuildRequires:	gd-devel >= 2.0.1
+%{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
+%{!?_without_memusage:BuildRequires:    XFree86-devel}
 BuildRequires:	gettext-devel >= 0.10.36
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	libpng-devel
@@ -491,6 +493,7 @@ glibc NSS (Name Service Switch) module for NIS+ databases accesa.
 %description -n nss_nisplus -l pl
 Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS+.
 
+%if %{?_without_memusage:0}%{!?_without_memusage:1}
 %package memusage
 Summary:	A toy
 Summary(pl):	Zabawka
@@ -503,6 +506,7 @@ A toy.
 
 %description memusage -l pl
 Zabawka.
+%endif
 
 %package zoneinfo_right
 Summary:	Non-POSIX (real) time zones
@@ -586,7 +590,7 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 
-mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
+%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 %{__make} -C ../linuxthreads/man
@@ -707,8 +711,10 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
+%if %{?_without_memusage:0}%{!?_without_memusage:1}
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
+%endif
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
@@ -846,10 +852,12 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_nisplus*.so*
 
+%if %{?_without_memusage:0}%{!?_without_memusage:1}
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
 %attr(755,root,root) %{_libdir}/libmemusage*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
