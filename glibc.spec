@@ -597,16 +597,6 @@ rm -f $RPM_BUILD_ROOT/%{_infodir}/dir
 # we don't support kernel without ptys support
 rm -f $RPM_BUILD_ROOT/%{_libdir}/pt_chown
 
-# list of includes from _includedir for glibc-devel
-find $RPM_BUILD_ROOT%{_includedir} -mindepth 1 \
-	| sed -e "s#^$RPM_BUILD_ROOT/*#/#" \
-	> %{_builddir}/%{name}-%{version}/includes_for_devel
-if [ -e $RPM_BUILD_ROOT%{_includedir}/asm -o -e $RPM_BUILD_ROOT%{_includedir}/linux ]; then
-	echo "something is wrong: $RPM_BUILD_ROOT%{_includedir}/asm" \
-	     "and/or $RPM_BUILD_ROOT%{_includedir}/linux exist; exiting"
-	exit 1
-fi
-
 # copy actual kernel headers for glibc-kernel-headers
 %{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
 %{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
@@ -762,13 +752,34 @@ fi
 %attr(755,root,root) %{_bindir}/memusage*
 %attr(755,root,root) %{_libdir}/libmemusage*
 
-%files devel -f includes_for_devel
+%files devel
 %defattr(644,root,root,755)
 %doc documentation/* NOTES PROJECTS
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/*prof*
 %attr(755,root,root) %{_bindir}/*trace
+
+%{_includedir}/*.h
+%{_includedir}/arpa
+%{_includedir}/bits
+%{_includedir}/gnu
+%{_includedir}/net
+%{_includedir}/netash
+%{_includedir}/netatalk
+%{_includedir}/netax25
+%{_includedir}/neteconet
+%{_includedir}/netinet
+%{_includedir}/netipx
+%{_includedir}/netpacket
+%{_includedir}/netrom
+%{_includedir}/netrose
+%{_includedir}/nfs
+%{_includedir}/protocols
+%{_includedir}/rpc
+%{_includedir}/rpcsvc
+%{_includedir}/scsi
+%{_includedir}/sys
 
 %{_infodir}/libc.info*
 
