@@ -530,7 +530,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 %{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
 
 # Collect locale files and mark them with %%lang()
-rm -f glibc.lang
+rm -f ../glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
@@ -550,7 +550,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 			fi 
 		fi	
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
-		echo "%lang($lang) $dir" >> glibc.lang
+		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
 done
 for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
@@ -558,7 +558,7 @@ for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
 	if [ ! -d $i ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
-		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
+		echo "%lang($lang) %{_datadir}/locale/$i" >> ../glibc.lang
 	fi
 done
 install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/man8
