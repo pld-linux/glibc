@@ -19,7 +19,8 @@ Source5:	ftp://ftp.win.tue.nl/pub/linux/docs/manpages/man-pages-%{man_pages_ver}
 Patch0:		glibc-info.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
-Obsoletes:	glibc-profile, glibc-debug
+Obsoletes:	glibc-profile
+Obsoletes:	glibc-debug
 Autoreq:	false
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -122,7 +123,7 @@ sparc32 \
 	--prefix=/usr \
 	--disable-omitfp \
 	--enable-add-ons=yes \
-        $RPM_ARCH-linux
+        %{_target}
 make
 
 %install
@@ -344,7 +345,8 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at invalid RH spec file.  [2.1.1-1]
+- start at invalid RH spec file.
+  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
