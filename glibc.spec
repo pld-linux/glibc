@@ -78,7 +78,7 @@ Patch1:		%{name}-pl.po-update.patch
 #Patch1:		%{name}-initgroups-overflow.patch -- obsolete (came from upstream)
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
-Patch4:		%{name}-string2-pointer-arith.patch
+#Patch4:		%{name}-string2-pointer-arith.patch -- obsolete since gcc 2.95.4 or so)
 Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch9:		%{name}-paths.patch
@@ -98,6 +98,7 @@ Patch28:	%{name}-fix-asserts.patch
 Patch30:	%{name}-sparc-errno_fix.patch
 Patch31:	%{name}-make.patch
 Patch32:	%{name}-tests-io-tmp.patch
+Patch33:	%{name}-tests-noproc.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -752,7 +753,6 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch9 -p1
@@ -770,6 +770,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch30
 %patch31 -p1
 %patch32 -p1
+%patch33 -p1
 
 chmod +x scripts/cpp
 
