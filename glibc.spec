@@ -48,7 +48,7 @@
 %undefine	with_memusage
 %endif
 
-%define		llh_version	7:2.6.4.0
+%define		llh_version	7:2.6.6.0
 %define		_snap		20040612
 
 Summary:	GNU libc
