@@ -124,6 +124,7 @@ Patch31:	%{name}-pax_dl-execstack.patch
 Patch32:	%{name}-sparc_comdat.patch
 Patch33:	%{name}-alpha_giduidfix.patch
 Patch34:	%{name}-ia64_unwind.patch
+Patch50:	glibc-ZA_collate.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -828,6 +829,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch32 -p1
 %patch33 -p1
 %patch34 -p1
+%patch50 -p1
 
 chmod +x scripts/cpp
 
