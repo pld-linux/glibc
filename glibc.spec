@@ -13,17 +13,22 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	19
+Release:	25
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+#ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	5be613d02b934d8e305dd2f93062fa6c
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+# Source1-md5:	33b9ae01d51263867d338adfba105278
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+# Source5-md5:	ddba280857330dabba4d8c16d24a6dfd
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+# Source6-md5:	2e3992c2e1bc94212c2cd33236de6058
 Source7:	postshell.c
 # borrowed from util-linux
 Source8:	sln.8
@@ -44,6 +49,11 @@ Patch13:	%{name}-divdi3.patch
 Patch14:	%{name}-nss_dns-overflow.patch
 Patch15:	%{name}-sunrpc-overflow.patch
 Patch16:	%{name}-calloc-overflow.patch
+Patch17:	%{name}-gcc32.patch
+Patch18:	%{name}-maxpacket.patch
+Patch19:	%{name}-setrlimit.patch
+Patch20:	%{name}-2.2.5-xdrmem.patch
+Patch21:	%{name}-initgroups-overflow.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -447,6 +457,11 @@ Zabawka.
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
+%patch18 -p1
+%patch19 -p1
+%patch20 -p1
+%patch21 -p1
 
 chmod +x scripts/cpp
 
@@ -548,14 +563,15 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 				lang=`echo $lang | sed "s,\..*,,"`
 			else
 				lang=`echo $lang | sed "s,_.*,,"`
-			fi 
+			fi
 		fi	
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
 		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
-for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
-         lt lv ms nn pt ro ru sl sr ta uk wa zh_CN ; do
+for i in af ar az be bg cy de_AT el en eo es_ES et eu fi ga gr he hi hr hu id \
+	 is ja_JP.SJIS ka lt lv ms nn pt ro ru sl sq sr ta tg th uk uz vi wa \
+	 zh_CN ; do
 	if [ ! -d $i ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -576,7 +592,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%postun -p /sbin/postshell 
+%postun -p /sbin/postshell
 /sbin/ldconfig
 -/sbin/telinit u
 

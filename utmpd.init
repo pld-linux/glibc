@@ -26,7 +26,7 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/utmpd
 	else
-		msg_already_running "utmpd"
+		msg_Already_Running "utmpd"
 		exit 1
 	fi
         ;;
@@ -36,7 +36,7 @@ case "$1" in
 		killproc utmpd
 		rm -f /var/lock/subsys/utmpd >/dev/null 2>&1
 	else
-		msg_not_running "utmpd"
+		msg_Not_Running "utmpd"
 		exit 1
 	fi	
 	;;
@@ -48,7 +48,7 @@ case "$1" in
 	status utmpd
 	;;
   *)
-	msg_usage "$0 {start|stop|status|restart|reload}"
+	msg_Usage "$0 {start|stop|status|restart|reload}"
 	exit 1
 esac
 
