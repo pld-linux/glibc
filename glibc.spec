@@ -42,7 +42,7 @@
 %endif
 
 %define		llh_version	7:2.6.4.0
-%define		_snap		20040422
+%define		_snap		20040505
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -61,7 +61,7 @@ License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	6eaf90817a363e8e517a970dc0f2446b
+# Source0-md5:	a93bf55b9cc6ae5d2cdcf96b723710a8
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
 Source2:	nscd.init
@@ -794,8 +794,8 @@ cp /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
 # i786 (aka pentium4) hack
-cd nptl/sysdeps/i386 && ln -sf i686 i786 && cd -
-cd nptl/sysdeps/unix/sysv/linux/i386 && ln -sf i686 i786 && cd -
+cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
+cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 #
 [ -d builddir ] || mkdir builddir
 cd builddir
