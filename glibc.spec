@@ -16,14 +16,14 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%bcond_without	nptl	# enable new posix thread library (req: kernel 2.5/2.6)
+%bcond_without nptl	# disable new posix thread library (req: kernel 2.5/2.6)
 			# instead of linuxthreads
 %bcond_with	fp	# build with frame pointer
+			# warning: disabled frame pointer implies -O99
 %bcond_with	profile	# build profiling-enabled library
 
-%define		min_kernel	2.4.20
+%define		min_kernel	2.6.0
 %define		_snap		200310271512
-%define		rel 8.%{_snap}.1
 Summary:	GNU C library
 Summary(ja):	GNU libc •È•§•÷•È•Í
 Summary(pl):	Biblioteka C GNU
@@ -31,7 +31,7 @@ Summary(ru):	GNU libc ◊≈“”…… 2.3
 Summary(uk):	GNU libc ◊≈“”¶ß 2.3
 Name:		glibc
 Version:	2.3.2
-Release:	%{rel}
+Release:	8.%{_snap}.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -62,7 +62,6 @@ Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
-Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-postshell.patch
 Patch13:	%{name}-pl.po-update.patch
 Patch14:	%{name}-missing-nls.patch
@@ -71,14 +70,12 @@ Patch17:	%{name}-morelocales.patch
 Patch18:	%{name}-lthrds_noomit.patch
 Patch19:	%{name}-no_opt_override.patch
 Patch20:	%{name}-gcc33.patch
-#Patch21:	%{name}-sanity.patch
 Patch22:	%{name}-secureexec.patch
 Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-sparc64_pause.patch
 Patch25:	%{name}-linuxthreads.patch
 Patch26:	%{name}-csu-verfix.patch
-#Patch27:	%{name}-nptl-check.patch
-Patch28:	%{name}-fix-asserts.patch
+Patch27:	%{name}-fix-asserts.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.5
 BuildRequires:	gcc >= 3.2
@@ -291,7 +288,6 @@ kitapl˝klar.
 Summary:	Kernel header files the glibc has been built with
 Summary(es):	Los ficheros de cabecera del n˙cleo con los que se ha construido glibc
 Summary(pl):	Pliki nag≥Ûwkowe j±dra, z ktÛrymi zosta≥a zbudowana ta wersja glibc
-Release:	%{rel}
 Group:		Development/Libraries
 
 %description kernel-headers
@@ -310,7 +306,6 @@ Summary(ja):	•Õ°º•‡•µ°º•”•π•≠•„•√•∑•Û•∞•«°º•‚•Û (nacd)
 Summary(pl):	Demon zapamiÍtuj±cy odpowiedzi serwisÛw nazw
 Summary(ru):	Î‹€…“’¿›…  ƒ≈ÕœŒ ”≈“◊…”œ◊ …Õ≈Œ
 Summary(uk):	Î≈€’¿ﬁ…  ƒ≈ÕœŒ ”≈◊¶”¶◊ ¶Õ≈Œ
-Release:	%{rel}
 Group:		Networking/Daemons
 PreReq:		rc-scripts >= 0.2.0
 Requires(post,preun):	/sbin/chkconfig
@@ -356,7 +351,6 @@ nscd À≈€’§ “≈⁄’Ãÿ‘¡‘… ⁄¡–“œ”¶◊ ƒœ ”≈“◊¶”¶◊ ¶Õ≈Œ; √≈ Õœ÷≈ ”…ÃÿŒœ
 Summary:	locale database source code
 Summary(es):	CÛdigo fuente de la base de datos de los locales
 Summary(pl):	Kod ºrÛd≥owy bazy locale
-Release:	%{rel}
 Group:		Daemons
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -378,7 +372,6 @@ libc.
 Summary:	locale database for all locales supported by glibc
 Summary(es):	Base de datos de todos los locales soportados por glibc
 Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs≥ugiwanych przez glibc
-Release:	%{rel}
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -409,7 +402,6 @@ pakiet localedb-src moøna odinstalowaÊ).
 Summary:	Convert encoding of given files from one encoding to another
 Summary(es):	Convierte entre varias codificaciones de los ficheros dados
 Summary(pl):	Program do konwersji plikÛw tekstowych z jednego kodowania do innego
-Release:	%{rel}
 Group:		Applications/Text
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -440,7 +432,6 @@ Summary(es):	Bibliotecas est·ticas
 Summary(pl):	Biblioteki statyczne
 Summary(ru):	Û‘¡‘…ﬁ≈”À…≈ ¬…¬Ã…œ‘≈À… glibc
 Summary(uk):	Û‘¡‘…ﬁŒ¶ ¬¶¬Ã¶œ‘≈À… glibc
-Release:	%{rel}
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}
 
@@ -470,7 +461,6 @@ Summary(pl):	glibc ze wsparciem dla profilowania
 Summary(ru):	GNU libc ” –œƒƒ≈“÷Àœ  –“œ∆¡ Ã≈“¡
 Summary(tr):	÷lÁ¸m destei olan glibc
 Summary(uk):	GNU libc ⁄ –¶ƒ‘“…ÕÀœ¿ –“œ∆¡ Ã≈“¡
-Release:	%{rel}
 Group:		Development/Libraries/Libc
 Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{epoch}:%{version}
@@ -516,7 +506,6 @@ kitapl˝˝ kullanmak zorundad˝rlar.
 Summary:	glibc PIC archive
 Summary(es):	Archivo PIC de glibc
 Summary(pl):	Archiwum PIC glibc
-Release:	%{rel}
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}
 
@@ -541,7 +530,6 @@ biblioteki wspÛ≥dzielonej libc.
 Summary:	Old style NYS NSS glibc module
 Summary(es):	El antiguo mÛdulo NYS NSS de glibc
 Summary(pl):	Stary modu≥ NYS NSS glibc
-Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -558,7 +546,6 @@ Stary modu≥ NYS NSS glibc.
 Summary:	BIND NSS glibc module
 Summary(es):	MÛdulo BIND NSS de glibc
 Summary(pl):	Modu≥ BIND NSS glibc
-Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -575,7 +562,6 @@ Modu≥ BIND NSS glibc.
 Summary:	Traditional files databases NSS glibc module
 Summary(es):	MÛdulo de tradicionales bases de datos en ficheros para glibc
 Summary(pl):	Modu≥ tradycyjnych plikowych baz danych NSS glibc
-Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -592,7 +578,6 @@ Modu≥ tradycyjnych plikowych baz danych NSS glibc.
 Summary:	hesiod NSS glibc module
 Summary(es):	MÛdulo hesiod NSS de glibc
 Summary(pl):	Modu≥ hesiod NSS glibc
-Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -609,7 +594,6 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych.
 Summary:	NIS(YP) NSS glibc module
 Summary(es):	MÛdulo NIS(YP) NSS de glibc
 Summary(pl):	Modu≥ NIS(YP) NSS glibc
-Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -626,7 +610,6 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS(YP).
 Summary:	NIS+ NSS module
 Summary(es):	MÛdulo NIS+ NSS
 Summary(pl):	Modu≥ NIS+ NSS
-Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -644,7 +627,6 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS+.
 Summary:	A toy
 Summary(es):	Un juguete
 Summary(pl):	Zabawka
-Release:	%{rel}
 Group:		Applications
 Requires:	%{name} = %{epoch}:%{version}
 Requires:	gd
@@ -662,7 +644,6 @@ Zabawka.
 Summary:	Non-POSIX (real) time zones
 Summary(es):	Zonas de tiempo reales (no de POSIX)
 Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
-Release:	%{rel}
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -680,54 +661,32 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %prep
 %setup -q -a 9 -n %{name}-%{version}-%{_snap}
-#%if %{with nptl}
-#%{__tar} xfj %{SOURCE10}
-#rm -rf linuxthreads*
-#%endif
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 %patch9 -p1
 %patch10 -p1
-#%%patch11 -p1
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
 %patch16 -p1
 %patch17 -p1
+%patch18 -p1
 # don't know, if it is good idea, for brave ones
 #%patch19 -p1
 ##%patch20 -p1
-#%patch21 -p1
 ##%patch22 -p1
 %patch23
 ##%patch24 -p1
-# updated - lt
 %patch26 -p1
-#%patch27 -p1
-%patch28 -p1
-
-%if %{without nptl}
-%patch5 -p1
-%patch6 -p1
-##%patch25 -p1
-%patch18 -p1
-%endif
-
-chmod +x scripts/cpp
+%patch27 -p1
 
 # standardize name
 mv -f localedata/locales/{lug_UG,lg_UG}
 
-#make proper symlink for asm in headers
-#cd usr/include
-#%ifarch %{ix86}
-#ln -s asm-i386 asm
-#%endif
-#cd ../..
-
-%build
 # Prepare kernel headers
 TARGET_CPU=$(echo "%{_target_cpu}" | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
 				   -e s/athlon/i386/ -e s/arm.*/arm/ \
@@ -735,12 +694,14 @@ TARGET_CPU=$(echo "%{_target_cpu}" | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
 _headers_dir=`pwd`/usr/include; export _headers_dir;
 (cd $_headers_dir && ln -s asm-${TARGET_CPU} asm)
 
+%build
 # Build glibc
 install -d builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
 #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
+
 ../%configure \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--%{!?with_profile:dis}%{?with_profile:en}able-profile \
@@ -808,8 +769,9 @@ mv -f $RPM_BUILD_ROOT/lib*/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 %if %{without nptl}
 %{__make} -C ../linuxthreads/man
-install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
+install	../linuxthreads/man/*.3thr	$RPM_BUILD_ROOT%{_mandir}/man3
 %endif
+
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
 
 #cd $RPM_BUILD_ROOT%{_datadir}/zoneinfo
