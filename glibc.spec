@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	3
+Release:	4
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -31,7 +31,7 @@ Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-ldconfig-bklinks.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
-Patch11:	%{name}-malloc.patch
+# Patch11:	%{name}-malloc.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -380,7 +380,7 @@ Zabawka.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
+# %patch11 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
@@ -545,8 +545,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{_mandir}/it/man[578]/*
 %lang(ja) %{_mandir}/ja/man[578]/*
 %lang(ko) %{_mandir}/ko/man[578]/*
+# %lang(nl) %{_mandir}/pl/man[578]/*
 %lang(pl) %{_mandir}/pl/man[578]/*
 %lang(pt) %{_mandir}/pt/man[578]/*
+%lang(pt_BR) %{_mandir}/pt_BR/man[578]/*
 %lang(ru) %{_mandir}/ru/man[578]/*
 
 #%files -n nss_dns
@@ -596,6 +598,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libc_nonshared.a
 
 %{_mandir}/man3/*
+%lang(cs) %{_mandir}/cs/man3/*
+%lang(de) %{_mandir}/de/man3/*
+%lang(es) %{_mandir}/es/man3/*
+%lang(fr) %{_mandir}/fr/man3/*
+%lang(hu) %{_mandir}/hu/man3/*
+# %lang(it) %{_mandir}/it/man/*
+%lang(ja) %{_mandir}/ja/man/*
+%lang(ko) %{_mandir}/ko/man/*
+%lang(nl) %{_mandir}/nl/man/*
+%lang(pl) %{_mandir}/pl/man/*
+%lang(pt) %{_mandir}/pt/man/*
+%lang(pt_BR) %{_mandir}/pt_BR/man/*
+%lang(ru) %{_mandir}/ru/man/*
 
 %files -n nscd
 %defattr(644,root,root,755)
