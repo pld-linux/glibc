@@ -335,11 +335,13 @@ A toy.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/log}
 
+env LANGUAGE=C LC_ALL=C  \
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
+env LANGUAGE=C LC_ALL=C  \
 %{__make} install-locales -C localedata \
 	install_root=$RPM_BUILD_ROOT
 
