@@ -17,7 +17,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.2
-Release:	0.2@%{_kernel_ver_str}
+Release:	1@%{_kernel_ver_str}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -806,7 +806,7 @@ fi
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
 %{_libdir}/libpthread_nonshared.a
-#%%{_libdir}/librpcsvc.a
+%{_libdir}/librpcsvc.a
 
 %{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
