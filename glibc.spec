@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	11
+Release:	12
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -521,8 +521,6 @@ cp -f ChangeLog documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
-gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
-
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
 %{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
 
@@ -590,7 +588,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc {README,NEWS,FAQ,BUGS}.gz
+%doc README NEWS FAQ BUGS
 
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
@@ -691,7 +689,7 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* {NOTES,PROJECTS}.gz
+%doc documentation/* NOTES PROJECTS
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/*prof*
@@ -701,9 +699,14 @@ fi
 
 %{_infodir}/libc.info*
 
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib[^m]*.so
+%attr(755,root,root) %{_libdir}/libm.so
 %attr(755,root,root) %{_libdir}/*crt*.o
+%{_libdir}/libbsd-compat.a
+%{_libdir}/libbsd.a
 %{_libdir}/libc_nonshared.a
+%{_libdir}/libg.a
+%{_libdir}/libieee.a
 %{_libdir}/librpcsvc.a
 
 %{_mandir}/man1/getconf*
@@ -757,13 +760,9 @@ fi
 %defattr(644,root,root,755)
 %{_libdir}/libanl.a
 %{_libdir}/libBrokenLocale.a
-%{_libdir}/libbsd-compat.a
-%{_libdir}/libbsd.a
 %{_libdir}/libc.a
 %{_libdir}/libcrypt.a
 %{_libdir}/libdl.a
-%{_libdir}/libg.a
-%{_libdir}/libieee.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
 %{_libdir}/libnsl.a
