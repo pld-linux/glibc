@@ -610,12 +610,12 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# am,bn (present in sources, but incomplete and disabled) (used by GNOME)
+# am,bn,ml (present in sources, but incomplete and disabled) (used by GNOME)
 # kn,mn,ia (used by GNOME)
 # nso,ss,ven,xh,zu (used by KDE)
 for i in af ar az be bg br bs cy de_AT el en eo es_AR et eu fa fi ga gr he hi \
 	 hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru se sl sq sr \
-	 sr@cyrillic ta tg th uk uz vi wa zh_CN ; do
+	 sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
