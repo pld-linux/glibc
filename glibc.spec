@@ -53,7 +53,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.6%{?with_nptl:+nptl}
+Release:	0.20040101.7%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -97,6 +97,7 @@ Patch18:	%{name}-make.patch
 Patch19:	%{name}-tests-io-tmp.patch
 Patch20:	%{name}-tests-noproc.patch
 Patch21:	%{name}-linuxthreads-ppc-fix.patch
+Patch22:	%{name}-alpha-sigaction.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -771,6 +772,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch19 -p1
 %patch20 -p1
 %patch21 -p1
+%patch22 -p1
 
 chmod +x scripts/cpp
 
