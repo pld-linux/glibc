@@ -51,6 +51,8 @@ BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
+BuildRequires:	gcc >= 3.2
+BuildRequires:	binutils >= 2.13.90.0.2
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
