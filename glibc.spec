@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	10
+Release:	11
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -535,6 +535,15 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
+for i in az bg de_AT el eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS lt lv \
+	 nn pt ro ru sl sr ta uk wa zh_CN ; do
+	if [ ! -d $i ]; then
+		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
+		lang=`echo $i | sed -e 's/_.*//'`
+		echo "%lang($lang) %ghost %{_datadir}/locale/$i" >> glibc.lang
+	fi
+done
+
 
 install -m755 postshell $RPM_BUILD_ROOT/sbin
 
