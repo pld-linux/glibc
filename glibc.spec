@@ -53,11 +53,10 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040318.2%{?with_nptl:+nptl}
+Release:	0.20040318.3%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-# 20040101 snapshot
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	abb1508f747df2a73b38f49a120d7461
@@ -82,7 +81,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
-#Patch7:		%{name}-getaddrinfo-workaround.patch
+Patch7:		%{name}-i786.patch
 Patch8:		%{name}-postshell.patch
 Patch9:		%{name}-missing-nls.patch
 Patch10:	%{name}-java-libc-wait.patch
@@ -761,7 +760,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-#%%patch7 -p1
+%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
@@ -787,6 +786,8 @@ chmod +x scripts/cpp
 # Build glibc
 cp /usr/share/automake/config.sub .
 cp /usr/share/automake/config.sub scripts
+%{__aclocal}
+%{__autoconf}
 [ -d builddir ] || mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
