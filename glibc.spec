@@ -237,6 +237,17 @@ Libraries anstelle der üblichen C-Libraries verwendet werden.
 gprof kullanýlarak ölçülen programlar standart C kitaplýðý yerine bu
 kitaplýðý kullanmak zorundadýrlar.
 
+%package pic
+Summary:        glibc PIC archive 
+Group:          Development/Libraries/Libc
+Group(pl):      Programowanie/Biblioteki/Libc
+Requires:       %{name}-devel = %{version}
+
+%description pic
+GNU C Library PIC archive contains an archive library (ar file) composed
+of individual shared objects. This is used for creating a library which
+is a smaller subset of the standard libc shared library.
+
 %prep
 %setup  -q -a 1 -a 2
 %patch0 -p1
@@ -268,6 +279,14 @@ install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/m
 
 %{__make} install-locales -C localedata \
 	install_root=$RPM_BUILD_ROOT
+
+PICFILES="libc_pic.a libc.map 
+          math/libm_pic.a libm.map 
+          resolv/libresolv_pic.a"
+
+install $PICFILES $RPM_BUILD_ROOT/%{_libdir}
+install elf/soinit.os $RPM_BUILD_ROOT/%{_libdir}/soinit.o
+install elf/sofini.os $RPM_BUILD_ROOT/%{_libdir}/sofini.o
 
 %{__make} -C linuxthreads/man
 install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
@@ -495,3 +514,10 @@ rm -rf $RPM_BUILD_ROOT
 %files profile
 %defattr(644,root,root,755)
 %{_libdir}/lib*_p.a
+
+%files pic
+%defattr(644,root,root,755)
+%{_libdir}/lib*_pic.a
+%{_libdir}/lib*.map
+%{_libdir}/soinit.o
+%{_libdir}/sofini.o
