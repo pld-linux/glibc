@@ -21,7 +21,7 @@
 #	in order to use this version!
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.15
+%define		rel 2.16
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -33,7 +33,7 @@ Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.2
 Release:	%{rel}
-Epoch:		6.1
+Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
