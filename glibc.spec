@@ -467,6 +467,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
+%attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
 %ifnarch alpha
 %attr(755,root,root) %{_bindir}/lddlibc4
@@ -556,7 +557,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n iconv
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/iconv
 %dir %{_libdir}/gconv
 %{_libdir}/gconv/gconv-modules
 %attr(755,root,root) %{_libdir}/gconv/*.so
