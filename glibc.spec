@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	24
+Release:	25
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -53,6 +53,7 @@ Patch17:	%{name}-gcc32.patch
 Patch18:	%{name}-maxpacket.patch
 Patch19:	%{name}-setrlimit.patch
 Patch20:	%{name}-2.2.5-xdrmem.patch
+Patch21:	%{name}-initgroups-overflow.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -460,6 +461,7 @@ Zabawka.
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
+%patch21 -p1
 
 chmod +x scripts/cpp
 
