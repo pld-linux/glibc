@@ -1,7 +1,4 @@
 #
-# TODO:
-# - SECURITY: http://securitytracker.com/alerts/2004/Aug/1010975.html
-#
 # You can define min_kernel macro by "rpm --define 'min_kernel version'"
 # default is 2.4.6
 #
@@ -62,7 +59,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.5%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
+Release:	0.%{_snap}.9%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -109,10 +106,15 @@ Patch22:	%{name}-tzfile-noassert.patch
 Patch23:	%{name}-ifreq.patch
 Patch24:	%{name}-morelocales.patch
 Patch25:	%{name}-ppc-getcontext.patch
-Patch26:	%{name}-locale_fixes.patch
+Patch26:	%{name}-locale_ZA.patch
+Patch27:	%{name}-locale_fixes.patch
+Patch28:	%{name}-LD_DEBUG.patch
+Patch29:	%{name}-soversions-fix.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
+Patch50:	%{name}-ZA_collate.patch
+Patch51:	%{name}-fix_tls_linkage.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -157,6 +159,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # (hardlinks here are unlikely to be "partial"... and rpm 4.0.2 from Ra was
 # patched not to crash on partial hardlinks too)
 %define		_hack_dontneed_PartialHardlinkSets	1
+%define		_noautochrpath		.*\\(ldconfig\\|sln\\)
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -801,9 +804,17 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
+%patch27 -p1
+%patch28 -p0
+%patch29 -p1
 
 %patch30 -p1
 %patch31 -p1
+%patch50 -p1
+
+%if %{with tls}
+%patch51 -p0
+%endif
 
 chmod +x scripts/cpp
 
@@ -977,16 +988,16 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# ia,li (used by GNOME)
-# nso,ss,ven (used by KDE)
+# tk, yo (used by GNOME)
+# ven -> ve (used by KDE)
 # NOTES:
 # bn is used for bn_BD or bn_IN?
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
-for i in af am ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU en_CA \
-    en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn leet lg \
-    li lo lt lv mi mk ml mn mr ms mt nds ne nn pa pt ro ru se sl sq sr sr@Latn \
-    sr@ije ta tg th uk uz vi wa xh yi zh_HK zu ; do
+for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
+    en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn \
+    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro ru se \
+    sl sq sr sr@Latn sr@ije ss ta tg th tlh uk uz ve vi wa xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -995,6 +1006,7 @@ for i in af am ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU en_CA \
 done
 cd $RPM_BUILD_ROOT%{_datadir}/locale
 ln -s zh_CN zh_SG
+ln -s zh_CN zh_HK
 cd -
 
 # localedb-gen infrastructure
@@ -1319,7 +1331,7 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd*
-%attr(640,root,root) /etc/logrotate.d/nscd
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
 %dir /var/run/nscd
 %{_mandir}/man5/nscd.conf.5*
