@@ -9,7 +9,7 @@
 				# glibc-kernel-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	nptl		# use nptl instead of linuxthreads
-%bcond_without  tls		# do not use tls
+%bcond_with     tls		# use tls
 %bcond_with	tests		# do not perform "make test"
 
 #
@@ -53,7 +53,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.4%{?with_nptl:+nptl}
+Release:	0.20040101.5%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
