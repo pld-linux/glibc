@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -25,7 +25,8 @@ Patch4:		%{name}-string2-pointer-arith.patch
 Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch7:		%{name}-sparc-linux-chown.patch
-Patch8:		%{name}-getxxxxinfo.patch
+Patch8:		%{name}-ldconfig.patch
+Patch9:		%{name}-getxxxxinfo.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
@@ -320,7 +321,8 @@ A toy.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
+%patch8 -p0
+%patch9 -p1
 
 %build
 %configure \
