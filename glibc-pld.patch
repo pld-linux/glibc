@@ -1,0 +1,32 @@
+diff -Nur glibc-2.1.1/nscd/nscd.conf glibc-2.1.1.pld/nscd/nscd.conf
+--- glibc-2.1.1/nscd/nscd.conf	Mon Oct 19 23:31:49 1998
++++ glibc-2.1.1.pld/nscd/nscd.conf	Mon Jun 14 14:36:06 1999
+@@ -19,8 +19,8 @@
+ #
+ 
+ 
+-#	logfile			/var/adm/nscd.log
+-#	threads			6
++	logfile			/var/log/nscd
++	threads			6
+ 
+ 	debug-level		0
+ 
+diff -Nur glibc-2.1.1/sysdeps/unix/sysv/linux/paths.h glibc-2.1.1.pld/sysdeps/unix/sysv/linux/paths.h
+--- glibc-2.1.1/sysdeps/unix/sysv/linux/paths.h	Mon Jun 14 14:37:57 1999
++++ glibc-2.1.1.pld/sysdeps/unix/sysv/linux/paths.h	Mon Jun 14 14:34:24 1999
+@@ -52,12 +52,12 @@
+ #define	_PATH_KMEM	"/dev/kmem"
+ #define	_PATH_LASTLOG	"/var/log/lastlog"
+ #define	_PATH_MAILDIR	"/var/mail"
+-#define	_PATH_MAN	"/usr/man"
++#define	_PATH_MAN	"/usr/share/man"
+ #define	_PATH_MEM	"/dev/mem"
+ #define	_PATH_MNTTAB	"/etc/fstab"
+ #define	_PATH_MOUNTED	"/etc/mtab"
+ #define	_PATH_NOLOGIN	"/etc/nologin"
+-#define	_PATH_PRESERVE	"/var/preserve"
++#define	_PATH_PRESERVE	"/var/state"
+ #define	_PATH_RWHODIR	"/var/spool/rwho"
+ #define	_PATH_SENDMAIL	"/usr/sbin/sendmail"
+ #define	_PATH_SHADOW	"/etc/shadow"
