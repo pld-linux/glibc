@@ -41,7 +41,9 @@
 %endif
 %endif
 
-%define	llh_version	7:2.6.1.3
+%define		llh_version	7:2.6.4.0
+%define		_snap		20040407
+
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(es):	GNU libc
@@ -53,15 +55,15 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.20040318.1%{?with_nptl:+nptl}
+Release:	0.%{_snap}.1%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	%{name}-2.3.3.tar.bz2
-# Source0-md5:	abb1508f747df2a73b38f49a120d7461
+Source0:	%{name}-%{_snap}.tar.bz2
+# Source0-md5:	aaec99c7329fda1d41c3a3772ff3def9
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
+#Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
 # Source1-md5:	97c30992592f854a67107579dcef61dd
 Source2:	nscd.init
 Source3:	nscd.sysconfig
@@ -755,7 +757,8 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -a 1 -n libc
+#setup -q -a 1 -n libc
+%setup -q -n libc
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
