@@ -21,7 +21,7 @@
 #	in order to use this version!
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.17
+%define		rel 2.18
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -73,6 +73,7 @@ Patch20:	%{name}-gcc33.patch
 #Patch21:	%{name}-sanity.patch
 Patch22:	%{name}-secureexec.patch
 Patch23:	%{name}-kernel_includes.patch
+Patch24:	%{name}-sparc64_pause.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -443,7 +444,7 @@ kitaplýðý kullanmak zorundadýrlar.
 
 %package pic
 Summary:	glibc PIC archive
-Summary(pl):	Archiwum PIC glibc
+Summary(pl):	archiwum PIC glibc
 Release:	%{rel}
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}
@@ -499,7 +500,7 @@ Traditional files databases NSS glibc module.
 Modu³ tradycyjnych plikowych baz danych NSS glibc.
 
 %package -n nss_hesiod
-Summary:	hesiod NSS glibc module
+Summary:	Hesiod NSS glibc module
 Summary(pl):	Modu³ hesiod NSS glibc
 Release:	%{rel}
 Group:		Base
@@ -589,6 +590,7 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 #%patch21 -p1
 %patch22 -p1
 %{!?_with_kernheaders:%patch23}
+%patch24 -p1
 
 chmod +x scripts/cpp
 
@@ -749,9 +751,9 @@ done
 # ia,kn,li,mn,sr@Latn (used by GNOME)
 #	note: GNOME2 uses sr as cyrillic!
 # nso,ss,ven,xh,zu (used by KDE)
-for i in af ar az be bg br bs cy de_AT el en en_AU eo es_AR es_MX et eu fa fi \
-	 ga gr he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru \
-	 se sl sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
+for i in af ar az be bg br bs cy de_AT el en eo es_AR es_MX et eu fa fi ga gr \
+	 he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru se sl \
+	 sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -822,10 +824,7 @@ if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
-touch /var/log/nscd
-chmod 000 /var/log/nscd
-chown root:root /var/log/nscd
-chmod 640 /var/log/nscd
+touch /var/log/nscd && (chmod 000 /var/log/nscd; chown root.root /var/log/nscd; chmod 640 /var/log/nscd)
 if [ -f /var/lock/subsys/nscd ]; then
 	/etc/rc.d/init.d/nscd restart 1>&2
 else
