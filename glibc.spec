@@ -12,8 +12,8 @@ Summary(ru):	GNU libc версии 2.2
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.2
 Name:		glibc
-Version:	2.2.5
-Release:	21.1
+Version:	2.3.1
+Release:	0.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -24,9 +24,8 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-Source7:	postshell.c
 # borrowed from util-linux
-Source8:	sln.8
+Source7:	sln.8
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
@@ -35,16 +34,10 @@ Patch4:		%{name}-string2-pointer-arith.patch
 Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch7:		%{name}-sparc-linux-chown.patch
-Patch8:		%{name}-ldconfig-bklinks.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
-Patch12:	%{name}-use-int-not-arpa.patch
-Patch13:	%{name}-divdi3.patch
-Patch14:	%{name}-nss_dns-overflow.patch
-Patch15:	%{name}-sunrpc-overflow.patch
-Patch16:	%{name}-calloc-overflow.patch
-Patch17:	%{name}-gcc32.patch
+Patch12:	%{name}-postshell.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -52,6 +45,8 @@ BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
+BuildRequires:	gcc >= 3.2
+BuildRequires:	binutils >= 2.13.90.0.2
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -66,6 +61,9 @@ Conflicts:	man-pages < 1.43
 Conflicts:	ld.so < 1.9.9-10
 
 %define		debugcflags	-O1 -g
+%define		configuredir	%{u2p:%{_builddir}}/%{name}-%{version}/
+#define		parallelmkflags PARALLELMFLAGS="-j 4"	
+%define		parallelmkflags %{nil}	
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -439,20 +437,16 @@ Zabawka.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-#%patch8 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
-%patch17 -p1
 
 chmod +x scripts/cpp
 
 %build
+mkdir builddir
+cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
 %configure2_13 \
@@ -460,24 +454,26 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--disable-omitfp
+# problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-%{__make}
-
-# this need improvements (like building agains new builded glibc) but works
-%{__cc} -o postshell %{rpmcflags} %{rpmldflags} %{SOURCE7}
+%{__make} %{parallelmkflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
 
+cd builddir
+
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
+	%{parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
 env LANGUAGE=C LC_ALL=C \
-%{__make} install-locales -C localedata \
+%{__make} localedata/install-locales \
+	%{parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT
 
 PICFILES="libc_pic.a libc.map
@@ -488,50 +484,46 @@ install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
+install elf/postshell				$RPM_BUILD_ROOT/sbin
+
 mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
 mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
-%{__make} -C linuxthreads/man
-install linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
+%{__make} -C ../linuxthreads/man
+install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
+ln -sf ../../..%{_sysconfdir}/localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
+ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
+ln -sf ../..%{_libdir}/libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
-
-# symlinks between directories should be absolute
-for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
-	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
-	ln -sf /lib/`cd $RPM_BUILD_ROOT/lib ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
-done
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
-install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install ../nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+install ../nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
-rm -f %{_mandir}/hu/man7/man.7
+rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
 
-rm -rf documentation
-install -d documentation
+rm -rf ../documentation
+install -d ../documentation
 
-cp -f linuxthreads/ChangeLog documentation/ChangeLog.threads
-cp -f linuxthreads/Changes documentation/Changes.threads
-cp -f linuxthreads/README documentation/README.threads
-cp -f crypt/README.ufc-crypt documentation/
+cp -f ../linuxthreads/ChangeLog ../documentation/ChangeLog.threads
+cp -f ../linuxthreads/Changes ../documentation/Changes.threads
+cp -f ../linuxthreads/README ../documentation/README.threads
+cp -f ../crypt/README.ufc-crypt ../documentation/
 
-cp -f ChangeLog documentation
+cp -f ../ChangeLog* ../documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
@@ -539,7 +531,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 %{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
 
 # Collect locale files and mark them with %%lang()
-rm -f glibc.lang
+rm -f ../glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
@@ -559,20 +551,25 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 			fi 
 		fi	
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
-		echo "%lang($lang) $dir" >> glibc.lang
+		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
 done
 for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
          lt lv ms nn pt ro ru sl sr ta uk wa zh_CN ; do
-	if [ ! -d $i ]; then
+	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
-		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
+		echo "%lang($lang) %{_datadir}/locale/$i" >> ../glibc.lang
 	fi
 done
-install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/man8
+install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/man8
 
-install -m755 postshell $RPM_BUILD_ROOT/sbin
+# shutup check-files
+rm -f $RPM_BUILD_ROOT/%{_mandir}/README.*
+rm -f $RPM_BUILD_ROOT/%{_mandir}/diff.*
+rm -f $RPM_BUILD_ROOT/%{_infodir}/dir
+# we don't support kernel without ptys support
+rm -f $RPM_BUILD_ROOT/%{_libdir}/pt_chown
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -653,6 +650,7 @@ fi
 %{_datadir}/zoneinfo
 
 %dir %{_libdir}/locale
+%{_libdir}/locale/locale-archive
 
 %{_mandir}/man1/[^lsg]*
 %{_mandir}/man1/getent.1*
