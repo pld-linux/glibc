@@ -1253,9 +1253,11 @@ fi
 %{_libdir}/librt.a
 %{_libdir}/libutil.a
 
+%if %{without nptl}
 %files profile
 %defattr(644,root,root,755)
 %{_libdir}/lib*_p.a
+%endif
 
 %files pic
 %defattr(644,root,root,755)
