@@ -1,70 +1,40 @@
---- glibc-2.3.1/iconvdata/Makefile.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/Makefile	2002-11-25 10:32:12.000000000 -0500
-@@ -39,6 +39,9 @@ modules	:= ISO8859-1 ISO8859-2 ISO8859-3
+diff -uNr glibc-2.3.3/iconvdata/Makefile glibc-2.3.3.charsets/iconvdata/Makefile
+--- glibc-2.3.3/iconvdata/Makefile	Sun Sep 14 18:31:54 2003
++++ glibc-2.3.3.charsets/iconvdata/Makefile	Tue Jan 13 00:50:08 2004
+@@ -39,6 +39,9 @@
  	   IBM862 IBM863 IBM864 IBM865 IBM868 IBM869 IBM875 IBM880	 \
  	   IBM866 CP1258 IBM922 IBM1124 IBM1129 IBM932 IBM943		 \
  	   IBM856 IBM930 IBM933 IBM935 IBM937 IBM939 IBM1046		 \
-+  	   KHMER-NS \
-+  	   ISCII-DEV MULELAO-1 CP154 TATAR-CYR KOI8-K \
-+  	   ISO8859-9E \
++	   KHMER-NS \
++	   ISCII-DEV MULELAO-1 CP154 TATAR-CYR KOI8-K KOI8-C \
++	   ISO8859-9E \
  	   IBM1132 IBM1133 IBM1160 IBM1161 IBM1162 IBM1163 IBM1164	 \
- 	   IBM918 IBM1004 IBM1026 CP1250 CP1251 CP1252 CP1253 CP1254	 \
- 	   CP1255 CP1256 CP1257 ISO-2022-JP MACINTOSH IEC_P27-1		 \
-@@ -149,6 +152,10 @@ distribute := gconv-modules extra-module
+ 	   IBM918 IBM1004 IBM1026 CP1125 CP1250 CP1251 CP1252 CP1253	 \
+ 	   CP1254 CP1255 CP1256 CP1257 ISO-2022-JP MACINTOSH IEC_P27-1	 \
+@@ -154,6 +157,10 @@
  	      ibm922.c ibm922.h ibm1124.c ibm1124.h ibm1129.c ibm1129.h     \
  	      ibm1132.c ibm1132.h ibm1133.c ibm1133.h ibm1162.c ibm1162.h   \
  	      ibm1026.c ibm1047.c iec_p27-1.c inis.c inis-8.c viscii.c	    \
-+ 		  cp154.c \
-+ 		  iscii-dev.c khmer-ns.c \
-+ 		  mulelao-1.c tatar-cyr.c \
-+ 		  iso8859-9e.c iso8859-9e.h koi8-k.c \
++	      cp154.c \
++	      iscii-dev.c khmer-ns.c \
++	      mulelao-1.c tatar-cyr.c \
++	      iso8859-9e.c iso8859-9e.h koi8-k.c koi8-c.c \
  	      inis-cyrillic.c iso-2022-jp.c iso-2022-kr.c iso646.c	    \
  	      iso8859-1.c iso8859-2.c iso8859-3.c iso8859-4.c iso8859-5.c   \
  	      iso8859-6.c iso8859-7.c iso8859-8.c iso8859-9.c iso8859-10.c  \
-@@ -200,6 +207,9 @@ gen-8bit-gap-modules := koi8-r latin-gre
+@@ -205,6 +212,9 @@
  			ibm865 ibm868 ibm869 ibm875 ibm880 ibm918 ibm1004  \
- 			ibm1026 cp1250 cp1251 cp1252 cp1253 cp1254	   \
+ 			ibm1026 cp1125 cp1250 cp1251 cp1252 cp1253 cp1254  \
  			cp1256 cp1257 ibm866 iso8859-5 iso8859-7 iso8859-8 \
 +			cp154 \
 +			iscii-dev iso8859-9e khmer-ns mulelao-1 tatar-cyr \
-+			koi8-k \
++			koi8-k koi8-c \
  			iso8859-10 macintosh iec_p27-1 asmo_449		   \
  			csn_369103 cwi dec-mcs ecma-cyrillic gost_19768-74 \
  			greek-ccitt greek7 greek7-old inis inis-8	   \
---- glibc-2.3.1/iconvdata/mulelao-1.c.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/mulelao-1.c	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,29 @@
-+/* Conversion from and to MULELAO-1.
-+   Copyright (C) 2001 Free Software Foundation, Inc.
-+   This file is part of the GNU C Library.
-+   Contributed by Pablo Saratxaga <pablo@mandrakesoft.com>, 2000.
-+
-+   The GNU C Library is free software; you can redistribute it and/or
-+   modify it under the terms of the GNU Library General Public License as
-+   published by the Free Software Foundation; either version 2 of the
-+   License, or (at your option) any later version.
-+
-+   The GNU C Library is distributed in the hope that it will be useful,
-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+   Library General Public License for more details.
-+
-+   You should have received a copy of the GNU Library General Public
-+   License along with the GNU C Library; see the file COPYING.LIB.  If not,
-+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-+   Boston, MA 02111-1307, USA.  */
-+
-+#include <stdint.h>
-+
-+/* Get the conversion table.  */
-+#define TABLES <mulelao-1.h>
-+
-+#define CHARSET_NAME	"MULELAO-1//"
-+#define HAS_HOLES	1	/* Not all 256 character are defined.  */
-+
-+#include <8bit-gap.c>
---- glibc-2.3.1/iconvdata/cp154.c.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/cp154.c	2002-11-25 10:32:12.000000000 -0500
+diff -uNr glibc-2.3.3/iconvdata/cp154.c glibc-2.3.3.charsets/iconvdata/cp154.c
+--- glibc-2.3.3/iconvdata/cp154.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/cp154.c	Mon Jan 12 23:47:54 2004
 @@ -0,0 +1,29 @@
 +/* Conversion from and to CP154.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -95,64 +65,82 @@
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
---- glibc-2.3.1/iconvdata/iso8859-9e.c.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/iso8859-9e.c	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,28 @@
-+/* Conversion from and to ISO-8859-9E.
-+   Copyright (C) 2001 Free Software Foundation, Inc.
-+   This file is part of the GNU C Library.
-+   Contributed by Pablo Saratxaga <pablo@mandrakesoft.com>, 2000.
+diff -uNr glibc-2.3.3/iconvdata/gconv-modules glibc-2.3.3.charsets/iconvdata/gconv-modules
+--- glibc-2.3.3/iconvdata/gconv-modules	Sun Sep 14 18:31:57 2003
++++ glibc-2.3.3.charsets/iconvdata/gconv-modules	Tue Jan 13 00:54:45 2004
+@@ -1516,6 +1516,8 @@
+ module	INTERNAL		GB18030//		GB18030		1
+ 
+ #	from			to			module		cost
++alias	VISCII-1//		VISCII//
++alias	VISCII1.1-1//		VISCII//
+ module	VISCII//		INTERNAL		VISCII		1
+ module	INTERNAL		VISCII//		VISCII		1
+ 
+@@ -1524,10 +1526,13 @@
+ module	INTERNAL		KOI8-T//		KOI8-T		1
+ 
+ #	from			to			module		cost
++alias	GEO8-PS//		GEORGIAN-PS//
+ module	GEORGIAN-PS//		INTERNAL		GEORGIAN-PS	1
+ module	INTERNAL		GEORGIAN-PS//		GEORGIAN-PS	1
+ 
+ #	from			to			module		cost
++alias	GEO8-BPG//		GEORGIAN-ACADEMY//
++alias	GEORGIAN-RS//		GEORGIAN-ACADEMY//
+ module	GEORGIAN-ACADEMY//	INTERNAL		GEORGIAN-ACADEMY 1
+ module	INTERNAL		GEORGIAN-ACADEMY//	GEORGIAN-ACADEMY 1
+ 
+@@ -1559,5 +1564,46 @@
+ module	INTERNAL		Shift_JISX0213//	SHIFT_JISX0213	1
+ 
+ #	from			to			module		cost
++alias	TSCII-0//		TSCII//
+ module	TSCII//			INTERNAL		TSCII		1
+ module	INTERNAL		TSCII//			TSCII		1
 +
-+   The GNU C Library is free software; you can redistribute it and/or
-+   modify it under the terms of the GNU Library General Public License as
-+   published by the Free Software Foundation; either version 2 of the
-+   License, or (at your option) any later version.
++#	from			to			module		cost
++alias	PT-CP154//		CP154//
++alias	CYRILLIC-ASIAN		CP154//
++alias	PT154//			CP154//
++module	CP154//			INTERNAL		CP154		1
++module	INTERNAL		CP154//			CP154		1
 +
-+   The GNU C Library is distributed in the hope that it will be useful,
-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+   Library General Public License for more details.
++#	from			to			module		cost
++alias	ISCII-91//		ISCII-DEV//
++alias	IS13194:1991//		ISCII-DEV//
++alias	IS13194-DEV//		ISCII-DEV//
++alias	IS13194-DEVANAGARI//	ISCII-DEV//
++module	ISCII-DEV//		INTERNAL		ISCII-DEV	1
++module	INTERNAL		ISCII-DEV//		ISCII-DEV	1
 +
-+   You should have received a copy of the GNU Library General Public
-+   License along with the GNU C Library; see the file COPYING.LIB.  If not,
-+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-+   Boston, MA 02111-1307, USA.  */
++#	from			to			module		cost
++module	ISO-8859-9E//		INTERNAL		ISO8859-9E	1
++module	INTERNAL		ISO-8859-9E//		ISO8859-9E	1
 +
-+/* Get the conversion table.  */
-+#include <stdint.h>
-+#include <iso8859-9e.h>
++#	from			to			module		cost
++module	KHMER-NS//		INTERNAL		KHMER-NS	1
++module	INTERNAL		KHMER-NS//		KHMER-NS	1
 +
-+#define CHARSET_NAME "ISO-8859-9E//"
-+#define HAS_HOLES	0	/* All 256 character are defined.  */
++#	from			to			module		cost
++module	MULELAO-1//		INTERNAL		MULELAO-1	1
++module	INTERNAL		MULELAO-1//		MULELAO-1	1
 +
-+#include <8bit-generic.c>
---- glibc-2.3.1/iconvdata/isiri-3342.h.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/isiri-3342.h	2002-11-25 10:32:12.000000000 -0500
-@@ -228,8 +228,8 @@ static const uint32_t to_ucs4[256] = {
-   [0xe3] = 0x005B,
-   [0xe4] = 0x007D,
-   [0xe5] = 0x007B,
--  [0xe6] = 0x00AB,
--  [0xe7] = 0x00BB,
-+  [0xe6] = 0x00BB,
-+  [0xe7] = 0x00AB,
-   [0xe8] = 0x002A,
-   [0xe9] = 0x0640,
-   [0xea] = 0x007C,
-@@ -290,9 +290,9 @@ static const char from_ucs4[] = {
-   /* 0x00a4..0x00a4 */
-   '\xa4',
-   /* 0x00ab..0x00ab */
--  '\xe6',
--  /* 0x00bb..0x00bb */
-   '\xe7',
-+  /* 0x00bb..0x00bb */
-+  '\xe6',
-   /* 0x00d7..0x00d7 */
-   '\xaa',
-   /* 0x060c..0x060c */
---- glibc-2.3.1/iconvdata/iscii-dev.c.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/iscii-dev.c	2002-11-25 10:32:12.000000000 -0500
++#	from			to			module		cost
++alias	CP1251_TT		TATAR-CYR//
++module	TATAR-CYR//		INTERNAL		TATAR-CYR	1
++module	INTERNAL		TATAR-CYR//		TATAR-CYR	1
++
++#	from			to			module		cost
++module	KOI8-K//		INTERNAL		KOI8-K		1
++module	INTERNAL		KOI8-K//		KOI8-K		1
++
++#	from			to			module		cost
++module	KOI8-C//		INTERNAL		KOI8-C		1
++module	INTERNAL		KOI8-C//		KOI8-C		1
+diff -uNr glibc-2.3.3/iconvdata/iscii-dev.c glibc-2.3.3.charsets/iconvdata/iscii-dev.c
+--- glibc-2.3.3/iconvdata/iscii-dev.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/iscii-dev.c	Mon Jan 12 23:47:54 2004
 @@ -0,0 +1,29 @@
 +/* Conversion from and to ISCII-DEV.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -183,10 +171,37 @@
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
---- glibc-2.3.1/iconvdata/tatar-cyr.c.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/tatar-cyr.c	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,29 @@
-+/* Conversion from and to TATAR-CYR.
+diff -uNr glibc-2.3.3/iconvdata/isiri-3342.h glibc-2.3.3.charsets/iconvdata/isiri-3342.h
+--- glibc-2.3.3/iconvdata/isiri-3342.h	Wed Feb 19 18:28:59 2003
++++ glibc-2.3.3.charsets/iconvdata/isiri-3342.h	Mon Jan 12 23:47:54 2004
+@@ -228,8 +228,8 @@
+   [0xe3] = 0x005B,
+   [0xe4] = 0x007D,
+   [0xe5] = 0x007B,
+-  [0xe6] = 0x00AB,
+-  [0xe7] = 0x00BB,
++  [0xe6] = 0x00BB,
++  [0xe7] = 0x00AB,
+   [0xe8] = 0x002A,
+   [0xe9] = 0x0640,
+   [0xea] = 0x007C,
+@@ -290,9 +290,9 @@
+   /* 0x00a4..0x00a4 */
+   '\xa4',
+   /* 0x00ab..0x00ab */
+-  '\xe6',
+-  /* 0x00bb..0x00bb */
+   '\xe7',
++  /* 0x00bb..0x00bb */
++  '\xe6',
+   /* 0x00d7..0x00d7 */
+   '\xaa',
+   /* 0x060c..0x060c */
+diff -uNr glibc-2.3.3/iconvdata/iso8859-9e.c glibc-2.3.3.charsets/iconvdata/iso8859-9e.c
+--- glibc-2.3.3/iconvdata/iso8859-9e.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/iso8859-9e.c	Mon Jan 12 23:47:54 2004
+@@ -0,0 +1,28 @@
++/* Conversion from and to ISO-8859-9E.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +   Contributed by Pablo Saratxaga <pablo@mandrakesoft.com>, 2000.
@@ -206,17 +221,17 @@
 +   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 +   Boston, MA 02111-1307, USA.  */
 +
-+#include <stdint.h>
-+
 +/* Get the conversion table.  */
-+#define TABLES <tatar-cyr.h>
++#include <stdint.h>
++#include <iso8859-9e.h>
 +
-+#define CHARSET_NAME	"TATAR-CYR//"
-+#define HAS_HOLES	1	/* Not all 256 character are defined.  */
++#define CHARSET_NAME "ISO-8859-9E//"
++#define HAS_HOLES	0	/* All 256 character are defined.  */
 +
-+#include <8bit-gap.c>
---- glibc-2.3.1/iconvdata/iso8859-9e.h.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/iso8859-9e.h	2002-11-25 10:32:12.000000000 -0500
++#include <8bit-generic.c>
+diff -uNr glibc-2.3.3/iconvdata/iso8859-9e.h glibc-2.3.3.charsets/iconvdata/iso8859-9e.h
+--- glibc-2.3.3/iconvdata/iso8859-9e.h	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/iso8859-9e.h	Mon Jan 12 23:47:54 2004
 @@ -0,0 +1,515 @@
 +static const uint32_t to_ucs4[256] = {
 +  [0x01] = 0x0001,
@@ -733,109 +748,9 @@
 +  [0x0275] = 0xf8,
 +  [0x20AC] = 0xa4,
 +};
---- glibc-2.3.1/iconvdata/gconv-modules.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/gconv-modules	2002-11-25 10:32:12.000000000 -0500
-@@ -1482,6 +1482,8 @@ module	GB18030//		INTERNAL		GB18030		1
- module	INTERNAL		GB18030//		GB18030		1
- 
- #	from			to			module		cost
-+alias	VISCII-1//		VISCII//
-+alias	VISCII1.1-1//	VISCII//
- module	VISCII//		INTERNAL		VISCII		1
- module	INTERNAL		VISCII//		VISCII		1
- 
-@@ -1490,10 +1492,13 @@ module	KOI8-T//		INTERNAL		KOI8-T		1
- module	INTERNAL		KOI8-T//		KOI8-T		1
- 
- #	from			to			module		cost
-+alias	GEO8-PS//	GEORGIAN-PS//
- module	GEORGIAN-PS//		INTERNAL		GEORGIAN-PS	1
- module	INTERNAL		GEORGIAN-PS//		GEORGIAN-PS	1
- 
- #	from			to			module		cost
-+alias	GEO8-BPG//	GEORGIAN-ACADEMY//	
-+alias	GEORGIAN-RS//	GEORGIAN-ACADEMY//
- module	GEORGIAN-ACADEMY//	INTERNAL		GEORGIAN-ACADEMY 1
- module	INTERNAL		GEORGIAN-ACADEMY//	GEORGIAN-ACADEMY 1
- 
-@@ -1525,5 +1530,43 @@ module	Shift_JISX0213//	INTERNAL		SHIFT_
- module	INTERNAL		Shift_JISX0213//	SHIFT_JISX0213	1
- 
- #	from			to			module		cost
-+alias	TSCII-0//		TSCII//
- module	TSCII//			INTERNAL		TSCII		1
- module	INTERNAL		TSCII//			TSCII		1
-+
-+#	from			to			module		cost
-+alias	PT-CP154//	CP154//
-+alias	CYRILLIC-ASIAN	CP154//
-+alias	PT154//		CP154//
-+module	CP154//		INTERNAL		CP154		1
-+module	INTERNAL		CP154//		CP154		1
-+
-+#	from			to			module		cost
-+alias	ISCII-91//	ISCII-DEV//
-+alias	IS13194:1991//	ISCII-DEV//
-+alias	IS13194-DEV//	ISCII-DEV//
-+alias	IS13194-DEVANAGARI//	ISCII-DEV//
-+module	ISCII-DEV//		INTERNAL		ISCII-DEV		1
-+module	INTERNAL		ISCII-DEV//		ISCII-DEV		1
-+
-+#	from			to			module		cost
-+module	ISO-8859-9E//		INTERNAL		ISO8859-9E		1
-+module	INTERNAL		ISO-8859-9E//		ISO8859-9E		1
-+
-+#	from			to			module		cost
-+module	KHMER-NS//		INTERNAL		KHMER-NS		1
-+module	INTERNAL		KHMER-NS//		KHMER-NS		1
-+
-+#	from			to			module		cost
-+module	MULELAO-1//		INTERNAL		MULELAO-1		1
-+module	INTERNAL		MULELAO-1//		MULELAO-1		1
-+
-+#	from			to			module		cost
-+alias	CP1251_TT	TATAR-CYR//
-+module	TATAR-CYR//		INTERNAL		TATAR-CYR		1
-+module	INTERNAL		TATAR-CYR//		TATAR-CYR		1
-+
-+#	from			to			module		cost
-+module	KOI8-K//		INTERNAL		KOI8-K		1
-+module	INTERNAL		KOI8-K//		KOI8-K		1
-+
---- glibc-2.3.1/iconvdata/koi8-k.c.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/iconvdata/koi8-k.c	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,29 @@
-+/* Conversion from and to KOI8-K.
-+   Copyright (C) 2001 Free Software Foundation, Inc.
-+   This file is part of the GNU C Library.
-+   Contributed by Pablo Saratxaga <pablo@mandrakesoft.com>, 2000.
-+
-+   The GNU C Library is free software; you can redistribute it and/or
-+   modify it under the terms of the GNU Library General Public License as
-+   published by the Free Software Foundation; either version 2 of the
-+   License, or (at your option) any later version.
-+
-+   The GNU C Library is distributed in the hope that it will be useful,
-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+   Library General Public License for more details.
-+
-+   You should have received a copy of the GNU Library General Public
-+   License along with the GNU C Library; see the file COPYING.LIB.  If not,
-+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-+   Boston, MA 02111-1307, USA.  */
-+
-+#include <stdint.h>
-+
-+/* Get the conversion table.  */
-+#define TABLES <koi8-k.h>
-+
-+#define CHARSET_NAME	"KOI8-K//"
-+#define HAS_HOLES	1	/* Not all 256 character are defined.  */
-+
-+#include <8bit-gap.c>
---- glibc-2.3.1/iconvdata/khmer-ns.c.new-charsets	2002-11-25 10:32:12.000000000 -0500
-+++ glibc-2.3.1/iconvdata/khmer-ns.c	2002-11-25 10:32:12.000000000 -0500
+diff -uNr glibc-2.3.3/iconvdata/khmer-ns.c glibc-2.3.3.charsets/iconvdata/khmer-ns.c
+--- glibc-2.3.3/iconvdata/khmer-ns.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/khmer-ns.c	Mon Jan 12 23:47:54 2004
 @@ -0,0 +1,29 @@
 +/* Conversion from and to KHMER-NS.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -866,247 +781,141 @@
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
---- glibc-2.3.1/localedata/charmaps/MULELAO-1.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/MULELAO-1	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,236 @@
-+<code_set_name> MULELAO-1
-+<comment_char> %
-+<escape_char> /
-+% version: 1.0
-+% repertoiremap: mnemonic,ds
-+%  source: MULE font & Unicode chart
+diff -uNr glibc-2.3.3/iconvdata/koi8-c.c glibc-2.3.3.charsets/iconvdata/koi8-c.c
+--- glibc-2.3.3/iconvdata/koi8-c.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/koi8-c.c	Tue Jan 13 12:21:25 2004
+@@ -0,0 +1,29 @@
++/* Conversion from and to KOI8-C.
++   Copyright (C) 2004 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Andrzej Krzysztofowicz <ankry@mif.pg.gda.pl>, 2004.
 +
-+CHARMAP
-+<U0000>     /x00         NULL (NUL)
-+<U0001>     /x01         START OF HEADING (SOH)
-+<U0002>     /x02         START OF TEXT (STX)
-+<U0003>     /x03         END OF TEXT (ETX)
-+<U0004>     /x04         END OF TRANSMISSION (EOT)
-+<U0005>     /x05         ENQUIRY (ENQ)
-+<U0006>     /x06         ACKNOWLEDGE (ACK)
-+<U0007>     /x07         BELL (BEL)
-+<U0008>     /x08         BACKSPACE (BS)
-+<U0009>     /x09         CHARACTER TABULATION (HT)
-+<U000A>     /x0a         LINE FEED (LF)
-+<U000B>     /x0b         LINE TABULATION (VT)
-+<U000C>     /x0c         FORM FEED (FF)
-+<U000D>     /x0d         CARRIAGE RETURN (CR)
-+<U000E>     /x0e         SHIFT OUT (SO)
-+<U000F>     /x0f         SHIFT IN (SI)
-+<U0010>     /x10         DATALINK ESCAPE (DLE)
-+<U0011>     /x11         DEVICE CONTROL ONE (DC1)
-+<U0012>     /x12         DEVICE CONTROL TWO (DC2)
-+<U0013>     /x13         DEVICE CONTROL THREE (DC3)
-+<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
-+<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
-+<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
-+<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
-+<U0018>     /x18         CANCEL (CAN)
-+<U0019>     /x19         END OF MEDIUM (EM)
-+<U001A>     /x1a         SUBSTITUTE (SUB)
-+<U001B>     /x1b         ESCAPE (ESC)
-+<U001C>     /x1c         FILE SEPARATOR (IS4)
-+<U001D>     /x1d         GROUP SEPARATOR (IS3)
-+<U001E>     /x1e         RECORD SEPARATOR (IS2)
-+<U001F>     /x1f         UNIT SEPARATOR (IS1)
-+<U0020>     /x20         SPACE
-+<U0021>     /x21         EXCLAMATION MARK
-+<U0022>     /x22         QUOTATION MARK
-+<U0023>     /x23         NUMBER SIGN
-+<U0024>     /x24         DOLLAR SIGN
-+<U0025>     /x25         PERCENT SIGN
-+<U0026>     /x26         AMPERSAND
-+<U0027>     /x27         APOSTROPHE
-+<U0028>     /x28         LEFT PARENTHESIS
-+<U0029>     /x29         RIGHT PARENTHESIS
-+<U002A>     /x2a         ASTERISK
-+<U002B>     /x2b         PLUS SIGN
-+<U002C>     /x2c         COMMA
-+<U002D>     /x2d         HYPHEN-MINUS
-+<U002E>     /x2e         FULL STOP
-+<U002F>     /x2f         SOLIDUS
-+<U0030>     /x30         DIGIT ZERO
-+<U0031>     /x31         DIGIT ONE
-+<U0032>     /x32         DIGIT TWO
-+<U0033>     /x33         DIGIT THREE
-+<U0034>     /x34         DIGIT FOUR
-+<U0035>     /x35         DIGIT FIVE
-+<U0036>     /x36         DIGIT SIX
-+<U0037>     /x37         DIGIT SEVEN
-+<U0038>     /x38         DIGIT EIGHT
-+<U0039>     /x39         DIGIT NINE
-+<U003A>     /x3a         COLON
-+<U003B>     /x3b         SEMICOLON
-+<U003C>     /x3c         LESS-THAN SIGN
-+<U003D>     /x3d         EQUALS SIGN
-+<U003E>     /x3e         GREATER-THAN SIGN
-+<U003F>     /x3f         QUESTION MARK
-+<U0040>     /x40         COMMERCIAL AT
-+<U0041>     /x41         LATIN CAPITAL LETTER A
-+<U0042>     /x42         LATIN CAPITAL LETTER B
-+<U0043>     /x43         LATIN CAPITAL LETTER C
-+<U0044>     /x44         LATIN CAPITAL LETTER D
-+<U0045>     /x45         LATIN CAPITAL LETTER E
-+<U0046>     /x46         LATIN CAPITAL LETTER F
-+<U0047>     /x47         LATIN CAPITAL LETTER G
-+<U0048>     /x48         LATIN CAPITAL LETTER H
-+<U0049>     /x49         LATIN CAPITAL LETTER I
-+<U004A>     /x4a         LATIN CAPITAL LETTER J
-+<U004B>     /x4b         LATIN CAPITAL LETTER K
-+<U004C>     /x4c         LATIN CAPITAL LETTER L
-+<U004D>     /x4d         LATIN CAPITAL LETTER M
-+<U004E>     /x4e         LATIN CAPITAL LETTER N
-+<U004F>     /x4f         LATIN CAPITAL LETTER O
-+<U0050>     /x50         LATIN CAPITAL LETTER P
-+<U0051>     /x51         LATIN CAPITAL LETTER Q
-+<U0052>     /x52         LATIN CAPITAL LETTER R
-+<U0053>     /x53         LATIN CAPITAL LETTER S
-+<U0054>     /x54         LATIN CAPITAL LETTER T
-+<U0055>     /x55         LATIN CAPITAL LETTER U
-+<U0056>     /x56         LATIN CAPITAL LETTER V
-+<U0057>     /x57         LATIN CAPITAL LETTER W
-+<U0058>     /x58         LATIN CAPITAL LETTER X
-+<U0059>     /x59         LATIN CAPITAL LETTER Y
-+<U005A>     /x5a         LATIN CAPITAL LETTER Z
-+<U005B>     /x5b         LEFT SQUARE BRACKET
-+<U005C>     /x5c         REVERSE SOLIDUS
-+<U005D>     /x5d         RIGHT SQUARE BRACKET
-+<U005E>     /x5e         CIRCUMFLEX ACCENT
-+<U005F>     /x5f         LOW LINE
-+<U0060>     /x60         GRAVE ACCENT
-+<U0061>     /x61         LATIN SMALL LETTER A
-+<U0062>     /x62         LATIN SMALL LETTER B
-+<U0063>     /x63         LATIN SMALL LETTER C
-+<U0064>     /x64         LATIN SMALL LETTER D
-+<U0065>     /x65         LATIN SMALL LETTER E
-+<U0066>     /x66         LATIN SMALL LETTER F
-+<U0067>     /x67         LATIN SMALL LETTER G
-+<U0068>     /x68         LATIN SMALL LETTER H
-+<U0069>     /x69         LATIN SMALL LETTER I
-+<U006A>     /x6a         LATIN SMALL LETTER J
-+<U006B>     /x6b         LATIN SMALL LETTER K
-+<U006C>     /x6c         LATIN SMALL LETTER L
-+<U006D>     /x6d         LATIN SMALL LETTER M
-+<U006E>     /x6e         LATIN SMALL LETTER N
-+<U006F>     /x6f         LATIN SMALL LETTER O
-+<U0070>     /x70         LATIN SMALL LETTER P
-+<U0071>     /x71         LATIN SMALL LETTER Q
-+<U0072>     /x72         LATIN SMALL LETTER R
-+<U0073>     /x73         LATIN SMALL LETTER S
-+<U0074>     /x74         LATIN SMALL LETTER T
-+<U0075>     /x75         LATIN SMALL LETTER U
-+<U0076>     /x76         LATIN SMALL LETTER V
-+<U0077>     /x77         LATIN SMALL LETTER W
-+<U0078>     /x78         LATIN SMALL LETTER X
-+<U0079>     /x79         LATIN SMALL LETTER Y
-+<U007A>     /x7a         LATIN SMALL LETTER Z
-+<U007B>     /x7b         LEFT CURLY BRACKET
-+<U007C>     /x7c         VERTICAL LINE
-+<U007D>     /x7d         RIGHT CURLY BRACKET
-+<U007E>     /x7e         TILDE
-+<U007F>     /x7f         DELETE (DEL)
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Library General Public License as
++   published by the Free Software Foundation; either version 2 of the
++   License, or (at your option) any later version.
 +
-+<U00A0>     /xa0         NO-BREAK SPACE
-+<U0E81>     /xa1         LAO LETTER KO
-+<U0E82>     /xa2         LAO LETTER KHO SUNG
-+<U00A3>     /xa3         POUND SIGN
-+<U0E84>     /xa4         LAO LETTER KHO TAM
-+<U00A5>     /xa5         YEN SIGN
-+<U00A6>     /xa6         BROKEN BAR
-+<U0E87>     /xa7         LAO LETTER NGO
-+<U0E88>     /xa8         LAO LETTER CO
-+<U00A9>     /xa9         COPYRIGHT SIGN
-+<U0E8A>     /xaa         LAO LETTER SO TAM
-+<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U00AC>     /xac         NOT SIGN
-+<U0E8D>     /xad         LAO LETTER NYO
-+<U00AE>     /xae         REGISTERED SIGN
-+<U00AF>     /xaf         MACRON
-+<U00B0>     /xb0         DEGREE SIGN
-+<U00B1>     /xb1         PLUS-MINUS SIGN
-+<U00B2>     /xb2         SUPERSCRIPT TWO
-+<U00B3>     /xb3         SUPERSCRIPT THREE
-+<U0E94>     /xb4         LAO LETTER DO
-+<U0E95>     /xb5         LAO LETTER TO
-+<U0E96>     /xb6         LAO LETTER THO SUNG
-+<U0E97>     /xb7         LAO LETTER THO TAM
-+<U00B8>     /xb8         CEDILLA
-+<U0E99>     /xb9         LAO LETTER NO
-+<U0E9A>     /xba         LAO LETTER BO
-+<U0E9B>     /xbb         LAO LETTER PO
-+<U0E9C>     /xbc         LAO LETTER PHO SUNG
-+<U0E9D>     /xbd         LAO LETTER FO TAM
-+<U0E9E>     /xbe         LAO LETTER PHO TAM
-+<U0E9F>     /xbf         LAO LETTER FO SUNG
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Library General Public License for more details.
 +
-+<U0EA1>     /xc1         LAO LETTER MO
-+<U0EA2>     /xc2         LAO LETTER YO
-+<U0EA3>     /xc3         LAO LETTER LO LING
++   You should have received a copy of the GNU Library General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
 +
-+<U0EA5>     /xc5         LAO LETTER LO LOOT
++#include <stdint.h>
 +
-+<U0EA7>     /xc7         LAO LETTER WO
++/* Get the conversion table.  */
++#define TABLES <koi8-c.h>
 +
-+<U0EAA>     /xca         LAO LETTER SO SUNG
-+<U0EAB>     /xcb         LAO LETTER HO SUNG
++#define CHARSET_NAME	"KOI8-C//"
++#define HAS_HOLES	0	/* All 256 character are defined.  */
 +
-+<U0EAD>     /xcd         LAO LETTER O
-+<U0EAE>     /xce         LAO LETTER HO TAM
-+<U0EAF>     /xcf         LAO ELLIPSIS
-+<U0EB0>     /xd0         LAO VOWEL SIGN A
-+<U0EB1>     /xd1         LAO VOWEL SIGN MAI KAN
-+<U0EB2>     /xd2         LAO VOWEL SIGN AA
-+<U0EB3>     /xd3         LAO VOWEL SIGN AM
-+<U0EB4>     /xd4         LAO VOWEL SIGN I
-+<U0EB5>     /xd5         LAO VOWEL SIGN II
-+<U0EB6>     /xd6         LAO VOWEL SIGN Y
-+<U0EB7>     /xd7         LAO VOWEL SIGN YY
-+<U0EB8>     /xd8         LAO VOWEL SIGN U
-+<U0EB9>     /xd9         LAO VOWEL SIGN UU
++#include <8bit-gap.c>
+diff -uNr glibc-2.3.3/iconvdata/koi8-k.c glibc-2.3.3.charsets/iconvdata/koi8-k.c
+--- glibc-2.3.3/iconvdata/koi8-k.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/koi8-k.c	Mon Jan 12 23:47:54 2004
+@@ -0,0 +1,29 @@
++/* Conversion from and to KOI8-K.
++   Copyright (C) 2001 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Pablo Saratxaga <pablo@mandrakesoft.com>, 2000.
 +
-+<U0EBB>     /xdb         LAO VOWEL SIGN MAI KON
-+<U0EBC>     /xdc         LAO SEMIVOWEL SIGN LO
-+<U0EBD>     /xdd         LAO SEMIVOWEL SIGN NYO
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Library General Public License as
++   published by the Free Software Foundation; either version 2 of the
++   License, or (at your option) any later version.
 +
-+<U20AD>     /xdf         LAO KIP CURRENCY
-+<U0EC0>     /xe0         LAO VOWEL SIGN E
-+<U0EC1>     /xe1         LAO VOWEL SIGN EI
-+<U0EC2>     /xe2         LAO VOWEL SIGN O
-+<U0EC3>     /xe3         LAO VOWEL SIGN AY
-+<U0EC4>     /xe4         LAO VOWEL SIGN AI
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Library General Public License for more details.
 +
-+<U0EC6>     /xe6         LAO KO LA
++   You should have received a copy of the GNU Library General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
 +
-+<U0EC8>     /xe8         LAO TONE MAI EK
-+<U0EC9>     /xe9         LAO TONE MAI THO
-+<U0ECA>     /xea         LAO TONE MAI TI
-+<U0ECB>     /xeb         LAO TONE MAI CATAWA
-+<U0ECC>     /xec         LAO CANCELLATION MARK
-+<U0ECD>     /xed         LAO NIGGAHITA
++#include <stdint.h>
 +
-+<U0ED0>     /xf0         LAO DIGIT ZERO
-+<U0ED1>     /xf1         LAO DIGIT ONE
-+<U0ED2>     /xf2         LAO DIGIT TWO
-+<U0ED3>     /xf3         LAO DIGIT THREE
-+<U0ED4>     /xf4         LAO DIGIT FOUR
-+<U0ED5>     /xf5         LAO DIGIT FIVE
-+<U0ED6>     /xf6         LAO DIGIT SIX
-+<U0ED7>     /xf7         LAO DIGIT SEVEN
-+<U0ED8>     /xf8         LAO DIGIT EIGHT
-+<U0ED9>     /xf9         LAO DIGIT NINE
++/* Get the conversion table.  */
++#define TABLES <koi8-k.h>
 +
-+<U0EDC>     /xfb         LAO HO NO
-+<U0EDD>     /xfc         LAO HO MO
-+END CHARMAP
++#define CHARSET_NAME	"KOI8-K//"
++#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
-+WIDTH
-+<U0EB1>                 0
-+<U0EB4>...<U0EB9>       0
-+<U0EC8>...<U0ECD>       0
-+END WIDTH
++#include <8bit-gap.c>
+diff -uNr glibc-2.3.3/iconvdata/mulelao-1.c glibc-2.3.3.charsets/iconvdata/mulelao-1.c
+--- glibc-2.3.3/iconvdata/mulelao-1.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/mulelao-1.c	Mon Jan 12 23:47:54 2004
+@@ -0,0 +1,29 @@
++/* Conversion from and to MULELAO-1.
++   Copyright (C) 2001 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Pablo Saratxaga <pablo@mandrakesoft.com>, 2000.
 +
---- glibc-2.3.1/localedata/charmaps/CP154.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/CP154	2002-11-25 10:32:12.000000000 -0500
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Library General Public License as
++   published by the Free Software Foundation; either version 2 of the
++   License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Library General Public License for more details.
++
++   You should have received a copy of the GNU Library General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
++
++#include <stdint.h>
++
++/* Get the conversion table.  */
++#define TABLES <mulelao-1.h>
++
++#define CHARSET_NAME	"MULELAO-1//"
++#define HAS_HOLES	1	/* Not all 256 character are defined.  */
++
++#include <8bit-gap.c>
+diff -uNr glibc-2.3.3/iconvdata/tatar-cyr.c glibc-2.3.3.charsets/iconvdata/tatar-cyr.c
+--- glibc-2.3.3/iconvdata/tatar-cyr.c	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/iconvdata/tatar-cyr.c	Mon Jan 12 23:47:54 2004
+@@ -0,0 +1,29 @@
++/* Conversion from and to TATAR-CYR.
++   Copyright (C) 2001 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Pablo Saratxaga <pablo@mandrakesoft.com>, 2000.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Library General Public License as
++   published by the Free Software Foundation; either version 2 of the
++   License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Library General Public License for more details.
++
++   You should have received a copy of the GNU Library General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
++
++#include <stdint.h>
++
++/* Get the conversion table.  */
++#define TABLES <tatar-cyr.h>
++
++#define CHARSET_NAME	"TATAR-CYR//"
++#define HAS_HOLES	1	/* Not all 256 character are defined.  */
++
++#include <8bit-gap.c>
+diff -uNr glibc-2.3.3/localedata/charmaps/CP154 glibc-2.3.3.charsets/localedata/charmaps/CP154
+--- glibc-2.3.3/localedata/charmaps/CP154	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/CP154	Mon Jan 12 23:47:54 2004
 @@ -0,0 +1,268 @@
 +<code_set_name> CP154
 +<comment_char> %
@@ -1376,88 +1185,16 @@
 +<U044E>     /xfe         CYRILLIC SMALL LETTER YU
 +<U044F>     /xff         CYRILLIC SMALL LETTER YA
 +END CHARMAP
---- glibc-2.3.1/localedata/charmaps/ISIRI-3342.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/ISIRI-3342	2002-11-25 10:32:12.000000000 -0500
-@@ -1,11 +1,20 @@
- <code_set_name> ISIRI-3342
- <comment_char> %
- <escape_char> /
--% version: 0.0
-+% version: 0.3
-+% repertoiremap:
- % source: Iranian standard ISIRI 3342 (1993)
- % author: Pablo Saratxaga, and Roozbeh Pournader
- % email: pablo@mandrakesoft.com, roozbeh@sina.sharif.ac.ir
-- 
-+
-+% Changes from 0.2 to 0.3:
-+%
-+%	Changed the mnemonic for 0xA6 from <.+> to <.a>
-+%
-+%	Exchanged the Unicode equilavents for 0xE6 and 0xE7, to reflect
-+%	the change in the mirroring behaviour of U+00AB and U+00BB
-+%	between versions 2.1.5 and 2.1.8 of the Unicode Standard.
-+
- % I think the mnemonic for upper space (0xA0) should be different from
- % lower space (0x20). Because the semantics are different, although they
- % are mapped to a single Unicode character. This is specially important
-@@ -18,9 +27,9 @@
- % invented on the pattern of Unicode character names. --RP
- %
- % NOTE: Some entries were missing in the mnemonics.ds file; We invented our
--% own. Those are: <zwnj>, <zwj>, <!+>, <Rl>, <%+>, <.+>, <,f>, <(+>,
-+% own. Those are: <zwnj>, <zwj>, <!+>, <Rl>, <%+>, <.a>, <,f>, <(+>,
- % <)+>, <*X+>, <+f>, <-f>, <.f>, <//f>, <0f>..<9f>, <:f>, <<f>, <=f>,
--% </>f>, <kf>, <yf>, <)/>+>, <<(+>, <!)+>, <(!+>, <<<+>, </>/>+>, <*+>,
-+% </>f>, <yf>, <)/>+>, <<(+>, <!)+>, <(!+>, <<<+>, </>/>+>, <*+>,
- % <!!+>, and <////+>. Also, all character sequences
- % <NU>..<US>, <SP>, <DT> have counter-parts <NU+>..<US+>, <SP+>, <DT+>
-  
-@@ -153,6 +162,7 @@ CHARMAP
- <U007D>     /x7d         RIGHT CURLY BRACKET
- <U007E>     /x7e         TILDE
- <U007F>     /x7f         DELETE (DEL)
-+
- <U0000>     /x80         ARABIC NULL (NUL)
- <U0001>     /x81         ARABIC START OF HEADING (SOH)
- <U0002>     /x82         ARABIC START OF TEXT (STX)
-@@ -185,6 +195,7 @@ CHARMAP
- <U001D>     /x9d         ARABIC GROUP SEPARATOR (IS3)
- <U001E>     /x9e         ARABIC RECORD SEPARATOR (IS2)
- <U001F>     /x9f         ARABIC UNIT SEPARATOR (IS1)
-+ 
- <U0020>     /xa0         ARABIC SPACE
- <U200C>     /xa1         ZERO WIDTH NON-JOINER
- <U200D>     /xa2         ZERO WIDTH JOINER
-@@ -255,8 +266,8 @@ CHARMAP
- <U005B>     /xe3         ARABIC OPENING SQUARE BRACKET
- <U007D>     /xe4         ARABIC CLOSING CURLY BRACKET
- <U007B>     /xe5         ARABIC OPENING CURLY BRACKET
--<U00AB>     /xe6         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
--<U00BB>     /xe7         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U00BB>     /xe6         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U00AB>     /xe7         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
- <U002A>     /xe8         ARABIC ASTERISK
- <U0640>     /xe9         ARABIC TATWEEL
- <U007C>     /xea         ARABIC VERTICAL LINE
-@@ -278,3 +289,8 @@ CHARMAP
- <U064A>     /xfe         ARABIC LETTER YEH
- <U007F>     /xff         ARABIC DELETE
- END CHARMAP
-+
-+WIDTH
-+<U064B>...<U0652>      0
-+END WIDTH
-+
---- glibc-2.3.1/localedata/charmaps/ISCII-DEV.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/ISCII-DEV	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,272 @@
+diff -uNr glibc-2.3.3/localedata/charmaps/ISCII-DEV glibc-2.3.3.charsets/localedata/charmaps/ISCII-DEV
+--- glibc-2.3.3/localedata/charmaps/ISCII-DEV	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/ISCII-DEV	Tue Jan 13 13:34:29 2004
+@@ -0,0 +1,271 @@
 +<code_set_name> ISCII-DEV
 +<comment_char> %
 +<escape_char> /
 +% version: 0.1
 +% repertoiremap: mnemonic,hi
-+%  sources: http://cdac.org.in/html/gist/iscii91.pdf
++%  sources: http://varamozhi.sourceforge.net/iscii91.pdf
 +
 +% alias ISCII-91
 +% alias IS13194:1991
@@ -1656,7 +1393,6 @@
 +<U0938>     /xd7         DEVANAGARI LETTER SA
 +<U0939>     /xd8         DEVANAGARI LETTER HA
 +<U200C>     /xd9         ZERO WIDTH NON-JOINER
-+<U200C>     /xd9         ZERO WIDTH NON-JOINER
 +<U093E>     /xda         DEVANAGARI VOWEL SIGN AA
 +<U093F>     /xdb         DEVANAGARI VOWEL SIGN I
 +<U0940>     /xdc         DEVANAGARI VOWEL SIGN II
@@ -1724,276 +1460,83 @@
 +%<dev   >               /x     <U0970> DEVANAGARI ABBREVIATION SIGN
 +
 +END CHARMAP
---- glibc-2.3.1/localedata/charmaps/TATAR-CYR.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/TATAR-CYR	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,265 @@
-+<code_set_name> TATAR-CYR
-+<comment_char> %
-+<escape_char> /
-+% version: 1.0
-+% repertoiremap: mnemonic,ds
-+%  source: "Rinat I. Norkin" <rinat@taif.ru>
+diff -uNr glibc-2.3.3/localedata/charmaps/ISIRI-3342 glibc-2.3.3.charsets/localedata/charmaps/ISIRI-3342
+--- glibc-2.3.3/localedata/charmaps/ISIRI-3342	Sun Oct 22 02:20:07 2000
++++ glibc-2.3.3.charsets/localedata/charmaps/ISIRI-3342	Mon Jan 12 23:47:54 2004
+@@ -1,11 +1,20 @@
+ <code_set_name> ISIRI-3342
+ <comment_char> %
+ <escape_char> /
+-% version: 0.0
++% version: 0.3
++% repertoiremap:
+ % source: Iranian standard ISIRI 3342 (1993)
+ % author: Pablo Saratxaga, and Roozbeh Pournader
+ % email: pablo@mandrakesoft.com, roozbeh@sina.sharif.ac.ir
+- 
 +
-+% alias CP1251_TT
-+CHARMAP
-+<U0000>     /x00         NULL (NUL)
-+<U0001>     /x01         START OF HEADING (SOH)
-+<U0002>     /x02         START OF TEXT (STX)
-+<U0003>     /x03         END OF TEXT (ETX)
-+<U0004>     /x04         END OF TRANSMISSION (EOT)
-+<U0005>     /x05         ENQUIRY (ENQ)
-+<U0006>     /x06         ACKNOWLEDGE (ACK)
-+<U0007>     /x07         BELL (BEL)
-+<U0008>     /x08         BACKSPACE (BS)
-+<U0009>     /x09         CHARACTER TABULATION (HT)
-+<U000A>     /x0a         LINE FEED (LF)
-+<U000B>     /x0b         LINE TABULATION (VT)
-+<U000C>     /x0c         FORM FEED (FF)
-+<U000D>     /x0d         CARRIAGE RETURN (CR)
-+<U000E>     /x0e         SHIFT OUT (SO)
-+<U000F>     /x0f         SHIFT IN (SI)
-+<U0010>     /x10         DATALINK ESCAPE (DLE)
-+<U0011>     /x11         DEVICE CONTROL ONE (DC1)
-+<U0012>     /x12         DEVICE CONTROL TWO (DC2)
-+<U0013>     /x13         DEVICE CONTROL THREE (DC3)
-+<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
-+<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
-+<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
-+<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
-+<U0018>     /x18         CANCEL (CAN)
-+<U0019>     /x19         END OF MEDIUM (EM)
-+<U001A>     /x1a         SUBSTITUTE (SUB)
-+<U001B>     /x1b         ESCAPE (ESC)
-+<U001C>     /x1c         FILE SEPARATOR (IS4)
-+<U001D>     /x1d         GROUP SEPARATOR (IS3)
-+<U001E>     /x1e         RECORD SEPARATOR (IS2)
-+<U001F>     /x1f         UNIT SEPARATOR (IS1)
-+<U0020>     /x20         SPACE
-+<U0021>     /x21         EXCLAMATION MARK
-+<U0022>     /x22         QUOTATION MARK
-+<U0023>     /x23         NUMBER SIGN
-+<U0024>     /x24         DOLLAR SIGN
-+<U0025>     /x25         PERCENT SIGN
-+<U0026>     /x26         AMPERSAND
-+<U0027>     /x27         APOSTROPHE
-+<U0028>     /x28         LEFT PARENTHESIS
-+<U0029>     /x29         RIGHT PARENTHESIS
-+<U002A>     /x2a         ASTERISK
-+<U002B>     /x2b         PLUS SIGN
-+<U002C>     /x2c         COMMA
-+<U002D>     /x2d         HYPHEN-MINUS
-+<U002E>     /x2e         FULL STOP
-+<U002F>     /x2f         SOLIDUS
-+<U0030>     /x30         DIGIT ZERO
-+<U0031>     /x31         DIGIT ONE
-+<U0032>     /x32         DIGIT TWO
-+<U0033>     /x33         DIGIT THREE
-+<U0034>     /x34         DIGIT FOUR
-+<U0035>     /x35         DIGIT FIVE
-+<U0036>     /x36         DIGIT SIX
-+<U0037>     /x37         DIGIT SEVEN
-+<U0038>     /x38         DIGIT EIGHT
-+<U0039>     /x39         DIGIT NINE
-+<U003A>     /x3a         COLON
-+<U003B>     /x3b         SEMICOLON
-+<U003C>     /x3c         LESS-THAN SIGN
-+<U003D>     /x3d         EQUALS SIGN
-+<U003E>     /x3e         GREATER-THAN SIGN
-+<U003F>     /x3f         QUESTION MARK
-+<U0040>     /x40         COMMERCIAL AT
-+<U0041>     /x41         LATIN CAPITAL LETTER A
-+<U0042>     /x42         LATIN CAPITAL LETTER B
-+<U0043>     /x43         LATIN CAPITAL LETTER C
-+<U0044>     /x44         LATIN CAPITAL LETTER D
-+<U0045>     /x45         LATIN CAPITAL LETTER E
-+<U0046>     /x46         LATIN CAPITAL LETTER F
-+<U0047>     /x47         LATIN CAPITAL LETTER G
-+<U0048>     /x48         LATIN CAPITAL LETTER H
-+<U0049>     /x49         LATIN CAPITAL LETTER I
-+<U004A>     /x4a         LATIN CAPITAL LETTER J
-+<U004B>     /x4b         LATIN CAPITAL LETTER K
-+<U004C>     /x4c         LATIN CAPITAL LETTER L
-+<U004D>     /x4d         LATIN CAPITAL LETTER M
-+<U004E>     /x4e         LATIN CAPITAL LETTER N
-+<U004F>     /x4f         LATIN CAPITAL LETTER O
-+<U0050>     /x50         LATIN CAPITAL LETTER P
-+<U0051>     /x51         LATIN CAPITAL LETTER Q
-+<U0052>     /x52         LATIN CAPITAL LETTER R
-+<U0053>     /x53         LATIN CAPITAL LETTER S
-+<U0054>     /x54         LATIN CAPITAL LETTER T
-+<U0055>     /x55         LATIN CAPITAL LETTER U
-+<U0056>     /x56         LATIN CAPITAL LETTER V
-+<U0057>     /x57         LATIN CAPITAL LETTER W
-+<U0058>     /x58         LATIN CAPITAL LETTER X
-+<U0059>     /x59         LATIN CAPITAL LETTER Y
-+<U005A>     /x5a         LATIN CAPITAL LETTER Z
-+<U005B>     /x5b         LEFT SQUARE BRACKET
-+<U005C>     /x5c         REVERSE SOLIDUS
-+<U005D>     /x5d         RIGHT SQUARE BRACKET
-+<U005E>     /x5e         CIRCUMFLEX ACCENT
-+<U005F>     /x5f         LOW LINE
-+<U0060>     /x60         GRAVE ACCENT
-+<U0061>     /x61         LATIN SMALL LETTER A
-+<U0062>     /x62         LATIN SMALL LETTER B
-+<U0063>     /x63         LATIN SMALL LETTER C
-+<U0064>     /x64         LATIN SMALL LETTER D
-+<U0065>     /x65         LATIN SMALL LETTER E
-+<U0066>     /x66         LATIN SMALL LETTER F
-+<U0067>     /x67         LATIN SMALL LETTER G
-+<U0068>     /x68         LATIN SMALL LETTER H
-+<U0069>     /x69         LATIN SMALL LETTER I
-+<U006A>     /x6a         LATIN SMALL LETTER J
-+<U006B>     /x6b         LATIN SMALL LETTER K
-+<U006C>     /x6c         LATIN SMALL LETTER L
-+<U006D>     /x6d         LATIN SMALL LETTER M
-+<U006E>     /x6e         LATIN SMALL LETTER N
-+<U006F>     /x6f         LATIN SMALL LETTER O
-+<U0070>     /x70         LATIN SMALL LETTER P
-+<U0071>     /x71         LATIN SMALL LETTER Q
-+<U0072>     /x72         LATIN SMALL LETTER R
-+<U0073>     /x73         LATIN SMALL LETTER S
-+<U0074>     /x74         LATIN SMALL LETTER T
-+<U0075>     /x75         LATIN SMALL LETTER U
-+<U0076>     /x76         LATIN SMALL LETTER V
-+<U0077>     /x77         LATIN SMALL LETTER W
-+<U0078>     /x78         LATIN SMALL LETTER X
-+<U0079>     /x79         LATIN SMALL LETTER Y
-+<U007A>     /x7a         LATIN SMALL LETTER Z
-+<U007B>     /x7b         LEFT CURLY BRACKET
-+<U007C>     /x7c         VERTICAL LINE
-+<U007D>     /x7d         RIGHT CURLY BRACKET
-+<U007E>     /x7e         TILDE
-+<U007F>     /x7f         DELETE (DEL)
-+<U04D8>     /x80         CYRILLIC CAPITAL LETTER SCHWA
-+<U0403>     /x81         CYRILLIC CAPITAL LETTER GJE
-+<U201A>     /x82         SINGLE LOW-9 QUOTATION MARK
-+<U0453>     /x83         CYRILLIC SMALL LETTER GJE
-+<U201E>     /x84         DOUBLE LOW-9 QUOTATION MARK
-+<U2026>     /x85         HORIZONTAL ELLIPSIS
-+<U2020>     /x86         DAGGER
-+<U2021>     /x87         DOUBLE DAGGER
-+<U20AC>     /x88         EURO SIGN
-+<U2030>     /x89         PER MILLE SIGN
-+<U04E8>     /x8a         CYRILLIC CAPITAL LETTER BARRED O
-+<U2039>     /x8b         SINGLE LEFT-POINTING ANGLE QUOTATION MARK
-+<U04AE>     /x8c         CYRILLIC CAPITAL LETTER STRAIGHT U
-+<U0496>     /x8d         CYRILLIC CAPITAL LETTER ZHE WITH DESCENDER
-+<U04A2>     /x8e         CYRILLIC CAPITAL LETTER EN WITH DESCENDER
-+<U04BA>     /x8f         CYRILLIC CAPITAL LETTER SHHA
-+<U04D9>     /x90         CYRILLIC SMALL LETTER SCHWA
-+<U2018>     /x91         LEFT SINGLE QUOTATION MARK
-+<U2019>     /x92         RIGHT SINGLE QUOTATION MARK
-+<U201C>     /x93         LEFT DOUBLE QUOTATION MARK
-+<U201D>     /x94         RIGHT DOUBLE QUOTATION MARK
-+<U2022>     /x95         BULLET
-+<U2013>     /x96         EN DASH
-+<U2014>     /x97         EM DASH
-+<U2122>     /x99         TRADE MARK SIGN
-+<U04E9>     /x9a         CYRILLIC SMALL LETTER BARRED O
-+<U203A>     /x9b         SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
-+<U04AF>     /x9c         CYRILLIC SMALL LETTER STRAIGHT U
-+<U0497>     /x9d         CYRILLIC SMALL LETTER ZHE WITH DESCENDER
-+<U04A3>     /x9e         CYRILLIC SMALL LETTER EN WITH DESCENDER
-+<U04BB>     /x9f         CYRILLIC SMALL LETTER SHHA
-+<U00A0>     /xa0         NO-BREAK SPACE
-+<U040E>     /xa1         CYRILLIC CAPITAL LETTER SHORT U (Byelorussian)
-+<U045E>     /xa2         CYRILLIC SMALL LETTER SHORT U (Byelorussian)
-+<U0408>     /xa3         CYRILLIC CAPITAL LETTER JE
-+<U00A4>     /xa4         CURRENCY SIGN
-+<U0490>     /xa5         CYRILLIC CAPITAL LETTER GHE WITH UPTURN
-+<U00A6>     /xa6         BROKEN BAR
-+<U00A7>     /xa7         SECTION SIGN
-+<U0401>     /xa8         CYRILLIC CAPITAL LETTER IO
-+<U00A9>     /xa9         COPYRIGHT SIGN
-+<U0404>     /xaa         CYRILLIC CAPITAL LETTER UKRAINIAN IE
-+<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U00AC>     /xac         NOT SIGN
-+<U00AD>     /xad         SOFT HYPHEN
-+<U00AE>     /xae         REGISTERED SIGN
-+<U0407>     /xaf         CYRILLIC CAPITAL LETTER YI (Ukrainian)
-+<U00B0>     /xb0         DEGREE SIGN
-+<U00B1>     /xb1         PLUS-MINUS SIGN
-+<U0406>     /xb2         CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
-+<U0456>     /xb3         CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
-+<U0491>     /xb4         CYRILLIC SMALL LETTER GHE WITH UPTURN
-+<U00B5>     /xb5         MICRO SIGN
-+<U00B6>     /xb6         PILCROW SIGN
-+<U00B7>     /xb7         MIDDLE DOT
-+<U0451>     /xb8         CYRILLIC SMALL LETTER IO
-+<U2116>     /xb9         NUMERO SIGN
-+<U0454>     /xba         CYRILLIC SMALL LETTER UKRAINIAN IE
-+<U00BB>     /xbb         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U0458>     /xbc         CYRILLIC SMALL LETTER JE
-+<U0405>     /xbd         CYRILLIC CAPITAL LETTER DZE
-+<U0455>     /xbe         CYRILLIC SMALL LETTER DZE
-+<U0457>     /xbf         CYRILLIC SMALL LETTER YI (Ukrainian)
-+<U0410>     /xc0         CYRILLIC CAPITAL LETTER A
-+<U0411>     /xc1         CYRILLIC CAPITAL LETTER BE
-+<U0412>     /xc2         CYRILLIC CAPITAL LETTER VE
-+<U0413>     /xc3         CYRILLIC CAPITAL LETTER GHE
-+<U0414>     /xc4         CYRILLIC CAPITAL LETTER DE
-+<U0415>     /xc5         CYRILLIC CAPITAL LETTER IE
-+<U0416>     /xc6         CYRILLIC CAPITAL LETTER ZHE
-+<U0417>     /xc7         CYRILLIC CAPITAL LETTER ZE
-+<U0418>     /xc8         CYRILLIC CAPITAL LETTER I
-+<U0419>     /xc9         CYRILLIC CAPITAL LETTER SHORT I
-+<U041A>     /xca         CYRILLIC CAPITAL LETTER KA
-+<U041B>     /xcb         CYRILLIC CAPITAL LETTER EL
-+<U041C>     /xcc         CYRILLIC CAPITAL LETTER EM
-+<U041D>     /xcd         CYRILLIC CAPITAL LETTER EN
-+<U041E>     /xce         CYRILLIC CAPITAL LETTER O
-+<U041F>     /xcf         CYRILLIC CAPITAL LETTER PE
-+<U0420>     /xd0         CYRILLIC CAPITAL LETTER ER
-+<U0421>     /xd1         CYRILLIC CAPITAL LETTER ES
-+<U0422>     /xd2         CYRILLIC CAPITAL LETTER TE
-+<U0423>     /xd3         CYRILLIC CAPITAL LETTER U
-+<U0424>     /xd4         CYRILLIC CAPITAL LETTER EF
-+<U0425>     /xd5         CYRILLIC CAPITAL LETTER HA
-+<U0426>     /xd6         CYRILLIC CAPITAL LETTER TSE
-+<U0427>     /xd7         CYRILLIC CAPITAL LETTER CHE
-+<U0428>     /xd8         CYRILLIC CAPITAL LETTER SHA
-+<U0429>     /xd9         CYRILLIC CAPITAL LETTER SHCHA
-+<U042A>     /xda         CYRILLIC CAPITAL LETTER HARD SIGN
-+<U042B>     /xdb         CYRILLIC CAPITAL LETTER YERU
-+<U042C>     /xdc         CYRILLIC CAPITAL LETTER SOFT SIGN
-+<U042D>     /xdd         CYRILLIC CAPITAL LETTER E
-+<U042E>     /xde         CYRILLIC CAPITAL LETTER YU
-+<U042F>     /xdf         CYRILLIC CAPITAL LETTER YA
-+<U0430>     /xe0         CYRILLIC SMALL LETTER A
-+<U0431>     /xe1         CYRILLIC SMALL LETTER BE
-+<U0432>     /xe2         CYRILLIC SMALL LETTER VE
-+<U0433>     /xe3         CYRILLIC SMALL LETTER GHE
-+<U0434>     /xe4         CYRILLIC SMALL LETTER DE
-+<U0435>     /xe5         CYRILLIC SMALL LETTER IE
-+<U0436>     /xe6         CYRILLIC SMALL LETTER ZHE
-+<U0437>     /xe7         CYRILLIC SMALL LETTER ZE
-+<U0438>     /xe8         CYRILLIC SMALL LETTER I
-+<U0439>     /xe9         CYRILLIC SMALL LETTER SHORT I
-+<U043A>     /xea         CYRILLIC SMALL LETTER KA
-+<U043B>     /xeb         CYRILLIC SMALL LETTER EL
-+<U043C>     /xec         CYRILLIC SMALL LETTER EM
-+<U043D>     /xed         CYRILLIC SMALL LETTER EN
-+<U043E>     /xee         CYRILLIC SMALL LETTER O
-+<U043F>     /xef         CYRILLIC SMALL LETTER PE
-+<U0440>     /xf0         CYRILLIC SMALL LETTER ER
-+<U0441>     /xf1         CYRILLIC SMALL LETTER ES
-+<U0442>     /xf2         CYRILLIC SMALL LETTER TE
-+<U0443>     /xf3         CYRILLIC SMALL LETTER U
-+<U0444>     /xf4         CYRILLIC SMALL LETTER EF
-+<U0445>     /xf5         CYRILLIC SMALL LETTER HA
-+<U0446>     /xf6         CYRILLIC SMALL LETTER TSE
-+<U0447>     /xf7         CYRILLIC SMALL LETTER CHE
-+<U0448>     /xf8         CYRILLIC SMALL LETTER SHA
-+<U0449>     /xf9         CYRILLIC SMALL LETTER SHCHA
-+<U044A>     /xfa         CYRILLIC SMALL LETTER HARD SIGN
-+<U044B>     /xfb         CYRILLIC SMALL LETTER YERU
-+<U044C>     /xfc         CYRILLIC SMALL LETTER SOFT SIGN
-+<U044D>     /xfd         CYRILLIC SMALL LETTER E
-+<U044E>     /xfe         CYRILLIC SMALL LETTER YU
-+<U044F>     /xff         CYRILLIC SMALL LETTER YA
-+END CHARMAP
---- glibc-2.3.1/localedata/charmaps/ISO-8859-9E.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/ISO-8859-9E	2002-11-25 10:32:12.000000000 -0500
++% Changes from 0.2 to 0.3:
++%
++%	Changed the mnemonic for 0xA6 from <.+> to <.a>
++%
++%	Exchanged the Unicode equilavents for 0xE6 and 0xE7, to reflect
++%	the change in the mirroring behaviour of U+00AB and U+00BB
++%	between versions 2.1.5 and 2.1.8 of the Unicode Standard.
++
+ % I think the mnemonic for upper space (0xA0) should be different from
+ % lower space (0x20). Because the semantics are different, although they
+ % are mapped to a single Unicode character. This is specially important
+@@ -18,9 +27,9 @@
+ % invented on the pattern of Unicode character names. --RP
+ %
+ % NOTE: Some entries were missing in the mnemonics.ds file; We invented our
+-% own. Those are: <zwnj>, <zwj>, <!+>, <Rl>, <%+>, <.+>, <,f>, <(+>,
++% own. Those are: <zwnj>, <zwj>, <!+>, <Rl>, <%+>, <.a>, <,f>, <(+>,
+ % <)+>, <*X+>, <+f>, <-f>, <.f>, <//f>, <0f>..<9f>, <:f>, <<f>, <=f>,
+-% </>f>, <kf>, <yf>, <)/>+>, <<(+>, <!)+>, <(!+>, <<<+>, </>/>+>, <*+>,
++% </>f>, <yf>, <)/>+>, <<(+>, <!)+>, <(!+>, <<<+>, </>/>+>, <*+>,
+ % <!!+>, and <////+>. Also, all character sequences
+ % <NU>..<US>, <SP>, <DT> have counter-parts <NU+>..<US+>, <SP+>, <DT+>
+  
+@@ -153,6 +162,7 @@
+ <U007D>     /x7d         RIGHT CURLY BRACKET
+ <U007E>     /x7e         TILDE
+ <U007F>     /x7f         DELETE (DEL)
++
+ <U0000>     /x80         ARABIC NULL (NUL)
+ <U0001>     /x81         ARABIC START OF HEADING (SOH)
+ <U0002>     /x82         ARABIC START OF TEXT (STX)
+@@ -185,6 +195,7 @@
+ <U001D>     /x9d         ARABIC GROUP SEPARATOR (IS3)
+ <U001E>     /x9e         ARABIC RECORD SEPARATOR (IS2)
+ <U001F>     /x9f         ARABIC UNIT SEPARATOR (IS1)
++ 
+ <U0020>     /xa0         ARABIC SPACE
+ <U200C>     /xa1         ZERO WIDTH NON-JOINER
+ <U200D>     /xa2         ZERO WIDTH JOINER
+@@ -255,8 +266,8 @@
+ <U005B>     /xe3         ARABIC OPENING SQUARE BRACKET
+ <U007D>     /xe4         ARABIC CLOSING CURLY BRACKET
+ <U007B>     /xe5         ARABIC OPENING CURLY BRACKET
+-<U00AB>     /xe6         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+-<U00BB>     /xe7         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U00BB>     /xe6         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U00AB>     /xe7         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+ <U002A>     /xe8         ARABIC ASTERISK
+ <U0640>     /xe9         ARABIC TATWEEL
+ <U007C>     /xea         ARABIC VERTICAL LINE
+@@ -278,3 +289,8 @@
+ <U064A>     /xfe         ARABIC LETTER YEH
+ <U007F>     /xff         ARABIC DELETE
+ END CHARMAP
++
++WIDTH
++<U064B>...<U0652>      0
++END WIDTH
++
+diff -uNr glibc-2.3.3/localedata/charmaps/ISO-8859-9E glibc-2.3.3.charsets/localedata/charmaps/ISO-8859-9E
+--- glibc-2.3.3/localedata/charmaps/ISO-8859-9E	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/ISO-8859-9E	Mon Jan 12 23:47:54 2004
 @@ -0,0 +1,265 @@
 +<code_set_name> ISO-8859-9E
 +<comment_char> %
@@ -2260,533 +1803,9 @@
 +<U015F>     /xfe         LATIN SMALL LETTER S WITH CEDILLA
 +<U00FF>     /xff         LATIN SMALL LETTER Y WITH DIAERESIS
 +END CHARMAP
---- glibc-2.3.1/localedata/charmaps/KOI8-K.new-charsets	2002-11-25 10:31:53.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/KOI8-K	2002-11-25 10:32:12.000000000 -0500
-@@ -0,0 +1,265 @@
-+<code_set_name> KOI8-K
-+<comment_char> %
-+<escape_char> /
-+% version: 1.1
-+% repertoiremap: mnemonic,ds
-+
-+CHARMAP
-+<U0000>     /x00         NULL (NUL)
-+<U0001>     /x01         START OF HEADING (SOH)
-+<U0002>     /x02         START OF TEXT (STX)
-+<U0003>     /x03         END OF TEXT (ETX)
-+<U0004>     /x04         END OF TRANSMISSION (EOT)
-+<U0005>     /x05         ENQUIRY (ENQ)
-+<U0006>     /x06         ACKNOWLEDGE (ACK)
-+<U0007>     /x07         BELL (BEL)
-+<U0008>     /x08         BACKSPACE (BS)
-+<U0009>     /x09         CHARACTER TABULATION (HT)
-+<U000A>     /x0a         LINE FEED (LF)
-+<U000B>     /x0b         LINE TABULATION (VT)
-+<U000C>     /x0c         FORM FEED (FF)
-+<U000D>     /x0d         CARRIAGE RETURN (CR)
-+<U000E>     /x0e         SHIFT OUT (SO)
-+<U000F>     /x0f         SHIFT IN (SI)
-+<U0010>     /x10         DATALINK ESCAPE (DLE)
-+<U0011>     /x11         DEVICE CONTROL ONE (DC1)
-+<U0012>     /x12         DEVICE CONTROL TWO (DC2)
-+<U0013>     /x13         DEVICE CONTROL THREE (DC3)
-+<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
-+<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
-+<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
-+<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
-+<U0018>     /x18         CANCEL (CAN)
-+<U0019>     /x19         END OF MEDIUM (EM)
-+<U001A>     /x1a         SUBSTITUTE (SUB)
-+<U001B>     /x1b         ESCAPE (ESC)
-+<U001C>     /x1c         FILE SEPARATOR (IS4)
-+<U001D>     /x1d         GROUP SEPARATOR (IS3)
-+<U001E>     /x1e         RECORD SEPARATOR (IS2)
-+<U001F>     /x1f         UNIT SEPARATOR (IS1)
-+<U0020>     /x20         SPACE
-+<U0021>     /x21         EXCLAMATION MARK
-+<U0022>     /x22         QUOTATION MARK
-+<U0023>     /x23         NUMBER SIGN
-+<U0024>     /x24         DOLLAR SIGN
-+<U0025>     /x25         PERCENT SIGN
-+<U0026>     /x26         AMPERSAND
-+<U0027>     /x27         APOSTROPHE
-+<U0028>     /x28         LEFT PARENTHESIS
-+<U0029>     /x29         RIGHT PARENTHESIS
-+<U002A>     /x2a         ASTERISK
-+<U002B>     /x2b         PLUS SIGN
-+<U002C>     /x2c         COMMA
-+<U002D>     /x2d         HYPHEN-MINUS
-+<U002E>     /x2e         FULL STOP
-+<U002F>     /x2f         SOLIDUS
-+<U0030>     /x30         DIGIT ZERO
-+<U0031>     /x31         DIGIT ONE
-+<U0032>     /x32         DIGIT TWO
-+<U0033>     /x33         DIGIT THREE
-+<U0034>     /x34         DIGIT FOUR
-+<U0035>     /x35         DIGIT FIVE
-+<U0036>     /x36         DIGIT SIX
-+<U0037>     /x37         DIGIT SEVEN
-+<U0038>     /x38         DIGIT EIGHT
-+<U0039>     /x39         DIGIT NINE
-+<U003A>     /x3a         COLON
-+<U003B>     /x3b         SEMICOLON
-+<U003C>     /x3c         LESS-THAN SIGN
-+<U003D>     /x3d         EQUALS SIGN
-+<U003E>     /x3e         GREATER-THAN SIGN
-+<U003F>     /x3f         QUESTION MARK
-+<U0040>     /x40         COMMERCIAL AT
-+<U0041>     /x41         LATIN CAPITAL LETTER A
-+<U0042>     /x42         LATIN CAPITAL LETTER B
-+<U0043>     /x43         LATIN CAPITAL LETTER C
-+<U0044>     /x44         LATIN CAPITAL LETTER D
-+<U0045>     /x45         LATIN CAPITAL LETTER E
-+<U0046>     /x46         LATIN CAPITAL LETTER F
-+<U0047>     /x47         LATIN CAPITAL LETTER G
-+<U0048>     /x48         LATIN CAPITAL LETTER H
-+<U0049>     /x49         LATIN CAPITAL LETTER I
-+<U004A>     /x4a         LATIN CAPITAL LETTER J
-+<U004B>     /x4b         LATIN CAPITAL LETTER K
-+<U004C>     /x4c         LATIN CAPITAL LETTER L
-+<U004D>     /x4d         LATIN CAPITAL LETTER M
-+<U004E>     /x4e         LATIN CAPITAL LETTER N
-+<U004F>     /x4f         LATIN CAPITAL LETTER O
-+<U0050>     /x50         LATIN CAPITAL LETTER P
-+<U0051>     /x51         LATIN CAPITAL LETTER Q
-+<U0052>     /x52         LATIN CAPITAL LETTER R
-+<U0053>     /x53         LATIN CAPITAL LETTER S
-+<U0054>     /x54         LATIN CAPITAL LETTER T
-+<U0055>     /x55         LATIN CAPITAL LETTER U
-+<U0056>     /x56         LATIN CAPITAL LETTER V
-+<U0057>     /x57         LATIN CAPITAL LETTER W
-+<U0058>     /x58         LATIN CAPITAL LETTER X
-+<U0059>     /x59         LATIN CAPITAL LETTER Y
-+<U005A>     /x5a         LATIN CAPITAL LETTER Z
-+<U005B>     /x5b         LEFT SQUARE BRACKET
-+<U005C>     /x5c         REVERSE SOLIDUS
-+<U005D>     /x5d         RIGHT SQUARE BRACKET
-+<U005E>     /x5e         CIRCUMFLEX ACCENT
-+<U005F>     /x5f         LOW LINE
-+<U0060>     /x60         GRAVE ACCENT
-+<U0061>     /x61         LATIN SMALL LETTER A
-+<U0062>     /x62         LATIN SMALL LETTER B
-+<U0063>     /x63         LATIN SMALL LETTER C
-+<U0064>     /x64         LATIN SMALL LETTER D
-+<U0065>     /x65         LATIN SMALL LETTER E
-+<U0066>     /x66         LATIN SMALL LETTER F
-+<U0067>     /x67         LATIN SMALL LETTER G
-+<U0068>     /x68         LATIN SMALL LETTER H
-+<U0069>     /x69         LATIN SMALL LETTER I
-+<U006A>     /x6a         LATIN SMALL LETTER J
-+<U006B>     /x6b         LATIN SMALL LETTER K
-+<U006C>     /x6c         LATIN SMALL LETTER L
-+<U006D>     /x6d         LATIN SMALL LETTER M
-+<U006E>     /x6e         LATIN SMALL LETTER N
-+<U006F>     /x6f         LATIN SMALL LETTER O
-+<U0070>     /x70         LATIN SMALL LETTER P
-+<U0071>     /x71         LATIN SMALL LETTER Q
-+<U0072>     /x72         LATIN SMALL LETTER R
-+<U0073>     /x73         LATIN SMALL LETTER S
-+<U0074>     /x74         LATIN SMALL LETTER T
-+<U0075>     /x75         LATIN SMALL LETTER U
-+<U0076>     /x76         LATIN SMALL LETTER V
-+<U0077>     /x77         LATIN SMALL LETTER W
-+<U0078>     /x78         LATIN SMALL LETTER X
-+<U0079>     /x79         LATIN SMALL LETTER Y
-+<U007A>     /x7a         LATIN SMALL LETTER Z
-+<U007B>     /x7b         LEFT CURLY BRACKET
-+<U007C>     /x7c         VERTICAL LINE
-+<U007D>     /x7d         RIGHT CURLY BRACKET
-+<U007E>     /x7e         TILDE
-+<U007F>     /x7f         DELETE (DEL)
-+              
-+<U0493>     /x80         CYRILLIC SMALL LETTER GHE WITH STROKE
-+<U0497>     /x81         CYRILLIC SMALL LETTER ZHE WITH DESCENDER
-+<U049B>     /x82         CYRILLIC SMALL LETTER KA WITH DESCENDER
-+<U049D>     /x83         CYRILLIC SMALL LETTER KA WITH VERTICAL STROKE
-+<U04A3>     /x84         CYRILLIC SMALL LETTER EN WITH DESCENDER
-+<U04AF>     /x85         CYRILLIC SMALL LETTER STRAIGHT U
-+<U04B1>     /x86         CYRILLIC SMALL LETTER STRAIGHT U WITH STROKE
-+<U04B3>     /x87         CYRILLIC SMALL LETTER HA WITH DESCENDER
-+<U04B7>     /x88         CYRILLIC SMALL LETTER CHE WITH DESCENDER
-+<U04B9>     /x89         CYRILLIC SMALL LETTER CHE WITH VERTICAL STROKE
-+<U04BB>     /x8a         CYRILLIC SMALL LETTER SHHA
-+              
-+<U04D9>     /x8c         CYRILLIC SMALL LETTER SCHWA
-+<U04E3>     /x8d         CYRILLIC SMALL LETTER I WITH MACRON
-+<U04E9>     /x8e         CYRILLIC SMALL LETTER BARRED O
-+<U04EF>     /x8f         CYRILLIC SMALL LETTER U WITH MACRON
-+<U0492>     /x90         CYRILLIC CAPITAL LETTER GHE WITH STROKE
-+<U0496>     /x91         CYRILLIC CAPITAL LETTER ZHE WITH DESCENDER
-+<U049A>     /x92         CYRILLIC CAPITAL LETTER KA WITH DESCENDER
-+<U049C>     /x93         CYRILLIC CAPITAL LETTER KA WITH VERTICAL STROKE
-+<U04A2>     /x94         CYRILLIC CAPITAL LETTER EN WITH DESCENDER
-+<U04AE>     /x95         CYRILLIC CAPITAL LETTER STRAIGHT U
-+<U04B0>     /x96         CYRILLIC CAPITAL LETTER STRAIGHT U WITH STROKE
-+<U04B2>     /x97         CYRILLIC CAPITAL LETTER HA WITH DESCENDER
-+<U04B6>     /x98         CYRILLIC CAPITAL LETTER CHE WITH DESCENDER
-+<U04B8>     /x99         CYRILLIC CAPITAL LETTER CHE WITH VERTICAL STROKE
-+<U04BA>     /x9a         CYRILLIC CAPITAL LETTER SHHA
-+              
-+<U04D8>     /x9c         CYRILLIC CAPITAL LETTER SCHWA
-+<U04E2>     /x9d         CYRILLIC CAPITAL LETTER I WITH MACRON
-+<U04E8>     /x9e         CYRILLIC CAPITAL LETTER BARRED O
-+<U04EE>     /x9f         CYRILLIC CAPITAL LETTER U WITH MACRON
-+<U00A0>     /xa0         NON BREAKING SPACE
-+<U0452>     /xa1         CYRILLIC SMALL LETTER DJE (Serbocroatian)
-+<U0453>     /xa2         CYRILLIC SMALL LETTER GJE
-+<U0451>     /xa3         CYRILLIC SMALL LETTER IO
-+<U0454>     /xa4         CYRILLIC SMALL LETTER UKRAINIAN IE
-+<U0455>     /xa5         CYRILLIC SMALL LETTER DZE
-+<U0456>     /xa6         CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
-+<U0457>     /xa7         CYRILLIC SMALL LETTER YI (Ukrainian)
-+<U0458>     /xa8         CYRILLIC SMALL LETTER JE
-+<U0459>     /xa9         CYRILLIC SMALL LETTER LJE
-+<U045A>     /xaa         CYRILLIC SMALL LETTER NJE
-+<U045B>     /xab         CYRILLIC SMALL LETTER TSHE (Serbocroatian)
-+<U045C>     /xac         CYRILLIC SMALL LETTER KJE
-+<U0491>     /xad         CYRILLIC SMALL LETTER GHE WITH UPTURN
-+<U045E>     /xae         CYRILLIC SMALL LETTER SHORT U (Byelorussian)
-+<U045F>     /xaf         CYRILLIC SMALL LETTER DZHE
-+<U2116>     /xb0         NUMERO SIGN
-+<U0402>     /xb1         CYRILLIC CAPITAL LETTER DJE (Serbocroatian)
-+<U0403>     /xb2         CYRILLIC CAPITAL LETTER GJE
-+<U0401>     /xb3         CYRILLIC CAPITAL LETTER IO
-+<U0404>     /xb4         CYRILLIC CAPITAL LETTER UKRAINIAN IE
-+<U0405>     /xb5         CYRILLIC CAPITAL LETTER DZE
-+<U0406>     /xb6         CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
-+<U0407>     /xb7         CYRILLIC CAPITAL LETTER YI (Ukrainian)
-+<U0408>     /xb8         CYRILLIC CAPITAL LETTER JE
-+<U0409>     /xb9         CYRILLIC CAPITAL LETTER LJE
-+<U040A>     /xba         CYRILLIC CAPITAL LETTER NJE
-+<U040B>     /xbb         CYRILLIC CAPITAL LETTER TSHE (Serbocroatian)
-+<U040C>     /xbc         CYRILLIC CAPITAL LETTER KJE
-+<U0490>     /xbd         CYRILLIC CAPITAL LETTER GHE WITH UPTURN
-+<U040E>     /xbe         CYRILLIC CAPITAL LETTER SHORT U (Byelorussian)
-+<U040F>     /xbf         CYRILLIC CAPITAL LETTER DZHE
-+<U044E>     /xc0         CYRILLIC SMALL LETTER YU
-+<U0430>     /xc1         CYRILLIC SMALL LETTER A
-+<U0431>     /xc2         CYRILLIC SMALL LETTER BE
-+<U0446>     /xc3         CYRILLIC SMALL LETTER TSE
-+<U0434>     /xc4         CYRILLIC SMALL LETTER DE
-+<U0435>     /xc5         CYRILLIC SMALL LETTER IE
-+<U0444>     /xc6         CYRILLIC SMALL LETTER EF
-+<U0433>     /xc7         CYRILLIC SMALL LETTER GHE
-+<U0445>     /xc8         CYRILLIC SMALL LETTER HA
-+<U0438>     /xc9         CYRILLIC SMALL LETTER I
-+<U0439>     /xca         CYRILLIC SMALL LETTER SHORT I
-+<U043A>     /xcb         CYRILLIC SMALL LETTER KA
-+<U043B>     /xcc         CYRILLIC SMALL LETTER EL
-+<U043C>     /xcd         CYRILLIC SMALL LETTER EM
-+<U043D>     /xce         CYRILLIC SMALL LETTER EN
-+<U043E>     /xcf         CYRILLIC SMALL LETTER O
-+<U043F>     /xd0         CYRILLIC SMALL LETTER PE
-+<U044F>     /xd1         CYRILLIC SMALL LETTER YA
-+<U0440>     /xd2         CYRILLIC SMALL LETTER ER
-+<U0441>     /xd3         CYRILLIC SMALL LETTER ES
-+<U0442>     /xd4         CYRILLIC SMALL LETTER TE
-+<U0443>     /xd5         CYRILLIC SMALL LETTER U
-+<U0436>     /xd6         CYRILLIC SMALL LETTER ZHE
-+<U0432>     /xd7         CYRILLIC SMALL LETTER VE
-+<U044C>     /xd8         CYRILLIC SMALL LETTER SOFT SIGN
-+<U044B>     /xd9         CYRILLIC SMALL LETTER YERU
-+<U0437>     /xda         CYRILLIC SMALL LETTER ZE
-+<U0448>     /xdb         CYRILLIC SMALL LETTER SHA
-+<U044D>     /xdc         CYRILLIC SMALL LETTER E
-+<U0449>     /xdd         CYRILLIC SMALL LETTER SHCHA
-+<U0447>     /xde         CYRILLIC SMALL LETTER CHE
-+<U044A>     /xdf         CYRILLIC SMALL LETTER HARD SIGN
-+<U042E>     /xe0         CYRILLIC CAPITAL LETTER YU
-+<U0410>     /xe1         CYRILLIC CAPITAL LETTER A
-+<U0411>     /xe2         CYRILLIC CAPITAL LETTER BE
-+<U0426>     /xe3         CYRILLIC CAPITAL LETTER TSE
-+<U0414>     /xe4         CYRILLIC CAPITAL LETTER DE
-+<U0415>     /xe5         CYRILLIC CAPITAL LETTER IE
-+<U0424>     /xe6         CYRILLIC CAPITAL LETTER EF
-+<U0413>     /xe7         CYRILLIC CAPITAL LETTER GHE
-+<U0425>     /xe8         CYRILLIC CAPITAL LETTER HA
-+<U0418>     /xe9         CYRILLIC CAPITAL LETTER I
-+<U0419>     /xea         CYRILLIC CAPITAL LETTER SHORT I
-+<U041A>     /xeb         CYRILLIC CAPITAL LETTER KA
-+<U041B>     /xec         CYRILLIC CAPITAL LETTER EL
-+<U041C>     /xed         CYRILLIC CAPITAL LETTER EM
-+<U041D>     /xee         CYRILLIC CAPITAL LETTER EN
-+<U041E>     /xef         CYRILLIC CAPITAL LETTER O
-+<U041F>     /xf0         CYRILLIC CAPITAL LETTER PE
-+<U042F>     /xf1         CYRILLIC CAPITAL LETTER YA
-+<U0420>     /xf2         CYRILLIC CAPITAL LETTER ER
-+<U0421>     /xf3         CYRILLIC CAPITAL LETTER ES
-+<U0422>     /xf4         CYRILLIC CAPITAL LETTER TE
-+<U0423>     /xf5         CYRILLIC CAPITAL LETTER U
-+<U0416>     /xf6         CYRILLIC CAPITAL LETTER ZHE
-+<U0412>     /xf7         CYRILLIC CAPITAL LETTER VE
-+<U042C>     /xf8         CYRILLIC CAPITAL LETTER SOFT SIGN
-+<U042B>     /xf9         CYRILLIC CAPITAL LETTER YERU
-+<U0417>     /xfa         CYRILLIC CAPITAL LETTER ZE
-+<U0428>     /xfb         CYRILLIC CAPITAL LETTER SHA
-+<U042D>     /xfc         CYRILLIC CAPITAL LETTER E
-+<U0429>     /xfd         CYRILLIC CAPITAL LETTER SHCHA
-+<U0427>     /xfe         CYRILLIC CAPITAL LETTER CHE
-+<U042A>     /xff         CYRILLIC CAPITAL LETTER HARD SIGN
-+END CHARMAP
---- glibc-2.3.1/localedata/charmaps/KOI8-T.new-charsets	2002-11-02 20:21:09.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/KOI8-T	2002-11-25 10:32:12.000000000 -0500
-@@ -1,6 +1,254 @@
- <code_set_name> KOI8-T
- <comment_char> %
- <escape_char> /
-+% version: 1.0
-+%
-+% Author: Michael Davis <tajik_fonts@iname.com>
-+% URL:    http://www.traveltajikistan.com/fonts
-+%
-+
-+CHARMAP
-+<U0000>     /x00         NULL
-+<U0001>     /x01         START OF HEADING
-+<U0002>     /x02         START OF TEXT
-+<U0003>     /x03         END OF TEXT
-+<U0004>     /x04         END OF TRANSMISSION
-+<U0005>     /x05         ENQUIRY
-+<U0006>     /x06         ACKNOWLEDGE
-+<U0007>     /x07         BELL
-+<U0008>     /x08         BACKSPACE
-+<U0009>     /x09         HORIZONTAL TABULATION
-+<U000A>     /x0a         LINE FEED
-+<U000B>     /x0b         VERTICAL TABULATION
-+<U000C>     /x0c         FORM FEED
-+<U000D>     /x0d         CARRIAGE RETURN
-+<U000E>     /x0e         SHIFT OUT
-+<U000F>     /x0f         SHIFT IN
-+<U0010>     /x10         DATA LINK ESCAPE
-+<U0011>     /x11         DEVICE CONTROL ONE
-+<U0012>     /x12         DEVICE CONTROL TWO
-+<U0013>     /x13         DEVICE CONTROL THREE
-+<U0014>     /x14         DEVICE CONTROL FOUR
-+<U0015>     /x15         NEGATIVE ACKNOWLEDGE
-+<U0016>     /x16         SYNCHRONOUS IDLE
-+<U0017>     /x17         END OF TRANSMISSION BLOCK
-+<U0018>     /x18         CANCEL
-+<U0019>     /x19         END OF MEDIUM
-+<U001A>     /x1a         SUBSTITUTE
-+<U001B>     /x1b         ESCAPE
-+<U001C>     /x1c         FILE SEPARATOR
-+<U001D>     /x1d         GROUP SEPARATOR
-+<U001E>     /x1e         RECORD SEPARATOR
-+<U001F>     /x1f         UNIT SEPARATOR
-+<U0020>     /x20         SPACE
-+<U0021>     /x21         EXCLAMATION MARK
-+<U0022>     /x22         QUOTATION MARK
-+<U0023>     /x23         NUMBER SIGN
-+<U0024>     /x24         DOLLAR SIGN
-+<U0025>     /x25         PERCENT SIGN
-+<U0026>     /x26         AMPERSAND
-+<U0027>     /x27         APOSTROPHE
-+<U0028>     /x28         LEFT PARENTHESIS
-+<U0029>     /x29         RIGHT PARENTHESIS
-+<U002A>     /x2a         ASTERISK
-+<U002B>     /x2b         PLUS SIGN
-+<U002C>     /x2c         COMMA
-+<U002D>     /x2d         HYPHEN-MINUS
-+<U002E>     /x2e         FULL STOP
-+<U002F>     /x2f         SOLIDUS
-+<U0030>     /x30         DIGIT ZERO
-+<U0031>     /x31         DIGIT ONE
-+<U0032>     /x32         DIGIT TWO
-+<U0033>     /x33         DIGIT THREE
-+<U0034>     /x34         DIGIT FOUR
-+<U0035>     /x35         DIGIT FIVE
-+<U0036>     /x36         DIGIT SIX
-+<U0037>     /x37         DIGIT SEVEN
-+<U0038>     /x38         DIGIT EIGHT
-+<U0039>     /x39         DIGIT NINE
-+<U003A>     /x3a         COLON
-+<U003B>     /x3b         SEMICOLON
-+<U003C>     /x3c         LESS-THAN SIGN
-+<U003D>     /x3d         EQUALS SIGN
-+<U003E>     /x3e         GREATER-THAN SIGN
-+<U003F>     /x3f         QUESTION MARK
-+<U0040>     /x40         COMMERCIAL AT
-+<U0041>     /x41         LATIN CAPITAL LETTER A
-+<U0042>     /x42         LATIN CAPITAL LETTER B
-+<U0043>     /x43         LATIN CAPITAL LETTER C
-+<U0044>     /x44         LATIN CAPITAL LETTER D
-+<U0045>     /x45         LATIN CAPITAL LETTER E
-+<U0046>     /x46         LATIN CAPITAL LETTER F
-+<U0047>     /x47         LATIN CAPITAL LETTER G
-+<U0048>     /x48         LATIN CAPITAL LETTER H
-+<U0049>     /x49         LATIN CAPITAL LETTER I
-+<U004A>     /x4a         LATIN CAPITAL LETTER J
-+<U004B>     /x4b         LATIN CAPITAL LETTER K
-+<U004C>     /x4c         LATIN CAPITAL LETTER L
-+<U004D>     /x4d         LATIN CAPITAL LETTER M
-+<U004E>     /x4e         LATIN CAPITAL LETTER N
-+<U004F>     /x4f         LATIN CAPITAL LETTER O
-+<U0050>     /x50         LATIN CAPITAL LETTER P
-+<U0051>     /x51         LATIN CAPITAL LETTER Q
-+<U0052>     /x52         LATIN CAPITAL LETTER R
-+<U0053>     /x53         LATIN CAPITAL LETTER S
-+<U0054>     /x54         LATIN CAPITAL LETTER T
-+<U0055>     /x55         LATIN CAPITAL LETTER U
-+<U0056>     /x56         LATIN CAPITAL LETTER V
-+<U0057>     /x57         LATIN CAPITAL LETTER W
-+<U0058>     /x58         LATIN CAPITAL LETTER X
-+<U0059>     /x59         LATIN CAPITAL LETTER Y
-+<U005A>     /x5a         LATIN CAPITAL LETTER Z
-+<U005B>     /x5b         LEFT SQUARE BRACKET
-+<U005C>     /x5c         REVERSE SOLIDUS
-+<U005D>     /x5d         RIGHT SQUARE BRACKET
-+<U005E>     /x5e         CIRCUMFLEX ACCENT
-+<U005F>     /x5f         LOW LINE
-+<U0060>     /x60         GRAVE ACCENT
-+<U0061>     /x61         LATIN SMALL LETTER A
-+<U0062>     /x62         LATIN SMALL LETTER B
-+<U0063>     /x63         LATIN SMALL LETTER C
-+<U0064>     /x64         LATIN SMALL LETTER D
-+<U0065>     /x65         LATIN SMALL LETTER E
-+<U0066>     /x66         LATIN SMALL LETTER F
-+<U0067>     /x67         LATIN SMALL LETTER G
-+<U0068>     /x68         LATIN SMALL LETTER H
-+<U0069>     /x69         LATIN SMALL LETTER I
-+<U006A>     /x6a         LATIN SMALL LETTER J
-+<U006B>     /x6b         LATIN SMALL LETTER K
-+<U006C>     /x6c         LATIN SMALL LETTER L
-+<U006D>     /x6d         LATIN SMALL LETTER M
-+<U006E>     /x6e         LATIN SMALL LETTER N
-+<U006F>     /x6f         LATIN SMALL LETTER O
-+<U0070>     /x70         LATIN SMALL LETTER P
-+<U0071>     /x71         LATIN SMALL LETTER Q
-+<U0072>     /x72         LATIN SMALL LETTER R
-+<U0073>     /x73         LATIN SMALL LETTER S
-+<U0074>     /x74         LATIN SMALL LETTER T
-+<U0075>     /x75         LATIN SMALL LETTER U
-+<U0076>     /x76         LATIN SMALL LETTER V
-+<U0077>     /x77         LATIN SMALL LETTER W
-+<U0078>     /x78         LATIN SMALL LETTER X
-+<U0079>     /x79         LATIN SMALL LETTER Y
-+<U007A>     /x7a         LATIN SMALL LETTER Z
-+<U007B>     /x7b         LEFT CURLY BRACKET
-+<U007C>     /x7c         VERTICAL LINE
-+<U007D>     /x7d         RIGHT CURLY BRACKET
-+<U007E>     /x7e         TILDE
-+<U007F>     /x7f         DELETE
-+<U049B>     /x80         CYRILLIC SMALL LETTER KA WITH DESCENDER
-+<U0493>     /x81         CYRILLIC SMALL LETTER GHE WITH STROKE
-+<U201A>     /x82         SINGLE LOW-9 QUOTATION MARK
-+<U0492>     /x83         CYRILLIC CAPITAL LETTER GHE WITH STROKE
-+<U201E>     /x84         DOUBLE LOW-9 QUOTATION MARK
-+<U2026>     /x85         HORIZONTAL ELLIPSIS
-+<U2020>     /x86         DAGGER
-+<U2021>     /x87         DOUBLE DAGGER
-+<U2030>     /x89         PER MILLE SIGN
-+<U04B3>     /x8a         CYRILLIC SMALL LETTER HA WITH DESCENDER
-+<U2039>     /x8b         SINGLE LEFT-POINTING ANGLE QUOTATION MARK
-+<U04B2>     /x8c         CYRILLIC CAPITAL LETTER HA WITH DESCENDER
-+<U04B7>     /x8d         CYRILLIC SMALL LETTER CHE WITH DESCENDER
-+<U04B6>     /x8e         CYRILLIC CAPITAL LETTER CHE WITH DESCENDER
-+<U049A>     /x90         CYRILLIC CAPITAL LETTER KA WITH DESCENDER
-+<U2018>     /x91         LEFT SINGLE QUOTATION MARK
-+<U2019>     /x92         RIGHT SINGLE QUOTATION MARK
-+<U201C>     /x93         LEFT DOUBLE QUOTATION MARK
-+<U201D>     /x94         RIGHT DOUBLE QUOTATION MARK
-+<U2022>     /x95         BULLET
-+<U2013>     /x96         EN DASH
-+<U2014>     /x97         EM DASH
-+<U2122>     /x99         TRADE MARK SIGN
-+<U203A>     /x9b         SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
-+<U04EF>     /xa1         CYRILLIC SMALL LETTER U WITH MACRON
-+<U04EE>     /xa2         CYRILLIC CAPITAL LETTER U WITH MACRON
-+<U0451>     /xa3         CYRILLIC SMALL LETTER IO
-+<U00A4>     /xa4         CURRENCY SIGN
-+<U04E3>     /xa5         CYRILLIC SMALL LETTER I WITH MACRON
-+<U00A6>     /xa6         BROKEN BAR
-+<U00A7>     /xa7         SECTION SIGN
-+<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U00AC>     /xac         NOT SIGN
-+<U00AD>     /xad         SOFT HYPHEN
-+<U00AE>     /xae         REGISTERED SIGN
-+<U00B0>     /xb0         DEGREE SIGN
-+<U00B1>     /xb1         PLUS-MINUS SIGN
-+<U00B2>     /xb2         SUPERSCRIPT TWO
-+<U0401>     /xb3         CYRILLIC CAPITAL LETTER IE
-+<U04E2>     /xb5         CYRILLIC CAPITAL LETTER I WITH MACRON
-+<U00B6>     /xb6         PILCROW SIGN
-+<U00B7>     /xb7         MIDDLE DOT
-+<U2116>     /xb9         NUMERO SIGN
-+<U00BB>     /xbb         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U00A9>     /xbf         COPYRIGHT SIGN
-+<U044E>     /xc0         CYRILLIC SMALL LETTER YU
-+<U0430>     /xc1         CYRILLIC SMALL LETTER A
-+<U0431>     /xc2         CYRILLIC SMALL LETTER BE
-+<U0446>     /xc3         CYRILLIC SMALL LETTER TSE
-+<U0434>     /xc4         CYRILLIC SMALL LETTER DE
-+<U0435>     /xc5         CYRILLIC SMALL LETTER IE
-+<U0444>     /xc6         CYRILLIC SMALL LETTER EF
-+<U0433>     /xc7         CYRILLIC SMALL LETTER GHE
-+<U0445>     /xc8         CYRILLIC SMALL LETTER HA
-+<U0438>     /xc9         CYRILLIC SMALL LETTER I
-+<U0439>     /xca         CYRILLIC SMALL LETTER SHORT I
-+<U043A>     /xcb         CYRILLIC SMALL LETTER KA
-+<U043B>     /xcc         CYRILLIC SMALL LETTER EL
-+<U043C>     /xcd         CYRILLIC SMALL LETTER EM
-+<U043D>     /xce         CYRILLIC SMALL LETTER EN
-+<U043E>     /xcf         CYRILLIC SMALL LETTER O
-+<U043F>     /xd0         CYRILLIC SMALL LETTER PE
-+<U044F>     /xd1         CYRILLIC SMALL LETTER YA
-+<U0440>     /xd2         CYRILLIC SMALL LETTER ER
-+<U0441>     /xd3         CYRILLIC SMALL LETTER ES
-+<U0442>     /xd4         CYRILLIC SMALL LETTER TE
-+<U0443>     /xd5         CYRILLIC SMALL LETTER U
-+<U0436>     /xd6         CYRILLIC SMALL LETTER ZHE
-+<U0432>     /xd7         CYRILLIC SMALL LETTER VE
-+<U044C>     /xd8         CYRILLIC SMALL LETTER SOFT SIGN
-+<U044B>     /xd9         CYRILLIC SMALL LETTER YERU
-+<U0437>     /xda         CYRILLIC SMALL LETTER ZE
-+<U0448>     /xdb         CYRILLIC SMALL LETTER SHA
-+<U044D>     /xdc         CYRILLIC SMALL LETTER E
-+<U0449>     /xdd         CYRILLIC SMALL LETTER SHCHA
-+<U0447>     /xde         CYRILLIC SMALL LETTER CHE
-+<U044A>     /xdf         CYRILLIC SMALL LETTER HARD SIGN
-+<U042E>     /xe0         CYRILLIC CAPITAL LETTER YU
-+<U0410>     /xe1         CYRILLIC CAPITAL LETTER A
-+<U0411>     /xe2         CYRILLIC CAPITAL LETTER BE
-+<U0426>     /xe3         CYRILLIC CAPITAL LETTER TSE
-+<U0414>     /xe4         CYRILLIC CAPITAL LETTER DE
-+<U0415>     /xe5         CYRILLIC CAPITAL LETTER IE
-+<U0424>     /xe6         CYRILLIC CAPITAL LETTER EF
-+<U0413>     /xe7         CYRILLIC CAPITAL LETTER GHE
-+<U0425>     /xe8         CYRILLIC CAPITAL LETTER HA
-+<U0418>     /xe9         CYRILLIC CAPITAL LETTER I
-+<U0419>     /xea         CYRILLIC CAPITAL LETTER SHORT I
-+<U041A>     /xeb         CYRILLIC CAPITAL LETTER KA
-+<U041B>     /xec         CYRILLIC CAPITAL LETTER EL
-+<U041C>     /xed         CYRILLIC CAPITAL LETTER EM
-+<U041D>     /xee         CYRILLIC CAPITAL LETTER EN
-+<U041E>     /xef         CYRILLIC CAPITAL LETTER O
-+<U041F>     /xf0         CYRILLIC CAPITAL LETTER PE
-+<U042F>     /xf1         CYRILLIC CAPITAL LETTER YA
-+<U0420>     /xf2         CYRILLIC CAPITAL LETTER ER
-+<U0421>     /xf3         CYRILLIC CAPITAL LETTER ES
-+<U0422>     /xf4         CYRILLIC CAPITAL LETTER TE
-+<U0423>     /xf5         CYRILLIC CAPITAL LETTER U
-+<U0416>     /xf6         CYRILLIC CAPITAL LETTER ZHE
-+<U0412>     /xf7         CYRILLIC CAPITAL LETTER VE
-+<U042C>     /xf8         CYRILLIC CAPITAL LETTER SOFT SIGN
-+<U042B>     /xf9         CYRILLIC CAPITAL LETTER YERU
-+<U0417>     /xfa         CYRILLIC CAPITAL LETTER ZE
-+<U0428>     /xfb         CYRILLIC CAPITAL LETTER SHA
-+<U042D>     /xfc         CYRILLIC CAPITAL LETTER E
-+<U0429>     /xfd         CYRILLIC CAPITAL LETTER SHCHA
-+<U0427>     /xfe         CYRILLIC CAPITAL LETTER CHE
-+<U042A>     /xff         CYRILLIC CAPITAL LETTER HARD SIGN
-+END CHARMAP
-+<code_set_name> KOI8-T
-+<comment_char> %
-+<escape_char> /
- 
- % Author: Michael Davis <tajik_fonts@iname.com>
- % URL:    http://www.traveltajikistan.com/fonts
---- glibc-2.3.1/localedata/charmaps/KHMER-NS.new-charsets	2002-11-25 10:32:12.000000000 -0500
-+++ glibc-2.3.1/localedata/charmaps/KHMER-NS	2002-11-25 10:32:12.000000000 -0500
+diff -uNr glibc-2.3.3/localedata/charmaps/KHMER-NS glibc-2.3.3.charsets/localedata/charmaps/KHMER-NS
+--- glibc-2.3.3/localedata/charmaps/KHMER-NS	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/KHMER-NS	Mon Jan 12 23:47:54 2004
 @@ -0,0 +1,263 @@
 +<code_set_name> KHMER-NS
 +<comment_char> %
@@ -3050,4 +2069,1052 @@
 +<U17E8>     /x97         KHMER DIGIT  PRAM BAY 	(8)
 +<U17E9>     /x98         KHMER DIGIT  PRAM BOURN	(9)
 +%
++END CHARMAP
+diff -uNr glibc-2.3.3/localedata/charmaps/KOI8-C glibc-2.3.3.charsets/localedata/charmaps/KOI8-C
+--- glibc-2.3.3/localedata/charmaps/KOI8-C	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/KOI8-C	Tue Jan 13 12:45:42 2004
+@@ -0,0 +1,267 @@
++<code_set_name> KOI8-C
++<comment_char> %
++<escape_char> /
++% version: 1.0
++% repertoiremap: mnemonic,ds
++%  source: http://www.fortunecity.com/victorian/twain/286/TL/LS/KOI8-C.txt
++%
++% Author: Andrzej Krzysztofowicz <ankry@mif.pg.gda.pl>
++
++CHARMAP
++<U0000>     /x00         NULL (NUL)
++<U0001>     /x01         START OF HEADING (SOH)
++<U0002>     /x02         START OF TEXT (STX)
++<U0003>     /x03         END OF TEXT (ETX)
++<U0004>     /x04         END OF TRANSMISSION (EOT)
++<U0005>     /x05         ENQUIRY (ENQ)
++<U0006>     /x06         ACKNOWLEDGE (ACK)
++<U0007>     /x07         BELL (BEL)
++<U0008>     /x08         BACKSPACE (BS)
++<U0009>     /x09         CHARACTER TABULATION (HT)
++<U000A>     /x0a         LINE FEED (LF)
++<U000B>     /x0b         LINE TABULATION (VT)
++<U000C>     /x0c         FORM FEED (FF)
++<U000D>     /x0d         CARRIAGE RETURN (CR)
++<U000E>     /x0e         SHIFT OUT (SO)
++<U000F>     /x0f         SHIFT IN (SI)
++<U0010>     /x10         DATALINK ESCAPE (DLE)
++<U0011>     /x11         DEVICE CONTROL ONE (DC1)
++<U0012>     /x12         DEVICE CONTROL TWO (DC2)
++<U0013>     /x13         DEVICE CONTROL THREE (DC3)
++<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
++<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
++<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
++<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
++<U0018>     /x18         CANCEL (CAN)
++<U0019>     /x19         END OF MEDIUM (EM)
++<U001A>     /x1a         SUBSTITUTE (SUB)
++<U001B>     /x1b         ESCAPE (ESC)
++<U001C>     /x1c         FILE SEPARATOR (IS4)
++<U001D>     /x1d         GROUP SEPARATOR (IS3)
++<U001E>     /x1e         RECORD SEPARATOR (IS2)
++<U001F>     /x1f         UNIT SEPARATOR (IS1)
++<U0020>     /x20         SPACE
++<U0021>     /x21         EXCLAMATION MARK
++<U0022>     /x22         QUOTATION MARK
++<U0023>     /x23         NUMBER SIGN
++<U0024>     /x24         DOLLAR SIGN
++<U0025>     /x25         PERCENT SIGN
++<U0026>     /x26         AMPERSAND
++<U0027>     /x27         APOSTROPHE
++<U0028>     /x28         LEFT PARENTHESIS
++<U0029>     /x29         RIGHT PARENTHESIS
++<U002A>     /x2a         ASTERISK
++<U002B>     /x2b         PLUS SIGN
++<U002C>     /x2c         COMMA
++<U002D>     /x2d         HYPHEN-MINUS
++<U002E>     /x2e         FULL STOP
++<U002F>     /x2f         SOLIDUS
++<U0030>     /x30         DIGIT ZERO
++<U0031>     /x31         DIGIT ONE
++<U0032>     /x32         DIGIT TWO
++<U0033>     /x33         DIGIT THREE
++<U0034>     /x34         DIGIT FOUR
++<U0035>     /x35         DIGIT FIVE
++<U0036>     /x36         DIGIT SIX
++<U0037>     /x37         DIGIT SEVEN
++<U0038>     /x38         DIGIT EIGHT
++<U0039>     /x39         DIGIT NINE
++<U003A>     /x3a         COLON
++<U003B>     /x3b         SEMICOLON
++<U003C>     /x3c         LESS-THAN SIGN
++<U003D>     /x3d         EQUALS SIGN
++<U003E>     /x3e         GREATER-THAN SIGN
++<U003F>     /x3f         QUESTION MARK
++<U0040>     /x40         COMMERCIAL AT
++<U0041>     /x41         LATIN CAPITAL LETTER A
++<U0042>     /x42         LATIN CAPITAL LETTER B
++<U0043>     /x43         LATIN CAPITAL LETTER C
++<U0044>     /x44         LATIN CAPITAL LETTER D
++<U0045>     /x45         LATIN CAPITAL LETTER E
++<U0046>     /x46         LATIN CAPITAL LETTER F
++<U0047>     /x47         LATIN CAPITAL LETTER G
++<U0048>     /x48         LATIN CAPITAL LETTER H
++<U0049>     /x49         LATIN CAPITAL LETTER I
++<U004A>     /x4a         LATIN CAPITAL LETTER J
++<U004B>     /x4b         LATIN CAPITAL LETTER K
++<U004C>     /x4c         LATIN CAPITAL LETTER L
++<U004D>     /x4d         LATIN CAPITAL LETTER M
++<U004E>     /x4e         LATIN CAPITAL LETTER N
++<U004F>     /x4f         LATIN CAPITAL LETTER O
++<U0050>     /x50         LATIN CAPITAL LETTER P
++<U0051>     /x51         LATIN CAPITAL LETTER Q
++<U0052>     /x52         LATIN CAPITAL LETTER R
++<U0053>     /x53         LATIN CAPITAL LETTER S
++<U0054>     /x54         LATIN CAPITAL LETTER T
++<U0055>     /x55         LATIN CAPITAL LETTER U
++<U0056>     /x56         LATIN CAPITAL LETTER V
++<U0057>     /x57         LATIN CAPITAL LETTER W
++<U0058>     /x58         LATIN CAPITAL LETTER X
++<U0059>     /x59         LATIN CAPITAL LETTER Y
++<U005A>     /x5a         LATIN CAPITAL LETTER Z
++<U005B>     /x5b         LEFT SQUARE BRACKET
++<U005C>     /x5c         REVERSE SOLIDUS
++<U005D>     /x5d         RIGHT SQUARE BRACKET
++<U005E>     /x5e         CIRCUMFLEX ACCENT
++<U005F>     /x5f         LOW LINE
++<U0060>     /x60         GRAVE ACCENT
++<U0061>     /x61         LATIN SMALL LETTER A
++<U0062>     /x62         LATIN SMALL LETTER B
++<U0063>     /x63         LATIN SMALL LETTER C
++<U0064>     /x64         LATIN SMALL LETTER D
++<U0065>     /x65         LATIN SMALL LETTER E
++<U0066>     /x66         LATIN SMALL LETTER F
++<U0067>     /x67         LATIN SMALL LETTER G
++<U0068>     /x68         LATIN SMALL LETTER H
++<U0069>     /x69         LATIN SMALL LETTER I
++<U006A>     /x6a         LATIN SMALL LETTER J
++<U006B>     /x6b         LATIN SMALL LETTER K
++<U006C>     /x6c         LATIN SMALL LETTER L
++<U006D>     /x6d         LATIN SMALL LETTER M
++<U006E>     /x6e         LATIN SMALL LETTER N
++<U006F>     /x6f         LATIN SMALL LETTER O
++<U0070>     /x70         LATIN SMALL LETTER P
++<U0071>     /x71         LATIN SMALL LETTER Q
++<U0072>     /x72         LATIN SMALL LETTER R
++<U0073>     /x73         LATIN SMALL LETTER S
++<U0074>     /x74         LATIN SMALL LETTER T
++<U0075>     /x75         LATIN SMALL LETTER U
++<U0076>     /x76         LATIN SMALL LETTER V
++<U0077>     /x77         LATIN SMALL LETTER W
++<U0078>     /x78         LATIN SMALL LETTER X
++<U0079>     /x79         LATIN SMALL LETTER Y
++<U007A>     /x7a         LATIN SMALL LETTER Z
++<U007B>     /x7b         LEFT CURLY BRACKET
++<U007C>     /x7c         VERTICAL LINE
++<U007D>     /x7d         RIGHT CURLY BRACKET
++<U007E>     /x7e         TILDE
++<U007F>     /x7f         DELETE (DEL)
++<U0402>     /x80         CYRILLIC CAPITAL LETTER DJE (Serbocroatian)
++<U0403>     /x81         CYRILLIC CAPITAL LETTER GJE
++<U00B8>     /x82         CEDILLA
++<U0453>     /x83         CYRILLIC SMALL LETTER GJE
++<U201E>     /x84         DOUBLE LOW-9 QUOTATION MARK
++<U2026>     /x85         HORIZONTAL ELLIPSIS
++<U2020>     /x86         DAGGER
++<U00A7>     /x87         SECTION SIGN
++<U20AC>     /x88         EURO SIGN
++<U00A8>     /x89         DIAERESIS
++<U0409>     /x8a         CYRILLIC CAPITAL LETTER LJE
++<U2039>     /x8b         SINGLE LEFT-POINTING ANGLE QUOTATION MARK
++<U040A>     /x8c         CYRILLIC CAPITAL LETTER NJE
++<U040C>     /x8d         CYRILLIC CAPITAL LETTER KJE
++<U040B>     /x8e         CYRILLIC CAPITAL LETTER TSHE (Serbocroatian)
++<U040F>     /x8f         CYRILLIC CAPITAL LETTER DZHE
++<U0452>     /x90         CYRILLIC SMALL LETTER DJE (Serbocroatian)
++<U2018>     /x91         LEFT SINGLE QUOTATION MARK
++<U2019>     /x92         RIGHT SINGLE QUOTATION MARK
++<U201C>     /x93         LEFT DOUBLE QUOTATION MARK
++<U201D>     /x94         RIGHT DOUBLE QUOTATION MARK
++<U2022>     /x95         BULLET
++<U2013>     /x96         EN DASH
++<U2014>     /x97         EM DASH
++<U00A3>     /x98         POUND SIGN
++<U00B7>     /x99         MIDDLE DOT
++<U0459>     /x9a         CYRILLIC SMALL LETTER LJE
++<U203A>     /x9b         SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
++<U045A>     /x9c         CYRILLIC SMALL LETTER NJE
++<U045C>     /x9d         CYRILLIC SMALL LETTER KJE
++<U045B>     /x9e         CYRILLIC SMALL LETTER TSHE (Serbocroatian)
++<U045F>     /x9f         CYRILLIC SMALL LETTER DZHE
++<U00A0>     /xa0         NON BREAKING SPACE
++<U0475>     /xa1         CYRILLIC SMALL LETTER IZHITSA
++<U0463>     /xa2         CYRILLIC SMALL LETTER YAT'
++<U0451>     /xa3         CYRILLIC SMALL LETTER IO
++<U0454>     /xa4         CYRILLIC SMALL LETTER UKRAINIAN IE
++<U0455>     /xa5         CYRILLIC SMALL LETTER DZE
++<U0456>     /xa6         CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
++<U0457>     /xa7         CYRILLIC SMALL LETTER YI (Ukrainian)
++<U0458>     /xa8         CYRILLIC SMALL LETTER JE
++<U04AE>     /xa9         REGISTERED SIGN
++<U2122>     /xaa         TRADE MARK SIGN
++<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U0473>     /xac         CYRILLIC SMALL LETTER FITA
++<U0491>     /xad         CYRILLIC SMALL LETTER GHE WITH UPTURN
++<U045E>     /xae         CYRILLIC SMALL LETTER SHORT U (Byelorussian)
++<U00B4>     /xaf         ACUTE ACCENT
++<U00B0>     /xb0         DEGREE SIGN
++<U0474>     /xb1         CYRILLIC CAPITAL LETTER IZHITSA
++<U0462>     /xb2         CYRILLIC CAPITAL LETTER YAT'
++<U0401>     /xb3         CYRILLIC CAPITAL LETTER IO
++<U0404>     /xb4         CYRILLIC CAPITAL LETTER UKRAINIAN IE
++<U0405>     /xb5         CYRILLIC CAPITAL LETTER DZE
++<U0406>     /xb6         CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
++<U0407>     /xb7         CYRILLIC CAPITAL LETTER YI (Ukrainian)
++<U0408>     /xb8         CYRILLIC CAPITAL LETTER JE
++<U2116>     /xb9         NUMERO SIGN
++<U00A2>     /xba         CENT SIGN
++<U00BB>     /xbb         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U0472>     /xbc         CYRILLIC CAPITAL LETTER FITA
++<U0490>     /xbd         CYRILLIC CAPITAL LETTER GHE WITH UPTURN
++<U040E>     /xbe         CYRILLIC CAPITAL LETTER SHORT U (Byelorussian)
++<U00A9>     /xbf         COPYRIGHT SIGN
++<U044E>     /xc0         CYRILLIC SMALL LETTER YU
++<U0430>     /xc1         CYRILLIC SMALL LETTER A
++<U0431>     /xc2         CYRILLIC SMALL LETTER BE
++<U0446>     /xc3         CYRILLIC SMALL LETTER TSE
++<U0434>     /xc4         CYRILLIC SMALL LETTER DE
++<U0435>     /xc5         CYRILLIC SMALL LETTER IE
++<U0444>     /xc6         CYRILLIC SMALL LETTER EF
++<U0433>     /xc7         CYRILLIC SMALL LETTER GHE
++<U0445>     /xc8         CYRILLIC SMALL LETTER HA
++<U0438>     /xc9         CYRILLIC SMALL LETTER I
++<U0439>     /xca         CYRILLIC SMALL LETTER SHORT I
++<U043A>     /xcb         CYRILLIC SMALL LETTER KA
++<U043B>     /xcc         CYRILLIC SMALL LETTER EL
++<U043C>     /xcd         CYRILLIC SMALL LETTER EM
++<U043D>     /xce         CYRILLIC SMALL LETTER EN
++<U043E>     /xcf         CYRILLIC SMALL LETTER O
++<U043F>     /xd0         CYRILLIC SMALL LETTER PE
++<U044F>     /xd1         CYRILLIC SMALL LETTER YA
++<U0440>     /xd2         CYRILLIC SMALL LETTER ER
++<U0441>     /xd3         CYRILLIC SMALL LETTER ES
++<U0442>     /xd4         CYRILLIC SMALL LETTER TE
++<U0443>     /xd5         CYRILLIC SMALL LETTER U
++<U0436>     /xd6         CYRILLIC SMALL LETTER ZHE
++<U0432>     /xd7         CYRILLIC SMALL LETTER VE
++<U044C>     /xd8         CYRILLIC SMALL LETTER SOFT SIGN
++<U044B>     /xd9         CYRILLIC SMALL LETTER YERU
++<U0437>     /xda         CYRILLIC SMALL LETTER ZE
++<U0448>     /xdb         CYRILLIC SMALL LETTER SHA
++<U044D>     /xdc         CYRILLIC SMALL LETTER E
++<U0449>     /xdd         CYRILLIC SMALL LETTER SHCHA
++<U0447>     /xde         CYRILLIC SMALL LETTER CHE
++<U044A>     /xdf         CYRILLIC SMALL LETTER HARD SIGN
++<U042E>     /xe0         CYRILLIC CAPITAL LETTER YU
++<U0410>     /xe1         CYRILLIC CAPITAL LETTER A
++<U0411>     /xe2         CYRILLIC CAPITAL LETTER BE
++<U0426>     /xe3         CYRILLIC CAPITAL LETTER TSE
++<U0414>     /xe4         CYRILLIC CAPITAL LETTER DE
++<U0415>     /xe5         CYRILLIC CAPITAL LETTER IE
++<U0424>     /xe6         CYRILLIC CAPITAL LETTER EF
++<U0413>     /xe7         CYRILLIC CAPITAL LETTER GHE
++<U0425>     /xe8         CYRILLIC CAPITAL LETTER HA
++<U0418>     /xe9         CYRILLIC CAPITAL LETTER I
++<U0419>     /xea         CYRILLIC CAPITAL LETTER SHORT I
++<U041A>     /xeb         CYRILLIC CAPITAL LETTER KA
++<U041B>     /xec         CYRILLIC CAPITAL LETTER EL
++<U041C>     /xed         CYRILLIC CAPITAL LETTER EM
++<U041D>     /xee         CYRILLIC CAPITAL LETTER EN
++<U041E>     /xef         CYRILLIC CAPITAL LETTER O
++<U041F>     /xf0         CYRILLIC CAPITAL LETTER PE
++<U042F>     /xf1         CYRILLIC CAPITAL LETTER YA
++<U0420>     /xf2         CYRILLIC CAPITAL LETTER ER
++<U0421>     /xf3         CYRILLIC CAPITAL LETTER ES
++<U0422>     /xf4         CYRILLIC CAPITAL LETTER TE
++<U0423>     /xf5         CYRILLIC CAPITAL LETTER U
++<U0416>     /xf6         CYRILLIC CAPITAL LETTER ZHE
++<U0412>     /xf7         CYRILLIC CAPITAL LETTER VE
++<U042C>     /xf8         CYRILLIC CAPITAL LETTER SOFT SIGN
++<U042B>     /xf9         CYRILLIC CAPITAL LETTER YERU
++<U0417>     /xfa         CYRILLIC CAPITAL LETTER ZE
++<U0428>     /xfb         CYRILLIC CAPITAL LETTER SHA
++<U042D>     /xfc         CYRILLIC CAPITAL LETTER E
++<U0429>     /xfd         CYRILLIC CAPITAL LETTER SHCHA
++<U0427>     /xfe         CYRILLIC CAPITAL LETTER CHE
++<U042A>     /xff         CYRILLIC CAPITAL LETTER HARD SIGN
++END CHARMAP
+diff -uNr glibc-2.3.3/localedata/charmaps/KOI8-K glibc-2.3.3.charsets/localedata/charmaps/KOI8-K
+--- glibc-2.3.3/localedata/charmaps/KOI8-K	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/KOI8-K	Tue Jan 13 01:06:43 2004
+@@ -0,0 +1,264 @@
++<code_set_name> KOI8-K
++<comment_char> %
++<escape_char> /
++% version: 1.1
++% repertoiremap: mnemonic,ds
++
++CHARMAP
++<U0000>     /x00         NULL (NUL)
++<U0001>     /x01         START OF HEADING (SOH)
++<U0002>     /x02         START OF TEXT (STX)
++<U0003>     /x03         END OF TEXT (ETX)
++<U0004>     /x04         END OF TRANSMISSION (EOT)
++<U0005>     /x05         ENQUIRY (ENQ)
++<U0006>     /x06         ACKNOWLEDGE (ACK)
++<U0007>     /x07         BELL (BEL)
++<U0008>     /x08         BACKSPACE (BS)
++<U0009>     /x09         CHARACTER TABULATION (HT)
++<U000A>     /x0a         LINE FEED (LF)
++<U000B>     /x0b         LINE TABULATION (VT)
++<U000C>     /x0c         FORM FEED (FF)
++<U000D>     /x0d         CARRIAGE RETURN (CR)
++<U000E>     /x0e         SHIFT OUT (SO)
++<U000F>     /x0f         SHIFT IN (SI)
++<U0010>     /x10         DATALINK ESCAPE (DLE)
++<U0011>     /x11         DEVICE CONTROL ONE (DC1)
++<U0012>     /x12         DEVICE CONTROL TWO (DC2)
++<U0013>     /x13         DEVICE CONTROL THREE (DC3)
++<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
++<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
++<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
++<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
++<U0018>     /x18         CANCEL (CAN)
++<U0019>     /x19         END OF MEDIUM (EM)
++<U001A>     /x1a         SUBSTITUTE (SUB)
++<U001B>     /x1b         ESCAPE (ESC)
++<U001C>     /x1c         FILE SEPARATOR (IS4)
++<U001D>     /x1d         GROUP SEPARATOR (IS3)
++<U001E>     /x1e         RECORD SEPARATOR (IS2)
++<U001F>     /x1f         UNIT SEPARATOR (IS1)
++<U0020>     /x20         SPACE
++<U0021>     /x21         EXCLAMATION MARK
++<U0022>     /x22         QUOTATION MARK
++<U0023>     /x23         NUMBER SIGN
++<U0024>     /x24         DOLLAR SIGN
++<U0025>     /x25         PERCENT SIGN
++<U0026>     /x26         AMPERSAND
++<U0027>     /x27         APOSTROPHE
++<U0028>     /x28         LEFT PARENTHESIS
++<U0029>     /x29         RIGHT PARENTHESIS
++<U002A>     /x2a         ASTERISK
++<U002B>     /x2b         PLUS SIGN
++<U002C>     /x2c         COMMA
++<U002D>     /x2d         HYPHEN-MINUS
++<U002E>     /x2e         FULL STOP
++<U002F>     /x2f         SOLIDUS
++<U0030>     /x30         DIGIT ZERO
++<U0031>     /x31         DIGIT ONE
++<U0032>     /x32         DIGIT TWO
++<U0033>     /x33         DIGIT THREE
++<U0034>     /x34         DIGIT FOUR
++<U0035>     /x35         DIGIT FIVE
++<U0036>     /x36         DIGIT SIX
++<U0037>     /x37         DIGIT SEVEN
++<U0038>     /x38         DIGIT EIGHT
++<U0039>     /x39         DIGIT NINE
++<U003A>     /x3a         COLON
++<U003B>     /x3b         SEMICOLON
++<U003C>     /x3c         LESS-THAN SIGN
++<U003D>     /x3d         EQUALS SIGN
++<U003E>     /x3e         GREATER-THAN SIGN
++<U003F>     /x3f         QUESTION MARK
++<U0040>     /x40         COMMERCIAL AT
++<U0041>     /x41         LATIN CAPITAL LETTER A
++<U0042>     /x42         LATIN CAPITAL LETTER B
++<U0043>     /x43         LATIN CAPITAL LETTER C
++<U0044>     /x44         LATIN CAPITAL LETTER D
++<U0045>     /x45         LATIN CAPITAL LETTER E
++<U0046>     /x46         LATIN CAPITAL LETTER F
++<U0047>     /x47         LATIN CAPITAL LETTER G
++<U0048>     /x48         LATIN CAPITAL LETTER H
++<U0049>     /x49         LATIN CAPITAL LETTER I
++<U004A>     /x4a         LATIN CAPITAL LETTER J
++<U004B>     /x4b         LATIN CAPITAL LETTER K
++<U004C>     /x4c         LATIN CAPITAL LETTER L
++<U004D>     /x4d         LATIN CAPITAL LETTER M
++<U004E>     /x4e         LATIN CAPITAL LETTER N
++<U004F>     /x4f         LATIN CAPITAL LETTER O
++<U0050>     /x50         LATIN CAPITAL LETTER P
++<U0051>     /x51         LATIN CAPITAL LETTER Q
++<U0052>     /x52         LATIN CAPITAL LETTER R
++<U0053>     /x53         LATIN CAPITAL LETTER S
++<U0054>     /x54         LATIN CAPITAL LETTER T
++<U0055>     /x55         LATIN CAPITAL LETTER U
++<U0056>     /x56         LATIN CAPITAL LETTER V
++<U0057>     /x57         LATIN CAPITAL LETTER W
++<U0058>     /x58         LATIN CAPITAL LETTER X
++<U0059>     /x59         LATIN CAPITAL LETTER Y
++<U005A>     /x5a         LATIN CAPITAL LETTER Z
++<U005B>     /x5b         LEFT SQUARE BRACKET
++<U005C>     /x5c         REVERSE SOLIDUS
++<U005D>     /x5d         RIGHT SQUARE BRACKET
++<U005E>     /x5e         CIRCUMFLEX ACCENT
++<U005F>     /x5f         LOW LINE
++<U0060>     /x60         GRAVE ACCENT
++<U0061>     /x61         LATIN SMALL LETTER A
++<U0062>     /x62         LATIN SMALL LETTER B
++<U0063>     /x63         LATIN SMALL LETTER C
++<U0064>     /x64         LATIN SMALL LETTER D
++<U0065>     /x65         LATIN SMALL LETTER E
++<U0066>     /x66         LATIN SMALL LETTER F
++<U0067>     /x67         LATIN SMALL LETTER G
++<U0068>     /x68         LATIN SMALL LETTER H
++<U0069>     /x69         LATIN SMALL LETTER I
++<U006A>     /x6a         LATIN SMALL LETTER J
++<U006B>     /x6b         LATIN SMALL LETTER K
++<U006C>     /x6c         LATIN SMALL LETTER L
++<U006D>     /x6d         LATIN SMALL LETTER M
++<U006E>     /x6e         LATIN SMALL LETTER N
++<U006F>     /x6f         LATIN SMALL LETTER O
++<U0070>     /x70         LATIN SMALL LETTER P
++<U0071>     /x71         LATIN SMALL LETTER Q
++<U0072>     /x72         LATIN SMALL LETTER R
++<U0073>     /x73         LATIN SMALL LETTER S
++<U0074>     /x74         LATIN SMALL LETTER T
++<U0075>     /x75         LATIN SMALL LETTER U
++<U0076>     /x76         LATIN SMALL LETTER V
++<U0077>     /x77         LATIN SMALL LETTER W
++<U0078>     /x78         LATIN SMALL LETTER X
++<U0079>     /x79         LATIN SMALL LETTER Y
++<U007A>     /x7a         LATIN SMALL LETTER Z
++<U007B>     /x7b         LEFT CURLY BRACKET
++<U007C>     /x7c         VERTICAL LINE
++<U007D>     /x7d         RIGHT CURLY BRACKET
++<U007E>     /x7e         TILDE
++<U007F>     /x7f         DELETE (DEL)
++<U0493>     /x80         CYRILLIC SMALL LETTER GHE WITH STROKE
++<U0497>     /x81         CYRILLIC SMALL LETTER ZHE WITH DESCENDER
++<U049B>     /x82         CYRILLIC SMALL LETTER KA WITH DESCENDER
++<U049D>     /x83         CYRILLIC SMALL LETTER KA WITH VERTICAL STROKE
++<U04A3>     /x84         CYRILLIC SMALL LETTER EN WITH DESCENDER
++<U04AF>     /x85         CYRILLIC SMALL LETTER STRAIGHT U
++<U04B1>     /x86         CYRILLIC SMALL LETTER STRAIGHT U WITH STROKE
++<U04B3>     /x87         CYRILLIC SMALL LETTER HA WITH DESCENDER
++<U04B7>     /x88         CYRILLIC SMALL LETTER CHE WITH DESCENDER
++<U04B9>     /x89         CYRILLIC SMALL LETTER CHE WITH VERTICAL STROKE
++<U04BB>     /x8a         CYRILLIC SMALL LETTER SHHA
++              
++<U04D9>     /x8c         CYRILLIC SMALL LETTER SCHWA
++<U04E3>     /x8d         CYRILLIC SMALL LETTER I WITH MACRON
++<U04E9>     /x8e         CYRILLIC SMALL LETTER BARRED O
++<U04EF>     /x8f         CYRILLIC SMALL LETTER U WITH MACRON
++<U0492>     /x90         CYRILLIC CAPITAL LETTER GHE WITH STROKE
++<U0496>     /x91         CYRILLIC CAPITAL LETTER ZHE WITH DESCENDER
++<U049A>     /x92         CYRILLIC CAPITAL LETTER KA WITH DESCENDER
++<U049C>     /x93         CYRILLIC CAPITAL LETTER KA WITH VERTICAL STROKE
++<U04A2>     /x94         CYRILLIC CAPITAL LETTER EN WITH DESCENDER
++<U04AE>     /x95         CYRILLIC CAPITAL LETTER STRAIGHT U
++<U04B0>     /x96         CYRILLIC CAPITAL LETTER STRAIGHT U WITH STROKE
++<U04B2>     /x97         CYRILLIC CAPITAL LETTER HA WITH DESCENDER
++<U04B6>     /x98         CYRILLIC CAPITAL LETTER CHE WITH DESCENDER
++<U04B8>     /x99         CYRILLIC CAPITAL LETTER CHE WITH VERTICAL STROKE
++<U04BA>     /x9a         CYRILLIC CAPITAL LETTER SHHA
++              
++<U04D8>     /x9c         CYRILLIC CAPITAL LETTER SCHWA
++<U04E2>     /x9d         CYRILLIC CAPITAL LETTER I WITH MACRON
++<U04E8>     /x9e         CYRILLIC CAPITAL LETTER BARRED O
++<U04EE>     /x9f         CYRILLIC CAPITAL LETTER U WITH MACRON
++<U00A0>     /xa0         NON BREAKING SPACE
++<U0452>     /xa1         CYRILLIC SMALL LETTER DJE (Serbocroatian)
++<U0453>     /xa2         CYRILLIC SMALL LETTER GJE
++<U0451>     /xa3         CYRILLIC SMALL LETTER IO
++<U0454>     /xa4         CYRILLIC SMALL LETTER UKRAINIAN IE
++<U0455>     /xa5         CYRILLIC SMALL LETTER DZE
++<U0456>     /xa6         CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
++<U0457>     /xa7         CYRILLIC SMALL LETTER YI (Ukrainian)
++<U0458>     /xa8         CYRILLIC SMALL LETTER JE
++<U0459>     /xa9         CYRILLIC SMALL LETTER LJE
++<U045A>     /xaa         CYRILLIC SMALL LETTER NJE
++<U045B>     /xab         CYRILLIC SMALL LETTER TSHE (Serbocroatian)
++<U045C>     /xac         CYRILLIC SMALL LETTER KJE
++<U0491>     /xad         CYRILLIC SMALL LETTER GHE WITH UPTURN
++<U045E>     /xae         CYRILLIC SMALL LETTER SHORT U (Byelorussian)
++<U045F>     /xaf         CYRILLIC SMALL LETTER DZHE
++<U2116>     /xb0         NUMERO SIGN
++<U0402>     /xb1         CYRILLIC CAPITAL LETTER DJE (Serbocroatian)
++<U0403>     /xb2         CYRILLIC CAPITAL LETTER GJE
++<U0401>     /xb3         CYRILLIC CAPITAL LETTER IO
++<U0404>     /xb4         CYRILLIC CAPITAL LETTER UKRAINIAN IE
++<U0405>     /xb5         CYRILLIC CAPITAL LETTER DZE
++<U0406>     /xb6         CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
++<U0407>     /xb7         CYRILLIC CAPITAL LETTER YI (Ukrainian)
++<U0408>     /xb8         CYRILLIC CAPITAL LETTER JE
++<U0409>     /xb9         CYRILLIC CAPITAL LETTER LJE
++<U040A>     /xba         CYRILLIC CAPITAL LETTER NJE
++<U040B>     /xbb         CYRILLIC CAPITAL LETTER TSHE (Serbocroatian)
++<U040C>     /xbc         CYRILLIC CAPITAL LETTER KJE
++<U0490>     /xbd         CYRILLIC CAPITAL LETTER GHE WITH UPTURN
++<U040E>     /xbe         CYRILLIC CAPITAL LETTER SHORT U (Byelorussian)
++<U040F>     /xbf         CYRILLIC CAPITAL LETTER DZHE
++<U044E>     /xc0         CYRILLIC SMALL LETTER YU
++<U0430>     /xc1         CYRILLIC SMALL LETTER A
++<U0431>     /xc2         CYRILLIC SMALL LETTER BE
++<U0446>     /xc3         CYRILLIC SMALL LETTER TSE
++<U0434>     /xc4         CYRILLIC SMALL LETTER DE
++<U0435>     /xc5         CYRILLIC SMALL LETTER IE
++<U0444>     /xc6         CYRILLIC SMALL LETTER EF
++<U0433>     /xc7         CYRILLIC SMALL LETTER GHE
++<U0445>     /xc8         CYRILLIC SMALL LETTER HA
++<U0438>     /xc9         CYRILLIC SMALL LETTER I
++<U0439>     /xca         CYRILLIC SMALL LETTER SHORT I
++<U043A>     /xcb         CYRILLIC SMALL LETTER KA
++<U043B>     /xcc         CYRILLIC SMALL LETTER EL
++<U043C>     /xcd         CYRILLIC SMALL LETTER EM
++<U043D>     /xce         CYRILLIC SMALL LETTER EN
++<U043E>     /xcf         CYRILLIC SMALL LETTER O
++<U043F>     /xd0         CYRILLIC SMALL LETTER PE
++<U044F>     /xd1         CYRILLIC SMALL LETTER YA
++<U0440>     /xd2         CYRILLIC SMALL LETTER ER
++<U0441>     /xd3         CYRILLIC SMALL LETTER ES
++<U0442>     /xd4         CYRILLIC SMALL LETTER TE
++<U0443>     /xd5         CYRILLIC SMALL LETTER U
++<U0436>     /xd6         CYRILLIC SMALL LETTER ZHE
++<U0432>     /xd7         CYRILLIC SMALL LETTER VE
++<U044C>     /xd8         CYRILLIC SMALL LETTER SOFT SIGN
++<U044B>     /xd9         CYRILLIC SMALL LETTER YERU
++<U0437>     /xda         CYRILLIC SMALL LETTER ZE
++<U0448>     /xdb         CYRILLIC SMALL LETTER SHA
++<U044D>     /xdc         CYRILLIC SMALL LETTER E
++<U0449>     /xdd         CYRILLIC SMALL LETTER SHCHA
++<U0447>     /xde         CYRILLIC SMALL LETTER CHE
++<U044A>     /xdf         CYRILLIC SMALL LETTER HARD SIGN
++<U042E>     /xe0         CYRILLIC CAPITAL LETTER YU
++<U0410>     /xe1         CYRILLIC CAPITAL LETTER A
++<U0411>     /xe2         CYRILLIC CAPITAL LETTER BE
++<U0426>     /xe3         CYRILLIC CAPITAL LETTER TSE
++<U0414>     /xe4         CYRILLIC CAPITAL LETTER DE
++<U0415>     /xe5         CYRILLIC CAPITAL LETTER IE
++<U0424>     /xe6         CYRILLIC CAPITAL LETTER EF
++<U0413>     /xe7         CYRILLIC CAPITAL LETTER GHE
++<U0425>     /xe8         CYRILLIC CAPITAL LETTER HA
++<U0418>     /xe9         CYRILLIC CAPITAL LETTER I
++<U0419>     /xea         CYRILLIC CAPITAL LETTER SHORT I
++<U041A>     /xeb         CYRILLIC CAPITAL LETTER KA
++<U041B>     /xec         CYRILLIC CAPITAL LETTER EL
++<U041C>     /xed         CYRILLIC CAPITAL LETTER EM
++<U041D>     /xee         CYRILLIC CAPITAL LETTER EN
++<U041E>     /xef         CYRILLIC CAPITAL LETTER O
++<U041F>     /xf0         CYRILLIC CAPITAL LETTER PE
++<U042F>     /xf1         CYRILLIC CAPITAL LETTER YA
++<U0420>     /xf2         CYRILLIC CAPITAL LETTER ER
++<U0421>     /xf3         CYRILLIC CAPITAL LETTER ES
++<U0422>     /xf4         CYRILLIC CAPITAL LETTER TE
++<U0423>     /xf5         CYRILLIC CAPITAL LETTER U
++<U0416>     /xf6         CYRILLIC CAPITAL LETTER ZHE
++<U0412>     /xf7         CYRILLIC CAPITAL LETTER VE
++<U042C>     /xf8         CYRILLIC CAPITAL LETTER SOFT SIGN
++<U042B>     /xf9         CYRILLIC CAPITAL LETTER YERU
++<U0417>     /xfa         CYRILLIC CAPITAL LETTER ZE
++<U0428>     /xfb         CYRILLIC CAPITAL LETTER SHA
++<U042D>     /xfc         CYRILLIC CAPITAL LETTER E
++<U0429>     /xfd         CYRILLIC CAPITAL LETTER SHCHA
++<U0427>     /xfe         CYRILLIC CAPITAL LETTER CHE
++<U042A>     /xff         CYRILLIC CAPITAL LETTER HARD SIGN
++END CHARMAP
+diff -uNr glibc-2.3.3/localedata/charmaps/MULELAO-1 glibc-2.3.3.charsets/localedata/charmaps/MULELAO-1
+--- glibc-2.3.3/localedata/charmaps/MULELAO-1	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/MULELAO-1	Mon Jan 12 23:47:54 2004
+@@ -0,0 +1,236 @@
++<code_set_name> MULELAO-1
++<comment_char> %
++<escape_char> /
++% version: 1.0
++% repertoiremap: mnemonic,ds
++%  source: MULE font & Unicode chart
++
++CHARMAP
++<U0000>     /x00         NULL (NUL)
++<U0001>     /x01         START OF HEADING (SOH)
++<U0002>     /x02         START OF TEXT (STX)
++<U0003>     /x03         END OF TEXT (ETX)
++<U0004>     /x04         END OF TRANSMISSION (EOT)
++<U0005>     /x05         ENQUIRY (ENQ)
++<U0006>     /x06         ACKNOWLEDGE (ACK)
++<U0007>     /x07         BELL (BEL)
++<U0008>     /x08         BACKSPACE (BS)
++<U0009>     /x09         CHARACTER TABULATION (HT)
++<U000A>     /x0a         LINE FEED (LF)
++<U000B>     /x0b         LINE TABULATION (VT)
++<U000C>     /x0c         FORM FEED (FF)
++<U000D>     /x0d         CARRIAGE RETURN (CR)
++<U000E>     /x0e         SHIFT OUT (SO)
++<U000F>     /x0f         SHIFT IN (SI)
++<U0010>     /x10         DATALINK ESCAPE (DLE)
++<U0011>     /x11         DEVICE CONTROL ONE (DC1)
++<U0012>     /x12         DEVICE CONTROL TWO (DC2)
++<U0013>     /x13         DEVICE CONTROL THREE (DC3)
++<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
++<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
++<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
++<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
++<U0018>     /x18         CANCEL (CAN)
++<U0019>     /x19         END OF MEDIUM (EM)
++<U001A>     /x1a         SUBSTITUTE (SUB)
++<U001B>     /x1b         ESCAPE (ESC)
++<U001C>     /x1c         FILE SEPARATOR (IS4)
++<U001D>     /x1d         GROUP SEPARATOR (IS3)
++<U001E>     /x1e         RECORD SEPARATOR (IS2)
++<U001F>     /x1f         UNIT SEPARATOR (IS1)
++<U0020>     /x20         SPACE
++<U0021>     /x21         EXCLAMATION MARK
++<U0022>     /x22         QUOTATION MARK
++<U0023>     /x23         NUMBER SIGN
++<U0024>     /x24         DOLLAR SIGN
++<U0025>     /x25         PERCENT SIGN
++<U0026>     /x26         AMPERSAND
++<U0027>     /x27         APOSTROPHE
++<U0028>     /x28         LEFT PARENTHESIS
++<U0029>     /x29         RIGHT PARENTHESIS
++<U002A>     /x2a         ASTERISK
++<U002B>     /x2b         PLUS SIGN
++<U002C>     /x2c         COMMA
++<U002D>     /x2d         HYPHEN-MINUS
++<U002E>     /x2e         FULL STOP
++<U002F>     /x2f         SOLIDUS
++<U0030>     /x30         DIGIT ZERO
++<U0031>     /x31         DIGIT ONE
++<U0032>     /x32         DIGIT TWO
++<U0033>     /x33         DIGIT THREE
++<U0034>     /x34         DIGIT FOUR
++<U0035>     /x35         DIGIT FIVE
++<U0036>     /x36         DIGIT SIX
++<U0037>     /x37         DIGIT SEVEN
++<U0038>     /x38         DIGIT EIGHT
++<U0039>     /x39         DIGIT NINE
++<U003A>     /x3a         COLON
++<U003B>     /x3b         SEMICOLON
++<U003C>     /x3c         LESS-THAN SIGN
++<U003D>     /x3d         EQUALS SIGN
++<U003E>     /x3e         GREATER-THAN SIGN
++<U003F>     /x3f         QUESTION MARK
++<U0040>     /x40         COMMERCIAL AT
++<U0041>     /x41         LATIN CAPITAL LETTER A
++<U0042>     /x42         LATIN CAPITAL LETTER B
++<U0043>     /x43         LATIN CAPITAL LETTER C
++<U0044>     /x44         LATIN CAPITAL LETTER D
++<U0045>     /x45         LATIN CAPITAL LETTER E
++<U0046>     /x46         LATIN CAPITAL LETTER F
++<U0047>     /x47         LATIN CAPITAL LETTER G
++<U0048>     /x48         LATIN CAPITAL LETTER H
++<U0049>     /x49         LATIN CAPITAL LETTER I
++<U004A>     /x4a         LATIN CAPITAL LETTER J
++<U004B>     /x4b         LATIN CAPITAL LETTER K
++<U004C>     /x4c         LATIN CAPITAL LETTER L
++<U004D>     /x4d         LATIN CAPITAL LETTER M
++<U004E>     /x4e         LATIN CAPITAL LETTER N
++<U004F>     /x4f         LATIN CAPITAL LETTER O
++<U0050>     /x50         LATIN CAPITAL LETTER P
++<U0051>     /x51         LATIN CAPITAL LETTER Q
++<U0052>     /x52         LATIN CAPITAL LETTER R
++<U0053>     /x53         LATIN CAPITAL LETTER S
++<U0054>     /x54         LATIN CAPITAL LETTER T
++<U0055>     /x55         LATIN CAPITAL LETTER U
++<U0056>     /x56         LATIN CAPITAL LETTER V
++<U0057>     /x57         LATIN CAPITAL LETTER W
++<U0058>     /x58         LATIN CAPITAL LETTER X
++<U0059>     /x59         LATIN CAPITAL LETTER Y
++<U005A>     /x5a         LATIN CAPITAL LETTER Z
++<U005B>     /x5b         LEFT SQUARE BRACKET
++<U005C>     /x5c         REVERSE SOLIDUS
++<U005D>     /x5d         RIGHT SQUARE BRACKET
++<U005E>     /x5e         CIRCUMFLEX ACCENT
++<U005F>     /x5f         LOW LINE
++<U0060>     /x60         GRAVE ACCENT
++<U0061>     /x61         LATIN SMALL LETTER A
++<U0062>     /x62         LATIN SMALL LETTER B
++<U0063>     /x63         LATIN SMALL LETTER C
++<U0064>     /x64         LATIN SMALL LETTER D
++<U0065>     /x65         LATIN SMALL LETTER E
++<U0066>     /x66         LATIN SMALL LETTER F
++<U0067>     /x67         LATIN SMALL LETTER G
++<U0068>     /x68         LATIN SMALL LETTER H
++<U0069>     /x69         LATIN SMALL LETTER I
++<U006A>     /x6a         LATIN SMALL LETTER J
++<U006B>     /x6b         LATIN SMALL LETTER K
++<U006C>     /x6c         LATIN SMALL LETTER L
++<U006D>     /x6d         LATIN SMALL LETTER M
++<U006E>     /x6e         LATIN SMALL LETTER N
++<U006F>     /x6f         LATIN SMALL LETTER O
++<U0070>     /x70         LATIN SMALL LETTER P
++<U0071>     /x71         LATIN SMALL LETTER Q
++<U0072>     /x72         LATIN SMALL LETTER R
++<U0073>     /x73         LATIN SMALL LETTER S
++<U0074>     /x74         LATIN SMALL LETTER T
++<U0075>     /x75         LATIN SMALL LETTER U
++<U0076>     /x76         LATIN SMALL LETTER V
++<U0077>     /x77         LATIN SMALL LETTER W
++<U0078>     /x78         LATIN SMALL LETTER X
++<U0079>     /x79         LATIN SMALL LETTER Y
++<U007A>     /x7a         LATIN SMALL LETTER Z
++<U007B>     /x7b         LEFT CURLY BRACKET
++<U007C>     /x7c         VERTICAL LINE
++<U007D>     /x7d         RIGHT CURLY BRACKET
++<U007E>     /x7e         TILDE
++<U007F>     /x7f         DELETE (DEL)
++
++<U00A0>     /xa0         NO-BREAK SPACE
++<U0E81>     /xa1         LAO LETTER KO
++<U0E82>     /xa2         LAO LETTER KHO SUNG
++<U00A3>     /xa3         POUND SIGN
++<U0E84>     /xa4         LAO LETTER KHO TAM
++<U00A5>     /xa5         YEN SIGN
++<U00A6>     /xa6         BROKEN BAR
++<U0E87>     /xa7         LAO LETTER NGO
++<U0E88>     /xa8         LAO LETTER CO
++<U00A9>     /xa9         COPYRIGHT SIGN
++<U0E8A>     /xaa         LAO LETTER SO TAM
++<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U00AC>     /xac         NOT SIGN
++<U0E8D>     /xad         LAO LETTER NYO
++<U00AE>     /xae         REGISTERED SIGN
++<U00AF>     /xaf         MACRON
++<U00B0>     /xb0         DEGREE SIGN
++<U00B1>     /xb1         PLUS-MINUS SIGN
++<U00B2>     /xb2         SUPERSCRIPT TWO
++<U00B3>     /xb3         SUPERSCRIPT THREE
++<U0E94>     /xb4         LAO LETTER DO
++<U0E95>     /xb5         LAO LETTER TO
++<U0E96>     /xb6         LAO LETTER THO SUNG
++<U0E97>     /xb7         LAO LETTER THO TAM
++<U00B8>     /xb8         CEDILLA
++<U0E99>     /xb9         LAO LETTER NO
++<U0E9A>     /xba         LAO LETTER BO
++<U0E9B>     /xbb         LAO LETTER PO
++<U0E9C>     /xbc         LAO LETTER PHO SUNG
++<U0E9D>     /xbd         LAO LETTER FO TAM
++<U0E9E>     /xbe         LAO LETTER PHO TAM
++<U0E9F>     /xbf         LAO LETTER FO SUNG
++
++<U0EA1>     /xc1         LAO LETTER MO
++<U0EA2>     /xc2         LAO LETTER YO
++<U0EA3>     /xc3         LAO LETTER LO LING
++
++<U0EA5>     /xc5         LAO LETTER LO LOOT
++
++<U0EA7>     /xc7         LAO LETTER WO
++
++<U0EAA>     /xca         LAO LETTER SO SUNG
++<U0EAB>     /xcb         LAO LETTER HO SUNG
++
++<U0EAD>     /xcd         LAO LETTER O
++<U0EAE>     /xce         LAO LETTER HO TAM
++<U0EAF>     /xcf         LAO ELLIPSIS
++<U0EB0>     /xd0         LAO VOWEL SIGN A
++<U0EB1>     /xd1         LAO VOWEL SIGN MAI KAN
++<U0EB2>     /xd2         LAO VOWEL SIGN AA
++<U0EB3>     /xd3         LAO VOWEL SIGN AM
++<U0EB4>     /xd4         LAO VOWEL SIGN I
++<U0EB5>     /xd5         LAO VOWEL SIGN II
++<U0EB6>     /xd6         LAO VOWEL SIGN Y
++<U0EB7>     /xd7         LAO VOWEL SIGN YY
++<U0EB8>     /xd8         LAO VOWEL SIGN U
++<U0EB9>     /xd9         LAO VOWEL SIGN UU
++
++<U0EBB>     /xdb         LAO VOWEL SIGN MAI KON
++<U0EBC>     /xdc         LAO SEMIVOWEL SIGN LO
++<U0EBD>     /xdd         LAO SEMIVOWEL SIGN NYO
++
++<U20AD>     /xdf         LAO KIP CURRENCY
++<U0EC0>     /xe0         LAO VOWEL SIGN E
++<U0EC1>     /xe1         LAO VOWEL SIGN EI
++<U0EC2>     /xe2         LAO VOWEL SIGN O
++<U0EC3>     /xe3         LAO VOWEL SIGN AY
++<U0EC4>     /xe4         LAO VOWEL SIGN AI
++
++<U0EC6>     /xe6         LAO KO LA
++
++<U0EC8>     /xe8         LAO TONE MAI EK
++<U0EC9>     /xe9         LAO TONE MAI THO
++<U0ECA>     /xea         LAO TONE MAI TI
++<U0ECB>     /xeb         LAO TONE MAI CATAWA
++<U0ECC>     /xec         LAO CANCELLATION MARK
++<U0ECD>     /xed         LAO NIGGAHITA
++
++<U0ED0>     /xf0         LAO DIGIT ZERO
++<U0ED1>     /xf1         LAO DIGIT ONE
++<U0ED2>     /xf2         LAO DIGIT TWO
++<U0ED3>     /xf3         LAO DIGIT THREE
++<U0ED4>     /xf4         LAO DIGIT FOUR
++<U0ED5>     /xf5         LAO DIGIT FIVE
++<U0ED6>     /xf6         LAO DIGIT SIX
++<U0ED7>     /xf7         LAO DIGIT SEVEN
++<U0ED8>     /xf8         LAO DIGIT EIGHT
++<U0ED9>     /xf9         LAO DIGIT NINE
++
++<U0EDC>     /xfb         LAO HO NO
++<U0EDD>     /xfc         LAO HO MO
++END CHARMAP
++
++WIDTH
++<U0EB1>                 0
++<U0EB4>...<U0EB9>       0
++<U0EC8>...<U0ECD>       0
++END WIDTH
++
+diff -uNr glibc-2.3.3/localedata/charmaps/TATAR-CYR glibc-2.3.3.charsets/localedata/charmaps/TATAR-CYR
+--- glibc-2.3.3/localedata/charmaps/TATAR-CYR	Thu Jan  1 01:00:00 1970
++++ glibc-2.3.3.charsets/localedata/charmaps/TATAR-CYR	Mon Jan 12 23:47:54 2004
+@@ -0,0 +1,265 @@
++<code_set_name> TATAR-CYR
++<comment_char> %
++<escape_char> /
++% version: 1.0
++% repertoiremap: mnemonic,ds
++%  source: "Rinat I. Norkin" <rinat@taif.ru>
++
++% alias CP1251_TT
++CHARMAP
++<U0000>     /x00         NULL (NUL)
++<U0001>     /x01         START OF HEADING (SOH)
++<U0002>     /x02         START OF TEXT (STX)
++<U0003>     /x03         END OF TEXT (ETX)
++<U0004>     /x04         END OF TRANSMISSION (EOT)
++<U0005>     /x05         ENQUIRY (ENQ)
++<U0006>     /x06         ACKNOWLEDGE (ACK)
++<U0007>     /x07         BELL (BEL)
++<U0008>     /x08         BACKSPACE (BS)
++<U0009>     /x09         CHARACTER TABULATION (HT)
++<U000A>     /x0a         LINE FEED (LF)
++<U000B>     /x0b         LINE TABULATION (VT)
++<U000C>     /x0c         FORM FEED (FF)
++<U000D>     /x0d         CARRIAGE RETURN (CR)
++<U000E>     /x0e         SHIFT OUT (SO)
++<U000F>     /x0f         SHIFT IN (SI)
++<U0010>     /x10         DATALINK ESCAPE (DLE)
++<U0011>     /x11         DEVICE CONTROL ONE (DC1)
++<U0012>     /x12         DEVICE CONTROL TWO (DC2)
++<U0013>     /x13         DEVICE CONTROL THREE (DC3)
++<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
++<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
++<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
++<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
++<U0018>     /x18         CANCEL (CAN)
++<U0019>     /x19         END OF MEDIUM (EM)
++<U001A>     /x1a         SUBSTITUTE (SUB)
++<U001B>     /x1b         ESCAPE (ESC)
++<U001C>     /x1c         FILE SEPARATOR (IS4)
++<U001D>     /x1d         GROUP SEPARATOR (IS3)
++<U001E>     /x1e         RECORD SEPARATOR (IS2)
++<U001F>     /x1f         UNIT SEPARATOR (IS1)
++<U0020>     /x20         SPACE
++<U0021>     /x21         EXCLAMATION MARK
++<U0022>     /x22         QUOTATION MARK
++<U0023>     /x23         NUMBER SIGN
++<U0024>     /x24         DOLLAR SIGN
++<U0025>     /x25         PERCENT SIGN
++<U0026>     /x26         AMPERSAND
++<U0027>     /x27         APOSTROPHE
++<U0028>     /x28         LEFT PARENTHESIS
++<U0029>     /x29         RIGHT PARENTHESIS
++<U002A>     /x2a         ASTERISK
++<U002B>     /x2b         PLUS SIGN
++<U002C>     /x2c         COMMA
++<U002D>     /x2d         HYPHEN-MINUS
++<U002E>     /x2e         FULL STOP
++<U002F>     /x2f         SOLIDUS
++<U0030>     /x30         DIGIT ZERO
++<U0031>     /x31         DIGIT ONE
++<U0032>     /x32         DIGIT TWO
++<U0033>     /x33         DIGIT THREE
++<U0034>     /x34         DIGIT FOUR
++<U0035>     /x35         DIGIT FIVE
++<U0036>     /x36         DIGIT SIX
++<U0037>     /x37         DIGIT SEVEN
++<U0038>     /x38         DIGIT EIGHT
++<U0039>     /x39         DIGIT NINE
++<U003A>     /x3a         COLON
++<U003B>     /x3b         SEMICOLON
++<U003C>     /x3c         LESS-THAN SIGN
++<U003D>     /x3d         EQUALS SIGN
++<U003E>     /x3e         GREATER-THAN SIGN
++<U003F>     /x3f         QUESTION MARK
++<U0040>     /x40         COMMERCIAL AT
++<U0041>     /x41         LATIN CAPITAL LETTER A
++<U0042>     /x42         LATIN CAPITAL LETTER B
++<U0043>     /x43         LATIN CAPITAL LETTER C
++<U0044>     /x44         LATIN CAPITAL LETTER D
++<U0045>     /x45         LATIN CAPITAL LETTER E
++<U0046>     /x46         LATIN CAPITAL LETTER F
++<U0047>     /x47         LATIN CAPITAL LETTER G
++<U0048>     /x48         LATIN CAPITAL LETTER H
++<U0049>     /x49         LATIN CAPITAL LETTER I
++<U004A>     /x4a         LATIN CAPITAL LETTER J
++<U004B>     /x4b         LATIN CAPITAL LETTER K
++<U004C>     /x4c         LATIN CAPITAL LETTER L
++<U004D>     /x4d         LATIN CAPITAL LETTER M
++<U004E>     /x4e         LATIN CAPITAL LETTER N
++<U004F>     /x4f         LATIN CAPITAL LETTER O
++<U0050>     /x50         LATIN CAPITAL LETTER P
++<U0051>     /x51         LATIN CAPITAL LETTER Q
++<U0052>     /x52         LATIN CAPITAL LETTER R
++<U0053>     /x53         LATIN CAPITAL LETTER S
++<U0054>     /x54         LATIN CAPITAL LETTER T
++<U0055>     /x55         LATIN CAPITAL LETTER U
++<U0056>     /x56         LATIN CAPITAL LETTER V
++<U0057>     /x57         LATIN CAPITAL LETTER W
++<U0058>     /x58         LATIN CAPITAL LETTER X
++<U0059>     /x59         LATIN CAPITAL LETTER Y
++<U005A>     /x5a         LATIN CAPITAL LETTER Z
++<U005B>     /x5b         LEFT SQUARE BRACKET
++<U005C>     /x5c         REVERSE SOLIDUS
++<U005D>     /x5d         RIGHT SQUARE BRACKET
++<U005E>     /x5e         CIRCUMFLEX ACCENT
++<U005F>     /x5f         LOW LINE
++<U0060>     /x60         GRAVE ACCENT
++<U0061>     /x61         LATIN SMALL LETTER A
++<U0062>     /x62         LATIN SMALL LETTER B
++<U0063>     /x63         LATIN SMALL LETTER C
++<U0064>     /x64         LATIN SMALL LETTER D
++<U0065>     /x65         LATIN SMALL LETTER E
++<U0066>     /x66         LATIN SMALL LETTER F
++<U0067>     /x67         LATIN SMALL LETTER G
++<U0068>     /x68         LATIN SMALL LETTER H
++<U0069>     /x69         LATIN SMALL LETTER I
++<U006A>     /x6a         LATIN SMALL LETTER J
++<U006B>     /x6b         LATIN SMALL LETTER K
++<U006C>     /x6c         LATIN SMALL LETTER L
++<U006D>     /x6d         LATIN SMALL LETTER M
++<U006E>     /x6e         LATIN SMALL LETTER N
++<U006F>     /x6f         LATIN SMALL LETTER O
++<U0070>     /x70         LATIN SMALL LETTER P
++<U0071>     /x71         LATIN SMALL LETTER Q
++<U0072>     /x72         LATIN SMALL LETTER R
++<U0073>     /x73         LATIN SMALL LETTER S
++<U0074>     /x74         LATIN SMALL LETTER T
++<U0075>     /x75         LATIN SMALL LETTER U
++<U0076>     /x76         LATIN SMALL LETTER V
++<U0077>     /x77         LATIN SMALL LETTER W
++<U0078>     /x78         LATIN SMALL LETTER X
++<U0079>     /x79         LATIN SMALL LETTER Y
++<U007A>     /x7a         LATIN SMALL LETTER Z
++<U007B>     /x7b         LEFT CURLY BRACKET
++<U007C>     /x7c         VERTICAL LINE
++<U007D>     /x7d         RIGHT CURLY BRACKET
++<U007E>     /x7e         TILDE
++<U007F>     /x7f         DELETE (DEL)
++<U04D8>     /x80         CYRILLIC CAPITAL LETTER SCHWA
++<U0403>     /x81         CYRILLIC CAPITAL LETTER GJE
++<U201A>     /x82         SINGLE LOW-9 QUOTATION MARK
++<U0453>     /x83         CYRILLIC SMALL LETTER GJE
++<U201E>     /x84         DOUBLE LOW-9 QUOTATION MARK
++<U2026>     /x85         HORIZONTAL ELLIPSIS
++<U2020>     /x86         DAGGER
++<U2021>     /x87         DOUBLE DAGGER
++<U20AC>     /x88         EURO SIGN
++<U2030>     /x89         PER MILLE SIGN
++<U04E8>     /x8a         CYRILLIC CAPITAL LETTER BARRED O
++<U2039>     /x8b         SINGLE LEFT-POINTING ANGLE QUOTATION MARK
++<U04AE>     /x8c         CYRILLIC CAPITAL LETTER STRAIGHT U
++<U0496>     /x8d         CYRILLIC CAPITAL LETTER ZHE WITH DESCENDER
++<U04A2>     /x8e         CYRILLIC CAPITAL LETTER EN WITH DESCENDER
++<U04BA>     /x8f         CYRILLIC CAPITAL LETTER SHHA
++<U04D9>     /x90         CYRILLIC SMALL LETTER SCHWA
++<U2018>     /x91         LEFT SINGLE QUOTATION MARK
++<U2019>     /x92         RIGHT SINGLE QUOTATION MARK
++<U201C>     /x93         LEFT DOUBLE QUOTATION MARK
++<U201D>     /x94         RIGHT DOUBLE QUOTATION MARK
++<U2022>     /x95         BULLET
++<U2013>     /x96         EN DASH
++<U2014>     /x97         EM DASH
++<U2122>     /x99         TRADE MARK SIGN
++<U04E9>     /x9a         CYRILLIC SMALL LETTER BARRED O
++<U203A>     /x9b         SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
++<U04AF>     /x9c         CYRILLIC SMALL LETTER STRAIGHT U
++<U0497>     /x9d         CYRILLIC SMALL LETTER ZHE WITH DESCENDER
++<U04A3>     /x9e         CYRILLIC SMALL LETTER EN WITH DESCENDER
++<U04BB>     /x9f         CYRILLIC SMALL LETTER SHHA
++<U00A0>     /xa0         NO-BREAK SPACE
++<U040E>     /xa1         CYRILLIC CAPITAL LETTER SHORT U (Byelorussian)
++<U045E>     /xa2         CYRILLIC SMALL LETTER SHORT U (Byelorussian)
++<U0408>     /xa3         CYRILLIC CAPITAL LETTER JE
++<U00A4>     /xa4         CURRENCY SIGN
++<U0490>     /xa5         CYRILLIC CAPITAL LETTER GHE WITH UPTURN
++<U00A6>     /xa6         BROKEN BAR
++<U00A7>     /xa7         SECTION SIGN
++<U0401>     /xa8         CYRILLIC CAPITAL LETTER IO
++<U00A9>     /xa9         COPYRIGHT SIGN
++<U0404>     /xaa         CYRILLIC CAPITAL LETTER UKRAINIAN IE
++<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U00AC>     /xac         NOT SIGN
++<U00AD>     /xad         SOFT HYPHEN
++<U00AE>     /xae         REGISTERED SIGN
++<U0407>     /xaf         CYRILLIC CAPITAL LETTER YI (Ukrainian)
++<U00B0>     /xb0         DEGREE SIGN
++<U00B1>     /xb1         PLUS-MINUS SIGN
++<U0406>     /xb2         CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
++<U0456>     /xb3         CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
++<U0491>     /xb4         CYRILLIC SMALL LETTER GHE WITH UPTURN
++<U00B5>     /xb5         MICRO SIGN
++<U00B6>     /xb6         PILCROW SIGN
++<U00B7>     /xb7         MIDDLE DOT
++<U0451>     /xb8         CYRILLIC SMALL LETTER IO
++<U2116>     /xb9         NUMERO SIGN
++<U0454>     /xba         CYRILLIC SMALL LETTER UKRAINIAN IE
++<U00BB>     /xbb         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U0458>     /xbc         CYRILLIC SMALL LETTER JE
++<U0405>     /xbd         CYRILLIC CAPITAL LETTER DZE
++<U0455>     /xbe         CYRILLIC SMALL LETTER DZE
++<U0457>     /xbf         CYRILLIC SMALL LETTER YI (Ukrainian)
++<U0410>     /xc0         CYRILLIC CAPITAL LETTER A
++<U0411>     /xc1         CYRILLIC CAPITAL LETTER BE
++<U0412>     /xc2         CYRILLIC CAPITAL LETTER VE
++<U0413>     /xc3         CYRILLIC CAPITAL LETTER GHE
++<U0414>     /xc4         CYRILLIC CAPITAL LETTER DE
++<U0415>     /xc5         CYRILLIC CAPITAL LETTER IE
++<U0416>     /xc6         CYRILLIC CAPITAL LETTER ZHE
++<U0417>     /xc7         CYRILLIC CAPITAL LETTER ZE
++<U0418>     /xc8         CYRILLIC CAPITAL LETTER I
++<U0419>     /xc9         CYRILLIC CAPITAL LETTER SHORT I
++<U041A>     /xca         CYRILLIC CAPITAL LETTER KA
++<U041B>     /xcb         CYRILLIC CAPITAL LETTER EL
++<U041C>     /xcc         CYRILLIC CAPITAL LETTER EM
++<U041D>     /xcd         CYRILLIC CAPITAL LETTER EN
++<U041E>     /xce         CYRILLIC CAPITAL LETTER O
++<U041F>     /xcf         CYRILLIC CAPITAL LETTER PE
++<U0420>     /xd0         CYRILLIC CAPITAL LETTER ER
++<U0421>     /xd1         CYRILLIC CAPITAL LETTER ES
++<U0422>     /xd2         CYRILLIC CAPITAL LETTER TE
++<U0423>     /xd3         CYRILLIC CAPITAL LETTER U
++<U0424>     /xd4         CYRILLIC CAPITAL LETTER EF
++<U0425>     /xd5         CYRILLIC CAPITAL LETTER HA
++<U0426>     /xd6         CYRILLIC CAPITAL LETTER TSE
++<U0427>     /xd7         CYRILLIC CAPITAL LETTER CHE
++<U0428>     /xd8         CYRILLIC CAPITAL LETTER SHA
++<U0429>     /xd9         CYRILLIC CAPITAL LETTER SHCHA
++<U042A>     /xda         CYRILLIC CAPITAL LETTER HARD SIGN
++<U042B>     /xdb         CYRILLIC CAPITAL LETTER YERU
++<U042C>     /xdc         CYRILLIC CAPITAL LETTER SOFT SIGN
++<U042D>     /xdd         CYRILLIC CAPITAL LETTER E
++<U042E>     /xde         CYRILLIC CAPITAL LETTER YU
++<U042F>     /xdf         CYRILLIC CAPITAL LETTER YA
++<U0430>     /xe0         CYRILLIC SMALL LETTER A
++<U0431>     /xe1         CYRILLIC SMALL LETTER BE
++<U0432>     /xe2         CYRILLIC SMALL LETTER VE
++<U0433>     /xe3         CYRILLIC SMALL LETTER GHE
++<U0434>     /xe4         CYRILLIC SMALL LETTER DE
++<U0435>     /xe5         CYRILLIC SMALL LETTER IE
++<U0436>     /xe6         CYRILLIC SMALL LETTER ZHE
++<U0437>     /xe7         CYRILLIC SMALL LETTER ZE
++<U0438>     /xe8         CYRILLIC SMALL LETTER I
++<U0439>     /xe9         CYRILLIC SMALL LETTER SHORT I
++<U043A>     /xea         CYRILLIC SMALL LETTER KA
++<U043B>     /xeb         CYRILLIC SMALL LETTER EL
++<U043C>     /xec         CYRILLIC SMALL LETTER EM
++<U043D>     /xed         CYRILLIC SMALL LETTER EN
++<U043E>     /xee         CYRILLIC SMALL LETTER O
++<U043F>     /xef         CYRILLIC SMALL LETTER PE
++<U0440>     /xf0         CYRILLIC SMALL LETTER ER
++<U0441>     /xf1         CYRILLIC SMALL LETTER ES
++<U0442>     /xf2         CYRILLIC SMALL LETTER TE
++<U0443>     /xf3         CYRILLIC SMALL LETTER U
++<U0444>     /xf4         CYRILLIC SMALL LETTER EF
++<U0445>     /xf5         CYRILLIC SMALL LETTER HA
++<U0446>     /xf6         CYRILLIC SMALL LETTER TSE
++<U0447>     /xf7         CYRILLIC SMALL LETTER CHE
++<U0448>     /xf8         CYRILLIC SMALL LETTER SHA
++<U0449>     /xf9         CYRILLIC SMALL LETTER SHCHA
++<U044A>     /xfa         CYRILLIC SMALL LETTER HARD SIGN
++<U044B>     /xfb         CYRILLIC SMALL LETTER YERU
++<U044C>     /xfc         CYRILLIC SMALL LETTER SOFT SIGN
++<U044D>     /xfd         CYRILLIC SMALL LETTER E
++<U044E>     /xfe         CYRILLIC SMALL LETTER YU
++<U044F>     /xff         CYRILLIC SMALL LETTER YA
 +END CHARMAP
