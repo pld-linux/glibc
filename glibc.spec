@@ -16,8 +16,6 @@
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 
-%bcond_without	comdat		# without (unfinished) comdat hacks [for Ac]
-
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -122,7 +120,7 @@ Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-nscd.patch
-Patch27:	%{name}-comdat.patch
+Patch27:	%{name}-pthread-build.patch
 # PaX hacks (dropped)
 #Patch28:	%{name}-pax_iconvconfig.patch
 #Patch29:	%{name}-pax_dl-execstack.patch
@@ -812,7 +810,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
-%{?with_comdat:%patch27 -p1}
+%patch27 -p1
 
 chmod +x scripts/cpp
 
