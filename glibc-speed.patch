@@ -1,0 +1,21 @@
+diff -ru glibc-2.2.3.org/sysdeps/unix/sysv/linux/speed.c glibc-2.2.3/sysdeps/unix/sysv/linux/speed.c
+--- glibc-2.2.3.org/sysdeps/unix/sysv/linux/speed.c	Tue Jan  4 17:12:05 2000
++++ glibc-2.2.3/sysdeps/unix/sysv/linux/speed.c	Thu May 31 13:48:43 2001
+@@ -60,7 +60,7 @@
+      speed_t speed;
+ {
+   if ((speed & ~CBAUD) != 0
+-      && (speed < B57600 || speed > B460800))
++      && (speed < B57600 ))
+     {
+       __set_errno (EINVAL);
+       return -1;
+@@ -82,7 +82,7 @@
+      speed_t speed;
+ {
+   if ((speed & ~CBAUD) != 0
+-      && (speed < B57600 || speed > B460800))
++      && (speed < B57600 ))
+     {
+       __set_errno (EINVAL);
+       return -1;
