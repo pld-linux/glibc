@@ -1,13 +1,12 @@
 %define		min_kernel	2.2.0
-
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
-Version:	2.2.5
-Release:	1
+Version:	2.2.4
+Release:	12
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -18,8 +17,8 @@ Group(pl):	Biblioteki
 Group(pt_BR):	Bibliotecas
 Group(ru):	Библиотеки
 Group(uk):	Б╕бл╕отеки
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.gz
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -36,7 +35,10 @@ Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-ldconfig-bklinks.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
-Patch11:	%{name}-getaddrinfo-workaround.patch
+Patch11:	%{name}-malloc.patch
+Patch12:	%{name}-glob.patch
+Patch13:	%{name}-getaddrinfo-workaround.patch
+Patch14:	%{name}-gcc3.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -411,8 +413,9 @@ Zabawka.
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-
-chmod +x scripts/cpp
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
