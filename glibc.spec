@@ -280,6 +280,7 @@ Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
 Group:		Development/Libraries
 AutoReq:	false
 PreReq:		%{name} = %{epoch}:%{version}-%{release}
+Obsoletes:	tzdata
 
 %description misc
 Utilities and data used by glibc.
