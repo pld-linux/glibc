@@ -16,6 +16,7 @@
 # - serious problem with upgrade (changing zoneinfo/posix/* dirs into symlinks)
 #   are there any other solutions than revert???
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
+# - glibc64* - package desc
 #
 #
 # WARNING:
@@ -114,6 +115,7 @@ Conflicts:	rpm < 4.1
 %ifarch sparc64
 %define		_without_memusage	1
 %define 	specflags_sparc64	-mvis -fcall-used-g6
+%define		_libdir			/usr/lib64
 %endif
 
 %description
@@ -579,6 +581,39 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
+%package -n %{name}64
+Summary:	%{name}64
+Summary(pl):	%{name}64
+Release:	%{rel}
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}
+
+%description -n %{name}
+
+%description -l pl -n %{name}64
+
+%package -n %{name}64-devel
+Summary:	%{name}64-devel
+Summary(pl):	%{name}64-devel
+Release:	%{rel}
+Group:		Libraries
+Requires:	%{name}-devel = %{epoch}:%{version}
+
+%description -n %{name}64-devel
+
+%description -l pl -n %{name}64-devel
+
+%package -n %{name}64-static
+Summary:	%{name}64-static
+Summary(pl):	%{name}64-static
+Release:	%{rel}
+Group:		Libraries
+Requires:	%{name}64-devel = %{epoch}:%{version}
+
+%description -n %{name}64-static
+
+%description -l pl -n %{name}64-static
+
 %prep
 %setup -q -a 1 -a 9 -a 10
 %patch0 -p1
@@ -701,8 +736,10 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 
-%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib*/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
-mv -f $RPM_BUILD_ROOT/lib*/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
+%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+%ifnarch sparc64
+mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
+%endif
 
 %{__make} -C ../linuxthreads/man
 install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
@@ -755,7 +792,9 @@ cp -f ../ChangeLog* ../documentation
 rm -f $RPM_BUILD_ROOT%{_libdir}*/libnss_*.so
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
-%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib*/ld-%{version}.so}
+%ifnarch sparc64
+%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
+%endif
 
 # Collect locale files and mark them with %%lang()
 rm -f ../glibc.lang
@@ -830,6 +869,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
+%ifnarch sparc64
 %post	-p /sbin/postshell
 /sbin/ldconfig
 -/sbin/telinit u
@@ -877,7 +917,9 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del nscd
 fi
+%endif
 
+%ifnarch sparc64
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
@@ -904,11 +946,11 @@ fi
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
-%attr(755,root,root) /lib*/ld-*
-%attr(755,root,root) /lib*/libanl*
-%attr(755,root,root) /lib*/libdl*
-%attr(755,root,root) /lib*/libnsl*
-%attr(755,root,root) /lib*/lib[BScmprtu]*
+%attr(755,root,root) /lib/ld-*
+%attr(755,root,root) /lib/libanl*
+%attr(755,root,root) /lib/libdl*
+%attr(755,root,root) /lib/libnsl*
+%attr(755,root,root) /lib/lib[BScmprtu]*
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
@@ -952,11 +994,11 @@ fi
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib*/libnss_dns*.so*
+%attr(755,root,root) /lib/libnss_dns*.so*
 
 #%files -n nss_files
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib*/libnss_files*.so*
+%attr(755,root,root) /lib/libnss_files*.so*
 
 %files zoneinfo_right
 %defattr(644,root,root,755)
@@ -964,26 +1006,26 @@ fi
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib*/libnss_compat*.so*
+%attr(755,root,root) /lib/libnss_compat*.so*
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib*/libnss_hesiod*.so*
+%attr(755,root,root) /lib/libnss_hesiod*.so*
 
 %files -n nss_nis
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib*/libnss_nis.so.*
-%attr(755,root,root) /lib*/libnss_nis-*.so
+%attr(755,root,root) /lib/libnss_nis.so.*
+%attr(755,root,root) /lib/libnss_nis-*.so
 
 %files -n nss_nisplus
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib*/libnss_nisplus*.so*
+%attr(755,root,root) /lib/libnss_nisplus*.so*
 
 %if %{?_without_memusage:0}%{!?_without_memusage:1}
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
-%attr(755,root,root) %{_libdir}*/libmemusage*
+%attr(755,root,root) %{_libdir}/libmemusage*
 %endif
 
 %files devel
@@ -1017,16 +1059,16 @@ fi
 
 %{_infodir}/libc.info*
 
-%attr(755,root,root) %{_libdir}*/lib[!m]*.so
-%attr(755,root,root) %{_libdir}*/libm.so
-%attr(755,root,root) %{_libdir}*/*crt*.o
-%{_libdir}*/libbsd-compat.a
-%{_libdir}*/libbsd.a
-%{_libdir}*/libc_nonshared.a
-%{_libdir}*/libg.a
-%{_libdir}*/libieee.a
-%{_libdir}*/libpthread_nonshared.a
-%{_libdir}*/librpcsvc.a
+%attr(755,root,root) %{_libdir}/lib[!m]*.so
+%attr(755,root,root) %{_libdir}/libm.so
+%attr(755,root,root) %{_libdir}/*crt*.o
+%{_libdir}/libbsd-compat.a
+%{_libdir}/libbsd.a
+%{_libdir}/libc_nonshared.a
+%{_libdir}/libg.a
+%{_libdir}/libieee.a
+%{_libdir}/libpthread_nonshared.a
+%{_libdir}/librpcsvc.a
 
 %{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
@@ -1077,37 +1119,78 @@ fi
 
 %files localedb-all
 %defattr(644,root,root,755)
-%{_libdir}*/locale/locale-archive
+%{_libdir}/locale/locale-archive
 
 %files -n iconv
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/iconvconfig
-%dir %{_libdir}*/gconv
-%{_libdir}*/gconv/gconv-modules
-%attr(755,root,root) %{_libdir}*/gconv/*.so
+%dir %{_libdir}/gconv
+%{_libdir}/gconv/gconv-modules
+%attr(755,root,root) %{_libdir}/gconv/*.so
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}*/libanl.a
-%{_libdir}*/libBrokenLocale.a
-%{_libdir}*/libc.a
-%{_libdir}*/libcrypt.a
-%{_libdir}*/libdl.a
-%{_libdir}*/libm.a
-%{_libdir}*/libmcheck.a
-%{_libdir}*/libnsl.a
-%{_libdir}*/libpthread.a
-%{_libdir}*/libresolv.a
-%{_libdir}*/librt.a
-%{_libdir}*/libutil.a
+%{_libdir}/libanl.a
+%{_libdir}/libBrokenLocale.a
+%{_libdir}/libc.a
+%{_libdir}/libcrypt.a
+%{_libdir}/libdl.a
+%{_libdir}/libm.a
+%{_libdir}/libmcheck.a
+%{_libdir}/libnsl.a
+%{_libdir}/libpthread.a
+%{_libdir}/libresolv.a
+%{_libdir}/librt.a
+%{_libdir}/libutil.a
 
 %files profile
 %defattr(644,root,root,755)
-%{_libdir}*/lib*_p.a
+%{_libdir}/lib*_p.a
 
 %files pic
 %defattr(644,root,root,755)
-%{_libdir}*/lib*_pic.a
-%{_libdir}*/lib*.map
-%{_libdir}*/soinit.o
-%{_libdir}*/sofini.o
+%{_libdir}/lib*_pic.a
+%{_libdir}/lib*.map
+%{_libdir}/soinit.o
+%{_libdir}/sofini.o
+
+%else
+
+%files -n glibc64
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/ld-*
+%attr(755,root,root) %{_libdir}/libanl*
+%attr(755,root,root) %{_libdir}/libdl*
+%attr(755,root,root) %{_libdir}/libnsl*
+%attr(755,root,root) %{_libdir}/lib[BScmprtu]*
+%attr(755,root,root) %{_libdir}/libnss_dns*.so*
+%attr(755,root,root) %{_libdir}/libnss_files*.so*
+
+%files -n glibc64-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib[!m]*.so
+%attr(755,root,root) %{_libdir}/libm.so
+%attr(755,root,root) %{_libdir}/*crt*.o
+%{_libdir}/libbsd-compat.a
+%{_libdir}/libbsd.a
+%{_libdir}/libc_nonshared.a
+%{_libdir}/libg.a
+%{_libdir}/libieee.a
+%{_libdir}/libpthread_nonshared.a
+%{_libdir}/librpcsvc.a
+
+%files -n glibc64-static
+%defattr(644,root,root,755)
+%{_libdir}/libanl.a
+%{_libdir}/libBrokenLocale.a
+%{_libdir}/libc.a
+%{_libdir}/libcrypt.a
+%{_libdir}/libdl.a
+%{_libdir}/libm.a
+%{_libdir}/libmcheck.a
+%{_libdir}/libnsl.a
+%{_libdir}/libpthread.a
+%{_libdir}/libresolv.a
+%{_libdir}/librt.a
+%{_libdir}/libutil.a
+%endif
