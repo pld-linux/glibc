@@ -36,14 +36,14 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparcv9 ppc ppc64
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparc64 sparcv9 ppc ppc64
 %undefine	with_tls
 %endif
 %endif
 
 %if %{with nptl}
 # nptl on x86 uses cmpxchgl (available since i486)
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 %undefine	with_nptl
 %else
 %if %{without tls}
