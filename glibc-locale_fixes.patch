@@ -1,3 +1,15 @@
+diff -uNr libc.orig/locale/iso-4217.def libc/locale/iso-4217.def
+--- libc.orig/locale/iso-4217.def	2004-11-14 20:27:08.000000000 +0100
++++ libc/locale/iso-4217.def	2004-11-14 20:27:08.000000000 +0100
+@@ -148,7 +148,7 @@
+ DEFINE_INT_CURR("TMM")		/* Turkmenistan Manet  */
+ DEFINE_INT_CURR("TND")		/* Tunisian Dinar  */
+ DEFINE_INT_CURR("TOP")		/* Tonga Pa'Anga  */
+-DEFINE_INT_CURR("TRL")		/* Turkish Lira  */
++DEFINE_INT_CURR("TRY")		/* Turkish Lira  */
+ DEFINE_INT_CURR("TTD")		/* Trinidad and Tobago  */
+ DEFINE_INT_CURR("TVD")		/* Tuvalu Dollars  */
+ DEFINE_INT_CURR("TWD")		/* Taiwan, Province of China Dollar  */
 diff -uNr libc.orig/locale/iso-639.def libc/locale/iso-639.def
 --- libc.orig/locale/iso-639.def	2004-10-14 21:11:29.000000000 +0200
 +++ libc/locale/iso-639.def	2004-11-10 02:36:38.000000000 +0100
@@ -3616,6 +3628,238 @@ diff -uNr libc.orig/localedata/locales/pt_PT libc/localedata/locales/pt_PT
 +lang_term   "<U0070><U006F><U0072>"
 +lang_lib    "<U0070><U006F><U0072>"
  END LC_ADDRESS
+diff -uNr libc.orig/localedata/locales/ro_RO libc/localedata/locales/ro_RO
+--- libc.orig/localedata/locales/ro_RO	2003-12-05 01:25:59.000000000 +0100
++++ libc/localedata/locales/ro_RO	2004-11-10 02:36:38.000000000 +0100
+@@ -2,29 +2,19 @@
+ escape_char  /
+ %
+ % Romanian Language Locale for Romania
+-% Source: RAP
+-% Address: Sankt Jo//rgens Alle 8
+-%    DK-1615 Ko//benhavn V, Danmark
+-% Contact: Keld Simonsen
+-% Email: Keld.Simonsen@dkuug.dk
+-% Tel: +45 - 31226543
+-% Fax: +45 - 33256543
+ % Language: ro
+ % Territory: RO
+-% Revision: 4.3
+-% Date: 1996-10-15
+-% Application: general
+-% Users: general
+-% Charset: ISO-8859-2
++% Ionel Mugurel Ciobîcã, © 2001
++% Charset: ISO-8859-16
+ % Distribution and use is free, also
+ % for commercial purposes.
+ 
+ LC_IDENTIFICATION
+ title      "Romanian locale for Romania"
+ source     "RAP"
+-address    "Sankt Jorgens Alle 8, DK-1615 Kobenhavn V, Danmark"
++address    "TUE, SKA, POBOX 513, 5600MB Eindhoven, The Netherlands"
+ contact    ""
+-email      "bug-glibc@gnu.org"
++email      "I.M.Ciobica@TUe.nl"
+ tel        ""
+ fax        ""
+ language   "Romanian"
+@@ -32,17 +22,17 @@
+ revision   "1.0"
+ date       "2000-06-29"
+ %
+-category  "ro_RO:2000";LC_IDENTIFICATION
+-category  "ro_RO:2000";LC_CTYPE
+-category  "ro_RO:2000";LC_COLLATE
+-category  "ro_RO:2000";LC_TIME
+-category  "ro_RO:2000";LC_NUMERIC
+-category  "ro_RO:2000";LC_MONETARY
+-category  "ro_RO:2000";LC_MESSAGES
+-category  "ro_RO:2000";LC_PAPER
+-category  "ro_RO:2000";LC_NAME
+-category  "ro_RO:2000";LC_ADDRESS
+-category  "ro_RO:2000";LC_TELEPHONE
++category  "i18n:1997";LC_IDENTIFICATION
++category  "i18n:1997";LC_CTYPE
++category  "i18n:1997";LC_COLLATE
++category  "i18n:1997";LC_TIME
++category  "i18n:1997";LC_NUMERIC
++category  "i18n:1997";LC_MONETARY
++category  "i18n:1997";LC_MESSAGES
++category  "i18n:1997";LC_PAPER
++category  "i18n:1997";LC_NAME
++category  "i18n:1997";LC_ADDRESS
++category  "i18n:1997";LC_TELEPHONE
+ 
+ END LC_IDENTIFICATION
+ 
+@@ -109,23 +99,19 @@
+ translit_start
+ include "translit_combining";""
+ 
+-% if t/scomma is not available, try first t/scedilla
+-<U0218> "<U015E>";"<U0053>"
+-<U0219> "<U015F>";"<U0073>"
+-<U021A> "<U0162>";"<U0054>"
+-<U021B> "<U0163>";"<U0074>"
+-
+-% if t/scedilla is not available, try first t/scomma
+-<U015E> "<U0218>";"<U0053>"
+-<U015F> "<U0219>";"<U0073>"
+-<U0162> "<U021A>";"<U0054>"
+-<U0163> "<U021B>";"<U0074>"
++% if t/scomma is not available, try t/s
++% if t/scedilla is not available, don't try anything
++% since scedilla belong to Turkish and tcedilla to noone
++<U0218> "<U0053>"
++<U0219> "<U0073>"
++<U021A> "<U0054>"
++<U021B> "<U0074>"
+ 
+ translit_end
+ END LC_CTYPE
+ 
+ LC_MESSAGES
+-yesexpr "<U005E><U005B><U0044><U0064><U0059><U0079><U005D><U002E><U002A>"
++yesexpr "<U005E><U005B><U0044><U0064><U005D><U002E><U002A>"
+ noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
+ END LC_MESSAGES
+ 
+@@ -133,15 +119,15 @@
+ int_curr_symbol           "<U0052><U004F><U004C><U0020>"
+ currency_symbol           "<U004C><U0065><U0069>"
+ mon_decimal_point         "<U002C>"
+-mon_thousands_sep         "<U002E>"
++mon_thousands_sep         "<U0020>"
+ mon_grouping              3;3
+ positive_sign             ""
+ negative_sign             "<U002D>"
+ int_frac_digits           2
+ frac_digits               2
+-p_cs_precedes             1
++p_cs_precedes             0
+ p_sep_by_space            1
+-n_cs_precedes             1
++n_cs_precedes             0
+ n_sep_by_space            1
+ p_sign_posn               1
+ n_sign_posn               1
+@@ -149,46 +135,46 @@
+ 
+ LC_NUMERIC
+ decimal_point             "<U002C>"
+-thousands_sep             ""
++thousands_sep             "<U0020>"
+ grouping                  0;0
+ END LC_NUMERIC
+ 
+ LC_TIME
+-abday   "<U0044><U0075>";"<U004C><U0075>";"<U004D><U0061>";"<U004D><U0069>";/
+-        "<U004A><U006F>";"<U0056><U0069>";"<U0053><U00EE>"
+-day     "<U0044><U0075><U006D><U0069><U006E><U0069><U0063><U0102>";/
+-        "<U004C><U0075><U006E><U0069>";/
+-        "<U004D><U0061><U0072><U0163><U0069>";/
+-        "<U004D><U0069><U0065><U0072><U0063><U0075><U0072><U0069>";/
+-        "<U004A><U006F><U0069>";/
+-        "<U0056><U0069><U006E><U0065><U0072><U0069>";/
+-        "<U0053><U00EE><U006D><U0062><U0102><U0074><U0102>"
++abday   "<U0020><U0044>";"<U0020><U004C>";"<U004D><U0061>";"<U004D><U0069>";/
++        "<U0020><U004A>";"<U0020><U0056>";"<U0020><U0053>"
++day     "<U0064><U0075><U006D><U0069><U006E><U0069><U0063><U0103>";/
++        "<U006C><U0075><U006E><U0069>";/
++        "<U006D><U0061><U0072><U021B><U0069>";/
++        "<U006D><U0069><U0065><U0072><U0063><U0075><U0072><U0069>";/
++        "<U006A><U006F><U0069>";/
++        "<U0076><U0069><U006E><U0065><U0072><U0069>";/
++        "<U0073><U00EE><U006D><U0062><U0103><U0074><U0103>"
+ abmon   "<U0069><U0061><U006E>";"<U0066><U0065><U0062>";/
+         "<U006D><U0061><U0072>";"<U0061><U0070><U0072>";/
+         "<U006D><U0061><U0069>";"<U0069><U0075><U006E>";/
+         "<U0069><U0075><U006C>";"<U0061><U0075><U0067>";/
+         "<U0073><U0065><U0070>";"<U006F><U0063><U0074>";/
+-        "<U006E><U006F><U0076>";"<U0064><U0065><U0063>"
+-mon     "<U0049><U0061><U006E><U0075><U0061><U0072><U0069><U0065>";/
+-        "<U0046><U0065><U0062><U0072><U0075><U0061><U0072><U0069><U0065>";/
+-        "<U004D><U0061><U0072><U0074><U0069><U0065>";/
+-        "<U0041><U0070><U0072><U0069><U006C><U0069><U0065>";/
+-        "<U004D><U0061><U0069>";/
+-        "<U0049><U0075><U006E><U0069><U0065>";/
+-        "<U0049><U0075><U006C><U0069><U0065>";/
+-        "<U0041><U0075><U0067><U0075><U0073><U0074>";/
+-        "<U0053><U0065><U0070><U0074><U0065><U006D><U0062><U0072><U0069><U0065>";/
+-        "<U004F><U0063><U0074><U006F><U006D><U0062><U0072><U0069><U0065>";/
+-        "<U004E><U006F><U0069><U0065><U006D><U0062><U0072><U0069><U0065>";/
+-        "<U0044><U0065><U0063><U0065><U006D><U0062><U0072><U0069><U0065>"
+-d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
++        "<U006E><U006F><U0069>";"<U0064><U0065><U0063>"
++mon     "<U0069><U0061><U006E><U0075><U0061><U0072><U0069><U0065>";/
++        "<U0066><U0065><U0062><U0072><U0075><U0061><U0072><U0069><U0065>";/
++        "<U006D><U0061><U0072><U0074><U0069><U0065>";/
++        "<U0061><U0070><U0072><U0069><U006C><U0069><U0065>";/
++        "<U006D><U0061><U0069>";/
++        "<U0069><U0075><U006E><U0069><U0065>";/
++        "<U0069><U0075><U006C><U0069><U0065>";/
++        "<U0061><U0075><U0067><U0075><U0073><U0074>";/
++        "<U0073><U0065><U0070><U0074><U0065><U006D><U0062><U0072><U0069><U0065>";/
++        "<U006F><U0063><U0074><U006F><U006D><U0062><U0072><U0069><U0065>";/
++        "<U006E><U006F><U0069><U0065><U006D><U0062><U0072><U0069><U0065>";/
++        "<U0064><U0065><U0063><U0065><U006D><U0062><U0072><U0069><U0065>"
++d_t_fmt "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0042><U0020><U0025><U0059><U0020><U0025><U0054>"
+ d_fmt   "<U0025><U0059><U002D><U0025><U006D><U002D><U0025><U0064>"
+ t_fmt   "<U0025><U0054>"
+ am_pm   "";""
+ t_fmt_ampm ""
+-date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
+-<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
+-<U0025><U005A><U0020><U0025><U0059>"
++date_fmt       "<U0025><U0041><U002C><U0020><U0025><U0065><U0020><U0025><U0042><U0020>/
++<U0025><U0059><U002C><U0020><U0025><U0048><U0068><U0020><U0025><U004D><U0027><U0025><U0053><U0027><U0027>"
++% <U0025><U0059><U002C><U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053>"
+ END LC_TIME
+ 
+ LC_PAPER
+@@ -210,17 +196,30 @@
+ END LC_MEASUREMENT
+ 
+ LC_NAME
+-name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
+-<U0025><U006D><U0025><U0074><U0025><U0066>"
++name_fmt    "<U0025><U0066><U0025><U0067><U0025>"
++name_miss   "<U0064><U006F><U006D><U006E><U0069><U0219><U006F><U0061><U0072><U0103>"
++name_mr     "<U0064><U006F><U006D><U006E><U0075><U006C><U0065>"
++name_mrs    "<U0064><U006F><U0061><U006D><U006E><U0103>"
++name_ms     "<U0064><U006F><U0061><U006D><U006E><U0103>"
+ END LC_NAME
+ 
+ LC_ADDRESS
+-postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
+-<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
+-<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+-<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
+-<U004E><U0025><U0063><U0025><U004E>"
+-country_ab2 "<U0052><U004F>"
+-country_ab3 "<U0052><U004F><U0055>"
+-country_num 642
++postal_fmt    "<U0025><U0066><U0025><U004E>/
++<U0025><U0064><U0025><U004E><U0025><U0073><U0025>/
++<U0068><U0025><U004E><U0025><U0062><U002C><U0025>/
++<U0065><U002C><U0020><U0025><U0072><U0025><U004E>/
++<U0025><U0054><U0025><U004E><U0025><U0053><U0025>/
++<U004E><U0025><U007A><U0025><U004E><U0025><U0043>/
++<U0025><U004E>"
++country_name  "<U0052><U006F><U006D><U00E2><U006E><U0069><U0061>"
++country_post  "<U0052><U004F>"
++country_ab2   "<U0052><U004F>"
++country_ab3   "<U0052><U004F><U0055>"
++country_num   642
++country_car   "<U0052><U004F>"
++country_isbn  "<U0039><U0037><U0033>"
++lang_name     "<U0052><U006F><U006D><U00E2><U006E><U0065><U0219><U0074><U0065>"
++lang_ab       "<U0072><U006F>"
++lang_term     "<U0072><U006F><U006E>"
++lang_lib      "<U0072><U0075><U006D>"
+ END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/ru_RU libc/localedata/locales/ru_RU
 --- libc.orig/localedata/locales/ru_RU	2003-12-07 14:00:22.000000000 +0100
 +++ libc/localedata/locales/ru_RU	2004-11-10 02:36:38.000000000 +0100
@@ -4429,6 +4673,23 @@ diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
  %tr
  lang_ab		"<U0074><U0072>"
  END LC_ADDRESS
+diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
+--- libc.orig/localedata/locales/tr_TR	2004-11-14 20:22:03.000000000 +0100
++++ libc/localedata/locales/tr_TR	2004-11-14 20:22:03.000000000 +0100
+@@ -3471,11 +3471,11 @@
+ END LC_MESSAGES
+ 
+ LC_MONETARY
+-int_curr_symbol           "<U0054><U0052><U004C><U0020>"
++int_curr_symbol           "<U0054><U0052><U0059><U0020>"
+ currency_symbol           "<U0054><U004C>"
+ mon_decimal_point         "<U002C>"
+ mon_thousands_sep         "<U002E>"
+-mon_grouping              3
++mon_grouping              3;3
+ positive_sign             ""
+ negative_sign             "<U002D>"
+ int_frac_digits           2
 diff -uNr libc.orig/localedata/locales/ts_ZA libc/localedata/locales/ts_ZA
 --- libc.orig/localedata/locales/ts_ZA	2004-11-10 01:45:57.000000000 +0100
 +++ libc/localedata/locales/ts_ZA	2004-11-10 02:45:40.000000000 +0100
@@ -4611,373 +4872,6 @@ diff -uNr libc.orig/localedata/locales/ve_ZA libc/localedata/locales/ve_ZA
   
  % Representation of postal addresses (minus the addressee's name) in South
  % Africa. (Ignored for now)
-diff -uNr libc.orig/localedata/locales/wa_BE libc/localedata/locales/wa_BE
---- libc.orig/localedata/locales/wa_BE	2004-04-29 00:55:02.000000000 +0200
-+++ libc/localedata/locales/wa_BE	2004-11-10 02:36:38.000000000 +0100
-@@ -41,7 +41,7 @@
- country_post "B"
- country_ab2 "BE"
- country_ab3 "BEL"
--country_num 56
-+country_num 056
- country_isbn "2"
- country_car "B"
- lang_name "<U0057><U0061><U006C><U006F><U006E>"
-diff -uNr libc.orig/localedata/locales/wal_ET libc/localedata/locales/wal_ET
---- libc.orig/localedata/locales/wal_ET	2004-05-03 22:49:23.000000000 +0200
-+++ libc/localedata/locales/wal_ET	2004-11-10 02:36:38.000000000 +0100
-@@ -108,13 +108,11 @@
- country_ab3   "<U0045><U0054><U0048>"
- country_num   231   % 210 found in at least one ISO 3166 doc
- % country_car   unknown
--% country_isbn  unknown, Need ISO 2108
-+country_isbn  "<U0039><U0039><U0039><U0034><U0034>"
- lang_name     "<U12C8><U120B><U12ED><U1273><U1271>"
--lang_ab       "<U0077><U0061><U006C>"
-+lang_ab       ""
- lang_term     "<U0077><U0061><U006C>"
- lang_lib      "<U0077><U0061><U006C>"
--
--
- %
- END LC_ADDRESS
- 
-diff -uNr libc.orig/localedata/locales/xh_ZA libc/localedata/locales/xh_ZA
---- libc.orig/localedata/locales/xh_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/xh_ZA	2004-11-10 02:36:38.000000000 +0100
-@@ -223,6 +223,7 @@
- % see http://www.loc.gov/standards/iso639-2/englangn.html
- lang_ab   "<U0078><U0068>"
- lang_term "<U0078><U0068><U006F>"
-+lang_lib  "<U0078><U0068><U006F>"
- 
- % Representation of postal addresses (minus the addressee's name) in South
- % Africa. (Ignored for now)
-@@ -262,5 +263,7 @@
- country_ab2   "<U005A><U0041>"
- country_ab3   "<U005A><U0041><U0046>"
- 
-+country_isbn  0
-+
- END LC_ADDRESS
- 
-diff -uNr libc.orig/localedata/locales/yi_US libc/localedata/locales/yi_US
---- libc.orig/localedata/locales/yi_US	2003-09-14 18:32:08.000000000 +0200
-+++ libc/localedata/locales/yi_US	2004-11-10 02:36:38.000000000 +0100
-@@ -40,7 +40,7 @@
- <U0025><U0073><U0020><U0025><U0068><U0020><U0035><U0065><U0020><U0025><U0072><U0025><U004E>/
- <U0025><U0043><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
- % FIXME country_name "United States" in Yiddish?
--% FIXME country_post "US" for United States?
-+country_post "<U0055><U0053><U0041>"
- country_ab2 "US"
- country_ab3 "USA"
- country_num 840
-diff -uNr libc.orig/localedata/locales/zh_CN libc/localedata/locales/zh_CN
---- libc.orig/localedata/locales/zh_CN	2001-02-10 14:34:20.000000000 +0100
-+++ libc/localedata/locales/zh_CN	2004-11-10 02:36:38.000000000 +0100
-@@ -175,7 +175,7 @@
- country_ab2	"<U0043><U004E>"
- country_ab3	"<U0043><U0048><U004E>"
- country_num	156
--%country_car	"FIXME"
-+country_car	"<U0052><U0043>"
- country_isbn	"<U0037>"
- lang_name	"<U4E2D><U6587>"
- lang_ab		"<U007A><U0068>"
-diff -uNr libc.orig/localedata/locales/zh_HK libc/localedata/locales/zh_HK
---- libc.orig/localedata/locales/zh_HK	2003-12-07 14:00:22.000000000 +0100
-+++ libc/localedata/locales/zh_HK	2004-11-10 02:36:38.000000000 +0100
-@@ -184,6 +184,10 @@
- country_ab2 "<U0048><U004B>"
- country_ab3 "<U0048><U004B><U0047>"
- country_num 344
-+country_isbn "962,988"
-+lang_ab     "<U007A><U0068>"
-+lang_term   "<U007A><U0068><U006F>"
-+lang_lib    "<U0063><U0068><U0069>"
- END LC_ADDRESS
- 
- 
-diff -uNr libc.orig/localedata/locales/zh_SG libc/localedata/locales/zh_SG
---- libc.orig/localedata/locales/zh_SG	2003-12-05 01:26:01.000000000 +0100
-+++ libc/localedata/locales/zh_SG	2004-11-10 02:36:38.000000000 +0100
-@@ -194,14 +194,16 @@
- country_ab2 "<U0053><U0047>"
- country_ab3 "<U0053><U0047><U0050>"
- country_num 702
-+country_car "<U0053><U0047><U0050>"
-+country_isbn "981,9971"
-+lang_ab     "<U007A><U0068>"
-+lang_term   "<U007A><U0068><U006F>"
-+lang_lib    "<U0063><U0068><U0069>"
- END LC_ADDRESS
- 
- 
- LC_TELEPHONE
--% This is the ISO_IEC TR14652 Locale definition for the LC_TELEPHONE
--% generated by IBM Basic CountryPack Transformer.
--tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020><U003B><U0025><U006C>"
--
-+copy "en_SG"
- END LC_TELEPHONE
- 
- 
-diff -uNr libc.orig/localedata/locales/zh_TW libc/localedata/locales/zh_TW
---- libc.orig/localedata/locales/zh_TW	2002-09-29 11:11:08.000000000 +0200
-+++ libc/localedata/locales/zh_TW	2004-11-10 02:36:38.000000000 +0100
-@@ -193,7 +193,7 @@
- country_ab3	"<U0054><U0057><U004E>"
- country_num	158
- %country_car    "FIXME"
--country_isbn	"<U0039><U0035><U0037>"
-+country_isbn	"957,986"
- 
- % Reference:	http://lcweb.loc.gov/standards/iso639-2/langhome.html
- % lang_ab:	zh
-diff -uNr libc.orig/localedata/locales/zu_ZA libc/localedata/locales/zu_ZA
---- libc.orig/localedata/locales/zu_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/zu_ZA	2004-11-10 02:36:38.000000000 +0100
-@@ -270,5 +270,7 @@
- country_ab2   "<U005A><U0041>"
- country_ab3   "<U005A><U0041><U0046>"
- 
-+country_isbn  0
-+
- END LC_ADDRESS
- 
-diff -uNr libc.orig/localedata/locales/ro_RO libc/localedata/locales/ro_RO
---- libc.orig/localedata/locales/ro_RO	2003-12-05 01:25:59.000000000 +0100
-+++ libc/localedata/locales/ro_RO	2004-11-10 02:36:38.000000000 +0100
-@@ -2,29 +2,19 @@
- escape_char  /
- %
- % Romanian Language Locale for Romania
--% Source: RAP
--% Address: Sankt Jo//rgens Alle 8
--%    DK-1615 Ko//benhavn V, Danmark
--% Contact: Keld Simonsen
--% Email: Keld.Simonsen@dkuug.dk
--% Tel: +45 - 31226543
--% Fax: +45 - 33256543
- % Language: ro
- % Territory: RO
--% Revision: 4.3
--% Date: 1996-10-15
--% Application: general
--% Users: general
--% Charset: ISO-8859-2
-+% Ionel Mugurel Ciobîcã, © 2001
-+% Charset: ISO-8859-16
- % Distribution and use is free, also
- % for commercial purposes.
- 
- LC_IDENTIFICATION
- title      "Romanian locale for Romania"
- source     "RAP"
--address    "Sankt Jorgens Alle 8, DK-1615 Kobenhavn V, Danmark"
-+address    "TUE, SKA, POBOX 513, 5600MB Eindhoven, The Netherlands"
- contact    ""
--email      "bug-glibc@gnu.org"
-+email      "I.M.Ciobica@TUe.nl"
- tel        ""
- fax        ""
- language   "Romanian"
-@@ -32,17 +22,17 @@
- revision   "1.0"
- date       "2000-06-29"
- %
--category  "ro_RO:2000";LC_IDENTIFICATION
--category  "ro_RO:2000";LC_CTYPE
--category  "ro_RO:2000";LC_COLLATE
--category  "ro_RO:2000";LC_TIME
--category  "ro_RO:2000";LC_NUMERIC
--category  "ro_RO:2000";LC_MONETARY
--category  "ro_RO:2000";LC_MESSAGES
--category  "ro_RO:2000";LC_PAPER
--category  "ro_RO:2000";LC_NAME
--category  "ro_RO:2000";LC_ADDRESS
--category  "ro_RO:2000";LC_TELEPHONE
-+category  "i18n:1997";LC_IDENTIFICATION
-+category  "i18n:1997";LC_CTYPE
-+category  "i18n:1997";LC_COLLATE
-+category  "i18n:1997";LC_TIME
-+category  "i18n:1997";LC_NUMERIC
-+category  "i18n:1997";LC_MONETARY
-+category  "i18n:1997";LC_MESSAGES
-+category  "i18n:1997";LC_PAPER
-+category  "i18n:1997";LC_NAME
-+category  "i18n:1997";LC_ADDRESS
-+category  "i18n:1997";LC_TELEPHONE
- 
- END LC_IDENTIFICATION
- 
-@@ -109,23 +99,19 @@
- translit_start
- include "translit_combining";""
- 
--% if t/scomma is not available, try first t/scedilla
--<U0218> "<U015E>";"<U0053>"
--<U0219> "<U015F>";"<U0073>"
--<U021A> "<U0162>";"<U0054>"
--<U021B> "<U0163>";"<U0074>"
--
--% if t/scedilla is not available, try first t/scomma
--<U015E> "<U0218>";"<U0053>"
--<U015F> "<U0219>";"<U0073>"
--<U0162> "<U021A>";"<U0054>"
--<U0163> "<U021B>";"<U0074>"
-+% if t/scomma is not available, try t/s
-+% if t/scedilla is not available, don't try anything
-+% since scedilla belong to Turkish and tcedilla to noone
-+<U0218> "<U0053>"
-+<U0219> "<U0073>"
-+<U021A> "<U0054>"
-+<U021B> "<U0074>"
- 
- translit_end
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0044><U0064><U0059><U0079><U005D><U002E><U002A>"
-+yesexpr "<U005E><U005B><U0044><U0064><U005D><U002E><U002A>"
- noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
- END LC_MESSAGES
- 
-@@ -133,15 +119,15 @@
- int_curr_symbol           "<U0052><U004F><U004C><U0020>"
- currency_symbol           "<U004C><U0065><U0069>"
- mon_decimal_point         "<U002C>"
--mon_thousands_sep         "<U002E>"
-+mon_thousands_sep         "<U0020>"
- mon_grouping              3;3
- positive_sign             ""
- negative_sign             "<U002D>"
- int_frac_digits           2
- frac_digits               2
--p_cs_precedes             1
-+p_cs_precedes             0
- p_sep_by_space            1
--n_cs_precedes             1
-+n_cs_precedes             0
- n_sep_by_space            1
- p_sign_posn               1
- n_sign_posn               1
-@@ -149,46 +135,46 @@
- 
- LC_NUMERIC
- decimal_point             "<U002C>"
--thousands_sep             ""
-+thousands_sep             "<U0020>"
- grouping                  0;0
- END LC_NUMERIC
- 
- LC_TIME
--abday   "<U0044><U0075>";"<U004C><U0075>";"<U004D><U0061>";"<U004D><U0069>";/
--        "<U004A><U006F>";"<U0056><U0069>";"<U0053><U00EE>"
--day     "<U0044><U0075><U006D><U0069><U006E><U0069><U0063><U0102>";/
--        "<U004C><U0075><U006E><U0069>";/
--        "<U004D><U0061><U0072><U0163><U0069>";/
--        "<U004D><U0069><U0065><U0072><U0063><U0075><U0072><U0069>";/
--        "<U004A><U006F><U0069>";/
--        "<U0056><U0069><U006E><U0065><U0072><U0069>";/
--        "<U0053><U00EE><U006D><U0062><U0102><U0074><U0102>"
-+abday   "<U0020><U0044>";"<U0020><U004C>";"<U004D><U0061>";"<U004D><U0069>";/
-+        "<U0020><U004A>";"<U0020><U0056>";"<U0020><U0053>"
-+day     "<U0064><U0075><U006D><U0069><U006E><U0069><U0063><U0103>";/
-+        "<U006C><U0075><U006E><U0069>";/
-+        "<U006D><U0061><U0072><U021B><U0069>";/
-+        "<U006D><U0069><U0065><U0072><U0063><U0075><U0072><U0069>";/
-+        "<U006A><U006F><U0069>";/
-+        "<U0076><U0069><U006E><U0065><U0072><U0069>";/
-+        "<U0073><U00EE><U006D><U0062><U0103><U0074><U0103>"
- abmon   "<U0069><U0061><U006E>";"<U0066><U0065><U0062>";/
-         "<U006D><U0061><U0072>";"<U0061><U0070><U0072>";/
-         "<U006D><U0061><U0069>";"<U0069><U0075><U006E>";/
-         "<U0069><U0075><U006C>";"<U0061><U0075><U0067>";/
-         "<U0073><U0065><U0070>";"<U006F><U0063><U0074>";/
--        "<U006E><U006F><U0076>";"<U0064><U0065><U0063>"
--mon     "<U0049><U0061><U006E><U0075><U0061><U0072><U0069><U0065>";/
--        "<U0046><U0065><U0062><U0072><U0075><U0061><U0072><U0069><U0065>";/
--        "<U004D><U0061><U0072><U0074><U0069><U0065>";/
--        "<U0041><U0070><U0072><U0069><U006C><U0069><U0065>";/
--        "<U004D><U0061><U0069>";/
--        "<U0049><U0075><U006E><U0069><U0065>";/
--        "<U0049><U0075><U006C><U0069><U0065>";/
--        "<U0041><U0075><U0067><U0075><U0073><U0074>";/
--        "<U0053><U0065><U0070><U0074><U0065><U006D><U0062><U0072><U0069><U0065>";/
--        "<U004F><U0063><U0074><U006F><U006D><U0062><U0072><U0069><U0065>";/
--        "<U004E><U006F><U0069><U0065><U006D><U0062><U0072><U0069><U0065>";/
--        "<U0044><U0065><U0063><U0065><U006D><U0062><U0072><U0069><U0065>"
--d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+        "<U006E><U006F><U0069>";"<U0064><U0065><U0063>"
-+mon     "<U0069><U0061><U006E><U0075><U0061><U0072><U0069><U0065>";/
-+        "<U0066><U0065><U0062><U0072><U0075><U0061><U0072><U0069><U0065>";/
-+        "<U006D><U0061><U0072><U0074><U0069><U0065>";/
-+        "<U0061><U0070><U0072><U0069><U006C><U0069><U0065>";/
-+        "<U006D><U0061><U0069>";/
-+        "<U0069><U0075><U006E><U0069><U0065>";/
-+        "<U0069><U0075><U006C><U0069><U0065>";/
-+        "<U0061><U0075><U0067><U0075><U0073><U0074>";/
-+        "<U0073><U0065><U0070><U0074><U0065><U006D><U0062><U0072><U0069><U0065>";/
-+        "<U006F><U0063><U0074><U006F><U006D><U0062><U0072><U0069><U0065>";/
-+        "<U006E><U006F><U0069><U0065><U006D><U0062><U0072><U0069><U0065>";/
-+        "<U0064><U0065><U0063><U0065><U006D><U0062><U0072><U0069><U0065>"
-+d_t_fmt "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0042><U0020><U0025><U0059><U0020><U0025><U0054>"
- d_fmt   "<U0025><U0059><U002D><U0025><U006D><U002D><U0025><U0064>"
- t_fmt   "<U0025><U0054>"
- am_pm   "";""
- t_fmt_ampm ""
--date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
--<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
--<U0025><U005A><U0020><U0025><U0059>"
-+date_fmt       "<U0025><U0041><U002C><U0020><U0025><U0065><U0020><U0025><U0042><U0020>/
-+<U0025><U0059><U002C><U0020><U0025><U0048><U0068><U0020><U0025><U004D><U0027><U0025><U0053><U0027><U0027>"
-+% <U0025><U0059><U002C><U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053>"
- END LC_TIME
- 
- LC_PAPER
-@@ -210,17 +196,30 @@
- END LC_MEASUREMENT
- 
- LC_NAME
--name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
--<U0025><U006D><U0025><U0074><U0025><U0066>"
-+name_fmt    "<U0025><U0066><U0025><U0067><U0025>"
-+name_miss   "<U0064><U006F><U006D><U006E><U0069><U0219><U006F><U0061><U0072><U0103>"
-+name_mr     "<U0064><U006F><U006D><U006E><U0075><U006C><U0065>"
-+name_mrs    "<U0064><U006F><U0061><U006D><U006E><U0103>"
-+name_ms     "<U0064><U006F><U0061><U006D><U006E><U0103>"
- END LC_NAME
- 
- LC_ADDRESS
--postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
--<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
--<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
--<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
--<U004E><U0025><U0063><U0025><U004E>"
--country_ab2 "<U0052><U004F>"
--country_ab3 "<U0052><U004F><U0055>"
--country_num 642
-+postal_fmt    "<U0025><U0066><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0073><U0025>/
-+<U0068><U0025><U004E><U0025><U0062><U002C><U0025>/
-+<U0065><U002C><U0020><U0025><U0072><U0025><U004E>/
-+<U0025><U0054><U0025><U004E><U0025><U0053><U0025>/
-+<U004E><U0025><U007A><U0025><U004E><U0025><U0043>/
-+<U0025><U004E>"
-+country_name  "<U0052><U006F><U006D><U00E2><U006E><U0069><U0061>"
-+country_post  "<U0052><U004F>"
-+country_ab2   "<U0052><U004F>"
-+country_ab3   "<U0052><U004F><U0055>"
-+country_num   642
-+country_car   "<U0052><U004F>"
-+country_isbn  "<U0039><U0037><U0033>"
-+lang_name     "<U0052><U006F><U006D><U00E2><U006E><U0065><U0219><U0074><U0065>"
-+lang_ab       "<U0072><U006F>"
-+lang_term     "<U0072><U006F><U006E>"
-+lang_lib      "<U0072><U0075><U006D>"
- END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/vi_VN libc/localedata/locales/vi_VN
 --- libc.orig/localedata/locales/vi_VN	2003-12-05 01:26:01.000000000 +0100
 +++ libc/localedata/locales/vi_VN	2004-11-10 02:36:38.000000000 +0100
@@ -5440,4 +5334,139 @@ diff -uNr libc.orig/localedata/locales/vi_VN libc/localedata/locales/vi_VN
 +lang_lib    "<U0076><U0069><U0065>"
  END LC_ADDRESS
  
+ 
+diff -uNr libc.orig/localedata/locales/wa_BE libc/localedata/locales/wa_BE
+--- libc.orig/localedata/locales/wa_BE	2004-04-29 00:55:02.000000000 +0200
++++ libc/localedata/locales/wa_BE	2004-11-10 02:36:38.000000000 +0100
+@@ -41,7 +41,7 @@
+ country_post "B"
+ country_ab2 "BE"
+ country_ab3 "BEL"
+-country_num 56
++country_num 056
+ country_isbn "2"
+ country_car "B"
+ lang_name "<U0057><U0061><U006C><U006F><U006E>"
+diff -uNr libc.orig/localedata/locales/wal_ET libc/localedata/locales/wal_ET
+--- libc.orig/localedata/locales/wal_ET	2004-05-03 22:49:23.000000000 +0200
++++ libc/localedata/locales/wal_ET	2004-11-10 02:36:38.000000000 +0100
+@@ -108,13 +108,11 @@
+ country_ab3   "<U0045><U0054><U0048>"
+ country_num   231   % 210 found in at least one ISO 3166 doc
+ % country_car   unknown
+-% country_isbn  unknown, Need ISO 2108
++country_isbn  "<U0039><U0039><U0039><U0034><U0034>"
+ lang_name     "<U12C8><U120B><U12ED><U1273><U1271>"
+-lang_ab       "<U0077><U0061><U006C>"
++lang_ab       ""
+ lang_term     "<U0077><U0061><U006C>"
+ lang_lib      "<U0077><U0061><U006C>"
+-
+-
+ %
+ END LC_ADDRESS
+ 
+diff -uNr libc.orig/localedata/locales/xh_ZA libc/localedata/locales/xh_ZA
+--- libc.orig/localedata/locales/xh_ZA	2004-11-10 01:45:57.000000000 +0100
++++ libc/localedata/locales/xh_ZA	2004-11-10 02:36:38.000000000 +0100
+@@ -223,6 +223,7 @@
+ % see http://www.loc.gov/standards/iso639-2/englangn.html
+ lang_ab   "<U0078><U0068>"
+ lang_term "<U0078><U0068><U006F>"
++lang_lib  "<U0078><U0068><U006F>"
+ 
+ % Representation of postal addresses (minus the addressee's name) in South
+ % Africa. (Ignored for now)
+@@ -262,5 +263,7 @@
+ country_ab2   "<U005A><U0041>"
+ country_ab3   "<U005A><U0041><U0046>"
+ 
++country_isbn  0
++
+ END LC_ADDRESS
+ 
+diff -uNr libc.orig/localedata/locales/yi_US libc/localedata/locales/yi_US
+--- libc.orig/localedata/locales/yi_US	2003-09-14 18:32:08.000000000 +0200
++++ libc/localedata/locales/yi_US	2004-11-10 02:36:38.000000000 +0100
+@@ -40,7 +40,7 @@
+ <U0025><U0073><U0020><U0025><U0068><U0020><U0035><U0065><U0020><U0025><U0072><U0025><U004E>/
+ <U0025><U0043><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
+ % FIXME country_name "United States" in Yiddish?
+-% FIXME country_post "US" for United States?
++country_post "<U0055><U0053><U0041>"
+ country_ab2 "US"
+ country_ab3 "USA"
+ country_num 840
+diff -uNr libc.orig/localedata/locales/zh_CN libc/localedata/locales/zh_CN
+--- libc.orig/localedata/locales/zh_CN	2001-02-10 14:34:20.000000000 +0100
++++ libc/localedata/locales/zh_CN	2004-11-10 02:36:38.000000000 +0100
+@@ -175,7 +175,7 @@
+ country_ab2	"<U0043><U004E>"
+ country_ab3	"<U0043><U0048><U004E>"
+ country_num	156
+-%country_car	"FIXME"
++country_car	"<U0052><U0043>"
+ country_isbn	"<U0037>"
+ lang_name	"<U4E2D><U6587>"
+ lang_ab		"<U007A><U0068>"
+diff -uNr libc.orig/localedata/locales/zh_HK libc/localedata/locales/zh_HK
+--- libc.orig/localedata/locales/zh_HK	2003-12-07 14:00:22.000000000 +0100
++++ libc/localedata/locales/zh_HK	2004-11-10 02:36:38.000000000 +0100
+@@ -184,6 +184,10 @@
+ country_ab2 "<U0048><U004B>"
+ country_ab3 "<U0048><U004B><U0047>"
+ country_num 344
++country_isbn "962,988"
++lang_ab     "<U007A><U0068>"
++lang_term   "<U007A><U0068><U006F>"
++lang_lib    "<U0063><U0068><U0069>"
+ END LC_ADDRESS
+ 
+ 
+diff -uNr libc.orig/localedata/locales/zh_SG libc/localedata/locales/zh_SG
+--- libc.orig/localedata/locales/zh_SG	2003-12-05 01:26:01.000000000 +0100
++++ libc/localedata/locales/zh_SG	2004-11-10 02:36:38.000000000 +0100
+@@ -194,14 +194,16 @@
+ country_ab2 "<U0053><U0047>"
+ country_ab3 "<U0053><U0047><U0050>"
+ country_num 702
++country_car "<U0053><U0047><U0050>"
++country_isbn "981,9971"
++lang_ab     "<U007A><U0068>"
++lang_term   "<U007A><U0068><U006F>"
++lang_lib    "<U0063><U0068><U0069>"
+ END LC_ADDRESS
+ 
+ 
+ LC_TELEPHONE
+-% This is the ISO_IEC TR14652 Locale definition for the LC_TELEPHONE
+-% generated by IBM Basic CountryPack Transformer.
+-tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020><U003B><U0025><U006C>"
+-
++copy "en_SG"
+ END LC_TELEPHONE
+ 
+ 
+diff -uNr libc.orig/localedata/locales/zh_TW libc/localedata/locales/zh_TW
+--- libc.orig/localedata/locales/zh_TW	2002-09-29 11:11:08.000000000 +0200
++++ libc/localedata/locales/zh_TW	2004-11-10 02:36:38.000000000 +0100
+@@ -193,7 +193,7 @@
+ country_ab3	"<U0054><U0057><U004E>"
+ country_num	158
+ %country_car    "FIXME"
+-country_isbn	"<U0039><U0035><U0037>"
++country_isbn	"957,986"
+ 
+ % Reference:	http://lcweb.loc.gov/standards/iso639-2/langhome.html
+ % lang_ab:	zh
+diff -uNr libc.orig/localedata/locales/zu_ZA libc/localedata/locales/zu_ZA
+--- libc.orig/localedata/locales/zu_ZA	2004-11-10 01:45:57.000000000 +0100
++++ libc/localedata/locales/zu_ZA	2004-11-10 02:36:38.000000000 +0100
+@@ -270,5 +270,7 @@
+ country_ab2   "<U005A><U0041>"
+ country_ab3   "<U005A><U0041><U0046>"
+ 
++country_isbn  0
++
+ END LC_ADDRESS
  
