@@ -186,11 +186,11 @@ gzip -9fn $RPM_BUILD_ROOT/usr/share/{man/man*/*,info/libc*}
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/libc.info.gz /etc/info-dir
+/sbin/install-info %{_infodir}/libc.info.gz /etc/info-dir
 
 %preun devel
 if [ "$1" = 0 ]; then
-	/sbin/install-info --delete /usr/info/libc.info.gz /etc/info-dir
+	/sbin/install-info --delete %{_infodir}/libc.info.gz /etc/info-dir
 fi
 
 %clean
