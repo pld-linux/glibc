@@ -590,9 +590,9 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
 done
-for i in af ar az be bg br bs cy de_AT el en eo es_ES et eu fi ga gr he hi hr \
-	 hu id is ja_JP.SJIS ka lg lt lv ms nn pt ro ru sl sq sr sr@cyrillic \
-	 ta tg th uk uz vi wa zh_CN ; do
+for i in af ar az be bg br bs cy de_AT el en eo es_ES et eu fa fi ga gr he hi \
+	 hr hu id is ja_JP.SJIS ka lg lt lv mk ms nn pt ro ru sl sq sr \
+	 sr@cyrillic ta tg th uk uz vi wa zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
