@@ -181,7 +181,7 @@ Group:		Daemons
 Group(pl):	Serwery
 
 %description -n iconv
-Convert encoding of given files from one encoding to another. You neet this
+Convert encoding of given files from one encoding to another. You need this
 package if You want to convert some documet from one encoding to another or
 if Yoo have installed some programs which use Generic Character Set
 Conversion Interface.
@@ -190,8 +190,8 @@ Conversion Interface.
 Program do konwersji plików tekstowych z jednego enkodingu w inny.
 Potrzebujesz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
 dokumentów z jednego enkodingu w inny lub je¿eli masz zainstalowane jakie¶
-programy które korzystaj± Generic Character Set Conversion Interface w
-glibc czyli zestawu funkcji z tej biblioteki które umo¿liwiaj± kowersje
+programy które korzystaj± z Generic Character Set Conversion Interface
+w glibc, czyli z zestawu funkcji z tej biblioteki, które umo¿liwiaj± konwersjê
 enkodingu danych z poziomu dowolnego programu.
 
 %package static
@@ -219,7 +219,7 @@ Requires:	%{name}-devel = %{version}
 
 %description profile
 When programs are being profiled used gprof, they must use these libraries
-instrad of the standard C libraries for gprof to be able to profile them
+instead of the standard C libraries for gprof to be able to profile them
 correctly.
 
 %description -l de profile
