@@ -519,7 +519,7 @@ rm -rf $RPM_BUILD_ROOT
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
-%attr(755,root,root) %{_libdir}/memusage*
+%attr(755,root,root) %{_libdir}/libmemusage*
 
 %files devel
 %defattr(644,root,root,755)
