@@ -19,6 +19,9 @@
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   linuxthreads/tst-cancel8, debug/backtrace-tst(SEGV)  fail on alpha
+# - problem compiling with --enable-bounded (must be reported to libc-alpha)
+#   (is this comment still valid???)
+
 #
 
 %{!?min_kernel:%global          min_kernel      2.4.6}
@@ -821,7 +824,7 @@ cp -f /usr/share/automake/config.sub scripts
 cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
 cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 #
-[ -d builddir ] || mkdir builddir
+install -d builddir
 cd builddir
 ../%configure \
 	CPPFLAGS="-I%{sysheaders}" \
@@ -838,9 +841,11 @@ cd builddir
 	--enable-profile
 %endif
 
-# problem compiling with --enable-bounded (must be reported to libc-alpha)
-
 %{__make}
+
+%if %{with linuxthreads}
+%{__make} -C linuxthreads/man
+%endif
 
 %if %{with tests}
 env LANGUAGE=C LC_ALL=C \
@@ -862,7 +867,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/run/nscd}
 
 cd builddir
-
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
@@ -884,15 +888,15 @@ install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
+cd ..
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 %endif
 
-%if %{without nptl}
-%{__make} -C ../linuxthreads/man
-install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
+%if %{with linuxthreads}
+install linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
 %endif
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
@@ -919,8 +923,8 @@ done
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install ../nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
-install ../nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
@@ -930,17 +934,21 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
 
-rm -rf ../documentation
-install -d ../documentation
+rm -rf documentation
+install -d documentation
 
-%if %{without nptl}
-cp -f ../linuxthreads/ChangeLog ../documentation/ChangeLog.threads
-cp -f ../linuxthreads/Changes ../documentation/Changes.threads
-cp -f ../linuxthreads/README ../documentation/README.threads
+%if %{with linuxthreads}
+for f in ChangeLog Changes README ; do
+	cp -f linuxthreads/$f documentation/${f}.linuxthreads
+done
 %endif
-cp -f ../crypt/README.ufc-crypt ../documentation/
+%if %{with nptl}
+for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing} ;  do
+	cp -f nptl/$f documentation/${f}.nptl
+%endif
+cp -f crypt/README.ufc-crypt documentation
 
-cp -f ../ChangeLog* ../documentation
+cp -f ChangeLog* documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
@@ -950,8 +958,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 %endif
 
 # Collect locale files and mark them with %%lang()
-rm -f ../glibc.lang
-echo '%defattr(644,root,root,755)' > ../glibc.lang
+rm -f glibc.lang
+echo '%defattr(644,root,root,755)' > glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
@@ -971,7 +979,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 			fi
 		fi
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
-		echo "%lang($lang) $dir" >> ../glibc.lang
+		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
 # XXX: to be added when become supported by glibc
@@ -988,7 +996,7 @@ for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
-		echo "%lang($lang) %{_datadir}/locale/$i" >> ../glibc.lang
+		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
 done
 cd $RPM_BUILD_ROOT%{_datadir}/locale
@@ -998,7 +1006,7 @@ cd -
 
 # localedb-gen infrastructure
 install %{SOURCE7} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
-install ../localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
+install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
 rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
@@ -1006,9 +1014,6 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
 rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
-
-# no longer supported (/dev/null has the same, but expected behaviour)
-rm -f $RPM_BUILD_ROOT%{_bindir}/glibcbug
 
 %clean
 rm -rf $RPM_BUILD_ROOT
