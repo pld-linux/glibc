@@ -31,7 +31,6 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # borrowed from util-linux
 Source7:	sln.8
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-string2-pointer-arith.patch
@@ -43,7 +42,6 @@ Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-postshell.patch
 Patch13:	%{name}-pl.po-update.patch
 Patch14:	%{name}-missing-nls.patch
-Patch15:	%{name}-broken-ldconfig-on-i386-with-gcc32.patch
 Patch16:	%{name}-java-libc-wait.patch
 Patch17:	%{name}-morelocales.patch
 URL:		http://www.gnu.org/software/libc/
@@ -51,12 +49,12 @@ BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
+%{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
-BuildRequires:	texinfo
-%{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	sed >= 4.0.5
+BuildRequires:	texinfo
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -453,7 +451,6 @@ Zabawka.
 %prep
 %setup -q -a 1
 %patch0 -p1
-#%%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -465,7 +462,6 @@ Zabawka.
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
-#%%patch15 -p1
 %patch16 -p1
 %patch17 -p1
 
@@ -575,7 +571,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		twochar=1
 		# list of long %%lang values we do support
-		for j in de_AT de_BE de_CH de_LU ja_JP.SJIS ko_KR.utf8 pt_BR \
+		for j in de_AT de_BE de_CH de_LU es_AR ja_JP.SJIS ko_KR.utf8 pt_BR \
 			 zh_CN zh_CN.gbk zh_HK zh_TW ; do
 			if [ $j = "$lang" ]; then
 				twochar=
@@ -592,7 +588,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
 done
-for i in af ar az be bg br bs cy de_AT el en eo es_ES et eu fa fi ga gr he hi \
+for i in af ar az be bg br bs cy de_AT el en eo es_AR et eu fa fi ga gr he hi \
 	 hr hu id is ja_JP.SJIS ka lg lt lv mk ms nn pt ro ru sl sq sr \
 	 sr@cyrillic ta tg th uk uz vi wa zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
@@ -704,13 +700,13 @@ fi
 %dir %{_libdir}/locale
 %{_libdir}/locale/locale-archive
 
-%{_mandir}/man1/[^lsg]*
+%{_mandir}/man1/[!lsg]*
 %{_mandir}/man1/getent.1*
 %{_mandir}/man1/locale.1*
 %{_mandir}/man1/ldd.1*
-%{_mandir}/man5/???[^d]*
+%{_mandir}/man5/???[!d]*
 %{_mandir}/man7/*
-%{_mandir}/man8/[^n]*
+%{_mandir}/man8/[!n]*
 %lang(cs) %{_mandir}/cs/man[578]/*
 %lang(de) %{_mandir}/de/man[578]/*
 %lang(es) %{_mandir}/es/man[578]/*
@@ -720,21 +716,21 @@ fi
 %lang(hu) %{_mandir}/hu/man1/ldd.1*
 %lang(hu) %{_mandir}/hu/man[578]/*
 %lang(it) %{_mandir}/it/man[578]/*
-%lang(ja) %{_mandir}/ja/man1/[^lsg]*
+%lang(ja) %{_mandir}/ja/man1/[!lsg]*
 %lang(ja) %{_mandir}/ja/man1/ldd.1*
-%lang(ja) %{_mandir}/ja/man5/???[^d]*
+%lang(ja) %{_mandir}/ja/man5/???[!d]*
 %lang(ja) %{_mandir}/ja/man7/*
-%lang(ja) %{_mandir}/ja/man8/[^n]*
+%lang(ja) %{_mandir}/ja/man8/[!n]*
 %lang(ko) %{_mandir}/ko/man[578]/*
 # %lang(nl) %{_mandir}/nl/man[578]/*
 %lang(pl) %{_mandir}/pl/man1/ldd.1*
 %lang(pl) %{_mandir}/pl/man[578]/*
-%lang(pt) %{_mandir}/pt/man5/???[^d]*
+%lang(pt) %{_mandir}/pt/man5/???[!d]*
 %lang(pt) %{_mandir}/pt/man7/*
-%lang(pt) %{_mandir}/pt/man8/[^n]*
-%lang(pt_BR) %{_mandir}/pt_BR/man5/???[^d]*
+%lang(pt) %{_mandir}/pt/man8/[!n]*
+%lang(pt_BR) %{_mandir}/pt_BR/man5/???[!d]*
 %lang(pt_BR) %{_mandir}/pt_BR/man7/*
-%lang(pt_BR) %{_mandir}/pt_BR/man8/[^n]*
+%lang(pt_BR) %{_mandir}/pt_BR/man8/[!n]*
 %lang(ru) %{_mandir}/ru/man[578]/*
 
 #%files -n nss_dns
@@ -798,7 +794,7 @@ fi
 
 %{_infodir}/libc.info*
 
-%attr(755,root,root) %{_libdir}/lib[^m]*.so
+%attr(755,root,root) %{_libdir}/lib[!m]*.so
 %attr(755,root,root) %{_libdir}/libm.so
 %attr(755,root,root) %{_libdir}/*crt*.o
 %{_libdir}/libbsd-compat.a
