@@ -16,7 +16,6 @@
 # - serious problem with upgrade (changing zoneinfo/posix/* dirs into symlinks)
 #   are there any other solutions than revert???
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
-# - glibc64* - package desc
 #
 #
 # WARNING:
@@ -582,26 +581,30 @@ Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %package -n %{name}64
-Summary:	%{name}64
-Summary(pl):	%{name}64
+Summary:	%{name} - 64bit libraries
+Summary(pl):	%{name} - biblioteki 64 bitowe
 Release:	%{rel}
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
-%description -n %{name}
+%description -n %{name}64
+GNU libc 64bit libraries for sparc64.
 
 %description -l pl -n %{name}64
+GNU libc biblioteki 64 dla sparc64.
 
 %package -n %{name}64-devel
-Summary:	%{name}64-devel
-Summary(pl):	%{name}64-devel
+Summary:	%{name}
+Summary(pl):	%{name}
 Release:	%{rel}
 Group:		Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description -n %{name}64-devel
+GNU libc 64bit development libraries for sparc64.
 
 %description -l pl -n %{name}64-devel
+GNU libc 64bit bibliotekai rozwojowe dla sparca64.
 
 %package -n %{name}64-static
 Summary:	%{name}64-static
@@ -611,8 +614,10 @@ Group:		Libraries
 Requires:	%{name}64-devel = %{epoch}:%{version}
 
 %description -n %{name}64-static
+GNU libc 64bit static libraries.
 
 %description -l pl -n %{name}64-static
+GNU libc 64 bitowe biblioteki statyczne.
 
 %prep
 %setup -q -a 1 -a 9 -a 10
