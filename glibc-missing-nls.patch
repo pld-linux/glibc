@@ -1,0 +1,285 @@
+--- glibc-2.3.1/sunrpc/rpc_main.c.orig	Fri Nov  2 03:15:17 2001
++++ glibc-2.3.1/sunrpc/rpc_main.c	Mon Nov 11 14:07:24 2002
+@@ -185,6 +185,9 @@
+ {
+   struct commandline cmd;
+ 
++  setlocale (LC_ALL, "");
++  textdomain ("libc");
++
+   (void) memset ((char *) &cmd, 0, sizeof (struct commandline));
+   clear_args ();
+   if (!parseargs (argc, argv, &cmd))
+@@ -1437,30 +1440,30 @@
+ static void
+ options_usage (void)
+ {
+-  f_print (stderr, "options:\n");
+-  f_print (stderr, "-a\t\tgenerate all files, including samples\n");
+-  f_print (stderr, "-b\t\tbackward compatibility mode (generates code for SunOS 4.1)\n");
+-  f_print (stderr, "-c\t\tgenerate XDR routines\n");
+-  f_print (stderr, "-C\t\tANSI C mode\n");
+-  f_print (stderr, "-Dname[=value]\tdefine a symbol (same as #define)\n");
+-  f_print (stderr, "-h\t\tgenerate header file\n");
+-  f_print (stderr, "-i size\t\tsize at which to start generating inline code\n");
+-  f_print (stderr, "-I\t\tgenerate code for inetd support in server (for SunOS 4.1)\n");
+-  f_print (stderr, "-K seconds\tserver exits after K seconds of inactivity\n");
+-  f_print (stderr, "-l\t\tgenerate client side stubs\n");
+-  f_print (stderr, "-L\t\tserver errors will be printed to syslog\n");
+-  f_print (stderr, "-m\t\tgenerate server side stubs\n");
+-  f_print (stderr, "-M\t\tgenerate MT-safe code\n");
+-  f_print (stderr, "-n netid\tgenerate server code that supports named netid\n");
+-  f_print (stderr, "-N\t\tsupports multiple arguments and call-by-value\n");
+-  f_print (stderr, "-o outfile\tname of the output file\n");
+-  f_print (stderr, "-s nettype\tgenerate server code that supports named nettype\n");
+-  f_print (stderr, "-Sc\t\tgenerate sample client code that uses remote procedures\n");
+-  f_print (stderr, "-Ss\t\tgenerate sample server code that defines remote procedures\n");
+-  f_print (stderr, "-Sm \t\tgenerate makefile template \n");
+-  f_print (stderr, "-t\t\tgenerate RPC dispatch table\n");
+-  f_print (stderr, "-T\t\tgenerate code to support RPC dispatch tables\n");
+-  f_print (stderr, "-Y path\t\tdirectory name to find C preprocessor (cpp)\n");
++  f_print (stderr, _("options:\n"));
++  f_print (stderr, _("-a\t\tgenerate all files, including samples\n"));
++  f_print (stderr, _("-b\t\tbackward compatibility mode (generates code for SunOS 4.1)\n"));
++  f_print (stderr, _("-c\t\tgenerate XDR routines\n"));
++  f_print (stderr, _("-C\t\tANSI C mode\n"));
++  f_print (stderr, _("-Dname[=value]\tdefine a symbol (same as #define)\n"));
++  f_print (stderr, _("-h\t\tgenerate header file\n"));
++  f_print (stderr, _("-i size\t\tsize at which to start generating inline code\n"));
++  f_print (stderr, _("-I\t\tgenerate code for inetd support in server (for SunOS 4.1)\n"));
++  f_print (stderr, _("-K seconds\tserver exits after K seconds of inactivity\n"));
++  f_print (stderr, _("-l\t\tgenerate client side stubs\n"));
++  f_print (stderr, _("-L\t\tserver errors will be printed to syslog\n"));
++  f_print (stderr, _("-m\t\tgenerate server side stubs\n"));
++  f_print (stderr, _("-M\t\tgenerate MT-safe code\n"));
++  f_print (stderr, _("-n netid\tgenerate server code that supports named netid\n"));
++  f_print (stderr, _("-N\t\tsupports multiple arguments and call-by-value\n"));
++  f_print (stderr, _("-o outfile\tname of the output file\n"));
++  f_print (stderr, _("-s nettype\tgenerate server code that supports named nettype\n"));
++  f_print (stderr, _("-Sc\t\tgenerate sample client code that uses remote procedures\n"));
++  f_print (stderr, _("-Ss\t\tgenerate sample server code that defines remote procedures\n"));
++  f_print (stderr, _("-Sm \t\tgenerate makefile template \n"));
++  f_print (stderr, _("-t\t\tgenerate RPC dispatch table\n"));
++  f_print (stderr, _("-T\t\tgenerate code to support RPC dispatch tables\n"));
++  f_print (stderr, _("-Y path\t\tdirectory name to find C preprocessor (cpp)\n"));
+ 
+   exit (1);
+ }
+--- glibc-2.3.1/argp/argp-parse.c.orig	Mon Apr  8 10:19:12 2002
++++ glibc-2.3.1/argp/argp-parse.c	Mon Nov 11 14:09:28 2002
+@@ -99,8 +99,8 @@
+ {
+   {"help",	  '?',    	0, 0,  N_("Give this help list"), -1},
+   {"usage",	  OPT_USAGE,	0, 0,  N_("Give a short usage message")},
+-  {"program-name",OPT_PROGNAME,"NAME", OPTION_HIDDEN, N_("Set the program name")},
+-  {"HANG",	  OPT_HANG,    "SECS", OPTION_ARG_OPTIONAL | OPTION_HIDDEN,
++  {"program-name",OPT_PROGNAME,N_("NAME"), OPTION_HIDDEN, N_("Set the program name")},
++  {"HANG",	  OPT_HANG,    N_("SECS"), OPTION_ARG_OPTIONAL | OPTION_HIDDEN,
+      N_("Hang for SECS seconds (default 3600)")},
+   {0, 0}
+ };
+--- glibc-2.3.1/elf/ldconfig.c.orig	Thu Jan 17 08:28:51 2002
++++ glibc-2.3.1/elf/ldconfig.c	Mon Nov 11 14:11:24 2002
+@@ -123,12 +123,12 @@
+   { "verbose", 'v', NULL, 0, N_("Generate verbose messages"), 0},
+   { NULL, 'N', NULL, 0, N_("Don't build cache"), 0},
+   { NULL, 'X', NULL, 0, N_("Don't generate links"), 0},
+-  { NULL, 'r', "ROOT", 0, N_("Change to and use ROOT as root directory"), 0},
+-  { NULL, 'C', "CACHE", 0, N_("Use CACHE as cache file"), 0},
+-  { NULL, 'f', "CONF", 0, N_("Use CONF as configuration file"), 0},
++  { NULL, 'r', N_("ROOT"), 0, N_("Change to and use ROOT as root directory"), 0},
++  { NULL, 'C', N_("CACHE"), 0, N_("Use CACHE as cache file"), 0},
++  { NULL, 'f', N_("CONF"), 0, N_("Use CONF as configuration file"), 0},
+   { NULL, 'n', NULL, 0, N_("Only process directories specified on the command line.  Don't build cache."), 0},
+   { NULL, 'l', NULL, 0, N_("Manually link individual libraries."), 0},
+-  { "format", 'c', "FORMAT", 0, N_("Format to use: new, old or compat (default)"), 0},
++  { "format", 'c', N_("FORMAT"), 0, N_("Format to use: new, old or compat (default)"), 0},
+   { NULL, 0, NULL, 0, NULL, 0 }
+ };
+ 
+--- glibc-2.3.1/po/pl.po.orig	Mon Nov 11 14:28:57 2002
++++ glibc-2.3.1/po/pl.po	Mon Nov 11 14:37:44 2002
+@@ -1690,7 +1690,7 @@
+ msgid "Another string for testing."
+ msgstr "Inny ³añcuch do testów."
+ 
+-#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:79
++#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:79 argp/argp-parse.c:102
+ msgid "NAME"
+ msgstr "NAZWA"
+ 
+@@ -3659,9 +3659,13 @@
+ msgid "Set the program name"
+ msgstr "Okre¶lenie nazwy programu"
+ 
++#: argp/argp-parse.c:103
++msgid "SECS"
++msgstr "SEK"
++
+ #: argp/argp-parse.c:104
+ msgid "Hang for SECS seconds (default 3600)"
+-msgstr "Zatrzymanie na SECS sekund (domy¶lnie 3600)"
++msgstr "Zatrzymanie na SEK sekund (domy¶lnie 3600)"
+ 
+ #: argp/argp-parse.c:161
+ msgid "Print program version"
+@@ -4138,11 +4142,11 @@
+ 
+ #: sunrpc/rpc_main.c:1374
+ msgid "Cannot use netid flag with inetd flag!\n"
+-msgstr "Nie mo¿na u¿ywaæ flagi id_sieci z flag± inetd!\n"
++msgstr "Nie mo¿na u¿ywaæ flagi netid z flag± inetd!\n"
+ 
+ #: sunrpc/rpc_main.c:1386
+ msgid "Cannot use netid flag without TIRPC!\n"
+-msgstr "Flagi id_sieci mo¿na u¿ywaæ tylko z TIRPC!\n"
++msgstr "Flagi netid mo¿na u¿ywaæ tylko z TIRPC!\n"
+ 
+ #: sunrpc/rpc_main.c:1393
+ msgid "Cannot use table flags with newstyle!\n"
+@@ -4181,6 +4185,102 @@
+ msgid "\t%s [-n netid]* [-o outfile] [infile]\n"
+ msgstr "\t%s [-n id_sieci]* [-o plik_wy] [plik_we]\n"
+ 
++#: sunrpc/rpc_main.c:1443
++msgid "options:\n"
++msgstr "opcje:\n"
++
++#: sunrpc/rpc_main.c:1444
++msgid "-a\t\tgenerate all files, including samples\n"
++msgstr "-a\t\tgenerowanie wszystkich plików, tak¿e przyk³adów\n"
++
++#: sunrpc/rpc_main.c:1445
++msgid "-b\t\tbackward compatibility mode (generates code for SunOS 4.1)\n"
++msgstr "-b\t\ttryb kompatybilno¶ci wstecznej (generuje kod dla SunOS 4.1)\n"
++
++#: sunrpc/rpc_main.c:1446
++msgid "-c\t\tgenerate XDR routines\n"
++msgstr "-c\t\tgenerowanie funkcji XDR\n"
++
++#: sunrpc/rpc_main.c:1447
++msgid "-C\t\tANSI C mode\n"
++msgstr "-C\t\ttryb ANSI C\n"
++
++#: sunrpc/rpc_main.c:1448
++msgid "-Dname[=value]\tdefine a symbol (same as #define)\n"
++msgstr "-Dnazwa[=warto¶æ]\tdefinicja symbolu (to samo co #define)\n"
++
++#: sunrpc/rpc_main.c:1449
++msgid "-h\t\tgenerate header file\n"
++msgstr "-h\t\tgenerowanie pliku nag³ówkowego\n"
++
++#: sunrpc/rpc_main.c:1450
++msgid "-i size\t\tsize at which to start generating inline code\n"
++msgstr "-i rozmiar\trozmiar przy którym zacz±æ generowaæ kod inline\n"
++
++#: sunrpc/rpc_main.c:1451
++msgid "-I\t\tgenerate code for inetd support in server (for SunOS 4.1)\n"
++msgstr "-I\t\tgenerowanie kodu do obs³ugi inetd w serwerze (dla SunOS 4.1)\n"
++
++#: sunrpc/rpc_main.c:1452
++msgid "-K seconds\tserver exits after K seconds of inactivity\n"
++msgstr "-K sekund\tserwer koñczy pracê po K sekund nieaktywno¶ci\n"
++
++#: sunrpc/rpc_main.c:1453
++msgid "-l\t\tgenerate client side stubs\n"
++msgstr "-l\t\tgenerowanie za¶lepek dla strony klienckiej\n"
++
++#: sunrpc/rpc_main.c:1454
++msgid "-L\t\tserver errors will be printed to syslog\n"
++msgstr "-L\t\tzapisywanie b³êdów serwera do dziennika systemowego\n"
++
++#: sunrpc/rpc_main.c:1455
++msgid "-m\t\tgenerate server side stubs\n"
++msgstr "-m\t\tgenerowanie za¶lepek dla strony serwera\n"
++
++#: sunrpc/rpc_main.c:1456
++msgid "-M\t\tgenerate MT-safe code\n"
++msgstr "-M\t\tgenerowanie kodu bezpiecznego dla w±tków (MT-safe)\n"
++
++#: sunrpc/rpc_main.c:1457
++msgid "-n netid\tgenerate server code that supports named netid\n"
++msgstr "-n id_sieci\tgenerowanie kodu serwera obs³uguj±cego podany id_sieci\n"
++
++#: sunrpc/rpc_main.c:1458
++msgid "-N\t\tsupports multiple arguments and call-by-value\n"
++msgstr "-N\t\tobs³uga wielu argumentów i wywo³ywania przez warto¶æ\n"
++
++#: sunrpc/rpc_main.c:1459
++msgid "-o outfile\tname of the output file\n"
++msgstr "-o plik_wy\tnazwa pliku wyj¶ciowego\n"
++
++#: sunrpc/rpc_main.c:1460
++msgid "-s nettype\tgenerate server code that supports named nettype\n"
++msgstr "-s typ_sieci\tgenerowanie kodu serwera obs³uguj±cego podany typ_sieci\n"
++
++#: sunrpc/rpc_main.c:1461
++msgid "-Sc\t\tgenerate sample client code that uses remote procedures\n"
++msgstr "-Sc\t\tgenerowanie przyk³adowego kodu klienta u¿ywaj±cego procedur zdalnych\n"
++
++#: sunrpc/rpc_main.c:1462
++msgid "-Ss\t\tgenerate sample server code that defines remote procedures\n"
++msgstr "-Ss\t\tgenerowanie przyk³adowego kodu serwera definiuj±cego procedury zdalne\n"
++
++#: sunrpc/rpc_main.c:1463
++msgid "-Sm \t\tgenerate makefile template \n"
++msgstr "-Sm \t\tgenerowanie szablonu makefile\n"
++
++#: sunrpc/rpc_main.c:1464
++msgid "-t\t\tgenerate RPC dispatch table\n"
++msgstr "-t\t\tgenerowanie tablicy wysy³ania RPC\n"
++
++#: sunrpc/rpc_main.c:1465
++msgid "-T\t\tgenerate code to support RPC dispatch tables\n"
++msgstr "-T\t\tgenerowanie kodu obs³uguj±cego tablice wysy³ania RPC\n"
++
++#: sunrpc/rpc_main.c:1466
++msgid "-Y path\t\tdirectory name to find C preprocessor (cpp)\n"
++msgstr "-Y ¶cie¿ka\tnazwa katalogu, w którym znajduje siê preprocesor C (cpp)\n"
++
+ #: sunrpc/rpc_scan.c:116
+ msgid "constant or identifier expected"
+ msgstr "spodziewana sta³a lub identyfikator"
+@@ -5621,16 +5721,28 @@
+ msgstr "Nie tworzenie dowi±zañ"
+ 
+ #: elf/ldconfig.c:126
++msgid "ROOT"
++msgstr "KATALOG"
++
++#: elf/ldconfig.c:126
+ msgid "Change to and use ROOT as root directory"
+-msgstr "Przej¶cie do i u¿ywanie ROOT jako g³ównego katalogu"
++msgstr "Przej¶cie do i u¿ywanie KATALOGU jako g³ównego"
++
++#: elf/ldconfig.c:127
++msgid "CACHE"
++msgstr "BUFOR"
+ 
+ #: elf/ldconfig.c:127
+ msgid "Use CACHE as cache file"
+-msgstr "U¿ycie CACHE jako pliku bufora"
++msgstr "U¿ycie BUFORA jako pliku bufora"
++
++#: elf/ldconfig.c:128
++msgid "CONF"
++msgstr "KONF"
+ 
+ #: elf/ldconfig.c:128
+ msgid "Use CONF as configuration file"
+-msgstr "U¿ycie CONF jako pliku konfiguracyjnego"
++msgstr "U¿ycie KONF jako pliku konfiguracyjnego"
+ 
+ #: elf/ldconfig.c:129
+ msgid "Only process directories specified on the command line.  Don't build cache."
+@@ -5641,6 +5753,10 @@
+ msgstr "Rêczne tworzenie dowi±zañ do pojedynczych bibliotek."
+ 
+ #: elf/ldconfig.c:131
++msgid "FORMAT"
++msgstr "FORMAT"
++
++#: elf/ldconfig.c:131
+ msgid "Format to use: new, old or compat (default)"
+ msgstr "U¿ywany format: new, old lub compat (domy¶lny)"
+ 

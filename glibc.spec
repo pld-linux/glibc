@@ -8,12 +8,12 @@ Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
 Summary(pl):	GNU libc
-Summary(ru):	GNU libc версии 2.2
+Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
-Summary(uk):	GNU libc верс╕╖ 2.2
+Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.1
-Release:	0.3
+Release:	1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -38,15 +38,17 @@ Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-postshell.patch
+Patch13:	%{name}-pl.po-update.patch
+Patch14:	%{name}-missing-nls.patch
 URL:		http://www.gnu.org/software/libc/
+BuildRequires:	binutils >= 2.13.90.0.2
+BuildRequires:	gcc >= 3.2
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
-BuildRequires:	gcc >= 3.2
-BuildRequires:	binutils >= 2.13.90.0.2
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -441,6 +443,8 @@ Zabawka.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 chmod +x scripts/cpp
 
@@ -494,17 +498,23 @@ install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf ../../..%{_sysconfdir}/localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf ../..%{_libdir}/libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
+ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
+ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
+ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
+
+# make symlinks across top-level directories absolute
+for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
+	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+	ln -sf /lib/`cd $RPM_BUILD_ROOT/lib ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+done
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install ../nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+install ../nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 install ../nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
