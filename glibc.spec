@@ -615,8 +615,11 @@ mv -f localedata/locales/{lug_UG,lg_UG}
 cp -r libidn-*/lib libidn
 cp libidn-*/libc/{Makefile,configure,Banner,Versions} libidn/
 cp libidn-*/lib/*.{c,h} libidn/
-sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/idna.h >include/idna.h
-ln -s ../libidn/idna.h include/idna.h
+sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/idna.h > libidn/idna.h
+ln -sf ../libidn/idna.h include/idna.h
+sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/stringprep.h > libidn/stringprep.h
+sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/punycode.h > libidn/punycode.h
+sed -e 's/stringprep_generic/rfc3454/g' libidn-*/libc/Makefile > libidn/Makefile
 
 #cp libidn-*/libc/getaddrinfo.c sysdeps/posix/
 #cp libidn-*/libc/netdb.h resolv/
