@@ -1,0 +1,8 @@
+- release 10,
+- fixed BR#78 (libc_nonshared.a moved to devel),
+- mailn reorganization subpackages set:
+-- added profile subpackage with static lib_p.a libraries neccessary for
+   gperf,
+-- added localedb-src witch separated locale source code (which is not alway
+   neccessary),
+-- added iconv subpackage with iconv program and modules for them.
