@@ -1,0 +1,46 @@
+===================================================================
+RCS file: /cvs/glibc/libc/nscd/Makefile,v
+retrieving revision 1.40
+retrieving revision 1.41
+diff -u -r1.40 -r1.41
+--- libc/nscd/Makefile	2004/12/16 22:21:24	1.40
++++ libc/nscd/Makefile	2005/01/18 01:21:35	1.41
+@@ -1,4 +1,4 @@
+-# Copyright (C) 1998, 2000, 2002, 2003, 2004 Free Software Foundation, Inc.
++# Copyright (C) 1998,2000,2002,2003,2004,2005 Free Software Foundation, Inc.
+ # This file is part of the GNU C Library.
+ 
+ # The GNU C Library is free software; you can redistribute it and/or
+@@ -56,6 +56,8 @@
+ selinux-LIBS := -lselinux
+ endif
+ 
++LDLIBS-nscd = $(selinux-LIBS)
++
+ distribute := nscd.h nscd-client.h dbg_log.h \
+ 	      $(addsuffix .c, $(filter-out xmalloc, $(nscd-modules))) \
+ 	      nscd_nischeck.c nscd.conf nscd.init nscd_proto.h \
+@@ -110,7 +112,7 @@
+ 	  $(extra-B-$(@F:lib%.so=%).so) $(load-map-file) \
+ 	  $(LDFLAGS) $(LDFLAGS-$(@F)) \
+ 	  -L$(subst :, -L,$(rpath-link)) -Wl,-rpath-link=$(rpath-link) \
+-	  -o $@ $^ $(selinux-LIBS) $(common-objpfx)libc_nonshared.a
++	  -o $@ $^ $(LDLIBS-nscd) $(common-objpfx)libc_nonshared.a
+ endif
+ 
+ # This makes sure -DNOT_IN_libc is passed for all these modules.
+--- glibc-2.3.4/nscd/Makefile.orig	2005-01-27 14:19:09.000000000 +0100
++++ glibc-2.3.4/nscd/Makefile	2005-01-27 15:25:00.000000000 +0100
+@@ -125,10 +125,10 @@
+ 
+ ifeq ($(build-shared),yes)
+ $(objpfx)nscd: $(common-objpfx)rt/librt.so $(shared-thread-library) \
+-	       $(common-objpfx)nis/libnsl.so
++	       $(common-objpfx)nis/libnsl.so $(LDLIBS-nscd)
+ $(objpfx)nscd_nischeck: $(common-objpfx)nis/libnsl.so
+ else
+ $(objpfx)nscd: $(common-objpfx)rt/librt.a $(static-thread-library) \
+-	       $(common-objpfx)nis/libnsl.a
++	       $(common-objpfx)nis/libnsl.a $(LDLIBS-nscd)
+ $(objpfx)nscd_nischeck: $(common-objpfx)nis/libnsl.a
+ endif

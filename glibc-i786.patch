@@ -1,0 +1,11 @@
+--- libc/configure.in.orig	2004-03-08 04:05:06.000000000 +0000
++++ libc/configure.in	2004-03-30 14:13:40.812372096 +0000
+@@ -387,7 +387,7 @@
+ c4[04])		base_machine=cx0 machine=cx0/c40 ;;
+ hppa*64*)	base_machine=hppa machine=hppa/hppa64 ;;
+ hppa*)		base_machine=hppa machine=hppa/hppa1.1 ;;
+-i[3456]86)	base_machine=i386 machine=i386/$machine ;;
++i[34567]86)	base_machine=i386 machine=i386/$machine ;;
+ ia64)		base_machine=ia64 machine=ia64 ;;
+ m680?0)		base_machine=m68k machine=m68k/$machine ;;
+ m68k)		base_machine=m68k machine=m68k/m68020 ;;

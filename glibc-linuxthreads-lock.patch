@@ -1,0 +1,12 @@
+--- glibc-2.1.91/linuxthreads/lockfile.c~	Tue Jun 13 22:17:39 2000
++++ glibc-2.1.91/linuxthreads/lockfile.c	Sat Jul 15 00:48:43 2000
+@@ -96,7 +96,8 @@
+   __pthread_mutexattr_settype (&attr, PTHREAD_MUTEX_RECURSIVE_NP);
+ 
+   for (i = _IO_iter_begin(); i != _IO_iter_end(); i = _IO_iter_next(i))
+-    __pthread_mutex_init (_IO_iter_file(i)->_lock, &attr);
++    if (_IO_iter_file(i)->_lock)
++      __pthread_mutex_init (_IO_iter_file(i)->_lock, &attr);
+ 
+   __pthread_mutexattr_destroy (&attr);
+ 
