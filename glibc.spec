@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.97
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -369,7 +369,7 @@ gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
 
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
