@@ -2,6 +2,7 @@
 # You can define min_kernel macro by "rpm --define 'min_kernel version'"
 # default is 2.2.0 (no changes up to 2.3.25)
 #
+# Conditional build:
 # _without_dist_kernel	build without kernel from the distribution;
 #			headers will be searched in %_kernelsrcdir/include.
 # _without_fp		build without frame pointer (pass --enable-omitfp)
@@ -11,10 +12,10 @@
 #			(instead of copying from kernel-headers 2.4.x)
 #			[broken at the moment]
 #
+%bcond_with	idn	# build with included libidn
+#
 # TODO:
 # - localedb-gen man pages(?)
-# - serious problem with upgrade (changing zoneinfo/posix/* dirs into symlinks)
-#   are there any other solutions than revert???
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
 #
 #
@@ -22,8 +23,6 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%bcond_with	idn
-
 %{!?min_kernel:%define		min_kernel	2.2.0}
 %define		rel 4
 Summary:	GNU libc
@@ -95,14 +94,14 @@ BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
+PreReq:		basesystem
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
 Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
-Autoreq:	false
-PreReq:		basesystem
+AutoReq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
@@ -581,43 +580,45 @@ Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %package -n %{name}64
-Summary:	%{name} - 64bit libraries
-Summary(pl):	%{name} - biblioteki 64 bitowe
+Summary:	GNU libc - 64-bit libraries
+Summary(pl):	GNU libc - biblioteki 64-bitowe
 Release:	%{rel}
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
 %description -n %{name}64
-GNU libc 64bit libraries for sparc64.
+64-bit GNU libc libraries for sparc64 architecture.
 
 %description -l pl -n %{name}64
-GNU libc biblioteki 64 dla sparc64.
+Biblioteki 64-bitowe GNU libc dla architektury sparc64.
 
 %package -n %{name}64-devel
-Summary:	%{name}
-Summary(pl):	%{name}
+Summary:	Development files for 64-bit GNU libc libraries
+Summary(pl):	Pliki do programowania z u¿yciem 64-bitowych bibliotek GNU libc
 Release:	%{rel}
-Group:		Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description -n %{name}64-devel
-GNU libc 64bit development libraries for sparc64.
+Development files for 64-bit GNU libc libraries for sparc64
+architecture.
 
 %description -l pl -n %{name}64-devel
-GNU libc 64bit bibliotekai rozwojowe dla sparca64.
+Pliki do programowania z u¿yciem 64-bitowych bibliotek GNU libc dla
+architektury sparc64.
 
 %package -n %{name}64-static
-Summary:	%{name}64-static
-Summary(pl):	%{name}64-static
+Summary:	Static 64-bit GNU libc libraries
+Summary(pl):	Statyczne 64-bitowe biblioteki GNU libc
 Release:	%{rel}
-Group:		Libraries
+Group:		Development/Libraries
 Requires:	%{name}64-devel = %{epoch}:%{version}
 
 %description -n %{name}64-static
-GNU libc 64bit static libraries.
+Static 64-bit GNU libc libraries.
 
 %description -l pl -n %{name}64-static
-GNU libc 64 bitowe biblioteki statyczne.
+Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
 %setup -q -a 1 -a 9 -a 10
