@@ -9,6 +9,7 @@
 				# glibc-kernel-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	idn		# build with included libidn
+%bcond_without  tests		# do not perform "make test"
 #
 # TODO:
 # - localedb-gen man pages(?)
@@ -18,8 +19,8 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%{!?min_kernel:%global		min_kernel	2.2.0}
-%define	gkh_version	7:2.6.0.2
+%{!?min_kernel:%global		min_kernel	2.4.6}
+%define	gkh_version	7:2.6.0.3
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(es):	GNU libc
@@ -30,15 +31,18 @@ Summary(ru):	GNU libc ×ÅÒÓÉÉ 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
-Version:	2.3.2
-Release:	14
+Version:	2.3.3
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	ede969aad568f48083e413384f20753c
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-# Source1-md5:	894b8969cfbdf787c73e139782167607
+# 20040101 snapshot
+#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	b4e3f037a0b36afc705af344033a91c7
+#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+Source1:	%{name}-linuxthreads-%{version}.tar.bz2
+# Source1-md5:	97c30992592f854a67107579dcef61dd
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -49,7 +53,6 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # borrowed from util-linux
 Source7:	sln.8
 Source8:	%{name}-localedb-gen
-Source10:	http://josefsson.org/libidn/releases/libidn-0.3.0rc3.tar.gz
 # Source10-md5:	ded0b439efe16dd29ce5a24d3d3dcebf
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-initgroups-overflow.patch
@@ -62,23 +65,16 @@ Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-postshell.patch
-Patch13:	%{name}-pl.po-update.patch
 Patch14:	%{name}-missing-nls.patch
 Patch16:	%{name}-java-libc-wait.patch
-Patch17:	%{name}-morelocales.patch
 Patch18:	%{name}-lthrds_noomit.patch
 Patch19:	%{name}-no_opt_override.patch
-Patch20:	%{name}-gcc33.patch
-#Patch21:	%{name}-sanity.patch
-Patch22:	%{name}-secureexec.patch
 Patch23:	%{name}-kernel_includes.patch
-Patch24:	%{name}-sparc64_pause.patch
-Patch25:	%{name}-linuxthreads.patch
+Patch24:	%{name}-includes.patch
 Patch26:	%{name}-alpha-fix-as-syntax.patch
 Patch27:	%{name}-soinit-EH_FRAME.patch
-Patch28:	%{name}-alpha-pwrite.patch
-Patch29:	%{name}-alpha-tv64.patch
 Patch30:	%{name}-sparc-errno_fix.patch
+Patch31:	%{name}-make.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -727,9 +723,8 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -a 1 -a 10
+%setup -q -a 1
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -739,70 +734,30 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch10 -p1
 #%%patch11 -p1
 %patch12 -p1
-%patch13 -p1
 %patch14 -p1
 %patch16 -p1
-%patch17 -p1
 %patch18 -p1
 # don't know, if it is good idea, for brave ones
 #%patch19 -p1
-%patch20 -p1
-#%patch21 -p1
-%patch22 -p1
 %{?with_kernelheaders:%patch23}
-%patch24 -p1
-# updated - lt
-%ifnarch alpha
-%patch25 -p1
-%endif
+%{?without_kernelheaders:%patch24 -p1}
 %patch26 -p1
 %patch27 -p1
-%patch28 -p1
-%patch29 -p0
 %patch30
+%patch31 -p1
 
 chmod +x scripts/cpp
-
-# standardize name
-mv -f localedata/locales/{lug_UG,lg_UG}
-
-%if %{with idn}
-cp -r libidn-*/lib libidn
-cp libidn-*/libc/{Makefile,configure,Banner,Versions} libidn
-cp libidn-*/lib/*.{c,h} libidn
-sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/idna.h > libidn/idna.h
-ln -sf ../libidn/idna.h include/idna.h
-sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/stringprep.h > libidn/stringprep.h
-sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/punycode.h > libidn/punycode.h
-sed -e 's/stringprep_generic/rfc3454/g' libidn-*/libc/Makefile > libidn/Makefile
-
-#cp libidn-*/libc/getaddrinfo.c sysdeps/posix/
-#cp libidn-*/libc/netdb.h resolv/
-
-cp libidn-*/libc/*.patch libc-idn.patch
-patch -p0 < libc-idn.patch
-
-touch libidn/libidn.texi
-%endif
-
-#make proper symlink for asm in headers
-#cd usr/include
-#%ifarch %{ix86}
-#ln -s asm-i386 asm
-#%endif
-#cd ../..
 
 %build
 # Build glibc
 cp /usr/share/automake/config.sub .
 cp /usr/share/automake/config.sub scripts
-cp /usr/share/automake/config.sub libidn-*
 [ -d builddir ] || mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
 ../%configure \
-	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
+	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{min_kernel}" \
 	--enable-profile \
 	--%{!?with_fp:en}%{?with_fp:dis}able-omitfp \
@@ -817,6 +772,8 @@ LDFLAGS=" " ; export LDFLAGS
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{?parallelmkflags}
+
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
