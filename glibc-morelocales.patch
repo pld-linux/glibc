@@ -1,6 +1,6 @@
 diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
 --- libc.orig/localedata/SUPPORTED	Tue Jul 27 03:25:03 2004
-+++ libc/localedata/SUPPORTED	Tue Jul 27 03:56:48 2004
++++ libc/localedata/SUPPORTED	Tue Jul 27 18:36:41 2004
 @@ -2,12 +2,15 @@
  # If you have any additions please use the glibcbug script to send an
  # appropriate message.
@@ -17,7 +17,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  an_ES/ISO-8859-15 \
  ar_AE.UTF-8/UTF-8 \
  ar_AE/ISO-8859-6 \
-@@ -51,8 +53,10 @@
+@@ -51,13 +54,16 @@
  bg_BG/CP1251 \
  bn_BD/UTF-8 \
  bn_IN/UTF-8 \
@@ -28,7 +28,13 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  bs_BA/ISO-8859-2 \
  byn_ER/UTF-8 \
  ca_ES.UTF-8/UTF-8 \
-@@ -177,6 +181,7 @@
+ ca_ES/ISO-8859-1 \
+ ca_ES@euro/ISO-8859-15 \
++cs_CZ.ISO-8859-16/ISO-8859-16 \
+ cs_CZ.UTF-8/UTF-8 \
+ cs_CZ/ISO-8859-2 \
+ cy_GB.UTF-8/UTF-8 \
+@@ -177,6 +183,7 @@
  ga_IE.UTF-8/UTF-8 \
  ga_IE/ISO-8859-1 \
  ga_IE@euro/ISO-8859-15 \
@@ -36,7 +42,15 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  gd_GB/ISO-8859-15 \
  gez_ER/UTF-8 \
  gez_ER@abegede/UTF-8 \
-@@ -208,7 +213,9 @@
+@@ -193,6 +200,7 @@
+ hi_IN/UTF-8 \
+ hr_HR.UTF-8/UTF-8 \
+ hr_HR/ISO-8859-2 \
++hu_HU.ISO-8859-16/ISO-8859-16 \
+ hu_HU.UTF-8/UTF-8 \
+ hu_HU/ISO-8859-2 \
+ id_ID.UTF-8/UTF-8 \
+@@ -208,7 +216,9 @@
  iw_IL/ISO-8859-8 \
  ja_JP.EUC-JP/EUC-JP \
  ja_JP.UTF-8/UTF-8 \
@@ -46,7 +60,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  kk_KZ/PT154 \
  kl_GL.UTF-8/UTF-8 \
  kl_GL/ISO-8859-1 \
-@@ -217,12 +224,18 @@
+@@ -217,12 +227,20 @@
  ko_KR.UTF-8/UTF-8 \
  kw_GB.UTF-8/UTF-8 \
  kw_GB/ISO-8859-1 \
@@ -54,8 +68,10 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  lg_UG/ISO-8859-10 \
 +li_BE.UTF-8/UTF-8 \
 +li_BE/ISO-8859-1 \
++li_BE@euro/ISO-8859-15 \
 +li_NL.UTF-8/UTF-8 \
 +li_NL/ISO-8859-1 \
++li_NL@euro/ISO-8859-15 \
  lo_LA/UTF-8 \
  lt_LT.UTF-8/UTF-8 \
  lt_LT/ISO-8859-13 \
@@ -65,17 +81,18 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  mi_NZ/ISO-8859-13 \
  mk_MK.UTF-8/UTF-8 \
  mk_MK/ISO-8859-5 \
-@@ -235,6 +248,9 @@
+@@ -235,6 +253,10 @@
  mt_MT/ISO-8859-3 \
  nb_NO.UTF-8/UTF-8 \
  nb_NO/ISO-8859-1 \
 +nds_DE.UTF-8/UTF-8 \
 +nds_DE/ISO-8859-1 \
++nds_DE@euro/ISO-8859-15 \
 +nds_DE@traditional/ISO-8859-1 \
  ne_NP/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
  nl_BE/ISO-8859-1 \
-@@ -244,8 +260,10 @@
+@@ -244,10 +266,13 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -85,9 +102,26 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
 +om_KE.UTF-8/UTF-8 \
  om_KE/ISO-8859-1 \
  pa_IN/UTF-8 \
++pl_PL.ISO-8859-16/ISO-8859-16 \
  pl_PL.UTF-8/UTF-8 \
-@@ -268,16 +286,21 @@
+ pl_PL/ISO-8859-2 \
+ pt_BR.UTF-8/UTF-8 \
+@@ -255,6 +280,7 @@
+ pt_PT.UTF-8/UTF-8 \
+ pt_PT/ISO-8859-1 \
+ pt_PT@euro/ISO-8859-15 \
++ro_RO.ISO-8859-16/ISO-8859-16 \
+ ro_RO.UTF-8/UTF-8 \
+ ro_RO/ISO-8859-2 \
+ ru_RU.KOI8-R/KOI8-R \
+@@ -264,20 +290,27 @@
+ ru_UA/KOI8-U \
+ se_NO/UTF-8 \
+ sid_ET/UTF-8 \
++sk_SK.ISO-8859-16/ISO-8859-16 \
+ sk_SK.UTF-8/UTF-8 \
  sk_SK/ISO-8859-2 \
++sl_SI.ISO-8859-16/ISO-8859-16 \
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
 +so_DJ.UTF-8/UTF-8 \
@@ -108,7 +142,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -287,12 +310,14 @@
+@@ -287,12 +320,14 @@
  sv_SE/ISO-8859-1 \
  ta_IN/UTF-8 \
  te_IN/UTF-8 \
@@ -123,7 +157,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  tl_PH/ISO-8859-1 \
  tr_TR.UTF-8/UTF-8 \
  tr_TR/ISO-8859-9 \
-@@ -304,11 +329,12 @@
+@@ -304,11 +339,12 @@
  uz_UZ@cyrillic/UTF-8 \
  vi_VN.TCVN/TCVN5712-1 \
  vi_VN/UTF-8 \
@@ -139,7 +173,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  zh_CN.GBK/GBK \
 diff -uNr libc.orig/localedata/locales/li_BE libc/localedata/locales/li_BE
 --- libc.orig/localedata/locales/li_BE	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/li_BE	Tue Jul 27 03:30:02 2004
++++ libc/localedata/locales/li_BE	Tue Jul 27 19:36:45 2004
 @@ -0,0 +1,126 @@
 +comment_char %
 +escape_char  /
@@ -148,17 +182,17 @@ diff -uNr libc.orig/localedata/locales/li_BE libc/localedata/locales/li_BE
 +% Distribution and use is
 +
 +LC_IDENTIFICATION 
-+title "Limburgish Locale for Belgium"
-+source "information from Kenneth Christiansen"
-+address ""
-+contact "Kenneth Christiansen, Pablo Saratxaga"
-+email "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel ""
-+% Fax
-+language "li"
-+territory "BE"
-+revision "0.1"
-+date "2003-11-30"
++title     "Limburgish Locale for Belgium"
++source    "information from Kenneth Christiansen"
++address   ""
++contact   "Kenneth Christiansen, Pablo Saratxaga"
++email     "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel       ""
++fax       ""
++language  "Limburgish"
++territory "Belgium"
++revision  "0.1"
++date      "2003-11-30"
 +
 +category i18n:2000;LC_IDENTIFICATION
 +category i18n:2000;LC_COLLATE
@@ -180,21 +214,21 @@ diff -uNr libc.orig/localedata/locales/li_BE libc/localedata/locales/li_BE
 +END LC_IDENTIFICATION
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
++postal_fmt     "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
 +<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
 +<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
 +<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
 +<U004E><U0025><U0063><U0025><U004E>"
-+country_post  "<U0044>"
-+country_ab2   "<U0044><U0045>"
-+country_ab3   "<U0044><U0045><U0055>"
-+country_car   "<U0044>"
-+country_num 276
-+country_isbn "3"
-+% FIXME country_name in Limburgish ?
-+lang_name "Limburgish"
-+lang_ab "li"
-+% FIXME lang_term for Limbugish ?
++country_post   "<U0044>"
++country_ab2    "<U0044><U0045>"
++country_ab3    "<U0044><U0045><U0055>"
++country_car    "<U0044>"
++country_num    276
++% country_isbn "3"
++% FIXME lang_name in Limburgish ?
++lang_name      "Limburgish"
++lang_ab        "li"
++% FIXME lang_term for Limburgish ?
 +% FIXME lang_lib for Limburgish ?
 +END LC_ADDRESS
 +
@@ -267,9 +301,89 @@ diff -uNr libc.orig/localedata/locales/li_BE libc/localedata/locales/li_BE
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
+diff -uNr libc.orig/localedata/locales/li_BE@euro libc/localedata/locales/li_BE@euro
+--- libc.orig/localedata/locales/li_BE@euro	Thu Jan  1 01:00:00 1970
++++ libc/localedata/locales/li_BE@euro	Tue Jul 27 18:21:43 2004
+@@ -0,0 +1,76 @@
++escape_char /
++comment_char %
++
++LC_IDENTIFICATION
++title      "Limburgish locale for Belgium with Euro"
++source     "information from Kenneth Christiansen"
++address    ""
++contact    "Kenneth Christiansen, Pablo Saratxaga"
++email      "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel        ""
++fax        ""
++language   "Limburgish"
++territory  "Belgium"
++revision   "0.1"
++date       "2003-11-30"
++%
++category  "i18n:2000";LC_IDENTIFICATION
++category  "i18n:2000";LC_CTYPE
++category  "i18n:2000";LC_COLLATE
++category  "i18n:2000";LC_TIME
++category  "i18n:2000";LC_NUMERIC
++category  "i18n:2000";LC_MONETARY
++category  "i18n:2000";LC_MESSAGES
++category  "i18n:2000";LC_PAPER
++category  "i18n:2000";LC_NAME
++category  "i18n:2000";LC_ADDRESS
++category  "i18n:2000";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "li_BE"
++END LC_CTYPE
++
++LC_COLLATE
++
++% Copy the template from ISO/IEC 14651
++copy "iso14651_t1"
++
++END LC_COLLATE
++
++LC_MONETARY
++copy "li_BE"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "li_BE"
++END LC_NUMERIC
++
++LC_TIME
++copy "li_BE"
++END LC_TIME
++
++LC_MESSAGES
++copy "li_BE"
++END LC_MESSAGES
++
++LC_PAPER
++copy "li_BE"
++END LC_PAPER
++
++LC_NAME
++copy "li_BE"
++END LC_NAME
++
++LC_ADDRESS
++copy "li_BE"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "li_BE"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "li_BE"
++END LC_MEASUREMENT
 diff -uNr libc.orig/localedata/locales/li_NL libc/localedata/locales/li_NL
 --- libc.orig/localedata/locales/li_NL	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/li_NL	Tue Jul 27 03:30:02 2004
++++ libc/localedata/locales/li_NL	Tue Jul 27 19:36:47 2004
 @@ -0,0 +1,127 @@
 +comment_char %
 +escape_char  /
@@ -278,17 +392,17 @@ diff -uNr libc.orig/localedata/locales/li_NL libc/localedata/locales/li_NL
 +% Distribution and use is
 +
 +LC_IDENTIFICATION 
-+title "Limburgish Locale for the Netherlands"
-+source "information from Kenneth Christiansen"
-+address ""
-+contact "Kenneth Christiansen, Pablo Saratxaga"
-+email "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel ""
-+% Fax
-+language "li"
-+territory "NL"
-+revision "0.1"
-+date "2003-11-30"
++title     "Limburgish Locale for the Netherlands"
++source    "information from Kenneth Christiansen"
++address   ""
++contact   "Kenneth Christiansen, Pablo Saratxaga"
++email     "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel       ""
++fax       ""
++language  "Limburgish"
++territory "Netherlands"
++revision  "0.1"
++date      "2003-11-30"
 +
 +category i18n:2000;LC_IDENTIFICATION
 +category i18n:2000;LC_COLLATE
@@ -310,20 +424,20 @@ diff -uNr libc.orig/localedata/locales/li_NL libc/localedata/locales/li_NL
 +END LC_IDENTIFICATION
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
++postal_fmt     "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
 +<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
 +<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
 +<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
 +<U004E><U0025><U0063><U0025><U004E>"
-+country_post  "<U0044>"
-+country_ab2   "<U0044><U0045>"
-+country_ab3   "<U0044><U0045><U0055>"
-+country_car   "<U0044>"
-+country_num 276
-+country_isbn "3"
++country_post   "<U0044>"
++country_ab2    "<U0044><U0045>"
++country_ab3    "<U0044><U0045><U0055>"
++country_car    "<U0044>"
++country_num    528
++% country_isbn "3"
 +% FIXME country_name in Limburgish ?
-+lang_name "Limburgish"
-+lang_ab "li"
++lang_name      "Limburgish"
++lang_ab        "li"
 +% FIXME lang_term for Limburgish ?
 +% FIXME lang_lib for Limburgish ?
 +END LC_ADDRESS
@@ -398,9 +512,89 @@ diff -uNr libc.orig/localedata/locales/li_NL libc/localedata/locales/li_NL
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
+diff -uNr libc.orig/localedata/locales/li_NL@euro libc/localedata/locales/li_NL@euro
+--- libc.orig/localedata/locales/li_NL@euro	Thu Jan  1 01:00:00 1970
++++ libc/localedata/locales/li_NL@euro	Tue Jul 27 18:21:44 2004
+@@ -0,0 +1,76 @@
++escape_char /
++comment_char %
++
++LC_IDENTIFICATION
++title      "Limburgish locale for Germany with Euro"
++source     "information from Kenneth Christiansen"
++address    ""
++contact    "Kenneth Christiansen, Pablo Saratxaga"
++email      "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel        ""
++fax        ""
++language   "Limburgish"
++territory  "Netherlands"
++revision   "0.1"
++date       "2003-11-30"
++%
++category  "i18n:2000";LC_IDENTIFICATION
++category  "i18n:2000";LC_CTYPE
++category  "i18n:2000";LC_COLLATE
++category  "i18n:2000";LC_TIME
++category  "i18n:2000";LC_NUMERIC
++category  "i18n:2000";LC_MONETARY
++category  "i18n:2000";LC_MESSAGES
++category  "i18n:2000";LC_PAPER
++category  "i18n:2000";LC_NAME
++category  "i18n:2000";LC_ADDRESS
++category  "i18n:2000";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "li_NL"
++END LC_CTYPE
++
++LC_COLLATE
++
++% Copy the template from ISO/IEC 14651
++copy "iso14651_t1"
++
++END LC_COLLATE
++
++LC_MONETARY
++copy "li_NL"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "li_NL"
++END LC_NUMERIC
++
++LC_TIME
++copy "li_NL"
++END LC_TIME
++
++LC_MESSAGES
++copy "li_NL"
++END LC_MESSAGES
++
++LC_PAPER
++copy "li_NL"
++END LC_PAPER
++
++LC_NAME
++copy "li_NL"
++END LC_NAME
++
++LC_ADDRESS
++copy "li_NL"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "li_NL"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "li_NL"
++END LC_MEASUREMENT
 diff -uNr libc.orig/localedata/locales/nds_DE libc/localedata/locales/nds_DE
 --- libc.orig/localedata/locales/nds_DE	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/nds_DE	Tue Jul 27 03:30:06 2004
++++ libc/localedata/locales/nds_DE	Tue Jul 27 18:22:32 2004
 @@ -0,0 +1,126 @@
 +comment_char %
 +escape_char  /
@@ -409,17 +603,17 @@ diff -uNr libc.orig/localedata/locales/nds_DE libc/localedata/locales/nds_DE
 +% Distribution and use is
 +
 +LC_IDENTIFICATION 
-+title "Low(lands) Saxon Language Locale for Germany"
-+source "information from Kenneth Christiansen"
-+address ""
-+contact "Kenneth Christiansen, Pablo Saratxaga"
-+email "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel ""
-+% Fax
-+language "nds"
-+territory "DE"
-+revision "0.1"
-+date "2003-11-30"
++title     "Low(lands) Saxon Language Locale for Germany"
++source    "information from Kenneth Christiansen"
++address   ""
++contact   "Kenneth Christiansen, Pablo Saratxaga"
++email     "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel       ""
++fax       ""
++language  "Low Saxon"
++territory "Germany"
++revision  "0.1"
++date      "2003-11-30"
 +
 +category i18n:2000;LC_IDENTIFICATION
 +category i18n:2000;LC_COLLATE
@@ -450,11 +644,11 @@ diff -uNr libc.orig/localedata/locales/nds_DE libc/localedata/locales/nds_DE
 +country_ab2   "<U0044><U0045>"
 +country_ab3   "<U0044><U0045><U0055>"
 +country_car   "<U0044>"
-+country_num 276
-+country_isbn "3"
-+% FIXME country_name in Low Saxon ?
-+lang_name "Low Saxon"
-+lang_ab "nds"
++country_num   276
++country_isbn  "3"
++% FIXME lang_name in Low Saxon ?
++lang_name     "Low Saxon"
++lang_ab       "nds"
 +% FIXME lang_term for Low Saxon ?
 +% FIXME lang_lib for Low Saxon ?
 +END LC_ADDRESS
@@ -528,9 +722,89 @@ diff -uNr libc.orig/localedata/locales/nds_DE libc/localedata/locales/nds_DE
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
+diff -uNr libc.orig/localedata/locales/nds_DE@euro libc/localedata/locales/nds_DE@euro
+--- libc.orig/localedata/locales/nds_DE@euro	Thu Jan  1 01:00:00 1970
++++ libc/localedata/locales/nds_DE@euro	Tue Jul 27 18:22:03 2004
+@@ -0,0 +1,76 @@
++escape_char /
++comment_char %
++
++LC_IDENTIFICATION
++title      "German locale for Germany with Euro"
++source     "information from Kenneth Christiansen"
++address    ""
++contact    "Kenneth Christiansen, Pablo Saratxaga"
++email      "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel        ""
++fax        ""
++language   "German"
++territory  "Germany"
++revision   "0.1"
++date       "2003-11-30"
++%
++category  "i18n:2000";LC_IDENTIFICATION
++category  "i18n:2000";LC_CTYPE
++category  "i18n:2000";LC_COLLATE
++category  "i18n:2000";LC_TIME
++category  "i18n:2000";LC_NUMERIC
++category  "i18n:2000";LC_MONETARY
++category  "i18n:2000";LC_MESSAGES
++category  "i18n:2000";LC_PAPER
++category  "i18n:2000";LC_NAME
++category  "i18n:2000";LC_ADDRESS
++category  "i18n:2000";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "nds_DE"
++END LC_CTYPE
++
++LC_COLLATE
++
++% Copy the template from ISO/IEC 14651
++copy "iso14651_t1"
++
++END LC_COLLATE
++
++LC_MONETARY
++copy "nds_DE"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "nds_DE"
++END LC_NUMERIC
++
++LC_TIME
++copy "nds_DE"
++END LC_TIME
++
++LC_MESSAGES
++copy "nds_DE"
++END LC_MESSAGES
++
++LC_PAPER
++copy "nds_DE"
++END LC_PAPER
++
++LC_NAME
++copy "nds_DE"
++END LC_NAME
++
++LC_ADDRESS
++copy "nds_DE"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "nds_DE"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "nds_DE"
++END LC_MEASUREMENT
 diff -uNr libc.orig/localedata/locales/nds_DE@traditional libc/localedata/locales/nds_DE@traditional
 --- libc.orig/localedata/locales/nds_DE@traditional	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/nds_DE@traditional	Tue Jul 27 03:30:06 2004
++++ libc/localedata/locales/nds_DE@traditional	Tue Jul 27 18:22:22 2004
 @@ -0,0 +1,111 @@
 +comment_char %
 +escape_char  /
@@ -539,17 +813,17 @@ diff -uNr libc.orig/localedata/locales/nds_DE@traditional libc/localedata/locale
 +% Distribution and use is
 +
 +LC_IDENTIFICATION 
-+title "Low(lands) Saxon Language Locale for Germany"
-+source "information from Kenneth Christiansen"
-+address ""
-+contact "Kenneth Christiansen, Pablo Saratxaga"
-+email "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel ""
-+% Fax
-+language "nds"
-+territory "DE"
-+revision "0.1"
-+date "2003-11-30"
++title     "Low(lands) Saxon Language Locale for Germany"
++source    "information from Kenneth Christiansen"
++address   ""
++contact   "Kenneth Christiansen, Pablo Saratxaga"
++email     "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel       ""
++fax       ""
++language  "Low Saxon"
++territory "Germany"
++revision  "0.1"
++date      "2003-11-30"
 +
 +category i18n:2000;LC_IDENTIFICATION
 +category i18n:2000;LC_COLLATE
