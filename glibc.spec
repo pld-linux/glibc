@@ -552,7 +552,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
 
-%post iconv -p %{_sbindir}/iconvconfig
+%post -n iconv -p %{_sbindir}/iconvconfig
 # not run iconvconfig in %%postun iconv because iconvconfig don't exist when %%postun is runned
 
 %post devel
