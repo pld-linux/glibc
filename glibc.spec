@@ -18,8 +18,8 @@ Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	ldconfig.8
-Source6:	%{name}-man-pages.tgz
-Source7:	%{name}-non-english-man-pages.tgz
+Source6:	%{name}-man-pages.tar.gz
+Source7:	%{name}-non-english-man-pages.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
