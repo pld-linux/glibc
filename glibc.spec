@@ -260,6 +260,7 @@ is a smaller subset of the standard libc shared library.
 Summary:	BSD database library for C
 Group:		Libraries
 PreReq:		/sbin/ldconfig
+Provides:	db1
 
 %description db1
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
@@ -273,6 +274,7 @@ Group:		Development/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db1 = %{version}
+Provides:	db1-devel
 
 %description db1-devel
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
@@ -289,6 +291,7 @@ Group:		Development/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db1-devel = %{version}
+Provides:	db1-static
 
 %description db1-static
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
@@ -303,6 +306,7 @@ Berkeley DB.
 Summary:	BSD database library for C
 Group:		Libraries
 PreReq:		/sbin/ldconfig
+Provides:	db2
 
 %description db2
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
@@ -315,6 +319,7 @@ Group:		Development/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db2 = %{version}
+Provides:	db2-devel
 
 %description db2-devel
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
@@ -331,6 +336,7 @@ Group:		Development/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-db2-devel = %{version}
+Provides:	db2-static
 
 %description db2-static
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
