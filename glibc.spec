@@ -255,7 +255,7 @@ fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
-touch /var/log/nscd && chmod 640 root.root /var/log/nscd
+touch /var/log/nscd && (chown root.root /var/log/nscd ; chmod 640 /var/log/nscd)
 if [ -f /var/lock/subsys/nscd ]; then
 	/etc/rc.d/init.d/nscd restart 1>&2
 else
