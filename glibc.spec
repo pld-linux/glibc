@@ -38,7 +38,6 @@ Patch7:		%{name}-sparc-linux-chown.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
-Patch12:	%{name}-use-int-not-arpa.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -63,6 +62,8 @@ Conflicts:	ld.so < 1.9.9-10
 
 %define		debugcflags	-O1 -g
 %define		configuredir	%{u2p:%{_builddir}}/%{name}-%{version}/
+#define		parallelmkflags PARALLELMFLAGS="-j 4"	
+%define		parallelmkflags %{nil}	
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -439,7 +440,6 @@ Zabawka.
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
 
 chmod +x scripts/cpp
 
@@ -456,7 +456,7 @@ LDFLAGS=" " ; export LDFLAGS
 	--disable-omitfp
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-%{__make}
+%{__make} %{parallelmkflags}
 
 # this need improvements (like building agains new builded glibc) but works
 %{__cc} -o postshell %{rpmcflags} %{rpmldflags} %{SOURCE7}
@@ -469,12 +469,14 @@ cd builddir
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
+	%{parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
+	%{parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT
 
 PICFILES="libc_pic.a libc.map
@@ -510,19 +512,19 @@ bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
-rm -f %{_mandir}/hu/man7/man.7
+rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
 
-rm -rf documentation
-install -d documentation
+rm -rf ../documentation
+install -d ../documentation
 
-cp -f ../linuxthreads/ChangeLog documentation/ChangeLog.threads
-cp -f ../linuxthreads/Changes documentation/Changes.threads
-cp -f ../linuxthreads/README documentation/README.threads
-cp -f ../crypt/README.ufc-crypt documentation/
+cp -f ../linuxthreads/ChangeLog ../documentation/ChangeLog.threads
+cp -f ../linuxthreads/Changes ../documentation/Changes.threads
+cp -f ../linuxthreads/README ../documentation/README.threads
+cp -f ../crypt/README.ufc-crypt ../documentation/
 
-cp -f ../ChangeLog documentation
+cp -f ../ChangeLog* ../documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
@@ -555,7 +557,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 done
 for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
          lt lv ms nn pt ro ru sl sr ta uk wa zh_CN ; do
-	if [ ! -d $i ]; then
+	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
 		echo "%lang($lang) %{_datadir}/locale/$i" >> ../glibc.lang
