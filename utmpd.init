@@ -11,6 +11,10 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
+# Get config..
+if [ -f /etc/sysconfig/utmpd ]; then
+    . /etc/sysconfig/utmpd
+fi    
 #	See how we were called.
 #
 case "$1" in
@@ -32,7 +36,7 @@ case "$1" in
 	status utmpd
 	;;
   *)
-	echo "Usage: $0 {start|stop|restart|reload|status}"
+  	echo "Usage: $0 {start|stop|restart|reload|status}"
 	exit 1
 esac
 
