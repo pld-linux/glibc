@@ -121,7 +121,7 @@ Patch24:	%{name}-LD_DEBUG.patch
 # PaX
 Patch25:	%{name}-pax_iconvconfig.patch
 Patch26:	%{name}-pax_dl-execstack.patch
-Patch27:	%{name}-sparc_comdat.patch
+Patch27:	%{name}-comdat.patch
 Patch28:	%{name}-ia64_unwind.patch
 Patch29:	%{name}-ZA_collate.patch
 Patch30:	%{name}-tls_fix.patch
