@@ -330,7 +330,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/lib/gconv/*.so
 %{_mandir}/man3/*
 
-%file static-base
+%files static-base
 %defattr(644,root,root,755)
 %{_libdir}/libc.a
 %{_libdir}/libm.a
@@ -345,7 +345,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
 
-files -n utmpd
+%files -n utmpd
 %defattr(644,root,root,755)
 %attr(754,root,root) /etc/rc.d/init.d/utmpd
 %attr(755,root,root) %{_sbindir}/utmpd
