@@ -350,7 +350,27 @@ rm -rf $RPM_BUILD_ROOT
 %config /etc/rpc
 
 %attr(755,root,root) /sbin/*
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/catchsegv
+%attr(755,root,root) %{_bindir}/create-db
+%attr(755,root,root) %{_bindir}/db_archive
+%attr(755,root,root) %{_bindir}/db_checkpoint
+%attr(755,root,root) %{_bindir}/db_deadlock
+%attr(755,root,root) %{_bindir}/db_dump
+%attr(755,root,root) %{_bindir}/db_dump185
+%attr(755,root,root) %{_bindir}/db_load
+%attr(755,root,root) %{_bindir}/db_printlog
+%attr(755,root,root) %{_bindir}/db_recover
+%attr(755,root,root) %{_bindir}/db_stat
+%attr(755,root,root) %{_bindir}/getent
+%attr(755,root,root) %{_bindir}/glibcbug
+%attr(755,root,root) %{_bindir}/ldd
+%attr(755,root,root) %{_bindir}/lddlibc4
+%attr(755,root,root) %{_bindir}/locale
+%attr(755,root,root) %{_bindir}/makedb
+%attr(755,root,root) %{_bindir}/rpcgen
+%attr(755,root,root) %{_bindir}/tzselect
+%attr(755,root,root) %{_bindir}/update-db
+
 %attr(755,root,root) %{_sbindir}/rpcinfo
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
@@ -366,6 +386,10 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc documentation/* {NOTES,PROJECTS}.gz
+%attr(755,root,root) %{_bindir}/gencat
+%attr(755,root,root) %{_bindir}/getconf
+%attr(755,root,root) %{_bindir}/mtrace
+%attr(755,root,root) %{_bindir}/sprof
 
 %{_includedir}/*.h
 %{_includedir}/arpa
@@ -415,10 +439,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n localedb-src
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/localedef
 %{_datadir}/i18n
 
 %files -n iconv
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/iconv
 %dir %{_libdir}/gconv
 %{_libdir}/gconv/gconv-modules
 %attr(755,root,root) %{_libdir}/gconv/*.so
