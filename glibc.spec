@@ -21,7 +21,7 @@
 #	in order to use this version!
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.18
+%define		rel 2.19
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -74,6 +74,7 @@ Patch20:	%{name}-gcc33.patch
 Patch22:	%{name}-secureexec.patch
 Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-sparc64_pause.patch
+Patch25:	%{name}-linuxthreads.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -103,6 +104,10 @@ Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 
 %define		debugcflags	-O1 -g
+%ifarch sparc64
+%define		_without_memusage	1
+%define 	specflags_sparc64	-mvis -fcall-used-g6
+%endif
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -591,6 +596,8 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %patch22 -p1
 %{!?_with_kernheaders:%patch23}
 %patch24 -p1
+# updated - lt
+%patch25 -p1
 
 chmod +x scripts/cpp
 
@@ -665,8 +672,8 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 
-%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
-mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
+%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib*/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+mv -f $RPM_BUILD_ROOT/lib*/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 %{__make} -C ../linuxthreads/man
 install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
@@ -716,15 +723,15 @@ cp -f ../crypt/README.ufc-crypt ../documentation/
 
 cp -f ../ChangeLog* ../documentation
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
+rm -f $RPM_BUILD_ROOT%{_libdir}*/libnss_*.so
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
-%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
+%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib*/ld-%{version}.so}
 
 # Collect locale files and mark them with %%lang()
 rm -f ../glibc.lang
 echo '%defattr(644,root,root,755)' > ../glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}*/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		twochar=1
@@ -775,7 +782,7 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
 rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
-rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
+rm -f $RPM_BUILD_ROOT%{_libdir}*/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
 %if 0%{!?_with_kernheaders:1}
@@ -868,18 +875,18 @@ fi
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
-%attr(755,root,root) /lib/ld-*
-%attr(755,root,root) /lib/libanl*
-%attr(755,root,root) /lib/libdl*
-%attr(755,root,root) /lib/libnsl*
-%attr(755,root,root) /lib/lib[BScmprtu]*
+%attr(755,root,root) /lib*/ld-*
+%attr(755,root,root) /lib*/libanl*
+%attr(755,root,root) /lib*/libdl*
+%attr(755,root,root) /lib*/libnsl*
+%attr(755,root,root) /lib*/lib[BScmprtu]*
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
 %exclude %{_datadir}/zoneinfo/right
 
-%dir %{_libdir}/locale
+%dir %{_libdir}*/locale
 
 %{_mandir}/man1/[!lsg]*
 %{_mandir}/man1/getent.1*
@@ -916,11 +923,11 @@ fi
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_dns*.so*
+%attr(755,root,root) /lib*/libnss_dns*.so*
 
 #%files -n nss_files
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_files*.so*
+%attr(755,root,root) /lib*/libnss_files*.so*
 
 %files zoneinfo_right
 %defattr(644,root,root,755)
@@ -928,26 +935,26 @@ fi
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_compat*.so*
+%attr(755,root,root) /lib*/libnss_compat*.so*
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_hesiod*.so*
+%attr(755,root,root) /lib*/libnss_hesiod*.so*
 
 %files -n nss_nis
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_nis.so.*
-%attr(755,root,root) /lib/libnss_nis-*.so
+%attr(755,root,root) /lib*/libnss_nis.so.*
+%attr(755,root,root) /lib*/libnss_nis-*.so
 
 %files -n nss_nisplus
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_nisplus*.so*
+%attr(755,root,root) /lib*/libnss_nisplus*.so*
 
 %if %{?_without_memusage:0}%{!?_without_memusage:1}
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
-%attr(755,root,root) %{_libdir}/libmemusage*
+%attr(755,root,root) %{_libdir}*/libmemusage*
 %endif
 
 %files devel
@@ -981,16 +988,16 @@ fi
 
 %{_infodir}/libc.info*
 
-%attr(755,root,root) %{_libdir}/lib[!m]*.so
-%attr(755,root,root) %{_libdir}/libm.so
-%attr(755,root,root) %{_libdir}/*crt*.o
-%{_libdir}/libbsd-compat.a
-%{_libdir}/libbsd.a
-%{_libdir}/libc_nonshared.a
-%{_libdir}/libg.a
-%{_libdir}/libieee.a
-%{_libdir}/libpthread_nonshared.a
-%{_libdir}/librpcsvc.a
+%attr(755,root,root) %{_libdir}*/lib[!m]*.so
+%attr(755,root,root) %{_libdir}*/libm.so
+%attr(755,root,root) %{_libdir}*/*crt*.o
+%{_libdir}*/libbsd-compat.a
+%{_libdir}*/libbsd.a
+%{_libdir}*/libc_nonshared.a
+%{_libdir}*/libg.a
+%{_libdir}*/libieee.a
+%{_libdir}*/libpthread_nonshared.a
+%{_libdir}*/librpcsvc.a
 
 %{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
@@ -1041,37 +1048,37 @@ fi
 
 %files localedb-all
 %defattr(644,root,root,755)
-%{_libdir}/locale/locale-archive
+%{_libdir}*/locale/locale-archive
 
 %files -n iconv
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/iconvconfig
-%dir %{_libdir}/gconv
-%{_libdir}/gconv/gconv-modules
-%attr(755,root,root) %{_libdir}/gconv/*.so
+%dir %{_libdir}*/gconv
+%{_libdir}*/gconv/gconv-modules
+%attr(755,root,root) %{_libdir}*/gconv/*.so
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libanl.a
-%{_libdir}/libBrokenLocale.a
-%{_libdir}/libc.a
-%{_libdir}/libcrypt.a
-%{_libdir}/libdl.a
-%{_libdir}/libm.a
-%{_libdir}/libmcheck.a
-%{_libdir}/libnsl.a
-%{_libdir}/libpthread.a
-%{_libdir}/libresolv.a
-%{_libdir}/librt.a
-%{_libdir}/libutil.a
+%{_libdir}*/libanl.a
+%{_libdir}*/libBrokenLocale.a
+%{_libdir}*/libc.a
+%{_libdir}*/libcrypt.a
+%{_libdir}*/libdl.a
+%{_libdir}*/libm.a
+%{_libdir}*/libmcheck.a
+%{_libdir}*/libnsl.a
+%{_libdir}*/libpthread.a
+%{_libdir}*/libresolv.a
+%{_libdir}*/librt.a
+%{_libdir}*/libutil.a
 
 %files profile
 %defattr(644,root,root,755)
-%{_libdir}/lib*_p.a
+%{_libdir}*/lib*_p.a
 
 %files pic
 %defattr(644,root,root,755)
-%{_libdir}/lib*_pic.a
-%{_libdir}/lib*.map
-%{_libdir}/soinit.o
-%{_libdir}/sofini.o
+%{_libdir}*/lib*_pic.a
+%{_libdir}*/lib*.map
+%{_libdir}*/soinit.o
+%{_libdir}*/sofini.o
