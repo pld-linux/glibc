@@ -822,7 +822,10 @@ if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
-touch /var/log/nscd && (chmod 000 /var/log/nscd; chown root.root /var/log/nscd; chmod 640 /var/log/nscd)
+touch /var/log/nscd
+chmod 000 /var/log/nscd
+chown root:root /var/log/nscd
+chmod 640 /var/log/nscd
 if [ -f /var/lock/subsys/nscd ]; then
 	/etc/rc.d/init.d/nscd restart 1>&2
 else
