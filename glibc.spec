@@ -150,6 +150,7 @@ Summary(tr):	Geliştirme için gerekli diğer kitaplıklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ĞÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍĞ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	kernel-headers = %(rpm -q kernel-headers --queryformat '%{VERSION}')
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
