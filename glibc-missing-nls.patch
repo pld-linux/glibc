@@ -97,33 +97,34 @@
    { NULL, 0, NULL, 0, NULL, 0 }
  };
  
---- glibc-2.3.2/po/pl.po.orig	Mon Nov 11 14:28:57 2002
-+++ glibc-2.3.2/po/pl.po	Mon Nov 11 14:37:44 2002
-@@ -1690,7 +1690,7 @@
+--- libc/po/pl.po.orig	2004-07-03 00:20:47.126100000 +0200
++++ libc/po/pl.po	2004-07-03 00:24:57.605022064 +0200
+@@ -1710,7 +1710,8 @@
  msgid "Another string for testing."
  msgstr "Inny ³añcuch do testów."
  
--#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:84
-+#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:84 argp/argp-parse.c:102
+-#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:88
++#: catgets/gencat.c:111 catgets/gencat.c:115 argp/argp-parse.c:104
++#: nscd/nscd.c:88
  msgid "NAME"
  msgstr "NAZWA"
  
-@@ -3659,9 +3659,13 @@
+@@ -3714,9 +3715,13 @@
  msgid "Set the program name"
  msgstr "Okre¶lenie nazwy programu"
  
-+#: argp/argp-parse.c:103
++#: argp/argp-parse.c:105
 +msgid "SECS"
 +msgstr "SEK"
 +
- #: argp/argp-parse.c:104
+ #: argp/argp-parse.c:106
  msgid "Hang for SECS seconds (default 3600)"
 -msgstr "Zatrzymanie na SECS sekund (domy¶lnie 3600)"
 +msgstr "Zatrzymanie na SEK sekund (domy¶lnie 3600)"
  
- #: argp/argp-parse.c:161
+ #: argp/argp-parse.c:167
  msgid "Print program version"
-@@ -4181,6 +4185,102 @@
+@@ -4246,6 +4251,102 @@
  msgid "\t%s [-n netid]* [-o outfile] [infile]\n"
  msgstr "\t%s [-n id_sieci]* [-o plik_wy] [plik_we]\n"
  
@@ -226,46 +227,45 @@
  #: sunrpc/rpc_scan.c:116
  msgid "constant or identifier expected"
  msgstr "spodziewana sta³a lub identyfikator"
-@@ -5621,16 +5721,28 @@
- msgstr "Nie tworzenie dowi±zañ"
+@@ -5785,15 +5886,27 @@
  
- #: elf/ldconfig.c:126
-+msgid "ROOT"
-+msgstr "KATALOG"
-+
-+#: elf/ldconfig.c:126
+ #: elf/ldconfig.c:129
  msgid "Change to and use ROOT as root directory"
 -msgstr "Przej¶cie do i u¿ywanie ROOT jako g³ównego katalogu"
 +msgstr "Przej¶cie do i u¿ywanie KATALOGU jako g³ównego"
 +
-+#: elf/ldconfig.c:127
++#: elf/ldconfig.c:129
++msgid "ROOT"
++msgstr "KATALOG"
++
++#: elf/ldconfig.c:130
 +msgid "CACHE"
 +msgstr "BUFOR"
  
- #: elf/ldconfig.c:127
+ #: elf/ldconfig.c:130
  msgid "Use CACHE as cache file"
 -msgstr "U¿ycie CACHE jako pliku bufora"
 +msgstr "U¿ycie BUFORA jako pliku bufora"
 +
-+#: elf/ldconfig.c:128
++#: elf/ldconfig.c:131
 +msgid "CONF"
 +msgstr "KONF"
  
- #: elf/ldconfig.c:128
+ #: elf/ldconfig.c:131
  msgid "Use CONF as configuration file"
 -msgstr "U¿ycie CONF jako pliku konfiguracyjnego"
 +msgstr "U¿ycie KONF jako pliku konfiguracyjnego"
  
- #: elf/ldconfig.c:129
+ #: elf/ldconfig.c:132
  msgid "Only process directories specified on the command line.  Don't build cache."
-@@ -5641,6 +5753,10 @@
+@@ -5804,6 +5917,10 @@
  msgstr "Rêczne tworzenie dowi±zañ do pojedynczych bibliotek."
  
- #: elf/ldconfig.c:131
+ #: elf/ldconfig.c:134
 +msgid "FORMAT"
 +msgstr "FORMAT"
 +
-+#: elf/ldconfig.c:131
++#: elf/ldconfig.c:134
  msgid "Format to use: new, old or compat (default)"
  msgstr "U¿ywany format: new, old lub compat (domy¶lny)"
  
