@@ -795,12 +795,11 @@ LDFLAGS=" " ; export LDFLAGS
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
 	--%{!?with_fp:en}%{?with_fp:dis}able-omitfp \
+	%{?with_tls:--with-tls} \
 %if %{with nptl}
         --enable-add-ons=nptl \
-	--with-tls \
 	--disable-profile \
 %else
-	%{?with_tls:--with-tls} \
         --enable-add-ons=linuxthreads \
 	--enable-profile \
 %endif
