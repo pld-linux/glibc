@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	2.2
+Release:	2.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -37,6 +37,7 @@ Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-use-int-not-arpa.patch
+Patch13:	%{name}-divdi3.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -436,6 +437,7 @@ Zabawka.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
 
 chmod +x scripts/cpp
 
