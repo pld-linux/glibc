@@ -1,4 +1,3 @@
-%define		pre	pre3
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -6,13 +5,13 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.1
-Release:	0.%{pre}
+Release:	1
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}pre3.tar.gz
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}pre3.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.pre1.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
+Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
@@ -173,7 +172,7 @@ utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików
 ze starszych programów (bazuj±cych na libc5).
 
 %prep 
-%setup  -q -a 1 -a 2 -n %{name}-%{version}%{pre}
+%setup  -q -a 1 -a 2
 %patch0 -p1
 
 %build
