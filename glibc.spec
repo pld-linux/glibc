@@ -23,8 +23,7 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 4
+%{!?min_kernel:%global		min_kernel	2.2.0}
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -35,6 +34,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.2
+%define		rel 5
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
@@ -59,6 +59,7 @@ Source9:	%{name}-kernheaders.tar.bz2
 Source10:	http://josefsson.org/libidn/releases/libidn-0.3.0rc3.tar.gz
 # Source10-md5:	ded0b439efe16dd29ce5a24d3d3dcebf
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-initgroups-overflow.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-string2-pointer-arith.patch
@@ -623,6 +624,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %prep
 %setup -q -a 1 -a 9 -a 10
 %patch0 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -657,8 +659,8 @@ mv -f localedata/locales/{lug_UG,lg_UG}
 
 %if %{with idn}
 cp -r libidn-*/lib libidn
-cp libidn-*/libc/{Makefile,configure,Banner,Versions} libidn/
-cp libidn-*/lib/*.{c,h} libidn/
+cp libidn-*/libc/{Makefile,configure,Banner,Versions} libidn
+cp libidn-*/lib/*.{c,h} libidn
 sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/idna.h > libidn/idna.h
 ln -sf ../libidn/idna.h include/idna.h
 sed -e 's/idn-int.h/stdint.h/g' libidn-*/lib/stringprep.h > libidn/stringprep.h
@@ -697,7 +699,7 @@ LDFLAGS=" " ; export LDFLAGS
 #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
 	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
-	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
+	--enable-kernel="%{min_kernel}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
 %if 0%{!?_with_kernheaders:1}
@@ -795,7 +797,7 @@ cp -f ../crypt/README.ufc-crypt ../documentation/
 
 cp -f ../ChangeLog* ../documentation
 
-rm -f $RPM_BUILD_ROOT%{_libdir}*/libnss_*.so
+rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
 %ifnarch sparc64
@@ -805,7 +807,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}*/libnss_*.so
 # Collect locale files and mark them with %%lang()
 rm -f ../glibc.lang
 echo '%defattr(644,root,root,755)' > ../glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}*/locale/* ; do
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		twochar=1
@@ -856,7 +858,7 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
 rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
-rm -f $RPM_BUILD_ROOT%{_libdir}*/pt_chown
+rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
 %if 0%{!?_with_kernheaders:1}
@@ -963,7 +965,7 @@ fi
 %{_datadir}/zoneinfo
 %exclude %{_datadir}/zoneinfo/right
 
-%dir %{_libdir}*/locale
+%dir %{_libdir}/locale
 
 %{_mandir}/man1/[!lsg]*
 %{_mandir}/man1/getent.1*
