@@ -16,6 +16,8 @@
 # TODO:
 # - localedb-gen man pages(?)
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
+# - math/{test-fenv,test-tgmath,test-float,test-ifloat},
+#   linuxthreads/tst-cancel8, debug/backtrace-tst(SEGV)  fail on alpha
 #
 
 %{!?min_kernel:%global          min_kernel      2.4.6}
