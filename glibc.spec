@@ -62,7 +62,7 @@
 %define		with_dual	1
 %endif
 
-%define		llh_version	7:2.6.6.0
+%define		llh_version	7:2.6.10.0-3
 
 Summary:	GNU libc
 Summary(de):	GNU libc
