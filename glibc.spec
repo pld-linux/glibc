@@ -541,7 +541,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 			if [ `echo $lang | sed "s,_.*,,"` = "zh" ]; then
 				lang=`echo $lang | sed "s,\..*,,"`
 			else
-				lang=`echo $lang | sed "s,_.*,,`
+				lang=`echo $lang | sed "s,_.*,,"`
 			fi 
 		fi	
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
