@@ -26,6 +26,7 @@ Patch6:		glibc-pthread_create-manpage.patch
 Patch7:		glibc-sparc-linux-chown.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
+BuildRequires:	gd-devel
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
