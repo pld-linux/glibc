@@ -886,13 +886,13 @@ BuildGlibc() {
 }
 
 # Build main glibc
-BuildGlibc "%{_target_cpu}"
-
 %if %{with_biarch}
 %ifarch x86_64
 BuildGlibc "athlon"
 %endif
 %endif
+
+BuildGlibc "%{_target_cpu}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
