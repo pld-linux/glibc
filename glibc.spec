@@ -4,23 +4,23 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1
-%define		man_pages_ver 1.23
-Release:	10
+Version:	2.1.1
+Release:	1
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-%{version}.tar.gz
+#######		ftp://sourceware.cygnus.com/pub/glibc/
+Source0:	%{name}-%{version}pre3.tar.gz
+Source1:	%{name}-linuxthreads-%{version}pre3.tar.gz
+#######:	http://www.ozemail.com.au/~geoffk/glibc-crypt
+Source2:	%{name}-crypt-2.1.pre1.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
-Source5:	ftp://ftp.win.tue.nl/pub/linux/docs/manpages/man-pages-%{man_pages_ver}.tar.bz2
 Patch0:		glibc-info.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
-Obsoletes:	glibc-profile
-Obsoletes:	glibc-debug
+Obsoletes:	%{name}-profile
+Obsoletes:	%{name}-debug
 Autoreq:	false
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -72,7 +72,7 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package devel
+%package	devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
@@ -108,42 +108,41 @@ C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
 %prep 
-%setup -q -a 1 -a 2 -a 5
+%setup -q -a 1 -a 2 -n glibc-2.1.1pre3
 %patch -p1
 
 %build
-install -d sunrpc/cpp; ln -s /lib/cpp sunrpc/cpp/cpp 
-CFLAGS="$RPM_OPT_FLAGS -pipe" \
-%ifarch sparc sparc64
-sparc32 \
-%endif
+CFLAGS="$RPM_OPT_FLAGS" \
 ./configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
-	--prefix=/usr \
-	--disable-omitfp \
-	--enable-add-ons=yes \
-        %{_target}
-make
+	--prefix=%{_prefix} \
+	--infodir=%{_infodir} \
+	--disable-omitfp %{_target_platform}
+make  
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,usr/man/man3,var/db}
+install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,usr/share/man/man3,var/db}
 
-make install_root=$RPM_BUILD_ROOT install
-make install_root=$RPM_BUILD_ROOT install-locales -C localedata
+make \
+    install_root=$RPM_BUILD_ROOT \
+    infodir=%{_infodir} \
+    mandir=%{_mandir} \
+    install
+make \
+    install_root=$RPM_BUILD_ROOT \
+    install-locales -C localedata
 
 make -C linuxthreads/man
+install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
 
-install linuxthreads/man/*.3thr man-pages-*/man3/* \
-	$RPM_BUILD_ROOT%{_mandir}/man3
+rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
-
-ln -sf ../../../etc/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT/usr/lib/libbsd.a
+ln -sf ../../../etc/localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/localtime
+ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixtime
+ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixrules
+ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
 
@@ -157,12 +156,12 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
 
 install nss/db-Makefile $RPM_BUILD_ROOT/var/db
 
-cat << EOF > $RPM_BUILD_ROOT%{_bindir}/create-db
+cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
 #!/bin/sh
-%{_bindir}/make -f /var/db/db-Makefile
+/usr/bin/make -f /var/db/db-Makefile
 EOF
 
-ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db 
+ln -sf create-db $RPM_BUILD_ROOT/usr/bin/update-db 
 
 rm -rf documentation
 install -d documentation
@@ -175,20 +174,23 @@ cp crypt/README documentation/README.crypt
 
 cp ChangeLog ChangeLog.8 documentation
 
+gzip -9fn documentation/*
+
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
 
-gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*} \
-	README NEWS FAQ BUGS NOTES PROJECTS documentation/*
+gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS
+
+gzip -9fn $RPM_BUILD_ROOT/usr/share/{man/man*/*,info/libc*}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info %{_infodir}/libc.info.gz /etc/info-dir
+/sbin/install-info /usr/info/libc.info.gz /etc/info-dir
 
 %preun devel
 if [ "$1" = 0 ]; then
-	/sbin/install-info --delete %{_infodir}/libc.info.gz /etc/info-dir
+	/sbin/install-info --delete /usr/info/libc.info.gz /etc/info-dir
 fi
 
 %clean
@@ -202,7 +204,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
 %config /etc/rpc
 
-%attr(754,root,root) /etc/rc.d/init.d/*
+%attr(750,root,root) /etc/rc.d/init.d/*
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/*
@@ -213,7 +215,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_libdir}/gconv
 %{_libdir}/gconv/gconv-modules
-%attr(755,root,root) %{_libdir}/gconv/*.so
 
 %{_datadir}/i18n
 %{_datadir}/locale
@@ -251,25 +252,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/libc.inf*.gz
 
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/*.o
+%attr(755,root,root) %{_libdir}/*.o
 %{_libdir}/lib*.a
 
+%attr(755,root,root) /usr/lib/gconv/*.so
 %{_mandir}/man3/*
 
 %changelog
-* Mon Apr 19 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [2.1-10]
-- recompiled on new rpm.
-
-* Tue Mar 30 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [2.1-9]
-- gzipping %doc,
-- iconv modules moved to main,
-- moved man pages level 3 from man-pages package.
-
-* Mon Mar 15 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.
-  [2.1-7]
-- on sparc{64} ./configure must be runed throw sparc32 wrapper.
+* Wed May 19 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+- macro %{_target_platform},
+- some macros,
+- updated to version pre3,
+- FHS 2.0
 
 * Sun Mar 14 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.1-6]
@@ -278,6 +272,7 @@ rm -rf $RPM_BUILD_ROOT
 * Sat Mar 06 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.1-5]
 - removed striping of shared libraries -- no debug info in this libs,
+- fixed /etc/rc.d/init.d/* -- Tomek, never again 754 on start scripts... 
 - fixed permission of /var/db directory -- should be 755...
 
 * Mon Feb 22 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
@@ -297,7 +292,7 @@ rm -rf $RPM_BUILD_ROOT
   [2.1-3d]
 - updated to stable version,
 - fixed stripping ELF binaries,
-- removed obsoletes %{_includedir}/{asm,linux}
+- removed obsoletes /usr/include/{asm,linux}
 
 * Fri Jan 29 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.0.111-1d]
@@ -324,7 +319,7 @@ rm -rf $RPM_BUILD_ROOT
 - translation modified for pl, 
   (follow the suggestions Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>)
 - major changes.
-      (rewrote spec file -- follow the PLD policy)
+      (rewrote invalid spec file -- follow the PLD policy)
 
 * Wed Jul 16 1998 Wojtek ¦lusarczyk <wojtek@SHADOW.EU.ORG>
   [2.0.94-2d]
@@ -333,7 +328,7 @@ rm -rf $RPM_BUILD_ROOT
 - added %defattr
 - moved linux include links from kernel-headers to glibc-devel
 
-* Tue Jun 2 1998 Wojtek ¦lusarczyk <wojtek@SHADOW.EU.ORG>
+* Tue Jun 2 1998 Wojtek Slusarczyk <wojtek@SHADOW.EU.ORG>
   [2.0.94-1d]
 - updated to glibc 2.0.94
 
@@ -345,7 +340,9 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at invalid RH spec file.
+- start at invalid RH spec file.  
+
+
   [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
