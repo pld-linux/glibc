@@ -572,6 +572,11 @@ install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/man8
 
 install -m755 postshell $RPM_BUILD_ROOT/sbin
 
+%ifarch ppc
+cd $RPM_BUILD_ROOT/lib
+ln -sf ld-%{version}.so ld.so.1
+%endif
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -645,6 +650,9 @@ fi
 %attr(755,root,root) /lib/libdl*
 %attr(755,root,root) /lib/libnsl*
 %attr(755,root,root) /lib/lib[BScmprtu]*
+%ifarch ppc
+/lib/ld.so.1
+%endif
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
