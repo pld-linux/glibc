@@ -53,7 +53,7 @@ BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	libpng-devel
-BuildRequires:	perl
+BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
