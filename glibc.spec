@@ -643,14 +643,15 @@ cd builddir
 LDFLAGS=" " ; export LDFLAGS
 #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
-	--enable-add-ons=nptl \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
 %if %{with nptl}
         CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
+	--enable-add-ons=nptl \
 %else
+	--enable-add-ons=linuxthreads \
 %if 0%{!?_with_kernheaders:1}
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
