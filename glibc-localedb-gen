@@ -47,7 +47,7 @@ done
 
 if [ "${SUPPORTED_LOCALES}" = "x" ]; then
 	echo "SUPPORTED_LOCALES not set"
-	echo "You can set it with /etc/sysconfig/i18n file"
+	echo "You can set it in /etc/sysconfig/i18n file"
 	exit 1
 fi
 
@@ -77,11 +77,12 @@ for loc in ${SUPPORTED_LOCALES} ; do
 		echo "Charset not known for locale ${loc} - skipping..."
 		continue
 	fi
+	iloc="`echo ${loc} | sed -e 's/\.[^@]*//'`"
 	echo -n "Generating ${loc} using charset ${chset}... "
 	if [ "${OLD_STYLE}" = "yes" ]; then
-		localedef -f ${chset} -i ${loc} ${DESTDIR}${LOCDIR}${loc}
+		localedef -f ${chset} -i ${iloc} ${DESTDIR}${LOCDIR}${loc}
 	else
-		localedef -f ${chset} -i ${loc} ${loc} ${DESTDIROPT}
+		localedef -f ${chset} -i ${iloc} ${loc} ${DESTDIROPT}
 	fi
 	echo
 done
