@@ -238,7 +238,7 @@ gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 
 ls $RPM_BUILD_ROOT%{_libdir}/lib*.a \
 	|egrep -v '(libc.a|libc.a|libc_nonshared.a)' \
-	|sed -e "s#$RPM_BUILD_ROOT%##" >static.libs
+	|sed -e "s#$RPM_BUILD_ROOT##g" >static.libs
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
