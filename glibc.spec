@@ -30,7 +30,6 @@ Patch6:		glibc-db2-alpha-mutex.patch
 Patch7:		glibc-linuxthreads-lock.patch
 Patch8:		glibc-pthread_create-manpage.patch
 Patch9:		glibc-sparc-linux-chown.patch
-Patch10:	glibc-ctype.patch
 Patch11:	ldconfig-glibc.patch
 Patch12:	ldconfig-bklinks.patch
 URL:		http://www.gnu.org/software/libc/
@@ -416,7 +415,6 @@ Berkeley DB.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p0
 cd ldconfig-980708
 %patch11 -p1
 %patch12 -p1
