@@ -74,7 +74,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.99999999.1
+Release:	0.99999999.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -120,7 +120,7 @@ Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-nscd.patch
-Patch27:	%{name}-pthread-build.patch
+Patch27:	%{name}-gcc4.patch
 # PaX hacks (dropped)
 #Patch28:	%{name}-pax_iconvconfig.patch
 #Patch29:	%{name}-pax_dl-execstack.patch
