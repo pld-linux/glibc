@@ -6,7 +6,7 @@ diff -Nru glibc-2.1.1/scripts/versions.awk glibc-2.1.1.new/scripts/versions.awk
  
    tmpfile = buildroot "Versions.tmp";
 -  sort = "sort -n > " tmpfile;
-+  sort = "sort -k 1,2 > " tmpfile;
++  sort = "LC_ALL=C sort -n > " tmpfile;
  }
  
  # Remove comment lines.
