@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2.3
-Release:	4
+Release:	5
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -31,6 +31,7 @@ Patch9:		%{name}-getconf.patch
 Patch10:	%{name}-confname.patch
 Patch11:	%{name}-nis.patch
 Patch12:	%{name}-speed.patch
+Patch13:	%{name}-paths.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
@@ -339,6 +340,7 @@ A toy.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
