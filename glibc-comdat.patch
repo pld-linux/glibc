@@ -14,3 +14,91 @@
  		  visibility ("hidden")));
  
  #define __sparc32_atomic_do_lock(addr) \
+--- glibc-20041206/sysdeps/unix/sysv/linux/i386/sysdep.h.orig	2004-10-15 21:30:34.000000000 +0000
++++ glibc-20041206/sysdeps/unix/sysv/linux/i386/sysdep.h	2004-12-16 18:56:56.509875136 +0000
+@@ -118,7 +118,7 @@
+   .previous
+ # else
+ #  define SETUP_PIC_REG(reg) \
+-  .section .gnu.linkonce.t.__i686.get_pc_thunk.reg,"ax",@progbits;	      \
++  .section .text,"axG",@progbits,.__i686.get_pc_thunk.reg,comdat;	      \
+   .globl __i686.get_pc_thunk.reg;					      \
+   .hidden __i686.get_pc_thunk.reg;					      \
+   .type __i686.get_pc_thunk.reg,@function;				      \
+--- ./nptl/sysdeps/unix/sysv/linux/i386/i486/sem_post.S~	2003-03-13 01:06:30.000000000 +0000
++++ ./nptl/sysdeps/unix/sysv/linux/i386/i486/sem_post.S	2004-12-16 19:30:06.059417632 +0000
+@@ -86,7 +86,7 @@
+ 
+ 
+ #ifdef PIC
+-	.section .gnu.linkonce.t.__i686.get_pc_thunk.bx,"ax",@progbits
++	.section .text,"axG",@progbits,.__i686.get_pc_thunk.bx,comdat
+ 	.globl	__i686.get_pc_thunk.bx
+ 	.hidden	__i686.get_pc_thunk.bx
+ 	.type	__i686.get_pc_thunk.bx,@function
+--- ./nptl/sysdeps/unix/sysv/linux/i386/i486/sem_trywait.S~	2003-05-10 20:38:06.000000000 +0000
++++ ./nptl/sysdeps/unix/sysv/linux/i386/i486/sem_trywait.S	2004-12-16 19:31:32.470281184 +0000
+@@ -74,7 +74,7 @@
+ 
+ 
+ #ifdef PIC
+-	.section .gnu.linkonce.t.__i686.get_pc_thunk.cx,"ax",@progbits
++	.section .text,"axG",@progbits,.__i686.get_pc_thunk.cx,comdat
+ 	.globl	__i686.get_pc_thunk.cx
+ 	.hidden	__i686.get_pc_thunk.cx
+ 	.type	__i686.get_pc_thunk.cx,@function
+--- ./nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S~	2004-09-02 18:52:38.000000000 +0000
++++ ./nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S	2004-12-16 19:32:51.140321520 +0000
+@@ -501,7 +501,7 @@
+ 
+ 
+ #ifdef PIC
+-	.section .gnu.linkonce.t.__i686.get_pc_thunk.cx,"ax",@progbits
++	.section .text,"axG",@progbits,.__i686.get_pc_thunk.cx,comdat
+ 	.globl	__i686.get_pc_thunk.cx
+ 	.hidden	__i686.get_pc_thunk.cx
+ 	.type	__i686.get_pc_thunk.cx,@function
+--- ./nptl/sysdeps/unix/sysv/linux/i386/pthread_once.S~	2003-10-03 19:49:23.000000000 +0000
++++ ./nptl/sysdeps/unix/sysv/linux/i386/pthread_once.S	2004-12-16 19:34:04.442177944 +0000
+@@ -171,7 +171,7 @@
+ 
+ 
+ #ifdef PIC
+-	.section .gnu.linkonce.t.__i686.get_pc_thunk.cx,"ax",@progbits
++	.section .text,"axG",@progbits,.__i686.get_pc_thunk.cx,comdat
+ 	.globl	__i686.get_pc_thunk.cx
+ 	.hidden	__i686.get_pc_thunk.cx
+ 	.type	__i686.get_pc_thunk.cx,@function
+--- ./sysdeps/i386/elf/bsd-setjmp.S~	2003-10-03 20:29:03.000000000 +0000
++++ ./sysdeps/i386/elf/bsd-setjmp.S	2004-12-16 19:35:09.795242768 +0000
+@@ -68,7 +68,7 @@
+ 	ret
+ END (BP_SYM (setjmp))
+ 
+-	.section .gnu.linkonce.t.__i686.get_pc_thunk.cx,"ax",@progbits
++	.section .text,"axG",@progbits,.__i686.get_pc_thunk.cx,comdat
+ 	.globl __i686.get_pc_thunk.cx
+ 	.hidden __i686.get_pc_thunk.cx
+ 	.type __i686.get_pc_thunk.cx,@function
+--- ./sysdeps/i386/elf/setjmp.S~	2003-10-03 20:25:46.000000000 +0000
++++ ./sysdeps/i386/elf/setjmp.S	2004-12-16 19:35:49.780164136 +0000
+@@ -60,7 +60,7 @@
+ #endif
+ END (BP_SYM (__sigsetjmp))
+ 
+-	.section .gnu.linkonce.t.__i686.get_pc_thunk.cx,"ax",@progbits
++	.section .text,"axG",@progbits,.__i686.get_pc_thunk.cx,comdat
+ 	.globl __i686.get_pc_thunk.cx
+ 	.hidden __i686.get_pc_thunk.cx
+ 	.type __i686.get_pc_thunk.cx,@function
+--- ./sysdeps/i386/i686/memcmp.S~	2004-04-01 23:28:37.000000000 +0000
++++ ./sysdeps/i386/i686/memcmp.S	2004-12-16 19:36:33.436527360 +0000
+@@ -42,7 +42,7 @@
+   addl	(%ebx,INDEX,4), %ebx
+ 
+ #ifdef HAVE_HIDDEN
+-	.section	.gnu.linkonce.t.__i686.get_pc_thunk.bx,"ax",@progbits
++	.section	.text,"axG",@progbits,.__i686.get_pc_thunk.bx,comdat
+ 	.globl	__i686.get_pc_thunk.bx
+ 	.hidden	__i686.get_pc_thunk.bx
+ #else
