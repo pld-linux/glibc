@@ -17,7 +17,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.1
-Release:	3@%{_kernel_ver_str}
+Release:	4@%{_kernel_ver_str}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -43,6 +43,7 @@ Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-postshell.patch
 Patch13:	%{name}-pl.po-update.patch
 Patch14:	%{name}-missing-nls.patch
+Patch15:	%{name}-broken-ldconfig-on-i386-with-gcc32.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -460,6 +461,7 @@ Zabawka.
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+%patch15 -p1
 
 chmod +x scripts/cpp
 
