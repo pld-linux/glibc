@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	25
+Release:	26
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -603,6 +603,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+echo "Many programs require the kernel header files to compile."
+echo "Please install the kernel-headers package or, if you build"
+echo "your kernels yourself, link your kernel's sources to"
+echo "/usr/include/asm and /usr/include/linux."
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
