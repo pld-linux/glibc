@@ -61,7 +61,7 @@ License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	a93bf55b9cc6ae5d2cdcf96b723710a8
+# Source0-md5:	a1b7ed8d87e734f1769f94ed020b478a
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
 Source2:	nscd.init
