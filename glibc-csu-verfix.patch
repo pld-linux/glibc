@@ -5,13 +5,13 @@
  		   fi; \
  		   echo "\"Compiled on a $$os $$version system" \
 -			"on `date +%Y-%m-%d`.\\n\"" ;; \
-+			"on `date +%Y-%m-%d`.\"" ;; \
++			"on `date +%Y-%m-%d`.\\\n\"" ;; \
  	   *) ;; \
  	 esac; \
  	 files="$(all-Banner-files)";				\
  	 if test -n "$$files"; then				\
 -	   echo "\"Available extensions:\\n\"";			\
-+	   echo "\"Available extensions:\"";			\
++	   echo "\"Available extensions:\\\n\"";			\
  	   sed -e '/^#/d' -e 's/^[[:space:]]*/	/'		\
  	       -e 's/\(^.*$$\)/\"\1\\n\"/' $$files;		\
  	 fi) > $@T
