@@ -38,8 +38,9 @@
 %endif
 
 %if %{with tls}
-# sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparc64 sparcv9 ppc ppc64
+# - sparc temporarily removed (broken)
+# - TLS support for PPC is only available when using gcc >= 3.4
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc64 sparcv9
 %undefine	with_tls
 %endif
 %endif
