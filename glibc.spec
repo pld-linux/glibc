@@ -6,7 +6,7 @@
 %bcond_without	fp		# build without frame pointer (pass \--enable-omitfp)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
-				# glibc-kernel-headers (evil, breakage etc., don't use)
+				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	nptl		# use nptl instead of linuxthreads
 %bcond_with     tls		# use tls
@@ -41,7 +41,7 @@
 %endif
 %endif
 
-%define	gkh_version	7:2.6.0.3
+%define	llh_version	7:2.6.1.3
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(es):	GNU libc
@@ -113,7 +113,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 %if %{with kernelheaders}
 %{?with_dist_kernel:BuildRequires:	kernel-headers < 2.5}
 %else
-BuildRequires:	glibc-kernel-headers >= %{gkh_version}
+BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
@@ -284,7 +284,7 @@ Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{!?with_kernelheaders:Requires:	glibc-kernel-headers >= %{gkh_version}}
+%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
