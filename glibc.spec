@@ -153,7 +153,6 @@ kitaplýklar.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
-Summary(pl):	Name Service Caching Daemon
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
@@ -175,7 +174,7 @@ u¿ywanie nscd z j±drami serii 2.0.x z powodu b³êdów po stronie j±dra w
 ods³udze w±tków.
 
 %package -n localedb-src
-Summary:	Souce code locale database
+Summary:	locale database source code
 Summary(pl):	Kod ¼ród³owy bazy locale
 Group:		Daemons
 Group(de):	Server
@@ -185,15 +184,16 @@ Requires:	%{name} = %{version}
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
 files to use the internationalization features of the GNU libc. glibc
-package contains standard set of locale binary database and You need
-this package if want build some non standard locale database.
+package contains standard set of locale binary database so you need
+this package only when you want to build some non-standard locale
+database.
 
 %description -n localedb-src -l pl
-Pakiet ten kod ¼ród³owy baz locale który jest potrzebny do zbudowania
-binarnej wersji baz locale potrzebnej do poprawnego wspierania ró¿nych
-jêzyków przez glibc. Pakiet glibc zawira binarn± wersjê standardowych
-baz locale i ten pakiet jest potrzebny tylko w sytuacji kiedy potrzeba
-wygenerowaæ jak±¶ niestandardow± bazê.
+Pakiet ten zawiera dane niezbêdne do zbudowania binarnych plików
+lokalizacyjnych, by móc wykorzystaæ mo¿liwo¶ci oferowane przez GNU
+libc. glibc zawiera standardowy zestaw binarnych baz lokalizacyjnych,
+w zwi±zku z czym ten pakiet jest potrzebny tylko w sytuacji budowania
+jakiej¶ niestandardowej bazy.
 
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
@@ -205,8 +205,8 @@ Requires:	%{name} = %{version}
 
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need
-this package if You want to convert some documet from one encoding to
-another or if You have installed some programs which use Generic
+this package if you want to convert some documet from one encoding to
+another or if you have installed some programs which use Generic
 Character Set Conversion Interface.
 
 %description -n iconv -l pl
