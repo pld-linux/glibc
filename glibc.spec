@@ -72,6 +72,7 @@ Patch19:	%{name}-no_opt_override.patch
 Patch20:	%{name}-gcc33.patch
 #Patch21:	%{name}-sanity.patch
 Patch22:	%{name}-secureexec.patch
+Patch23:	%{name}-kernel_includes.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -587,6 +588,7 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %patch20 -p1
 #%patch21 -p1
 %patch22 -p1
+%{!?_with_kernheaders:%patch23}
 
 chmod +x scripts/cpp
 
