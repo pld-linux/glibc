@@ -22,21 +22,15 @@
 #	in order to use this version!
 #
 
-# We dont have all those archs, but just in case and
-%define		_nptl_arches 	i686 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
-
-%ifnarch	%{_nptl_arches}
-%undefine	with_nptl
-%endif
+%{!?min_kernel:%global          min_kernel      2.4.6}
 
 %if %{with nptl}
+%ifarch i686 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
 %{!?min_kernel:%global		min_kernel	2.6.0}
-# Doesnt go through checks.
-#%%undefine	with_fp
 %else
-%{!?min_kernel:%global          min_kernel      2.4.6}
+%undefine with_nptl
 %endif
-
+%endif
 
 %define	gkh_version	7:2.6.0.3
 Summary:	GNU libc
@@ -50,7 +44,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.2%{?_with_nptl:+nptl}
+Release:	0.20040101.2%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -783,7 +777,6 @@ LDFLAGS=" " ; export LDFLAGS
 %if %{with nptl}
         --enable-add-ons=nptl \
 	--with-tls \
-	--disable-sanity-checks \
 	--disable-profile \
 %else
         --enable-add-ons=linuxthreads \
@@ -800,12 +793,6 @@ LDFLAGS=" " ; export LDFLAGS
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{?parallelmkflags}
-
-
-%if %{with nptl}
-%{__make} subdirs=elf others
-%{__make} subdirs=nptl check
-%endif
 
 %if %{with tests}
 env LANGUAGE=C LC_ALL=C \
@@ -834,25 +821,6 @@ env LANGUAGE=C LC_ALL=C \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
-
-%if %{with nptl}
-env LANGUAGE=C LC_ALL=C \
-%{__make} install \
-	subdirs=nptl \
-	%{?parallelmkflags} \
-	install_root=$RPM_BUILD_ROOT \
-	infodir=%{_infodir} \
-	mandir=%{_mandir}
-
-env LANGUAGE=C LC_ALL=C \
-%{__make} install \
-	subdirs=nptl_db \
-	%{?parallelmkflags} \
-	install_root=$RPM_BUILD_ROOT \
-	infodir=%{_infodir} \
-	mandir=%{_mandir}
-
-%endif
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
@@ -901,11 +869,6 @@ for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
 	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/`cd $RPM_BUILD_ROOT/%{_lib} ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 done
-
-%if %{with nptl}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libpthread.so
-ln -sf /lib/libpthread-*.so $RPM_BUILD_ROOT%{_libdir}/libpthread.so
-%endif
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
