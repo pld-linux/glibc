@@ -3,7 +3,7 @@
 # default is 2.2.0 (no changes up to 2.3.25)
 #
 # Conditional build:
-%bcond_without	fp		# build without frame pointer (pass --enable-omitfp)
+%bcond_without	fp		# build without frame pointer (pass \--enable-omitfp)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# glibc-kernel-headers (evil, breakage etc., don't use)
