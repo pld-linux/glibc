@@ -20,15 +20,8 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%bcond_with	nptl # enable new posix thread library (req: kernel 2.5/2.6)
-		     # instead of linuxthreads
-
-%if %{with nptl}
-%define		min_kernel	2.5.65
-%endif
-
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 0.030907.1
+%define		rel 2.19
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -38,17 +31,15 @@ Summary(ru):	GNU libc ×ÅÒÓÉÉ 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
-Version:	2.3.3
+Version:	2.3.2
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	http://www.kernel.pl/~djurban/glibc/%{name}-%{version}.tar.bz2
-# Source0-md5:	66f01e9db96651ec82034b9474690e1f
-#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-Source1:	http://www.kernel.pl/~djurban/glibc/%{name}-linuxthreads-%{version}.tar.bz2
-# Source1-md5:	1843a3fc138bcd26be946d9423ff5f10
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+# Source0-md5:	ede969aad568f48083e413384f20753c
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+# Source1-md5:	894b8969cfbdf787c73e139782167607
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -61,9 +52,7 @@ Source7:	sln.8
 Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
-# Source9-md5:	b48fec281f854627d6b8781cd1dd72d2
-Source10:	ftp://people.redhat.com/drepper/nptl/nptl-0.57.tar.bz2
-# Source10-md5:	82472303a736b53812906f97548e54f1
+# Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -86,7 +75,6 @@ Patch22:	%{name}-secureexec.patch
 Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-sparc64_pause.patch
 Patch25:	%{name}-linuxthreads.patch
-Patch26:	%{name}-csu-verfix.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -118,7 +106,7 @@ Conflicts:	rpm < 4.1
 %define		debugcflags	-O1 -g
 %ifarch sparc64
 %define		_without_memusage	1
-%define		specflags_sparc64	-mvis -fcall-used-g6
+%define 	specflags_sparc64	-mvis -fcall-used-g6
 %endif
 
 %description
@@ -585,16 +573,13 @@ Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %prep
-%setup -q -a 9
-%if %{with nptl}
-%{__tar} xfj %{SOURCE10}
-%else
-%{__tar} xfj %{SOURCE1}
-%endif
+%setup -q -a 1 -a 9
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 %patch9 -p1
 %patch10 -p1
 #%%patch11 -p1
@@ -603,22 +588,16 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %patch14 -p1
 %patch16 -p1
 %patch17 -p1
+%patch18 -p1
 # don't know, if it is good idea, for brave ones
 #%patch19 -p1
-##%patch20 -p1
+%patch20 -p1
 #%patch21 -p1
-##%patch22 -p1
+%patch22 -p1
 %{!?_with_kernheaders:%patch23}
-##%patch24 -p1
+%patch24 -p1
 # updated - lt
-%patch26 -p1
-
-%if %{without nptl}
-%patch5 -p1
-%patch6 -p1
-##%patch25 -p1
-%patch18 -p1
-%endif
+%patch25 -p1
 
 chmod +x scripts/cpp
 
@@ -647,17 +626,10 @@ cd builddir
 LDFLAGS=" " ; export LDFLAGS
 #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
+	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
-%if %{with nptl}
-	CPPFLAGS="-I%{_kernelsrcdir}/include" \
-	--with-headers=%{_kernelsrcdir}/include \
-	--enable-add-ons=nptl \
-	--with-tls \
-	--disable-sanity-checks \
-%else
-	--enable-add-ons=linuxthreads \
 %if 0%{!?_with_kernheaders:1}
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
@@ -665,7 +637,7 @@ LDFLAGS=" " ; export LDFLAGS
 	CPPFLAGS="-I$_headers_dir" \
 	--with-headers=$_headers_dir
 %endif
-%endif
+
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{?parallelmkflags}
@@ -703,10 +675,9 @@ install elf/postshell				$RPM_BUILD_ROOT/sbin
 %{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib*/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/lib*/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
-%if %{without nptl}
 %{__make} -C ../linuxthreads/man
 install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
-%endif
+
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
 
 #cd $RPM_BUILD_ROOT%{_datadir}/zoneinfo
@@ -733,6 +704,7 @@ install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install ../nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 install ../nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
@@ -743,11 +715,10 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 rm -rf ../documentation
 install -d ../documentation
-%if %{without nptl}
+
 cp -f ../linuxthreads/ChangeLog ../documentation/ChangeLog.threads
 cp -f ../linuxthreads/Changes ../documentation/Changes.threads
 cp -f ../linuxthreads/README ../documentation/README.threads
-%endif
 cp -f ../crypt/README.ufc-crypt ../documentation/
 
 cp -f ../ChangeLog* ../documentation
