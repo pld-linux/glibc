@@ -62,8 +62,6 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 %{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
-%{!?_without_memusage:BuildRequires:    XFree86-devel}
-%{!?_without_memusage:BuildRequires:    libpng-devel}
 BuildRequires:	gettext-devel >= 0.10.36
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	perl-base
