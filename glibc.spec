@@ -349,7 +349,7 @@ rm -rf $RPM_BUILD_ROOT
   [2.0.7-24]
 - changed Buildroot to /tmp/%%{name}-%%{version}-root,
 - added using %%{name} and %%{version} in Source,
-- changeded dependences to "Requires: %%{name} = %%{version}" in devel
+- changed dependencies to "Requires: %%{name} = %%{version}" in devel
   subpackage,
 - added full %attr description in %files,
 - removed INSTALL from %doc,
