@@ -5,7 +5,7 @@ OLD_STYLE="no"
 DESTDIR=
 
 [ -f /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
-[ -f /etc/sysconfig/localedb ] && . /etc/sysconfig/i18n
+[ -f /etc/sysconfig/localedb ] && . /etc/sysconfig/localedb
 
 LOCDIR=/usr/lib/locale
 ARCHIVE=${LOCDIR}/locale-archive
@@ -71,7 +71,7 @@ for loc in ${SUPPORTED_LOCALES} ; do
 	elif echo ${loc} | grep -q '\.' ; then
 		chset="`echo ${loc} | sed -e 's@^.*\.@@'`"
 	elif grep -qs "^${loc}/[^ ]* .*$" /usr/share/i18n/SUPPORTED ; then
-		chset="`grep \"^${loc}/.* .*$\" /usr/share/i18n/SUPPORTED | sed -e 's@^.*/\*\([^ ]*\) .*$@\1@'`"
+		chset="`grep \"^${loc}/.* .*$\" /usr/share/i18n/SUPPORTED | sed -e 's@^.*/\([^ ]*\) .*$@\1@'`"
 	else
 		echo "Charset not known for locale ${loc} - skipping..."
 		continue

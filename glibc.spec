@@ -7,7 +7,10 @@
 # _without_fp		build without frame pointer (pass --enable-omitfp)
 # _without_memusage	build without memusage
 #
-# TODO: localedb-gen man pages(?)
+# TODO:
+# - localedb-gen man pages(?)
+# - serious problem with upgrade (changing zoneinfo/posix/* dirs into symlinks)
+#   are there any other solutions than revert???
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
 Summary:	GNU libc
