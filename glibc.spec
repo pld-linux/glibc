@@ -4,13 +4,13 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1.2
-Release:	13
+Version:	2.1.3
+Release:	1
 License:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.bz2
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
 Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.1.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
@@ -20,16 +20,13 @@ Source7:	nscd.logrotate
 Patch0:		glibc-info.patch
 Patch1:		glibc-versions.awk_fix.patch
 Patch2:		glibc-pld.patch
-Patch3:		glibc-getaddrinfo.patch
-Patch4:		glibc-crypt-blowfish.patch
-Patch5:		glibc-string2-pointer-arith.patch
-Patch6:		glibc-db2-alpha-mutex.patch
-Patch7:		glibc-linuxthreads-lock.patch
-Patch8:		glibc-pthread_create-manpage.patch
-Patch9:		glibc-sparc-linux-ldd.patch
-Patch10:	glibc-sparc-linux-chown.patch
-Patch11:	glibc-nls.patch
-Patch12:	glibc-makeinfo.patch
+Patch3:		glibc-crypt-blowfish.patch
+Patch4:		glibc-string2-pointer-arith.patch
+Patch5:		glibc-db2-alpha-mutex.patch
+Patch6:		glibc-linuxthreads-lock.patch
+Patch7:		glibc-pthread_create-manpage.patch
+Patch8:		glibc-sparc-linux-chown.patch
+Patch9:		glibc-ctype.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -244,10 +241,7 @@ kitaplýðý kullanmak zorundadýrlar.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p0
+%patch9 -p0
 
 %build
 %configure \
