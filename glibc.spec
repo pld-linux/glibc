@@ -6,8 +6,8 @@ Summary(tr): GNU libc
 Name:        glibc
 Version:     2.0.7
 %define kheaders 2.1.76
-%define version 980911
-Release:     24
+%define version 981012
+Release:     30
 Copyright:   LGPL
 Group:       Development/Libraries/Libc
 Source0:     glibc-2.0.7-%{version}.tar.gz
@@ -17,6 +17,7 @@ Source3:     ftp://prep.ai.mit.edu/pub/gnu/glibc-crypt-2.0.6.tar.gz
 Source4:     glibc-2.0.7-nsswitch.conf
 Source5:     linux-include-%{kheaders}.tar.gz
 Source6:     glibc-2.0.7-db-mans.tar.gz
+
 Patch0:      glibc-2.0.7-preload.patch
 Patch1:      glibc-2.0.7-nonmt.patch
 Patch2:      glibc-2.0.7-localedata.patch
@@ -25,13 +26,18 @@ Patch4:      glibc-2.0.7-sparc.patch
 Patch5:      glibc-2.0.7-sparc2.patch
 Patch6:      glibc-2.0.7-sparc3.patch
 Patch7:      glibc-2.0.7-tz.patch
-Patch8:      glibc-2.0.7-anc.patch
 Patch9:      glibc-2.0.7-sparc4.patch
 Patch10:     glibc-2.0.6-threads.patch
 Patch11:     glibc-2.0.7-pagesize.patch
 Patch12:     glibc-2.0.7-getpagesize.patch
 Patch13:     glibc-2.0.7-resolv.patch
-Patch14:     glibc-localedata_install.patch.gz
+Patch14: glibc-2.0.7-slovak.patch
+Patch15: glibc-2.0.7-serbian.patch
+Patch17: glibc-2.0.7-shaper.patch
+Patch18: glibc-2.0.7-sparclongjmp2.patch
+Patch19:     glibc-localedata_install.patch.gz
+Patch100: glibc-2.0.7-kfd.patch
+
 Buildroot:   /tmp/%{name}-%{PACKAGE_VERSION}-root
 Obsoletes:   zoneinfo libc-static libc-devel libc-profile libc-headers linuxthreads
 Autoreq:     false
@@ -198,13 +204,18 @@ kitaplýðý kullanmak zorundadýrlar.
 %patch6 -p1 -b .sparc3
 %patch9 -p1 -b .sparc4
 %patch12 -p1 -b .getpagesize
+%patch18 -p1 -b .sparclongjmp2
 %endif
 %patch7 -p1 -b .tz
-%patch8 -p1 -b .anc
 %patch10 -p1 -b .threads
 %patch11 -p1 -b .pagesize
-%patch13 -p1 -b .race
-%patch14 -p1 -b .localedata_install
+%patch14 -p1 -b .slovak
+%patch15 -p1 -b .serbian
+%patch17 -p1 -b .shaper
+%patch19 -p1 -b .localedata_install
+
+# this is the 3000 file descriptors patch...
+#patch100 -p1 -b .kfd
 
 ln -s asm-${RPM_ARCH} linux/include/asm
 ln -s ../../../../linux/include/linux sysdeps/unix/sysv/linux/linux
@@ -324,6 +335,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644, root, root) /usr/lib/libg.a
 
 %changelog
+* Sat Oct 10 1998 Cristian Gafton <gafton@redhat.com>
+- updated to fix some of the memory leaks in the dl code
+
+* Wed Sep 30 1998 Cristian Gafton <gafton@redhat.com>
+- ypall UDP socket leak fixed
+- add if_shaper.h
+- list ruffian as a supported arch
+- serbian locale support
+- slovak patches in
+
 * Sun Sep 13 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [2.0.7-24]
 - changed Buildroot to /tmp/%%{name}-%%{version}-root,
