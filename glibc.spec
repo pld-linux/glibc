@@ -864,6 +864,7 @@ BuildGlibc() {
   ../%configure \
 	CC="${BuildCC}" \
 	CFLAGS="${BuildCCFlags}" \
+	--build=${arch}-%{_vendor}-%{_target_os} \
 	--libexecdir="%{_prefix}/$glibc_libname" \
 	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
 	--enable-kernel="%{min_kernel}" \
