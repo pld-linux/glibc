@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	9
+Release:	10
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -30,8 +30,8 @@ Patch6:		glibc-db2-alpha-mutex.patch
 Patch7:		glibc-linuxthreads-lock.patch
 Patch8:		glibc-pthread_create-manpage.patch
 Patch9:		glibc-sparc-linux-chown.patch
-Patch11:	ldconfig-glibc.patch
-Patch12:	ldconfig-bklinks.patch
+Patch10:	ldconfig-glibc.patch
+Patch11:	ldconfig-bklinks.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -416,8 +416,8 @@ Berkeley DB.
 %patch8 -p1
 %patch9 -p1
 cd ldconfig-980708
+%patch10 -p1
 %patch11 -p1
-%patch12 -p1
 
 %build
 %configure \
