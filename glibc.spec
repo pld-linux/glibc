@@ -682,7 +682,11 @@ Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Release:	%{rel}
 Group:		Libraries
+%ifarch amd64
+Provides:	glibc = %{epoch}:%{version}
+%else
 Requires:	%{name} = %{epoch}:%{version}
+%endif
 
 %description -n %{name}64
 64-bit GNU libc libraries for sparc64 architecture.
@@ -842,7 +846,9 @@ install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
-install elf/postshell				$RPM_BUILD_ROOT/sbin
+install elf/postshell				$RPM_BUILD_ROOT/%{_lib}
+mv $RPM_BUILD_ROOT/sbin/ldconfig 		$RPM_BUILD_ROOT/%{_lib}
+ln -s /%{_lib}/ldconfig 			$RPM_BUILD_ROOT/sbin
 
 %{!?_without_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
@@ -964,12 +970,12 @@ rm -rf $RPM_BUILD_ROOT
 # when %%postun is run
 
 %ifnarch sparc64
-%post	-p /sbin/postshell
-/sbin/ldconfig
+%post	-p /%{_lib}/postshell
+/%{_lib}/ldconfig
 -/sbin/telinit u
 
-%postun -p /sbin/postshell
-/sbin/ldconfig
+%postun -p /%{_lib}/postshell
+/%{_lib}/ldconfig
 -/sbin/telinit u
 
 %post	memusage -p /sbin/ldconfig
@@ -1005,12 +1011,17 @@ fi
 %endif
 
 %ifnarch sparc64
+%ifarch amd64
+%files -n glibc64
+%else
 %files 
+%endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
 # ld-*.so SONAME is ld.so.1 on ppc, ld-linux.so.2 on other archs
+%attr(755,root,root) /%{_lib}/postshell
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
 %attr(755,root,root) /%{_lib}/libdl*
