@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2
-Release:	10
+Release:	11
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -29,6 +29,8 @@ Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-ldconfig.patch
 Patch9:		%{name}-getxxxxinfo.patch
 Patch10:	%{name}-flexiblearray.patch
+Patch11:	%{name}-unsecvars.patch
+Patch12:	%{name}-memusage.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
@@ -335,6 +337,8 @@ A toy.
 %patch8 -p0
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
+%patch12 -p1
 
 %build
 %configure \
@@ -366,6 +370,9 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES				$RPM_BUILD_ROOT/%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT/%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT/%{_libdir}/sofini.o
+
+mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 %{__make} -C linuxthreads/man
 install linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
@@ -512,7 +519,7 @@ rm -rf $RPM_BUILD_ROOT
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
-%attr(755,root,root) /lib/libmemusage*
+%attr(755,root,root) %{_libdir}/memusage*
 
 %files devel
 %defattr(644,root,root,755)
