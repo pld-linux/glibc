@@ -51,7 +51,7 @@ diff -uNr libc.orig/localedata/locales/af_ZA libc/localedata/locales/af_ZA
 -source     "RAP"
 -address    ""
 -contact    ""
--email      "bug-glibc@gnu.org"
+-email      "bug-glibc-locales@gnu.org"
 -tel        ""
 -fax        ""
 +source     "Zuza Software Foundation (Translate.org.za)"

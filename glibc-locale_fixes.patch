@@ -3711,7 +3711,7 @@ diff -uNr libc.orig/localedata/locales/ro_RO libc/localedata/locales/ro_RO
 -address    "Sankt Jorgens Alle 8, DK-1615 Kobenhavn V, Danmark"
 +address    "TUE, SKA, POBOX 513, 5600MB Eindhoven, The Netherlands"
  contact    ""
--email      "bug-glibc@gnu.org"
+-email      "bug-glibc-locales@gnu.org"
 +email      "I.M.Ciobica@TUe.nl"
  tel        ""
  fax        ""
@@ -4542,8 +4542,7 @@ diff -uNr libc.orig/localedata/locales/te_IN libc/localedata/locales/te_IN
  source     "IBM Globalization Center of Competency, Yamato Software Laboratory"
  address    "1623-14, Shimotsuruma, Yamato-shi, Kanagawa-ken, 242-8502, Japan"
  contact    ""
--email      "bug-glibc@gnu.org"
-+email      "libc-locales@sources.redhat.com"
+ email      "bug-glibc-locales@gnu.org"
  tel         ""
  fax         ""
 -language    "Telgu"
@@ -4847,30 +4846,6 @@ diff -uNr libc.orig/localedata/locales/tn_ZA libc/localedata/locales/tn_ZA
 diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
 --- libc.orig/localedata/locales/tr_TR	2004-03-20 23:24:04.000000000 +0100
 +++ libc/localedata/locales/tr_TR	2004-11-10 02:36:38.000000000 +0100
-@@ -3464,8 +3464,8 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr	"<U005E><U005B><U0065><U0045><U005D><U002E><U002A>"
--noexpr	"<U005E><U005B><U0068><U0048><U005D><U002E><U002A>"
-+yesexpr	"<U005E><U005B><U0045><U0065><U0059><U0079><U005D>"
-+noexpr	"<U005E><U005B><U0048><U0068><U004E><U006E><U005D>"
- yesstr	"<U0065><U0076><U0065><U0074>"
- nostr	"<U0068><U0061><U0079><U0131><U0072>"
- END LC_MESSAGES
-@@ -3489,9 +3489,9 @@
- END LC_MONETARY
- 
- LC_NUMERIC
--decimal_point             "<U002E>"
--thousands_sep             ""
--grouping                  -1
-+decimal_point             "<U002C>"
-+thousands_sep             "<U002E>"
-+grouping                  3
- END LC_NUMERIC
- 
- LC_TIME
 @@ -3569,8 +3569,7 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -4896,23 +4871,6 @@ diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
  %tr
  lang_ab		"<U0074><U0072>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
---- libc.orig/localedata/locales/tr_TR	2004-11-14 20:22:03.000000000 +0100
-+++ libc/localedata/locales/tr_TR	2004-11-14 20:22:03.000000000 +0100
-@@ -3471,11 +3471,11 @@
- END LC_MESSAGES
- 
- LC_MONETARY
--int_curr_symbol           "<U0054><U0052><U004C><U0020>"
-+int_curr_symbol           "<U0054><U0052><U0059><U0020>"
- currency_symbol           "<U0054><U004C>"
- mon_decimal_point         "<U002C>"
- mon_thousands_sep         "<U002E>"
--mon_grouping              3
-+mon_grouping              3;3
- positive_sign             ""
- negative_sign             "<U002D>"
- int_frac_digits           2
 diff -uNr libc.orig/localedata/locales/ts_ZA libc/localedata/locales/ts_ZA
 --- libc.orig/localedata/locales/ts_ZA	2004-11-10 01:45:57.000000000 +0100
 +++ libc/localedata/locales/ts_ZA	2004-11-10 02:45:40.000000000 +0100
@@ -5131,7 +5089,7 @@ diff -uNr libc.orig/localedata/locales/vi_VN libc/localedata/locales/vi_VN
 -source     "IBM Globalization Center of Competency, Yamato Software Laboratory"
 -address    "1623-14, Shimotsuruma, Yamato-shi, Kanagawa-ken, 242-8502, Japan"
 -contact    ""
--email      "bug-glibc@gnu.org"
+-email      "bug-glibc-locales@gnu.org"
 +source     "glibc locale and info from vietnamese native speakers"
 +address    ""
 +contact    "Pablo Saratxaga"
