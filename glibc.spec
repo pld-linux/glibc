@@ -28,6 +28,7 @@ Patch6:		%{name}-pthread_create-manpage.patch
 Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-ldconfig.patch
 Patch9:		%{name}-getxxxxinfo.patch
+Patch10:	%{name}-flexiblearray.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
@@ -331,6 +332,7 @@ A toy.
 %patch7 -p1
 %patch8 -p0
 %patch9 -p1
+%patch10 -p1
 
 %build
 %configure \
