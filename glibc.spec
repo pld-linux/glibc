@@ -229,7 +229,7 @@ gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 	documentation/* login/README.utmpd
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
-strip strip--unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
+strip --strip--unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
 	$RPM_BUILD_ROOT/usr/lib/gconv/*.so
 
 %post   -p /sbin/ldconfig
@@ -379,7 +379,8 @@ Revision 1.54  1999/07/12 23:05:57  kloczek
 - fixed %build,
 - minor changes.
 
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.  [2.1.1-1]
+- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
+  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
