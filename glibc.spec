@@ -376,29 +376,20 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
-performance with NIS+, and may help with DNS as well. You cannot use
-nscd with 2.0 kernels, due to bugs in the kernel-side thread support.
-nscd happens to hit these bugs particularly hard.
+performance with NIS+, and may help with DNS as well.
 
 %description -n nscd -l es
 nscd guarda las peticiones del servicio de nombres en una cachÈ; eso
 puede aumentar dr·sticamente las prestaciones de NIS+, y tambiÈn puede
-ayudar con DNS. No puede usar nscd con n˙cleos 2.0, por contener Èstos
-errores en el soporte de hilos. Resulta que estos errores impactan el
-nscd de manera realmente grave.
+ayudar con DNS.
 
 %description -n nscd -l ja
 Nscd §œ•Õ°º•‡•µ°º•”•πª≤æ»§Ú•≠•„•√•∑•Â§∑°¢NIS+ §Œ•—•’•©°º•ﬁ•Û•π§Ú
-•…•È•ﬁ•∆•£•√•Ø§À≤˛¡±§π§Î§≥§»§¨§«§≠°¢DNS §Ú∆±ÕÕ§À ‰Ωı§∑§ﬁ§π°£ 2.0
-•´°º•Õ•Î§« nscd §Úª»Õ—§π§Î§≥§»§œ§«§≠§ §§§≥§»§À√Ì∞’§∑§∆§Ø§¿§µ§§°£
-§Ω§Ï§œ°¢•´°º•Õ•Î¬¶§Œ•π•Ï•√•…•µ•›°º•»§À•–•∞§¨§¢§Î§´§È§«§π°£…‘π¨§ §≥§»§À°¢
-nscd §œ§≥§Ï§È§Œ•–•∞§À∆√§À§œ§≤§∑§Ø§¢§ø§√§∆§∑§ﬁ§§§ﬁ§π°£
+•…•È•ﬁ•∆•£•√•Ø§À≤˛¡±§π§Î§≥§»§¨§«§≠°¢DNS §Ú∆±ÕÕ§À ‰Ωı§∑§ﬁ§π°£
 
 %description -n nscd -l pl
 nscd zapamiÍtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
-drastycznie poprawiÊ szybko∂Ê dzia≥ania NIS+. Nie jest moøliwe
-uøywanie nscd z j±drami serii 2.0.x z powodu b≥ÍdÛw po stronie j±dra w
-obs≥udze w±tkÛw.
+drastycznie poprawiÊ szybko∂Ê dzia≥ania NIS+.
 
 %description -n nscd -l ru
 nscd À‹€…“’≈‘ “≈⁄’Ãÿ‘¡‘Ÿ ⁄¡–“œ”œ◊ À ”≈“◊…”¡Õ …Õ≈Œ; ‹‘œ Õœ÷≈‘ “≈⁄Àœ
