@@ -1,0 +1,17 @@
+--- libc/csu/Makefile.orig	2004-03-20 23:23:55.000000000 +0100
++++ libc/csu/Makefile	2004-06-16 15:29:19.000000000 +0200
+@@ -232,12 +232,12 @@
+ 		     os=Linux; \
+ 		   fi; \
+ 		   echo "\"Compiled on a $$os $$version system" \
+-			"on `date +%Y-%m-%d`.\\n\"" ;; \
++			"on `date +%Y-%m-%d`.\"\\n\"\"" ;; \
+ 	   *) ;; \
+ 	 esac; \
+ 	 files="$(all-Banner-files)";				\
+ 	 if test -n "$$files"; then				\
+-	   echo "\"Available extensions:\\n\"";			\
++	   echo "\"Available extensions:\"\\n\"\"";			\
+ 	   sed -e '/^#/d' -e 's/^[[:space:]]*/	/'		\
+ 	       -e 's/^\(.*\)$$/\"\1\\n\"/' $$files;		\
+ 	 fi) > $@T
