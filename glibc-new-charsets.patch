@@ -282,7 +282,7 @@ diff -uNr libc/iconvdata/iso8859-7-euro.c libc.charsets/iconvdata/iso8859-7-euro
 +
 +/* Get the conversion table.  */
 +#include <stdint.h>
-+#include <iso8859-7-euro.h>
++#define TABLES <iso8859-7-euro.h>
 +
 +#define CHARSET_NAME "ISO-8859-7-EURO//"
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
@@ -896,10 +896,10 @@ diff -uNr libc/iconvdata/koi8-c.c libc.charsets/iconvdata/koi8-c.c
 +   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 +   Boston, MA 02111-1307, USA.  */
 +
-+#include <stdint.h>
 +
 +/* Get the conversion table.  */
-+#define TABLES <koi8-c.h>
++#include <stdint.h>
++#include <koi8-c.h>
 +
 +#define CHARSET_NAME	"KOI8-C//"
 +#define HAS_HOLES	0	/* All 256 character are defined.  */
