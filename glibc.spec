@@ -12,6 +12,7 @@
 %bcond_with	tls		# use TLS in linuxthreads
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
+%bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 
 #
@@ -853,7 +854,9 @@ cd builddir-nptl
 	--with-tls \
         --enable-add-ons=nptl \
 	--disable-profile
-%{__make}
+# simulate cross-compiling so we can perform dual builds on 2.4.x kernel
+%{__make} \
+	%{?with_dual:cross-compiling=yes}
 %endif
 cd ..
 
@@ -862,11 +865,7 @@ cd ..
 %endif
 
 %if %{with tests}
-for d in builddir \
-%if %{with dual}
-builddir-nptl \
-%endif
-; do
+for d in builddir %{?with_tests_nptl:builddir-nptl} ; do
 cd $d
 env LANGUAGE=C LC_ALL=C \
 %{__make} tests 2>&1 | awk '
@@ -915,6 +914,7 @@ cd ..
 %if %{with dual}
 env LANGUAGE=C LC_ALL=C \
 %{__make} -C builddir-nptl install \
+	cross-compiling=yes \
 	install_root=$RPM_BUILD_ROOT/nptl
 
 install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl,%{_includedir}/nptl}
