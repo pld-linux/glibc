@@ -440,7 +440,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
-%attr(755,root,root) /etc/rc.d/init.d/nscd
+%attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
 %attr(640,root,root) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
@@ -449,7 +449,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc login/README.utmpd.gz
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/utmpd
-%attr(755,root,root) /etc/rc.d/init.d/utmpd
+%attr(754,root,root) /etc/rc.d/init.d/utmpd
 %attr(755,root,root) %{_sbindir}/utmpd
 
 %files -n localedb-src
