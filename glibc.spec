@@ -91,7 +91,6 @@ Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
 Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
-Prereq:		/usr/sbin/fix-info-dir
 Requires:	%{name} = %{version}
 
 %description devel
@@ -314,10 +313,10 @@ strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
 %postun -p /sbin/ldconfig
 
 %post devel
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %postun devel
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %post -n nscd
 /sbin/chkconfig --add nscd
