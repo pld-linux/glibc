@@ -47,6 +47,7 @@ done
 
 if [ "${SUPPORTED_LOCALES}" = "x" ]; then
 	echo "SUPPORTED_LOCALES not set"
+	echo "You can set it with /etc/sysconfig/i18n file"
 	exit 1
 fi
 
