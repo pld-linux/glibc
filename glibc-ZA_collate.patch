@@ -412,7 +412,7 @@
 +reorder-after <U0073>
 +<U0161> <s/>>;<BAS>;<MIN>;IGNORE
 +reorder-after <U0053>
-+<U0160> <s\>^>;<BAS>;<CAP>;IGNORE
++<U0160> <s/>>;<BAS>;<CAP>;IGNORE
 +
 +reorder-end
 +
