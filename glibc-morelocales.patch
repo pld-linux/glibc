@@ -5036,8 +5036,8 @@ diff -uNr libc.old/localedata/locales/ky_KG libc/localedata/locales/ky_KG
 +country_num 417
 +country_car "<U004B><U0053>"
 +lang_ab     "<U006B><U0079>"
-+lang_term   "<U006B><U0068><U0072>"
-+lang_lib    "<U006B><U0068><U0072>"
++lang_term   "<U006B><U0069><U0072>"
++lang_lib    "<U006B><U0069><U0072>"
 +END LC_ADDRESS
 diff -uNr libc.old/localedata/locales/li_BE libc/localedata/locales/li_BE
 --- libc.old/localedata/locales/li_BE	1970-01-01 01:00:00.000000000 +0100
