@@ -1,0 +1,3 @@
+- release 3
+- mark all directories under %{_datadir}/locale
+  with appriopriate %lang() macro
