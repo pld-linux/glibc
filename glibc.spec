@@ -116,8 +116,8 @@ geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 %package -n nscd
 Summary:	Name Service Caching Daemon
 Summary(pl):	Name Service Caching Daemon
-Group:		Networnikng/Daemons
-Group:		Sieciowe/Serwery
+Group:		Networking/Daemons
+Group(pl):	Sieciowe/Serwery
 Prereq:		/sbin/chkconfig
 
 %description -n nscd
