@@ -915,7 +915,7 @@ ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
 # make symlinks across top-level directories absolute
-for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
+for l in anl BrokenLocale crypt dl m nsl resolv rt thread_db util ; do
 	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/`cd $RPM_BUILD_ROOT/%{_lib} ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 done
