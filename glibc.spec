@@ -1028,6 +1028,15 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/glibcbug
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pre
+# make it safe to upgrade from RH / FC
+if [ -d /lib/i686 ]; then
+	mv -fv /lib/i686 /lib/i686.rpmsave
+fi
+if [ -d /lib/tls ]; then
+	mv -fv /lib/tls /lib/tls.rpmsave
+fi
+
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
