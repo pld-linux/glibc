@@ -16,8 +16,6 @@
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 
-%bcond_without	comdat		# without (unfinished) comdat hacks [for Ac]
-
 #
 # TODO:
 # - localedb-gen man pages(?)
@@ -37,14 +35,14 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparc64 sparcv9 ppc64
 %undefine	with_tls
 %endif
 %endif
 
 %if %{with nptl}
 # nptl on x86 uses cmpxchgl (available since i486)
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc64
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -75,7 +73,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.1.6
+Release:	0.%{_snap}.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -123,10 +121,9 @@ Patch24:	%{name}-LD_DEBUG.patch
 # PaX
 Patch25:	%{name}-pax_iconvconfig.patch
 Patch26:	%{name}-pax_dl-execstack.patch
-Patch27:	%{name}-comdat.patch
-Patch28:	%{name}-ia64_unwind.patch
-Patch29:	%{name}-ZA_collate.patch
-Patch30:	%{name}-tls_fix.patch
+Patch27:	%{name}-ia64_unwind.patch
+Patch28:	%{name}-ZA_collate.patch
+Patch29:	%{name}-tls_fix.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -816,10 +813,9 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #%patch25 -p1
 # DROP
 #%patch26 -p1
-%{?with_comdat:%patch27 -p1}
+%patch27 -p1
 %patch28 -p1
 %patch29 -p1
-%patch30 -p1
 
 chmod +x scripts/cpp
 
