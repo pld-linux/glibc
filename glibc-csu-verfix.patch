@@ -1,0 +1,17 @@
+--- glibc-2.3.2/csu/Makefile~	2003-06-26 09:27:39.000000000 +0200
++++ glibc-2.3.2/csu/Makefile	2003-09-09 16:56:31.522516384 +0200
+@@ -232,12 +232,12 @@
+ 		     os=Linux; \
+ 		   fi; \
+ 		   echo "\"Compiled on a $$os $$version system" \
+-			"on `date +%Y-%m-%d`.\\n\"" ;; \
++			"on `date +%Y-%m-%d`.\"" ;; \
+ 	   *) ;; \
+ 	 esac; \
+ 	 files="$(all-Banner-files)";				\
+ 	 if test -n "$$files"; then				\
+-	   echo "\"Available extensions:\\n\"";			\
++	   echo "\"Available extensions:\"";			\
+ 	   sed -e '/^#/d' -e 's/^[[:space:]]*/	/'		\
+ 	       -e 's/\(^.*$$\)/\"\1\\n\"/' $$files;		\
+ 	 fi) > $@T
