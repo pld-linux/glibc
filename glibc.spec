@@ -1,3 +1,4 @@
+%define		pre	pre3
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -5,13 +6,13 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.1
-Release:	1
+Release:	0.%{pre}
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
 #######		ftp://sourceware.cygnus.com/pub/glibc/
-Source0:	%{name}-%{version}pre3.tar.gz
-Source1:	%{name}-linuxthreads-%{version}pre3.tar.gz
+Source0:	%{name}-%{version}%{pre}.tar.gz
+Source1:	%{name}-linuxthreads-%{version}%{pre}.tar.gz
 #######:	http://www.ozemail.com.au/~geoffk/glibc-crypt
 Source2:	%{name}-crypt-2.1.pre1.tar.gz
 Source3:	utmpd.init
@@ -107,29 +108,55 @@ objektowe, niezbêdne do kompilacji programów wykonywalnych i innych bibliotek.
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
+%package static
+Summary:	Additional libraries required to compile
+Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-static-base = %{version}
+
+%description static
+Additional libraries required to compile static programs.
+
+%description static -l pl
+Dodatkowe biblioteki wymagane podczas kompilacji programów w wersji statycznej.
+Potrzebne tylko przy kompilacji niektórych programów.
+
+%package static-base
+Summary:	Static libc.a and libm.a
+Summary(pl):	Statyczne libc.a i libm.a
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
+
+%description static-base
+Base library in static version.
+
+%description static-base -l pl
+Dwie podstawowe (libc.a i libcm.a) biblioteki w wersji statycznej.
+Potrzebne tylko przy kompilacji niektórych programów.
+
 %prep 
-%setup -q -a 1 -a 2 -n glibc-2.1.1pre3
+%setup -q -a 1 -a 2 -n %{name}-%{version}%{pre}
 %patch -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" \
-./configure \
+%configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
-	--prefix=%{_prefix} \
-	--infodir=%{_infodir} \
-	--disable-omitfp %{_target_platform}
+	--disable-omitfp 
 make  
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,usr/share/man/man3,var/db}
+install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,%{_mandir}/man3,var/db}
 
 make \
     install_root=$RPM_BUILD_ROOT \
     infodir=%{_infodir} \
     mandir=%{_mandir} \
     install
+    
 make \
     install_root=$RPM_BUILD_ROOT \
     install-locales -C localedata
@@ -174,13 +201,15 @@ cp crypt/README documentation/README.crypt
 
 cp ChangeLog ChangeLog.8 documentation
 
-gzip -9fn documentation/*
-
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
 
-gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS
+gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
+	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
+	documentation/*
 
-gzip -9fn $RPM_BUILD_ROOT/usr/share/{man/man*/*,info/libc*}
+ls $RPM_BUILD_ROOT%{_libdir}/lib*.a \
+	|egrep -v '(libc.a|libc.a)' \
+	|sed -e "s#$RPM_BUILD_ROOT%##" >static.libs
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -257,6 +286,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /usr/lib/gconv/*.so
 %{_mandir}/man3/*
+
+%file static-base
+%defattr(644,root,root,755)
+%{_libdir}/libc.a
+%{_libdir}/libm.a
+
+%files static -f static.libs
+%defattr(644,root,root,755)
 
 %changelog
 * Wed May 19 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
