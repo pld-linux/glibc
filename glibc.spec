@@ -99,6 +99,8 @@ Patch20:	%{name}-tests-noproc.patch
 Patch21:	%{name}-linuxthreads-ppc-fix.patch
 Patch22:	%{name}-alpha-sigaction.patch
 Patch23:	%{name}-new-charsets.patch
+Patch24:	%{name}-lg_UG.patch
+Patch25:	%{name}-sr_CS.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -775,6 +777,10 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
+mv -f localedata/locales/{lug_UG,lg_UG}
+%patch24 -p0
+# not applied yet - not sure about default encodings
+#%patch25 -p1
 
 chmod +x scripts/cpp
 
