@@ -82,7 +82,8 @@ libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
 
-Linux kernel %{_kernel_ver_str}.
+Compiled on: Linux kernel %{_kernel_ver_str}.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im
@@ -95,7 +96,8 @@ Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
 
-Linux kernel %{_kernel_ver_str}.
+Compiled on: Linux kernel %{_kernel_ver_str}.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l fr
 Contient les bibliothèques standards utilisées par de nombreux
@@ -108,7 +110,8 @@ système Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de données des zones
 horaires.
 
-Linux kernel %{_kernel_ver_str}.
+Compiled on: Linux kernel %{_kernel_ver_str}.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l pl
 W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
@@ -121,7 +124,8 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale) oraz definicje stref czasowych.
 
-Linux kernel %{_kernel_ver_str}.
+Compiled on: Linux kernel %{_kernel_ver_str}.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l ru
 óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓÐÏÌØÚÕÅÍÙÅ ÍÎÏÇÏÞÉÓÌÅÎÎÙÍÉ
@@ -134,7 +138,8 @@ Linux kernel %{_kernel_ver_str}.
 ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÐÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
 ×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
 
-Linux kernel %{_kernel_ver_str}.
+Compiled on: Linux kernel %{_kernel_ver_str}.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l tr
 Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir.
@@ -145,7 +150,8 @@ kitaplýklarý, standart C kitaplýðýný ve standart matematik kitaplýðýný
 içerir. Bu kitaplýklar olmadan Linux sistemi çalýþmayacaktýr. Yerel
 dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
 
-Linux kernel %{_kernel_ver_str}.
+Compiled on: Linux kernel %{_kernel_ver_str}.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l uk
 í¦ÓÔÉÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ, ËÏÔÒ¦ ×ÉËÏÒÉÓÔÏ×ÕÀÔØÓÑ ÞÉÓÌÅÎÎÉÍÉ
@@ -158,7 +164,8 @@ Linux kernel %{_kernel_ver_str}.
 ôÁËÏÖ ÐÁËÅÔ Í¦ÓÔÉÔØ Ð¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
 ÞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
 
-Linux kernel %{_kernel_ver_str}.
+Compiled on: Linux kernel %{_kernel_ver_str}.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %package devel
 Summary:	Additional libraries required to compile
