@@ -74,14 +74,16 @@ Summary(ru):	GNU libc ◊≈“”…… 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc ◊≈“”¶ß 2.3
 Name:		glibc
-Version:	2.3.4
-Release:	1.5
+Version:	2.3.90
+%define		_snap	20050403
+Release:	0.%{_snap}.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	libc-%{version}-%{_snap}.tar.bz2
 # Source0-md5:	174ac5ed4f2851fcc866a3bac1e4a6a5
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 # Source1-md5:	7a199cd4965eb5622163756ae64358fe
 Source2:	nscd.init
 Source3:	nscd.sysconfig
@@ -108,22 +110,19 @@ Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-soinit-EH_FRAME.patch
 Patch14:	%{name}-sparc-errno_fix.patch
-Patch15:	%{name}-csu-quotes.patch
+#Patch15:	%{name}-csu-quotes.patch		OBSOLETE
 Patch16:	%{name}-tests-noproc.patch
 Patch17:	%{name}-new-charsets.patch
-Patch18:	%{name}-sr_CS.patch
+#Patch18:	%{name}-sr_CS.patch			OBSOLETE
 Patch19:	%{name}-sparc64-dl-machine.patch
 Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_ZA.patch
-Patch23:	%{name}-locale_fixes.patch
+#Patch23:	%{name}-locale_fixes.patch		NEEDS UPDATE
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
-Patch26:	%{name}-nscd.patch
-Patch27:	%{name}-iconvconfig-nxstack.patch
-Patch28:	%{name}-gcc4.patch
-Patch29:	%{name}-cross-gcc_eh.patch
-Patch30:	%{name}-no_uint128_t.patch
+Patch26:	%{name}-iconvconfig-nxstack.patch
+Patch27:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -795,7 +794,7 @@ Bibliotecas est·ticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -a1
+%setup -q -n libc
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -812,22 +811,19 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %{!?with_kernelheaders:%patch12 -p1}
 %patch13 -p1
 %patch14 -p0
-%patch15 -p1
+#patch15 -p1		OBSOLETE
 %patch16 -p1
 %patch17 -p1
-%patch18 -p1
+#patch18 -p1		OBSOLETE
 %patch19 -p1
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
-%patch23 -p1
+#patch23 -p1		NEEDS UPDATE
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
-%patch27 -p1
-%patch28 -p1
-%{?with_cross:%patch29 -p1}
-%patch30 -p1
+%{?with_cross:%patch27 -p1}
 
 chmod +x scripts/cpp
 
