@@ -1,0 +1,260 @@
+From libc-alpha-return-10205-listarch-libc-alpha=sourceware dot cygnus dot com at sources dot redhat dot com Wed Oct 30 01:03:37 2002
+Return-Path: <libc-alpha-return-10205-listarch-libc-alpha=sourceware dot cygnus dot com at sources dot redhat dot com>
+Delivered-To: listarch-libc-alpha at sourceware dot cygnus dot com
+Received: (qmail 19298 invoked by alias); 30 Oct 2002 01:03:36 -0000
+Mailing-List: contact libc-alpha-help at sources dot redhat dot com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:libc-alpha-subscribe at sources dot redhat dot com>
+List-Archive: <http://sources.redhat.com/ml/libc-alpha/>
+List-Post: <mailto:libc-alpha at sources dot redhat dot com>
+List-Help: <mailto:libc-alpha-help at sources dot redhat dot com>, <http://sources dot redhat dot com/ml/#faqs>
+Sender: libc-alpha-owner at sources dot redhat dot com
+Delivered-To: mailing list libc-alpha at sources dot redhat dot com
+Received: (qmail 19220 invoked from network); 30 Oct 2002 01:03:35 -0000
+Received: from unknown (HELO crack.them.org) (65.125.64.184)
+  by sources dot redhat dot com with SMTP; 30 Oct 2002 01:03:35 -0000
+Received: from nevyn.them.org ([66.93.61.169] ident=mail)
+	by crack dot them dot org with asmtp (Exim 3 dot 12 #1 (Debian))
+	id 186iCA-0006iJ-00; Tue, 29 Oct 2002 20:02:58 -0600
+Received: from drow by nevyn.them.org with local (Exim 3.36 #1 (Debian))
+	id 186hHB-0005aU-00; Tue, 29 Oct 2002 20:04:05 -0500
+Date: Tue, 29 Oct 2002 20:04:05 -0500
+From: Daniel Jacobowitz <dan at debian dot org>
+To: Andreas Schwab <schwab at suse dot de>
+Cc: libc-alpha at sources dot redhat dot com, debian-glibc at lists dot debian dot org
+Subject: Re: Linux getdents.c is not aliasing safe
+Message-ID: <20021030010405.GA16098@nevyn.them.org>
+Mail-Followup-To: Andreas Schwab <schwab at suse dot de>,
+	libc-alpha at sources dot redhat dot com, debian-glibc at lists dot debian dot org
+References: <20021029215802.GA9479@nevyn.them.org> <je3cqo27ua.fsf@sykes.suse.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <je3cqo27ua dot fsf at sykes dot suse dot de>
+User-Agent: Mutt/1.5.1i
+
+On Tue, Oct 29, 2002 at 11:33:49PM +0100, Andreas Schwab wrote:
+> Daniel Jacobowitz <dan@debian.org> writes:
+> 
+> |> Highlights:
+> |>       char *kbuf = buf;
+> |>       size_t kbytes = nbytes;
+> |>       if (offsetof (DIRENT_TYPE, d_name)
+> |>           < offsetof (struct kernel_dirent64, d_name)
+> |>           && nbytes <= sizeof (DIRENT_TYPE))
+> |>         {
+> |>           kbytes = nbytes + offsetof (struct kernel_dirent64, d_name)
+> |>                    - offsetof (DIRENT_TYPE, d_name);
+> |>           kbuf = __alloca(kbytes);
+> |>         }
+> |> 
+> |>           dp = (DIRENT_TYPE *)buf;
+> |>           kdp = (struct kernel_dirent64 *) kbuf;
+> |> 
+> |>               uint64_t d_ino = kdp->d_ino;
+> |>               int64_t d_off = kdp->d_off;
+> |>               unsigned char d_type = kdp->d_type;
+> |> 
+> |>               DIRENT_SET_DP_INO (dp, d_ino);
+> |>               dp->d_off = d_off;
+> |> 
+> |> GCC is perfectly free to re-order the stores and loads here; if it does,
+> |> when buf and kbuf are pointing at the same thing (which they usually are),
+> |> then storing to dp->d_off (at offset 4 in a 32-bit dirent) corrupts d_ino
+> |> (at offset 0 and size 8 in a kernel_dirent64).  This is why Debian was
+> |> seeing a broken ldconfig.
+> |> 
+> |> Not sure how to fix this while still editing the buffer in-place.  It seems
+> |> like we want the equivalent of:
+> |> 
+> |> union {
+> |>   DIRENT_TYPE dpbuf[];
+> |>   struct kernel_dirent64[];
+> |> }
+> |> 
+> |> but that's not legal C.
+> 
+> How about using two pointers of type
+> 
+> union {
+>   DIRENT_TYPE dp;
+>   struct kernel_dirent64 kdp;
+> }
+
+That works, patch attached.  With this I can use -O2 on i386 again -
+it's not a pretty patch but it does work at least :) My understanding
+is that this uses a GCC extension which says that accesses through a
+union may alias either member - does anyone know a standard C way of
+dealing with this situation?
+
+[That is: two pointers to a buffer, of different types; walk through
+the buffer, reading one object of the first type and writing out an
+object of the second lesser-or-equal sized type.]
+
+At least in a compiler without any interprocedural optimization you
+could do this by having a function to convert one object.  If the
+function was inlined, would we have the same problem again someday?
+
+-- 
+Daniel Jacobowitz
+MontaVista Software                         Debian GNU/Linux Developer
+
+2002-10-29  Daniel Jacobowitz  <drow@mvista.com>
+
+	* sysdeps/unix/sysv/linux/getdents.c (union dirent_buf): New type.
+	(__GETDENTS): Fix aliasing errors.
+	* sysdeps/unix/sysv/linux/i386/getdents64.c (dirent_buf): Define.
+
+--- glibc-2.3.1/sysdeps/unix/sysv/linux/getdents.c.orig	2002-10-29 19:38:15.000000000 -0500
++++ glibc-2.3.1/sysdeps/unix/sysv/linux/getdents.c	2002-10-29 19:58:29.000000000 -0500
+@@ -87,6 +87,15 @@
+ # define DIRENT_SET_DP_INO(dp, value) (dp)->d_ino = (value)
+ #endif
+ 
++/* We update the user's buffer in place for the getdents64 code path.  This
++   union (and the GCC extension which allows aliasing accesses safely through
++   a union) let us do this safely.  */
++union dirent_buf
++  {
++    DIRENT_TYPE user;
++    struct kernel_dirent64 kern;
++  };
++
+ /* The problem here is that we cannot simply read the next NBYTES
+    bytes.  We need to take the additional field into account.  We use
+    some heuristic.  Assuming the directory contains names with 14
+@@ -99,7 +108,6 @@
+ internal_function
+ __GETDENTS (int fd, char *buf, size_t nbytes)
+ {
+-  DIRENT_TYPE *dp;
+   ssize_t retval;
+ 
+ #ifdef __NR_getdents64
+@@ -126,7 +134,7 @@
+       if (retval != -1 && errno != -EINVAL)
+ # endif
+ 	{
+-	  struct kernel_dirent64 *kdp;
++	  union dirent_buf *kdp, *udp;
+ 	  int64_t last_offset = 0;
+ 	  const size_t size_diff = (offsetof (struct kernel_dirent64, d_name)
+ 				    - offsetof (DIRENT_TYPE, d_name));
+@@ -139,55 +147,55 @@
+ 	     need, don't do any conversions.  */
+ 	  if (offsetof (DIRENT_TYPE, d_name)
+ 	      == offsetof (struct kernel_dirent64, d_name)
+-	      && sizeof (dp->d_ino) == sizeof (kdp->d_ino)
+-	      && sizeof (dp->d_off) == sizeof (kdp->d_off))
++	      && sizeof (udp->user.d_ino) == sizeof (kdp->kern.d_ino)
++	      && sizeof (udp->user.d_off) == sizeof (kdp->kern.d_off))
+ 	    return retval;
+ 
+-	  dp = (DIRENT_TYPE *)buf;
+-	  kdp = (struct kernel_dirent64 *) kbuf;
++	  udp = (union dirent_buf *) buf;
++	  kdp = (union dirent_buf *) kbuf;
+ 	  while ((char *) kdp < kbuf + retval)
+ 	    {
+ 	      const size_t alignment = __alignof__ (DIRENT_TYPE);
+-	      /* Since kdp->d_reclen is already aligned for the kernel
++	      /* Since kdp->kern.d_reclen is already aligned for the kernel
+ 		 structure this may compute a value that is bigger
+ 		 than necessary.  */
+-	      size_t old_reclen = kdp->d_reclen;
++	      size_t old_reclen = kdp->kern.d_reclen;
+ 	      size_t new_reclen = ((old_reclen - size_diff + alignment - 1)
+ 				  & ~(alignment - 1));
+-	      uint64_t d_ino = kdp->d_ino;
+-	      int64_t d_off = kdp->d_off;
+-	      unsigned char d_type = kdp->d_type;
+-
+-	      DIRENT_SET_DP_INO (dp, d_ino);
+-	      dp->d_off = d_off;
+-	      if ((sizeof (dp->d_ino) != sizeof (kdp->d_ino)
+-		   && dp->d_ino != d_ino)
+-		  || (sizeof (dp->d_off) != sizeof (kdp->d_off)
+-		      && test_overflow(d_off, sizeof(dp->d_off))))
++	      uint64_t d_ino = kdp->kern.d_ino;
++	      int64_t d_off = kdp->kern.d_off;
++	      unsigned char d_type = kdp->kern.d_type;
++
++	      DIRENT_SET_DP_INO (&udp->user, d_ino);
++	      udp->user.d_off = d_off;
++	      if ((sizeof (udp->user.d_ino) != sizeof (kdp->kern.d_ino)
++		   && udp->user.d_ino != d_ino)
++		  || (sizeof (udp->user.d_off) != sizeof (kdp->kern.d_off)
++		      && test_overflow(d_off, sizeof(udp->user.d_off))))
+ 		{
+ 		  /* Overflow.  If there was at least one entry
+ 		     before this one, return them without error,
+ 		     otherwise signal overflow.  */
+-		  if (dp != buf)
++		  if ((char *) udp != buf)
+ 		    {
+ 		      __lseek64 (fd, last_offset, SEEK_SET);
+-		      return (char *) dp - buf;
++		      return (char *) udp - buf;
+ 		    }
+ 		  __set_errno (EOVERFLOW);
+ 		  return -1;
+ 		}
+ 
+ 	      last_offset = d_off;
+-	      dp->d_reclen = new_reclen;
+-	      dp->d_type = d_type;
+-	      memmove (dp->d_name, kdp->d_name,
++	      udp->user.d_reclen = new_reclen;
++	      udp->user.d_type = d_type;
++	      memmove (udp->user.d_name, kdp->kern.d_name,
+ 		       old_reclen - offsetof (struct kernel_dirent64, d_name));
+ 
+-	      dp = (DIRENT_TYPE *) ((char *) dp + new_reclen);
+-	      kdp = (struct kernel_dirent64 *) ((char *) kdp + old_reclen);
++	      udp = (union dirent_buf *) ((char *) udp + new_reclen);
++	      kdp = (union dirent_buf *) ((char *) kdp + old_reclen);
+ 	    }
+ 
+-	  return (char *) dp - buf;
++	  return (char *) udp - buf;
+ 	}
+ 
+ # ifndef __ASSUME_GETDENTS64_SYSCALL
+@@ -197,6 +205,7 @@
+     }
+ #endif
+   {
++    DIRENT_TYPE *dp;
+     size_t red_nbytes;
+     struct kernel_dirent *skdp, *kdp;
+     __kernel_off_t last_offset = 0;
+@@ -228,7 +237,7 @@
+ 	  {
+ 	    /* Our heuristic failed.  We read too many entries.  Reset
+ 	       the stream.  */
+-	    assert (dp != buf);
++	    assert ((char *) dp != buf);
+ 	    __lseek64 (fd, last_offset, SEEK_SET);
+ 
+ 	    if ((char *) dp == buf)
+@@ -253,7 +262,6 @@
+ 	dp = (DIRENT_TYPE *) ((char *) dp + new_reclen);
+ 	kdp = (struct kernel_dirent *) (((char *) kdp) + kdp->d_reclen);
+       }
+-    }
+-
+-  return (char *) dp - buf;
++    return (char *) dp - buf;
++  }
+ }
+--- glibc-2.3.1/sysdeps/unix/sysv/linux/i386/getdents64.c.orig	2002-10-29 19:52:29.000000000 -0500
++++ glibc-2.3.1/sysdeps/unix/sysv/linux/i386/getdents64.c	2002-10-29 19:52:37.000000000 -0500
+@@ -35,6 +35,7 @@
+ #define DIRENT_TYPE struct __old_dirent64
+ #define kernel_dirent old_kernel_dirent
+ #define kernel_dirent64 old_kernel_dirent64
++#define dirent_buf old_dirent_buf
+ 
+ #include <sysdeps/unix/sysv/linux/getdents.c>
+ #endif
+
