@@ -471,6 +471,20 @@ A toy.
 %description memusage -l pl
 Zabawka.
 
+%package zoneinfo_right
+Summary:	Non-POSIX (real) time zones
+Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
+Group:		Libraries
+Requires:	%{name} = %{version}
+
+%description zoneinfo_right
+You don't want this. Details at:
+http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
+
+%description zoneinfo_right -l pl
+Nie potrzebujesz tego. Szczegó³y pod:
+http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
+
 %prep
 %setup -q -a 1
 %patch0 -p1
@@ -545,7 +559,13 @@ mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 %{__make} -C ../linuxthreads/man
 install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
+rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
+
+cd $RPM_BUILD_ROOT%{_datadir}/zoneinfo
+for i in [A-Z]*; do
+	ln -s ../$i posix
+done
+cd -
 
 ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
@@ -726,6 +746,7 @@ fi
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
+%exclude %{_datadir}/zoneinfo/right
 
 %dir %{_libdir}/locale
 %{_libdir}/locale/locale-archive
@@ -770,6 +791,9 @@ fi
 #%files -n nss_files
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_files*.so*
+
+%files zoneinfo_right
+%{_datadir}/zoneinfo/right
 
 %files -n nss_compat
 %defattr(644,root,root,755)
