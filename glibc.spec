@@ -19,6 +19,7 @@
 #	in order to use this version!
 #
 %{!?min_kernel:%global		min_kernel	2.2.0}
+%define	gkh_version	1:2.6.0.2
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(es):	GNU libc
@@ -30,8 +31,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ◊≈“”¶ß 2.3
 Name:		glibc
 Version:	2.3.2
-%define		rel 12
-Release:	%{rel}
+Release:	13
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -79,6 +79,7 @@ Patch27:	%{name}-soinit-EH_FRAME.patch
 Patch28:	%{name}-alpha-pwrite.patch
 Patch29:	%{name}-alpha-tv64.patch
 URL:		http://www.gnu.org/software/libc/
+BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
@@ -86,14 +87,13 @@ BuildRequires:	gettext-devel >= 0.10.36
 %if %{with kernelheaders}
 %{?with_dist_kernel:BuildRequires:	kernel-headers < 2.5}
 %else
-BuildRequires:	glibc-kernel-headers >= 1:1-2
+BuildRequires:	glibc-kernel-headers >= %{gkh_version}
 %endif
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-BuildRequires:	automake
 PreReq:		basesystem
 Provides:	ld.so.2
 Provides:	ldconfig
@@ -102,7 +102,7 @@ Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 AutoReq:	false
-Requires:	glibc-misc = %{epoch}:%{version}
+Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
@@ -237,7 +237,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Summary:	Utilities and data used by glibc
 Summary(pl):	NarzÍdzia i dane uøywane przez glibc
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description misc
 Utilities and data used by glibc.
@@ -256,7 +256,8 @@ Summary(ru):	‰œ–œÃŒ…‘≈ÃÿŒŸ≈ ¬…¬Ã…œ‘≈À…, Œ≈œ¬»œƒ…ÕŸ≈ ƒÃ— ÀœÕ–…Ã—√……
 Summary(tr):	Geli˛tirme iÁin gerekli dier kitapl˝klar
 Summary(uk):	‰œƒ¡‘Àœ◊¶ ¬¶¬Ã¶œ‘≈À…, –œ‘“¶¬Œ¶ ƒÃ— ÀœÕ–¶Ã—√¶ß
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+%{!?with_kernelheaders:Requires:	glibc-kernel-headers >= %{gkh_version}}
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -317,12 +318,11 @@ Summary(ja):	•Õ°º•‡•µ°º•”•π•≠•„•√•∑•Û•∞•«°º•‚•Û (nacd)
 Summary(pl):	Demon zapamiÍtuj±cy odpowiedzi serwisÛw nazw
 Summary(ru):	Î‹€…“’¿›…  ƒ≈ÕœŒ ”≈“◊…”œ◊ …Õ≈Œ
 Summary(uk):	Î≈€’¿ﬁ…  ƒ≈ÕœŒ ”≈◊¶”¶◊ ¶Õ≈Œ
-Release:	%{rel}
 Group:		Networking/Daemons
 PreReq:		rc-scripts >= 0.2.0
 Requires(post,preun):	/sbin/chkconfig
 Requires(post):	fileutils
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
@@ -363,9 +363,8 @@ nscd À≈€’§ “≈⁄’Ãÿ‘¡‘… ⁄¡–“œ”¶◊ ƒœ ”≈“◊¶”¶◊ ¶Õ≈Œ; √≈ Õœ÷≈ ”…ÃÿŒœ
 Summary:	locale database source code
 Summary(es):	CÛdigo fuente de la base de datos de los locales
 Summary(pl):	Kod ºrÛd≥owy bazy locale
-Release:	%{rel}
 Group:		Daemons
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
@@ -385,9 +384,8 @@ libc.
 Summary:	locale database for all locales supported by glibc
 Summary(es):	Base de datos de todos los locales soportados por glibc
 Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs≥ugiwanych przez glibc
-Release:	%{rel}
 Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description localedb-all
 This package contains locale database for all locales supported by
@@ -416,9 +414,8 @@ pakiet localedb-src moøna odinstalowaÊ).
 Summary:	Convert encoding of given files from one encoding to another
 Summary(es):	Convierte entre varias codificaciones de los ficheros dados
 Summary(pl):	Program do konwersji plikÛw tekstowych z jednego kodowania do innego
-Release:	%{rel}
 Group:		Applications/Text
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need
@@ -447,9 +444,8 @@ Summary(es):	Bibliotecas est·ticas
 Summary(pl):	Biblioteki statyczne
 Summary(ru):	Û‘¡‘…ﬁ≈”À…≈ ¬…¬Ã…œ‘≈À… glibc
 Summary(uk):	Û‘¡‘…ﬁŒ¶ ¬¶¬Ã¶œ‘≈À… glibc
-Release:	%{rel}
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 GNU libc static libraries.
@@ -477,10 +473,9 @@ Summary(pl):	glibc ze wsparciem dla profilowania
 Summary(ru):	GNU libc ” –œƒƒ≈“÷Àœ  –“œ∆¡ Ã≈“¡
 Summary(tr):	÷lÁ¸m destei olan glibc
 Summary(uk):	GNU libc ⁄ –¶ƒ‘“…ÕÀœ¿ –“œ∆¡ Ã≈“¡
-Release:	%{rel}
 Group:		Development/Libraries/Libc
 Obsoletes:	libc-profile
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description profile
 When programs are being profiled using gprof, they must use these
@@ -523,9 +518,8 @@ kitapl˝˝ kullanmak zorundad˝rlar.
 Summary:	glibc PIC archive
 Summary(es):	Archivo PIC de glibc
 Summary(pl):	Archiwum PIC glibc
-Release:	%{rel}
 Group:		Development/Libraries/Libc
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description pic
 GNU C Library PIC archive contains an archive library (ar file)
@@ -548,9 +542,8 @@ biblioteki wspÛ≥dzielonej libc.
 Summary:	Old style NYS NSS glibc module
 Summary(es):	El antiguo mÛdulo NYS NSS de glibc
 Summary(pl):	Stary modu≥ NYS NSS glibc
-Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_compat
 Old style NYS NSS glibc module.
@@ -565,9 +558,8 @@ Stary modu≥ NYS NSS glibc.
 Summary:	BIND NSS glibc module
 Summary(es):	MÛdulo BIND NSS de glibc
 Summary(pl):	Modu≥ BIND NSS glibc
-Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_dns
 BIND NSS glibc module.
@@ -582,9 +574,8 @@ Modu≥ BIND NSS glibc.
 Summary:	Traditional files databases NSS glibc module
 Summary(es):	MÛdulo de tradicionales bases de datos en ficheros para glibc
 Summary(pl):	Modu≥ tradycyjnych plikowych baz danych NSS glibc
-Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_files
 Traditional files databases NSS glibc module.
@@ -599,9 +590,8 @@ Modu≥ tradycyjnych plikowych baz danych NSS glibc.
 Summary:	hesiod NSS glibc module
 Summary(es):	MÛdulo hesiod NSS de glibc
 Summary(pl):	Modu≥ hesiod NSS glibc
-Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_hesiod
 glibc NSS (Name Service Switch) module for databases access.
@@ -616,9 +606,8 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych.
 Summary:	NIS(YP) NSS glibc module
 Summary(es):	MÛdulo NIS(YP) NSS de glibc
 Summary(pl):	Modu≥ NIS(YP) NSS glibc
-Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_nis
 glibc NSS (Name Service Switch) module for NIS(YP) databases access.
@@ -633,9 +622,8 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS(YP).
 Summary:	NIS+ NSS module
 Summary(es):	MÛdulo NIS+ NSS
 Summary(pl):	Modu≥ NIS+ NSS
-Release:	%{rel}
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_nisplus
 glibc NSS (Name Service Switch) module for NIS+ databases access.
@@ -650,9 +638,8 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS+.
 Summary:	A toy
 Summary(es):	Un juguete
 Summary(pl):	Zabawka
-Release:	%{rel}
 Group:		Applications
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gd
 
 %description memusage
@@ -668,9 +655,8 @@ Zabawka.
 Summary:	Non-POSIX (real) time zones
 Summary(es):	Zonas de tiempo reales (no de POSIX)
 Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
-Release:	%{rel}
 Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description zoneinfo_right
 You don't want this. Details at:
@@ -688,12 +674,11 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
-Release:	%{rel}
 Group:		Libraries
 %ifarch amd64
-Provides:	glibc = %{epoch}:%{version}
+Provides:	glibc = %{epoch}:%{version}-%{release}
 %else
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 %endif
 
 %description -n %{name}64
@@ -709,9 +694,8 @@ Biblioteki 64-bitowe GNU libc dla architektury sparc64.
 Summary:	Development files for 64-bit GNU libc libraries
 Summary(es):	Ficheros de desarrollo para bibliotecas GNU libc de 64 bits
 Summary(pl):	Pliki do programowania z uøyciem 64-bitowych bibliotek GNU libc
-Release:	%{rel}
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description -n %{name}64-devel
 Development files for 64-bit GNU libc libraries for sparc64
@@ -729,9 +713,8 @@ architektury sparc64.
 Summary:	Static 64-bit GNU libc libraries
 Summary(es):	Bibliotecas est·ticas GNU libc de 64 bits
 Summary(pl):	Statyczne 64-bitowe biblioteki GNU libc
-Release:	%{rel}
 Group:		Development/Libraries
-Requires:	%{name}64-devel = %{epoch}:%{version}
+Requires:	%{name}64-devel = %{epoch}:%{version}-%{release}
 
 %description -n %{name}64-static
 Static 64-bit GNU libc libraries.
