@@ -147,6 +147,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
+BuildRequires:	rpmbuild(macros) >= 1.159
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 AutoReq:	false
@@ -385,9 +386,18 @@ Summary(ru):	Кэширующий демон сервисов имен
 Summary(uk):	Кешуючий демон сев╕с╕в ╕мен
 Group:		Networking/Daemons
 PreReq:		rc-scripts >= 0.2.0
+Requires(pre):	/bin/id
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
+Requires(pre):	/usr/sbin/useradd
 Requires(post,preun):	/sbin/chkconfig
 Requires(post):	fileutils
+Requires(postun):	/usr/sbin/groupdel
+Requires(postun):	/usr/sbin/userdel
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+%{?with_selinux:Requires:	libselinux >= 1.18}
+Provides:	group(nscd)
+Provides:	user(nscd)
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
@@ -1118,6 +1128,24 @@ rm -rf $RPM_BUILD_ROOT
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
+%pre -n nscd
+if [ -n "`/usr/bin/getgid nscd`" ]; then
+	if [ "`/usr/bin/getgid nscd`" != "144" ]; then
+		echo "Error: group nscd doesn't have gid=144. Correct this before installing nscd." 1>&2
+		exit 1
+	fi
+else
+	/usr/sbin/groupadd -g 144 -r nscd
+fi
+if [ -n "`/bin/id -u nscd 2>/dev/null`" ]; then
+	if [ "`/bin/id -u nscd`" != "144" ]; then
+		echo "Error: user nscd doesn't have uid=144. Correct this before installing nscd." 1>&2
+		exit 1
+	fi
+else
+	/usr/sbin/useradd -u 144 -r -d /tmp -s /bin/false -c "nscd" -g nscd nscd 1>&2
+fi
+
 %post -n nscd
 /sbin/chkconfig --add nscd
 touch /var/log/nscd
@@ -1136,6 +1164,12 @@ if [ "$1" = "0" ]; then
 		/etc/rc.d/init.d/nscd stop 1>&2
 	fi
 	/sbin/chkconfig --del nscd
+fi
+
+%postun -n nscd
+if [ "$1" = "0" ]; then
+	%userremove nscd
+	%groupremove nscd
 fi
 
 %ifarch amd64 ppc64 s390x sparc64
