@@ -1,0 +1,615 @@
+diff -urN glibc-2.2.4.org/malloc/Makefile glibc-2.2.4/malloc/Makefile
+--- glibc-2.2.4.org/malloc/Makefile	Mon Jul 23 19:54:38 2001
++++ glibc-2.2.4/malloc/Makefile	Fri Sep 28 20:50:18 2001
+@@ -57,7 +57,7 @@
+ 
+ # The Perl script to analyze the output of the mtrace functions.
+ ifneq ($(PERL),no)
+-install-bin = mtrace
++install-bin-script = mtrace
+ generated = mtrace
+ 
+ # The Perl script will print addresses and to do this nicely we must know
+@@ -75,7 +75,7 @@
+ ifneq ($(cross-compiling),yes)
+ # If the gd library is available we build the `memusagestat' program.
+ ifneq ($(LIBGD),no)
+-install-bin += memusagestat memusage
++install-bin = memusagestat memusage
+ generated += memusagestat memusage
+ extra-objs += memusagestat.o
+ endif
+diff -urN glibc-2.2.4.org/malloc/malloc.c glibc-2.2.4/malloc/malloc.c
+--- glibc-2.2.4.org/malloc/malloc.c	Sun Aug 12 03:28:49 2001
++++ glibc-2.2.4/malloc/malloc.c	Fri Sep 28 20:50:18 2001
+@@ -19,7 +19,7 @@
+    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+    02111-1307 USA.  */
+ 
+-/* $Id$
++/* $Id$
+ 
+   This work is mainly derived from malloc-2.6.4 by Doug Lea
+   <dl@cs.oswego.edu>, which is available from:
+@@ -1766,49 +1766,49 @@
+   secure = __libc_enable_secure;
+ #ifdef _LIBC
+   s = NULL;
+-  {
+-    char **runp = _environ;
+-    char *envline;
++  if (_environ != NULL)
++    {
++      char **runp = _environ;
++      char *envline;
+ 
+-    while (__builtin_expect ((envline = next_env_entry (&runp)) != NULL,
+-			     0))
+-      {
+-	size_t len = strcspn (envline, "=");
++      while (__builtin_expect ((envline = next_env_entry (&runp)) != NULL, 0))
++	{
++	  size_t len = strcspn (envline, "=");
+ 
+-	if (envline[len] != '=')
+-	  /* This is a "MALLOC_" variable at the end of the string
+-	     without a '=' character.  Ignore it since otherwise we
+-	     will access invalid memory below.  */
+-	  continue;
+-
+-	switch (len)
+-	  {
+-	  case 6:
+-	    if (memcmp (envline, "CHECK_", 6) == 0)
+-	      s = &envline[7];
+-	    break;
+-	  case 8:
+-	    if (! secure && memcmp (envline, "TOP_PAD_", 8) == 0)
+-	      mALLOPt(M_TOP_PAD, atoi(&envline[9]));
+-	    break;
+-	  case 9:
+-	    if (! secure && memcmp (envline, "MMAP_MAX_", 9) == 0)
+-	      mALLOPt(M_MMAP_MAX, atoi(&envline[10]));
+-	    break;
+-	  case 15:
+-	    if (! secure)
+-	      {
+-		if (memcmp (envline, "TRIM_THRESHOLD_", 15) == 0)
+-		  mALLOPt(M_TRIM_THRESHOLD, atoi(&envline[16]));
+-		else if (memcmp (envline, "MMAP_THRESHOLD_", 15) == 0)
+-		  mALLOPt(M_MMAP_THRESHOLD, atoi(&envline[16]));
+-	      }
+-	    break;
+-	  default:
+-	    break;
+-	  }
+-      }
+-  }
++	  if (envline[len] != '=')
++	    /* This is a "MALLOC_" variable at the end of the string
++	       without a '=' character.  Ignore it since otherwise we
++	       will access invalid memory below.  */
++	    continue;
++
++	  switch (len)
++	    {
++	    case 6:
++	      if (memcmp (envline, "CHECK_", 6) == 0)
++		s = &envline[7];
++	      break;
++	    case 8:
++	      if (! secure && memcmp (envline, "TOP_PAD_", 8) == 0)
++		mALLOPt(M_TOP_PAD, atoi(&envline[9]));
++	      break;
++	    case 9:
++	      if (! secure && memcmp (envline, "MMAP_MAX_", 9) == 0)
++		mALLOPt(M_MMAP_MAX, atoi(&envline[10]));
++	      break;
++	    case 15:
++	      if (! secure)
++		{
++		  if (memcmp (envline, "TRIM_THRESHOLD_", 15) == 0)
++		    mALLOPt(M_TRIM_THRESHOLD, atoi(&envline[16]));
++		  else if (memcmp (envline, "MMAP_THRESHOLD_", 15) == 0)
++		    mALLOPt(M_MMAP_THRESHOLD, atoi(&envline[16]));
++		}
++	      break;
++	    default:
++	      break;
++	    }
++	}
++    }
+ #else
+   if (! secure)
+     {
+@@ -2788,13 +2788,15 @@
+   mchunkptr victim;
+ 
+ #if defined _LIBC || defined MALLOC_HOOKS
+-  if (__malloc_hook != NULL) {
++  __malloc_ptr_t (*hook) __MALLOC_PMT ((size_t, __const __malloc_ptr_t)) =
++      __malloc_hook;
++  if (hook != NULL) {
+     Void_t* result;
+ 
+ #if defined __GNUC__ && __GNUC__ >= 2
+-    result = (*__malloc_hook)(bytes, RETURN_ADDRESS (0));
++    result = (*hook)(bytes, RETURN_ADDRESS (0));
+ #else
+-    result = (*__malloc_hook)(bytes, NULL);
++    result = (*hook)(bytes, NULL);
+ #endif
+     return result;
+   }
+@@ -3111,11 +3113,14 @@
+   mchunkptr p;                          /* chunk corresponding to mem */
+ 
+ #if defined _LIBC || defined MALLOC_HOOKS
+-  if (__free_hook != NULL) {
++  void (*hook) __MALLOC_PMT ((__malloc_ptr_t, __const __malloc_ptr_t)) =
++    __free_hook;
++
++  if (hook != NULL) {
+ #if defined __GNUC__ && __GNUC__ >= 2
+-    (*__free_hook)(mem, RETURN_ADDRESS (0));
++    (*hook)(mem, RETURN_ADDRESS (0));
+ #else
+-    (*__free_hook)(mem, NULL);
++    (*hook)(mem, NULL);
+ #endif
+     return;
+   }
+@@ -3314,13 +3319,16 @@
+   mchunkptr newp;             /* chunk to return */
+ 
+ #if defined _LIBC || defined MALLOC_HOOKS
+-  if (__realloc_hook != NULL) {
++  __malloc_ptr_t (*hook) __MALLOC_PMT ((__malloc_ptr_t, size_t,
++                                        __const __malloc_ptr_t)) =
++    __realloc_hook;
++  if (hook != NULL) {
+     Void_t* result;
+ 
+ #if defined __GNUC__ && __GNUC__ >= 2
+-    result = (*__realloc_hook)(oldmem, bytes, RETURN_ADDRESS (0));
++    result = (*hook)(oldmem, bytes, RETURN_ADDRESS (0));
+ #else
+-    result = (*__realloc_hook)(oldmem, bytes, NULL);
++    result = (*hook)(oldmem, bytes, NULL);
+ #endif
+     return result;
+   }
+@@ -3596,13 +3604,16 @@
+   mchunkptr p;
+ 
+ #if defined _LIBC || defined MALLOC_HOOKS
+-  if (__memalign_hook != NULL) {
++  __malloc_ptr_t (*hook) __MALLOC_PMT ((size_t, size_t,
++                                        __const __malloc_ptr_t)) =
++    __memalign_hook;
++  if (hook != NULL) {
+     Void_t* result;
+ 
+ #if defined __GNUC__ && __GNUC__ >= 2
+-    result = (*__memalign_hook)(alignment, bytes, RETURN_ADDRESS (0));
++    result = (*hook)(alignment, bytes, RETURN_ADDRESS (0));
+ #else
+-    result = (*__memalign_hook)(alignment, bytes, NULL);
++    result = (*hook)(alignment, bytes, NULL);
+ #endif
+     return result;
+   }
+@@ -3788,12 +3799,14 @@
+   Void_t* mem;
+ 
+ #if defined _LIBC || defined MALLOC_HOOKS
+-  if (__malloc_hook != NULL) {
++  __malloc_ptr_t (*hook) __MALLOC_PMT ((size_t, __const __malloc_ptr_t)) =
++    __malloc_hook;
++  if (hook != NULL) {
+     sz = n * elem_size;
+ #if defined __GNUC__ && __GNUC__ >= 2
+-    mem = (*__malloc_hook)(sz, RETURN_ADDRESS (0));
++    mem = (*hook)(sz, RETURN_ADDRESS (0));
+ #else
+-    mem = (*__malloc_hook)(sz, NULL);
++    mem = (*hook)(sz, NULL);
+ #endif
+     if(mem == 0)
+       return 0;
+diff -urN glibc-2.2.4.org/malloc/memusage.c glibc-2.2.4/malloc/memusage.c
+--- glibc-2.2.4.org/malloc/memusage.c	Tue Aug 14 00:00:51 2001
++++ glibc-2.2.4/malloc/memusage.c	Fri Sep 28 20:50:18 2001
+@@ -181,6 +181,13 @@
+   const char *env = getenv ("MEMUSAGE_PROG_NAME");
+   size_t prog_len = strlen (__progname);
+ 
++  initialized = -1;
++  mallocp = (void *(*) (size_t)) dlsym (RTLD_NEXT, "malloc");
++  reallocp = (void *(*) (void *, size_t)) dlsym (RTLD_NEXT, "realloc");
++  callocp = (void *(*) (size_t, size_t)) dlsym (RTLD_NEXT, "calloc");
++  freep = (void (*) (void *)) dlsym (RTLD_NEXT, "free");
++  initialized = 1;
++
+   if (env != NULL)
+     {
+       /* Check for program name.  */
+@@ -198,13 +205,6 @@
+       if (!start_sp)
+ 	start_sp = GETSP ();
+ 
+-      initialized = -1;
+-      mallocp = (void *(*) (size_t)) dlsym (RTLD_NEXT, "malloc");
+-      reallocp = (void *(*) (void *, size_t)) dlsym (RTLD_NEXT, "realloc");
+-      callocp = (void *(*) (size_t, size_t)) dlsym (RTLD_NEXT, "calloc");
+-      freep = (void (*) (void *)) dlsym (RTLD_NEXT, "free");
+-      initialized = 1;
+-
+       outname = getenv ("MEMUSAGE_OUTPUT");
+       if (outname != NULL && outname[0] != '\0'
+ 	  && (access (outname, R_OK | W_OK) == 0 || errno == ENOENT))
+@@ -357,10 +357,13 @@
+ 
+   /* Keep track of number of calls.  */
+   ++calls[idx_realloc];
+-  /* Keep track of total memory consumption for `realloc'.  */
+-  total[idx_realloc] += len;
+-  /* Keep track of total memory requirement.  */
+-  grand_total += len;
++  if (len > old_len)
++    {
++      /* Keep track of total memory consumption for `realloc'.  */
++      total[idx_realloc] += len - old_len;
++      /* Keep track of total memory requirement.  */
++      grand_total += len - old_len;
++    }
+   /* Remember the size of the request.  */
+   if (len < 65536)
+     ++histogram[len / 16];
+diff -urN glibc-2.2.4.org/malloc/memusage.sh glibc-2.2.4/malloc/memusage.sh
+--- glibc-2.2.4.org/malloc/memusage.sh	Mon Jul 23 19:54:39 2001
++++ glibc-2.2.4/malloc/memusage.sh	Fri Sep 28 20:50:18 2001
+@@ -219,6 +219,11 @@
+   add_env="$add_env MEMUSAGE_OUTPUT=$datafile"
+ fi
+ 
++# Set program name.
++if test -n "$progname"; then
++  add_env="$add_env MEMUSAGE_PROG_NAME=$progname"
++fi
++
+ # Set buffer size.
+ if test -n "$buffer"; then
+   add_env="$add_env MEMUSAGE_BUFFER_SIZE=$buffer"
+diff -urN glibc-2.2.4.org/malloc/mtrace.c glibc-2.2.4/malloc/mtrace.c
+--- glibc-2.2.4.org/malloc/mtrace.c	Mon Jul 23 19:54:39 2001
++++ glibc-2.2.4/malloc/mtrace.c	Fri Sep 28 20:50:18 2001
+@@ -97,7 +97,7 @@
+       if (_dl_addr (caller, &info))
+ 	{
+ 	  char *buf = (char *) "";
+-	  if (info.dli_sname && info.dli_sname[0])
++	  if (info.dli_sname != NULL)
+ 	    {
+ 	      size_t len = strlen (info.dli_sname);
+ 	      buf = alloca (len + 6 + 2 * sizeof (void *));
+diff -urN glibc-2.2.4.org/malloc/obstack.c glibc-2.2.4/malloc/obstack.c
+--- glibc-2.2.4.org/malloc/obstack.c	Mon Jul 23 19:54:39 2001
++++ glibc-2.2.4/malloc/obstack.c	Fri Sep 28 20:50:18 2001
+@@ -19,7 +19,7 @@
+    02111-1307 USA.  */
+ 
+ #ifdef HAVE_CONFIG_H
+-#include <config.h>
++# include <config.h>
+ #endif
+ 
+ #include "obstack.h"
+@@ -39,40 +39,43 @@
+    files, it is simpler to just do this in the source for each such file.  */
+ 
+ #include <stdio.h>		/* Random thing to get __GNU_LIBRARY__.  */
+-#if !defined (_LIBC) && defined (__GNU_LIBRARY__) && __GNU_LIBRARY__ > 1
+-#include <gnu-versions.h>
+-#if _GNU_OBSTACK_INTERFACE_VERSION == OBSTACK_INTERFACE_VERSION
+-#define ELIDE_CODE
+-#endif
++#if !defined _LIBC && defined __GNU_LIBRARY__ && __GNU_LIBRARY__ > 1
++# include <gnu-versions.h>
++# if _GNU_OBSTACK_INTERFACE_VERSION == OBSTACK_INTERFACE_VERSION
++#  define ELIDE_CODE
++# endif
+ #endif
+ 
++#if defined _LIBC && defined USE_IN_LIBIO
++# include <wchar.h>
++#endif
+ 
+ #ifndef ELIDE_CODE
+ 
+ 
+-#if defined (__STDC__) && __STDC__
+-#define POINTER void *
+-#else
+-#define POINTER char *
+-#endif
++# if defined __STDC__ && __STDC__
++#  define POINTER void *
++# else
++#  define POINTER char *
++# endif
+ 
+ /* Determine default alignment.  */
+ struct fooalign {char x; double d;};
+-#define DEFAULT_ALIGNMENT  \
++# define DEFAULT_ALIGNMENT  \
+   ((PTR_INT_TYPE) ((char *) &((struct fooalign *) 0)->d - (char *) 0))
+ /* If malloc were really smart, it would round addresses to DEFAULT_ALIGNMENT.
+    But in fact it might be less smart and round addresses to as much as
+    DEFAULT_ROUNDING.  So we prepare for it to do that.  */
+ union fooround {long x; double d;};
+-#define DEFAULT_ROUNDING (sizeof (union fooround))
++# define DEFAULT_ROUNDING (sizeof (union fooround))
+ 
+ /* When we copy a long block of data, this is the unit to do it with.
+    On some machines, copying successive ints does not work;
+    in such a case, redefine COPYING_UNIT to `long' (if that works)
+    or `char' as a last resort.  */
+-#ifndef COPYING_UNIT
+-#define COPYING_UNIT int
+-#endif
++# ifndef COPYING_UNIT
++#  define COPYING_UNIT int
++# endif
+ 
+ 
+ /* The functions allocating more room by calling `obstack_chunk_alloc'
+@@ -81,21 +84,21 @@
+    abort gracefully or use longjump - but shouldn't return.  This
+    variable by default points to the internal function
+    `print_and_abort'.  */
+-#if defined (__STDC__) && __STDC__
++# if defined __STDC__ && __STDC__
+ static void print_and_abort (void);
+ void (*obstack_alloc_failed_handler) (void) = print_and_abort;
+-#else
++# else
+ static void print_and_abort ();
+ void (*obstack_alloc_failed_handler) () = print_and_abort;
+-#endif
++# endif
+ 
+ /* Exit value used when `print_and_abort' is used.  */
+-#if defined __GNU_LIBRARY__ || defined HAVE_STDLIB_H
+-#include <stdlib.h>
+-#endif
+-#ifndef EXIT_FAILURE
+-#define EXIT_FAILURE 1
+-#endif
++# if defined __GNU_LIBRARY__ || defined HAVE_STDLIB_H
++#  include <stdlib.h>
++# endif
++# ifndef EXIT_FAILURE
++#  define EXIT_FAILURE 1
++# endif
+ int obstack_exit_failure = EXIT_FAILURE;
+ 
+ /* The non-GNU-C macros copy the obstack into this global variable
+@@ -109,33 +112,33 @@
+    For free, do not use ?:, since some compilers, like the MIPS compilers,
+    do not allow (expr) ? void : void.  */
+ 
+-#if defined (__STDC__) && __STDC__
+-#define CALL_CHUNKFUN(h, size) \
++# if defined __STDC__ && __STDC__
++#  define CALL_CHUNKFUN(h, size) \
+   (((h) -> use_extra_arg) \
+    ? (*(h)->chunkfun) ((h)->extra_arg, (size)) \
+    : (*(struct _obstack_chunk *(*) (long)) (h)->chunkfun) ((size)))
+ 
+-#define CALL_FREEFUN(h, old_chunk) \
++#  define CALL_FREEFUN(h, old_chunk) \
+   do { \
+     if ((h) -> use_extra_arg) \
+       (*(h)->freefun) ((h)->extra_arg, (old_chunk)); \
+     else \
+       (*(void (*) (void *)) (h)->freefun) ((old_chunk)); \
+   } while (0)
+-#else
+-#define CALL_CHUNKFUN(h, size) \
++# else
++#  define CALL_CHUNKFUN(h, size) \
+   (((h) -> use_extra_arg) \
+    ? (*(h)->chunkfun) ((h)->extra_arg, (size)) \
+    : (*(struct _obstack_chunk *(*) ()) (h)->chunkfun) ((size)))
+ 
+-#define CALL_FREEFUN(h, old_chunk) \
++#  define CALL_FREEFUN(h, old_chunk) \
+   do { \
+     if ((h) -> use_extra_arg) \
+       (*(h)->freefun) ((h)->extra_arg, (old_chunk)); \
+     else \
+       (*(void (*) ()) (h)->freefun) ((old_chunk)); \
+   } while (0)
+-#endif
++# endif
+ 
+ 
+ /* Initialize an obstack H for use.  Specify chunk size SIZE (0 means default).
+@@ -151,13 +154,13 @@
+      struct obstack *h;
+      int size;
+      int alignment;
+-#if defined (__STDC__) && __STDC__
++# if defined __STDC__ && __STDC__
+      POINTER (*chunkfun) (long);
+      void (*freefun) (void *);
+-#else
++# else
+      POINTER (*chunkfun) ();
+      void (*freefun) ();
+-#endif
++# endif
+ {
+   register struct _obstack_chunk *chunk; /* points to new chunk */
+ 
+@@ -180,13 +183,13 @@
+       size = 4096 - extra;
+     }
+ 
+-#if defined (__STDC__) && __STDC__
++# if defined __STDC__ && __STDC__
+   h->chunkfun = (struct _obstack_chunk * (*)(void *, long)) chunkfun;
+   h->freefun = (void (*) (void *, struct _obstack_chunk *)) freefun;
+-#else
++# else
+   h->chunkfun = (struct _obstack_chunk * (*)()) chunkfun;
+   h->freefun = freefun;
+-#endif
++# endif
+   h->chunk_size = size;
+   h->alignment_mask = alignment - 1;
+   h->use_extra_arg = 0;
+@@ -209,13 +212,13 @@
+      struct obstack *h;
+      int size;
+      int alignment;
+-#if defined (__STDC__) && __STDC__
++# if defined __STDC__ && __STDC__
+      POINTER (*chunkfun) (POINTER, long);
+      void (*freefun) (POINTER, POINTER);
+-#else
++# else
+      POINTER (*chunkfun) ();
+      void (*freefun) ();
+-#endif
++# endif
+      POINTER arg;
+ {
+   register struct _obstack_chunk *chunk; /* points to new chunk */
+@@ -239,13 +242,13 @@
+       size = 4096 - extra;
+     }
+ 
+-#if defined(__STDC__) && __STDC__
++# if defined __STDC__ && __STDC__
+   h->chunkfun = (struct _obstack_chunk * (*)(void *,long)) chunkfun;
+   h->freefun = (void (*) (void *, struct _obstack_chunk *)) freefun;
+-#else
++# else
+   h->chunkfun = (struct _obstack_chunk * (*)()) chunkfun;
+   h->freefun = freefun;
+-#endif
++# endif
+   h->chunk_size = size;
+   h->alignment_mask = alignment - 1;
+   h->extra_arg = arg;
+@@ -340,11 +343,11 @@
+    This is here for debugging.
+    If you use it in a program, you are probably losing.  */
+ 
+-#if defined (__STDC__) && __STDC__
++# if defined __STDC__ && __STDC__
+ /* Suppress -Wmissing-prototypes warning.  We don't want to declare this in
+    obstack.h because it is just for debugging.  */
+ int _obstack_allocated_p (struct obstack *h, POINTER obj);
+-#endif
++# endif
+ 
+ int
+ _obstack_allocated_p (h, obj)
+@@ -369,7 +372,7 @@
+ /* Free objects in obstack H, including OBJ and everything allocate
+    more recently than OBJ.  If OBJ is zero, free everything in H.  */
+ 
+-#undef obstack_free
++# undef obstack_free
+ 
+ /* This function has two names with identical definitions.
+    This is the first one, called from non-ANSI code.  */
+@@ -455,45 +458,54 @@
+ }
+ 
+ /* Define the error handler.  */
+-#ifndef _
+-# if defined HAVE_LIBINTL_H || defined _LIBC
+-#  include <libintl.h>
+-#  ifndef _
+-#   define _(Str) gettext (Str)
++# ifndef _
++#  if defined HAVE_LIBINTL_H || defined _LIBC
++#   include <libintl.h>
++#   ifndef _
++#    define _(Str) gettext (Str)
++#   endif
++#  else
++#   define _(Str) (Str)
+ #  endif
+-# else
+-#  define _(Str) (Str)
+ # endif
+-#endif
+-#if defined _LIBC && defined USE_IN_LIBIO
+-# include <libio/iolibio.h>
+-# define fputs(s, f) _IO_fputs (s, f)
+-#endif
++# if defined _LIBC && defined USE_IN_LIBIO
++#  include <libio/iolibio.h>
++#  define fputs(s, f) _IO_fputs (s, f)
++# endif
+ 
+-#ifndef __attribute__
++# ifndef __attribute__
+ /* This feature is available in gcc versions 2.5 and later.  */
+-# if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 5)
+-#  define __attribute__(Spec) /* empty */
++#  if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 5)
++#   define __attribute__(Spec) /* empty */
++#  endif
+ # endif
+-#endif
+ 
+ static void
+ __attribute__ ((noreturn))
+ print_and_abort ()
+ {
+-  fputs (_("memory exhausted"), stderr);
+-  fputc ('\n', stderr);
++  /* Don't change any of these strings.  Yes, it would be possible to add
++     the newline to the string and use fputs or so.  But this must not
++     happen because the "memory exhausted" message appears in other places
++     like this and the translation should be reused instead of creating
++     a very similar string which requires a separate translation.  */
++# if defined _LIBC && defined USE_IN_LIBIO
++  if (_IO_fwide (stderr, 0) > 0)
++    __fwprintf (stderr, L"%s\n", _("memory exhausted"));
++  else
++# endif
++    fprintf (stderr, "%s\n", _("memory exhausted"));
+   exit (obstack_exit_failure);
+ }
+ 
+-#if 0
++# if 0
+ /* These are now turned off because the applications do not use it
+    and it uses bcopy via obstack_grow, which causes trouble on sysV.  */
+ 
+ /* Now define the functional versions of the obstack macros.
+    Define them to simply use the corresponding macros to do the job.  */
+ 
+-#if defined (__STDC__) && __STDC__
++#  if defined __STDC__ && __STDC__
+ /* These function definitions do not work with non-ANSI preprocessors;
+    they won't pass through the macro names in parentheses.  */
+ 
+@@ -604,8 +616,8 @@
+   return obstack_copy0 (obstack, address, length);
+ }
+ 
+-#endif /* __STDC__ */
++#  endif /* __STDC__ */
+ 
+-#endif /* 0 */
++# endif /* 0 */
+ 
+ #endif	/* !ELIDE_CODE */
