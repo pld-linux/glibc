@@ -4,7 +4,7 @@
 #
 # Starts the utmpd daemon
 #
-# chkconfig: 345 25 55
+# chkconfig: 2345 25 55
 # description: Utmpd daemon
 # processname: utmpd
 #
