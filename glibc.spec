@@ -13,7 +13,7 @@
 #   are there any other solutions than revert???
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.12
+%define		rel 2.13
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -64,7 +64,7 @@ BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 %{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%{!?_without_dist_kernel:BuildRequires:	kernel-headers}
+%{!?_without_dist_kernel:BuildRequires:	glibc-kernheaders}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	rpm-perlprov
@@ -95,9 +95,6 @@ libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
 
-Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
-kernel >= %{min_kernel}.
-
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im
 System benutzt werden. Um Festplatten- und Arbeitsspeicher zu sparen
@@ -109,9 +106,6 @@ Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
 
-Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
-kernel >= %{min_kernel}.
-
 %description -l fr
 Contient les bibliothèques standards utilisées par de nombreux
 programmes du système. Afin d'économiser l'espace disque et mémoire,
@@ -122,9 +116,6 @@ du C et la bibliothèque mathématique standard. Sans celles-ci, un
 système Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de données des zones
 horaires.
-
-Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
-kernel >= %{min_kernel}.
 
 %description -l ja
 glibc
@@ -148,9 +139,6 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale) oraz definicje stref czasowych.
 
-Pakiet skompilowano na nag³ówkach j±dra Linuksa %{_kernel_ver_str}.
-Mo¿na go u¿ywaæ na j±drach Linuksa >= %{min_kernel}.
-
 %description -l ru
 óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓÐÏÌØÚÕÅÍÙÅ ÍÎÏÇÏÞÉÓÌÅÎÎÙÍÉ
 ÐÒÏÇÒÁÍÍÁÍÉ × ÓÉÓÔÅÍÅ. äÌÑ ÔÏÇÏ, ÞÔÏÂÙ ÓÏÈÒÁÎÉÔØ ÄÉÓËÏ×ÏÅ ÐÒÏÓÔÒÁÎÓÔ×Ï
@@ -162,9 +150,6 @@ Mo¿na go u¿ywaæ na j±drach Linuksa >= %{min_kernel}.
 ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÐÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
 ×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
 
-Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
-kernel >= %{min_kernel}.
-
 %description -l tr
 Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir.
 Disk alaný ve bellek kullanýmýný azaltmak ve ayný zamanda güncelleme
@@ -173,9 +158,6 @@ tutulup programlar arasýnda paylaþtýrýlýr. Bu paket en önemli ortak
 kitaplýklarý, standart C kitaplýðýný ve standart matematik kitaplýðýný
 içerir. Bu kitaplýklar olmadan Linux sistemi çalýþmayacaktýr. Yerel
 dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
-
-Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
-kernel >= %{min_kernel}.
 
 %description -l uk
 í¦ÓÔÉÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ, ËÏÔÒ¦ ×ÉËÏÒÉÓÔÏ×ÕÀÔØÓÑ ÞÉÓÌÅÎÎÉÍÉ
@@ -187,9 +169,6 @@ kernel >= %{min_kernel}.
 Â¦ÂÌ¦ÏÔÅËÕ ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÃÉÈ Â¦ÂÌ¦ÏÔÅË Linux ÆÕÎËÃ¦ÏÎÕ×ÁÔÉ ÎÅ ÂÕÄÅ.
 ôÁËÏÖ ÐÁËÅÔ Í¦ÓÔÉÔØ Ð¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
 ÞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
-
-Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
-kernel >= %{min_kernel}.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -252,16 +231,14 @@ kitaplýklar.
 %package kernel-headers
 Summary:	Kernel header files the glibc has been built with
 Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
-Release:	%{rel}.%{_kernel_ver_str}
+Release:	%{rel}
 Group:		Development/Libraries
 
 %description kernel-headers
-Kernel header files the glibc has been built with (Linux
-%{_kernel_ver_str}).
+Kernel header files for userspace.
 
 %description kernel-headers -l pl
-Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
-(Linux %{_kernel_ver_str}).
+Pliki nag³ówkowe j±dra dla przestrzeni u¿ytkownika
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -591,8 +568,8 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
-	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
-	--with-headers=%{_kernelsrcdir}/include
+	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp 
+#	--with-headers=%{_kernelsrcdir}/include
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{?parallelmkflags}
@@ -737,11 +714,11 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
-%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
-%{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
-if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
-	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
-fi
+#%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
+#%{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
+#if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
+#	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
+#fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -772,10 +749,10 @@ echo "kernel headers you have."
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%pre kernel-headers
+#%pre kernel-headers
 # useful if these are symlinks
-if [ -h %{_includedir}/asm ]; then rm -f %{_includedir}/asm; fi
-if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
+#if [ -h %{_includedir}/asm ]; then rm -f %{_includedir}/asm; fi
+#if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
@@ -961,10 +938,10 @@ fi
 %lang(pt_BR) %{_mandir}/pt_BR/man3/*
 %lang(ru) %{_mandir}/ru/man3/*
 
-%files kernel-headers
-%defattr(644,root,root,755)
-%{_includedir}/asm*
-%{_includedir}/linux
+#%files kernel-headers
+#%defattr(644,root,root,755)
+#%{_includedir}/asm*
+#%{_includedir}/linux
 
 %files -n nscd
 %defattr(644,root,root,755)
