@@ -1,0 +1,2 @@
+- add more locale dirs in %%{_datadir}/locale/ (as %%ghost)
+- release 11
