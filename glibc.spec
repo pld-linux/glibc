@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	11
+Release:	12
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -36,6 +36,8 @@ Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-malloc.patch
 Patch12:	%{name}-glob.patch
+Patch13:	%{name}-getaddrinfo-workaround.patch
+Patch14:	%{name}-gcc3.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -411,6 +413,8 @@ Zabawka.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
