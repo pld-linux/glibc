@@ -34,7 +34,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.2
-%define		rel 5
+%define		rel 6
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
@@ -943,7 +943,7 @@ fi
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
-%ifnarch alpha sparc sparc64 ppc
+%ifnarch alpha ppc sparc64
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/locale
@@ -1045,6 +1045,9 @@ fi
 %attr(755,root,root) %{_bindir}/*trace
 
 %{_includedir}/*.h
+%ifarch alpha
+%{_includedir}/alpha
+%endif
 %{_includedir}/arpa
 %{_includedir}/bits
 %{_includedir}/gnu
