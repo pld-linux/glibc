@@ -9,7 +9,8 @@
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	linuxthreads	# don't build linuxthreads version (NPTL only)
 %bcond_without	nptl		# don't build NPTL version (linuxthreads only)
-%bcond_with	tls		# use TLS in linuxthreads
+%bcond_without	tls		# don't support TLS at all (implies no NPTL)
+%bcond_with	__thread	# use TLS in linuxthreads
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
@@ -33,26 +34,26 @@
 %global		nptl_min_kernel	%{min_kernel}
 %endif
 
+%if %{with tls}
+# sparc temporarily removed (broken)
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparcv9 ppc ppc64
+%undefine	with_tls
+%endif
+%endif
+
 %if %{with nptl}
 # nptl on x86 uses cmpxchgl (available since i486)
 %ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparcv9 ppc ppc64
 %undefine	with_nptl
+%else
+%if %{without tls}
+%undefine	with_nptl
 %endif
-%endif
-
-%if %{with tls}
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc sparcv9 ppc ppc64
-%undefine	with_tls
 %endif
 %endif
 
 %ifarch sparc64
 %undefine	with_memusage
-%endif
-
-%ifarch sparc
-# broken
-%undefine	with_tls
 %endif
 
 %if %{with linuxthreads} && %{with nptl}
@@ -73,7 +74,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.1%{!?with_linuxthreads:+nptlonly}%{?with_tls:+tlsonly}
+Release:	0.%{_snap}.1.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -833,6 +834,7 @@ cd builddir
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
+	--with%{!?with___thread:out}-__thread \
 	--with-headers=%{sysheaders} \
 	--with%{!?with_selinux:out}-selinux \
 	--with%{!?with_tls:out}-tls \
