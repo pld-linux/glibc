@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -336,6 +336,16 @@ strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
 strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
 	$RPM_BUILD_ROOT%{_libdir}/gconv/*.so
 
+# Collect locale files and mark them with %%lang()
+rm -f glibc.lang
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
+	if [ -d $i ]; then
+		lang=`echo $i | sed -e 's/.*locale\///' -e 's/^\(..\).*/\1/'`
+		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
+		echo "%lang($lang) $dir" >>glibc.lang
+	fi
+done
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -381,7 +391,7 @@ fi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f glibc.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,FAQ,BUGS}.gz
 
@@ -417,7 +427,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /lib/ld-*
 %attr(755,root,root) /lib/lib*
 
-%{_datadir}/locale
+%dir %{_datadir}/locale
+%{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
 
 %config /var/db/Makefile
