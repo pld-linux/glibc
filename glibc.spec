@@ -28,6 +28,7 @@ Patch7:		glibc-db2-alpha-mutex.patch
 Patch8:		glibc-linuxthreads-lock.patch
 Patch9:		glibc-pthread_create-manpage.patch
 Patch10:	glibc-sparc-linux-ldd.patch
+Patch11:	glibc-sparc-linux-chown.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -245,6 +246,7 @@ kitaplýðý kullanmak zorundadýrlar.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 %configure \
