@@ -35,7 +35,7 @@
 %endif
 
 %if %{with tls}
-%ifnarch i686 athlon amd64 ia64 s390 s390x alphaev6 sparc sparcv9 ppc ppc64
+%ifnarch i686 athlon amd64 ia64 s390 s390x sparc sparcv9 ppc ppc64
 %undefine with_tls
 %endif
 %endif
