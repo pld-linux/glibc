@@ -39,7 +39,7 @@ Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 Autoreq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Conflict:	kernel < 2.2.17
+Conflicts:	kernel < 2.2.17
 
 %description
 Contains the standard libraries that are used by multiple programs on
