@@ -15,7 +15,7 @@
 %bcond_with	tests		# perform "make test"
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
-
+%bcond_with	cross		# build using crossgcc (without libgcc_eh)
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -37,13 +37,14 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 %undefine	with_tls
 %endif
 %endif
 
 %if %{with nptl}
-# nptl on x86 uses cmpxchgl (available since i486)
+# on x86 uses cmpxchgl (available since i486)
+# on sparc only sparcv9 is supported
 %ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 %undefine	with_nptl
 %else
@@ -121,9 +122,10 @@ Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-nscd.patch
 Patch27:	%{name}-nscd-user.patch
 Patch28:	%{name}-gcc4.patch
+Patch29:	%{name}-cross-gcc_eh.patch
 # PaX hacks (dropped)
-#Patch29:	%{name}-pax_iconvconfig.patch
-#Patch30:	%{name}-pax_dl-execstack.patch
+#Patch30:	%{name}-pax_iconvconfig.patch
+#Patch31:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -163,10 +165,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		debugcflags	-O1 -g
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		rpmldflags	%{nil}
-%ifarch sparc64
-%define 	specflags_sparc64	-mvis -fcall-used-g6
-%define		_libdir			/usr/lib64
-%endif
+%define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 # we don't want perl dependency in glibc-devel
 %define		_noautoreqfiles		%{_bindir}/mtrace
 # hack: don't depend on rpmlib(PartialHardlinkSets) for easier upgrade from Ra
@@ -734,7 +733,7 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
-%ifarch amd64
+%ifarch amd64 ppc64 s390x sparc64
 Provides:	glibc = %{epoch}:%{version}-%{release}
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %else
@@ -817,6 +816,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch26 -p1
 %patch27 -p1
 %patch28 -p1
+%{?with_cross:%patch29 -p1}
 
 chmod +x scripts/cpp
 
@@ -832,6 +832,9 @@ cp -f /usr/share/automake/config.sub scripts
 rm -rf builddir
 install -d builddir
 cd builddir
+%ifarch sparc64
+CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
+%endif
 %if %{with linuxthreads}
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
@@ -951,9 +954,7 @@ rm -rf $RPM_BUILD_ROOT/nptl
 %endif
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
-%ifnarch sparc64
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
-%endif
 
 %if %{with linuxthreads}
 install linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
@@ -1014,9 +1015,7 @@ cp -f ChangeLog* documentation
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
-%ifnarch sparc64
 %{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/%{_lib}/ld-*.so}
-%endif
 
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
@@ -1082,8 +1081,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
-%ifnarch sparc64
-%ifarch amd64
+%ifarch amd64 ppc64 s390x sparc64
 %post	-n %{name}64 -p /sbin/postshell
 %else
 %post	-p /sbin/postshell
@@ -1091,7 +1089,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64
+%ifarch amd64 ppc64 s390x sparc64
 %postun	-n %{name}64 -p /sbin/postshell
 %else
 %postun	-p /sbin/postshell
@@ -1099,7 +1097,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64
+%ifarch amd64 ppc64 s390x sparc64
 %triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 %else
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
@@ -1136,10 +1134,8 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del nscd
 fi
-%endif
 
-%ifnarch sparc64
-%ifarch amd64
+%ifarch amd64 ppc64 s390x sparc64
 %files -n glibc64
 %defattr(644,root,root,755)
 %else
@@ -1191,7 +1187,7 @@ fi
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
-%ifnarch alpha amd64 ia64 ppc sparc64
+%ifarch %{ix86} m68k sparc sparcv9
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/locale
@@ -1473,44 +1469,3 @@ fi
 %{_libdir}/lib*.map
 %{_libdir}/soinit.o
 %{_libdir}/sofini.o
-
-%else
-
-%files -n glibc64
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/ld-*
-%attr(755,root,root) %{_libdir}/libanl*
-%attr(755,root,root) %{_libdir}/libdl*
-%attr(755,root,root) %{_libdir}/libnsl*
-%attr(755,root,root) %{_libdir}/lib[BScmprtu]*
-%attr(755,root,root) %{_libdir}/libnss_dns*.so*
-%attr(755,root,root) %{_libdir}/libnss_files*.so*
-
-%files -n glibc64-devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib[!m]*.so
-%attr(755,root,root) %{_libdir}/libm.so
-%attr(755,root,root) %{_libdir}/*crt*.o
-%{_libdir}/libbsd-compat.a
-%{_libdir}/libbsd.a
-%{_libdir}/libc_nonshared.a
-%{_libdir}/libg.a
-%{_libdir}/libieee.a
-%{_libdir}/libpthread_nonshared.a
-%{_libdir}/librpcsvc.a
-
-%files -n glibc64-static
-%defattr(644,root,root,755)
-%{_libdir}/libanl.a
-%{_libdir}/libBrokenLocale.a
-%{_libdir}/libc.a
-%{_libdir}/libcrypt.a
-%{_libdir}/libdl.a
-%{_libdir}/libm.a
-%{_libdir}/libmcheck.a
-%{_libdir}/libnsl.a
-%{_libdir}/libpthread.a
-%{_libdir}/libresolv.a
-%{_libdir}/librt.a
-%{_libdir}/libutil.a
-%endif
