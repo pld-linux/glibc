@@ -4,7 +4,7 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.2.0
+Version:	2.2
 Release:	1
 License:	LGPL
 Group:		Libraries
