@@ -2424,7 +2424,7 @@ diff -uNr libc.old/localedata/locales/csb_PL libc/localedata/locales/csb_PL
 diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 --- libc.old/localedata/locales/hsb_DE	1970-01-01 01:00:00.000000000 +0100
 +++ libc/localedata/locales/hsb_DE	2004-09-10 09:29:21.000000000 +0200
-@@ -0,0 +1,2214 @@
+@@ -0,0 +1,2216 @@
 +comment_char %
 +escape_char  /
 +%
@@ -3704,6 +3704,8 @@ diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 +<U004F>	<U004F>;<NONE>;<CAPITAL>;IGNORE
 +<U006F>	<U004F>;<NONE>;<SMALL>;IGNORE
 +<U00BA>	<U004F>;<NONE>;<U00BA>;IGNORE
++<U00D3>	<U00D3>;<ACUTE>;<CAPITAL>;IGNORE
++<U00F3>	<U00D3>;<ACUTE>;<SMALL>;IGNORE
 +<U00D2>	<U004F>;<GRAVE>;<CAPITAL>;IGNORE
 +<U00F2>	<U004F>;<GRAVE>;<SMALL>;IGNORE
 +<U020C>	<U004F>;<DOUBLE-GRAVE>;<CAPITAL>;IGNORE
@@ -3767,8 +3769,6 @@ diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 +<U1EE2>	<U004F>;<HORN+DOT-BELOW>;<CAPITAL>;IGNORE
 +<U1EE3>	<U004F>;<HORN+DOT-BELOW>;<SMALL>;IGNORE
 +<o8>
-+<U00D3>	<U00D3>;<NONE>;<CAPITAL>;IGNORE
-+<U00F3>	<U00D3>;<NONE>;<SMALL>;IGNORE
 +<U0152>	"<U004F><U0045>";"<U0152><U0152>";"<CAPITAL><CAPITAL>";IGNORE
 +<U0153>	"<U004F><U0045>";"<U0152><U0152>";"<SMALL><SMALL>";IGNORE
 +<U0050>	<U0050>;<NONE>;<CAPITAL>;IGNORE
@@ -4547,8 +4547,10 @@ diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 +END LC_CTYPE
 +
 +LC_MESSAGES
-+yesexpr "<U005E><U005B><U0074><U0054><U0079><U0059><U005D><U002E><U002A>"
++yesexpr "<U005E><U005B><U0068><U0048><U0079><U0059><U005D><U002E><U002A>"
 +noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++yesstr  "<U0068><U0061><U006A>"
++nostr   "<U006E><U011B>"
 +END LC_MESSAGES
 +
 +LC_MONETARY
