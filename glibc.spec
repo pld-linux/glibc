@@ -25,14 +25,11 @@
 
 %define		min_kernel	2.6.0
 %define		_snap		200310271512
-%define		rel 0.%{_snap}.3
-Summary:	GNU libc
-Summary(de):	GNU libc
-Summary(fr):	GNU libc
+%define		rel 8.%{_snap}.1
+Summary:	GNU C library
 Summary(ja):	GNU libc •È•§•÷•È•Í
-Summary(pl):	GNU libc
+Summary(pl):	Biblioteka C GNU
 Summary(ru):	GNU libc ◊≈“”…… 2.3
-Summary(tr):	GNU libc
 Summary(uk):	GNU libc ◊≈“”¶ß 2.3
 Name:		glibc
 Version:	2.3.2
@@ -42,7 +39,7 @@ License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}-%{_snap}.tar.bz2
-# Source0-md5:	d94c4320d3be063350247befc05114e4
+# Source0-md5:	e341d26589647f1dc0e431aa0f387e84
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	http://www.kernel.pl/~djurban/glibc/%{name}-linuxthreads-%{version}.tar.bz2
 ## Source1-md5:	1843a3fc138bcd26be946d9423ff5f10
