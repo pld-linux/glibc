@@ -330,8 +330,10 @@ fi
 
 %preun -n nscd
 if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/nscd ]; then
+		/etc/rc.d/init.d/nscd stop 1>&2
+	fi
 	/sbin/chkconfig --del nscd
-	/etc/rc.d/init.d/nscd stop 1>&2
 fi
 
 %post -n utmpd
@@ -344,8 +346,10 @@ fi
 
 %preun -n utmpd
 if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/utmpd ]; then
+		/etc/rc.d/init.d/utmpd stop 1>&2
+	fi
 	/sbin/chkconfig --del utmpd
-	/etc/rc.d/init.d/utmpd stop 1>&2
 fi
 
 %clean
