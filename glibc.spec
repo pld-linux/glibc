@@ -1,3 +1,4 @@
+%define		min_kernel	2.2.0
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -5,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2
-Release:	6
+Release:	7
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -39,7 +40,7 @@ Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 Autoreq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Conflicts:	kernel < 2.2.17
+Conflicts:	kernel < %{min_kernel}
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -333,7 +334,7 @@ A toy.
 %build
 %configure \
 	--enable-add-ons=linuxthreads \
-	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:2.2.17}" \
+	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--disable-omitfp
 
