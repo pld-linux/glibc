@@ -37,7 +37,8 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_tls
 %endif
 %endif
@@ -45,7 +46,8 @@
 %if %{with nptl}
 # on x86 uses cmpxchgl (available since i486)
 # on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -75,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.99999999.2
+Release:	0.99999999.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -121,7 +123,6 @@ Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-nscd.patch
 Patch27:	%{name}-iconvconfig-nxstack.patch
-Patch28:	%{name}-gcc4.patch
 Patch29:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
@@ -824,7 +825,6 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
-%patch28 -p1
 %{?with_cross:%patch29 -p1}
 
 chmod +x scripts/cpp
