@@ -23,6 +23,13 @@ Patch2:		glibc-versions.awk_fix.patch
 Patch3:		glibc-pld.patch
 Patch4:		glibc-getaddrinfo.patch
 Patch5:		glibc-crypt-blowfish.patch
+Patch6:		glibc-string2-pointer-arith.patch
+Patch7:		glibc-db2-alpha-mutex.patch
+Patch8:		glibc-linuxthreads-lock.patch
+Patch9:		glibc-linuxthreads-signals.c-ucontext.patch
+Patch10:	glibc-pthread_create-manpage.patch
+Patch11:	glibc-sparc-linux-ldd.patch
+Patch12:	glibc-string2-pointer-arith.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -235,6 +242,14 @@ kitaplýðý kullanmak zorundadýrlar.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
 
 %build
 %configure \
