@@ -13,7 +13,7 @@
 #   are there any other solutions than revert???
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.13
+%define		rel 2.14
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -42,6 +42,9 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # borrowed from util-linux
 Source7:	sln.8
 Source8:	%{name}-localedb-gen
+# Kernel headers for userspace
+Source9:	%{name}-kernheaders.tar.bz2
+# Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -59,6 +62,7 @@ Patch17:	%{name}-morelocales.patch
 Patch18:	%{name}-lthrds_noomit.patch
 Patch19:	%{name}-no_opt_override.patch
 Patch20:	%{name}-gcc33.patch
+#Patch21:	%{name}-sanity.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -94,6 +98,7 @@ programs. This package contains the most important sets of shared
 libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im
@@ -105,6 +110,7 @@ shared Libraries, die Standard-C-Library und die
 Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l fr
 Contient les bibliothèques standards utilisées par de nombreux
@@ -116,6 +122,7 @@ du C et la bibliothèque mathématique standard. Sans celles-ci, un
 système Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de données des zones
 horaires.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l ja
 glibc
@@ -127,6 +134,7 @@ glibc
 ¤³¤ÎÆó¤Ä¤Î¥é¥¤¥Ö¥é¥êÈ´¤­¤Ç¤Ï¡¢Linux ¥·¥¹¥Æ¥à¤Ïµ¡Ç½¤·¤Þ¤»¤ó¡£ glibc
 ¥Ñ¥Ã¥±¡¼¥¸¤Ï¤Þ¤¿ÃÏ°è¸À¸ì (locale) ¥µ¥Ý¡¼¥È¤È¥¿¥¤¥à¥¾¡¼¥ó¥Ç¡¼¥¿¥Ù¡¼¥¹
 ¥µ¥Ý¡¼¥È¤ò¤Õ¤¯¤ß¤Þ¤¹¡£
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l pl
 W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
@@ -138,6 +146,7 @@ standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
 matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale) oraz definicje stref czasowych.
+Przeznaczony dla j±dra Linux >= %{min_kernel}.
 
 %description -l ru
 óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓÐÏÌØÚÕÅÍÙÅ ÍÎÏÇÏÞÉÓÌÅÎÎÙÍÉ
@@ -149,6 +158,7 @@ jêzyków (locale) oraz definicje stref czasowych.
 ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÜÔÉÈ ÂÉÂÌÉÏÔÅË Linux ÆÕÎËÃÉÏÎÉÒÏ×ÁÔØ ÎÅ ÂÕÄÅÔ. ôÁËÖÅ
 ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÐÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
 ×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l tr
 Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir.
@@ -158,6 +168,7 @@ tutulup programlar arasýnda paylaþtýrýlýr. Bu paket en önemli ortak
 kitaplýklarý, standart C kitaplýðýný ve standart matematik kitaplýðýný
 içerir. Bu kitaplýklar olmadan Linux sistemi çalýþmayacaktýr. Yerel
 dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l uk
 í¦ÓÔÉÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ, ËÏÔÒ¦ ×ÉËÏÒÉÓÔÏ×ÕÀÔØÓÑ ÞÉÓÌÅÎÎÉÍÉ
@@ -169,6 +180,7 @@ dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
 Â¦ÂÌ¦ÏÔÅËÕ ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÃÉÈ Â¦ÂÌ¦ÏÔÅË Linux ÆÕÎËÃ¦ÏÎÕ×ÁÔÉ ÎÅ ÂÕÄÅ.
 ôÁËÏÖ ÐÁËÅÔ Í¦ÓÔÉÔØ Ð¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
 ÞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -553,26 +565,36 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 # don't know, if it is good idea, for brave ones
 #%patch19 -p1
 %patch20 -p1
+#%patch21 -p1
 
 chmod +x scripts/cpp
 
 # standardize name
 mv -f localedata/locales/{lug_UG,lg_UG}
 
+#make proper symlink for asm in headers
+#cd usr/include
+#%ifarch %{ix86}
+#ln -s asm-i386 asm
+#%endif
+#cd ../..
+
 %build
+#_headers_dir=`pwd`/usr/include; export _headers_dir;
 mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
+#CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
-	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp 
-#	--with-headers=%{_kernelsrcdir}/include
+	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
+#	--with-headers=$_headers_dir
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-%{__make} %{?parallelmkflags}
+%{__make} %{?parallelmkflags} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
