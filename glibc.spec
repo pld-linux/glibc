@@ -772,7 +772,20 @@ LDFLAGS=" " ; export LDFLAGS
 
 %{__make} %{?parallelmkflags}
 
-%{?with_tests:%{__make} tests}
+%if %{with tests}
+env LANGUAGE=C LC_ALL=C \
+%{__make} test 2>&1 | awk '
+BEGIN { file = "" }
+{
+	if (($0 ~ /\*\*\* \[.*\.out\] Error/) && (file == "")) {
+		file=$0;
+		gsub(/.*\[/, NIL, file);
+		gsub(/\].*/, NIL, file);
+	}
+	print
+}
+END { if (file != "") { print "ERROR OUTPUT FROM " file; system("cat " file); exit(1); } }'
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
