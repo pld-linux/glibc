@@ -83,7 +83,7 @@ Pakiet ten zawiera standardowe biblioteki, u¿ywane przez ró¿ne programy w
 twoim systemie. U¿ywanie przez programy bibliotek z tego pakietu oszczêdza
 miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest usytu³owane w
 jednym miejscu i dzielone miêdzy wieloma programami. Pakiet ten zawiera
-bardzo wa¿ny sbiór bibliotek wspó³dzielonych, standardowych bibliotek C i
+bardzo wa¿ny zbiór bibliotek wspó³dzielonych, standardowych bibliotek C i
 standardowych bibliotek matematycznych. Bez glibc system Linux nie jest w
 stanie funkcjonowaæ. Znajduj± siê tutaj równie¿ definicje ró¿nych informacji
 dla wielu jêzyków (locale) oraz definicje stref czasowych.
