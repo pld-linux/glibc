@@ -823,8 +823,8 @@ fi
 
 %files kernel-headers
 %defattr(644,root,root,755)
-%{_includedir}/asm
-%{_includedir}/linux
+%{_includedir}/asm/*
+%{_includedir}/linux/*
 
 %files -n nscd
 %defattr(644,root,root,755)
