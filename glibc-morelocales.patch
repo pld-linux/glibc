@@ -1,13 +1,13 @@
 diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
 --- libc.orig/localedata/SUPPORTED	Tue Jul 27 03:25:03 2004
 +++ libc/localedata/SUPPORTED	Tue Jul 27 03:56:48 2004
-@@ -2,12 +2,14 @@
+@@ -2,12 +2,15 @@
  # If you have any additions please use the glibcbug script to send an
  # appropriate message.
  SUPPORTED-LOCALES=\
 +aa_DJ.UTF-8/UTF-8 \
  aa_DJ/ISO-8859-1 \
--aa_ER/UTF-8 \
+ aa_ER/UTF-8 \
  aa_ER@saaho/UTF-8 \
  aa_ET/UTF-8 \
 +af_ZA.UTF-8/UTF-8 \
