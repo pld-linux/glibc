@@ -34,7 +34,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.2
-%define		rel 6
+%define		rel 7
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
@@ -954,7 +954,10 @@ fi
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
-%attr(755,root,root) /lib/ld-*
+# ld* and libc.so.6 SONAME symlinks must be in package because of
+# chicken-egg problem (postshell is dynamically linked with libc);
+# ld-*.so SONAME is ld.so.1 on ppc, ld-linux.so.2 on other archs
+%attr(755,root,root) /lib/ld*
 %attr(755,root,root) /lib/libanl*
 %attr(755,root,root) /lib/libdl*
 %attr(755,root,root) /lib/libnsl*
