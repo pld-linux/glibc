@@ -124,8 +124,8 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaФ.
 Znajduj╠ siЙ tutaj rСwnie© definicje rС©nych informacji dla wielu
 jЙzykСw (locale) oraz definicje stref czasowych.
 
-Compiled on: Linux kernel %{_kernel_ver_str}.
-Can be used on: Linux kernel >= %{min_kernel}.
+Pakiet skompilowano na nagЁСwkach j╠dra Linuksa %{_kernel_ver_str}.
+Mo©na go u©ywaФ na j╠drach Linuksa >= %{min_kernel}.
 
 %description -l ru
 Содержит стандартные библиотеки, используемые многочисленными
