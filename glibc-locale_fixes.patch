@@ -4919,6 +4919,20 @@ diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
  yesstr	"<U0065><U0076><U0065><U0074>"
  nostr	"<U0068><U0061><U0079><U0131><U0072>"
  END LC_MESSAGES
+@@ -3471,11 +3471,11 @@
+ END LC_MESSAGES
+ 
+ LC_MONETARY
+-int_curr_symbol           "<U0054><U0052><U004C><U0020>"
++int_curr_symbol           "<U0054><U0052><U0059><U0020>"
+ currency_symbol           "<U0054><U004C>"
+ mon_decimal_point         "<U002C>"
+ mon_thousands_sep         "<U002E>"
+-mon_grouping              3
++mon_grouping              3;3
+ positive_sign             ""
+ negative_sign             "<U002D>"
+ int_frac_digits           2
 @@ -3489,9 +3489,9 @@
  END LC_MONETARY
  
@@ -4928,7 +4942,7 @@ diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
 -grouping                  -1
 +decimal_point             "<U002C>"
 +thousands_sep             "<U002E>"
-+grouping                  3
++grouping                  3;3
  END LC_NUMERIC
  
  LC_TIME
@@ -4957,23 +4971,6 @@ diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
  %tr
  lang_ab		"<U0074><U0072>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
---- libc.orig/localedata/locales/tr_TR	2004-11-14 20:22:03.000000000 +0100
-+++ libc/localedata/locales/tr_TR	2004-11-14 20:22:03.000000000 +0100
-@@ -3471,11 +3471,11 @@
- END LC_MESSAGES
- 
- LC_MONETARY
--int_curr_symbol           "<U0054><U0052><U004C><U0020>"
-+int_curr_symbol           "<U0054><U0052><U0059><U0020>"
- currency_symbol           "<U0054><U004C>"
- mon_decimal_point         "<U002C>"
- mon_thousands_sep         "<U002E>"
--mon_grouping              3
-+mon_grouping              3;3
- positive_sign             ""
- negative_sign             "<U002D>"
- int_frac_digits           2
 diff -uNr libc.orig/localedata/locales/ts_ZA libc/localedata/locales/ts_ZA
 --- libc.orig/localedata/locales/ts_ZA	2004-11-10 01:45:57.000000000 +0100
 +++ libc/localedata/locales/ts_ZA	2004-11-10 02:45:40.000000000 +0100
