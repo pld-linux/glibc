@@ -227,6 +227,21 @@ if [ "$1" = 0 ]; then
 	/sbin/install-info --delete %{_infodir}/libc.info.gz /etc/info-dir
 fi
 
+%post -n nscd
+/sbin/chkconfig --add nscd
+if test -r /var/run/nscd.pid; then
+	/etc/rc.d/init.d/nscd stop >&2
+	/etc/rc.d/init.d/nscd start >&2
+else
+	echo "Run \"/etc/rc.d/init.d/nscd start\" to start nscd daemon."
+fi
+
+%preun -n nscd
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del nscd
+	/etc/rc.d/init.d/nscd stop >&2
+fi
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
