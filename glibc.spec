@@ -48,7 +48,7 @@
 %endif
 
 %ifarch sparc
-%undefine	with_nptl
+# broken
 %undefine	with_tls
 %endif
 
@@ -73,7 +73,6 @@ Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
 # Source0-md5:	f001b42f639d5030d2c4dd16803b393d
-# Source0-size:	13680659
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
 Source2:	nscd.init
@@ -82,11 +81,9 @@ Source4:	nscd.logrotate
 #Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source5:	%{name}-man-pages.tar.bz2
 # Source5-md5:	03bee93e9786b3e7dad2570ccb0cbc5c
-# Source5-size:	283971
 #Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
-# Source6-size:	1322469
 # borrowed from util-linux
 Source7:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
@@ -1106,7 +1103,12 @@ fi
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
-# ld-*.so SONAME is ld.so.1 on ppc, ld-linux.so.2 on other archs
+# ld-*.so SONAME is:
+#   ld.so.1 on ppc
+#   ld64.so.1 on ppc64,s390x
+#   ld-linux-ia64.so.2 on ia64
+#   ld-linux-x86-64.so.2 on amd64
+#   ld-linux.so.2 on other archs
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
 %attr(755,root,root) /%{_lib}/libdl*
