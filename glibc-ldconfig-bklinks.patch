@@ -1,14 +1,17 @@
---- glibc-2.2.2/elf/readlib.c~	Wed Mar 28 22:26:32 2001
-+++ glibc-2.2.2/elf/readlib.c	Wed Mar 28 22:31:40 2001
-@@ -87,8 +87,10 @@
-   if (file == NULL)
-     {
-       /* No error for stale symlink.  */
--      if (is_link && strstr (file_name, ".so") != NULL)
-+      if (is_link && strstr (file_name, ".so") != NULL) {
-+	unlink (file_name);
- 	return 1;
-+      }
-       error (0, 0, _("Input file %s not found.\n"), file_name);
-       return 1;
-     }
+diff -Nru glibc-2.2.4.orig/elf/ldconfig.c glibc-2.2.4/elf/ldconfig.c
+--- glibc-2.2.4.orig/elf/ldconfig.c	Mon Jul 23 19:53:40 2001
++++ glibc-2.2.4/elf/ldconfig.c	Wed Jan 30 13:13:09 2002
+@@ -697,8 +697,11 @@
+ 	     a directory. */
+ 	  if (__builtin_expect (stat64 (real_file_name, &stat_buf), 0))
+ 	    {
+-	      if (opt_verbose)
+-		error (0, errno, _("Cannot stat %s"), file_name);
++	      if (strstr (file_name, ".so") != NULL)
++	        unlink (real_file_name);
++	      else
++	        if (opt_verbose)
++		  error (0, errno, _("Cannot stat %s"), file_name);
+ 	      continue;
+ 	    }
+ 	  is_dir = S_ISDIR (stat_buf.st_mode);
