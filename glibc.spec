@@ -119,6 +119,7 @@ Summary(pl):	Name Service Caching Daemon
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
 Prereq:		/sbin/chkconfig
+Requires:	rc-scripts
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve performance
@@ -140,6 +141,7 @@ Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
 Group:		Daemons
 Group(pl):	Serwery
 Prereq:         /sbin/chkconfig
+Requires:	rc-scripts
 
 %description -n utmpd
 utmpd is a utmp and utmpx synchronizer. Is only needed for libc5 based 
