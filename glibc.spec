@@ -886,7 +886,7 @@ BuildGlibc() {
 }
 
 # Build main glibc
-BuildGlibc "%{new_target_cpu}"
+BuildGlibc "%{_target_cpu}"
 
 %if %{with_biarch}
 %ifarch x86_64
@@ -901,7 +901,7 @@ install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/m
 
 _headers_dir=`pwd`/usr/include; export _headers_dir;
 
-cd builddir-%{new_target_cpu}
+cd builddir-%{_target_cpu}
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
