@@ -23,15 +23,19 @@ Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+# Source0-md5: 
 #Source0-md5:	ede969aad568f48083e413384f20753c
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+# Source1-md5: 
 #Source1-md5:	894b8969cfbdf787c73e139782167607
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+# Source5-md5: 
 #Source5-md5:	ddba280857330dabba4d8c16d24a6dfd
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+# Source6-md5: 
 #Source6-md5:	2e3992c2e1bc94212c2cd33236de6058
 # borrowed from util-linux
 Source7:	sln.8
