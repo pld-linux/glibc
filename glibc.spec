@@ -14,7 +14,7 @@ Source0:     glibc-2.0.7-%{version}.tar.gz
 Source1:     ftp://prep.ai.mit.edu/pub/gnu/glibc-localedata-2.0.7pre3.tar.gz
 Source2:     ftp://prep.ai.mit.edu/pub/gnu/glibc-linuxthreads-2.0.7pre5.tar.gz
 Source3:     ftp://prep.ai.mit.edu/pub/gnu/glibc-crypt-2.0.6.tar.gz 
-Source4:     glibc-2.0.7-nsswitch.conf
+Source4:     glibc-2.0.7-nsswhich.conf
 Source5:     linux-include-%{kheaders}.tar.gz
 Source6:     glibc-2.0.7-db-mans.tar.gz
 
@@ -253,7 +253,7 @@ ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixrules
 ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT/usr/lib/libbsd.a
 rm -f $RPM_BUILD_ROOT/etc/localtime
 
-install $RPM_SOURCE_DIR/glibc-2.0.7-nsswitch.conf $RPM_BUILD_ROOT/etc/nsswitch.conf
+install $RPM_SOURCE_DIR/glibc-2.0.7-nsswhich.conf $RPM_BUILD_ROOT/etc/nsswitch.conf
 
 # This is for ncsd - in glibc 2.1
 #install nscd/nscd.conf $RPM_BUILD_ROOT/etc
@@ -292,7 +292,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644, root, root, 755)
-%config /etc/nsswitch.conf
+%config /etc/nsswhich.conf
 %config /etc/rpc
 /usr/share/i18n
 /usr/share/locale
@@ -588,7 +588,7 @@ rm -rf $RPM_BUILD_ROOT
 
 * Sat Aug 23 1997 Erik Troan <ewt@redhat.com>
 - minor hack for alpha (won't be necessary in next release)
-- switched to use a build root
+- swhiched to use a build root
 - dynamically builds file lists
 
 * Tue Aug 19 1997 Erik Troan <ewt@redhat.com>
@@ -603,7 +603,7 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Feb 18 1997 Erik Troan <ewt@redhat.com>
 - 1) added patch for shadow to work w/ :: rather then :-1: entries
 - 2) incorporated Richard Henderson's string operation fix
-- 3) added default /etc/nsswitch.conf
+- 3) added default /etc/nsswhich.conf
   [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
