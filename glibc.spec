@@ -4,15 +4,15 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1.97
-Release:	2
+Version:	2.2.0
+Release:	1
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
