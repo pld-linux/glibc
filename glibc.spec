@@ -30,6 +30,7 @@ Patch9:		%{name}-getxxxxinfo.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
+BuildRequires:	texinfo
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
