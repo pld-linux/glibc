@@ -136,7 +136,9 @@ Potrzebne tylko przy kompilacji niektórych programów.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
-Group:		System Environment/Daemons
+Summary(pl):	-
+Group:		Networnikng/Daemons
+Group:		Sieciowe/Serwery
 Prereq:		/sbin/chkconfig
 Conflicts:	kernel < 2.2.0
 
@@ -146,6 +148,29 @@ with NIS+, and may help with DNS as well.
 
 You cannot use nscd with 2.0 kernels, due to bugs in the kernel-side thread
 support. nscd happens to hit these bugs particularly hard.
+
+%description -n nscd -l pl
+nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala drastycznie 
+poprawiæ szybko¶æ dzia³ania NIS+.
+
+Nie jest mo¿liwe u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów
+po stronie j±dra w ods³udze w±tków.
+
+%package -n utmpd
+Summary:	utmp and utmpx synchronizer for libc5 applications.
+Summary(pl):	Synchrnonizuje pliki utmp i utmpx.
+Group:		Daemons
+Group(pl):	Serwery
+Prereq:         /sbin/chkconfig
+
+%description -n utmpd
+utmpd is a utmp and utmpx synchronizer. Is only needed for libc5 based 
+program with utmp access.
+
+%description -n utmpd -l pl
+utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików 
+/var/run/utmp i /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania
+ze starszych programów (bazuj±cych na libc5).
 
 %prep 
 %setup -q -a 1 -a 2 -n %{name}-%{version}%{pre}
@@ -249,16 +274,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {README,NEWS,FAQ,BUGS}.gz
 
-%attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
 %config /etc/rpc
-
-%attr(754,root,root) /etc/rc.d/init.d/utmpd
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/rpcinfo
-%attr(755,root,root) %{_sbindir}/utmpd
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
@@ -320,9 +341,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n nscd
 %defattr(644,root,root,755)
-%config /etc/nscd.conf
+%attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
-%attr(755,root,root) /usr/sbin/nscd
+%attr(755,root,root) %{_sbindir}/nscd
+
+files -n utmpd
+%defattr(644,root,root,755)
+%attr(754,root,root) /etc/rc.d/init.d/utmpd
+%attr(755,root,root) %{_sbindir}/utmpd
 
 %changelog
 * Wed May 19 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
@@ -406,7 +432,8 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at invalid RH spec file.  [2.1.1-1]
+- start at invalid RH spec file.
+  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
