@@ -7,13 +7,21 @@
 # _without_fp		build without frame pointer (pass --enable-omitfp)
 # _without_memusage	build without memusage
 #
+# _with_kernheaders	use "kernheaders" as user-space kernel headers
+#			(instead of copying from kernel-headers 2.4.x)
+#			[broken at the moment]
+#
 # TODO:
 # - localedb-gen man pages(?)
 # - serious problem with upgrade (changing zoneinfo/posix/* dirs into symlinks)
 #   are there any other solutions than revert???
 #
+# WARNING:
+#	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
+#	in order to use this version!
+#
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.14
+%define		rel 2.15
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -68,7 +76,9 @@ BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 %{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%{!?_without_dist_kernel:BuildRequires:	glibc-kernheaders}
+%if 0%{!?_with_kernheaders:1}
+%{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.5}
+%endif
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	rpm-perlprov
@@ -98,6 +108,7 @@ programs. This package contains the most important sets of shared
 libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
+
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l de
@@ -110,6 +121,7 @@ shared Libraries, die Standard-C-Library und die
 Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
+
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l fr
@@ -122,6 +134,7 @@ du C et la bibliothèque mathématique standard. Sans celles-ci, un
 système Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de données des zones
 horaires.
+
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l ja
@@ -134,6 +147,7 @@ glibc
 ¤³¤ÎÆó¤Ä¤Î¥é¥¤¥Ö¥é¥êÈ´¤­¤Ç¤Ï¡¢Linux ¥·¥¹¥Æ¥à¤Ïµ¡Ç½¤·¤Þ¤»¤ó¡£ glibc
 ¥Ñ¥Ã¥±¡¼¥¸¤Ï¤Þ¤¿ÃÏ°è¸À¸ì (locale) ¥µ¥Ý¡¼¥È¤È¥¿¥¤¥à¥¾¡¼¥ó¥Ç¡¼¥¿¥Ù¡¼¥¹
 ¥µ¥Ý¡¼¥È¤ò¤Õ¤¯¤ß¤Þ¤¹¡£
+
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l pl
@@ -146,6 +160,7 @@ standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
 matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale) oraz definicje stref czasowych.
+
 Przeznaczony dla j±dra Linux >= %{min_kernel}.
 
 %description -l ru
@@ -158,6 +173,7 @@ Przeznaczony dla j±dra Linux >= %{min_kernel}.
 ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÜÔÉÈ ÂÉÂÌÉÏÔÅË Linux ÆÕÎËÃÉÏÎÉÒÏ×ÁÔØ ÎÅ ÂÕÄÅÔ. ôÁËÖÅ
 ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÐÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
 ×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
+
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l tr
@@ -168,6 +184,7 @@ tutulup programlar arasýnda paylaþtýrýlýr. Bu paket en önemli ortak
 kitaplýklarý, standart C kitaplýðýný ve standart matematik kitaplýðýný
 içerir. Bu kitaplýklar olmadan Linux sistemi çalýþmayacaktýr. Yerel
 dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
+
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l uk
@@ -180,6 +197,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Â¦ÂÌ¦ÏÔÅËÕ ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÃÉÈ Â¦ÂÌ¦ÏÔÅË Linux ÆÕÎËÃ¦ÏÎÕ×ÁÔÉ ÎÅ ÂÕÄÅ.
 ôÁËÏÖ ÐÁËÅÔ Í¦ÓÔÉÔØ Ð¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
 ÞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
+
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %package devel
@@ -591,10 +609,15 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
+%if 0%{!?_with_kernheaders:1}
+	--with-headers=%{_kernelsrcdir}/include
+%else
 #	--with-headers=$_headers_dir
+%endif
+
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-%{__make} %{?parallelmkflags} 
+%{__make} %{?parallelmkflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -632,11 +655,11 @@ install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
 
-cd $RPM_BUILD_ROOT%{_datadir}/zoneinfo
-for i in [A-Z]*; do
-	ln -s ../$i posix
-done
-cd -
+#cd $RPM_BUILD_ROOT%{_datadir}/zoneinfo
+#for i in [A-Z]*; do
+#	ln -s ../$i posix
+#done
+#cd -
 
 ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
@@ -688,7 +711,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		twochar=1
 		# list of long %%lang values we do support
-		for j in de_AT de_BE de_CH de_LU es_AR ja_JP.SJIS ko_KR.utf8 pt_BR \
+		for j in de_AT de_BE de_CH de_LU es_AR es_MX ja_JP.SJIS ko_KR.utf8 pt_BR \
 			 zh_CN zh_CN.gbk zh_HK zh_TW ; do
 			if [ $j = "$lang" ]; then
 				twochar=
@@ -709,9 +732,9 @@ done
 # am,bn,ml (present in sources, but incomplete and disabled) (used by GNOME)
 # kn,mn,ia (used by GNOME)
 # nso,ss,ven,xh,zu (used by KDE)
-for i in af ar az be bg br bs cy de_AT el en eo es_AR et eu fa fi ga gr he hi \
-	 hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru se sl sq sr \
-	 sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
+for i in af ar az be bg br bs cy de_AT el en eo es_AR es_MX et eu fa fi ga gr \
+	 he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru se sl \
+	 sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -736,11 +759,13 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
-#%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
-#%{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
+%if 0%{!?_with_kernheaders:1}
+%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
+%{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
 #if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
 #	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
 #fi
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -771,10 +796,10 @@ echo "kernel headers you have."
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-#%pre kernel-headers
+%pre kernel-headers
 # useful if these are symlinks
-#if [ -h %{_includedir}/asm ]; then rm -f %{_includedir}/asm; fi
-#if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
+if [ -h %{_includedir}/asm ]; then rm -f %{_includedir}/asm; fi
+if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
@@ -960,10 +985,10 @@ fi
 %lang(pt_BR) %{_mandir}/pt_BR/man3/*
 %lang(ru) %{_mandir}/ru/man3/*
 
-#%files kernel-headers
-#%defattr(644,root,root,755)
-#%{_includedir}/asm*
-#%{_includedir}/linux
+%files kernel-headers
+%defattr(644,root,root,755)
+%{_includedir}/asm*
+%{_includedir}/linux
 
 %files -n nscd
 %defattr(644,root,root,755)
