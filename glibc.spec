@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2.3
-Release:	5
+Release:	6
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
