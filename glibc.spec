@@ -138,6 +138,7 @@ Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Prereq:		/sbin/chkconfig
 Requires:	rc-scripts >= 0.2.0
+Requires:	%{name} = %{version}
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
@@ -157,6 +158,7 @@ Summary(pl):	Kod ¬ród³owy bazy locale
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
+Requires:	%{name} = %{version}
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
@@ -177,6 +179,7 @@ Summary(pl):	Program do konwersji plików tekstowych z jednego enkodingu w inny
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
+Requires:	%{name} = %{version}
 
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need
@@ -305,8 +308,9 @@ Glibc NSS (Name Service Switch) module for NIS+ databases acces.
 
 %package memusage
 Summary:	A toy.
-Group:		Toys
-######		Unknown group!
+Group:		Applications
+Group(de):	Applikationen
+Group(pl):	Aplikacje
 Requires:	%{name} = %{version}
 Requires:	gd
 
