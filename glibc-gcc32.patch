@@ -1,0 +1,44 @@
+diff -ur glibc-2.2.5/linuxthreads/internals.h glibc-2.2.5-/linuxthreads/internals.h
+--- glibc-2.2.5/linuxthreads/internals.h	Thu Nov 29 08:44:16 2001
++++ glibc-2.2.5-/linuxthreads/internals.h	Fri Oct  4 09:22:55 2002
+@@ -552,7 +552,7 @@
+ /* Prototypes for compatibility functions.  */
+ extern int __pthread_attr_init_2_1 (pthread_attr_t *__attr);
+ extern int __pthread_attr_init_2_0 (pthread_attr_t *__attr);
+-extern int __pthread_create_2_1 (pthread_t *__restrict __thread,
++extern int __pthread_create_2_1 (pthread_t *__restrict __athread,
+ 				 const pthread_attr_t *__attr,
+ 				 void *(*__start_routine) (void *),
+ 				 void *__restrict __arg);
+diff -ur glibc-2.2.5/linuxthreads/sysdeps/pthread/pthread.h glibc-2.2.5-/linuxthreads/sysdeps/pthread/pthread.h
+--- glibc-2.2.5/linuxthreads/sysdeps/pthread/pthread.h	Thu Mar 15 22:12:31 2001
++++ glibc-2.2.5-/linuxthreads/sysdeps/pthread/pthread.h	Fri Oct  4 09:22:45 2002
+@@ -160,7 +160,7 @@
+ /* Create a thread with given attributes ATTR (or default attributes
+    if ATTR is NULL), and call function START_ROUTINE with given
+    arguments ARG.  */
+-extern int pthread_create (pthread_t *__restrict __thread,
++extern int pthread_create (pthread_t *__restrict __athread,
+ 			   __const pthread_attr_t *__restrict __attr,
+ 			   void *(*__start_routine) (void *),
+ 			   void *__restrict __arg) __THROW;
+@@ -588,7 +588,7 @@
+ extern int pthread_setcanceltype (int __type, int *__oldtype) __THROW;
+ 
+ /* Cancel THREAD immediately or at the next possibility.  */
+-extern int pthread_cancel (pthread_t __thread) __THROW;
++extern int pthread_cancel (pthread_t __athread) __THROW;
+ 
+ /* Test for pending cancellation for the current thread and terminate
+    the thread as per pthread_exit(PTHREAD_CANCELED) if it has been
+diff -ur glibc-2.2.5/linuxthreads/sysdeps/unix/sysv/linux/bits/sigthread.h glibc-2.2.5-/linuxthreads/sysdeps/unix/sysv/linux/bits/sigthread.h
+--- glibc-2.2.5/linuxthreads/sysdeps/unix/sysv/linux/bits/sigthread.h	Mon Aug 21 08:48:03 2000
++++ glibc-2.2.5-/linuxthreads/sysdeps/unix/sysv/linux/bits/sigthread.h	Fri Oct  4 09:22:21 2002
+@@ -33,6 +33,6 @@
+ 			    __sigset_t *__restrict __oldmask)__THROW;
+ 
+ /* Send signal SIGNO to the given thread. */
+-extern int pthread_kill (pthread_t __thread, int __signo) __THROW;
++extern int pthread_kill (pthread_t __athread, int __signo) __THROW;
+ 
+ #endif	/* bits/sigthread.h */
