@@ -18,8 +18,8 @@ Group(pl):	Biblioteki
 Group(pt_BR):	Bibliotecas
 Group(ru):	Библиотеки
 Group(uk):	Б╕бл╕отеки
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.gz
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
