@@ -19,10 +19,6 @@
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
-# - usable persitent storage in nscd:
-#   - change persistent storage paths to /var/lib/nscd (to be FHS 2.3 compliant)
-#     (see glibc/nscd/nscd.h)
-#   - create nscd user, use it in nscd.conf (see -pld.patch)
 # [OLD]
 # - localedb-gen man pages(?)
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
