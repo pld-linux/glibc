@@ -14,7 +14,7 @@ Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
 Release:	3
-Epoch:		6
+Epoch:		7
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
@@ -512,6 +512,8 @@ cp -f crypt/README.ufc-crypt documentation/
 
 cp -f ChangeLog documentation
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
+
 gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
@@ -673,6 +675,7 @@ fi
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/*crt*.o
 %{_libdir}/libc_nonshared.a
+%{_libdir}/librpcsvc.a
 
 %{_mandir}/man1/sprof*
 %{_mandir}/man3/*
@@ -734,7 +737,6 @@ fi
 %{_libdir}/libnsl.a
 %{_libdir}/libpthread.a
 %{_libdir}/libresolv.a
-%{_libdir}/librpcsvc.a
 %{_libdir}/librt.a
 %{_libdir}/libutil.a
 
