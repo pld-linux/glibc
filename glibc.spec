@@ -102,6 +102,7 @@ Patch20:	%{name}-sr_CS.patch
 Patch21:	%{name}-sparc64-dl-machine.patch
 Patch22:	%{name}-tzfile-noassert.patch
 Patch23:	%{name}-ifreq.patch
+Patch24:	%{name}-morelocales.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -790,6 +791,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
+%patch24 -p1
 
 %patch30 -p1
 %patch31 -p1
@@ -973,9 +975,9 @@ done
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ar az bg bn br bs cy de_AT en en_AU en_CA en_US eo es_AR es_MX \
-    et eu fa fo ga gu he hi ia id is ja_JP.SJIS ka kn lg lo lt lv mi mk ml mn \
-    mr ms mt ne nn pa pt ro ru se sl sq sr sr@Latn ta tg th uk uz vi wa xh yi \
-    zh_HK zu ; do
+    et eu fa fo ga gu he hi ia id is ja_JP.SJIS ka kn leet lg li lo lt lv mi \
+    mk ml mn mr ms mt nds ne nn pa pt ro ru se sl sq sr sr@Latn sr@ije ta tg \
+    th uk uz vi wa xh yi zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
