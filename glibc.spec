@@ -835,7 +835,7 @@ END { if (file != "") { print "ERROR OUTPUT FROM " file; system("cat " file); ex
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
+install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/run/nscd}
 
 cd builddir
 
@@ -1229,7 +1229,7 @@ fi
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
-%attr(640,root,root) /var/run/nscd
+%dir /var/run/nscd
 %{_mandir}/man5/nscd.conf*
 %{_mandir}/man8/nscd*
 %lang(ja) %{_mandir}/ja/man5/nscd.conf*
