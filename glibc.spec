@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	14
+Release:	15
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -709,6 +709,7 @@ fi
 %{_libdir}/libieee.a
 %{_libdir}/librpcsvc.a
 
+%{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
 %{_mandir}/man3/*
 %lang(cs) %{_mandir}/cs/man3/*
