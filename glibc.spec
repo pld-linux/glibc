@@ -55,8 +55,8 @@ Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
 # Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
-Source10:	http://josefsson.org/libidn/releases/libidn-0.3.0rc1.tar.gz
-# Source10-md5:	aabf7055ede2c5f1d179f879560e5baf
+Source10:	http://josefsson.org/libidn/releases/libidn-0.3.0rc2.tar.gz
+# Source10-md5:	612b4f1170aea11ef55a5531680602d4
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -613,16 +613,16 @@ chmod +x scripts/cpp
 mv -f localedata/locales/{lug_UG,lg_UG}
 
 cp -r libidn-*/lib libidn
-cp libidn-*/libc/{Makefile,configure,Versions} libidn/
+cp libidn-*/libc/{Makefile,configure,Banner,Versions} libidn/
 cp libidn-*/lib/*.{c,h} libidn/
 ln -s ../libidn/idna.h include/idna.h
 ln -s ../libidn/idn-int.h include/idn-int.h
 
-cp libidn-*/libc/getaddrinfo.c sysdeps/posix/
-cp libidn-*/libc/netdb.h resolv/
+#cp libidn-*/libc/getaddrinfo.c sysdeps/posix/
+#cp libidn-*/libc/netdb.h resolv/
 
-#cp libidn-*/libc/*.patch libc-idn.patch
-#patch -p0 < libc-idn.patch
+cp libidn-*/libc/*.patch libc-idn.patch
+patch -p0 < libc-idn.patch
 
 touch libidn/libidn.texi
 
