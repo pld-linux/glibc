@@ -20,6 +20,13 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
+%bcond_with	nptl # enable new posix thread library (req: kernel 2.5/2.6) 
+		     # instead of linuxthreads
+
+%if %{with nptl}
+%define         min_kernel      2.5.41
+%endif
+
 %{!?min_kernel:%define		min_kernel	2.2.0}
 %define		rel 2.19
 Summary:	GNU libc
@@ -53,6 +60,8 @@ Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
 # Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
+Source10:	ftp://people.redhat.com/drepper/nptl/nptl-0.57.tar.bz2
+# Source10-md5:	82472303a736b53812906f97548e54f1
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -573,13 +582,16 @@ Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %prep
-%setup -q -a 1 -a 9
+%setup -q -a 9
+%if %{with nptl}
+%{__tar} xfj %{SOURCE10}
+%else
+%{__tar} xfj %{SOURCE1}
+%endif
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p1
 %patch9 -p1
 %patch10 -p1
 #%%patch11 -p1
@@ -588,7 +600,6 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %patch14 -p1
 %patch16 -p1
 %patch17 -p1
-%patch18 -p1
 # don't know, if it is good idea, for brave ones
 #%patch19 -p1
 %patch20 -p1
@@ -597,7 +608,13 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %{!?_with_kernheaders:%patch23}
 %patch24 -p1
 # updated - lt
+
+%if %{without nptl}
+%patch5 -p1
+%patch6 -p1
 %patch25 -p1
+%patch18 -p1
+%endif
 
 chmod +x scripts/cpp
 
@@ -626,10 +643,14 @@ cd builddir
 LDFLAGS=" " ; export LDFLAGS
 #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
-	--enable-add-ons=linuxthreads \
+	--enable-add-ons=nptl \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
+%if %{with nptl}
+        CPPFLAGS="-I%{_kernelsrcdir}/include" \
+	--with-headers=%{_kernelsrcdir}/include
+%else
 %if 0%{!?_with_kernheaders:1}
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
@@ -637,7 +658,7 @@ LDFLAGS=" " ; export LDFLAGS
 	CPPFLAGS="-I$_headers_dir" \
 	--with-headers=$_headers_dir
 %endif
-
+%endif
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{?parallelmkflags}
