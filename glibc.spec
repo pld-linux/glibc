@@ -651,7 +651,6 @@ LDFLAGS=" " ; export LDFLAGS
 %if %{with nptl}
 	--enable-add-ons=nptl \
 	--with-tls \
-	--without-__thread \
 	--disable-sanity-checks \
 %else
 	--enable-add-ons=linuxthreads \
