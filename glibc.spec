@@ -1,70 +1,107 @@
+#
+# You can define min_kernel macro by "rpm --define 'min_kernel version'"
+# default is 2.2.0 (no changes up to 2.3.25)
+#
+# _without_dist_kernel	build without kernel from the distribution;
+#			headers will be searched in %_kernelsrcdir/include.
+# _without_fp		build without frame pointer (pass --enable-omitfp)
+# _without_memusage	build without memusage
+#
+# _with_kernheaders	use "kernheaders" as user-space kernel headers
+#			(instead of copying from kernel-headers 2.4.x)
+#			[broken at the moment]
+#
+# TODO:
+# - localedb-gen man pages(?)
+# - serious problem with upgrade (changing zoneinfo/posix/* dirs into symlinks)
+#   are there any other solutions than revert???
+#
+# WARNING:
+#	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
+#	in order to use this version!
+#
+%bcond_with	nptl # enable new posix thread library (req: kernel 2.5/2.6)
+		     # instead of linuxthreads
 
-# conditional build
-# _without_dist_kernel          without distribution kernel
-
-%define         _kernel_ver     %(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
-%define         _kernel24       %(echo %{_kernel_ver} | grep -q '2\.[012]\.' ; echo $?)
-
-%if %{_kernel24}
-%define         _kernel_series  2.4
-%define		_min_kernel	2.4.5
-%else
-%define         _kernel_series  2.2
-%define		_min_kernel	2.2.0
+%if %{with nptl}
+%define		min_kernel	2.5.65
 %endif
 
-%define		_really_min_kernel	2.2.0
+%define		_snap		200309061641
 
-%define         _release        13
-
+%{!?min_kernel:%define		min_kernel	2.2.0}
+%define		rel 0.%{_snap}.2
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
+Summary(ja):	GNU libc •È•§•÷•È•Í
 Summary(pl):	GNU libc
+Summary(ru):	GNU libc ◊≈“”…… 2.3
 Summary(tr):	GNU libc
+Summary(uk):	GNU libc ◊≈“”¶ß 2.3
 Name:		glibc
-Version:	2.2.4
-Release:        %{_release}@%{_kernel_series}
+Version:	2.3.3
+Release:	%{rel}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	‚…¬Ã…œ‘≈À…
-Group(uk):	‚¶¬Ã¶œ‘≈À…
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.gz
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
+#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	http://www.kernel.pl/~djurban/glibc/%{name}-%{version}-%{_snap}.tar.bz2
+# Source0-md5:	d94c4320d3be063350247befc05114e4
+#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+#Source1:	http://www.kernel.pl/~djurban/glibc/%{name}-linuxthreads-%{version}.tar.bz2
+## Source1-md5:	1843a3fc138bcd26be946d9423ff5f10
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
-Source5:	%{name}-man-pages.tar.bz2
-Source6:	%{name}-non-english-man-pages.tar.bz2
+Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+# Source5-md5:	ddba280857330dabba4d8c16d24a6dfd
+Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+# Source6-md5:	2e3992c2e1bc94212c2cd33236de6058
+# borrowed from util-linux
+Source7:	sln.8
+Source8:	%{name}-localedb-gen
+# Kernel headers for userspace
+Source9:	%{name}-kernheaders.tar.bz2
+# Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
+Source10:	http://www.kernel.pl/~djurban/glibc/nptl-%{_snap}.tar.bz2
+# Source10-md5:	453133cd9067a33db6f53a9cc4b6bf68
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-string2-pointer-arith.patch
 Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
-Patch7:		%{name}-sparc-linux-chown.patch
-Patch8:		%{name}-ldconfig-bklinks.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
-Patch11:	%{name}-malloc.patch
-Patch12:	%{name}-glob.patch
-Patch13:	%{name}-getaddrinfo-workaround.patch
-Patch14:	%{name}-gcc3.patch
+Patch11:	%{name}-getaddrinfo-workaround.patch
+Patch12:	%{name}-postshell.patch
+Patch13:	%{name}-pl.po-update.patch
+Patch14:	%{name}-missing-nls.patch
+Patch16:	%{name}-java-libc-wait.patch
+Patch17:	%{name}-morelocales.patch
+Patch18:	%{name}-lthrds_noomit.patch
+Patch19:	%{name}-no_opt_override.patch
+Patch20:	%{name}-gcc33.patch
+#Patch21:	%{name}-sanity.patch
+Patch22:	%{name}-secureexec.patch
+Patch23:	%{name}-kernel_includes.patch
+Patch24:	%{name}-sparc64_pause.patch
+Patch25:	%{name}-linuxthreads.patch
+Patch26:	%{name}-csu-verfix.patch
 URL:		http://www.gnu.org/software/libc/
-BuildRequires:	gd-devel >= 2.0.1
+BuildRequires:	binutils >= 2.13.90.0.2
+BuildRequires:	gcc >= 3.2
+%{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-BuildRequires:	libpng-devel
-BuildRequires:	perl
+%if 0%{!?_with_kernheaders:1}
+%{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.5}
+%endif
+BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.0.2-46
+BuildRequires:	rpm-perlprov
+BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-%{!?_without_dist_kernel:Buildrequires:         kernel-headers >= %{_min_kernel} }
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -72,14 +109,19 @@ Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 Autoreq:	false
-Prereq:		basesystem
+PreReq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Conflicts:	kernel < %{_min_kernel}
-Conflicts:	kernel < %{_really_min_kernel}
+Conflicts:	kernel < %{min_kernel}
+Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
-Conflicts:	ld.so < 1.9.9-9
+Conflicts:	rc-scripts < 0.3.1-13
+Conflicts:	rpm < 4.1
 
 %define		debugcflags	-O1 -g
+%ifarch sparc64
+%define		_without_memusage	1
+%define		specflags_sparc64	-mvis -fcall-used-g6
+%endif
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -89,6 +131,8 @@ programs. This package contains the most important sets of shared
 libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
+
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l de
 Enth‰lt die Standard-Libraries, die von verschiedenen Programmen im
@@ -101,6 +145,8 @@ Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enth‰lt es den Support f¸r die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
 
+Can be used on: Linux kernel >= %{min_kernel}.
+
 %description -l fr
 Contient les bibliothËques standards utilisÈes par de nombreux
 programmes du systËme. Afin d'Èconomiser l'espace disque et mÈmoire,
@@ -111,6 +157,21 @@ du C et la bibliothËque mathÈmatique standard. Sans celles-ci, un
 systËme Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de donnÈes des zones
 horaires.
+
+Can be used on: Linux kernel >= %{min_kernel}.
+
+%description -l ja
+glibc
+•—•√•±°º•∏§œ•∑•π•∆•‡æÂ§Œ £øÙ§Œ•◊•Ì•∞•È•‡§«ª»§Ô§Ï§Î…∏Ω‡•È•§•÷•È•Í§Ú
+§’§Ø§ﬂ§ﬁ§π°£•«•£•π•Ø•π•⁄°º•π§»•·•‚•Í§Ú¿·ÃÛ§∑§ø§Í°¢•¢•√•◊•∞•Ï°º•…§Ú
+Õ—∞’§À§π§Î§ø§·§À°¢∂¶ƒÃ§Œ•∑•π•∆•‡•≥°º•…§œ∞Ï§ƒ§ŒæÏΩÍ§À§™§´§Ï°¢•◊•Ì•∞•È•‡
+¥÷§«∂¶Õ≠§µ§Ï§ﬁ§π°£§≥§Œ…Ù ¨≈™§ •—•√•±°º•∏§œ•∑•ß•¢•…•È•§•÷•È•Í§Œ§´§ §Í
+Ω≈Õ◊§ •ª•√•»§Ú§’§Ø§ﬂ§ﬁ§π: …∏Ω‡ C •È•§•÷•È•Í§»…∏Ω‡øÙ√Õ•È•§•÷•È•Í§«§π°£
+§≥§Œ∆Û§ƒ§Œ•È•§•÷•È•Í»¥§≠§«§œ°¢Linux •∑•π•∆•‡§œµ°«Ω§∑§ﬁ§ª§Û°£ glibc
+•—•√•±°º•∏§œ§ﬁ§ø√œ∞Ë∏¿∏Ï (locale) •µ•›°º•»§»•ø•§•‡•æ°º•Û•«°º•ø•Ÿ°º•π
+•µ•›°º•»§Ú§’§Ø§ﬂ§ﬁ§π°£
+
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l pl
 W pakiecie znajduj± siÍ podstawowe biblioteki, uøywane przez rÛøne
@@ -123,6 +184,21 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaÊ.
 Znajduj± siÍ tutaj rÛwnieø definicje rÛønych informacji dla wielu
 jÍzykÛw (locale) oraz definicje stref czasowych.
 
+Przeznaczony dla j±dra Linux >= %{min_kernel}.
+
+%description -l ru
+Ûœƒ≈“÷…‘ ”‘¡Œƒ¡“‘ŒŸ≈ ¬…¬Ã…œ‘≈À…, …”–œÃÿ⁄’≈ÕŸ≈ ÕŒœ«œﬁ…”Ã≈ŒŒŸÕ…
+–“œ«“¡ÕÕ¡Õ… ◊ ”…”‘≈Õ≈. ‰Ã— ‘œ«œ, ﬁ‘œ¬Ÿ ”œ»“¡Œ…‘ÿ ƒ…”Àœ◊œ≈ –“œ”‘“¡Œ”‘◊œ
+… –¡Õ—‘ÿ, ¡ ‘¡À÷≈ ƒÃ— –“œ”‘œ‘Ÿ œ¬Œœ◊Ã≈Œ…—, ”…”‘≈ÕŒŸ  Àœƒ, œ¬›…  ƒÃ—
+◊”≈» –“œ«“¡ÕÕ, »“¡Œ…‘”— ◊ œƒŒœÕ Õ≈”‘≈ … ÀœÃÃ≈À‘…◊Œœ …”–œÃÿ⁄’≈‘”— ◊”≈Õ…
+–“œ«“¡ÕÕ¡Õ…. ¸‘œ‘ –¡À≈‘ ”œƒ≈“÷…‘ Œ¡…¬œÃ≈≈ ◊¡÷ŒŸ≈ …⁄ “¡⁄ƒ≈Ã—≈ÕŸ»
+¬…¬Ã…œ‘≈À - ”‘¡Œƒ¡“‘Œ’¿ ¬…¬Ã…œ‘≈À’ C … ”‘¡Œƒ¡“‘Œ’¿ ¬…¬Ã…œ‘≈À’
+Õ¡‘≈Õ¡‘…À…. ‚≈⁄ ‹‘…» ¬…¬Ã…œ‘≈À Linux ∆’ŒÀ√…œŒ…“œ◊¡‘ÿ Œ≈ ¬’ƒ≈‘. Ù¡À÷≈
+–¡À≈‘ ”œƒ≈“÷…‘ –œƒƒ≈“÷À’ Œ¡√…œŒ¡ÃÿŒŸ» —⁄ŸÀœ◊ (locale) … ¬¡⁄Ÿ ƒ¡ŒŒŸ»
+◊“≈Õ≈ŒŒŸ» ⁄œŒ (timezone databases).
+
+Can be used on: Linux kernel >= %{min_kernel}.
+
 %description -l tr
 Bu paket, birÁok program˝n kulland˝˝ standart kitapl˝klar˝ iÁerir.
 Disk alan˝ ve bellek kullan˝m˝n˝ azaltmak ve ayn˝ zamanda g¸ncelleme
@@ -132,21 +208,32 @@ kitapl˝klar˝, standart C kitapl˝˝n˝ ve standart matematik kitapl˝˝n˝
 iÁerir. Bu kitapl˝klar olmadan Linux sistemi Áal˝˛mayacakt˝r. Yerel
 dil destei ve zaman dilimi veri taban˝ da bu pakette yer al˝r.
 
+Can be used on: Linux kernel >= %{min_kernel}.
+
+%description -l uk
+Ì¶”‘…‘ÿ ”‘¡Œƒ¡“‘Œ¶ ¬¶¬Ã¶œ‘≈À…, Àœ‘“¶ ◊…Àœ“…”‘œ◊’¿‘ÿ”— ﬁ…”Ã≈ŒŒ…Õ…
+–“œ«“¡Õ¡Õ… ◊ ”…”‘≈Õ¶. ‰Ã— ‘œ«œ, ›œ¬ ⁄¬≈“≈«‘… ƒ…”Àœ◊…  –“œ”‘¶“ ‘¡
+–¡Õ'—‘ÿ, ¡ ‘¡Àœ÷ ƒÃ— –“œ”‘œ‘… –œŒœ◊Ã≈ŒŒ— ”…”‘≈Õ…, ”…”‘≈ÕŒ…  Àœƒ,
+”–¶ÃÿŒ…  ƒÃ— ◊”¶» –“œ«“¡Õ, ⁄¬≈“¶«¡§‘ÿ”— ◊ œƒŒœÕ’ Õ¶”√¶ ¶ ÀœÃ≈À‘…◊Œœ
+◊…Àœ“…”‘œ◊’§‘ÿ”— ◊”¶Õ¡ –“œ«“¡Õ¡Õ…. „≈  –¡À≈‘ Õ¶”‘…‘ÿ Œ¡ ¬¶Ãÿ€ ◊¡÷Ã…◊¶
+⁄ ƒ…Œ¡Õ¶ﬁŒ…» ¬¶¬Ã¶œ‘≈À - ”‘¡Œƒ¡“‘Œ’ ¬¶¬Ã¶œ‘≈À’ Û ‘¡ ”‘¡Œƒ¡“‘Œ’
+¬¶¬Ã¶œ‘≈À’ Õ¡‘≈Õ¡‘…À…. ‚≈⁄ √…» ¬¶¬Ã¶œ‘≈À Linux ∆’ŒÀ√¶œŒ’◊¡‘… Œ≈ ¬’ƒ≈.
+Ù¡Àœ÷ –¡À≈‘ Õ¶”‘…‘ÿ –¶ƒ‘“…ÕÀ’ Œ¡√¶œŒ¡ÃÿŒ…» Õœ◊ (locale) ‘¡ ¬¡⁄… ƒ¡ŒŒ…»
+ﬁ¡”œ◊…» ⁄œŒ (timezone databases).
+
+Can be used on: Linux kernel >= %{min_kernel}.
+
 %package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
-Summary(fr):	Librairies supplÈmentaires nÈcessaires ‡ la compilation.
+Summary(fr):	Librairies supplÈmentaires nÈcessaires ‡ la compilation
+Summary(ja):	…∏Ω‡ C •È•§•÷•È•Í§«ª»§Ô§Ï§Î•ÿ•√•¿°º§»•™•÷•∏•ß•Ø•»•’•°•§•Î
 Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
+Summary(ru):	‰œ–œÃŒ…‘≈ÃÿŒŸ≈ ¬…¬Ã…œ‘≈À…, Œ≈œ¬»œƒ…ÕŸ≈ ƒÃ— ÀœÕ–…Ã—√……
 Summary(tr):	Geli˛tirme iÁin gerekli dier kitapl˝klar
+Summary(uk):	‰œƒ¡‘Àœ◊¶ ¬¶¬Ã¶œ‘≈À…, –œ‘“¶¬Œ¶ ƒÃ— ÀœÕ–¶Ã—√¶ß
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
-Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -163,26 +250,61 @@ Pour dÈvelopper des programmes utilisant les bibliothËques standard du
 C (ce que presque tous les programmes font), le systËme doit possÈder
 ces fichiers en-tÍtes et objets standards pour crÈer les exÈcutables.
 
+%description devel -l ja
+glibc-devel •—•√•±°º•∏§œ(§€§»§Û§…§π§Ÿ§∆§Œ•◊•Ì•∞•È•‡§«ª»§Ô§Ï§Î)…∏Ω‡ C
+•È•§•÷•È•Í§Úª»Õ—§∑§ø•◊•Ì•∞•È•‡§Ú≥´»Ø§π§Î§ø§·§Œ•ÿ•√•¿°º§»•™•÷•∏•ß•Ø•»
+•’•°•§•Î§Ú¥ﬁ§ﬂ§ﬁ§π°£§‚§∑…∏Ω‡ C
+•È•§•÷•È•Í§Úª»Õ—§π§Î•◊•Ì•∞•È•‡§Ú≥´»Ø§π§Î§ §È
+º¬π‘•’•°•§•Î§Ú∫Ó¿Æ§π§ÎÃ‹≈™§«§≥§Ï§È§Œ…∏Ω‡•ÿ•√•¿§»•™•÷•∏•ß•Ø•»•’•°•§•Î
+§¨ª»Õ—§«§≠§ﬁ§π°£
+
 %description devel -l pl
 Pakiet ten jest niezbÍdny przy tworzeniu w≥asnych programÛw
 korzystaj±cych ze standardowej biblioteki C. Znajduj± siÍ tutaj pliki
 nag≥Ûwkowe oraz pliki objektowe, niezbÍdne do kompilacji programÛw
 wykonywalnych i innych bibliotek.
 
+%description devel -l ru
+‰Ã— “¡⁄“¡¬œ‘À… –“œ«“¡ÕÕ, …”–œÃÿ⁄’¿›…» ”‘¡Œƒ¡“‘ŒŸ≈ ¬…¬Ã…œ‘≈À… C (¡
+–“¡À‘…ﬁ≈”À… ◊”≈ –“œ«“¡ÕÕŸ …» …”–œÃÿ⁄’¿‘), ”…”‘≈Õ≈ ÓÂÔ‚ËÔ‰ÈÌ˘ »≈ƒ≈“Ÿ …
+œ¬ﬂ≈À‘ŒŸ≈ ∆¡ ÃŸ, ”œƒ≈“÷¡›…≈”— ◊ ‹‘œÕ –¡À≈‘≈, ﬁ‘œ¬Ÿ ”œ⁄ƒ¡◊¡‘ÿ
+…”–œÃŒ—≈ÕŸ≈ ∆¡ ÃŸ.
+
 %description devel -l tr
 C kitapl˝˝n˝ kullanan (ki hemen hemen hepsi kullan˝yor) programlar
 geli˛tirmek iÁin gereken standart ba˛l˝k dosyalar˝ ve statik
 kitapl˝klar.
 
+%description devel -l uk
+‰Ã— “œ⁄“œ¬À… –“œ«“¡Õ, ›œ ◊…Àœ“…”‘œ◊’¿‘ÿ ”‘¡Œƒ¡“‘Œ¶ ¬¶¬Ã¶œ‘≈À… C
+(–“¡À‘…ﬁŒœ ◊”¶ –“œ«“¡Õ… ß» ◊…Àœ“…”‘œ◊’¿‘ÿ), ”…”‘≈Õ¶ ÓÂÔ‚Ë∂‰Ó∂ »≈ƒ≈“…
+‘¡ œ¬'§À‘Œ¶ ∆¡ Ã…, ›œ Õ¶”‘—‘ÿ”— ◊ √ÿœÕ’ –¡À≈‘¶, √œ¬ ”‘◊œ“¿◊¡‘…
+◊…ÀœŒ’◊¡Œ¶ ∆¡ Ã….
+
+%package kernel-headers
+Summary:	Kernel header files the glibc has been built with
+Summary(pl):	Pliki nag≥Ûwkowe j±dra, z ktÛrymi zosta≥a zbudowana ta wersja glibc
+Release:	%{rel}
+Group:		Development/Libraries
+
+%description kernel-headers
+Kernel header files for userspace.
+
+%description kernel-headers -l pl
+Pliki nag≥Ûwkowe j±dra dla przestrzeni uøytkownika
+
 %package -n nscd
 Summary:	Name Service Caching Daemon
+Summary(ja):	•Õ°º•‡•µ°º•”•π•≠•„•√•∑•Û•∞•«°º•‚•Û (nacd)
+Summary(pl):	Demon zapamiÍtuj±cy odpowiedzi serwisÛw nazw
+Summary(ru):	Î‹€…“’¿›…  ƒ≈ÕœŒ ”≈“◊…”œ◊ …Õ≈Œ
+Summary(uk):	Î≈€’¿ﬁ…  ƒ≈ÕœŒ ”≈◊¶”¶◊ ¶Õ≈Œ
+Release:	%{rel}
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
-Prereq:		/sbin/chkconfig
-Prereq:		rc-scripts >= 0.2.0
-Requires:	%{name} = %{version}
+PreReq:		rc-scripts >= 0.2.0
+Requires(post,preun):	/sbin/chkconfig
 Requires(post):	fileutils
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
@@ -190,41 +312,72 @@ performance with NIS+, and may help with DNS as well. You cannot use
 nscd with 2.0 kernels, due to bugs in the kernel-side thread support.
 nscd happens to hit these bugs particularly hard.
 
+%description -n nscd -l ja
+Nscd §œ•Õ°º•‡•µ°º•”•πª≤æ»§Ú•≠•„•√•∑•Â§∑°¢NIS+ §Œ•—•’•©°º•ﬁ•Û•π§Ú
+•…•È•ﬁ•∆•£•√•Ø§À≤˛¡±§π§Î§≥§»§¨§«§≠°¢DNS §Ú∆±ÕÕ§À ‰Ωı§∑§ﬁ§π°£ 2.0
+•´°º•Õ•Î§« nscd §Úª»Õ—§π§Î§≥§»§œ§«§≠§ §§§≥§»§À√Ì∞’§∑§∆§Ø§¿§µ§§°£
+§Ω§Ï§œ°¢•´°º•Õ•Î¬¶§Œ•π•Ï•√•…•µ•›°º•»§À•–•∞§¨§¢§Î§´§È§«§π°£…‘π¨§ §≥§»§À°¢
+nscd §œ§≥§Ï§È§Œ•–•∞§À∆√§À§œ§≤§∑§Ø§¢§ø§√§∆§∑§ﬁ§§§ﬁ§π°£
+
 %description -n nscd -l pl
-nscd zapmiÍtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
+nscd zapamiÍtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
 drastycznie poprawiÊ szybko∂Ê dzia≥ania NIS+. Nie jest moøliwe
 uøywanie nscd z j±drami serii 2.0.x z powodu b≥ÍdÛw po stronie j±dra w
-ods≥udze w±tkÛw.
+obs≥udze w±tkÛw.
+
+%description -n nscd -l ru
+nscd À‹€…“’≈‘ “≈⁄’Ãÿ‘¡‘Ÿ ⁄¡–“œ”œ◊ À ”≈“◊…”¡Õ …Õ≈Œ; ‹‘œ Õœ÷≈‘ “≈⁄Àœ
+’◊≈Ã…ﬁ…‘ÿ –“œ…⁄◊œƒ…‘≈ÃÿŒœ”‘ÿ “¡¬œ‘Ÿ ” NIS+ …, ‘¡À÷≈, Õœ÷≈‘ –œÕœﬁÿ ”
+DNS.
+
+%description -n nscd -l uk
+nscd À≈€’§ “≈⁄’Ãÿ‘¡‘… ⁄¡–“œ”¶◊ ƒœ ”≈“◊¶”¶◊ ¶Õ≈Œ; √≈ Õœ÷≈ ”…ÃÿŒœ
+⁄¬¶Ãÿ€…‘… €◊…ƒÀ¶”‘ÿ “œ¬œ‘… ⁄ NIS+ ¶, ‘¡Àœ÷, Õœ÷≈ ƒœ–œÕœ«‘… ⁄ DNS.
 
 %package -n localedb-src
 Summary:	locale database source code
 Summary(pl):	Kod ºrÛd≥owy bazy locale
+Release:	%{rel}
 Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
-files to use the internationalization features of the GNU libc. glibc
-package contains standard set of locale binary database so you need
-this package only when you want to build some non-standard locale
-database.
+files to use the internationalization features of the GNU libc.
 
 %description -n localedb-src -l pl
 Pakiet ten zawiera dane niezbÍdne do zbudowania binarnych plikÛw
 lokalizacyjnych, by mÛc wykorzystaÊ moøliwo∂ci oferowane przez GNU
-libc. glibc zawiera standardowy zestaw binarnych baz lokalizacyjnych,
-w zwi±zku z czym ten pakiet jest potrzebny tylko w sytuacji budowania
-jakiej∂ niestandardowej bazy.
+libc.
+
+%package localedb-all
+Summary:	locale database for all locales supported by glibc
+Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs≥ugiwanych przez glibc
+Release:	%{rel}
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}
+
+%description localedb-all
+This package contains locale database for all locales supported by
+glibc. In glibc 2.3.x it's one large file (about 19MB) - if you want
+something smaller with support for chosen locales only, consider
+installing localedb-src and regenerating database using localedb-gen
+script (when database is generated, localedb-src can be uninstalled).
+
+%description localedb-all -l pl
+Ten pakiet zawiera bazÍ danych locale dla wszystkich lokalizacji
+obs≥ugiwanych przez glibc. W glibc 2.3.x jest to jeden duøy plik
+(oko≥o 19MB); aby mieÊ co∂ mniejszego, z obs≥ug± tylko wybranych
+lokalizacji, naleøy zainstalowaÊ pakiet localedb-src i przegenerowaÊ
+bazÍ danych przy uøyciu skryptu localedb-gen (po wygenerowaniu bazy
+pakiet localedb-src moøna odinstalowaÊ).
 
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
 Summary(pl):	Program do konwersji plikÛw tekstowych z jednego kodowania do innego
-Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
-Requires:	%{name} = %{version}
+Release:	%{rel}
+Group:		Applications/Text
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need
@@ -241,22 +394,13 @@ Interface w glibc, czyli z zestawu funkcji z tej biblioteki, ktÛre
 umoøliwiaj± konwersjÍ kodowania danych z poziomu dowolnego programu.
 
 %package static
-Release:        %{_release}@%{_kernel_series}
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
+Summary(ru):	Û‘¡‘…ﬁ≈”À…≈ ¬…¬Ã…œ‘≈À… glibc
+Summary(uk):	Û‘¡‘…ﬁŒ¶ ¬¶¬Ã¶œ‘≈À… glibc
+Release:	%{rel}
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
-Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
-Requires:	%{name}-devel = %{version}
-%if %{_kernel24}
-Conflicts:      kernel < %{_min_kernel}
-%endif
-Conflicts:	kernel < %{_really_min_kernel}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 GNU libc static libraries.
@@ -264,22 +408,26 @@ GNU libc static libraries.
 %description static -l pl
 Biblioteki statyczne GNU libc.
 
+%description static -l ru
+¸‘œ œ‘ƒ≈ÃÿŒŸ  –¡À≈‘ ”œ ”‘¡‘…ﬁ≈”À…Õ… ¬…¬Ã…œ‘≈À¡Õ…, Àœ‘œ“Ÿ≈ ¬œÃÿ€≈ Œ≈
+◊»œƒ—‘ ◊ glibc-devel.
+
+%description static -l uk
+„≈ œÀ“≈Õ…  –¡À≈‘ ⁄¶ ”‘¡‘…ﬁŒ…Õ… ¬¶¬Ã¶œ‘≈À¡Õ…, ›œ ¬¶Ãÿ€≈ Œ≈ ◊»œƒ—‘ÿ ◊
+”ÀÃ¡ƒ glibc-devel.
+
 %package profile
-Release:        %{_release}@%{_kernel_series}
 Summary:	glibc with profiling support
 Summary(de):	glibc mit Profil-Unterst¸tzung
 Summary(fr):	glibc avec support pour profiling
 Summary(pl):	glibc ze wsparciem dla profilowania
+Summary(ru):	GNU libc ” –œƒƒ≈“÷Àœ  –“œ∆¡ Ã≈“¡
 Summary(tr):	÷lÁ¸m destei olan glibc
+Summary(uk):	GNU libc ⁄ –¶ƒ‘“…ÕÀœ¿ –“œ∆¡ Ã≈“¡
+Release:	%{rel}
 Group:		Development/Libraries/Libc
-Group(de):	Entwicklung/Libraries/Libc
-Group(pl):	Programowanie/Biblioteki/Libc
 Obsoletes:	libc-profile
-Requires:	%{name}-devel = %{version}
-%if %{_kernel24}
-Conflicts:      kernel < %{_min_kernel}
-%endif
-Conflicts:	kernel < %{_really_min_kernel}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description profile
 When programs are being profiled used gprof, they must use these
@@ -295,21 +443,30 @@ Programy profilowane za pomoc± gprof musz± uøywaÊ tych bibliotek
 zamiast standardowych bibliotek C, aby gprof mÛg≥ odpowiednio je
 wyprofilowaÊ.
 
+%description profile -l uk
+ÎœÃ… –“œ«“¡Õ… ƒœ”Ã¶ƒ÷’¿‘ÿ”— –“œ∆¡ Ã≈“œÕ gprof, ◊œŒ… –œ◊…ŒŒ¶
+◊…Àœ“…”‘œ◊’◊¡‘… ⁄¡Õ¶”‘ÿ ”‘¡Œƒ¡“‘Œ…» ¬¶¬Ã¶œ‘≈À ¬¶¬Ã¶œ‘≈À…, ›œ Õ¶”‘—‘ÿ”—
+◊ √ÿœÕ’ –¡À≈‘¶. “… ◊…Àœ“…”‘¡ŒŒ¶ ”‘¡Œƒ¡“‘Œ…» ¬¶¬Ã¶œ‘≈À gprof ⁄¡Õ¶”‘ÿ
+“≈¡ÃÿŒ…» “≈⁄’Ãÿ‘¡‘¶◊ ¬’ƒ≈ –œÀ¡⁄’◊¡‘… √¶Œ… Œ¡ –¡–¡ ¿ ◊ ÁœŒœÃ’Ã’ ◊
+–œ⁄¡Õ…Œ’ÃœÕ’ “œ√¶...
+
 %description profile -l tr
 gprof kullan˝larak ˆlÁ¸len programlar standart C kitapl˝˝ yerine bu
 kitapl˝˝ kullanmak zorundad˝rlar.
 
+%description profile -l ru
+Îœ«ƒ¡ –“œ«“¡ÕÕŸ …””Ã≈ƒ’¿‘”— –“œ∆¡ Ã≈“œÕ gprof, œŒ… ƒœÃ÷ŒŸ
+…”–œÃÿ⁄œ◊¡‘ÿ, ◊Õ≈”‘œ ”‘¡Œƒ¡“‘ŒŸ» ¬…¬Ã…œ‘≈À, ¬…¬Ã…œ‘≈À…, ◊ÀÃ¿ﬁ≈ŒŒŸ≈ ◊
+‹‘œ‘ –¡À≈‘. “… …”–œÃÿ⁄œ◊¡Œ…… ”‘¡Œƒ¡“‘ŒŸ» ¬…¬Ã…œ‘≈À gprof ◊Õ≈”‘œ
+“≈¡ÃÿŒŸ» “≈⁄’Ãÿ‘¡‘œ◊ ¬’ƒ≈‘ –œÀ¡⁄Ÿ◊¡‘ÿ √≈ŒŸ Œ¡ –¡–¡ ¿ ◊ ÁœŒœÃ’Ã’ ◊
+–œ⁄¡–“œ€ÃœÕ «œƒ’...
+
 %package pic
 Summary:	glibc PIC archive
-Summary(pl):	archiwum PIC glibc
+Summary(pl):	Archiwum PIC glibc
+Release:	%{rel}
 Group:		Development/Libraries/Libc
-Group(de):	Entwicklung/Libraries/Libc
-Group(pl):	Programowanie/Biblioteki/Libc
-Requires:	%{name}-devel = %{version}
-%if %{_kernel24}
-Conflicts:      kernel < %{_min_kernel}
-%endif
-Conflicts:	kernel < %{_really_min_kernel}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description pic
 GNU C Library PIC archive contains an archive library (ar file)
@@ -325,12 +482,9 @@ biblioteki wspÛ≥dzielonej libc.
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
 Summary(pl):	Stary modu≥ NYS NSS glibc
+Release:	%{rel}
 Group:		Base
-Group(de):	Gr¸nds‰tzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_compat
 Old style NYS NSS glibc module.
@@ -341,12 +495,9 @@ Stary modu≥ NYS NSS glibc.
 %package -n nss_dns
 Summary:	BIND NSS glibc module
 Summary(pl):	Modu≥ BIND NSS glibc
+Release:	%{rel}
 Group:		Base
-Group(de):	Gr¸nds‰tzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_dns
 BIND NSS glibc module.
@@ -357,12 +508,9 @@ Modu≥ BIND NSS glibc.
 %package -n nss_files
 Summary:	Traditional files databases NSS glibc module
 Summary(pl):	Modu≥ tradycyjnych plikowych baz danych NSS glibc
+Release:	%{rel}
 Group:		Base
-Group(de):	Gr¸nds‰tzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_files
 Traditional files databases NSS glibc module.
@@ -371,14 +519,11 @@ Traditional files databases NSS glibc module.
 Modu≥ tradycyjnych plikowych baz danych NSS glibc.
 
 %package -n nss_hesiod
-Summary:	Hesiod NSS glibc module
+Summary:	hesiod NSS glibc module
 Summary(pl):	Modu≥ hesiod NSS glibc
+Release:	%{rel}
 Group:		Base
-Group(de):	Gr¸nds‰tzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_hesiod
 glibc NSS (Name Service Switch) module for databases access.
@@ -389,12 +534,9 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych.
 %package -n nss_nis
 Summary:	NIS(YP) NSS glibc module
 Summary(pl):	Modu≥ NIS(YP) NSS glibc
+Release:	%{rel}
 Group:		Base
-Group(de):	Gr¸nds‰tzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_nis
 glibc NSS (Name Service Switch) module for NIS(YP) databases access.
@@ -405,12 +547,9 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS(YP).
 %package -n nss_nisplus
 Summary:	NIS+ NSS module
 Summary(pl):	Modu≥ NIS+ NSS
+Release:	%{rel}
 Group:		Base
-Group(de):	Gr¸nds‰tzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n nss_nisplus
 glibc NSS (Name Service Switch) module for NIS+ databases accesa.
@@ -421,10 +560,9 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS+.
 %package memusage
 Summary:	A toy
 Summary(pl):	Zabawka
+Release:	%{rel}
 Group:		Applications
-Group(de):	Applikationen
-Group(pl):	Aplikacje
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 Requires:	gd
 
 %description memusage
@@ -433,46 +571,140 @@ A toy.
 %description memusage -l pl
 Zabawka.
 
+%package zoneinfo_right
+Summary:	Non-POSIX (real) time zones
+Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
+Release:	%{rel}
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}
+
+%description zoneinfo_right
+You don't want this. Details at:
+http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
+
+%description zoneinfo_right -l pl
+Nie potrzebujesz tego. SzczegÛ≥y pod:
+http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
+
 %prep
-%setup -q -a 1
+%setup -q -a 9 -n %{name}-%{version}-%{_snap}
+%if %{with nptl}
+%{__tar} xfj %{SOURCE10}
+rm -rf linuxthreads*
+%else
+%{__tar} xfj %{SOURCE1}
+%endif
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
+#%%patch11 -p1
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+%patch16 -p1
+%patch17 -p1
+# don't know, if it is good idea, for brave ones
+#%patch19 -p1
+##%patch20 -p1
+#%patch21 -p1
+##%patch22 -p1
+%{!?_with_kernheaders:%patch23}
+##%patch24 -p1
+# updated - lt
+%patch26 -p1
+
+%if %{without nptl}
+%patch5 -p1
+%patch6 -p1
+##%patch25 -p1
+%patch18 -p1
+%endif
+
+chmod +x scripts/cpp
+
+# standardize name
+mv -f localedata/locales/{lug_UG,lg_UG}
+
+#make proper symlink for asm in headers
+#cd usr/include
+#%ifarch %{ix86}
+#ln -s asm-i386 asm
+#%endif
+#cd ../..
 
 %build
+# Prepare kernel headers
+TARGET_CPU=$(echo "%{_target_cpu}" | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
+				   -e s/athlon/i386/ -e s/arm.*/arm/ \
+				   -e s/sa110/arm/ -e s/s390x/s390/)
+_headers_dir=`pwd`/usr/include; export _headers_dir;
+(cd $_headers_dir && ln -s asm-${TARGET_CPU} asm)
+
+# Build glibc
+mkdir builddir
+cd builddir
+# avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
-%configure2_13 \
-	--enable-add-ons=linuxthreads \
+#CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
+../%configure \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
-	--disable-omitfp
+	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
+%if %{with nptl}
+	CPPFLAGS="-I%{_kernelsrcdir}/include" \
+	--with-headers=%{_kernelsrcdir}/include \
+	--enable-add-ons=nptl \
+	--with-tls \
+	--disable-sanity-checks \
+%else
+	--enable-add-ons=linuxthreads \
+%if 0%{!?_with_kernheaders:1}
+	CPPFLAGS="-I%{_kernelsrcdir}/include" \
+	--with-headers=%{_kernelsrcdir}/include
+%else
+	CPPFLAGS="-I$_headers_dir" \
+	--with-headers=$_headers_dir
+%endif
+%endif
+# problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-%{__make}
+%{__make} %{?parallelmkflags}
+
+%if %{with nptl}
+%{__make} subdirs=elf others
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
 
+_headers_dir=`pwd`/usr/include; export _headers_dir;
+
+cd builddir
+
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
+	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
+%if %{with nptl}
 env LANGUAGE=C LC_ALL=C \
-%{__make} install-locales -C localedata \
+%{__make} install \
+	subdirs=nptl \
+	%{?parallelmkflags} \
+	install_root=$RPM_BUILD_ROOT \
+	infodir=%{_infodir} \
+	mandir=%{_mandir}
+%endif
+
+env LANGUAGE=C LC_ALL=C \
+%{__make} localedata/install-locales \
+	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT
 
 PICFILES="libc_pic.a libc.map
@@ -483,78 +715,178 @@ install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
-mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
-mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
+install elf/postshell				$RPM_BUILD_ROOT/sbin
 
-%{__make} -C linuxthreads/man
-install linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
+%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib*/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+mv -f $RPM_BUILD_ROOT/lib*/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
+%if %{without nptl}
+%{__make} -C ../linuxthreads/man
+install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
+%endif
+rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
 
-ln -sf ../../..%{_sysconfdir}/localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf ../..%{_libdir}/libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
+#cd $RPM_BUILD_ROOT%{_datadir}/zoneinfo
+#for i in [A-Z]*; do
+#	ln -s ../$i posix
+#done
+#cd -
+
+ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
+ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
+ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
+
+# make symlinks across top-level directories absolute
+for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
+	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+	ln -sf /lib/`cd $RPM_BUILD_ROOT/lib ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+done
+
+%if %{with nptl}
+	rm -f $RPM_BUILD_ROOT%{_libdir}/libpthread.so
+	ln -sf /lib/libpthread-0.57.so $RPM_BUILD_ROOT%{_libdir}/libpthread.so
+%endif
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
-install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
-
+install ../nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install ../nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
-rm -f %{_mandir}/hu/man7/man.7
+rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
 
-rm -rf documentation
-install -d documentation
+rm -rf ../documentation
+install -d ../documentation
+%if %{without nptl}
+cp -f ../linuxthreads/ChangeLog ../documentation/ChangeLog.threads
+cp -f ../linuxthreads/Changes ../documentation/Changes.threads
+cp -f ../linuxthreads/README ../documentation/README.threads
+%endif
+cp -f ../crypt/README.ufc-crypt ../documentation/
 
-cp -f linuxthreads/ChangeLog documentation/ChangeLog.threads
-cp -f linuxthreads/Changes documentation/Changes.threads
-cp -f linuxthreads/README documentation/README.threads
-cp -f crypt/README.ufc-crypt documentation/
+cp -f ../ChangeLog* ../documentation
 
-cp -f ChangeLog documentation
-
-gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
+rm -f $RPM_BUILD_ROOT%{_libdir}*/libnss_*.so
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
-%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
+%define _zoran	2.3.2
+%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib*/ld-%{_zoran}.so}
 
 # Collect locale files and mark them with %%lang()
-rm -f glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
+rm -f ../glibc.lang
+echo '%defattr(644,root,root,755)' > ../glibc.lang
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}*/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
+		twochar=1
+		# list of long %%lang values we do support
+		for j in de_AT de_BE de_CH de_LU es_AR es_MX ja_JP.SJIS ko_KR.utf8 pt_BR \
+			 zh_CN zh_CN.gbk zh_HK zh_TW ; do
+			if [ $j = "$lang" ]; then
+				twochar=
+			fi
+		done
+		if [ -n "$twochar" ]; then
+			if [ `echo $lang | sed "s,_.*,,"` = "zh" ]; then
+				lang=`echo $lang | sed "s,\..*,,"`
+			else
+				lang=`echo $lang | sed "s,_.*,,"`
+			fi
+		fi
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
-		echo "%lang($lang) $dir" >> glibc.lang
+		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
 done
+# XXX: to be added when become supported by glibc
+# am,bn,ml (present in sources, but incomplete and disabled) (used by GNOME)
+# ia,kn,li,mn,sr@Latn (used by GNOME)
+#	note: GNOME2 uses sr as cyrillic!
+# nso,ss,ven,xh,zu (used by KDE)
+for i in af ar az be bg br bs cy de_AT el en en_AU eo es_AR es_MX et eu fa fi \
+	 ga gr he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru \
+	 se sl sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
+	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
+		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
+		lang=`echo $i | sed -e 's/_.*//'`
+		echo "%lang($lang) %{_datadir}/locale/$i" >> ../glibc.lang
+	fi
+done
+install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/man8
+
+# localedb-gen infrastructure
+install %{SOURCE8} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+cat > $RPM_BUILD_ROOT/etc/sysconfig/localedb <<EOF
+# list of supported locales
+#SUPPORTED_LOCALES="pl_PL/ISO-8859-2 de_DE/ISO-8859-2 en_GB/ISO-8859-1 en_US/ISO-8859-1"
+EOF
+install ../localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
+
+# shutup check-files
+rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
+rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
+# we don't support kernel without ptys support
+rm -f $RPM_BUILD_ROOT%{_libdir}*/pt_chown
+
+# copy actual kernel headers for glibc-kernel-headers
+%if 0%{!?_with_kernheaders:1}
+%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
+%{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
+if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
+	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
+fi
+%else
+%{__cp} -Hr $_headers_dir/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+# don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
+# when %%postun is run
+
+%post	-p /sbin/postshell
+/sbin/ldconfig
+-/sbin/telinit u
+
+%postun -p /sbin/postshell
+/sbin/ldconfig
+-/sbin/telinit u
 
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
 
+%post -n iconv -p %{_sbindir}/iconvconfig
+
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+echo "Please install glibc-kernel-headers or, if you are a brave man,"
+echo "make appropriate links in /usr/include pointing to an already"
+echo "installed previously chosen kernel-headers package or other"
+echo "kernel headers you have."
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
+%pre kernel-headers
+# useful if these are symlinks
+if [ -h %{_includedir}/asm ]; then rm -f %{_includedir}/asm; fi
+if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
+
 %post -n nscd
 /sbin/chkconfig --add nscd
-touch /var/log/nscd && (chmod 000 /var/log/nscd; chown root.root /var/log/nscd; chmod 640 /var/log/nscd)
+touch /var/log/nscd
+chmod 000 /var/log/nscd
+chown root:root /var/log/nscd
+chmod 640 /var/log/nscd
 if [ -f /var/lock/subsys/nscd ]; then
 	/etc/rc.d/init.d/nscd restart 1>&2
 else
@@ -571,7 +903,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc {README,NEWS,FAQ,BUGS}.gz
+%doc README NEWS FAQ BUGS
 
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
@@ -595,23 +927,26 @@ fi
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
-%attr(755,root,root) /lib/ld-*
-%attr(755,root,root) /lib/libdl*
-%attr(755,root,root) /lib/libnsl*
-%attr(755,root,root) /lib/lib[BScmprtu]*
+%attr(755,root,root) /lib*/ld-*
+%attr(755,root,root) /lib*/libanl*
+%attr(755,root,root) /lib*/libdl*
+%attr(755,root,root) /lib*/libnsl*
+%attr(755,root,root) /lib*/lib[BScmprtu]*
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
+%exclude %{_datadir}/zoneinfo/right
 
-%dir %{_libdir}/locale
+%dir %{_libdir}*/locale
 
-%{_mandir}/man1/[^ls]*
+%{_mandir}/man1/[!lsg]*
+%{_mandir}/man1/getent.1*
 %{_mandir}/man1/locale.1*
 %{_mandir}/man1/ldd.1*
-%{_mandir}/man5/???[^d]*
+%{_mandir}/man5/???[!d]*
 %{_mandir}/man7/*
-%{_mandir}/man8/[^n]*
+%{_mandir}/man8/[!n]*
 %lang(cs) %{_mandir}/cs/man[578]/*
 %lang(de) %{_mandir}/de/man[578]/*
 %lang(es) %{_mandir}/es/man[578]/*
@@ -621,69 +956,102 @@ fi
 %lang(hu) %{_mandir}/hu/man1/ldd.1*
 %lang(hu) %{_mandir}/hu/man[578]/*
 %lang(it) %{_mandir}/it/man[578]/*
-%lang(ja) %{_mandir}/ja/man1/[^ls]*
+%lang(ja) %{_mandir}/ja/man1/[!lsg]*
 %lang(ja) %{_mandir}/ja/man1/ldd.1*
-%lang(ja) %{_mandir}/ja/man5/???[^d]*
+%lang(ja) %{_mandir}/ja/man5/???[!d]*
 %lang(ja) %{_mandir}/ja/man7/*
-%lang(ja) %{_mandir}/ja/man8/[^n]*
+%lang(ja) %{_mandir}/ja/man8/[!n]*
 %lang(ko) %{_mandir}/ko/man[578]/*
 # %lang(nl) %{_mandir}/nl/man[578]/*
 %lang(pl) %{_mandir}/pl/man1/ldd.1*
 %lang(pl) %{_mandir}/pl/man[578]/*
-%lang(pt) %{_mandir}/pt/man5/???[^d]*
+%lang(pt) %{_mandir}/pt/man5/???[!d]*
 %lang(pt) %{_mandir}/pt/man7/*
-%lang(pt) %{_mandir}/pt/man8/[^n]*
-%lang(pt_BR) %{_mandir}/pt_BR/man5/???[^d]*
+%lang(pt) %{_mandir}/pt/man8/[!n]*
+%lang(pt_BR) %{_mandir}/pt_BR/man5/???[!d]*
 %lang(pt_BR) %{_mandir}/pt_BR/man7/*
-%lang(pt_BR) %{_mandir}/pt_BR/man8/[^n]*
+%lang(pt_BR) %{_mandir}/pt_BR/man8/[!n]*
 %lang(ru) %{_mandir}/ru/man[578]/*
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_dns*.so*
+%attr(755,root,root) /lib*/libnss_dns*.so*
 
 #%files -n nss_files
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_files*.so*
+%attr(755,root,root) /lib*/libnss_files*.so*
+
+%files zoneinfo_right
+%defattr(644,root,root,755)
+%{_datadir}/zoneinfo/right
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_compat*.so*
+%attr(755,root,root) /lib*/libnss_compat*.so*
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_hesiod*.so*
+%attr(755,root,root) /lib*/libnss_hesiod*.so*
 
 %files -n nss_nis
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_nis.so.*
-%attr(755,root,root) /lib/libnss_nis-*.so
+%attr(755,root,root) /lib*/libnss_nis.so.*
+%attr(755,root,root) /lib*/libnss_nis-*.so
 
 %files -n nss_nisplus
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_nisplus*.so*
+%attr(755,root,root) /lib*/libnss_nisplus*.so*
 
+%if %{?_without_memusage:0}%{!?_without_memusage:1}
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
-%attr(755,root,root) %{_libdir}/libmemusage*
+%attr(755,root,root) %{_libdir}*/libmemusage*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* {NOTES,PROJECTS}.gz
+%doc documentation/* NOTES PROJECTS
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/*prof*
 %attr(755,root,root) %{_bindir}/*trace
 
-%{_includedir}/*
+%{_includedir}/*.h
+%{_includedir}/arpa
+%{_includedir}/bits
+%{_includedir}/gnu
+%{_includedir}/net
+%{_includedir}/netash
+%{_includedir}/netatalk
+%{_includedir}/netax25
+%{_includedir}/neteconet
+%{_includedir}/netinet
+%{_includedir}/netipx
+%{_includedir}/netpacket
+%{_includedir}/netrom
+%{_includedir}/netrose
+%{_includedir}/nfs
+%{_includedir}/protocols
+%{_includedir}/rpc
+%{_includedir}/rpcsvc
+%{_includedir}/scsi
+%{_includedir}/sys
 
 %{_infodir}/libc.info*
 
-%attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/*crt*.o
-%{_libdir}/libc_nonshared.a
+%attr(755,root,root) %{_libdir}*/lib[!m]*.so
+%attr(755,root,root) %{_libdir}*/libm.so
+%attr(755,root,root) %{_libdir}*/*crt*.o
+%{_libdir}*/libbsd-compat.a
+%{_libdir}*/libbsd.a
+%{_libdir}*/libc_nonshared.a
+%{_libdir}*/libg.a
+%{_libdir}*/libieee.a
+%{_libdir}*/libpthread_nonshared.a
+%{_libdir}*/librpcsvc.a
 
+%{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
 %{_mandir}/man3/*
 %lang(cs) %{_mandir}/cs/man3/*
@@ -699,6 +1067,11 @@ fi
 %lang(pt) %{_mandir}/pt/man3/*
 %lang(pt_BR) %{_mandir}/pt_BR/man3/*
 %lang(ru) %{_mandir}/ru/man3/*
+
+%files kernel-headers
+%defattr(644,root,root,755)
+%{_includedir}/asm*
+%{_includedir}/linux
 
 %files -n nscd
 %defattr(644,root,root,755)
@@ -720,41 +1093,44 @@ fi
 %files -n localedb-src
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/localedef
+%attr(755,root,root) %{_bindir}/localedb-gen
 %{_datadir}/i18n
 %{_mandir}/man1/localedef*
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/localedb
+
+%files localedb-all
+%defattr(644,root,root,755)
+%{_libdir}*/locale/locale-archive
 
 %files -n iconv
 %defattr(644,root,root,755)
-%dir %{_libdir}/gconv
-%{_libdir}/gconv/gconv-modules
-%attr(755,root,root) %{_libdir}/gconv/*.so
+%attr(755,root,root) %{_sbindir}/iconvconfig
+%dir %{_libdir}*/gconv
+%{_libdir}*/gconv/gconv-modules
+%attr(755,root,root) %{_libdir}*/gconv/*.so
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libBrokenLocale.a
-%{_libdir}/libbsd-compat.a
-%{_libdir}/libbsd.a
-%{_libdir}/libc.a
-%{_libdir}/libcrypt.a
-%{_libdir}/libdl.a
-%{_libdir}/libg.a
-%{_libdir}/libieee.a
-%{_libdir}/libm.a
-%{_libdir}/libmcheck.a
-%{_libdir}/libnsl.a
-%{_libdir}/libpthread.a
-%{_libdir}/libresolv.a
-%{_libdir}/librpcsvc.a
-%{_libdir}/librt.a
-%{_libdir}/libutil.a
+%{_libdir}*/libanl.a
+%{_libdir}*/libBrokenLocale.a
+%{_libdir}*/libc.a
+%{_libdir}*/libcrypt.a
+%{_libdir}*/libdl.a
+%{_libdir}*/libm.a
+%{_libdir}*/libmcheck.a
+%{_libdir}*/libnsl.a
+%{_libdir}*/libpthread.a
+%{_libdir}*/libresolv.a
+%{_libdir}*/librt.a
+%{_libdir}*/libutil.a
 
 %files profile
 %defattr(644,root,root,755)
-%{_libdir}/lib*_p.a
+%{_libdir}*/lib*_p.a
 
 %files pic
 %defattr(644,root,root,755)
-%{_libdir}/lib*_pic.a
-%{_libdir}/lib*.map
-%{_libdir}/soinit.o
-%{_libdir}/sofini.o
+%{_libdir}*/lib*_pic.a
+%{_libdir}*/lib*.map
+%{_libdir}*/soinit.o
+%{_libdir}*/sofini.o
