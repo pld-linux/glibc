@@ -16,8 +16,8 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-Version:	2.3.1
-Release:	5@%{_kernel_ver_str}
+Version:	2.3.2
+Release:	0.1@%{_kernel_ver_str}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -453,7 +453,7 @@ Zabawka.
 %prep
 %setup -q -a 1
 %patch0 -p1
-%patch1 -p1
+#%%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -461,11 +461,11 @@ Zabawka.
 %patch6 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
+#%%patch11 -p1
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
-%patch15 -p1
+#%%patch15 -p1
 %patch16 -p1
 %patch17 -p1
 
@@ -806,7 +806,8 @@ fi
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
-%{_libdir}/librpcsvc.a
+%{_libdir}/libpthread_nonshared.a
+#%%{_libdir}/librpcsvc.a
 
 %{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
