@@ -8,7 +8,7 @@
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
-%bcond_with	nptl		# use nptl instead of linuxthreads
+%bcond_with	nptl		# use nptl instead of linuxthreads (implies tls)
 %bcond_with	tls		# use tls
 %bcond_with	tests		# perform "make test"
 
@@ -30,14 +30,16 @@
 %if "%{min_kernel}" < "2.6.0"
 %global		min_kernel	2.6.0
 %endif
+# NPTL requires TLS
+%define		with_tls	1
 %else
-%undefine with_nptl
+%undefine	with_nptl
 %endif
 %endif
 
 %if %{with tls}
 %ifnarch %{ix86} amd64 ia64 s390 s390x sparc sparcv9 ppc ppc64
-%undefine with_tls
+%undefine	with_tls
 %endif
 %endif
 
@@ -98,6 +100,7 @@ Patch20:	%{name}-tests-noproc.patch
 Patch21:	%{name}-linuxthreads-ppc-fix.patch
 Patch23:	%{name}-new-charsets.patch
 Patch26:	%{name}-sr_CS.patch
+Patch27:	%{name}-alpha-div.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -775,12 +778,13 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %{?with_kernelheaders:%patch13}
 %{?!with_kernelheaders:%patch14 -p1}
 %patch15 -p1
-%patch17
+%patch17 -p0
 %patch18 -p1
 %patch20 -p1
 %patch21 -p1
 %patch23 -p1
 %patch26 -p1
+%patch27 -p1
 
 %patch30 -p1
 %patch31 -p1
