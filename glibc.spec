@@ -700,6 +700,7 @@ Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
 %ifarch amd64
 Provides:	glibc = %{epoch}:%{version}-%{release}
+Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %else
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %endif
