@@ -860,9 +860,9 @@ BuildGlibc() {
   # avoid stripping ld.so by -s in rpmldflags
   LDFLAGS=" " ; export LDFLAGS
   #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
-  CFLAGS="${BuildCCFlags}"; export CFLAGS
-  CC="$BuildCC"; export CC
   ../%configure \
+	CC="${BuildCC}" \
+	CFLAGS="${BuildCCFlags}" \
 	--libexecdir="%{_prefix}/$glibc_libname" \
 	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
 	--enable-kernel="%{min_kernel}" \
