@@ -32,7 +32,7 @@ Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 #Source5-md5:	ddba280857330dabba4d8c16d24a6dfd
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-#Source6-md5:	glibc-non-english-man-pages.tar.bz2
+#Source6-md5:	2e3992c2e1bc94212c2cd33236de6058
 # borrowed from util-linux
 Source7:	sln.8
 Patch0:		%{name}-info.patch
