@@ -75,7 +75,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	1.1
+Release:	1.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -123,6 +123,7 @@ Patch26:	%{name}-nscd.patch
 Patch27:	%{name}-iconvconfig-nxstack.patch
 Patch28:	%{name}-gcc4.patch
 Patch29:	%{name}-cross-gcc_eh.patch
+Patch30:	%{name}-no_uint128_t.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -826,6 +827,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch27 -p1
 %patch28 -p1
 %{?with_cross:%patch29 -p1}
+%patch30 -p1
 
 chmod +x scripts/cpp
 
