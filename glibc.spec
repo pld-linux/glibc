@@ -462,7 +462,8 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
+touch $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
+rm -f %{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
 
