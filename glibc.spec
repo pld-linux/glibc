@@ -5,17 +5,17 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1
-Release:	3d 
+Release:	4
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-Source0:	ftp://alpha.gnu.org/pub/gnu/%{name}-2.0.112.tar.gz
-URL:		ftp://sourceware.cygnus.com/pub/glibc
-Source1:	%{name}-linuxthreads-2.1.tar.gz
-Source2:	%{name}-crypt-2.0.111.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
+Source2:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-crypt-2.0.111.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
-Patch:		%{name}-2.0.112-2.1.diff.gz
+Patch0:		glibc-info.patch
+URL:		http://www.gnu.org/software/libc/
 BuildRoot:	/tmp/%{name}-%{version}-root
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
@@ -31,31 +31,15 @@ the standard C library and the standard math library. Without these, a
 Linux system will not function. It also contains national language (locale)
 support and timezone databases.
 
-%package	devel
-Summary:	Additional libraries required to compile
-Summary(de):	Weitere Libraries zum Kompilieren
-Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
-Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
-Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
-Group:		Libraries
-Group(pl):	Biblioteki
-Prereq:		/sbin/install-info
-Requires:	%{name} = %{version}
-
-%description devel
-To develop programs which use the standard C libraries (which nearly all
-programs do), the system needs to have these standard header files and object
-files available for creating the executables.
-
 %description -l de
-Enthält die Standard-Libraries, die von verschiedenen Programmen im 
-System benutzt werden. Um Festplatten- und Arbeitsspeicher zu sparen 
-und zur Vereinfachung von Upgrades ist der gemeinsame Systemcode an 
-einer einzigen Stelle gespeichert und wird von den Programmen 
-gemeinsam genutzt. Dieses Paket enthält die wichtigsten Sets der 
-shared Libraries, die Standard-C-Library und die Standard-Math-Library, 
-ohne die das Linux-System nicht funktioniert. Ferner enthält es den Support 
-für die verschiedenen Sprachgregionen (locale) und die Zeitzonen-Datenbank.
+Enthält die Standard-Libraries, die von verschiedenen Programmen im System
+benutzt werden. Um Festplatten- und Arbeitsspeicher zu sparen und zur
+Vereinfachung von Upgrades ist der gemeinsame Systemcode an einer einzigen
+Stelle gespeichert und wird von den Programmen gemeinsam genutzt. Dieses
+Paket enthält die wichtigsten Sets der shared Libraries, die
+Standard-C-Library und die Standard-Math-Library, ohne die das Linux-System
+nicht funktioniert. Ferner enthält es den Support für die verschiedenen
+Sprachgregionen (locale) und die Zeitzonen-Datenbank.
 
 %description -l fr
 Contient les bibliothèques standards utilisées par de nombreux programmes
@@ -68,14 +52,14 @@ Il contient aussi la gestion des langues nationales (locales) et les bases
 de données des zones horaires.
 
 %description -l pl
-W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne programy 
+W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne programy
 w Twoim systemie. U¿ywanie przez programy bibliotek z tego pakietu oszczêdza
-miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest usytuowane w jednym
-miejscu i dzielone miêdzy wieloma programami. Pakiet ten zawiera bardzo wa¿ny 
-zbiór bibliotek wspó³dzielonych (dynamicznych), standardowych bibliotek C i
-standardowych bibliotek matematycznych. Bez glibc system Linux nie jest w
-stanie funkcjonowaæ. Znajduj± siê tutaj równie¿ definicje ró¿nych informacji
-dla wielu jêzyków (locale) oraz definicje stref czasowych.
+miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest usytuowane w
+jednym miejscu i dzielone miêdzy wieloma programami. Pakiet ten zawiera
+bardzo wa¿ny zbiór bibliotek standardowych wspó³dzielonych (dynamicznych)
+bibliotek C i matematycznych. Bez glibc system Linux nie jest w stanie
+funkcjonowaæ. Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla
+wielu jêzyków (locale) oraz definicje stref czasowych.
 
 %description -l tr
 Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir. Disk
@@ -85,6 +69,22 @@ arasýnda paylaþtýrýlýr. Bu paket en önemli ortak kitaplýklarý, standart
 C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
+
+%package	devel
+Summary:	Additional libraries required to compile
+Summary(de):	Weitere Libraries zum Kompilieren
+Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
+Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
+Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Prereq:		/sbin/install-info
+Requires:	%{name} = %{version}
+
+%description devel
+To develop programs which use the standard C libraries (which nearly all
+programs do), the system needs to have these standard header files and object
+files available for creating the executables.
 
 %description -l de devel
 Bei der Entwicklung von Programmen, die die Standard-C-Libraries verwenden
@@ -106,32 +106,27 @@ C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
 %prep 
-%setup -q -a 1 -a 2 -n %{name}-2.0.112
-%patch -p1
+%setup -q -a 1 -a 2
 
 %build
 install -d sunrpc/cpp; ln -s /lib/cpp sunrpc/cpp/cpp 
 CFLAGS="$RPM_OPT_FLAGS -pipe" \
-    ./configure \
-	    --enable-add-ons=crypt,linuxthreads \
-	    --disable-profile \
-	    --prefix=/usr \
-	    --disable-omitfp
+./configure \
+	--enable-add-ons=crypt,linuxthreads \
+	--disable-profile \
+	--prefix=/usr \
+	--disable-omitfp
 make  
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,usr/man/man3,var/db}
 
 make install_root=$RPM_BUILD_ROOT install
 make install_root=$RPM_BUILD_ROOT install-locales -C localedata
 
-install -d $RPM_BUILD_ROOT/usr/man/man3
-
 make -C linuxthreads/man
 install linuxthreads/man/*.3thr $RPM_BUILD_ROOT/usr/man/man3
-
-gzip -9nvf $RPM_BUILD_ROOT/usr/info/libc*
 
 rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
 
@@ -147,20 +142,16 @@ rm -f $RPM_BUILD_ROOT/etc/localtime
 
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/nsswitch.conf
 
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
-
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
 
 install nscd/nscd.conf		$RPM_BUILD_ROOT/etc
 install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
 
-install -d $RPM_BUILD_ROOT/var/db
 install nss/db-Makefile $RPM_BUILD_ROOT/var/db
 
 cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
 #!/bin/bash
-
 /usr/bin/make -f /var/db/db-Makefile
 EOF
 
@@ -175,17 +166,17 @@ cp linuxthreads/README documentation/README.threads
 cp login/README.utmpd documentation/
 cp crypt/README documentation/README.crypt
 
-cp ChangeLog* documentation
+cp ChangeLog ChangeLog.8 documentation
 
 bzip2 -9 documentation/*
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
+strip --strip-debug $RPM_BUILD_ROOT/lib/lib*so
 
-bzip2 -9  README NEWS FAQ BUGS NOTES PROJECTS INSTALL
+bzip2 -9 README NEWS FAQ BUGS NOTES PROJECTS
+gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*}
 
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man3/*
-
-%post -p /sbin/ldconfig
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post devel
@@ -193,7 +184,7 @@ gzip -9fn $RPM_BUILD_ROOT/usr/man/man3/*
 
 %preun devel
 if [ "$1" = 0 ]; then
-    /sbin/install-info --delete /usr/info/libc.info.gz /etc/info-dir
+	/sbin/install-info --delete /usr/info/libc.info.gz /etc/info-dir
 fi
 
 %clean
@@ -201,13 +192,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.bz2 NEWS.bz2 FAQ.bz2 BUGS.bz2 
-%doc documentation/* NOTES.bz2 PROJECTS.bz2 INSTALL.bz2
+%doc README.bz2 NEWS.bz2 FAQ.bz2 BUGS.bz2
 
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
-%attr(750,root,root) %config %verify(not mtime md5 size) /etc/rc.d/init.d/*
-%attr(644,root,root) %config /etc/rpc
+%config /etc/rpc
+%attr(754,root,root) /etc/rc.d/init.d/*
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) /usr/bin/*
@@ -219,97 +209,62 @@ rm -rf $RPM_BUILD_ROOT
 %dir /usr/lib/gconv
 /usr/lib/gconv/gconv-modules
 
-%dir /usr/share/i18n
-%attr(-,root,root) /usr/share/i18n/*
-
-%dir /usr/share/locale
-%attr(-,root,root) /usr/share/locale/*
-
-%dir /usr/share/zoneinfo
-%attr(-,root,root) /usr/share/zoneinfo/*
+/usr/share/i18n
+/usr/share/locale
+/usr/share/zoneinfo
 
 %attr(750,root,root) %dir /var/db
 %config /var/db/db-*
 
 %files devel
 %defattr(644,root,root,755)
+%doc documentation/* NOTES.bz2 PROJECTS.bz2
 
 /usr/include/*.h
-
-%dir /usr/include/arpa
-/usr/include/arpa/*.h
-
-#%attr(755,root,root) /usr/include/asm
-#%attr(755,root,root) /usr/include/linux
-
-%dir /usr/include/scsi
-/usr/include/scsi/*.h
-
-%dir /usr/include/bits
-/usr/include/bits/*.h
-
-%dir /usr/include/db1
-/usr/include/db1/*.h
-
-%dir /usr/include/gnu
-/usr/include/gnu/*.h
-
-%dir /usr/include/net
-/usr/include/net/*.h
-
-%dir /usr/include/netash
-/usr/include/netash/*.h
-
-%dir /usr/include/netatalk
-/usr/include/netatalk/*.h
-
-%dir /usr/include/netax25
-/usr/include/netax25/*.h
-
-%dir /usr/include/neteconet
-/usr/include/neteconet/*.h
-
-%dir /usr/include/netinet
-/usr/include/netinet/*.h
-
-%dir /usr/include/netipx
-/usr/include/netipx/*.h
-
-%dir /usr/include/netpacket
-/usr/include/netpacket/*.h
-
-%dir /usr/include/netrom
-/usr/include/netrom/*.h
-
-%dir /usr/include/netrose
-/usr/include/netrose/*.h
-
-%dir /usr/include/nfs
-/usr/include/nfs/*.h
-
-%dir /usr/include/protocols
-/usr/include/protocols/*.h
-
-%dir /usr/include/rpc
-/usr/include/rpc/*
-
-%dir /usr/include/rpcsvc
-/usr/include/rpcsvc/*
-
-%dir /usr/include/sys
-/usr/include/sys/*.h
+/usr/include/arpa
+/usr/include/bits
+/usr/include/db1
+/usr/include/gnu
+/usr/include/net
+/usr/include/netash
+/usr/include/netatalk
+/usr/include/netax25
+/usr/include/neteconet
+/usr/include/netinet
+/usr/include/netipx
+/usr/include/netpacket
+/usr/include/netrom
+/usr/include/netrose
+/usr/include/nfs
+/usr/include/protocols
+/usr/include/rpc
+/usr/include/rpcsvc
+/usr/include/scsi
+/usr/include/sys
 
 /usr/info/libc.inf*.gz
 
-%attr(755,root,root) /usr/lib/*.o
-%attr(755,root,root) /usr/lib/*.so
-
-/usr/lib/*.a
+%attr(755,root,root) /usr/lib/lib*.so
+/usr/lib/*.o
+/usr/lib/lib*.a
 
 %attr(755,root,root) /usr/lib/gconv/*.so
-%attr(644,root, man) /usr/man/man3/*
+/usr/man/man3/*
 
 %changelog
+* Mon Feb 22 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [2.1-4]
+- removed man group from man pages,
+- standarized {un}registering info pages (added libc-info.patch),
+- changed base source url to ftp://sourceware.cygnus.com/pub/glibc/,
+- changed URL,
+- siplifications in %files devel,
+- Group in devel changed to Development/Libraries,
+- removed some %doc (INSTALL and outdated ChangeLog),
+- removed %config and %verify rules fromn /etc/rc.d/init.d/* files,
+- changed permission to 754 on /etc/rc.d/init.d/*,
+- added striping shared libraries.
+
 * Sun Feb 14 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.1-3d]
 - updated to stable version,
@@ -533,8 +488,7 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Feb 18 1997 Erik Troan <ewt@redhat.com>
 - 1) added patch for shadow to work w/ :: rather then :-1: entries
 - 2) incorporated Richard Henderson's string operation fix
-- 3) added default /etc/nsswitch.conf
-  [2.1.1-1]
+- 3) added default /etc/nsswitch.conf  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
