@@ -970,15 +970,19 @@ done
 # bn is used for bn_BD or bn_IN?
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
-for i in af am ar az bg bn br bs cy de_AT en en_AU eo es_AR es_MX et eu fa ga \
-	 gr he hi id is ja_JP.SJIS ka kn lg lt lv mk ml mn ms mt nn pt ro ru \
-	 se sl sq sr sr@Latn ta tg th uk uz vi wa xh yi zu ; do
+for i in af am ar az bg bn br bs cy de_AT en en_AU en_CA en_US eo es_AR es_MX \
+    et eu fa fo ga gu he hi ia id is ja_JP.SJIS ka kn lg lo lt lv mi mk ml mn \
+    mr ms mt ne nn pa pt ro ru se sl sq sr sr@Latn ta tg th uk uz vi wa xh yi \
+    zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
 		echo "%lang($lang) %{_datadir}/locale/$i" >> ../glibc.lang
 	fi
 done
+cd $RPM_BUILD_ROOT%{_datadir}/locale
+ln -s zh_CN zh_SG
+cd -
 
 # localedb-gen infrastructure
 install %{SOURCE7} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
