@@ -631,7 +631,7 @@ _headers_dir=`pwd`/usr/include; export _headers_dir;
 (cd $_headers_dir && ln -s asm-${TARGET_CPU} asm)
 
 # Build glibc
-mkdir builddir || /bin/true
+install -d builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
@@ -819,7 +819,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}*/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
 
-%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir} || /bin/true
+install -d $RPM_BUILD_ROOT%{_includedir}
 %{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
 if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
 	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
