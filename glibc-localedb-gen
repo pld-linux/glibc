@@ -58,6 +58,7 @@ fi
 
 rm -rf ${DESTDIR}${LOCDIR}
 install -d ${DESTDIR}${LOCDIR}
+cd ${DESTDIR}${LOCDIR}
 
 if [ "${DESTDIR}" = "" ]; then
 	DESTDIROPT=
