@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	5
+Release:	6
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -598,6 +598,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /lib/ld-*
 %attr(755,root,root) /lib/libdl*
+%attr(755,root,root) /lib/libnsl*
 %attr(755,root,root) /lib/lib[BScmprtu]*
 
 %{_mandir}/man8/*
