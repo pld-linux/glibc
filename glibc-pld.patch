@@ -1,17 +1,19 @@
---- glibc-2.1.94/nscd/nscd.conf~	Mon May  1 23:56:50 2000
-+++ glibc-2.1.94/nscd/nscd.conf	Sat Sep 23 01:18:07 2000
-@@ -21,10 +21,10 @@
+--- libc.org/nscd/nscd.conf.org	2004-10-14 21:31:13.029342088 +0200
++++ libc/nscd/nscd.conf	2004-10-14 21:31:47.911869325 +0200
+@@ -28,11 +28,11 @@
  #
  
  
 -#	logfile			/var/log/nscd.log
 -#	threads			6
+-#	max-threads		128
 -#	server-user		nobody
 -#	stat-user		somebody
 +	logfile			/var/log/nscd
 +	threads			6
++	max-threads		128
 +	server-user		nobody
 +	stat-user		root
  	debug-level		0
- 
- 	enable-cache		passwd		yes
+ #	reload-count		5
+ 	paranoia		no
