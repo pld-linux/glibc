@@ -1017,6 +1017,13 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
+%ifarch amd64
+%triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
+%else
+%triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
+%endif
+-/bin/mv %{_sysconfdir}/ld.so.conf.rpmsave %{_sysconfdir}/ld.so.conf
+
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
 
