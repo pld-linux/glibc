@@ -889,9 +889,9 @@ BuildGlibc() {
 %ifarch x86_64
 BuildGlibc "athlon"
 %endif
-%endif
 
 BuildGlibc "%{_target_cpu}"
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
