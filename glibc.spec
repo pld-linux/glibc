@@ -820,7 +820,7 @@ LDFLAGS=" " ; export LDFLAGS
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
-	%{?with_tls:--with-tls} \
+	--with%{!?with_tls:out}-tls \
 %if %{with nptl}
         --enable-add-ons=nptl \
 	--disable-profile \
