@@ -9,7 +9,7 @@
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	nptl		# use nptl instead of linuxthreads
-%bcond_with     tls		# use tls
+%bcond_with	tls		# use tls
 %bcond_with	tests		# do not perform "make test"
 
 #
@@ -26,7 +26,7 @@
 
 %if %{with nptl}
 # it seems that nptl uses cmpxchgl (available since i486) on x86
-%ifarch i486 i586 i686 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
+%ifarch i486 i586 i686 pentium3 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
 %if "%{min_kernel}" < "2.6.0"
 %global		min_kernel	2.6.0
 %endif
