@@ -21,7 +21,7 @@
 #	in order to use this version!
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.19
+%define		rel 3
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
