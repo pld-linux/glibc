@@ -349,6 +349,7 @@ install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
+
 install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
 touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
@@ -367,13 +368,14 @@ cp ChangeLog ChangeLog.8 documentation
 gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
 
 # Collect locale files and mark them with %%lang()
-%{find_lang} libc
+rm -f glibc.lang
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
+	if [ -d $i ]; then
+		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
+		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
+		echo "%lang($lang) $dir" >>glibc.lang
+	fi
 
-# Now collect locale definition files and mark them with %%lang()
-for i in $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
-	lang=`echo $i | sed -e 's/.*locale\///' -e 's/^\(..\).*/\1/'`
-	dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
-	echo "%lang($lang) $dir" >>libc.lang
 done
 
 %post   -p /sbin/ldconfig
@@ -405,7 +407,7 @@ fi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f libc.lang
+%files -f glibc.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,FAQ,BUGS}.gz
 
