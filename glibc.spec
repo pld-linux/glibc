@@ -9,11 +9,9 @@ Release:	4
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-########	ftp://sourceware.cygnus.com/pub/glibc/
-Source0:	%{name}-%{version}.tar.gz
-Source1:	%{name}-linuxthreads-%{version}.tar.gz
-########	http://www.ozemail.com.au/~geoffk/glibc-crypt
-Source2:	%{name}-crypt-%{version}.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
+Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-%{version}.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Source5:	utmpd.sysconfig
@@ -76,7 +74,7 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package	devel
+%package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
@@ -111,7 +109,7 @@ objektowe, niezbêdne do kompilacji programów wykonywalnych i innych bibliotek.
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
-%package -n	nscd
+%package -n nscd
 Summary:	Name Service Caching Daemon
 Summary(pl):	Name Service Caching Daemon
 Group:		Networnikng/Daemons
@@ -132,7 +130,7 @@ poprawiæ szybko¶æ dzia³ania NIS+.
 Nie jest mo¿liwe u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów
 po stronie j±dra w ods³udze w±tków.
 
-%package -n	utmpd
+%package -n utmpd
 Summary:	utmp and utmpx synchronizer for libc5 applications.
 Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
 Group:		Daemons
@@ -148,7 +146,7 @@ utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików
 /var/run/utmp i /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania
 ze starszych programów (bazuj±cych na libc5).
 
-%package	static
+%package static
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne 
 Group:		Development/Libraries
@@ -168,8 +166,7 @@ GNU libc-2.1 Static libraries
 %patch2 -p1
 
 %build
-
-    %configure \
+%configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
 	--disable-omitfp \
@@ -295,7 +292,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale
 %{_datadir}/zoneinfo
 
-%dir /var/db
 %config /var/db/db-*
 
 %files devel
@@ -336,14 +332,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
-%attr(755,root,root) /etc/rc.d/init.d/nscd
+%attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
 
 %files -n utmpd
 %defattr(644,root,root,755)
 %doc login/README.utmpd.gz
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/utmpd
-%attr(755,root,root) /etc/rc.d/init.d/utmpd
+%attr(754,root,root) /etc/rc.d/init.d/utmpd
 %attr(755,root,root) %{_sbindir}/utmpd
 
 %files static
@@ -351,9 +347,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.a
 
 %changelog
+changes from devel and getaddrinfo.patch
+
+- added using CVS keywords in %changelog (for automating them).
+
+  [2.1.1-3]
+- added stripping /usr/lib/gconv/*.so modules (it saves next ~300KB),
+- added glibc-versions.awk_fix.patch (fix using sort in
   scripts/versions.awk),
-- added static subpackage (please, don't ask me why ...)
-- added {utmpd,nscd}.sysconfig
+- added stripping
+- permission on rc scripts changed to 754,
 - removed /var/db (it is in filesystem).
 
 * Wed Jun 02 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
@@ -370,9 +373,7 @@ rm -rf $RPM_BUILD_ROOT
 - fixed %build,
 - minor changes.
 
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
-
-  [2.1.1-1]
+- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
