@@ -116,7 +116,6 @@ Conflicts:	rpm < 4.1
 %define		_without_memusage	1
 %endif
 
-%define	new_target_cpu %(echo "%{_target_cpu}" | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/athlon/i386/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/)
 
 # Define to build a biarch package
 %global with_biarch	0
@@ -810,9 +809,6 @@ touch libidn/libidn.texi
 
 %build
 basedir=$(pwd)
-# Prepare kernel headers
-_headers_dir=`pwd`/usr/include; export _headers_dir;
-(cd $_headers_dir && ln -s asm-%{new_target_cpu} asm)
 
 BuildGlibc() {
   arch="$1"
@@ -835,6 +831,11 @@ BuildGlibc() {
   esac
 
   # Library name
+  # Prepare kernel headers
+  _headers_dir=`pwd`/usr/include; export _headers_dir;
+  (cd $_headers_dir && rm asm)
+  (cd $_headers_dir && ln -s asm-`echo $arch | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/athlon/i386/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/` asm)
+
   glibc_cv_cc_64bit_output=no
   if echo ".text" | $BuildCC -c -o test.o -xassembler -; then
 	case `/usr/bin/file test.o` in
