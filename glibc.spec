@@ -222,7 +222,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 %description -l pl
 W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
 programy w Twoim systemie. U¿ywanie przez programy bibliotek z tego
-pakietu oszczêdza miejsce na dysku i pamiêæ. Wiekszo¶æ kodu
+pakietu oszczêdza miejsce na dysku i pamiêæ. Wiêkszo¶æ kodu
 systemowego jest usytuowane w jednym miejscu i dzielone miêdzy wieloma
 programami. Pakiet ten zawiera bardzo wa¿ny zbiór bibliotek
 standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
@@ -575,7 +575,7 @@ más pequeño de la biblioteca libc compartida estándar.
 
 %description pic -l pl
 Archiwum PIC biblioteki GNU C zawiera archiwaln± bibliotekê (plik ar)
-z³o¿on± z pojedyñczych obiektów wspó³dzielonych. U¿ywana jest do
+z³o¿on± z pojedynczych obiektów wspó³dzielonych. U¿ywana jest do
 tworzenia biblioteki bêd±cej mniejszym podzestawem standardowej
 biblioteki wspó³dzielonej libc.
 
