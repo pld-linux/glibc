@@ -16,13 +16,6 @@
 case "$1" in
   start)
          show Starting utmpd daemon
-	 # Clean up /var/run and create /var/run/utmp so that we can login.
-         #( cd /var/run && find . ! -type d -exec rm -f -- {} \; )
-         : > /var/run/utmpx
-         : > /var/run/utmp
-	 if [ ! -f /var/log/wtmpx ]; then
-	 : > /var/log/wtmpx
-	 fi
          daemon utmpd
 	 touch /var/lock/subsys/utmpd
 	;;
