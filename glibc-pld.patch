@@ -1,21 +1,6 @@
-diff -Naur glibc-2.1.3/nscd/nscd.conf glibc-2.1.3-p/nscd/nscd.conf
---- glibc-2.1.3/nscd/nscd.conf	Mon Oct  4 21:51:37 1999
-+++ glibc-2.1.3-p/nscd/nscd.conf	Wed Aug  9 12:11:19 2000
-@@ -19,8 +19,8 @@
- #
- 
- 
--#	logfile			/var/log/nscd.log
--#	threads			6
-+	logfile			/var/log/nscd
-+	threads			6
- 
- 	debug-level		0
- 
-diff -Naur glibc-2.1.3/sysdeps/unix/sysv/linux/paths.h glibc-2.1.3-p/sysdeps/unix/sysv/linux/paths.h
---- glibc-2.1.3/sysdeps/unix/sysv/linux/paths.h	Wed Aug 12 19:05:51 1998
-+++ glibc-2.1.3-p/sysdeps/unix/sysv/linux/paths.h	Wed Aug  9 12:12:28 2000
-@@ -52,20 +52,20 @@
+--- glibc-2.1.91/sysdeps/unix/sysv/linux/paths.h~	Wed Jun  9 20:15:35 1999
++++ glibc-2.1.91/sysdeps/unix/sysv/linux/paths.h	Sat Jul 15 00:43:01 2000
+@@ -48,18 +48,18 @@
  #define	_PATH_KMEM	"/dev/kmem"
  #define	_PATH_LASTLOG	"/var/log/lastlog"
  #define	_PATH_MAILDIR	"/var/mail"
@@ -28,15 +13,27 @@ diff -Naur glibc-2.1.3/sysdeps/unix/sysv/linux/paths.h glibc-2.1.3-p/sysdeps/uni
 -#define	_PATH_PRESERVE	"/var/preserve"
 +#define	_PATH_PRESERVE	"/var/lib"
  #define	_PATH_RWHODIR	"/var/spool/rwho"
--#define	_PATH_SENDMAIL	"/usr/sbin/sendmail"
-+#define	_PATH_SENDMAIL	"/usr/lib/sendmail"
+ #define	_PATH_SENDMAIL	"/usr/sbin/sendmail"
  #define	_PATH_SHADOW	"/etc/shadow"
  #define	_PATH_SHELLS	"/etc/shells"
  #define	_PATH_TTY	"/dev/tty"
- #define	_PATH_UNIX	"/vmlinux"
+-#define	_PATH_UNIX	"/vmlinux"
++#define	_PATH_UNIX	"/boot/vmlinux"
  #define _PATH_UTMP	"/var/run/utmp"
--#define	_PATH_VI	"/usr/bin/vi"
-+#define	_PATH_VI	"/bin/vi"
+ #define	_PATH_VI	"/usr/bin/vi"
  #define _PATH_WTMP	"/var/log/wtmp"
+--- glibc-2.1.94/nscd/nscd.conf~	Mon May  1 23:56:50 2000
++++ glibc-2.1.94/nscd/nscd.conf	Sat Sep 23 01:18:07 2000
+@@ -21,9 +21,9 @@
+ #
  
- /* Provide trailing slash, since mostly used for building pathnames. */
+ 
+-#	logfile			/var/log/nscd.log
+-#	threads			6
+-#	server-user		nobody
++	logfile			/var/log/nscd
++	threads			6
++	server-user		nobody
+ 	debug-level		0
+ 
+ 	enable-cache		passwd		yes
