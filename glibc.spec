@@ -35,7 +35,7 @@
 %endif
 
 %if %{with tls}
-%ifnarch i686 athlon amd64 ia64 s390 s390x alpha alphaev6 sparc sparcv9 ppc ppc64
+%ifnarch i686 athlon amd64 ia64 s390 s390x alphaev6 sparc sparcv9 ppc ppc64
 %undefine with_tls
 %endif
 %endif
@@ -52,7 +52,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.3%{?with_nptl:+nptl}
+Release:	0.20040101.4%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
