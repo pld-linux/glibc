@@ -183,7 +183,7 @@ Group(pl):	Serwery
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need this
 package if You want to convert some documet from one encoding to another or
-if Yoo have installed some programs which use Generic Character Set
+if You have installed some programs which use Generic Character Set
 Conversion Interface.
 
 %description -l pl -n iconv
