@@ -142,6 +142,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define 	specflags_sparc64	-mvis -fcall-used-g6
 %define		_libdir			/usr/lib64
 %endif
+# we don't want perl dependency in glibc-devel
+%define		_noautoreqfiles		%{_bindir}/mtrace
 # hack: don't depend on rpmlib(PartialHardlinkSets) for easier upgrade from Ra
 # (hardlinks here are unlikely to be "partial"... and rpm 4.0.2 from Ra was
 # patched not to crash on partial hardlinks too)
