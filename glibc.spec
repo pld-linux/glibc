@@ -88,7 +88,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	glibc-kernel-headers >= 1:1-2
 %endif
 BuildRequires:	perl-base
-BuildRequires:	rpm-build >= 4.0.2-46
+BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
@@ -115,6 +115,10 @@ Conflicts:	rpm < 4.1
 %define 	specflags_sparc64	-mvis -fcall-used-g6
 %define		_libdir			/usr/lib64
 %endif
+# hack: don't depend on rpmlib(PartialHardlinkSets) for easier upgrade from Ra
+# (hardlinks here are unlikely to be "partial"... and rpm 4.0.2 from Ra was
+# patched not to crash on partial hardlinks too)
+%define		_hack_dontneed_PartialHardlinkSets	1
 
 %description
 Contains the standard libraries that are used by multiple programs on
