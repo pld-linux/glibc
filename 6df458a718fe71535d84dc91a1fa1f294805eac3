@@ -1,0 +1,1 @@
+- removed %%{_libdir}/so*.o files from devel, they are owned by pic subpackage
