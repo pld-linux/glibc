@@ -1,6 +1,6 @@
-diff -uNr libc.orig/intl/locale.alias libc/intl/locale.alias
---- libc.orig/intl/locale.alias	2003-12-04 08:57:47.000000000 +0100
-+++ libc/intl/locale.alias	2004-09-07 06:27:42.000000000 +0200
+diff -uNr libc.old/intl/locale.alias libc/intl/locale.alias
+--- libc.old/intl/locale.alias	2003-12-04 08:57:47.000000000 +0100
++++ libc/intl/locale.alias	2004-09-10 09:29:21.000000000 +0200
 @@ -49,6 +49,9 @@
  hungarian       hu_HU.ISO-8859-2
  icelandic       is_IS.ISO-8859-1
@@ -31,9 +31,9 @@ diff -uNr libc.orig/intl/locale.alias libc/intl/locale.alias
  swedish         sv_SE.ISO-8859-1
  thai		th_TH.TIS-620
  turkish         tr_TR.ISO-8859-9
-diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
---- libc.orig/localedata/SUPPORTED	Tue Jul 27 03:25:03 2004
-+++ libc/localedata/SUPPORTED	Tue Jul 27 18:36:41 2004
+diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
+--- libc.old/localedata/SUPPORTED	2004-09-10 09:30:22.000000000 +0200
++++ libc/localedata/SUPPORTED	2004-09-10 09:29:21.000000000 +0200
 @@ -2,12 +2,15 @@
  # If you have any additions please use the glibcbug script to send an
  # appropriate message.
@@ -50,7 +50,7 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  an_ES/ISO-8859-15 \
  ar_AE.UTF-8/UTF-8 \
  ar_AE/ISO-8859-6 \
-@@ -47,7 +47,7 @@
+@@ -44,15 +47,17 @@
  ar_TN/ISO-8859-6 \
  ar_YE.UTF-8/UTF-8 \
  ar_YE/ISO-8859-6 \
@@ -59,7 +59,6 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  be_BY.UTF-8/UTF-8 \
  be_BY/CP1251 \
  bg_BG.UTF-8/UTF-8 \
-@@ -51,8 +54,10 @@
  bg_BG/CP1251 \
  bn_BD/UTF-8 \
  bn_IN/UTF-8 \
@@ -99,7 +98,8 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  id_ID.UTF-8/UTF-8 \
  id_ID/ISO-8859-1 \
  is_IS.UTF-8/UTF-8 \
-@@ -205,10 +216,10 @@
+@@ -204,11 +215,11 @@
+ it_IT.UTF-8/UTF-8 \
  it_IT/ISO-8859-1 \
  it_IT@euro/ISO-8859-15 \
 -iw_IL.UTF-8/UTF-8 \
@@ -225,9 +225,9 @@ diff -uNr libc.orig/localedata/SUPPORTED libc/localedata/SUPPORTED
  yi_US/CP1255 \
  zh_CN.GB18030/GB18030 \
  zh_CN.GBK/GBK \
-diff -uNr libc.orig/localedata/locales/csb_PL libc/localedata/locales/csb_PL
---- libc.orig/localedata/locales/csb_PL	1970-01-01 01:00:00.000000000 +0100
-+++ libc/localedata/locales/csb_PL	2004-09-03 17:38:33.000000000 +0200
+diff -uNr libc.old/localedata/locales/csb_PL libc/localedata/locales/csb_PL
+--- libc.old/localedata/locales/csb_PL	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/csb_PL	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,2191 @@
 +comment_char %
 +escape_char  /
@@ -2420,9 +2420,9 @@ diff -uNr libc.orig/localedata/locales/csb_PL libc/localedata/locales/csb_PL
 +LC_MEASUREMENT
 +copy "pl_PL"
 +END LC_MEASUREMENT
-diff -uNr libc.orig/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
---- libc.orig/localedata/locales/hsb_DE	1970-01-01 01:00:00.000000000 +0100
-+++ libc/localedata/locales/hsb_DE	2004-09-08 22:23:12.000000000 +0200
+diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
+--- libc.old/localedata/locales/hsb_DE	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/hsb_DE	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,2214 @@
 +comment_char %
 +escape_char  /
@@ -4638,9 +4638,9 @@ diff -uNr libc.orig/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 +lang_term     "<U0068><U0073><U0062>"
 +lang_lib      "<U0068><U0073><U0062>"
 +END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/li_BE libc/localedata/locales/li_BE
---- libc.orig/localedata/locales/li_BE	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/li_BE	Tue Jul 27 19:36:45 2004
+diff -uNr libc.old/localedata/locales/li_BE libc/localedata/locales/li_BE
+--- libc.old/localedata/locales/li_BE	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/li_BE	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,126 @@
 +comment_char %
 +escape_char  /
@@ -4768,9 +4768,9 @@ diff -uNr libc.orig/localedata/locales/li_BE libc/localedata/locales/li_BE
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
-diff -uNr libc.orig/localedata/locales/li_BE@euro libc/localedata/locales/li_BE@euro
---- libc.orig/localedata/locales/li_BE@euro	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/li_BE@euro	Tue Jul 27 18:21:43 2004
+diff -uNr libc.old/localedata/locales/li_BE@euro libc/localedata/locales/li_BE@euro
+--- libc.old/localedata/locales/li_BE@euro	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/li_BE@euro	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,76 @@
 +escape_char /
 +comment_char %
@@ -4848,9 +4848,9 @@ diff -uNr libc.orig/localedata/locales/li_BE@euro libc/localedata/locales/li_BE@
 +LC_MEASUREMENT
 +copy "li_BE"
 +END LC_MEASUREMENT
-diff -uNr libc.orig/localedata/locales/li_NL libc/localedata/locales/li_NL
---- libc.orig/localedata/locales/li_NL	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/li_NL	Tue Jul 27 19:36:47 2004
+diff -uNr libc.old/localedata/locales/li_NL libc/localedata/locales/li_NL
+--- libc.old/localedata/locales/li_NL	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/li_NL	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,127 @@
 +comment_char %
 +escape_char  /
@@ -4979,9 +4979,9 @@ diff -uNr libc.orig/localedata/locales/li_NL libc/localedata/locales/li_NL
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
-diff -uNr libc.orig/localedata/locales/li_NL@euro libc/localedata/locales/li_NL@euro
---- libc.orig/localedata/locales/li_NL@euro	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/li_NL@euro	Tue Jul 27 18:21:44 2004
+diff -uNr libc.old/localedata/locales/li_NL@euro libc/localedata/locales/li_NL@euro
+--- libc.old/localedata/locales/li_NL@euro	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/li_NL@euro	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,76 @@
 +escape_char /
 +comment_char %
@@ -5059,9 +5059,9 @@ diff -uNr libc.orig/localedata/locales/li_NL@euro libc/localedata/locales/li_NL@
 +LC_MEASUREMENT
 +copy "li_NL"
 +END LC_MEASUREMENT
-diff -uNr libc.orig/localedata/locales/nds_DE libc/localedata/locales/nds_DE
---- libc.orig/localedata/locales/nds_DE	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/nds_DE	Tue Jul 27 18:22:32 2004
+diff -uNr libc.old/localedata/locales/nds_DE libc/localedata/locales/nds_DE
+--- libc.old/localedata/locales/nds_DE	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/nds_DE	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,133 @@
 +comment_char %
 +escape_char  /
@@ -5196,9 +5196,9 @@ diff -uNr libc.orig/localedata/locales/nds_DE libc/localedata/locales/nds_DE
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
-diff -uNr libc.orig/localedata/locales/nds_DE@euro libc/localedata/locales/nds_DE@euro
---- libc.orig/localedata/locales/nds_DE@euro	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/nds_DE@euro	Tue Jul 27 18:22:03 2004
+diff -uNr libc.old/localedata/locales/nds_DE@euro libc/localedata/locales/nds_DE@euro
+--- libc.old/localedata/locales/nds_DE@euro	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/nds_DE@euro	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,76 @@
 +escape_char /
 +comment_char %
@@ -5276,9 +5276,9 @@ diff -uNr libc.orig/localedata/locales/nds_DE@euro libc/localedata/locales/nds_D
 +LC_MEASUREMENT
 +copy "nds_DE"
 +END LC_MEASUREMENT
-diff -uNr libc.orig/localedata/locales/nds_DE@traditional libc/localedata/locales/nds_DE@traditional
---- libc.orig/localedata/locales/nds_DE@traditional	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/nds_DE@traditional	Tue Jul 27 18:22:22 2004
+diff -uNr libc.old/localedata/locales/nds_DE@traditional libc/localedata/locales/nds_DE@traditional
+--- libc.old/localedata/locales/nds_DE@traditional	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/nds_DE@traditional	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,116 @@
 +comment_char %
 +escape_char  /
@@ -5396,9 +5396,9 @@ diff -uNr libc.orig/localedata/locales/nds_DE@traditional libc/localedata/locale
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
-diff -uNr libc.orig/localedata/locales/si_LK libc/localedata/locales/si_LK
---- libc.orig/localedata/locales/si_LK	1970-01-01 01:00:00.000000000 +0100
-+++ libc/localedata/locales/si_LK	2004-09-09 23:31:19.000000000 +0200
+diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
+--- libc.old/localedata/locales/si_LK	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/si_LK	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,215 @@
 +escape_char  /
 +comment_char %
@@ -5615,9 +5615,9 @@ diff -uNr libc.orig/localedata/locales/si_LK libc/localedata/locales/si_LK
 +measurement 1
 +
 +END LC_MEASUREMENT
-diff -uNr libc.orig/localedata/locales/sr_CS@ije libc/localedata/locales/sr_CS@ije
---- libc.orig/localedata/locales/sr_CS@ije	Thu Jan  1 01:00:00 1970
-+++ libc/localedata/locales/sr_CS@ije	Tue Jul 27 03:30:16 2004
+diff -uNr libc.old/localedata/locales/sr_CS@ije libc/localedata/locales/sr_CS@ije
+--- libc.old/localedata/locales/sr_CS@ije	1970-01-01 01:00:00.000000000 +0100
++++ libc/localedata/locales/sr_CS@ije	2004-09-10 09:29:21.000000000 +0200
 @@ -0,0 +1,140 @@
 +comment_char %
 +escape_char  /
