@@ -772,7 +772,7 @@ LDFLAGS=" " ; export LDFLAGS
 
 %{__make} %{?parallelmkflags}
 
-%{?with_tests:%{__make} test}
+%{?with_tests:%{__make} tests}
 
 %install
 rm -rf $RPM_BUILD_ROOT
