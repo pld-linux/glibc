@@ -660,11 +660,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
 
-#%files -n nss_db
-%defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_db*.so*
-%config /var/db/Makefile
-
 #%files -n nss_dns
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_dns*.so*
@@ -672,6 +667,11 @@ rm -rf $RPM_BUILD_ROOT
 #%files -n nss_files
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_files*.so*
+
+%files -n nss_db
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_db*.so*
+%config /var/db/Makefile
 
 %files -n nss_compat
 %defattr(644,root,root,755)
