@@ -33,7 +33,7 @@ Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.2
 Release:	%{rel}
-Epoch:		6
+Epoch:		6.1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
@@ -565,7 +565,7 @@ Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %prep
-%setup -q -a 1
+%setup -q -a 1 -a 9
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
@@ -599,7 +599,14 @@ mv -f localedata/locales/{lug_UG,lg_UG}
 #cd ../..
 
 %build
-#_headers_dir=`pwd`/usr/include; export _headers_dir;
+# Prepare kernel headers
+TARGET_CPU=$(echo "%{_target_cpu}" | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
+				   -e s/athlon/i386/ -e s/arm.*/arm/ \
+				   -e s/sa110/arm/ -e s/s390x/s390/)
+_headers_dir=`pwd`/usr/include; export _headers_dir;
+(cd $_headers_dir && ln -s asm-${TARGET_CPU} asm)
+
+# Build glibc
 mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
@@ -613,7 +620,7 @@ LDFLAGS=" " ; export LDFLAGS
 %if 0%{!?_with_kernheaders:1}
 	--with-headers=%{_kernelsrcdir}/include
 %else
-#	--with-headers=$_headers_dir
+	--with-headers=$_headers_dir
 %endif
 
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
@@ -623,6 +630,8 @@ LDFLAGS=" " ; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
+
+_headers_dir=`pwd`/usr/include; export _headers_dir;
 
 cd builddir
 
@@ -764,9 +773,11 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 %if 0%{!?_with_kernheaders:1}
 %{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
 %{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
-#if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
-#	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
-#fi
+if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
+	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
+fi
+%else
+%{__cp} -Hr $_headers_dir/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
 %endif
 
 %clean
