@@ -902,7 +902,7 @@ _headers_dir=`pwd`/usr/include; export _headers_dir;
 cd builddir-%{new_target_cpu}
 
 env LANGUAGE=C LC_ALL=C \
-%{__make} -C builddir-%{target_cpu} install \
+%{__make} install \
 	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
