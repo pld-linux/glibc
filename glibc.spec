@@ -113,7 +113,8 @@ Patch29:	%{name}-soversions-fix.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
-Patch50:	glibc-ZA_collate.patch
+Patch50:	%{name}ZA_collate.patch
+Patch51:	%{name}-fix_tls_linkage.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -810,6 +811,10 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch30 -p1
 %patch31 -p1
 %patch50 -p1
+
+%if %{with tls}
+%patch51 -p0
+%endif
 
 chmod +x scripts/cpp
 
