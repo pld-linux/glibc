@@ -6,12 +6,16 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	4
+Release:	5
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.gz
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
 Source2:	nscd.init
@@ -108,8 +112,12 @@ Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
 Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
@@ -157,8 +165,8 @@ nscd happens to hit these bugs particularly hard.
 %description -n nscd -l pl
 nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
 drastycznie poprawiæ szybko¶æ dzia³ania NIS+. Nie jest mo¿liwe
-u¿ywanie nscd z j±drami serii 2.0.x z powodu b³êdów po stronie j±dra
-w ods³udze w±tków.
+u¿ywanie nscd z j±drami serii 2.0.x z powodu b³êdów po stronie j±dra w
+ods³udze w±tków.
 
 %package -n localedb-src
 Summary:	Souce code locale database
@@ -208,8 +216,12 @@ Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -272,7 +284,9 @@ Summary:	Old style NYS NSS glibc module
 Summary(pl):	Stary modu³ NYS NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Requires:	%{name} = %{version}
 
 %description -n nss_compat
@@ -286,7 +300,9 @@ Summary:	BIND NSS glibc module
 Summary(pl):	Modu³ BIND NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Requires:	%{name} = %{version}
 
 %description -n nss_dns
@@ -300,7 +316,9 @@ Summary:	Traditional files databases NSS glibc module
 Summary(pl):	Modu³ tradycyjnych plikowych baz danych NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Requires:	%{name} = %{version}
 
 %description -n nss_files
@@ -314,7 +332,9 @@ Summary:	Hesiod NSS glibc module
 Summary(pl):	Modu³ hesiod NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Requires:	%{name} = %{version}
 
 %description -n nss_hesiod
@@ -328,7 +348,9 @@ Summary:	NIS(YP) NSS glibc module
 Summary(pl):	Modu³ NIS(YP) NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Requires:	%{name} = %{version}
 
 %description -n nss_nis
@@ -342,7 +364,9 @@ Summary:	NIS+ NSS module
 Summary(pl):	Modu³ NIS+ NSS
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Requires:	%{name} = %{version}
 
 %description -n nss_nisplus
@@ -434,8 +458,8 @@ install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
-tar xzvf %{SOURCE5} -C $RPM_BUILD_ROOT%{_mandir}/
-tar xzvf %{SOURCE6} -C $RPM_BUILD_ROOT%{_mandir}/
+bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
+bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
 :> $RPM_BUILD_ROOT/var/log/nscd
