@@ -23,7 +23,7 @@
 			# instead of linuxthreads
 %bcond_without	fp	# build without frame pointer
 
-%define		min_kernel	2.6.0
+%define		min_kernel	2.4.20
 %define		_snap		200310271512
 %define		rel 8.%{_snap}.1
 Summary:	GNU C library
@@ -79,6 +79,7 @@ Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-sparc64_pause.patch
 Patch25:	%{name}-linuxthreads.patch
 Patch26:	%{name}-csu-verfix.patch
+Patch27:	%{name}-nptl-check.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -600,6 +601,7 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 ##%patch24 -p1
 # updated - lt
 %patch26 -p1
+%patch27 -p1
 
 %if %{without nptl}
 %patch5 -p1
@@ -629,7 +631,7 @@ _headers_dir=`pwd`/usr/include; export _headers_dir;
 (cd $_headers_dir && ln -s asm-${TARGET_CPU} asm)
 
 # Build glibc
-mkdir builddir
+mkdir builddir || /bin/true
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
@@ -817,7 +819,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}*/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
 
-%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
+%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir} || /bin/true
 %{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
 if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
 	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
