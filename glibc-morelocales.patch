@@ -10128,8 +10128,8 @@ diff -uNr libc.old/localedata/locales/tr_CY libc/localedata/locales/tr_CY
 +<U004E><U0025><U0063><U0025><U004E>"
 +% K<U0131>br<U0131>s
 +country_name	"<U004B><U0131><U0062><U0072><U0131><U0073>"
-+% ??
-+%country_post	""
++% TR
++%country_post	"<U0054><U0052>"
 +% CY
 +country_car	"<U0043><U0059>"
 +% 9963
