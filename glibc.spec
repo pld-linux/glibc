@@ -1,53 +1,26 @@
-Summary:     GNU libc
-Summary(de): GNU-Libc
-Summary(fr): GNU libc
-Summary(pl): GNU libc
-Summary(tr): GNU libc
-Name:        glibc
-Version:     2.0.7
-%define kheaders 2.1.76
-%define version 981012
-Release:     30
-Copyright:   LGPL
-Group:       Development/Libraries/Libc
-Source0:     glibc-2.0.7-%{version}.tar.gz
-Source1:     ftp://prep.ai.mit.edu/pub/gnu/glibc-localedata-2.0.7pre3.tar.gz
-Source2:     ftp://prep.ai.mit.edu/pub/gnu/glibc-linuxthreads-2.0.7pre5.tar.gz
-Source3:     ftp://prep.ai.mit.edu/pub/gnu/glibc-crypt-2.0.6.tar.gz 
-Source4:     glibc-2.0.7-nsswhich.conf
-Source5:     linux-include-%{kheaders}.tar.gz
-Source6:     glibc-2.0.7-db-mans.tar.gz
-
-Patch0:      glibc-2.0.7-preload.patch
-Patch1:      glibc-2.0.7-nonmt.patch
-Patch2:      glibc-2.0.7-localedata.patch
-Patch3:      glibc-2.0.7-misc.patch
-Patch4:      glibc-2.0.7-sparc.patch
-Patch5:      glibc-2.0.7-sparc2.patch
-Patch6:      glibc-2.0.7-sparc3.patch
-Patch7:      glibc-2.0.7-tz.patch
-Patch9:      glibc-2.0.7-sparc4.patch
-Patch10:     glibc-2.0.6-threads.patch
-Patch11:     glibc-2.0.7-pagesize.patch
-Patch12:     glibc-2.0.7-getpagesize.patch
-Patch13:     glibc-2.0.7-resolv.patch
-Patch14: glibc-2.0.7-slovak.patch
-Patch15: glibc-2.0.7-serbian.patch
-Patch17: glibc-2.0.7-shaper.patch
-Patch18: glibc-2.0.7-sparclongjmp2.patch
-Patch19:     glibc-localedata_install.patch.gz
-Patch100: glibc-2.0.7-kfd.patch
-
-Buildroot:   /tmp/%{name}-%{PACKAGE_VERSION}-root
-Obsoletes:   zoneinfo libc-static libc-devel libc-profile libc-headers linuxthreads
-Autoreq:     false
-%ifarch alpha
-Provides: ld.so.2
-%else
-%endif
-%ifarch sparc
-Obsoletes: libc
-%endif
+Summary:	GNU libc
+Summary(de):	GNU libc
+Summary(fr):	GNU libc
+Summary(pl):	GNU libc
+Summary(tr):	GNU libc
+name:		glibc
+Version:	2.1
+Release:	3d 
+Copyright:	LGPL
+Group:		Libraries
+Group(pl):	Biblioteki
+Source0:	ftp://alpha.gnu.org/pub/gnu/%{name}-2.0.112.tar.gz
+URL:		ftp://sourceware.cygnus.com/pub/glibc
+Source1:	%{name}-linuxthreads-2.1.tar.gz
+Source2:	%{name}-crypt-2.0.111.tar.gz
+Source3:	utmpd.init
+Source4:	nscd.init
+Patch:		%{name}-2.0.112-2.1.diff.gz
+BuildRoot:	/tmp/%{name}-%{version}-root
+Provides:	ld.so.2
+Obsoletes:	%{name}-profile
+Obsoletes:	%{name}-debug
+Autoreq:	false
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -57,6 +30,22 @@ programs. This package contains the most important sets of shared libraries,
 the standard C library and the standard math library. Without these, a
 Linux system will not function. It also contains national language (locale)
 support and timezone databases.
+
+%package	devel
+Summary:	Additional libraries required to compile
+Summary(de):	Weitere Libraries zum Kompilieren
+Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
+Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
+Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
+Group:		Libraries
+Group(pl):	Biblioteki
+Prereq:		/sbin/install-info
+Requires:	%{name} = %{version}
+
+%description devel
+To develop programs which use the standard C libraries (which nearly all
+programs do), the system needs to have these standard header files and object
+files available for creating the executables.
 
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im 
@@ -79,11 +68,11 @@ Il contient aussi la gestion des langues nationales (locales) et les bases
 de données des zones horaires.
 
 %description -l pl
-Pakiet ten zawiera standardowe biblioteki, u¿ywane przez ró¿ne programy w
-twoim systemie. U¿ywanie przez programy bibliotek z tego pakietu oszczêdza
-miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest usytu³owane w
-jednym miejscu i dzielone miêdzy wieloma programami. Pakiet ten zawiera
-bardzo wa¿ny zbiór bibliotek wspó³dzielonych, standardowych bibliotek C i
+W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne programy 
+w Twoim systemie. U¿ywanie przez programy bibliotek z tego pakietu oszczêdza
+miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest usytuowane w jednym
+miejscu i dzielone miêdzy wieloma programami. Pakiet ten zawiera bardzo wa¿ny 
+zbiór bibliotek wspó³dzielonych (dynamicznych), standardowych bibliotek C i
 standardowych bibliotek matematycznych. Bez glibc system Linux nie jest w
 stanie funkcjonowaæ. Znajduj± siê tutaj równie¿ definicje ró¿nych informacji
 dla wielu jêzyków (locale) oraz definicje stref czasowych.
@@ -97,55 +86,6 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package debug
-Summary: glibc with debugging information
-Summary(de): glibc mit Debugging-Info
-Summary(fr): glibc contenant des informations pour le débuggage
-Summary(tr): Hata ayýklama bilgileriyle oluþturulmuþ glibc
-Group: Development/Libraries/Libc
-Requires:    %{name} = %{PACKAGE_VERSION}
-
-%description debug
-These libraries have the debugging information debuggers use for tracing
-the execution of programs. These are only needed when the shared libraries
-themselves are being debugged -- they are not needed to debug programs which
-use them.
-
-%description -l de debug
-Diese Libraries enthalten die Debugging-Daten, die Debuggers zum Verfolgen
-der Ausführung von Programmen verwenden. Sie benötigen diese nur, wenn
-die gemeinsam genutzten Libraries debugged werden - sie werden zum Debuggen
-von Programmen, die sie benutzen, nicht benötigt.
-
-%description -l fr debug
-Ces bibliothèques disposent d'information de débuggage pour tracer l'exécution
-des programmes. Elles ne sont nécessaires que lorsque les bibliothèques
-partagées ont été elles-mêmes débuggées -- elles ne sont pas nécessaires pour
-débugger les programmes qui les utilisent.
-
-%description -l tr debug
-Programlarýn çalýþmalarýný izlemek (trace) ve hata ayýklamak için kullanýlan
-kitaplýklar. Bunlar sadece ortak kitaplýklarýn hatalarýný ayýklamak
-isteyenlere gerekecektir.
-
-%package devel
-Summary:     Additional libraries required to compile
-Summary(de): Weitere Libraries zum Kompilieren
-Summary(fr): Librairies supplémentaires nécessaires à la compilation.
-Summary(pl): Dodatkowe biblioteki wymagane podczas kompilacji
-Summary(tr): Geliþtirme için gerekli diðer kitaplýklar
-Group:       Development/Libraries/Libc
-Requires:    kernel-headers
-Conflicts:   texinfo < 3.11
-Prereq:      /sbin/install-info
-Requires:    %{name} = %{PACKAGE_VERSION}
-Obsoletes:   libc-devel linuxthreads-devel
-
-%description devel
-To develop programs which use the standard C libraries (which nearly all
-programs do), the system needs to have these standard header files and object
-files available for creating the executables.
-
 %description -l de devel
 Bei der Entwicklung von Programmen, die die Standard-C-Libraries verwenden
 (also fast alle), benötigt das System diese Standard-Header- und Objektdateien
@@ -157,281 +97,271 @@ Pour développer des programmes utilisant les bibliothèques standard du C
 fichiers en-têtes et objets standards pour créer les exécutables.
 
 %description -l pl devel
-Pakiet ten jest niezbêdny przy tworzeniu w³±snych programów wykorzystuj±cych
-standardowe biblioteki C. Znajduj± siê tutaj pliki nag³ówkowe i
-pliki objektowe, niezbêdne do kompilacji plików wykonywalnych.
+Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów korzystaj±cych
+ze standardowej biblioteki C. Znajduj± siê tutaj pliki nag³ówkowe oraz pliki 
+objektowe, niezbêdne do kompilacji programów wykonywalnych i innych bibliotek.
 
 %description -l tr devel
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
-%package profile
-Summary:     glibc with profiling support
-Summary(de): glibc mit Profil-Unterstützung
-Summary(fr): glibc avec support pour profiling.
-Summary(pl): wersje bibliotek glibc do profajlowania
-Summary(tr): Ölçüm desteði olan glibc
-Group:       Development/Libraries/Libc
-Obsoletes:   libc-profile
-Requires:    %{name} = %{PACKAGE_VERSION}
-
-%description profile
-When programs are being profiled used gprof, they must use these libraries
-instrad of the standard C libraries for gprof to be able to profile
-them correctly.
-
-%description -l de profile
-Damit Programmprofile mit gprof richtig erstellt werden, müssen diese
-Libraries anstelle der üblichen C-Libraries verwendet werden.
-
-%description -l pl profile
-Je¿eli program ma byæ poddany badanion z u¿yciem profajlera gprof, to bêdzie
-musia³ byæ linkowany z bibliotekami z tego pakietu.
-
-%description -l tr profile
-gprof kullanýlarak ölçülen programlar standart C kitaplýðý yerine bu
-kitaplýðý kullanmak zorundadýrlar.
-
-%prep
-%setup -q -a 1 -a 2 -a 3 -a 5 -a 6
-%patch0 -p1 -b .preload
-#%patch1 -p0 -b .nonmt
-%patch2 -p1 -b .localedata
-%patch3 -p1 -b .misc
-%ifarch sparc
-%patch4 -p1 -b .sparc
-%patch5 -p1 -b .sparc2
-%patch6 -p1 -b .sparc3
-%patch9 -p1 -b .sparc4
-%patch12 -p1 -b .getpagesize
-%patch18 -p1 -b .sparclongjmp2
-%endif
-%patch7 -p1 -b .tz
-%patch10 -p1 -b .threads
-%patch11 -p1 -b .pagesize
-%patch14 -p1 -b .slovak
-%patch15 -p1 -b .serbian
-%patch17 -p1 -b .shaper
-%patch19 -p1 -b .localedata_install
-
-# this is the 3000 file descriptors patch...
-#patch100 -p1 -b .kfd
-
-ln -s asm-${RPM_ARCH} linux/include/asm
-ln -s ../../../../linux/include/linux sysdeps/unix/sysv/linux/linux
-ln -s ../../../../linux/include/asm sysdeps/unix/sysv/linux/asm
-
-find . -type f -size 0 -exec rm -f {} \;
+%prep 
+%setup -q -a 1 -a 2 -n %{name}-2.0.112
+%patch -p1
 
 %build
-autoconf
-CFLAGS="$RPM_OPT_FLAGS -g -DNDEBUG=1" \
-./configure \
-	--enable-add-ons=yes --enable-profile --prefix=/usr
-make -r
+install -d sunrpc/cpp; ln -s /lib/cpp sunrpc/cpp/cpp 
+CFLAGS="$RPM_OPT_FLAGS -pipe" \
+    ./configure \
+	    --enable-add-ons=crypt,linuxthreads \
+	    --disable-profile \
+	    --prefix=/usr \
+	    --disable-omitfp
+make  
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/man/man3
+install -d $RPM_BUILD_ROOT
 
 make install_root=$RPM_BUILD_ROOT install
 make install_root=$RPM_BUILD_ROOT install-locales -C localedata
 
-# the man pages for the linuxthreads require special attention
+install -d $RPM_BUILD_ROOT/usr/man/man3
+
 make -C linuxthreads/man
 install linuxthreads/man/*.3thr $RPM_BUILD_ROOT/usr/man/man3
-install db/*.3 $RPM_BUILD_ROOT/usr/man/man3
 
 gzip -9nvf $RPM_BUILD_ROOT/usr/info/libc*
 
 rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
-# this one conflicts badly with the kernel
-rm -rf $RPM_BUILD_ROOT/usr/include/scsi
+
+ln -sf ../src/linux/include/linux $RPM_BUILD_ROOT/usr/include/linux
+ln -sf ../src/linux/include/asm $RPM_BUILD_ROOT/usr/include/asm
+
 ln -sf ../../../etc/localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/localtime
 ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixtime
 ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixrules
 ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT/usr/lib/libbsd.a
+
 rm -f $RPM_BUILD_ROOT/etc/localtime
 
-install $RPM_SOURCE_DIR/glibc-2.0.7-nsswhich.conf $RPM_BUILD_ROOT/etc/nsswitch.conf
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/nsswitch.conf
 
-# This is for ncsd - in glibc 2.1
-#install nscd/nscd.conf $RPM_BUILD_ROOT/etc
-#mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
-#install nscd/nscd.init $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
-# the last bit: more documentation
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
+
+install nscd/nscd.conf		$RPM_BUILD_ROOT/etc
+install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
+
+install -d $RPM_BUILD_ROOT/var/db
+install nss/db-Makefile $RPM_BUILD_ROOT/var/db
+
+cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
+#!/bin/bash
+
+/usr/bin/make -f /var/db/db-Makefile
+EOF
+
+ln -sf create-db $RPM_BUILD_ROOT/usr/bin/update-db 
+
 rm -rf documentation
-mkdir documentation
+install -d documentation
+
 cp linuxthreads/ChangeLog  documentation/ChangeLog.threads
 cp linuxthreads/Changes documentation/Changes.threads
 cp linuxthreads/README documentation/README.threads
-cp linuxthreads/FAQ.html documentation/FAQ-threads.html
-cp -r linuxthreads/Examples documentation/examples.threads
+cp login/README.utmpd documentation/
 cp crypt/README documentation/README.crypt
+
 cp ChangeLog* documentation
-gzip -9 documentation/ChangeLog*
 
-strip $RPM_BUILD_ROOT/{lib/*,bin/*,sbin/*,usr/{bin/*,sbin/*}} || :
+bzip2 -9 documentation/*
 
-rm -f $RPM_BUILD_ROOT/usr/include/*.def
+strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
 
-%post   -p /sbin/ldconfig
+bzip2 -9  README NEWS FAQ BUGS NOTES PROJECTS INSTALL
+
+gzip -9fn $RPM_BUILD_ROOT/usr/man/man3/*
+
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/libc.info.gz /usr/info/dir
+/sbin/install-info /usr/info/libc.info.gz /etc/info-dir
 
 %preun devel
 if [ "$1" = 0 ]; then
-    /sbin/install-info --delete /usr/info/libc.info.gz /usr/info/dir
+    /sbin/install-info --delete /usr/info/libc.info.gz /etc/info-dir
 fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644, root, root, 755)
-%config /etc/nsswhich.conf
-%config /etc/rpc
-/usr/share/i18n
-/usr/share/locale
-/usr/share/zoneinfo
-%attr(755, root, root) /lib/*
-%attr(755, root, root) /usr/bin/*
-%attr(755, root, root) /usr/sbin/*
+%defattr(644,root,root,755)
+%doc README.bz2 NEWS.bz2 FAQ.bz2 BUGS.bz2 
+%doc documentation/* NOTES.bz2 PROJECTS.bz2 INSTALL.bz2
+
+%attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
+%config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
+%attr(750,root,root) %config %verify(not mtime md5 size) /etc/rc.d/init.d/*
+%attr(644,root,root) %config /etc/rpc
+
+%attr(755,root,root) /sbin/*
+%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) /usr/sbin/*
+
+%attr(755,root,root) /lib/ld-*
+%attr(755,root,root) /lib/lib*
+
+%dir /usr/lib/gconv
+/usr/lib/gconv/gconv-modules
+
+%dir /usr/share/i18n
+%attr(-,root,root) /usr/share/i18n/*
+
+%dir /usr/share/locale
+%attr(-,root,root) /usr/share/locale/*
+
+%dir /usr/share/zoneinfo
+%attr(-,root,root) /usr/share/zoneinfo/*
+
+%attr(750,root,root) %dir /var/db
+%config /var/db/db-*
 
 %files devel
-%defattr(644, root, root, 755)
-%doc README NEWS FAQ BUGS NOTES PROJECTS documentation/*
-/usr/include/*
-/usr/lib/*.o         
-/usr/lib/lib*.so
-/usr/info/*info*.gz
-%attr(644, root, man) /usr/man/man3/*
-/usr/lib/libBrokenLocale.a
-/usr/lib/libbsd-compat.a
-/usr/lib/libbsd.a
-/usr/lib/libc.a
-/usr/lib/libc_nonshared.a
-/usr/lib/libcrypt.a
-/usr/lib/libdb.a
-/usr/lib/libdl.a
-/usr/lib/libieee.a
-/usr/lib/libm.a
-/usr/lib/libmcheck.a
-/usr/lib/libndbm.a
-/usr/lib/libnsl.a
-/usr/lib/libposix.a
-/usr/lib/libpthread.a
-/usr/lib/libresolv.a
-/usr/lib/librpcsvc.a
-/usr/lib/libutil.a
+%defattr(644,root,root,755)
 
-%files profile
-%attr(644, root, root) /usr/lib/lib*_p.a
+/usr/include/*.h
 
-%files debug
-%attr(644, root, root) /usr/lib/libg.a
+%dir /usr/include/arpa
+/usr/include/arpa/*.h
+
+#%attr(755,root,root) /usr/include/asm
+#%attr(755,root,root) /usr/include/linux
+
+%dir /usr/include/scsi
+/usr/include/scsi/*.h
+
+%dir /usr/include/bits
+/usr/include/bits/*.h
+
+%dir /usr/include/db1
+/usr/include/db1/*.h
+
+%dir /usr/include/gnu
+/usr/include/gnu/*.h
+
+%dir /usr/include/net
+/usr/include/net/*.h
+
+%dir /usr/include/netash
+/usr/include/netash/*.h
+
+%dir /usr/include/netatalk
+/usr/include/netatalk/*.h
+
+%dir /usr/include/netax25
+/usr/include/netax25/*.h
+
+%dir /usr/include/neteconet
+/usr/include/neteconet/*.h
+
+%dir /usr/include/netinet
+/usr/include/netinet/*.h
+
+%dir /usr/include/netipx
+/usr/include/netipx/*.h
+
+%dir /usr/include/netpacket
+/usr/include/netpacket/*.h
+
+%dir /usr/include/netrom
+/usr/include/netrom/*.h
+
+%dir /usr/include/netrose
+/usr/include/netrose/*.h
+
+%dir /usr/include/nfs
+/usr/include/nfs/*.h
+
+%dir /usr/include/protocols
+/usr/include/protocols/*.h
+
+%dir /usr/include/rpc
+/usr/include/rpc/*
+
+%dir /usr/include/rpcsvc
+/usr/include/rpcsvc/*
+
+%dir /usr/include/sys
+/usr/include/sys/*.h
+
+/usr/info/libc.inf*.gz
+
+%attr(755,root,root) /usr/lib/*.o
+%attr(755,root,root) /usr/lib/*.so
+
+/usr/lib/*.a
+
+%attr(755,root,root) /usr/lib/gconv/*.so
+%attr(644,root, man) /usr/man/man3/*
 
 %changelog
-* Sat Oct 10 1998 Cristian Gafton <gafton@redhat.com>
-- updated to fix some of the memory leaks in the dl code
+* Sun Feb 14 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.1-3d]
+- updated to stable version,
+- fixed stripping ELF binaries,
+- removed obsoletes /usr/include/{asm,linux}
 
-* Wed Sep 30 1998 Cristian Gafton <gafton@redhat.com>
-- ypall UDP socket leak fixed
-- add if_shaper.h
-- list ruffian as a supported arch
-- serbian locale support
-- slovak patches in
+* Fri Jan 29 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.0.111-1d]
+- updated to latest snapshoot,
+- added utmpd.init, (don't run this piece of ... by default)
+- added /var/db, (don't generate a data base by default)
+- removed unused /usr/libexec/pt_ch*
+- other changes.
 
-* Sun Sep 13 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [2.0.7-24]
-- changed Buildroot to /tmp/%%{name}-%%{version}-root,
-- added using %%{name} and %%{version} in Source,
-- changed dependencies to "Requires: %%{name} = %%{version}" in devel
-  subpackage,
-- added full %attr description in %files,
-- removed INSTALL from %doc,
-- added stripping programs and shared libraries,
-- all %doc moved to devel.
+* Sat Nov 07 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.0.100-1d]
+- updated to latest snapshoot,
+- added install-locales,
+- minor changes.
 
-* Thu Sep 10 1998 Cristian Gafton <gafton@redhat.com>
-  [2.0.7-23]
-- resolver timeout fix on un-networked systems
+* Tue Oct 13 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.0.99-1d]
+- updated to 2.0.99,
+- added Obsoletes: glibc-debug, glibc-profile
 
-* Thu Aug 27 1998 Cristian Gafton <gafton@redhat.com>
-- fix for tmp race condition on glibcbug
-- fix for getpagesize() in sparc
-- man pages for the db functions (from old db-1.85)
+* Thu Aug 06 1998 Wojtek ¦lusarczyk <wojtek@SHADOW.EU.ORG>
+  [2.0.96-1d]
+- updated to 2.0.96,
+- translation modified for pl, 
+  (follow the suggestions Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>)
+- major changes.
+      (rewrote invalid spec file -- follow the PLD policy)
 
-* Thu Aug 20 1998 Jeff Johnson <jbj@redhat.com>
-- patches for debugging threads (http://odin.appliedtheory.com/).
+* Wed Jul 16 1998 Wojtek ¦lusarczyk <wojtek@SHADOW.EU.ORG>
+  [2.0.94-2d]
+- added nscd.init and config
+- fixed permision of pt_chown to 4711 
+- added %defattr
+- moved linux include links from kernel-headers to glibc-devel
 
-* Mon Aug 17 1998 Cristian Gafton <gafton@redhat.com>
-- new cvs version and patch top fix some typos
+* Tue Jun 2 1998 Wojtek Slusarczyk <wojtek@SHADOW.EU.ORG>
+  [2.0.94-1d]
+- updated to glibc 2.0.94
 
-* Thu Aug 13 1998 Jakub Jelinek <jj@ultra.linux.cz>
-- Fix SPARC longjmp to allow threaded apps (sparc4)
-- install in localedata requires chroot to be in $PATH
-
-* Thu Jul 23 1998 Cristian Gafton <gafton@redhat.com>
-- upgraded the cvs snapshot to match the "official" pre5 release
-- also upgraded the linuxthreads package
-- changelog is not at the end of the spec file.
-
-* Mon Jul 20 1998 Cristian Gafton <gafton@redhat.com>
-- added patch for socketbits.h to define CMSG_LEN/ALIGN/SPACE
-
-* Sat Jul 11 1998 Cristian Gafton <gafton@redhat.com>
-- upgraded again from the cvs version to catch the paranoia env patch
-- added a patch to fix the backport of the env paranoia found in the CVS
-
-* Fri Jun 26 1998 Cristian Gafton <gafton@redhat.com>
-- updated the cvs version
-- added a (maybe way too paranoid) tz patch
-
-* Wed Jun 03 1998 Jeff Johnson <jbj@redhat.com>
-- Add sparc patches from davem.
-
-* Sat May 23 1998 Cristian Gafton <gafton@redhat.com>
-- updated again sbapshot to catch the latest rpc fixes
-
-* Thu May 21 1998 Cristian Gafton <gafton@redhat.com>
-- updated snapshot to include the fixed time patches
-- added Jeff's sparc patch 
-
-* Wed May 20 1998 Cristian Gafton <gafton@redhat.com>
-- added time-related patches for tzset & friends
-
-* Sat May 09 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Thu May 07 1998 Cristian Gafton <gafton@redhat.com>
-- added a patch to fix the pow function (ulrich drepper, pointed out by
-  andreas jaeger)
-- updated snapshot
-
-* Wed May 06 1998 Cristian Gafton <gafton@redhat.com>
-- updated snapshot
-- fixed sethostid which used to require the slack-dead /var/adm dir
-
-* Sat May 02 1998 Cristian Gafton <gafton@redhat.com>
-- fixed russian locale problem
-- alpha should now link again statically. Patch from rth
-
-* Sat Apr 18 1998 Cristian Gafton <gafton@redhat.com>
-- updated snapchot and added a patch to fix a closelog() problem
-
-* Tue Apr 14 1998 Cristian Gafton <gafton@redhat.com>
-- updated snapshot and added a new patch to fix __open_catalog
-- added AutoReqProv: false to help break some circular dependencies
-
-* Mon Apr 06 1998 Cristian Gafton <gafton@redhat.com>
-- updated glibc snapshot
-
-* Sat Apr 04 1998 Cristian Gafton <gafton@redhat.com>
-- updated snapshot; rebuilt package on alpha with egcs
+* Sun May 24 1998 Marcin Korzonek <mkorz@euler.mat.univ.szczecin.pl>
+  [2.0.93-1d]
+- updated for glibc 2.0.93
+- build prepare for PLD-1.1 Tornado
+- removed glibc-debug and glibc-profile packages generation (it took too
+  long to compile the full featured version on my home linux box ;)
+- compilation is now performed in compile directory as advised 
+  in Glibc HOWTO
 
 * Tue Mar 31 1998 Cristian Gafton <gafton@redhat.com>
 - more patches to fix dlopen()/dlclose problems
@@ -588,7 +518,7 @@ rm -rf $RPM_BUILD_ROOT
 
 * Sat Aug 23 1997 Erik Troan <ewt@redhat.com>
 - minor hack for alpha (won't be necessary in next release)
-- swhiched to use a build root
+- switched to use a build root
 - dynamically builds file lists
 
 * Tue Aug 19 1997 Erik Troan <ewt@redhat.com>
@@ -603,7 +533,7 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Feb 18 1997 Erik Troan <ewt@redhat.com>
 - 1) added patch for shadow to work w/ :: rather then :-1: entries
 - 2) incorporated Richard Henderson's string operation fix
-- 3) added default /etc/nsswhich.conf
+- 3) added default /etc/nsswitch.conf
   [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
