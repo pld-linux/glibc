@@ -82,7 +82,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-getaddrinfo-workaround.patch
+#Patch7:		%{name}-getaddrinfo-workaround.patch
 Patch8:		%{name}-postshell.patch
 Patch9:		%{name}-missing-nls.patch
 Patch10:	%{name}-java-libc-wait.patch
@@ -98,9 +98,7 @@ Patch20:	%{name}-tests-noproc.patch
 Patch21:	%{name}-linuxthreads-ppc-fix.patch
 Patch23:	%{name}-new-charsets.patch
 Patch26:	%{name}-sr_CS.patch
-#Patch28:	%{name}-gcc34.patch
 # PaX
-#Patch29:	%{name}-pt_pax_flags.patch		(already in glibc-cvs)
 #Patch30:	%{name}-pax_iconvconfig.patch
 #Patch31:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -923,8 +921,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # Collect locale files and mark them with %%lang()
 rm -f ../glibc.lang
-# bokmaal has been renamed (no_NO -> nb_NO) in 2.3.3, but not in po
-mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{no,nb}
 echo '%defattr(644,root,root,755)' > ../glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
