@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	7
+Release:	8
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -670,7 +670,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_infodir}/libc.inf*.gz
 
-%attr(755,root,root) %{_libdir}/lib[^(db)]*.so
+%attr(755,root,root) %{_libdir}/lib[A-Z]*.so
+%attr(755,root,root) %{_libdir}/libc*.so
+%attr(755,root,root) %{_libdir}/libdl*.so
+%attr(755,root,root) %{_libdir}/libm*.so
+%attr(755,root,root) %{_libdir}/libns*.so
+%attr(755,root,root) %{_libdir}/lib[p-z]*.so
 %attr(755,root,root) %{_libdir}/*.o
 %{_libdir}/libc_nonshared.a
 
