@@ -111,6 +111,7 @@ Patch24:	%{name}-morelocales.patch
 Patch25:	%{name}-ppc-getcontext.patch
 Patch26:	%{name}-locale_fixes.patch
 Patch27:	%{name}-LD_DEBUG.patch
+Patch28:	%{name}-soversions-fix.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -809,6 +810,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch26 -p1
 # UPDATEME/DROPME
 # %patch27 -p0
+%patch28 -p1
 # DROP
 #%patch30 -p1
 # DROP
