@@ -614,7 +614,7 @@ chmod +x scripts/cpp
 # standardize name
 mv -f localedata/locales/{lug_UG,lg_UG}
 
-%if {with idn}
+%if %{with idn}
 cp -r libidn-*/lib libidn
 cp libidn-*/libc/{Makefile,configure,Banner,Versions} libidn/
 cp libidn-*/lib/*.{c,h} libidn/
