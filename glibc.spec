@@ -13,6 +13,7 @@
 #   are there any other solutions than revert???
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
+%define		rel 2.11
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -23,7 +24,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ◊≈“”¶ß 2.3
 Name:		glibc
 Version:	2.3.2
-Release:	2.10
+Release:	%{rel}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -251,6 +252,7 @@ kitapl˝klar.
 %package kernel-headers
 Summary:	Kernel header files the glibc has been built with
 Summary(pl):	Pliki nag≥Ûwkowe j±dra, z ktÛrymi zosta≥a zbudowana ta wersja glibc
+Release:	%{rel}.%{_kernel_ver_str}
 Group:		Development/Libraries
 
 %description kernel-headers
@@ -267,6 +269,7 @@ Summary(ja):	•Õ°º•‡•µ°º•”•π•≠•„•√•∑•Û•∞•«°º•‚•Û (nacd)
 Summary(pl):	Demon zapamiÍtuj±cy odpowiedzi serwisÛw nazw
 Summary(ru):	Î‹€…“’¿›…  ƒ≈ÕœŒ ”≈“◊…”œ◊ …Õ≈Œ
 Summary(uk):	Î≈€’¿ﬁ…  ƒ≈ÕœŒ ”≈◊¶”¶◊ ¶Õ≈Œ
+Release:	%{rel}
 Group:		Networking/Daemons
 PreReq:		rc-scripts >= 0.2.0
 Requires(post,preun):	/sbin/chkconfig
@@ -304,6 +307,7 @@ nscd À≈€’§ “≈⁄’Ãÿ‘¡‘… ⁄¡–“œ”¶◊ ƒœ ”≈“◊¶”¶◊ ¶Õ≈Œ; √≈ Õœ÷≈ ”…ÃÿŒœ
 %package -n localedb-src
 Summary:	locale database source code
 Summary(pl):	Kod ºrÛd≥owy bazy locale
+Release:	%{rel}
 Group:		Daemons
 Requires:	%{name} = %{version}
 
@@ -319,6 +323,7 @@ libc.
 %package localedb-all
 Summary:	locale database for all locales supported by glibc
 Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs≥ugiwanych przez glibc
+Release:	%{rel}
 Group:		Libraries
 Requires:	%{name} = %{version}
 
@@ -340,6 +345,7 @@ pakiet localedb-src moøna odinstalowaÊ).
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
 Summary(pl):	Program do konwersji plikÛw tekstowych z jednego kodowania do innego
+Release:	%{rel}
 Group:		Applications/Text
 Requires:	%{name} = %{version}
 
@@ -362,6 +368,7 @@ Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Summary(ru):	Û‘¡‘…ﬁ≈”À…≈ ¬…¬Ã…œ‘≈À… glibc
 Summary(uk):	Û‘¡‘…ﬁŒ¶ ¬¶¬Ã¶œ‘≈À… glibc
+Release:	%{rel}
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
@@ -387,6 +394,7 @@ Summary(pl):	glibc ze wsparciem dla profilowania
 Summary(ru):	GNU libc ” –œƒƒ≈“÷Àœ  –“œ∆¡ Ã≈“¡
 Summary(tr):	÷lÁ¸m destei olan glibc
 Summary(uk):	GNU libc ⁄ –¶ƒ‘“…ÕÀœ¿ –“œ∆¡ Ã≈“¡
+Release:	%{rel}
 Group:		Development/Libraries/Libc
 Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{version}
@@ -426,6 +434,7 @@ kitapl˝˝ kullanmak zorundad˝rlar.
 %package pic
 Summary:	glibc PIC archive
 Summary(pl):	archiwum PIC glibc
+Release:	%{rel}
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{version}
 
@@ -443,6 +452,7 @@ biblioteki wspÛ≥dzielonej libc.
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
 Summary(pl):	Stary modu≥ NYS NSS glibc
+Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{version}
 
@@ -455,6 +465,7 @@ Stary modu≥ NYS NSS glibc.
 %package -n nss_dns
 Summary:	BIND NSS glibc module
 Summary(pl):	Modu≥ BIND NSS glibc
+Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{version}
 
@@ -467,6 +478,7 @@ Modu≥ BIND NSS glibc.
 %package -n nss_files
 Summary:	Traditional files databases NSS glibc module
 Summary(pl):	Modu≥ tradycyjnych plikowych baz danych NSS glibc
+Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{version}
 
@@ -479,6 +491,7 @@ Modu≥ tradycyjnych plikowych baz danych NSS glibc.
 %package -n nss_hesiod
 Summary:	Hesiod NSS glibc module
 Summary(pl):	Modu≥ hesiod NSS glibc
+Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{version}
 
@@ -491,6 +504,7 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych.
 %package -n nss_nis
 Summary:	NIS(YP) NSS glibc module
 Summary(pl):	Modu≥ NIS(YP) NSS glibc
+Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{version}
 
@@ -503,6 +517,7 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS(YP).
 %package -n nss_nisplus
 Summary:	NIS+ NSS module
 Summary(pl):	Modu≥ NIS+ NSS
+Release:	%{rel}
 Group:		Base
 Requires:	%{name} = %{version}
 
@@ -515,6 +530,7 @@ Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS+.
 %package memusage
 Summary:	A toy
 Summary(pl):	Zabawka
+Release:	%{rel}
 Group:		Applications
 Requires:	%{name} = %{version}
 Requires:	gd
@@ -528,6 +544,7 @@ Zabawka.
 %package zoneinfo_right
 Summary:	Non-POSIX (real) time zones
 Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
+Release:	%{rel}
 Group:		Libraries
 Requires:	%{name} = %{version}
 
@@ -722,6 +739,9 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 # copy actual kernel headers for glibc-kernel-headers
 %{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
 %{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
+if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
+	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -943,7 +963,7 @@ fi
 
 %files kernel-headers
 %defattr(644,root,root,755)
-%{_includedir}/asm
+%{_includedir}/asm*
 %{_includedir}/linux
 
 %files -n nscd
