@@ -114,14 +114,8 @@ Conflicts:	rpm < 4.1
 %define		debugcflags	-O1 -g
 %ifarch sparc64
 %define		_without_memusage	1
-%endif
-
-
-# Define to build a biarch package
-%global with_biarch	0
-%ifarch x86_64 sparc64
-%{!?min_kernel:%global          min_kernel      2.4.10}
-%global with_biarch	1
+%define 	specflags_sparc64	-mvis -fcall-used-g6
+%define		_libdir			/usr/lib64
 %endif
 
 %description
@@ -808,65 +802,21 @@ touch libidn/libidn.texi
 #cd ../..
 
 %build
-basedir=$(pwd)
+# Prepare kernel headers
+TARGET_CPU=$(echo "%{_target_cpu}" | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
+				   -e s/athlon/i386/ -e s/arm.*/arm/ \
+				   -e s/sa110/arm/ -e s/s390x/s390/)
+_headers_dir=`pwd`/usr/include; export _headers_dir;
+(cd $_headers_dir && ln -s asm-${TARGET_CPU} asm)
 
-BuildGlibc() {
-  arch="$1"
-  shift
-
-  BuildCC="%{__cc}"
-  case "${arch}" in
-	i[3456]86 | athlon)
-		if [ "`uname -m`" = "x86_64" -o "`uname -m`" = "amd64" ]; then
-			BuildCC="$BuildCC -m32"
-		fi
-		;;
-	sparc64)
-		BuildCC="$BuildCC -m64"
-		BuildCCFlags="$BuildCCFlags -mvis -fcall-used-g6"
-		;;
-	sparc | sparcv9)
-		BuildCC="$BuildCC -m32"
-		;;
-  esac
-
-  # Library name
-  # Prepare kernel headers
-  _headers_dir=`pwd`/usr/include; export _headers_dir;
-  (cd $_headers_dir && rm asm)
-  (cd $_headers_dir && ln -s asm-`echo $arch | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/athlon/i386/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/` asm)
-
-  glibc_cv_cc_64bit_output=no
-  if echo ".text" | $BuildCC -c -o test.o -xassembler -; then
-	case `/usr/bin/file test.o` in
-		*"ELF 64"*)
-			glibc_cv_cc_64bit_output=yes
-		;;
-	esac
-  fi
-  rm -f test.o
-  case $arch:$glibc_cv_cc_64bit_output in
-	powerpc64:yes | s390x:yes | sparc64:yes | x86_64:yes | amd64:yes)
-		glibc_libname="lib64"
-	;;
-  	*:*)
-		glibc_libname="lib"
-	;;
-  esac
-
-  # Build glibc
-  rm -rf builddir-${arch}
-  mkdir builddir-${arch}
-  cd builddir-${arch}
-  # avoid stripping ld.so by -s in rpmldflags
-  LDFLAGS=" " ; export LDFLAGS
-  #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
-  ../%configure \
-	CC="${BuildCC}" \
-	--build=${arch}-%{_vendor}-%{_target_os} \
-	--libexecdir="%{_prefix}/$glibc_libname" \
-	--libdir="%{_prefix}/$glibc_libname" \
-        --enable-add-ons=linuxthreads%{?with_idn:,libidn} \
+# Build glibc
+mkdir builddir
+cd builddir
+# avoid stripping ld.so by -s in rpmldflags
+LDFLAGS=" " ; export LDFLAGS
+#CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
+../%configure \
+	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
 	--enable-kernel="%{min_kernel}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
@@ -878,34 +828,17 @@ BuildGlibc() {
 	--with-headers=$_headers_dir
 %endif
 
-  # problem compiling with --enable-bounded (must be reported to libc-alpha)
+# problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-  %{__make} %{?parallelmkflags}
-
-  cd ${basedir}
-}
-
-# Build main glibc
-%if %{with_biarch}
-%ifarch x86_64
-BuildGlibc "athlon"
-%endif
-%endif
-
-BuildGlibc "%{_target_cpu}"
+%{__make} %{?parallelmkflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-basedir=$(pwd)
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
 
 _headers_dir=`pwd`/usr/include; export _headers_dir;
 
-# FIX FIX FIX
-rm $_headers_dir/asm
-ln -s $_headers_dir/{asm-x86_64,asm}
-
-cd builddir-%{_target_cpu}
+cd builddir
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
@@ -929,57 +862,10 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 
-%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib64/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
-mv -f $RPM_BUILD_ROOT/lib64/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 %endif
-
-%if %{with_biarch}
-%ifarch x86_64
-ALT_ARCH="athlon"; export ALT_ARCH
-%endif
-mkdir -p $RPM_BUILD_ROOT/$ALT_ARCH
-# FIX FIX FIX
-rm $_headers_dir/asm
-ln -s $_headers_dir/{asm-i386,asm}
-
-cd ../builddir-$ALT_ARCH
-env LANGUAGE=C LC_ALL=C \
-%{__make} install \
-        %{?parallelmkflags} \
-        install_root=$RPM_BUILD_ROOT/$ALT_ARCH \
-        infodir=%{_infodir} \
-        mandir=%{_mandir}
-
-env LANGUAGE=C LC_ALL=C \
-%{__make} localedata/install-locales \
-        %{?parallelmkflags} \
-        install_root=$RPM_BUILD_ROOT/$ALT_ARCH
-
-PICFILES="libc_pic.a libc.map
-        math/libm_pic.a libm.map
-        resolv/libresolv_pic.a"
-
-install $PICFILES				$RPM_BUILD_ROOT/$ALT_ARCH/usr/lib
-install elf/soinit.os				$RPM_BUILD_ROOT/$ALT_ARCH/usr/lib/soinit.o
-install elf/sofini.os				$RPM_BUILD_ROOT/$ALT_ARCH/usr/lib/sofini.o
-
-
-%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/$ALT_ARCH/lib/libmemusage.so $RPM_BUILD_ROOT/usr/lib}
-%ifnarch sparc64
-mv -f $RPM_BUILD_ROOT/$ALT_ARCH/lib/libpcprofile.so $RPM_BUILD_ROOT/$ALT_ARCH/usr/lib
-%endif
-
-cp -Rf $RPM_BUILD_ROOT/$ALT_ARCH/lib $RPM_BUILD_ROOT/ 
-cp -Rf $RPM_BUILD_ROOT/$ALT_ARCH/usr/lib $RPM_BUILD_ROOT/usr
-rm -Rf $RPM_BUILD_ROOT/$ALT_ARCH
-cd ../builddir-%{_target_cpu}
-
-%endif
-
-# FIX FIX FIX
-rm $_headers_dir/asm
-ln -s $_headers_dir/{asm-x86_64,asm}
 
 %{__make} -C ../linuxthreads/man
 install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
@@ -1158,7 +1044,7 @@ fi
 %ifnarch sparc64
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-#%doc README NEWS FAQ BUGS
+%doc README NEWS FAQ BUGS
 
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
@@ -1171,7 +1057,7 @@ fi
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
-%ifnarch alpha ppc sparc64 x86_64
+%ifnarch alpha ppc sparc64
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/locale
@@ -1190,11 +1076,6 @@ fi
 %attr(755,root,root) /lib/libdl*
 %attr(755,root,root) /lib/libnsl*
 %attr(755,root,root) /lib/lib[BScmprtu]*
-%attr(755,root,root) /lib64/ld*
-%attr(755,root,root) /lib64/libanl*
-%attr(755,root,root) /lib64/libdl*
-%attr(755,root,root) /lib64/libnsl*
-%attr(755,root,root) /lib64/lib[BScmprtu]*
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
@@ -1202,7 +1083,6 @@ fi
 %exclude %{_datadir}/zoneinfo/right
 
 %dir %{_libdir}/locale
-%dir /usr/lib/locale
 
 %{_mandir}/man1/[!lsg]*
 %{_mandir}/man1/getent.1*
@@ -1240,12 +1120,10 @@ fi
 #%files -n nss_dns
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_dns*.so*
-%attr(755,root,root) /lib64/libnss_dns*.so*
 
 #%files -n nss_files
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_files*.so*
-%attr(755,root,root) /lib64/libnss_files*.so*
 
 %files zoneinfo_right
 %defattr(644,root,root,755)
@@ -1254,24 +1132,19 @@ fi
 %files -n nss_compat
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_compat*.so*
-%attr(755,root,root) /lib64/libnss_compat*.so*
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_hesiod*.so*
-%attr(755,root,root) /lib64/libnss_hesiod*.so*
 
 %files -n nss_nis
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_nis.so.*
 %attr(755,root,root) /lib/libnss_nis-*.so
-%attr(755,root,root) /lib64/libnss_nis.so.*
-%attr(755,root,root) /lib64/libnss_nis-*.so
 
 %files -n nss_nisplus
 %defattr(644,root,root,755)
 %attr(755,root,root) /lib/libnss_nisplus*.so*
-%attr(755,root,root) /lib64/libnss_nisplus*.so*
 
 %if %{?_without_memusage:0}%{!?_without_memusage:1}
 %files memusage
@@ -1282,7 +1155,7 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-#%doc documentation/* NOTES PROJECTS
+%doc documentation/* NOTES PROJECTS
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/*prof*
@@ -1324,16 +1197,6 @@ fi
 %{_libdir}/libieee.a
 %{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
-%attr(755,root,root) /usr/lib/lib[!m]*.so
-%attr(755,root,root) /usr/lib/libm.so
-%attr(755,root,root) /usr/lib/*crt*.o
-/usr/lib/libbsd-compat.a
-#/usr/lib/libbsd.a
-/usr/lib/libc_nonshared.a
-/usr/lib/libg.a
-/usr/lib/libieee.a
-/usr/lib/libpthread_nonshared.a
-/usr/lib/librpcsvc.a
 
 %{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
@@ -1384,7 +1247,6 @@ fi
 %files localedb-all
 %defattr(644,root,root,755)
 %{_libdir}/locale/locale-archive
-/usr/lib/locale/locale-archive
 
 %files -n iconv
 %defattr(644,root,root,755)
@@ -1392,9 +1254,6 @@ fi
 %dir %{_libdir}/gconv
 %{_libdir}/gconv/gconv-modules
 %attr(755,root,root) %{_libdir}/gconv/*.so
-%dir /usr/lib/gconv
-/usr/lib/gconv/gconv-modules
-%attr(755,root,root) /usr/lib/gconv/*.so
 
 %files static
 %defattr(644,root,root,755)
@@ -1410,22 +1269,10 @@ fi
 %{_libdir}/libresolv.a
 %{_libdir}/librt.a
 %{_libdir}/libutil.a
-/usr/lib/libanl.a
-/usr/lib/libBrokenLocale.a
-/usr/lib/libc.a
-/usr/lib/libcrypt.a
-/usr/lib/libdl.a
-/usr/lib/libm.a
-/usr/lib/libmcheck.a
-/usr/lib/libnsl.a
-/usr/lib/libpthread.a
-/usr/lib/libresolv.a
-/usr/lib/librt.a
-/usr/lib/libutil.a
+
 %files profile
 %defattr(644,root,root,755)
 %{_libdir}/lib*_p.a
-/usr/lib/lib*_p.a
 
 %files pic
 %defattr(644,root,root,755)
@@ -1433,10 +1280,6 @@ fi
 %{_libdir}/lib*.map
 %{_libdir}/soinit.o
 %{_libdir}/sofini.o
-/usr/lib/lib*_pic.a
-/usr/lib/lib*.map
-/usr/lib/soinit.o
-/usr/lib/sofini.o
 
 %else
 
