@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	6
+Release:	7
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -20,18 +20,19 @@ Source6:	nscd.sysconfig
 Source7:	nscd.logrotate
 Source10:	ftp://ftp.yggdrasil.com/private/hjl/ldconfig-980708.tar.gz
 Source11:	ldconfig.8
-Patch0:		glibc-info.patch
-Patch1:		glibc-versions.awk_fix.patch
-Patch2:		glibc-pld.patch
-Patch3:		glibc-crypt-blowfish.patch
-Patch4:		glibc-string2-pointer-arith.patch
-Patch5:		glibc-db2-alpha-mutex.patch
-Patch6:		glibc-linuxthreads-lock.patch
-Patch7:		glibc-pthread_create-manpage.patch
-Patch8:		glibc-sparc-linux-chown.patch
-Patch9:		glibc-ctype.patch
-Patch10:	ldconfig-glibc.patch
-Patch11:	ldconfig-bklinks.patch
+Patch0:		glibc-2.1-CVS-20000813.patch.bz2
+Patch1:		glibc-info.patch
+Patch2:		glibc-versions.awk_fix.patch
+Patch3:		glibc-pld.patch
+Patch4:		glibc-crypt-blowfish.patch
+Patch5:		glibc-string2-pointer-arith.patch
+Patch6:		glibc-db2-alpha-mutex.patch
+Patch7:		glibc-linuxthreads-lock.patch
+Patch8:		glibc-pthread_create-manpage.patch
+Patch9:		glibc-sparc-linux-chown.patch
+Patch10:	glibc-ctype.patch
+Patch11:	ldconfig-glibc.patch
+Patch12:	ldconfig-bklinks.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -414,10 +415,11 @@ Berkeley DB.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p0
+%patch9 -p1
+%patch10 -p0
 cd ldconfig-980708
-%patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 %build
 %configure \
@@ -425,7 +427,7 @@ cd ldconfig-980708
 	--enable-profile \
 	--disable-omitfp
 
-%{__make} LDFLAGS=""
+%{__make}
 
 cd ldconfig-980708
 rm -f ldconfig
