@@ -952,7 +952,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		twochar=1
 		# list of long %%lang values we do support
-		for j in de_AT de_BE de_CH de_LU es_AR es_MX ja_JP.SJIS ko_KR.utf8 pt_BR \
+		for j in de_AT de_BE de_CH de_LU es_AR es_MX pt_BR \
 			 zh_CN zh_CN.gbk zh_HK zh_TW ; do
 			if [ $j = "$lang" ]; then
 				twochar=
@@ -977,7 +977,7 @@ done
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ar az bg bn br bs cy de_AT en en_AU en_CA en_US eo es_AR es_MX \
-    et eu fa fo ga gu he hi ia id is ja_JP.SJIS ka kn leet lg li lo lt lv mi \
+    et eu fa fo ga gu he hi ia id is ka kn leet lg li lo lt lv mi \
     mk ml mn mr ms mt nds ne nn pa pt ro ru se sl sq sr sr@Latn sr@ije ta tg \
     th uk uz vi wa xh yi zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
