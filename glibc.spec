@@ -2,8 +2,7 @@
 # conditional build
 # _without_dist_kernel          without distribution kernel
 
-%define         _kernel_ver     %(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"'
- -f2)
+%define         _kernel_ver     %(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
 %define         _kernel24       %(echo %{_kernel_ver} | grep -q '2\.[012]\.' ; echo $?)
 
 %if %{_kernel24}
