@@ -583,7 +583,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
 done
-for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
+for i in af az be bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
          lt lv ms nn pt ro ru sl sr ta uk wa zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
