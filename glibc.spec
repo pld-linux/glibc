@@ -38,9 +38,8 @@
 %endif
 
 %if %{with tls}
-# - sparc temporarily removed (broken)
-# - TLS support for PPC is only available when using gcc >= 3.4
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc64 sparcv9
+# sparc temporarily removed (broken)
+%ifnarch %{ix86} amd64 ia64 alpha s390 s390x  sparc64 sparcv9 ppc ppc64
 %undefine	with_tls
 %endif
 %endif
@@ -130,7 +129,7 @@ Patch27:	%{name}-comdat.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-BuildRequires:	gcc >= 3.2
+BuildRequires:	gcc >= 3.4
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
 %if %{without kernelheaders}
