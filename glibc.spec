@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	16
+Release:	17
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -39,6 +39,7 @@ Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
 Patch12:	%{name}-use-int-not-arpa.patch
 Patch13:	%{name}-divdi3.patch
+Patch14:	%{name}-nss_dns-overflow.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -439,14 +440,13 @@ Zabawka.
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 chmod +x scripts/cpp
 
 %build
+# avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
-if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
-	CPPFLAGS="`pkg-config libpng12 --cflags`"
-fi
 %configure2_13 \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
@@ -553,7 +553,7 @@ for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
 	if [ ! -d $i ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
-		echo "%lang($lang) %ghost %{_datadir}/locale/$i" >> glibc.lang
+		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
 done
 
@@ -563,7 +563,8 @@ install -m755 postshell $RPM_BUILD_ROOT/sbin
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-# not run iconvconfig in %%postun -n iconv because iconvconfig don't exist when %%postun is runned
+# don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
+# when %%postun is run
 
 %post	-p /sbin/postshell
 /sbin/ldconfig
