@@ -1,7 +1,15 @@
 diff -uNr libc.orig/locale/iso-639.def libc/locale/iso-639.def
 --- libc.orig/locale/iso-639.def	2004-10-14 21:11:29.000000000 +0200
 +++ libc/locale/iso-639.def	2004-11-10 02:36:38.000000000 +0100
-@@ -167,7 +167,7 @@
+@@ -138,6 +138,7 @@
+ DEFINE_LANGUAGE_CODE3 ("Fanti", fat, fat)
+ DEFINE_LANGUAGE_CODE ("Faroese", fo, fao, fao)
+ DEFINE_LANGUAGE_CODE ("Fijian", fj, fij, fij)
++DEFINE_LANGUAGE_CODE3 ("Filipino; Pilipino", fil, fil)
+ DEFINE_LANGUAGE_CODE ("Finnish", fi, fin, fin)
+ DEFINE_LANGUAGE_CODE3 ("Finno-Ugrian (Other)", fiu, fiu)
+ DEFINE_LANGUAGE_CODE3 ("Fon", fon, fon)
+@@ -167,7 +168,7 @@
  DEFINE_LANGUAGE_CODE3 ("Gothic", got, got)
  DEFINE_LANGUAGE_CODE3 ("Grebo", grb, grb)
  DEFINE_LANGUAGE_CODE3 ("Greek, Ancient", grc, grc)
@@ -10,7 +18,7 @@ diff -uNr libc.orig/locale/iso-639.def libc/locale/iso-639.def
  DEFINE_LANGUAGE_CODE ("Guarani", gn, grn, grn)
  DEFINE_LANGUAGE_CODE ("Gujarati", gu, guj, guj)
  DEFINE_LANGUAGE_CODE3 ("Gwich´in", gwi, gwi)
-@@ -207,13 +207,14 @@
+@@ -207,13 +208,14 @@
  DEFINE_LANGUAGE_CODE3 ("Iroquoian languages", iro, iro)
  DEFINE_LANGUAGE_CODE ("Italian", it, ita, ita)
  DEFINE_LANGUAGE_CODE ("Japanese", ja, jpn, jpn)
@@ -26,15 +34,15 @@ diff -uNr libc.orig/locale/iso-639.def libc/locale/iso-639.def
  DEFINE_LANGUAGE_CODE3 ("Kamba", kam, kam)
  DEFINE_LANGUAGE_CODE ("Kannada", kn, kan, kan)
  DEFINE_LANGUAGE_CODE ("Kanuri", kr, kau, kau)
-@@ -232,6 +233,7 @@
+@@ -232,6 +234,7 @@
  DEFINE_LANGUAGE_CODE3 ("Kimbundu", kmb, kmb)
  DEFINE_LANGUAGE_CODE ("Kinyarwanda", rw, kin, kin)
  DEFINE_LANGUAGE_CODE ("Kirghiz", ky, kir, kir)
-+DEFINE_LANGUAGE_CODE3 ("Klingon", tlh, tlh)
++DEFINE_LANGUAGE_CODE3 ("Klingon; tlhIngan-Hol", tlh, tlh)
  DEFINE_LANGUAGE_CODE ("Komi", kv, kom, kom)
  DEFINE_LANGUAGE_CODE ("Kongo", kg, kon, kon)
  DEFINE_LANGUAGE_CODE3 ("Konkani", kok, kok)
-@@ -255,6 +257,8 @@
+@@ -255,6 +258,8 @@
  DEFINE_LANGUAGE_CODE ("Limburgan; Limburger; Limburgish", li, lim, lim)
  DEFINE_LANGUAGE_CODE ("Lingala", ln, lin, lin)
  DEFINE_LANGUAGE_CODE ("Lithuanian", lt, lit, lit)
@@ -43,7 +51,15 @@ diff -uNr libc.orig/locale/iso-639.def libc/locale/iso-639.def
  DEFINE_LANGUAGE_CODE3 ("Lozi", loz, loz)
  DEFINE_LANGUAGE_CODE ("Luba-Katanga", lu, lub, lub)
  DEFINE_LANGUAGE_CODE3 ("Luba-Lulua", lua, lua)
-@@ -306,6 +310,7 @@
+@@ -288,6 +293,7 @@
+ DEFINE_LANGUAGE_CODE3 ("Mende", men, men)
+ DEFINE_LANGUAGE_CODE3 ("Micmac", mic, mic)
+ DEFINE_LANGUAGE_CODE3 ("Minangkabau", min, min)
++DEFINE_LANGUAGE_CODE3 ("Mirandese", mwl, mwl)
+ DEFINE_LANGUAGE_CODE3 ("Miscellaneous languages", mis, mis)
+ DEFINE_LANGUAGE_CODE3 ("Mohawk", moh, moh)
+ DEFINE_LANGUAGE_CODE3 ("Moksha", mdf, mdf)
+@@ -306,6 +312,7 @@
  DEFINE_LANGUAGE_CODE3 ("Neapolitan", nap, nap)
  DEFINE_LANGUAGE_CODE ("Nepali", ne, nep, nep)
  DEFINE_LANGUAGE_CODE3 ("Newari", new, new)
@@ -51,7 +67,17 @@ diff -uNr libc.orig/locale/iso-639.def libc/locale/iso-639.def
  DEFINE_LANGUAGE_CODE3 ("Nias", nia, nia)
  DEFINE_LANGUAGE_CODE3 ("Niger-Kordofanian (Other)", nic, nic)
  DEFINE_LANGUAGE_CODE3 ("Nilo-Saharan (Other)", ssa, ssa)
-@@ -441,10 +446,11 @@
+@@ -375,7 +382,9 @@
+ DEFINE_LANGUAGE_CODE3 ("Shan", shn, shn)
+ DEFINE_LANGUAGE_CODE ("Shona", sn, sna, sna)
+ DEFINE_LANGUAGE_CODE ("Sichuan Yi", ii, iii, iii)
++DEFINE_LANGUAGE_CODE3 ("Sicilian", scn, scn)
+ DEFINE_LANGUAGE_CODE3 ("Sidamo", sid, sid)
++DEFINE_LANGUAGE_CODE3 ("Sign Languages", sgn, sgn)
+ DEFINE_LANGUAGE_CODE3 ("Siksika", bla, bla)
+ DEFINE_LANGUAGE_CODE ("Sindhi", sd, snd, snd)
+ DEFINE_LANGUAGE_CODE ("Sinhalese", si, sin, sin)
+@@ -441,10 +450,11 @@
  DEFINE_LANGUAGE_CODE ("Uighur", ug, uig, uig)
  DEFINE_LANGUAGE_CODE ("Ukrainian", uk, ukr, ukr)
  DEFINE_LANGUAGE_CODE3 ("Umbundu", umb, umb)
@@ -3633,6 +3659,37 @@ diff -uNr libc.orig/localedata/locales/ru_RU libc/localedata/locales/ru_RU
  grouping                  3;3
  END LC_NUMERIC
  
+@@ -112,18 +112,18 @@
+         "<U0427><U0442><U0432>";/
+         "<U041F><U0442><U043D>";/
+         "<U0421><U0431><U0442>"
+-mon     "<U042F><U043D><U0432><U0430><U0440><U044F>";/
+-        "<U0424><U0435><U0432><U0440><U0430><U043B><U044F>";/
+-        "<U041C><U0430><U0440><U0442><U0430>";/
+-        "<U0410><U043F><U0440><U0435><U043B><U044F>";/
+-        "<U041C><U0430><U044F>";/
+-        "<U0418><U044E><U043D><U044F>";/
+-        "<U0418><U044E><U043B><U044F>";/
+-        "<U0410><U0432><U0433><U0443><U0441><U0442><U0430>";/
+-        "<U0421><U0435><U043D><U0442><U044F><U0431><U0440><U044F>";/
+-        "<U041E><U043A><U0442><U044F><U0431><U0440><U044F>";/
+-        "<U041D><U043E><U044F><U0431><U0440><U044F>";/
+-        "<U0414><U0435><U043A><U0430><U0431><U0440><U044F>"
++mon     "<U042F><U043D><U0432><U0430><U0440><U044C>";/
++        "<U0424><U0435><U0432><U0440><U0430><U043B><U044C>";/
++        "<U041C><U0430><U0440><U0442>";/
++        "<U0410><U043F><U0440><U0435><U043B><U044C>";/
++        "<U041C><U0430><U0439>";/
++        "<U0418><U044E><U043D><U044C>";/
++        "<U0418><U044E><U043B><U044C>";/
++        "<U0410><U0432><U0433><U0443><U0441><U0442>";/
++        "<U0421><U0435><U043D><U0442><U044F><U0431><U0440><U044C>";/
++        "<U041E><U043A><U0442><U044F><U0431><U0440><U044C>";/
++        "<U041D><U043E><U044F><U0431><U0440><U044C>";/
++        "<U0414><U0435><U043A><U0430><U0431><U0440><U044C>"
+ abmon   "<U042F><U043D><U0432>";/
+         "<U0424><U0435><U0432>";/
+         "<U041C><U0430><U0440>";/
 @@ -177,7 +179,16 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
