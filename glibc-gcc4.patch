@@ -120,3 +120,19 @@ jis0208.h:32: error: array type has incomplete element type
  
  static inline uint32_t
  __attribute ((always_inline))
+===================================================================
+RCS file: /cvs/glibc/libc/linuxthreads/sysdeps/powerpc/tcb-offsets.sym,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- libc/linuxthreads/sysdeps/powerpc/tcb-offsets.sym	2004/01/13 21:30:17	1.7
++++ libc/linuxthreads/sysdeps/powerpc/tcb-offsets.sym	2005/03/05 19:27:55	1.8
+@@ -8,7 +8,7 @@
+ -- Abuse tls.h macros to derive offsets relative to the thread register.
+ #  undef __thread_register
+ #  define __thread_register	((void *) 0)
+-#  define thread_offsetof(mem)	((void *) &THREAD_SELF->p_##mem - (void *) 0)
++#  define thread_offsetof(mem)	((ptrdiff_t) THREAD_SELF + offsetof (struct _pthread_descr_struct, p_##mem))
+ 
+ # else
+ 
