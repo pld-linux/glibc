@@ -3,7 +3,7 @@
 # default is 2.4.6
 #
 # Conditional build:
-%bcond_without	fp		# build without frame pointer (pass \--enable-omitfp)
+%bcond_with	omitfp		# build without frame pointer (pass \--enable-omitfp)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
@@ -801,7 +801,7 @@ cd builddir
 LDFLAGS=" " ; export LDFLAGS
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
-	--%{!?with_fp:en}%{?with_fp:dis}able-omitfp \
+	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	%{?with_tls:--with-tls} \
 %if %{with nptl}
         --enable-add-ons=nptl \
