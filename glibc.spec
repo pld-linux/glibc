@@ -53,7 +53,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.13%{?with_nptl:+nptl}
+Release:	0.20040101.14%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -105,6 +105,7 @@ Patch25:	%{name}-UTF8-locales.patch
 Patch26:	%{name}-sr_CS.patch
 Patch27:	%{name}-addrinfo_match_prefix.patch
 Patch28:	%{name}-pt_pax_flags.patch
+Patch29:	%{name}-gcc34.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -789,6 +790,7 @@ mv -f localedata/locales/{lug_UG,lg_UG}
 %patch26 -p1
 %patch27 -p1
 %patch28 -p1
+%patch29 -p1
 
 chmod +x scripts/cpp
 
