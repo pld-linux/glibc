@@ -77,6 +77,7 @@ Patch25:	%{name}-linuxthreads.patch
 Patch26:	%{name}-alpha-fix-as-syntax.patch
 Patch27:	%{name}-soinit-EH_FRAME.patch
 Patch28:	%{name}-alpha-pwrite.patch
+Patch29:	%{name}-alpha-tv64.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -773,6 +774,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch26 -p1
 %patch27 -p1
 %patch28 -p1
+%patch29 -p0
 
 chmod +x scripts/cpp
 
