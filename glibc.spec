@@ -9,6 +9,7 @@
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	nptl		# don't use NPTL (implies using linuxthreads)
 %bcond_without	tls		# don't use tls (implies no NPTL)
+%bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 
@@ -125,7 +126,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 %if %{without kernelheaders}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
-BuildRequires:	libselinux-devel
+%{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
@@ -161,6 +162,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # patched not to crash on partial hardlinks too)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
+%if %{with kernelheaders}
+%define		sysheaders	%{_kernelsrcdir}/include
+%else
+%define		sysheaders	%{_includedir}
+%endif
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -827,28 +833,23 @@ cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 [ -d builddir ] || mkdir builddir
 cd builddir
 ../%configure \
+	CPPFLAGS="-I%{sysheaders}" \
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
+	--with-headers=%{sysheaders} \
+	--with%{!?with_selinux:out}-selinux \
 	--with%{!?with_tls:out}-tls \
-	--with-selinux \
 %if %{with nptl}
         --enable-add-ons=nptl \
-	--disable-profile \
+	--disable-profile
 %else
         --enable-add-ons=linuxthreads \
-	--enable-profile \
-%endif
-%if %{with kernelheaders}
-	CPPFLAGS="-I%{_kernelsrcdir}/include" \
-	--with-headers=%{_kernelsrcdir}/include
-%else
-	CPPFLAGS="-I%{_includedir}" \
-	--with-headers=%{_includedir}
+	--enable-profile
 %endif
 
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-%{__make} %{?parallelmkflags}
+%{__make}
 
 %if %{with tests}
 env LANGUAGE=C LC_ALL=C \
@@ -873,7 +874,6 @@ cd builddir
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
-	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
@@ -881,7 +881,6 @@ env LANGUAGE=C LC_ALL=C \
 %if %{with localedb}
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
-	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT
 %endif
 
