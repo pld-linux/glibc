@@ -114,21 +114,21 @@ BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
+AutoReq:	false
 PreReq:		basesystem
+Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
 Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
-AutoReq:	false
-Requires:	glibc-misc = %{epoch}:%{version}-%{release}
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
 %ifarch sparc64
@@ -257,6 +257,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
 Group:		Development/Libraries
+AutoReq:	false
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description misc
