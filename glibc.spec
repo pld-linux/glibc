@@ -282,7 +282,7 @@ Summary(uk):	Додатков╕ б╕бл╕отеки, потр╕бн╕ для комп╕ляц╕╖
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
-Conflicts:	libiconv-devel
+Obsoletes:	libiconv-devel
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -473,7 +473,7 @@ Summary(ru):	Статические библиотеки glibc
 Summary(uk):	Статичн╕ б╕бл╕отеки glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Conflicts:	libiconv-static
+Obsoletes:	libiconv-static
 
 %description static
 GNU libc static libraries.
