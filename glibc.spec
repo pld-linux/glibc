@@ -52,7 +52,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
-%{!?without_dist_kernel:BuildRequires:	kernel-headers}
+%{!?_without_dist_kernel:BuildRequires:	kernel-headers}
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
