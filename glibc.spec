@@ -443,7 +443,7 @@ kitaplýðý kullanmak zorundadýrlar.
 
 %package pic
 Summary:	glibc PIC archive
-Summary(pl):	archiwum PIC glibc
+Summary(pl):	Archiwum PIC glibc
 Release:	%{rel}
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}
@@ -499,7 +499,7 @@ Traditional files databases NSS glibc module.
 Modu³ tradycyjnych plikowych baz danych NSS glibc.
 
 %package -n nss_hesiod
-Summary:	Hesiod NSS glibc module
+Summary:	hesiod NSS glibc module
 Summary(pl):	Modu³ hesiod NSS glibc
 Release:	%{rel}
 Group:		Base
