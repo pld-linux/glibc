@@ -53,7 +53,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.9%{?with_nptl:+nptl}
+Release:	0.20040101.10%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1038,10 +1038,11 @@ fi
 %endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
+%attr(755,root,root) /sbin/postshell
+%attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
 # ld-*.so SONAME is ld.so.1 on ppc, ld-linux.so.2 on other archs
-%attr(755,root,root) /sbin/postshell
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
 %attr(755,root,root) /%{_lib}/libdl*
@@ -1066,7 +1067,7 @@ fi
 %config %{_sysconfdir}/rpc
 %ghost %{_sysconfdir}/ld.so.cache
 
-%attr(755,root,root) /sbin/*
+%attr(755,root,root) /sbin/sln
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
