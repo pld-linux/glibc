@@ -43,6 +43,7 @@ BuildRequires:	rpm-build >= 4.0-11
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
+Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 Autoreq:	false
