@@ -53,8 +53,8 @@ Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
 # Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
-Source10:	ftp://alpha.gnu.org/pub/gnu/libidn/libidn-0.2.1.tar.gz
-# Source10-md5:	dedf4baabde459dc6263ca2f38d4f0f9
+Source10:	http://josefsson.org/libidn/releases/libidn-0.2.3a.tar.gz
+# Source10-md5:	b0f71f269214ea8585c8d75713f88780
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
