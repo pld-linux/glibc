@@ -145,7 +145,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ne_NP/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
  nl_BE/ISO-8859-1 \
-@@ -244,10 +268,13 @@
+@@ -244,10 +268,14 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -154,12 +154,13 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  om_ET/UTF-8 \
 +om_KE.UTF-8/UTF-8 \
  om_KE/ISO-8859-1 \
++or_IN/UTF-8 \
  pa_IN/UTF-8 \
 +pl_PL.ISO-8859-16/ISO-8859-16 \
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  pt_BR.UTF-8/UTF-8 \
-@@ -255,6 +282,7 @@
+@@ -255,6 +283,7 @@
  pt_PT.UTF-8/UTF-8 \
  pt_PT/ISO-8859-1 \
  pt_PT@euro/ISO-8859-15 \
@@ -167,7 +168,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -263,21 +291,28 @@
+@@ -263,21 +292,28 @@
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
  se_NO/UTF-8 \
@@ -196,7 +197,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -287,12 +322,14 @@
+@@ -287,12 +323,14 @@
  sv_SE/ISO-8859-1 \
  ta_IN/UTF-8 \
  te_IN/UTF-8 \
@@ -211,7 +212,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  tl_PH/ISO-8859-1 \
  tr_TR.UTF-8/UTF-8 \
  tr_TR/ISO-8859-9 \
-@@ -304,11 +341,13 @@
+@@ -304,11 +342,13 @@
  uz_UZ@cyrillic/UTF-8 \
  vi_VN.TCVN/TCVN5712-1 \
  vi_VN/UTF-8 \
@@ -252,18 +253,18 @@ diff -uNr libc.old/localedata/locales/csb_PL libc/localedata/locales/csb_PL
 +revision   "0.1"
 +date       "2004-07-25"
 +%
-+category  i18n:2004;LC_IDENTIFICATION
-+category  i18n:2004;LC_CTYPE
-+category  i18n:2004;LC_COLLATE
-+category  i18n:2004;LC_MONETARY
-+category  i18n:2004;LC_NUMERIC
-+category  i18n:2004;LC_TIME
-+category  i18n:2004;LC_MESSAGES
-+category  i18n:2004;LC_PAPER
-+category  i18n:2004;LC_NAME
-+category  i18n:2004;LC_ADDRESS
-+category  i18n:2004;LC_TELEPHONE
-+category  i18n:2004;LC_MEASUREMENT
++category  csb_PL:2004;LC_IDENTIFICATION
++category  csb_PL:2004;LC_CTYPE
++category  csb_PL:2004;LC_COLLATE
++category  csb_PL:2004;LC_MONETARY
++category  csb_PL:2004;LC_NUMERIC
++category  csb_PL:2004;LC_TIME
++category  csb_PL:2004;LC_MESSAGES
++category  csb_PL:2004;LC_PAPER
++category  csb_PL:2004;LC_NAME
++category  csb_PL:2004;LC_ADDRESS
++category  csb_PL:2004;LC_TELEPHONE
++category  csb_PL:2004;LC_MEASUREMENT
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -2447,17 +2448,17 @@ diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 +revision   "0.1"
 +date       "2004-09-09"
 +%
-+category  "i18n:2004";LC_IDENTIFICATION
-+category  "i18n:2004";LC_CTYPE
-+category  "i18n:2004";LC_COLLATE
-+category  "i18n:2004";LC_TIME
-+category  "i18n:2004";LC_NUMERIC
-+category  "i18n:2004";LC_MONETARY
-+category  "i18n:2004";LC_MESSAGES
-+category  "i18n:2004";LC_PAPER
-+category  "i18n:2004";LC_NAME
-+category  "i18n:2004";LC_ADDRESS
-+category  "i18n:2004";LC_TELEPHONE
++category  "hsb_DE:2004";LC_IDENTIFICATION
++category  "hsb_DE:2004";LC_CTYPE
++category  "hsb_DE:2004";LC_COLLATE
++category  "hsb_DE:2004";LC_TIME
++category  "hsb_DE:2004";LC_NUMERIC
++category  "hsb_DE:2004";LC_MONETARY
++category  "hsb_DE:2004";LC_MESSAGES
++category  "hsb_DE:2004";LC_PAPER
++category  "hsb_DE:2004";LC_NAME
++category  "hsb_DE:2004";LC_ADDRESS
++category  "hsb_DE:2004";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -5411,6 +5412,216 @@ diff -uNr libc.old/localedata/locales/nds_DE@traditional libc/localedata/locales
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
+diff -uNr libc.orig/localedata/locales/or_IN libc/localedata/locales/or_IN
+--- libc.orig/localedata/locales/or_IN	Thu Jan  1 01:00:00 1970
++++ libc/localedata/locales/or_IN	Mon Sep 20 02:30:02 2004
+@@ -0,0 +1,206 @@
++comment_char    %
++escape_char     /
++% Oriya language locale for India.
++% Contributed by Rajesh Pradhan <rajeshpradhan@speedymail.org>
++
++LC_IDENTIFICATION
++title      "Oriya language locale for India"
++source     ""
++address    ""
++contact    ""
++email      "bug-glibc@gnu.org"
++tel        ""
++fax        ""
++language   "Oriya"
++territory  "India"
++revision   "1.0"
++date       "2004-03-31"
++%
++category  "or_IN:2004";LC_IDENTIFICATION
++category  "or_IN:2004";LC_CTYPE
++category  "or_IN:2004";LC_COLLATE
++category  "or_IN:2004";LC_TIME
++category  "or_IN:2004";LC_NUMERIC
++category  "or_IN:2004";LC_MONETARY
++category  "or_IN:2004";LC_MESSAGES
++category  "or_IN:2004";LC_PAPER
++category  "or_IN:2004";LC_NAME
++category  "or_IN:2004";LC_ADDRESS
++category  "or_IN:2004";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_COLLATE
++
++% Copy the template from ISO/IEC 14651
++copy "iso14651_t1"
++
++END LC_COLLATE
++
++LC_MONETARY
++int_curr_symbol       "<U0049><U004E><U0052><U0020>"
++currency_symbol       "<U0B1F>"
++mon_decimal_point     "<U002E>"
++mon_thousands_sep     "<U002C>"
++mon_grouping          3
++positive_sign         ""
++negative_sign         "<U002D>"
++int_frac_digits       2
++frac_digits           2
++p_cs_precedes         1
++p_sep_by_space        1
++n_cs_precedes         1
++n_sep_by_space        1
++p_sign_posn           1
++n_sign_posn           1
++%
++END LC_MONETARY
++
++
++LC_NUMERIC
++% This is the POSIX Locale definition for the LC_NUMERIC  category.
++%
++decimal_point          "<U002E>"
++thousands_sep          "<U002C>"
++grouping               3
++%
++END LC_NUMERIC
++
++
++LC_TIME
++%
++% Abbreviated weekday names (%a)
++abday      "<U0B30><U0B2C><U0B3F><U0020>";/
++	   "<U0B47><U0B38><U0B3E><U0B2E><U0020>";/
++            "<U0B2E><U0B02><U0B17><U0B33><U0020>";/
++            "<U0B2C><U0B41><U0B27><U0020>";/
++            "<U0B17><U0B41><U0B30><U0B41><U0020>";/
++            "<U0B36><U0B41><U0B15><U0B4D><U0B30><U0020>";/
++            "<U0B36><U0B28><U0B3F><U0020>"
++%
++% Full weekday names (%A)
++day      "<U0B30><U0B2C><U0B3F><U0B2C><U0B3E><U0B30><U0020>";/
++	"<U0B47><U0B38><U0B3E><U0B2E><U0B2C><U0B3E><U0B30><U0020>";/
++         "<U0B2E><U0B02><U0B17><U0B33><U0B2C><U0B3E><U0B30><U0020>";/
++	 "<U0B2C><U0B41><U0B27><U0B2C><U0B3E><U0B30><U0020>";/
++         "<U0B17><U0B41><U0B30><U0B41><U0B2C><U0B3E><U0B30><U0020>";/
++         "<U0B36><U0B41><U0B15><U0B4D><U0B30><U0B2C><U0B3E><U0B30><U0020>";/
++         "<U0B36><U0B28><U0B3F><U0B2C><U0B3E><U0B30><U0020>"
++%
++% Abbreviated month names (%b)
++abmon       "<U0B1C><U0B15><U0B28><U0B41><U0B06><U0B03><U0B40>";/
++            "<U0B47><U0B28><U0B2C><U0B43><U0B06><U0B03><U0B40>";/
++            "<U0B2E><U0B30><U0B4D><U0B1A>";/
++            "<U0B05><U0B2A><U0B4D><U0B47><U0B30><U0B32>";/
++            "<U0B2E><U0B07>";/
++	    "<U0B1C><U0B41><U0B28>";/
++            "<U0B1C><U0B41><U0B32><U0B3E><U0B07>";/
++            "<U0B05><U0B17><U0B37><U0B4D><U0B1F>";/
++            "<U0B47><U0B38><U0B2A><U0B4D><U0B47><U0B1F><U0B2E><U0B4D><U0B2C><U0B30>";/
++            "<U0B05><U0B15><U0B4D><U0B47><U0B1F><U0B3E><U0B2C><U0B30>";/
++            "<U0B28><U0B47><U0B20><U0B2E><U0B4D><U0B2C><U0B30>";/
++            "<U0B21><U0B3F><U0B47><U0B38><U0B2E><U0B4D><U0B2C><U0B30>"
++%
++% Full month names (%B)
++mon       "<U0B1C><U0B05><U0B28><U0B41><U0B06><U0B03><U0B40>";/
++            "<U0B47><U0B28><U0B2C><U0B43><U0B06><U0B03><U0B40>";/
++            "<U0B2E><U0B30><U0B4D><U0B1A>";/
++            "<U0B05><U0B2A><U0B4D><U0B47><U0B30><U0B32>";/
++            "<U0B2E><U0B07>";/
++	    "<U0B1C><U0B41><U0B28>";/
++            "<U0B1C><U0B41><U0B32><U0B3E><U0B07>";/
++            "<U0B05><U0B17><U0B37><U0B4D><U0B1F>";/
++            "<U0B47><U0B38><U0B2A><U0B4D><U0B47><U0B1F><U0B2E><U0B4D><U0B2C><U0B30>";/
++            "<U0B05><U0B15><U0B4D><U0B47><U0B1F><U0B3E><U0B2C><U0B30>";/
++            "<U0B28><U0B47><U0B20><U0B2E><U0B4D><U0B2C><U0B30>";/
++            "<U0B21><U0B3F><U0B47><U0B38><U0B2E><U0B4D><U0B2C><U0B30>"
++% Equivalent of AM PM
++am_pm       "<U0B2A><U0B42><U0B30><U0B4D><U0B2C><U0B3E><U0B39><U0B4D><U0B28>";/
++            "<U0B05><U0B2A><U0B30><U0B3E><U0B39><U0B4D><U0B28>"
++%
++% Appropriate date and time representation
++% %A %d %b %Y%I:%M:%S  %Z
++d_t_fmt     "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059><U0020><U0025><U0049><U003A><U0025><U004D><U003A>/
++<U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++% Appropriate date representation
++% %A %d %b %Y
++d_fmt       "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059>"
++%
++% Appropriate time representation
++% %I:%M:%S  %Z
++t_fmt       "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0020><U0025><U005A>"
++%
++% Appropriate 12 h time representation (%r)
++t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
++<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
++<U0025><U005A><U0020><U0025><U0059>"
++END LC_TIME
++
++
++LC_MESSAGES
++yesexpr "<U005E><U005B><U0079><U0059><U005D><U002E><U002A>"
++noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++END LC_MESSAGES
++
++
++LC_PAPER
++% This is the ISO_IEC TR14652 Locale definition for the
++% LC_PAPER category
++height      297
++width       210
++END LC_PAPER
++
++
++LC_NAME
++% This is the ISO_IEC TR14652 Locale definition for the
++% LC_NAME category.
++%
++name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074>/
++<U0025><U0067>"
++name_gen    ""
++name_mr     "<U004D><U0072><U002E>"
++name_mrs    "<U004D><U0072><U0073><U002E>"
++name_miss   "<U004D><U0069><U0073><U0073><U002E>"
++name_ms     "<U004D><U0073><U002E>"
++END LC_NAME
++
++
++LC_ADDRESS
++% This is the ISO_IEC TR14652 Locale definition for the
++% LC_ADDRESS
++postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
++<U0025><U0062><U0025><U0065><U0025><U0072>"
++% FIXME country_name (India) in Oriya
++% country_name ""
++country_ab2 "<U0049><U004E>"
++country_ab3 "<U0049><U004E><U0044>"
++country_num 356
++country_car "<U0049><U004E><U0044>"
++country_isbn "81,93"
++% FIXME lang_name in Oriya
++% lang_name   ""
++lang_ab     "<U0074><U0061>"
++lang_term   "<U0074><U0061><U006D>"
++lang_lib    "<U0074><U0061><U006D>"
++END LC_ADDRESS
++
++
++LC_TELEPHONE
++copy "hi_IN"
++END LC_TELEPHONE
++
++
++LC_MEASUREMENT
++copy "hi_IN"
++END LC_MEASUREMENT
 diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
 --- libc.old/localedata/locales/si_LK	1970-01-01 01:00:00.000000000 +0100
 +++ libc/localedata/locales/si_LK	2004-09-10 09:29:21.000000000 +0200
