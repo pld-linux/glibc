@@ -272,7 +272,7 @@ Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
 Group:		Development/Libraries
 AutoReq:	false
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+PreReq:		%{name} = %{epoch}:%{version}-%{release}
 
 %description misc
 Utilities and data used by glibc.
