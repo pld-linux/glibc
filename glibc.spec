@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	21
+Release:	21.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -496,12 +496,18 @@ install linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf ../../..%{_sysconfdir}/localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf ../..%{_libdir}/libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
+ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
+ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
+ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
+
+# symlinks between directories should be absolute
+for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
+	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+	ln -sf /lib/`cd $RPM_BUILD_ROOT/lib ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+done
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
