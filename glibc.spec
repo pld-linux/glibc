@@ -42,7 +42,7 @@
 %endif
 
 %define		llh_version	7:2.6.4.0
-%define		_snap		20040407
+%define		_snap		20040415
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -61,10 +61,9 @@ License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	aaec99c7329fda1d41c3a3772ff3def9
+# Source0-md5:	382ae1b47fd92ff12a3225be5c03a2f5
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
-# Source1-md5:	97c30992592f854a67107579dcef61dd
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
