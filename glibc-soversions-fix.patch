@@ -1,3 +1,14 @@
+2004-10-20  Roland McGrath  <roland@redhat.com>
+
+	* Makeconfig ($(common-objpfx)shlib-versions.v.i): Check also
+	$(config-sysdirs) for shlib-versions files.
+
+	* Makeconfig ($(common-objpfx)soversions.i): Replace shell loop with
+	use of ...
+	* scripts/soversions.awk: ... this new file.  Collect lib info and
+	match any DEFAULT line before emitting anything, so DEFAULT can come
+	later in the concatenation of shlib-versions files.
+
 Index: libc/Makeconfig
 ===================================================================
 RCS file: /cvs/glibc/libc/Makeconfig,v
@@ -45,29 +56,6 @@ diff -u -r1.297 -r1.298
  	mv -f $@T $@
  $(common-objpfx)soversions.mk: $(common-objpfx)soversions.i
  	(while read lib number setname; do \
-Index: libc/ChangeLog
-===================================================================
-RCS file: /cvs/glibc/libc/ChangeLog,v
-retrieving revision 1.8909
-retrieving revision 1.8910
-diff -u -r1.8909 -r1.8910
---- libc/ChangeLog	20 Oct 2004 10:05:07 -0000	1.8909
-+++ libc/ChangeLog	21 Oct 2004 01:29:31 -0000	1.8910
-@@ -1,5 +1,14 @@
- 2004-10-20  Roland McGrath  <roland@redhat.com>
- 
-+	* Makeconfig ($(common-objpfx)shlib-versions.v.i): Check also
-+	$(config-sysdirs) for shlib-versions files.
-+
-+	* Makeconfig ($(common-objpfx)soversions.i): Replace shell loop with
-+	use of ...
-+	* scripts/soversions.awk: ... this new file.  Collect lib info and
-+	match any DEFAULT line before emitting anything, so DEFAULT can come
-+	later in the concatenation of shlib-versions files.
-+
- 	* manual/errno.texi (Error Codes): Add ENOKEY, EKEYEXPIRED,
- 	EKEYREVOKED, EKEYREJECTED.
- 	* sysdeps/unix/sysv/linux/Versions (libc: GLIBC_2.3.4): New errlist.
 Index: libc/scripts/soversions.awk
 ===================================================================
 RCS file: /cvs/glibc/libc/scripts/soversions.awk,v
