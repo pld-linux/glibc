@@ -27,6 +27,7 @@ Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-memusage.patch
+Patch9:		%{name}-ftruncate.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
@@ -331,6 +332,7 @@ A toy.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
