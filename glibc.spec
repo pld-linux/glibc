@@ -49,7 +49,7 @@
 
 %ifarch sparc
 %undefine	with_nptl
-#%%undefine	with_tls
+%undefine	with_tls
 %endif
 
 %define		llh_version	7:2.6.6.0
