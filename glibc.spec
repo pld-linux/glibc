@@ -9,18 +9,19 @@ Release:	4
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-crypt-2.0.111.tar.gz
+#######		ftp://sourceware.cygnus.com/pub/glibc/
+Source0:	%{name}-%{version}.tar.gz
+Source1:	%{name}-linuxthreads-%{version}.tar.gz
+Source2:	%{name}-crypt-2.0.111.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
 URL:		http://www.gnu.org/software/libc/
-BuildRoot:	/tmp/%{name}-%{version}-root
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
 Autoreq:	false
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -107,7 +108,7 @@ geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
 %prep 
 %setup -q -a 1 -a 2
-%patch0 -p1
+%patch -p1
 
 %build
 install -d sunrpc/cpp; ln -s /lib/cpp sunrpc/cpp/cpp 
@@ -131,9 +132,6 @@ install linuxthreads/man/*.3thr $RPM_BUILD_ROOT/usr/man/man3
 
 rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf ../src/linux/include/linux $RPM_BUILD_ROOT/usr/include/linux
-ln -sf ../src/linux/include/asm $RPM_BUILD_ROOT/usr/include/asm
-
 ln -sf ../../../etc/localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/localtime
 ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixtime
 ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixrules
@@ -152,7 +150,7 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
 install nss/db-Makefile $RPM_BUILD_ROOT/var/db
 
 cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
-#!/bin/bash
+#!/bin/sh
 /usr/bin/make -f /var/db/db-Makefile
 EOF
 
@@ -172,7 +170,6 @@ cp ChangeLog ChangeLog.8 documentation
 bzip2 -9 documentation/*
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
-strip --strip-debug $RPM_BUILD_ROOT/lib/lib*so
 
 bzip2 -9 README NEWS FAQ BUGS NOTES PROJECTS
 gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*}
@@ -198,7 +195,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
 %config /etc/rpc
-%attr(754,root,root) /etc/rc.d/init.d/*
+
+%attr(750,root,root) /etc/rc.d/init.d/*
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) /usr/bin/*
@@ -214,7 +212,7 @@ rm -rf $RPM_BUILD_ROOT
 /usr/share/locale
 /usr/share/zoneinfo
 
-%attr(750,root,root) %dir /var/db
+%dir /var/db
 %config /var/db/db-*
 
 %files devel
@@ -253,6 +251,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man3/*
 
 %changelog
+* Sat Mar 06 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.1-5]
+- removed striping of shared libraries -- no debug info in this libs,
+- fixed /etc/rc.d/init.d/* -- Tomek, never again 754 on start scripts... 
+- fixed permission of /var/db directory -- should be 755...
+
 * Mon Feb 22 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [2.1-4]
 - removed man group from man pages,
@@ -317,179 +321,10 @@ rm -rf $RPM_BUILD_ROOT
 - removed glibc-debug and glibc-profile packages generation (it took too
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
-  in Glibc HOWTO
+  in Glibc HOWTO,
+- start at RH spec file.  
 
-* Tue Mar 31 1998 Cristian Gafton <gafton@redhat.com>
-- more patches to fix dlopen()/dlclose problems
-
-* Tue Mar 24 1998 Cristian Gafton <gafton@redhat.com>
-- fixed a dlclose() problem.
-- updated the cvs snapshot
-
-* Fri Mar 20 1998 Cristian Gafton <gafton@redhat.com>
-- need a fairly recent version of texinfo (3.11 or later). Handle this
-  through a Conflicts: header for the glibc-devel package
-
-* Sat Mar 14 1998 Cristian Gafton <gafton@redhat.com>
-- new package versioning for snapshots
-
-* Sat Mar 14 1998 Cristian Gafton <gafton@redhat.com>
-- new snapshot
-- fixed a localedef bug
-- reverted some changes in the new localedata ru_RU that caused locale files
-  to be built incorrectly.
-
-* Wed Mar 04 1998 Cristian Gafton <gafton@redhat.com>
-- downgraded kernel headers to 2.1.76. tty changes in more recent kernels
-  require too many programs to be recompiled against the new glibc.
-- upgraded the dlfix patch for dlopen() to handle large shared objects
-- updated the fix patch to make the source compile on alpha
-- the new sources require binutils 2.8.1.0.21 or later to compile on alpha
-- updated snapshot; lots of patches obsoleted
-- added a patch to buold & install the localedata files correctly
-- added yet another patch from H.J.Lu
-
-* Sat Feb 28 1998 Cristian Gafton <gafton@redhat.com>
-- updated the snapshot
-- upgraded the kernel headers to 2.1.88
-- replaced the full kernel source with a homebrew
-  linux-include-2.1.88.tar.gz (it was way too hard to maintain glibc from
-  home over my modem...)
-
-* Wed Feb 18 1998 Cristian Gafton <gafton@redhat.com>
-- added a dl-open fix for the RTLD_GLOBAL flag
-
-* Sat Feb 07 1998 Cristian Gafton <gafton@redhat.com>
-- upgraded to 2.0.7pre1
-- modified spec file to include linuxthreads man pages and documentation
-
-* Wed Jan 28 1998 Erik Troan <ewt@redhat.com>
-- don't believe LD_PRELOAD if the app is setuid root
-
-* Tue Jan 27 1998 Cristian Gafton <gafton@redhat.com>
-- added (what else ?) more patches from Andreas Jaeger, Andreas Schwab,
-  Ulrich Drepper and H J Lu
-
-* Fri Jan 16 1998 Cristian Gafton <gafton@redhat.com>
-- added nss patch to fix a problem of ignoring the NSS_STATUS_TRYAGAIN
-  return value from the modules by getXXbyYY_r and getXXent_r functions
-- added another patch for the nss_db from Andreas Schwab
-
-* Wed Jan 14 1998 Cristian Gafton <gafton@redhat.com>
-- added a patch to fix the problems with the nss_db lookups from Andreas
-  Schwab
-- added a patch to fix lookup problems with large entries (errno not being
-  reset from ERANGE)
-- added another two tiny patches from Andreas Jaeger
-- added a header patch for the net/if.h file which failed to #define
-  #IFF_* symbols
-- fixed obsoletes header for linuxthreads
-- added a patch for locale on big endian machines from Andreas Schwab
-- added a config patch from Andreas Jaeger
-
-* Wed Jan  7 1998 Cristian Gafton <gafton@redhat.com>
-- figured out how to handle newer kernels on alpha - back to 2.1.76
-- added a patch to address case-sensitve hosts and aliases lookup brokeness
-- re-added the patch for alpha/net/route.h, which somehow escaped the
-  official release
-- added the threads and thread-signal patches from Andreas Jaeger
-
-* Mon Dec 29 1997 Cristian Gafton <gafton@redhat.com>
-- finally 2.0.6 final release is here...
-- reverted to kernel headers 2.1.60. Although the latest one available
-  should be used (2.1.76 at the moment), the new kernel headers break
-  compilation on alpha (due to the rename of the __NR_sigaction to
-  __NR_old_osf_sigaction). In two days I haven't figured out the correct
-  place to modify this on glibc sources, so...
-
-* Thu Dec 25 1997 Cristian Gafton <gafton@redhat.com>
-- upgraded to pre6
-
-* Tue Dec 23 1997 Cristian Gafton <gafton@redhat.com>
-- upgraded to pre5
-- added NIS patch fix
-
-* Mon Dec 15 1997 Cristian Gafton <gafton@redhat.com>
-- added security patch
-
-* Fri Dec 12 1997 Cristian Gafton <gafton@redhat.com>
-- updated to 2.0.6pre4
-- cleaned up the spec file
-
-* Sun Nov 09 1997 Erik Troan <ewt@redhat.com>
-- added setlocale patch from Ulrich
-
-* Wed Nov 05 1997 Erik Troan <ewt@redhat.com>
-- added new glob.c from Ulrich
-
-* Wed Oct 29 1997 Erik Troan <ewt@redhat.com>
-- fixed timezone patch
-
-* Tue Oct 28 1997 Erik Troan <ewt@redhat.com>
-- added patch to fix sense on timezone global
-
-* Sat Oct 25 1997 Erik Troan <ewt@redhat.com>
-- build against included kernel headers
-- added ld.so patch from ulrich
-
-* Fri Oct 24 1997 Erik Troan <ewt@redhat.com>
-- added documentation files as %doc
-- improved obsoletes list
-
-* Thu Oct 16 1997 Erik Troan <ewt@redhat.com>
-- added patch to fix nfs inet_ntoa() memory leak
-- create proper sysdeps/alpha/Implies
-- create configparms w/ a here doc, not a separate patch file
-
-* Thu Oct 09 1997 Erik Troan <ewt@redhat.com>
-- added patch from Ulrich for rcmd() w/ IP number
-
-* Tue Sep 16 1997 Erik Troan <ewt@redhat.com>
-- added obsolete entries 
-
-* Mon Sep 15 1997 Erik Troan <ewt@redhat.com>
-- removed /usr/info/dir
-- added support for install-info for devel package
-
-* Wed Sep 10 1997 Erik Troan <ewt@redhat.com>
-- updated to 2.0.5c
-
-* Wed Sep 10 1997 Erik Troan <ewt@redhat.com>
-- added getcwd() fix from Ulrich
-- changed datadir to default /usr/share instead of /usr/lib
-
-* Mon Sep 01 1997 Erik Troan <ewt@redhat.com>
-- fixed some symlinks (which broke due to the buildroot)
-
-* Thu Aug 28 1997 Erik Troan <ewt@redhat.com>
-- removed extrneous symlinks invocation
-- removed /etc/localtime from filelist
-
-* Wed Aug 27 1997 Erik Troan <ewt@redhat.com>
-- added patch to tcp.h from Ulrich
-
-* Wed Aug 27 1997 Erik Troan <ewt@redhat.com>
-- updated to 2.0.5
-- removed zic symlink hack
-
-* Sat Aug 23 1997 Erik Troan <ewt@redhat.com>
-- minor hack for alpha (won't be necessary in next release)
-- switched to use a build root
-- dynamically builds file lists
-
-* Tue Aug 19 1997 Erik Troan <ewt@redhat.com>
-- 1) Updated to glibc 2.0.5pre5 (version of package is 2.0.4.9)
-
-* Mon Jun 02 1997 Erik Troan <ewt@redhat.com>
-- 1) Updated to glibc 2.0.4
-
-* Thu May 15 1997 Erik Troan <ewt@redhat.com>
-- 1) Updated to glibc 2.0.3, builds glibc on Intel as well.
-
-* Tue Feb 18 1997 Erik Troan <ewt@redhat.com>
-- 1) added patch for shadow to work w/ :: rather then :-1: entries
-- 2) incorporated Richard Henderson's string operation fix
-- 3) added default /etc/nsswitch.conf  [2.1.1-1]
+  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
