@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	7
+Release:	8
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -56,7 +56,7 @@ Prereq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	man-pages < 1.43
-Conflicts:	ld.so < 1.9.9-9
+Conflicts:	ld.so < 1.9.9-10
 
 %define		debugcflags	-O1 -g
 
@@ -598,7 +598,8 @@ fi
 
 %dir %{_libdir}/locale
 
-%{_mandir}/man1/[^ls]*
+%{_mandir}/man1/[^lsg]*
+%{_mandir}/man1/getent.1*
 %{_mandir}/man1/locale.1*
 %{_mandir}/man1/ldd.1*
 %{_mandir}/man5/???[^d]*
@@ -613,7 +614,7 @@ fi
 %lang(hu) %{_mandir}/hu/man1/ldd.1*
 %lang(hu) %{_mandir}/hu/man[578]/*
 %lang(it) %{_mandir}/it/man[578]/*
-%lang(ja) %{_mandir}/ja/man1/[^ls]*
+%lang(ja) %{_mandir}/ja/man1/[^lsg]*
 %lang(ja) %{_mandir}/ja/man1/ldd.1*
 %lang(ja) %{_mandir}/ja/man5/???[^d]*
 %lang(ja) %{_mandir}/ja/man7/*
@@ -677,6 +678,7 @@ fi
 %{_libdir}/libc_nonshared.a
 %{_libdir}/librpcsvc.a
 
+%{_mandir}/man1/getconf*
 %{_mandir}/man1/sprof*
 %{_mandir}/man3/*
 %lang(cs) %{_mandir}/cs/man3/*
