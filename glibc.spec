@@ -104,6 +104,7 @@ Patch24:	%{name}-lg_UG.patch
 Patch25:	%{name}-UTF8-locales.patch
 Patch26:	%{name}-sr_CS.patch
 Patch27:	%{name}-addrinfo_match_prefix.patch
+Patch28:	%{name}-pt_pax_flags.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -787,6 +788,7 @@ mv -f localedata/locales/{lug_UG,lg_UG}
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
+%patch28 -p1
 
 chmod +x scripts/cpp
 
