@@ -1,0 +1,80 @@
+[from libc-alpha (already applied in glibc CVS),
+ shortened to only patch old lug_UG instead of removing/adding]
+
+From: Bruno Haible <bruno at clisp dot org>
+To: libc-alpha at sources dot redhat dot com
+Subject: rename Luganda locale
+
+Hi,
+
+There was confusion in the past about whether the ISO 639 language code of
+Ganda (Luganda) was "lg" or "lug". As we can read in
+   http://www.loc.gov/standards/iso639-2/codechanges.html#1999_codes
+"lg" is valid. There is no need to use the three-letter code "lug" any more
+after the confusion has cleaned up. The Free Translation Project uses the
+code "lg" as well.
+
+So here is a patch to rename the locale from "lug_UG" to "lg_UG".
+
+Users can set their LANGUAGE variable to "lg:lug" for the transition period
+if necessary.
+
+
+2004-01-18  Bruno Haible  <bruno@clisp.org>
+
+	* locales/lg_UG: Renamed from lug_UG, with trivial updates.
+	* locales/lug_UG: Remove file.
+	* SUPPORTED: Create lg_UG instead of lug_UG.
+
+--- localedata/SUPPORTED	6 Dec 2003 08:11:02 -0000	1.65
++++ localedata/SUPPORTED	18 Jan 2004 15:20:34 -0000
+@@ -132,7 +132,7 @@
+ kw_GB/ISO-8859-1 \
+ lo_LA/UTF-8 \
+ lt_LT/ISO-8859-13 \
+-lug_UG/ISO-8859-10 \
++lg_UG/ISO-8859-10 \
+ lv_LV/ISO-8859-13 \
+ mi_NZ/ISO-8859-13 \
+ mk_MK/ISO-8859-5 \
+
+--- localedata/locales/lg_UG.orig	Fri Dec  5 01:25:58 2003
++++ localedata/locales/lg_UG	Tue Jan 20 14:44:36 2004
+@@ -9,7 +9,7 @@
+ % Email: kompyuta@kizito.uklinux.net
+ % Tel: +41 - (0)1772 724325
+ % Fax:
+-% Language: lug
++% Language: lg
+ % Territory: UG
+ % Revision: 1.0
+ % Date: 2001-11-04
+@@ -32,17 +32,17 @@
+ revision   "1.0"
+ date       "2001-11-04"
+ %
+-category  "lug_UG:2001";LC_IDENTIFICATION
+-category  "lug_UG:2001";LC_CTYPE
+-category  "lug_UG:2001";LC_COLLATE
+-category  "lug_UG:2001";LC_TIME
+-category  "lug_UG:2001";LC_NUMERIC
+-category  "lug_UG:2001";LC_MONETARY
+-category  "lug_UG:2001";LC_MESSAGES
+-category  "lug_UG:2001";LC_PAPER
+-category  "lug_UG:2001";LC_NAME
+-category  "lug_UG:2001";LC_ADDRESS
+-category  "lug_UG:2001";LC_TELEPHONE
++category  "lg_UG:2001";LC_IDENTIFICATION
++category  "lg_UG:2001";LC_CTYPE
++category  "lg_UG:2001";LC_COLLATE
++category  "lg_UG:2001";LC_TIME
++category  "lg_UG:2001";LC_NUMERIC
++category  "lg_UG:2001";LC_MONETARY
++category  "lg_UG:2001";LC_MESSAGES
++category  "lg_UG:2001";LC_PAPER
++category  "lg_UG:2001";LC_NAME
++category  "lg_UG:2001";LC_ADDRESS
++category  "lg_UG:2001";LC_TELEPHONE
+ 
+ END LC_IDENTIFICATION
+ 
