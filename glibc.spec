@@ -11,7 +11,7 @@ Group:		Libraries
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
 Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-crypt-%{version}.tar.gz
+Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-%{version}.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
