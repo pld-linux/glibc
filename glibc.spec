@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	8
+Release:	9
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -24,6 +24,7 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+Source7:	postshell.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
@@ -451,6 +452,9 @@ LDFLAGS=" " ; export LDFLAGS
 
 %{__make}
 
+# this need improvements (like building agains new builded glibc) but works
+%{__cc} -o postshell %{!?debug:-s} %{SOURCE7}
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
@@ -529,11 +533,18 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 
+install -m755 postshell $RPM_BUILD_ROOT/sbin
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/postshell
+/sbin/ldconfig
+-/sbin/telinit u
+
+%postun -p /sbin/postshell 
+/sbin/ldconfig
+-/sbin/telinit u
 
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
