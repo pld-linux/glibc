@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	15
+Release:	16
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -529,12 +529,27 @@ rm -f glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
+		twochar=1
+		# list of long %%lang values we do support
+		for j in de_AT de_BE de_CH de_LU ja_JP.SJIS ko_KR.utf8 pt_BR \
+			 zh_CN zh_CN.gbk zh_HK zh_TW ; do
+			if [ $j = "$lang" ]; then
+				twochar=
+			fi
+		done
+		if [ -n "$twochar" ]; then
+			if [ `echo $lang | sed "s,_.*,,"` = "zh" ]; then
+				lang=`echo $lang | sed "s,\..*,,"`
+			else
+				lang=`echo $lang | sed "s,_.*,,`
+			fi 
+		fi	
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
 		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
-for i in az bg de_AT el eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS lt lv \
-	 nn pt ro ru sl sr ta uk wa zh_CN ; do
+for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
+         lt lv ms nn pt ro ru sl sr ta uk wa zh_CN ; do
 	if [ ! -d $i ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
