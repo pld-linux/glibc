@@ -198,7 +198,7 @@ ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
 
-strip $RPM_BUILD_ROOT/{sbin,usr/{sbin/*,bin/*}} ||:
+strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
 strip strip--unneeded $RPM_BUILD_ROOT/lib/*.so.*
 
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
