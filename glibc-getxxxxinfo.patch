@@ -201,14 +201,14 @@ diff -u -r1.21 -r1.23
  		      }
  		  }
  		else
-Index: sysdeps/posix/getaddrinfo.c
+Index: getaddrinfo.c
 ===================================================================
 RCS file: /cvs/glibc/libc/sysdeps/posix/getaddrinfo.c,v
 retrieving revision 1.32
-retrieving revision 1.33
-diff -u -r1.32 -r1.33
+retrieving revision 1.34
+diff -u -r1.32 -r1.34
 --- libc/sysdeps/posix/getaddrinfo.c	2000/09/29 05:27:20	1.32
-+++ libc/sysdeps/posix/getaddrinfo.c	2000/11/10 04:15:44	1.33
++++ libc/sysdeps/posix/getaddrinfo.c	2000/11/18 08:30:02	1.34
 @@ -99,13 +99,14 @@
  
  /* Values for `protoflag'.  */
@@ -252,7 +252,28 @@ diff -u -r1.32 -r1.33
    st->port = s->s_port;
  
    return 0;
-@@ -291,8 +294,10 @@
+@@ -268,6 +271,7 @@
+   struct hostent th;						\
+   char *tmpbuf;							\
+   tmpbuflen = 512;						\
++  no_data = 0;							\
+   do {								\
+     tmpbuflen *= 2;						\
+     tmpbuf = __alloca (tmpbuflen);				\
+@@ -282,17 +286,18 @@
+ 	  return -EAI_SYSTEM;					\
+ 	}							\
+       if (herrno == TRY_AGAIN)					\
+-	{							\
+-	  __set_h_errno (herrno);				\
+-	  return -EAI_AGAIN;					\
+-	}							\
++	no_data = EAI_AGAIN;					\
++      else							\
++	no_data = herrno == NO_DATA;				\
+     }								\
+-  if (h != NULL)						\
++  else if (h != NULL)						\
      {								\
        for (i = 0; h->h_addr_list[i]; i++)			\
  	{							\
@@ -264,7 +285,15 @@ diff -u -r1.32 -r1.33
  	  (*pat)->next = NULL;					\
  	  (*pat)->family = _family;				\
  	  memcpy ((*pat)->addr, h->h_addr_list[i],		\
-@@ -319,6 +324,7 @@
+@@ -300,7 +305,6 @@
+ 	  pat = &((*pat)->next);				\
+ 	}							\
+     }								\
+-  no_data = rc != 0 && herrno == NO_DATA;			\
+  }
+ 
+ static int
+@@ -319,6 +323,7 @@
        while (tp->name != NULL
  	     && ((req->ai_socktype != 0 && req->ai_socktype != tp->socktype)
  		 || (req->ai_protocol != 0
@@ -272,7 +301,7 @@ diff -u -r1.32 -r1.33
  		     && req->ai_protocol != tp->protocol)))
  	++tp;
  
-@@ -343,7 +349,7 @@
+@@ -343,7 +348,7 @@
  	      st = (struct gaih_servtuple *)
  		__alloca (sizeof (struct gaih_servtuple));
  
@@ -281,7 +310,7 @@ diff -u -r1.32 -r1.33
  		return rc;
  	    }
  	  else
-@@ -359,11 +365,15 @@
+@@ -359,11 +364,15 @@
  		  if (req->ai_socktype != 0
  		      && req->ai_socktype != tp->socktype)
  		    continue;
@@ -298,7 +327,7 @@ diff -u -r1.32 -r1.33
  		    {
  		      if (rc & GAIH_OKIFUNSPEC)
  			continue;
-@@ -382,7 +392,8 @@
+@@ -382,7 +391,8 @@
  	  st = __alloca (sizeof (struct gaih_servtuple));
  	  st->next = NULL;
  	  st->socktype = tp->socktype;
@@ -308,7 +337,7 @@ diff -u -r1.32 -r1.33
  	  st->port = htons (service->num);
  	}
      }
-@@ -390,8 +401,9 @@
+@@ -390,8 +400,9 @@
      {
        st = __alloca (sizeof (struct gaih_servtuple));
        st->next = NULL;
@@ -320,7 +349,26 @@ diff -u -r1.32 -r1.33
        st->port = 0;
      }
    else
-@@ -542,6 +554,7 @@
+@@ -498,9 +509,15 @@
+ 	    gethosts (AF_INET, struct in_addr);
+ 
+ 	  if (no_data != 0 && no_inet6_data != 0)
+-	    /* We made requests but they turned out no data.  The name
+-	       is known, though.  */
+-	    return (GAIH_OKIFUNSPEC | -EAI_NODATA);
++	    {
++	      /* If both requests timed out report this.  */
++	      if (no_data == EAI_AGAIN && no_inet6_data == EAI_AGAIN)
++		return -EAI_AGAIN;
++
++	      /* We made requests but they turned out no data.  The name
++		 is known, though.  */
++	      return (GAIH_OKIFUNSPEC | -EAI_NODATA);
++	    }
+ 	}
+ 
+       if (at->family == AF_UNSPEC)
+@@ -542,6 +559,7 @@
      struct gaih_servtuple *st2;
      struct gaih_addrtuple *at2 = at;
      size_t socklen, namelen;
@@ -328,7 +376,7 @@ diff -u -r1.32 -r1.33
  
      /*
        buffer is the size of an unformatted IPv6 address in printable format.
-@@ -597,9 +610,15 @@
+@@ -597,9 +615,15 @@
  	  namelen = 0;
  
  	if (at2->family == AF_INET6)
@@ -346,7 +394,7 @@ diff -u -r1.32 -r1.33
  
  	for (st2 = st; st2 != NULL; st2 = st2->next)
  	  {
-@@ -608,7 +627,7 @@
+@@ -608,7 +632,7 @@
  	      return -EAI_MEMORY;
  
  	    (*pai)->ai_flags = req->ai_flags;
@@ -355,7 +403,7 @@ diff -u -r1.32 -r1.33
  	    (*pai)->ai_socktype = st2->socktype;
  	    (*pai)->ai_protocol = st2->protocol;
  	    (*pai)->ai_addrlen = socklen;
-@@ -616,9 +635,9 @@
+@@ -616,9 +640,9 @@
  #if SALEN
  	    (*pai)->ai_addr->sa_len = socklen;
  #endif /* SALEN */
@@ -367,7 +415,7 @@ diff -u -r1.32 -r1.33
  	      {
  		struct sockaddr_in6 *sin6p =
  		  (struct sockaddr_in6 *) (*pai)->ai_addr;
-@@ -703,7 +722,7 @@
+@@ -703,7 +727,7 @@
        else
  	/* Can't specify a numerical socket unless a protocol family was
  	   given. */
