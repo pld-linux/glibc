@@ -119,6 +119,7 @@ BuildRequires:	texinfo
 AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
+%{?with_tls:Provides:	glibc-tls}
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
