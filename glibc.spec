@@ -985,7 +985,7 @@ done
 for i in af am ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU en_CA \
     en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn leet lg \
     li lo lt lv mi mk ml mn mr ms mt nds ne nn pa pt ro ru se sl sq sr sr@Latn \
-    sr@ije ta tg th uk uz vi wa xh yi zh_HK zu ; do
+    sr@ije ta tg th uk uz vi wa xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -994,6 +994,7 @@ for i in af am ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU en_CA \
 done
 cd $RPM_BUILD_ROOT%{_datadir}/locale
 ln -s zh_CN zh_SG
+ln -s zh_CN zh_HK
 cd -
 
 # localedb-gen infrastructure
