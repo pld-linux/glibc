@@ -620,8 +620,10 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
 %if 0%{!?_with_kernheaders:1}
+	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
 %else
+	CPPFLAGS="-I$_headers_dir" \
 	--with-headers=$_headers_dir
 %endif
 
