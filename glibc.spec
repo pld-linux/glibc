@@ -53,7 +53,6 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # borrowed from util-linux
 Source7:	sln.8
 Source8:	%{name}-localedb-gen
-# Source10-md5:	ded0b439efe16dd29ce5a24d3d3dcebf
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-initgroups-overflow.patch
 Patch2:		%{name}-pld.patch
