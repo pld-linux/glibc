@@ -413,6 +413,7 @@ Summary:	locale database for all locales supported by glibc
 Summary(es):	Base de datos de todos los locales soportados por glibc
 Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs³ugiwanych przez glibc
 Group:		Libraries
+Requires:	iconv = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description localedb-all
