@@ -34,6 +34,7 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
 BuildRequires:	libpng-devel
+BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	texinfo
 BuildRequires:	rpm-build >= 4.0-11
 Provides:	ld.so.2
