@@ -1098,7 +1098,7 @@ fi
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
-%ifnarch alpha ppc sparc64 amd64
+%ifnarch alpha amd64 ia64 ppc sparc64
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/locale
