@@ -31,7 +31,8 @@ Patch9:		%{name}-getxxxxinfo.patch
 Patch10:	%{name}-flexiblearray.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
-BuildRequires:	gd-devel
+BuildRequires:	gd-static
+BuildRequires:	libpng-static
 BuildRequires:	texinfo
 Provides:	ld.so.2
 Provides:	ldconfig
