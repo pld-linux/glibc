@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	10
+Release:	11
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -41,7 +41,7 @@ BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	libpng-devel
 BuildRequires:	perl
-BuildRequires:	rpm-build >= 4.0-11
+BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
 Provides:	ld.so.2
 Provides:	ldconfig
