@@ -1,0 +1,24 @@
+diff -urN glibc-2.2.5.org/resolv/gethnamaddr.c glibc-2.2.5/resolv/gethnamaddr.c
+--- glibc-2.2.5.org/resolv/gethnamaddr.c	Tue Jan 29 20:06:05 2002
++++ glibc-2.2.5/resolv/gethnamaddr.c	Sun Feb  3 14:37:40 2002
+@@ -690,7 +690,7 @@
+ 				       uaddr[n] & 0xf,
+ 				       (uaddr[n] >> 4) & 0xf));
+ 		}
+-		strcpy(qp, "ip6.arpa");
++		strcpy(qp, "ip6.int");
+ 		break;
+ 	default:
+ 		abort();
+diff -urN glibc-2.2.5.org/resolv/nss_dns/dns-host.c glibc-2.2.5/resolv/nss_dns/dns-host.c
+--- glibc-2.2.5.org/resolv/nss_dns/dns-host.c	Tue Jan 29 20:06:05 2002
++++ glibc-2.2.5/resolv/nss_dns/dns-host.c	Sun Feb  3 14:37:56 2002
+@@ -282,7 +282,7 @@
+       qp = qbuf;
+       for (n = IN6ADDRSZ - 1; n >= 0; n--)
+ 	qp += sprintf (qp, "%x.%x.", uaddr[n] & 0xf, (uaddr[n] >> 4) & 0xf);
+-      strcpy (qp, "ip6.arpa");
++      strcpy (qp, "ip6.int");
+       break;
+     default:
+       /* Cannot happen.  */
