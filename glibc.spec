@@ -20,6 +20,7 @@ Source5:	utmpd.sysconfig
 Source6:	nscd.sysconfig
 Patch0:		glibc-info.patch
 Patch1:		glibc-paths.patch
+Patch2:		glibc-versions.awk_fix.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
@@ -164,6 +165,7 @@ GNU libc-2.1 Static libraries
 %setup  -q -a 1 -a 2
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 
