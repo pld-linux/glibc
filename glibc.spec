@@ -6,7 +6,7 @@ Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1
 %define		man_pages_ver 1.23
-Release:	9
+Release:	10
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -19,8 +19,7 @@ Source5:	ftp://ftp.win.tue.nl/pub/linux/docs/manpages/man-pages-%{man_pages_ver}
 Patch0:		glibc-info.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
-Obsoletes:	%{name}-profile
-Obsoletes:	%{name}-debug
+Obsoletes:	glibc-profile, glibc-debug
 Autoreq:	false
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -72,7 +71,7 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package	devel
+%package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
@@ -257,6 +256,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man3/*
 
 %changelog
+* Mon Apr 19 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [2.1-10]
+- recompiled on new rpm.
+
 * Tue Mar 30 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [2.1-9]
 - gzipping %doc,
@@ -341,8 +344,7 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at invalid RH spec file.
-  [2.1.1-1]
+- start at invalid RH spec file.  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
