@@ -44,7 +44,7 @@
 %endif
 
 %define		llh_version	7:2.6.6.0
-%define		_snap		20040623
+%define		_snap		20040705
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -99,11 +99,8 @@ Patch17:	%{name}-csu-quotes.patch
 Patch18:	%{name}-tests-noproc.patch
 Patch19:	%{name}-new-charsets.patch
 Patch20:	%{name}-sr_CS.patch
-Patch21:	%{name}-alpha-relro.patch
-Patch22:	%{name}-sparc64-dl-machine.patch
-Patch23:	%{name}-alpha-mq.patch
-Patch24:	%{name}-alpha-typo.patch
-Patch25:	%{name}-tzfile-noassert.patch
+Patch21:	%{name}-sparc64-dl-machine.patch
+Patch22:	%{name}-tzfile-noassert.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -789,9 +786,6 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
-%patch23 -p1
-%patch24 -p1
-%patch25 -p1
 
 %patch30 -p1
 %patch31 -p1
