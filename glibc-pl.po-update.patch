@@ -1,5 +1,5 @@
 --- libc/po/pl.po.orig	2004-10-14 21:11:41.000000000 +0200
-+++ libc/po/pl.po	2004-11-27 01:53:24.967275000 +0100
++++ libc/po/pl.po	2004-11-27 02:06:01.401280264 +0100
 @@ -5,9 +5,9 @@
  #
  msgid ""
@@ -4921,7 +4921,8 @@
 -#: elf/ldconfig.c:126
 +#: elf/ldconfig.c:130
  msgid "Change to and use ROOT as root directory"
- msgstr "Przej¶cie do i u¿ywanie ROOT jako g³ównego katalogu"
+-msgstr "Przej¶cie do i u¿ywanie ROOT jako g³ównego katalogu"
++msgstr "Przej¶cie do i u¿ywanie KATALOGU jako g³ównego katalogu"
  
 -#: elf/ldconfig.c:127
 +#: elf/ldconfig.c:130
@@ -4934,7 +4935,8 @@
 +
 +#: elf/ldconfig.c:131
  msgid "Use CACHE as cache file"
- msgstr "U¿ycie CACHE jako pliku bufora"
+-msgstr "U¿ycie CACHE jako pliku bufora"
++msgstr "U¿ycie BUFORA jako pliku bufora"
  
 -#: elf/ldconfig.c:128
 +#: elf/ldconfig.c:132
@@ -4943,7 +4945,8 @@
 +
 +#: elf/ldconfig.c:132
  msgid "Use CONF as configuration file"
- msgstr "U¿ycie CONF jako pliku konfiguracyjnego"
+-msgstr "U¿ycie CONF jako pliku konfiguracyjnego"
++msgstr "U¿ycie KONF jako pliku konfiguracyjnego"
  
 -#: elf/ldconfig.c:129
 +#: elf/ldconfig.c:133
