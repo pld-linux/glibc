@@ -825,15 +825,66 @@ diff -uNr libc.orig/localedata/locales/bg_BG libc/localedata/locales/bg_BG
 diff -uNr libc.orig/localedata/locales/bn_BD libc/localedata/locales/bn_BD
 --- libc.orig/localedata/locales/bn_BD	2004-04-29 00:55:01.000000000 +0200
 +++ libc/localedata/locales/bn_BD	2004-11-10 02:36:38.000000000 +0100
+@@ -5,29 +5,29 @@ comment_char %
+ 
+ LC_IDENTIFICATION
+ title "Bengali language locale for Bangladesh"
+-source "Bangladesh Linux User Group http://www.bdlug.org"
++source "Ankur Group, http://www.ankurbangla.org http://www.bengalinux.org"
+ address "Dhaka, Bangladesh"
+-contact "Taneem Ahmed"
+-email "taneem@poribar.org"
++contact "Taneem Ahmed, Jamil Ahmed"
++email "taneem@bengalinux.org, jamil@bengalinux.org"
+ tel ""
+ fax ""
+-language "Bengali"
+-territory "BD"
+-revision "0.1"
+-date "2001-11-01"
+-
+-category bn_BD:2001;LC_IDENTIFICATION
+-category bn_BD:2001;LC_COLLATE
+-category bn_BD:2001;LC_CTYPE
+-category bn_BD:2001;LC_MESSAGES
+-category bn_BD:2001;LC_MONETARY
+-category bn_BD:2001;LC_NUMERIC
+-category bn_BD:2001;LC_TIME
+-category bn_BD:2001;LC_PAPER
+-category bn_BD:2001;LC_MEASUREMENT
+-category bn_BD:2001;LC_TELEPHONE
+-category bn_BD:2001;LC_ADDRESS
+-category bn_BD:2001;LC_NAME
++language "Bengali/Bangla"
++territory "Bangladesh"
++revision "0.2"
++date "2004-07-14"
++
++category "i18n:2001";LC_IDENTIFICATION
++category "i18n:2001";LC_COLLATE
++category "i18n:2001";LC_CTYPE
++category "i18n:2001";LC_MESSAGES
++category "i18n:2001";LC_MONETARY
++category "i18n:2001";LC_NUMERIC
++category "i18n:2001";LC_TIME
++category "i18n:2001";LC_PAPER
++category "i18n:2001";LC_MEASUREMENT
++category "i18n:2001";LC_TELEPHONE
++category "i18n:2001";LC_ADDRESS
++category "i18n:2001";LC_NAME
+ 
+ END LC_IDENTIFICATION
+ 
 @@ -119,17 +119,10 @@
  END LC_TIME
  
  LC_MESSAGES
 -yesexpr     "<U005E><U005B><U09B9><U09CD><U09AF><U09BE><U005D>"
 -noexpr      "<U005E><U005B><U09A8><U09BE><U005D>"
+-yesstr      "<U09B9><U09CD><U09AF><U09BE>"
 +yesexpr     "<U005E><U005B><U09B9><U0059><U0079><U005D>"
 +noexpr      "<U005E><U005B><U09A8><U004E><U006E><U005D>"
- yesstr      "<U09B9><U09CD><U09AF><U09BE>"
++yesstr      "<U09B9><U09CD><U09AF><U09BE><U0981>"
 -nostr        "<U09A8><U09BE>"
 -END LC_MESSAGES
 -
@@ -2667,7 +2718,7 @@ diff -uNr libc.orig/localedata/locales/hy_AM libc/localedata/locales/hy_AM
 -country_isbn "<U0039><U0039><U0039><U0033><U0030>"
 -% FIXME lang_name Armenian in Armenian
 +country_num 051
-+country_car "<U0041><U0052><U004D>"
++country_car "<U0041><U004D>"
 +country_isbn "99930,99941"
 +lang_name "<U0540><U0561><U0575><U0565><U0580><U0565><U0576>"
  lang_ab "<U0068><U0079>"
@@ -4475,7 +4526,142 @@ diff -uNr libc.orig/localedata/locales/ta_IN libc/localedata/locales/ta_IN
 diff -uNr libc.orig/localedata/locales/te_IN libc/localedata/locales/te_IN
 --- libc.orig/localedata/locales/te_IN	2003-12-07 14:00:22.000000000 +0100
 +++ libc/localedata/locales/te_IN	2004-11-10 02:36:38.000000000 +0100
-@@ -141,19 +141,8 @@
+@@ -1,33 +1,35 @@
+ comment_char    %
+ escape_char     /
+-% Telgu language locale for India.
++% Telugu language locale for India.
+ % Contributed by Kentaroh Noji <knoji@jp.ibm.com> and
+ % Tetsuji Orita <orita@jp.ibm.com>.
++%
++% Updated by Sunil Mohan Adapa <sunil AT atc tcs co in>
+ 
+ LC_IDENTIFICATION
+-title      "Telgu language locale for India"
++title      "Telugu language locale for India"
+ source     "IBM Globalization Center of Competency, Yamato Software Laboratory"
+ address    "1623-14, Shimotsuruma, Yamato-shi, Kanagawa-ken, 242-8502, Japan"
+ contact    ""
+-email      "bug-glibc@gnu.org"
++email      "libc-locales@sources.redhat.com"
+ tel         ""
+ fax         ""
+-language    "Telgu"
+-territory   "India"
+-revision    "0.92b"
+-date        "2000,October 12"
+-%
+-category  "te_IN:2000";LC_IDENTIFICATION
+-category  "te_IN:2000";LC_CTYPE
+-category  "te_IN:2000";LC_COLLATE
+-category  "te_IN:2000";LC_TIME
+-category  "te_IN:2000";LC_NUMERIC
+-category  "te_IN:2000";LC_MONETARY
+-category  "te_IN:2000";LC_MESSAGES
+-category  "te_IN:2000";LC_PAPER
+-category  "te_IN:2000";LC_NAME
+-category  "te_IN:2000";LC_ADDRESS
+-category  "te_IN:2000";LC_TELEPHONE
++language    "te"
++territory   "IN"
++revision    "0.95"
++date        "2004-10-05"
++%
++category  "i18n:2003";LC_IDENTIFICATION
++category  "i18n:2003";LC_CTYPE
++category  "i18n:2003";LC_COLLATE
++category  "i18n:2003";LC_TIME
++category  "posix:1993";LC_NUMERIC
++category  "i18n:2003";LC_MONETARY
++category  "i18n:2003";LC_MESSAGES
++category  "i18n:2003";LC_PAPER
++category  "i18n:2003";LC_NAME
++category  "i18n:2003";LC_ADDRESS
++category  "i18n:2003";LC_TELEPHONE
+ 
+ END LC_IDENTIFICATION
+ 
+@@ -50,18 +52,18 @@
+ % for IBM Class for Unicode.
+ %
+ int_curr_symbol       "<U0049><U004E><U0052><U0020>"
+-currency_symbol       "<U0930><U0942>"
++currency_symbol       "<U0C30><U0C42><U002E>"
+ mon_decimal_point     "<U002E>"
+ mon_thousands_sep     "<U002C>"
+-mon_grouping          2;3
++mon_grouping          3;2
+ positive_sign         ""
+ negative_sign         "<U002D>"
+ int_frac_digits       2
+ frac_digits           2
+ p_cs_precedes         1
+-p_sep_by_space        1
++p_sep_by_space        0
+ n_cs_precedes         1
+-n_sep_by_space        1
++n_sep_by_space        0
+ p_sign_posn           1
+ n_sign_posn           1
+ %
+@@ -73,7 +75,7 @@
+ %
+ decimal_point          "<U002E>"
+ thousands_sep          "<U002C>"
+-grouping               2;3
++grouping               3;2
+ %
+ END LC_NUMERIC
+ 
+@@ -103,34 +105,35 @@
+             "<U0C2E><U0C3E><U0C30><U0C4D><U0C1A><U0C3F>";"<U0C0F><U0C2a><U0C4D><U0C30><U0C3F><U0C32><U0C4D>";/
+             "<U0C2E><U0C47>";"<U0C1C><U0C42><U0C28><U0C4D>";/
+             "<U0C1C><U0C42><U0C32><U0C48>";"<U0C06><U0C17><U0C38><U0C4D><U0C1F><U0C41>";/
+-            "<U0C38><U0C46><U0C2A><U0C4D><U0C1F><U0C46><U0C02><U0C2C><U0C30><U0C4D>";"<U0C05><U0C15><U0C4D><U0C1F><U0C4B><U0C2C><U0C30><U0C4D>";/
+-            "<U0C28><U0C35><U0C02><U0C2C><U0C30><U0C4D>";"<U0C21><U0C3F><U0C38><U0C46><U0C02><U0C2C><U0C30><U0C4D>"
++            "<U0C38><U0C46><U0C2A><U0C4D><U0C1F><U0C46><U0C02><U0C2C><U0C30><U0C41>";"<U0C05><U0C15><U0C4D><U0C1F><U0C4B><U0C2C><U0C30><U0C41>";/
++            "<U0C28><U0C35><U0C02><U0C2C><U0C30><U0C41>";"<U0C21><U0C3F><U0C38><U0C46><U0C02><U0C2C><U0C30><U0C41>"
+ 
+ % Full month names (%B)
+ mon         "<U0C1C><U0C28><U0C35><U0C30><U0C3F>";"<U0C2B><U0C3F><U0C2C><U0C4D><U0C30><U0C35><U0C30><U0C3F>";/
+             "<U0C2E><U0C3E><U0C30><U0C4D><U0C1A><U0C3F>";"<U0C0F><U0C2A><U0C4D><U0C30><U0C3F><U0C32><U0C4D>";/
+             "<U0C2E><U0C47>";"<U0C1C><U0C42><U0C28><U0C4D>";/
+             "<U0C1C><U0C42><U0C32><U0C48>";"<U0C06><U0C17><U0C38><U0C4D><U0C1F><U0C41>";/
+-            "<U0C38><U0C46><U0C2A><U0C4D><U0C1F><U0C46><U0C02><U0C2C><U0C30><U0C4D>";"<U0C05><U0C15><U0C4D><U0C1F><U0C4B><U0C2C><U0C30><U0C4D>";/
+-            "<U0C28><U0C35><U0C02><U0C2C><U0C30><U0C4D>";"<U0C21><U0C3F><U0C38><U0C46><U0C02><U0C2C><U0C30><U0C4D>"
++            "<U0C38><U0C46><U0C2A><U0C4D><U0C1F><U0C46><U0C02><U0C2C><U0C30><U0C41>";"<U0C05><U0C15><U0C4D><U0C1F><U0C4B><U0C2C><U0C30><U0C41>";/
++            "<U0C28><U0C35><U0C02><U0C2C><U0C30><U0C41>";"<U0C21><U0C3F><U0C38><U0C46><U0C02><U0C2C><U0C30><U0C41>"
+ %
+ % Equivalent of AM PM
+-am_pm       "<U0C2A><U0C42><U0C30><U0C4D><U0C35><U0C3E><U0C39><U0C4D><U0C28>";"<U0C05><U0C2A><U0C30><U0C3E><U0C39><U0C4D><U0C28>"
++am_pm       "<U0C09><U002E>";"<U0C38><U0C3E><U002E>"
+ %
+ % Appropriate date and time representation
+-% %A %d %b %Y %I:%M:%S  %Z
+-d_t_fmt     "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
++% %B %d %A %Y %p%I.%M.%S %Z
++d_t_fmt     "<U0025><U0042><U0020><U0025><U0064><U0020><U0025><U0041><U0020><U0025><U0059><U0020><U0025><U0070><U0025><U0049><U002E><U0025><U004D><U002E><U0025><U0053><U0020><U0025><U005A>"
+ %
+ % Appropriate date representation
+-% %A %d %b %Y
+-d_fmt       "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059>"
++% %B %d %A %Y
++d_fmt       "<U0025><U0042><U0020><U0025><U0064><U0020><U0025><U0041><U0020><U0025><U0059>"
+ %
+ % Appropriate time representation
+-% %I:%M:%S  %Z
+-t_fmt       "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0020><U0025><U005A>"
++% %p%I.%M.%S %Z
++t_fmt       "<U0025><U0070><U0025><U0049><U002E><U0025><U004D><U002E><U0025><U0053><U0020><U0025><U005A>"
+ %
+ % Appropriate 12 h time representation (%r)
+-t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
++% %p%I.%M.%S %Z
++t_fmt_ampm  "<U0025><U0070><U0025><U0049><U002E><U0025><U004D><U002E><U0025><U0053><U0020><U0025><U005A>"
+ %
+ END LC_TIME
+ 
+@@ -141,19 +144,8 @@
  % These are generated based on XML base Locale difintion file
  % for IBM Class for Unicode.
  %
@@ -4497,15 +4683,54 @@ diff -uNr libc.orig/localedata/locales/te_IN libc/localedata/locales/te_IN
  
  %
  yesstr      "<U0C05><U0C35><U0C28><U0C41>"
-@@ -192,6 +181,11 @@
- country_ab2 "<U0049><U004E>"
- country_ab3 "<U0049><U004E><U0044>"
- country_num 356
-+country_car "<U0049><U004E><U0044>"
-+country_isbn "81,93"
-+lang_ab     "<U0074><U0065>"
-+lang_term   "<U0074><U0065><U006C>"
-+lang_lib    "<U0074><U0065><U006C>"
+@@ -174,12 +166,12 @@
+ % generated by IBM Basic CountryPack Transformer.
+ %
+ %
+-name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
++name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067><U0025><U0074><U0025><U006D>"
+ name_gen    ""
+-name_mr     "<U004D><U0072><U002E>"
+-name_mrs    "<U004D><U0072><U0073><U002E>"
+-name_miss   "<U004D><U0069><U0073><U0073><U002E>"
+-name_ms     "<U004D><U0073><U002E>"
++name_mr     "<U0C36><U0C4D><U0C30><U0C40><U0020>"
++name_mrs    "<U0C36><U0C4D><U0C30><U0C40><U0C2E><U0C24><U0C3F><U0020>"
++name_miss   "<U0C15><U0C41><U0C2E><U0C3E><U0C30><U0C3F><U0020>"
++name_ms     ""
+ 
+ END LC_NAME
+ 
+@@ -187,11 +179,28 @@
+ LC_ADDRESS
+ % This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category
+ % generated by IBM Basic CountryPack Transformer.
+-postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073><U0025><U0062><U0025><U0065><U0025><U0072>"
+ 
+-country_ab2 "<U0049><U004E>"
+-country_ab3 "<U0049><U004E><U0044>"
+-country_num 356
++% postal_fmt    "%n%N%a%N%d%N%f%N%r%t%e%N%h%t%b%N%s%t%l%N%T%t%z%N%S%N%c"
++postal_fmt      "<U0025><U006E><U0025><U004E>/
++<U0025><U0061><U0025><U004E>/
++<U0025><U0064><U0025><U004E>/
++<U0025><U0066><U0025><U004E>/
++<U0025><U0072><U0025><U0074><U0025><U0065><U0025><U004E>/
++<U0025><U0068><U0025><U0074><U0025><U0062><U0025><U004E>/
++<U0025><U0073><U0025><U0074><U0025><U006C><U0025><U004E>/
++<U0025><U0054><U0025><U0074><U0025><U007A><U0025><U004E>/
++<U0025><U0053><U0025><U004E>/
++<U0025><U0063>"
++country_name    "<U0C2D><U0C3E><U0C30><U0C24><U0020><U0C26><U0C47><U0C36><U0C02>"
++country_ab2     "<U0049><U004E>"
++country_ab3     "<U0049><U004E><U0044>"
++country_num     356
++country_car     "<U0049><U004E><U0044>"
++country_isbn    "81,93"
++lang_name       "<U0C24><U0C46><U0C32><U0C41><U0C17><U0C41>"
++lang_ab         "te"
++lang_term       "tel"
++lang_lib        "tel"
  END LC_ADDRESS
  
  
