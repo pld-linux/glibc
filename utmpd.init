@@ -29,26 +29,32 @@ case "$1" in
 		msg_already_running "utmpd"
 		exit 1
 	fi
-        ;;
+	;;
   stop)
 	if [ -f /var/lock/subsys/utmpd ]; then
 		msg_stopping "utmpd"
 		killproc utmpd
+		RETVAL=$?
 		rm -f /var/lock/subsys/utmpd >/dev/null 2>&1
 	else
 		msg_not_running "utmpd"
 		exit 1
 	fi	
 	;;
-  reload|restart)
+  restart|reload)
 	$0 stop
 	$0 start
+	exit $?
+	;;
+  force-reload)
+	$0 stop && $0 start
+	exit $?
 	;;
   status)
 	status utmpd
 	;;
   *)
-	msg_usage "$0 {start|stop|status|restart|reload}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
 	exit 1
 esac
 
