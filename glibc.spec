@@ -49,7 +49,7 @@
 %endif
 
 %define		llh_version	7:2.6.6.0
-%define		_snap		20040612
+%define		_snap		20040623
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -62,13 +62,13 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.2%{?with_nptl:+nptl}
+Release:	0.%{_snap}.1%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	60535f129045dc1176388e930b1998d2
+# Source0-md5:	a3632078c6a578c135d352d017180c82
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
 Source2:	nscd.init
@@ -104,7 +104,7 @@ Patch17:	%{name}-csu-quotes.patch
 Patch18:	%{name}-tests-noproc.patch
 Patch19:	%{name}-new-charsets.patch
 Patch20:	%{name}-sr_CS.patch
-Patch21:	%{name}-alpha-div.patch
+
 Patch22:	%{name}-alpha-relro.patch
 Patch23:	%{name}-sparc64-dl-machine.patch
 # PaX
@@ -790,7 +790,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
-%patch21 -p1
+
 %patch22 -p1
 %patch23 -p1
 
