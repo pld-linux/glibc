@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	23
+Release:	24
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -563,7 +563,7 @@ gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
 rm -f glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
 	if [ -d $i ]; then
-		lang=`echo $i | sed -e 's/.*locale\///' -e 's/^\(..\).*/\1/'`
+		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
 		echo "%lang($lang) $dir" >>glibc.lang
 	fi
