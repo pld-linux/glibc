@@ -558,6 +558,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # Collect locale files and mark them with %%lang()
 rm -f ../glibc.lang
+echo '%defattr(644,root,root,755)' > ../glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
@@ -591,11 +592,11 @@ done
 install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/man8
 
 # shutup check-files
-rm -f $RPM_BUILD_ROOT/%{_mandir}/README.*
-rm -f $RPM_BUILD_ROOT/%{_mandir}/diff.*
-rm -f $RPM_BUILD_ROOT/%{_infodir}/dir
+rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
+rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
-rm -f $RPM_BUILD_ROOT/%{_libdir}/pt_chown
+rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
 %{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
@@ -622,9 +623,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-echo "Please, install glibc-kernel-headers or chosen kernel-headers package"
-echo "or, if you are really brave man, just make appropriate links"
-echo "in /usr/include directory."
+echo "Please install glibc-kernel-headers or, if you are brave man,"
+echo "make appropriate links in /usr/include pointing to installed"
+echo "chosen kernel-headers package or other kernel headers you have."
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
