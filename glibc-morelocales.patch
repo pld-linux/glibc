@@ -5035,7 +5035,7 @@ diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 diff -uNr libc.old/localedata/locales/iu_CA libc/localedata/locales/iu_CA
 --- libc.old/localedata/locales/iu_CA	2004-07-16 03:07:27.000000000 +0200
 +++ libc/localedata/locales/iu_CA	2004-11-22 17:55:00.000000000 +0100
-@@ -0,0 +1,130 @@
+@@ -0,0 +1,136 @@
 +escape_char /
 +comment_char %
 +% charset "UTF-8"
@@ -5065,6 +5065,7 @@ diff -uNr libc.old/localedata/locales/iu_CA libc/localedata/locales/iu_CA
 +category "i18n:1997";LC_MEASUREMENT
 +category "i18n:1997";LC_TELEPHONE
 +category "i18n:1997";LC_ADDRESS
++category "i18n:1997";LC_NAME
 +END LC_IDENTIFICATION
 +
 +LC_ADDRESS
@@ -5105,6 +5106,11 @@ diff -uNr libc.old/localedata/locales/iu_CA libc/localedata/locales/iu_CA
 +LC_MONETARY
 +copy "en_CA"
 +END LC_MONETARY
++
++LC_NAME
++% FIXME
++copy "en_CA"
++END LC_NAME
 +
 +LC_NUMERIC
 +copy "en_CA"
@@ -6579,7 +6585,7 @@ diff -uNr libc.orig/localedata/locales/or_IN libc/localedata/locales/or_IN
 diff -uNr libc.old/localedata/locales/pap_AN libc/localedata/locales/pap_AN
 --- libc.old/localedata/locales/pap_AN	2004-07-16 03:07:27.000000000 +0200
 +++ libc/localedata/locales/pap_AN	2004-11-22 17:49:54.000000000 +0100
-@@ -0,0 +1,144 @@
+@@ -0,0 +1,149 @@
 +comment_char %
 +escape_char  /
 +repertoiremap mnemonic.ds
@@ -6610,6 +6616,7 @@ diff -uNr libc.old/localedata/locales/pap_AN libc/localedata/locales/pap_AN
 +category "i18n:2000";LC_MEASUREMENT
 +category "i18n:2000";LC_TELEPHONE
 +category "i18n:2000";LC_ADDRESS
++category "i18n:2000";LC_NAME
 +
 +% ISO/IEC 14652: Converted comments to LC_IDENTIFICATION
 +%  added LC_PAPER, LC_MEASUREMENT, LC_TELEPHONE, LC_ADDRESS
@@ -6646,10 +6653,14 @@ diff -uNr libc.old/localedata/locales/pap_AN libc/localedata/locales/pap_AN
 +noexpr  "<U005E><U005B><U006E><U004E><U005D>"
 +END LC_MESSAGES
 +
++LC_NAME
++% FIXME
++copy "en_DK"
++END LC_NAME
 +
 +LC_MONETARY
-+int_curr_symbol           "<U004E><U004C><U0047><U0020>"
-+currency_symbol           "<U0066><U006C>"
++int_curr_symbol           "<U0045><U0055><U0052><U0020>"
++currency_symbol           "<U20AC>"
 +mon_decimal_point         "<U002C>"
 +mon_thousands_sep         "<U0020>"
 +mon_grouping              3;3
