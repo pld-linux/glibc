@@ -91,7 +91,6 @@ Source5:	%{name}-man-pages.tar.bz2
 #Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
-# borrowed from util-linux
 Source7:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -127,7 +126,12 @@ Patch27:	%{name}-gcc4.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-BuildRequires:	gcc >= 3.4
+BuildRequires:	gcc >= 3.2
+%ifarch ppc ppc64 sparc sparcv9 sparc64
+%if %{with nptl} || %{with __thread}
+BuildRequires:	gcc >= 5:3.4
+%endif
+%endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
 %if %{without kernelheaders}
