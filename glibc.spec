@@ -3,8 +3,9 @@ Summary(de):	GNU libc
 Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
-Name:		glibc
+name:		glibc
 Version:	2.1
+%define		man-pages-ver 1.23
 Release:	8
 Copyright:	LGPL
 Group:		Libraries
@@ -14,6 +15,7 @@ Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.t
 Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-%{version}.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
+Source5:	ftp://ftp.win.tue.nl/pub/linux/man/man-pages-%{man-pages-ver}.tar.gz
 Patch0:		glibc-info.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
@@ -106,7 +108,7 @@ C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
 %prep 
-%setup -q -a 1 -a 2
+%setup -q -a 1 -a 2 -a 5
 %patch -p1
 
 %build
@@ -132,7 +134,9 @@ make install_root=$RPM_BUILD_ROOT install
 make install_root=$RPM_BUILD_ROOT install-locales -C localedata
 
 make -C linuxthreads/man
-install linuxthreads/man/*.3thr $RPM_BUILD_ROOT/usr/man/man3
+
+install linuxthreads/man/*.3thr man-pages-*/man3/* \
+	$RPM_BUILD_ROOT/usr/man/man3
 
 rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
 
@@ -171,13 +175,10 @@ cp crypt/README documentation/README.crypt
 
 cp ChangeLog ChangeLog.8 documentation
 
-
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
 
-
 gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*} \
-	README NEWS FAQ BUGS NOTES PROJECTS \
-	documentation/* 
+	README NEWS FAQ BUGS NOTES PROJECTS documentation/*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -212,6 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir /usr/lib/gconv
 /usr/lib/gconv/gconv-modules
+%attr(755,root,root) /usr/lib/gconv/*.so
 
 /usr/share/i18n
 /usr/share/locale
@@ -252,11 +254,16 @@ rm -rf $RPM_BUILD_ROOT
 /usr/lib/*.o
 /usr/lib/lib*.a
 
-%attr(755,root,root) /usr/lib/gconv/*.so
 /usr/man/man3/*
 
 %changelog
-* Mon Mar 15 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+* Tue Mar 30 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [2.1-9]
+- gzipping %doc,
+- iconv modules moved to main,
+- moved man pages level 3 from man-pages package.
+
+* Mon Mar 15 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.
   [2.1-7]
 - on sparc{64} ./configure must be runed throw sparc32 wrapper.
 
@@ -334,10 +341,7 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at invalid RH spec file.  
-
-
-  [2.1.1-1]
+- start at invalid RH spec file.  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
