@@ -271,7 +271,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,NEWS,FAQ,BUGS}.gz
+%doc README.gz NEWS.gz FAQ.gz BUGS.gz
 
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
 %config /etc/rpc
@@ -297,7 +297,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* {NOTES,PROJECTS}.gz
+%doc documentation/* NOTES.gz PROJECTS.gz
 
 %{_includedir}/*.h
 %{_includedir}/arpa
