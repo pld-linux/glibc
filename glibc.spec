@@ -945,6 +945,7 @@ done
 %if %{with nptl}
 for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing} ;  do
 	cp -f nptl/$f documentation/${f}.nptl
+done
 %endif
 cp -f crypt/README.ufc-crypt documentation
 
