@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2
-Release:	9
+Release:	10
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -525,26 +525,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*prof*
 %attr(755,root,root) %{_bindir}/*trace
 
-%{_includedir}/*.h
-%{_includedir}/arpa
-%{_includedir}/bits
-%{_includedir}/gnu
-%{_includedir}/net
-%{_includedir}/netash
-%{_includedir}/netatalk
-%{_includedir}/netax25
-%{_includedir}/neteconet
-%{_includedir}/netinet
-%{_includedir}/netipx
-%{_includedir}/netpacket
-%{_includedir}/netrom
-%{_includedir}/netrose
-%{_includedir}/nfs
-%{_includedir}/protocols
-%{_includedir}/rpc
-%{_includedir}/rpcsvc
-%{_includedir}/scsi
-%{_includedir}/sys
+%{_includedir}/*
 
 %{_infodir}/libc.info*
 
