@@ -4641,7 +4641,7 @@ diff -uNr libc.old/localedata/locales/hsb_DE libc/localedata/locales/hsb_DE
 diff -uNr libc.old/localedata/locales/li_BE libc/localedata/locales/li_BE
 --- libc.old/localedata/locales/li_BE	1970-01-01 01:00:00.000000000 +0100
 +++ libc/localedata/locales/li_BE	2004-09-10 09:29:21.000000000 +0200
-@@ -0,0 +1,126 @@
+@@ -0,0 +1,132 @@
 +comment_char %
 +escape_char  /
 +repertoiremap mnemonic.ds
@@ -4669,6 +4669,7 @@ diff -uNr libc.old/localedata/locales/li_BE libc/localedata/locales/li_BE
 +category i18n:2000;LC_NUMERIC
 +category i18n:2000;LC_TIME
 +category i18n:2000;LC_PAPER
++category i18n:2000;LC_NAME
 +category i18n:2000;LC_MEASUREMENT
 +category i18n:2000;LC_TELEPHONE
 +category i18n:2000;LC_ADDRESS
@@ -4719,6 +4720,11 @@ diff -uNr libc.old/localedata/locales/li_BE libc/localedata/locales/li_BE
 +LC_PAPER
 +copy "nl_BE"
 +END LC_PAPER
++
++LC_NAME
++% FIXME
++name_fmt "???"
++END LC_NAME
 +
 +LC_TELEPHONE
 +copy "nl_BE"
@@ -4851,7 +4857,7 @@ diff -uNr libc.old/localedata/locales/li_BE@euro libc/localedata/locales/li_BE@e
 diff -uNr libc.old/localedata/locales/li_NL libc/localedata/locales/li_NL
 --- libc.old/localedata/locales/li_NL	1970-01-01 01:00:00.000000000 +0100
 +++ libc/localedata/locales/li_NL	2004-09-10 09:29:21.000000000 +0200
-@@ -0,0 +1,127 @@
+@@ -0,0 +1,133 @@
 +comment_char %
 +escape_char  /
 +repertoiremap mnemonic.ds
@@ -4879,6 +4885,7 @@ diff -uNr libc.old/localedata/locales/li_NL libc/localedata/locales/li_NL
 +category i18n:2000;LC_NUMERIC
 +category i18n:2000;LC_TIME
 +category i18n:2000;LC_PAPER
++category i18n:2000;LC_NAME
 +category i18n:2000;LC_MEASUREMENT
 +category i18n:2000;LC_TELEPHONE
 +category i18n:2000;LC_ADDRESS
@@ -4929,6 +4936,11 @@ diff -uNr libc.old/localedata/locales/li_NL libc/localedata/locales/li_NL
 +LC_PAPER
 +copy "nl_NL"
 +END LC_PAPER
++
++LC_NAME
++% FIXME
++name_fmt "???"
++END LC_NAME
 +
 +LC_TELEPHONE
 +copy "nl_NL"
