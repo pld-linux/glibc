@@ -8,6 +8,7 @@ Version:	2.1.3
 Release:	2
 License:	LGPL
 Group:		Libraries
+Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
 Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
@@ -90,6 +91,7 @@ Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
 Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
 Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
@@ -111,7 +113,7 @@ fichiers en-têtes et objets standards pour créer les exécutables.
 %description -l pl devel
 Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów korzystaj±cych
 ze standardowej biblioteki C. Znajduj± siê tutaj pliki nag³ówkowe oraz
-pliki  objektowe, niezbêdne do kompilacji programów wykonywalnych i innych
+pliki objektowe, niezbêdne do kompilacji programów wykonywalnych i innych
 bibliotek.
 
 %description -l tr devel
@@ -128,13 +130,13 @@ Requires:	rc-scripts >= 0.2.0
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve performance
-with NIS+, and may help with DNS as well.  You cannot use nscd with 2.0
+with NIS+, and may help with DNS as well. You cannot use nscd with 2.0
 kernels, due to bugs in the kernel-side thread support. nscd happens to hit
 these bugs particularly hard.
 
 %description -n nscd -l pl
 nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala drastycznie
-poprawiæ szybko¶æ dzia³ania NIS+.  Nie jest mo¿liwe u¿ywanie nscd z j±drami
+poprawiæ szybko¶æ dzia³ania NIS+. Nie jest mo¿liwe u¿ywanie nscd z j±drami
 serii 2.0.x z powodu b³adów po stronie j±dra w ods³udze w±tków.
 
 %package -n utmpd
@@ -150,7 +152,7 @@ utmpd is a utmp and utmpx synchronizer. Is only needed for libc5 based
 program with utmp access.
 
 %description -n utmpd -l pl
-utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików  /var/run/utmp i
+utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików /var/run/utmp i
 /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania ze starszych
 programów (bazuj±cych na libc5).
 
@@ -189,14 +191,15 @@ Conversion Interface.
 Program do konwersji plików tekstowych z jednego enkodingu w inny.
 Potrzebujesz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
 dokumentów z jednego enkodingu w inny lub je¿eli masz zainstalowane jakie¶
-programy które korzystaj± z Generic Character Set Conversion Interface
-w glibc, czyli z zestawu funkcji z tej biblioteki, które umo¿liwiaj± konwersjê
-enkodingu danych z poziomu dowolnego programu.
+programy które korzystaj± z Generic Character Set Conversion Interface w
+glibc, czyli z zestawu funkcji z tej biblioteki, które umo¿liwiaj±
+konwersjê enkodingu danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
@@ -266,25 +269,25 @@ install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf ../../../etc/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf ../../..%{_sysconfdir}/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
+ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
-rm -f $RPM_BUILD_ROOT/etc/localtime
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
 install %{SOURCE6}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE5}		$RPM_BUILD_ROOT/etc/sysconfig/utmpd
-install %{SOURCE7}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf		$RPM_BUILD_ROOT/etc
-install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
+install %{SOURCE7} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
+install nscd/nscd.conf $RPM_BUILD_ROOT%{_sysconfdir}
+install nss/nsswitch.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
 install nss/db-Makefile $RPM_BUILD_ROOT/var/db/Makefile
 :> $RPM_BUILD_ROOT/var/log/nscd
 
-cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
+cat << EOF > $RPM_BUILD_ROOT%{_bindir}/create-db
 #!/bin/sh
 /usr/bin/make -sC /var/db/
 EOF
@@ -307,7 +310,7 @@ gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
 strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
-	$RPM_BUILD_ROOT/usr/lib/gconv/*.so
+	$RPM_BUILD_ROOT%{_libdir}/gconv/*.so
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -358,8 +361,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {README,NEWS,FAQ,BUGS}.gz
 
-%config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
-%config /etc/rpc
+%config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nsswitch.conf
+%config %{_sysconfdir}/rpc
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/catchsegv
@@ -436,7 +439,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n nscd
 %defattr(644,root,root,755)
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/nscd
-%attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
+%attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
 %attr(640,root,root) /etc/logrotate.d/nscd
