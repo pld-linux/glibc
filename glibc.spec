@@ -136,7 +136,7 @@ make install_root=$RPM_BUILD_ROOT install-locales -C localedata
 make -C linuxthreads/man
 
 install linuxthreads/man/*.3thr man-pages-*/man3/* \
-	$RPM_BUILD_ROOT/usr/man/man3
+	$RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
 
@@ -184,11 +184,11 @@ gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*} \
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/libc.info.gz /etc/info-dir
+/sbin/install-info %{_infodir}/libc.info.gz /etc/info-dir
 
 %preun devel
 if [ "$1" = 0 ]; then
-	/sbin/install-info --delete /usr/info/libc.info.gz /etc/info-dir
+	/sbin/install-info --delete %{_infodir}/libc.info.gz /etc/info-dir
 fi
 
 %clean
@@ -248,13 +248,13 @@ rm -rf $RPM_BUILD_ROOT
 /usr/include/scsi
 /usr/include/sys
 
-/usr/info/libc.inf*.gz
+%{_infodir}/libc.inf*.gz
 
 %attr(755,root,root) /usr/lib/lib*.so
 /usr/lib/*.o
 /usr/lib/lib*.a
 
-/usr/man/man3/*
+%{_mandir}/man3/*
 
 %changelog
 * Mon Apr 19 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
