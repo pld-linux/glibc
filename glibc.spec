@@ -59,7 +59,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.9%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
+Release:	0.%{_snap}.9.19%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -79,6 +79,7 @@ Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 # borrowed from util-linux
 Source7:	%{name}-localedb-gen
+Source8:	%{name}-LD-path.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -872,6 +873,8 @@ BEGIN { file = "" }
 END { if (file != "") { print "ERROR OUTPUT FROM " file; system("cat " file); exit(1); } }'
 %endif
 
+%{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/run/nscd}
@@ -899,6 +902,7 @@ install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
+install glibc-postinst				$RPM_BUILD_ROOT/sbin
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
@@ -1028,15 +1032,6 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/glibcbug
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre
-# make it safe to upgrade from RH / FC
-if [ -d /lib/i686 ]; then
-	mv -fv /lib/i686 /lib/i686.rpmsave
-fi
-if [ -d /lib/tls ]; then
-	mv -fv /lib/tls /lib/tls.rpmsave
-fi
-
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
@@ -1046,7 +1041,8 @@ fi
 %else
 %post	-p /sbin/postshell
 %endif
-/sbin/ldconfig
+/sbin/glibc-postinst /%{_lib}/%{_host_cpu}
+/sbin/ldconfig /%{_lib} %{_prefix}/%{_lib}
 -/sbin/telinit u
 
 %ifarch amd64
@@ -1107,6 +1103,7 @@ fi
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %attr(755,root,root) /sbin/postshell
+%attr(755,root,root) /sbin/glibc-postinst
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
