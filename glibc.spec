@@ -45,6 +45,7 @@ Patch13:	%{name}-pl.po-update.patch
 Patch14:	%{name}-missing-nls.patch
 Patch15:	%{name}-broken-ldconfig-on-i386-with-gcc32.patch
 Patch16:	%{name}-java-libc-wait.patch
+Patch17:	%{name}-morelocales.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -464,8 +465,12 @@ Zabawka.
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
 
 chmod +x scripts/cpp
+
+# standardize name
+mv -f localedata/locales/{lug_UG,lg_UG}
 
 %build
 mkdir builddir
@@ -585,8 +590,9 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
 done
-for i in af az be bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
-         lt lv ms nn pt ro ru sl sr ta uk wa zh_CN ; do
+for i in af ar az be bg br bs cy de_AT el en eo es_ES et eu fi ga gr he hi hr \
+	 hu id is ja_JP.SJIS ka lg lt lv ms nn pt ro ru sl sq sr ta tg th uk \
+	 uz vi wa zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
