@@ -5,8 +5,8 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.2
-Release:	12
-Copyright:	LGPL
+Release:	13
+License:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
@@ -18,19 +18,18 @@ Source5:	utmpd.sysconfig
 Source6:	nscd.sysconfig
 Source7:	nscd.logrotate
 Patch0:		glibc-info.patch
-Patch1:		glibc-paths.patch
-Patch2:		glibc-versions.awk_fix.patch
-Patch3:		glibc-pld.patch
-Patch4:		glibc-getaddrinfo.patch
-Patch5:		glibc-crypt-blowfish.patch
-Patch6:		glibc-string2-pointer-arith.patch
-Patch7:		glibc-db2-alpha-mutex.patch
-Patch8:		glibc-linuxthreads-lock.patch
-Patch9:		glibc-pthread_create-manpage.patch
-Patch10:	glibc-sparc-linux-ldd.patch
-Patch11:	glibc-sparc-linux-chown.patch
-Patch12:	glibc-nls.patch
-Patch13:	glibc-makeinfo.patch
+Patch1:		glibc-versions.awk_fix.patch
+Patch2:		glibc-pld.patch
+Patch3:		glibc-getaddrinfo.patch
+Patch4:		glibc-crypt-blowfish.patch
+Patch5:		glibc-string2-pointer-arith.patch
+Patch6:		glibc-db2-alpha-mutex.patch
+Patch7:		glibc-linuxthreads-lock.patch
+Patch8:		glibc-pthread_create-manpage.patch
+Patch9:		glibc-sparc-linux-ldd.patch
+Patch10:	glibc-sparc-linux-chown.patch
+Patch11:	glibc-nls.patch
+Patch12:	glibc-makeinfo.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -41,12 +40,12 @@ BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Contains the standard libraries that are used by multiple programs on the
-system. In order to save disk space and memory, as well as to ease upgrades,
-common system code is kept in one place and shared between programs. This
-package contains the most important sets of shared libraries, the standard C
-library and the standard math library. Without these, a Linux system will
-not function. It also contains national language (locale) support and
-timezone databases.
+system. In order to save disk space and memory, as well as to ease
+upgrades, common system code is kept in one place and shared between
+programs. This package contains the most important sets of shared
+libraries, the standard C library and the standard math library. Without
+these, a Linux system will not function. It also contains national language
+(locale) support and timezone databases.
 
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im System
@@ -64,28 +63,28 @@ du système. Afin d'économiser l'espace disque et mémoire, et de faciliter
 les mises à jour, le code commun au système est mis à un endroit et partagé
 entre les programmes. Ce paquetage contient les bibliothèques partagées les
 plus importantes, la bibliothèque standard du C et la bibliothèque
-mathématique standard. Sans celles-ci, un système Linux ne peut fonctionner.
-Il contient aussi la gestion des langues nationales (locales) et les bases
-de données des zones horaires.
+mathématique standard. Sans celles-ci, un système Linux ne peut
+fonctionner. Il contient aussi la gestion des langues nationales (locales)
+et les bases de données des zones horaires.
 
 %description -l pl
 W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne programy
-w Twoim systemie. U¿ywanie przez programy bibliotek z tego pakietu oszczêdza
-miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest usytuowane w
-jednym miejscu i dzielone miêdzy wieloma programami. Pakiet ten zawiera
-bardzo wa¿ny zbiór bibliotek standardowych wspó³dzielonych (dynamicznych)
-bibliotek C i matematycznych. Bez glibc system Linux nie jest w stanie
-funkcjonowaæ. Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla
-wielu jêzyków (locale) oraz definicje stref czasowych.
+w Twoim systemie. U¿ywanie przez programy bibliotek z tego pakietu
+oszczêdza miejsce na dysku i pamiêæ. Wiekszo¶æ kodu systemowego jest
+usytuowane w jednym miejscu i dzielone miêdzy wieloma programami. Pakiet
+ten zawiera bardzo wa¿ny zbiór bibliotek standardowych wspó³dzielonych
+(dynamicznych) bibliotek C i matematycznych. Bez glibc system Linux nie
+jest w stanie funkcjonowaæ. Znajduj± siê tutaj równie¿ definicje ró¿nych
+informacji dla wielu jêzyków (locale) oraz definicje stref czasowych.
 
 %description -l tr
 Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir. Disk
 alaný ve bellek kullanýmýný azaltmak ve ayný zamanda güncelleme iþlemlerini
 kolaylaþtýrmak için ortak sistem kodlarý tek bir yerde tutulup programlar
-arasýnda paylaþtýrýlýr. Bu paket en önemli ortak kitaplýklarý, standart
-C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
-Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
-da bu pakette yer alýr.
+arasýnda paylaþtýrýlýr. Bu paket en önemli ortak kitaplýklarý, standart C
+kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar
+olmadan Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi
+veri tabaný da bu pakette yer alýr.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -100,13 +99,13 @@ Requires:	%{name} = %{version}
 
 %description devel
 To develop programs which use the standard C libraries (which nearly all
-programs do), the system needs to have these standard header files and object
-files available for creating the executables.
+programs do), the system needs to have these standard header files and
+object files available for creating the executables.
 
 %description -l de devel
 Bei der Entwicklung von Programmen, die die Standard-C-Libraries verwenden
-(also fast alle), benötigt das System diese Standard-Header- und Objektdateien
-zum Erstellen der ausführbaren Programme.
+(also fast alle), benötigt das System diese Standard-Header- und
+Objektdateien zum Erstellen der ausführbaren Programme.
 
 %description -l fr devel
 Pour développer des programmes utilisant les bibliothèques standard du C
@@ -115,8 +114,9 @@ fichiers en-têtes et objets standards pour créer les exécutables.
 
 %description -l pl devel
 Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów korzystaj±cych
-ze standardowej biblioteki C. Znajduj± siê tutaj pliki nag³ówkowe oraz pliki 
-objektowe, niezbêdne do kompilacji programów wykonywalnych i innych bibliotek.
+ze standardowej biblioteki C. Znajduj± siê tutaj pliki nag³ówkowe oraz
+pliki  objektowe, niezbêdne do kompilacji programów wykonywalnych i innych
+bibliotek.
 
 %description -l tr devel
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
@@ -132,34 +132,31 @@ Requires:	rc-scripts
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve performance
-with NIS+, and may help with DNS as well.
-
-You cannot use nscd with 2.0 kernels, due to bugs in the kernel-side thread
-support. nscd happens to hit these bugs particularly hard.
+with NIS+, and may help with DNS as well.  You cannot use nscd with 2.0
+kernels, due to bugs in the kernel-side thread support. nscd happens to hit
+these bugs particularly hard.
 
 %description -n nscd -l pl
-nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala drastycznie 
-poprawiæ szybko¶æ dzia³ania NIS+.
-
-Nie jest mo¿liwe u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów
-po stronie j±dra w ods³udze w±tków.
+nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala drastycznie
+poprawiæ szybko¶æ dzia³ania NIS+.  Nie jest mo¿liwe u¿ywanie nscd z j±drami
+serii 2.0.x z powodu b³adów po stronie j±dra w ods³udze w±tków.
 
 %package -n utmpd
 Summary:	utmp and utmpx synchronizer for libc5 applications.
 Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
 Group:		Daemons
 Group(pl):	Serwery
-Prereq:         /sbin/chkconfig
+Prereq:		/sbin/chkconfig
 Requires:	rc-scripts
 
 %description -n utmpd
-utmpd is a utmp and utmpx synchronizer. Is only needed for libc5 based 
+utmpd is a utmp and utmpx synchronizer. Is only needed for libc5 based
 program with utmp access.
 
 %description -n utmpd -l pl
-utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików 
-/var/run/utmp i /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania
-ze starszych programów (bazuj±cych na libc5).
+utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików  /var/run/utmp i
+/var/run/utmpx. Potrzebny jest tylko w przypadku korzystania ze starszych
+programów (bazuj±cych na libc5).
 
 %package -n localedb-src
 Summary:	Souce code locale database
@@ -170,8 +167,8 @@ Group(pl):	Serwery
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data files
 to use the internationalization features of the GNU libc. Glibc package
-contains standard set of locale binary database and You need this package if
-want build some non standard locale database.
+contains standard set of locale binary database and You need this package
+if want build some non standard locale database.
 
 %description -l pl -n localedb-src
 Pakiet ten kod ¼ród³owy baz locale który jest potrzebny do zbudowania
@@ -187,22 +184,22 @@ Group:		Daemons
 Group(pl):	Serwery
 
 %description -n iconv
-Convert encoding of given files from one encoding to another.
-You neet this package if You want to convert some documet from one encoding
-to another or if Yoo have installed some programs which use Generic
-Character Set Conversion Interface.
+Convert encoding of given files from one encoding to another. You neet this
+package if You want to convert some documet from one encoding to another or
+if Yoo have installed some programs which use Generic Character Set
+Conversion Interface.
 
 %description -l pl -n iconv
 Program do konwersji plików tekstowych z jednego enkodingu w inny.
 Potrzebujesz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
 dokumentów z jednego enkodingu w inny lub je¿eli masz zainstalowane jakie¶
-programy które korzystaj± Generic Character Set Conversion Interface w glibc
-czyli zestawu funkcji z tej biblioteki które umo¿liwiaj± kowersje enkodingu
-danych z poziomu dowolnego programu.
+programy które korzystaj± Generic Character Set Conversion Interface w
+glibc czyli zestawu funkcji z tej biblioteki które umo¿liwiaj± kowersje
+enkodingu danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
-Summary(pl):	Biblioteki statyczne 
+Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -236,7 +233,7 @@ Libraries anstelle der üblichen C-Libraries verwendet werden.
 gprof kullanýlarak ölçülen programlar standart C kitaplýðý yerine bu
 kitaplýðý kullanmak zorundadýrlar.
 
-%prep 
+%prep
 %setup  -q -a 1 -a 2
 %patch0 -p1
 %patch1 -p1
@@ -250,15 +247,14 @@ kitaplýðý kullanmak zorundadýrlar.
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
-%patch13 -p0
+%patch12 -p0
 
 %build
 %configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--enable-profile \
 	--disable-omitfp
-make   
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -300,7 +296,7 @@ cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
 /usr/bin/make -sC /var/db/
 EOF
 
-ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db 
+ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db
 
 rm -rf documentation
 install -d documentation
@@ -312,7 +308,7 @@ cp crypt/README documentation/README.crypt
 
 cp ChangeLog ChangeLog.8 documentation
 
-gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
+gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
 	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
 	documentation/* login/README.utmpd
 
