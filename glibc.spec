@@ -353,7 +353,7 @@ rm -rf $RPM_BUILD_ROOT
   subpackage,
 - added full %attr description in %files,
 - removed INSTALL from %doc,
-- added striping programs and shared libraries,
+- added stripping programs and shared libraries,
 - all %doc moved to devel.
 
 * Thu Sep 10 1998 Cristian Gafton <gafton@redhat.com>
