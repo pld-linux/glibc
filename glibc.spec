@@ -749,9 +749,9 @@ done
 # ia,kn,li,mn,sr@Latn (used by GNOME)
 #	note: GNOME2 uses sr as cyrillic!
 # nso,ss,ven,xh,zu (used by KDE)
-for i in af ar az be bg br bs cy de_AT el en eo es_AR es_MX et eu fa fi ga gr \
-	 he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru se sl \
-	 sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
+for i in af ar az be bg br bs cy de_AT el en en_AU eo es_AR es_MX et eu fa fi \
+	 ga gr he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru \
+	 se sl sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
