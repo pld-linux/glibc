@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	22
+Release:	23@%{_kernel_ver_str}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -584,8 +584,13 @@ rm -rf $RPM_BUILD_ROOT
 # when %%postun is run
 
 %post	-p /sbin/postshell
-/sbin/ldconfig
--/sbin/telinit u
+if [ "uname -r" -ge %{min_kernel} ]; then
+	/sbin/ldconfig
+	-/sbin/telinit u
+else
+	echo "Kernel in wrong version, install kernel %{min_kernel} or higher, reboot machine and then install glibc"
+	exit 1;
+fi
 
 %postun -p /sbin/postshell 
 /sbin/ldconfig
