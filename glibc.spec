@@ -107,6 +107,7 @@ geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
 %prep 
 %setup -q -a 1 -a 2
+%patch0 -p1
 
 %build
 install -d sunrpc/cpp; ln -s /lib/cpp sunrpc/cpp/cpp 
