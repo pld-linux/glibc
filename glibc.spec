@@ -76,30 +76,26 @@ Source7:	sln.8
 Source8:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
-#Patch1:		%{name}-initgroups-overflow.patch -- obsolete (came from upstream)
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
-#Patch4:		%{name}-string2-pointer-arith.patch -- obsolete since gcc 2.95.4 or so)
-Patch5:		%{name}-linuxthreads-lock.patch
-Patch6:		%{name}-pthread_create-manpage.patch
-Patch9:		%{name}-paths.patch
-#Patch10:	%{name}-vaargs.patch	-- obsolete fix for gcc 2.95/alpha (gcc>=3.2 is BRed)
-Patch11:	%{name}-getaddrinfo-workaround.patch
-Patch12:	%{name}-postshell.patch
-Patch14:	%{name}-missing-nls.patch
-Patch16:	%{name}-java-libc-wait.patch
-Patch18:	%{name}-lthrds_noomit.patch
-Patch19:	%{name}-no_opt_override.patch
+Patch4:		%{name}-linuxthreads-lock.patch
+Patch5:		%{name}-pthread_create-manpage.patch
+Patch6:		%{name}-paths.patch
+Patch7:		%{name}-getaddrinfo-workaround.patch
+Patch8:		%{name}-postshell.patch
+Patch9:		%{name}-missing-nls.patch
+Patch10:	%{name}-java-libc-wait.patch
+Patch11:	%{name}-lthrds_noomit.patch
+Patch12:	%{name}-no_opt_override.patch
 # this is broken (hardcoded /usr/src/linux)
-Patch23:	%{name}-kernel_includes.patch
-Patch24:	%{name}-includes.patch
-#Patch26:	%{name}-alpha-fix-as-syntax.patch	-- obsolete (fixed in other way)
-Patch27:	%{name}-soinit-EH_FRAME.patch
-Patch28:	%{name}-fix-asserts.patch
-Patch30:	%{name}-sparc-errno_fix.patch
-Patch31:	%{name}-make.patch
-Patch32:	%{name}-tests-io-tmp.patch
-Patch33:	%{name}-tests-noproc.patch
+Patch13:	%{name}-kernel_includes.patch
+Patch14:	%{name}-includes.patch
+Patch15:	%{name}-soinit-EH_FRAME.patch
+Patch16:	%{name}-fix-asserts.patch
+Patch17:	%{name}-sparc-errno_fix.patch
+Patch18:	%{name}-make.patch
+Patch19:	%{name}-tests-io-tmp.patch
+Patch20:	%{name}-tests-noproc.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -755,24 +751,24 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 %patch5 -p1
 %patch6 -p1
+#%%patch7 -p1
+%patch8 -p1
 %patch9 -p1
-#%%patch11 -p1
-%patch12 -p1
-%patch14 -p1
-%patch16 -p1
-%patch18 -p1
+%patch10 -p1
+%patch11 -p1
 # don't know, if it is good idea, for brave ones
-#%patch19 -p1
-%{?with_kernelheaders:%patch23}
-%{?!with_kernelheaders:%patch24 -p1}
-%patch27 -p1
-%patch28 -p1
-%patch30
-%patch31 -p1
-%patch32 -p1
-%patch33 -p1
+#%patch12 -p1
+%{?with_kernelheaders:%patch13}
+%{?!with_kernelheaders:%patch14 -p1}
+%patch15 -p1
+%patch16 -p1
+%patch17
+%patch18 -p1
+%patch19 -p1
+%patch20 -p1
 
 chmod +x scripts/cpp
 
@@ -919,6 +915,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # Collect locale files and mark them with %%lang()
 rm -f ../glibc.lang
+# bokmaal has been renamed (no_NO -> nb_NO) in 2.3.3, but not in po
+mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{no,nb}
 echo '%defattr(644,root,root,755)' > ../glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
 	if [ -d $i ]; then
@@ -943,13 +941,16 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# am,bn,ml (present in sources, but incomplete and disabled) (used by GNOME)
-# ia,kn,li,mn,sr@Latn (used by GNOME)
-#	note: GNOME2 uses sr as cyrillic!
-# nso,ss,ven,xh,zu (used by KDE)
-for i in af ar az be bg br bs cy de_AT el en en_AU eo es_AR es_MX et eu fa fi \
-	 ga gr he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru \
-	 se sl sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
+# ia,li,sr@Latn (used by GNOME)
+#	note: GNOME2 uses sr (and probably uz) as cyrillic!
+# nso,ss,ven (used by KDE)
+# NOTES:
+# bn is used for bn_BD or bn_IN?
+# omitted here - already existing (with libc.mo):
+#   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
+for i in af am ar az bg bn br bs cy de_AT en en_AU eo es_AR es_MX et eu fa ga \
+	 gr he hi id is ja_JP.SJIS ka kn lg lt lv mk ml mn ms mt nn pt ro ru \
+	 se sl sq sr sr@cyrillic ta tg th uk uz vi wa xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
