@@ -26,7 +26,9 @@
 
 %if %{with nptl}
 %ifarch i686 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
-%{!?min_kernel:%global		min_kernel	2.6.0}
+%if "%{min_kernel}" < "2.6.0"
+%global		min_kernel	2.6.0
+%endif
 %else
 %undefine with_nptl
 %endif
