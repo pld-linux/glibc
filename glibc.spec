@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	19
+Release:	22
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -44,6 +44,9 @@ Patch13:	%{name}-divdi3.patch
 Patch14:	%{name}-nss_dns-overflow.patch
 Patch15:	%{name}-sunrpc-overflow.patch
 Patch16:	%{name}-calloc-overflow.patch
+Patch17:	%{name}-gcc32.patch
+Patch18:	%{name}-maxpacket.patch
+Patch19:	%{name}-setrlimit.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -447,6 +450,9 @@ Zabawka.
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
+%patch18 -p1
+%patch19 -p1
 
 chmod +x scripts/cpp
 
