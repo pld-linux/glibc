@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	7
+Release:	8
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -539,7 +539,7 @@ fi
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
-%ifnarch alpha
+%ifnarch alpha sparc sparc64 ppc
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/locale
