@@ -1,27 +1,6 @@
-diff -u -r1.10 -r1.11
---- libc/sysdeps/unix/sysv/linux/speed.c	2001/06/01 08:09:12	1.10
-+++ libc/sysdeps/unix/sysv/linux/speed.c	2001/06/14 00:21:42	1.11
-@@ -60,7 +60,7 @@
-      speed_t speed;
- {
-   if ((speed & ~CBAUD) != 0
--      && (speed < B57600 || speed > B4000000))
-+      && (speed < B57600 || speed > __MAX_BAUD))
-     {
-       __set_errno (EINVAL);
-       return -1;
-@@ -82,7 +82,7 @@
-      speed_t speed;
- {
-   if ((speed & ~CBAUD) != 0
--      && (speed < B57600 || speed > B4000000))
-+      && (speed < B57600 || speed > __MAX_BAUD))
-     {
-       __set_errno (EINVAL);
-       return -1;
-diff -u -r1.3 -r1.4
---- libc/sysdeps/unix/sysv/linux/alpha/bits/termios.h	1999/01/19 12:20:04	1.3
-+++ libc/sysdeps/unix/sysv/linux/alpha/bits/termios.h	2001/06/14 00:21:01	1.4
+diff -urN glibc-2.2.3.org/sysdeps/unix/sysv/linux/alpha/bits/termios.h glibc-2.2.3/sysdeps/unix/sysv/linux/alpha/bits/termios.h
+--- glibc-2.2.3.org/sysdeps/unix/sysv/linux/alpha/bits/termios.h	Thu Jun 28 14:44:51 2001
++++ glibc-2.2.3/sysdeps/unix/sysv/linux/alpha/bits/termios.h	Thu Jun 28 14:45:07 2001
 @@ -150,6 +150,8 @@
  #define  B3500000 00035
  #define  B4000000 00036
@@ -31,9 +10,9 @@ diff -u -r1.3 -r1.4
  #define CSIZE	00001400
  #define   CS5	00000000
  #define   CS6	00000400
-diff -u -r1.6 -r1.7
---- libc/sysdeps/unix/sysv/linux/bits/termios.h	1999/01/19 12:22:44	1.6
-+++ libc/sysdeps/unix/sysv/linux/bits/termios.h	2001/06/14 00:21:00	1.7
+diff -urN glibc-2.2.3.org/sysdeps/unix/sysv/linux/bits/termios.h glibc-2.2.3/sysdeps/unix/sysv/linux/bits/termios.h
+--- glibc-2.2.3.org/sysdeps/unix/sysv/linux/bits/termios.h	Thu Jun 28 14:44:52 2001
++++ glibc-2.2.3/sysdeps/unix/sysv/linux/bits/termios.h	Thu Jun 28 14:45:07 2001
 @@ -165,6 +165,7 @@
  #define  B3000000 0010015
  #define  B3500000 0010016
@@ -42,9 +21,9 @@ diff -u -r1.6 -r1.7
  #ifdef __USE_MISC
  # define CIBAUD	  002003600000		/* input baud rate (not used) */
  # define CRTSCTS  020000000000		/* flow control */
-diff -u -r1.4 -r1.5
---- libc/sysdeps/unix/sysv/linux/mips/bits/termios.h	2000/02/08 13:41:37	1.4
-+++ libc/sysdeps/unix/sysv/linux/mips/bits/termios.h	2001/06/14 00:21:01	1.5
+diff -urN glibc-2.2.3.org/sysdeps/unix/sysv/linux/mips/bits/termios.h glibc-2.2.3/sysdeps/unix/sysv/linux/mips/bits/termios.h
+--- glibc-2.2.3.org/sysdeps/unix/sysv/linux/mips/bits/termios.h	Thu Jun 28 14:44:55 2001
++++ glibc-2.2.3/sysdeps/unix/sysv/linux/mips/bits/termios.h	Thu Jun 28 14:45:07 2001
 @@ -214,6 +214,7 @@
  # define  B3000000 0010015
  # define  B3500000 0010016
@@ -53,10 +32,10 @@ diff -u -r1.4 -r1.5
  # define CIBAUD	  002003600000	/* input baud rate (not used) */
  # define CRTSCTS  020000000000		/* flow control */
  #endif
-diff -u -r1.5 -r1.7
---- libc/sysdeps/unix/sysv/linux/powerpc/bits/termios.h	1999/10/29 20:23:15	1.5
-+++ libc/sysdeps/unix/sysv/linux/powerpc/bits/termios.h	2001/06/14 00:21:02	1.7
-@@ -154,6 +151,7 @@
+diff -urN glibc-2.2.3.org/sysdeps/unix/sysv/linux/powerpc/bits/termios.h glibc-2.2.3/sysdeps/unix/sysv/linux/powerpc/bits/termios.h
+--- glibc-2.2.3.org/sysdeps/unix/sysv/linux/powerpc/bits/termios.h	Thu Jun 28 14:44:55 2001
++++ glibc-2.2.3/sysdeps/unix/sysv/linux/powerpc/bits/termios.h	Thu Jun 28 14:45:07 2001
+@@ -154,6 +154,7 @@
  #define  B3000000 00034
  #define  B3500000 00035
  #define  B4000000 00036
@@ -64,9 +43,9 @@ diff -u -r1.5 -r1.7
  
  #define CSIZE	00001400
  #define   CS5	00000000
-diff -u -r1.7 -r1.8
---- libc/sysdeps/unix/sysv/linux/sparc/bits/termios.h	2000/02/17 18:35:47	1.7
-+++ libc/sysdeps/unix/sysv/linux/sparc/bits/termios.h	2001/06/14 00:21:03	1.8
+diff -urN glibc-2.2.3.org/sysdeps/unix/sysv/linux/sparc/bits/termios.h glibc-2.2.3/sysdeps/unix/sysv/linux/sparc/bits/termios.h
+--- glibc-2.2.3.org/sysdeps/unix/sysv/linux/sparc/bits/termios.h	Thu Jun 28 14:44:57 2001
++++ glibc-2.2.3/sysdeps/unix/sysv/linux/sparc/bits/termios.h	Thu Jun 28 14:45:07 2001
 @@ -156,6 +156,7 @@
  #define B1152000 0x0000100d
  #define B1500000 0x0000100e
@@ -75,3 +54,24 @@ diff -u -r1.7 -r1.8
  
  #define CIBAUD	0x100f0000	/* input baud rate (not used) */
  #define CMSPAR	0x40000000	/* mark or space (stick) parity */
+diff -urN glibc-2.2.3.org/sysdeps/unix/sysv/linux/speed.c glibc-2.2.3/sysdeps/unix/sysv/linux/speed.c
+--- glibc-2.2.3.org/sysdeps/unix/sysv/linux/speed.c	Thu Jun 28 14:44:58 2001
++++ glibc-2.2.3/sysdeps/unix/sysv/linux/speed.c	Thu Jun 28 14:45:54 2001
+@@ -60,7 +60,7 @@
+      speed_t speed;
+ {
+   if ((speed & ~CBAUD) != 0
+-      && (speed < B57600 || speed > B460800))
++      && (speed < B57600 || speed > __MAX_BAUD))
+     {
+       __set_errno (EINVAL);
+       return -1;
+@@ -82,7 +82,7 @@
+      speed_t speed;
+ {
+   if ((speed & ~CBAUD) != 0
+-      && (speed < B57600 || speed > B460800))
++      && (speed < B57600 || speed > __MAX_BAUD))
+     {
+       __set_errno (EINVAL);
+       return -1;
