@@ -29,6 +29,7 @@ Patch8:		glibc-linuxthreads-lock.patch
 Patch9:		glibc-pthread_create-manpage.patch
 Patch10:	glibc-sparc-linux-ldd.patch
 Patch11:	glibc-sparc-linux-chown.patch
+Patch12:	glibc-nls.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -247,6 +248,7 @@ kitaplýðý kullanmak zorundadýrlar.
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 %build
 %configure \
