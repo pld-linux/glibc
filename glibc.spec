@@ -8,7 +8,6 @@
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# glibc-kernel-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
-%bcond_with	idn		# build with included libidn
 %bcond_with	nptl		# use nptl instead of linuxthreads
 %bcond_without  tls		# do not use tls
 %bcond_without  tests		# do not perform "make test"
@@ -75,6 +74,7 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 Source7:	sln.8
 Source8:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-pl.po-update.patch
 #Patch1:		%{name}-initgroups-overflow.patch -- obsolete (came from upstream)
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -748,6 +748,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %prep
 %setup -q -a 1
 %patch0 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
