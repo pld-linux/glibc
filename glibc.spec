@@ -5,8 +5,8 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
-Version:	2.2.3
-Release:	16
+Version:	2.2.4
+Release:	1
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -27,12 +27,8 @@ Patch5:		%{name}-linuxthreads-lock.patch
 Patch6:		%{name}-pthread_create-manpage.patch
 Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-ldconfig-bklinks.patch
-Patch9:		%{name}-getconf.patch
-Patch10:	%{name}-confname.patch
-Patch11:	%{name}-nis.patch
-Patch12:	%{name}-speed.patch
-Patch13:	%{name}-paths.patch
-Patch14:	%{name}-vaargs.patch
+Patch9:		%{name}-paths.patch
+Patch10:	%{name}-vaargs.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -381,10 +377,6 @@ Zabawka.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
