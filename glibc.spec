@@ -114,6 +114,8 @@ Patch27:	%{name}-LD_DEBUG.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
+Patch32:	%{name}-sparc_comdat.patch
+Patch33:	%{name}-alpha_giduidfix.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -813,6 +815,8 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #%patch30 -p1
 # DROP
 #%patch31 -p1
+%patch32 -p1
+%patch33 -p1
 
 chmod +x scripts/cpp
 
