@@ -728,7 +728,7 @@ done
 
 %if %{with nptl}
 	rm -f $RPM_BUILD_ROOT%{_libdir}/libpthread.so
-	ln -sf /lib/libpthread-0.57.so $RPM_BUILD_ROOT%{_libdir}/libpthread.so
+	ln -sf /lib/libpthread-*.so $RPM_BUILD_ROOT%{_libdir}/libpthread.so
 %endif
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
