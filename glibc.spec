@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	19
+Release:	20
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -435,7 +435,8 @@ gcc -c $RPM_OPT_FLAGS -D_LIBC ldconfig.c -o ldconfig.o
 
 %ifarch alpha
 gcc -nostdlib -nostartfiles -static -o ldconfig ../csu/crt1.o \
-	../csu/crti.o ldconfig.o ../libc.a -lgcc ../libc.a \
+	../csu/crti.o ../csu/crtbegin.o ldconfig.o \
+	../libc.a -lgcc ../libc.a ../csu/crtend.o \
 	../csu/crtn.o
 %else
 gcc -nostdlib -nostartfiles -static -o ldconfig ../csu/crt1.o \
@@ -696,7 +697,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libm*.so
 %attr(755,root,root) %{_libdir}/libns*.so
 %attr(755,root,root) %{_libdir}/lib[p-z]*.so
-%attr(755,root,root) %{_libdir}/*crt?.o
+%attr(755,root,root) %{_libdir}/*crt*.o
 %{_libdir}/libc_nonshared.a
 
 %{_mandir}/man3/*
