@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.2.5
-Release:	18
+Release:	19
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -25,6 +25,8 @@ Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Source7:	postshell.c
+# borrowed from util-linux
+Source8:	sln.8
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
@@ -41,6 +43,7 @@ Patch12:	%{name}-use-int-not-arpa.patch
 Patch13:	%{name}-divdi3.patch
 Patch14:	%{name}-nss_dns-overflow.patch
 Patch15:	%{name}-sunrpc-overflow.patch
+Patch16:	%{name}-calloc-overflow.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -443,6 +446,7 @@ Zabawka.
 %patch13 -p1
 %patch14 -p1
 %patch15 -p1
+%patch16 -p1
 
 chmod +x scripts/cpp
 
@@ -558,7 +562,7 @@ for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
 done
-
+install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/man8
 
 install -m755 postshell $RPM_BUILD_ROOT/sbin
 
