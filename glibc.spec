@@ -53,6 +53,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
+BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Provides:	ld.so.2
