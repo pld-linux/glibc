@@ -17,9 +17,8 @@ Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{vers
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
-Source5:	ldconfig.8
-Source6:	%{name}-man-pages.tar.gz
-Source7:	%{name}-non-english-man-pages.tar.gz
+Source5:	%{name}-man-pages.tar.bz2
+Source6:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
@@ -435,9 +434,8 @@ install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
-install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
+tar xzvf %{SOURCE5} -C $RPM_BUILD_ROOT%{_mandir}/
 tar xzvf %{SOURCE6} -C $RPM_BUILD_ROOT%{_mandir}/
-tar xzvf %{SOURCE7} -C $RPM_BUILD_ROOT%{_mandir}/
 touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -445,12 +443,12 @@ touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 rm -rf documentation
 install -d documentation
 
-cp linuxthreads/ChangeLog documentation/ChangeLog.threads
-cp linuxthreads/Changes documentation/Changes.threads
-cp linuxthreads/README documentation/README.threads
-cp crypt/README.ufc-crypt documentation/
+cp -f linuxthreads/ChangeLog documentation/ChangeLog.threads
+cp -f linuxthreads/Changes documentation/Changes.threads
+cp -f linuxthreads/README documentation/README.threads
+cp -f crypt/README.ufc-crypt documentation/
 
-cp ChangeLog ChangeLog.8 documentation
+cp -f ChangeLog documentation
 
 gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
 
@@ -466,6 +464,9 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -495,9 +496,6 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del nscd
 fi
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
