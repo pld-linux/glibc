@@ -78,6 +78,8 @@ Conflicts:	man-pages < 1.43
 Conflicts:	rpm < 4.1
 
 %define		debugcflags	-O1 -g
+#define         parallelmkflags PARALLELMFLAGS="-j 4"
+%define         parallelmkflags %{nil}
 
 %description
 Contains the standard libraries that are used by multiple programs on
