@@ -1,0 +1,61 @@
+>>>>> Ben Collins writes:
+
+>> > %ldconfig
+>> > ldconfig: Can't stat .2
+>> 
+>> > Strace output shows this:
+>> 
+>> > stat("/lib/ld-linux.so.2", {st_mode=S_IFREG|0755, st_size=463501, ...}) = 0
+>> > stat(".2", 0xefffe5d0)                  = -1 ENOENT (No such file or directory)
+>> > write(2, "ldconfig: ", 10)              = 10
+>> > write(2, "Can\'t stat .2\n", 14)        = 14
+>> > write(2, "\n", 1)                       = 1
+>> 
+>> > %l /lib/ld-*
+>> > -rwxr-xr-x    1 root     root       463501 Nov 10 00:18 /lib/ld-2.2.so*
+>> > lrwxrwxrwx    1 root     root            9 Nov 10 00:53 /lib/ld-linux.so.2 -> ld-2.2.so*
+
+
+ > Uggh. This was a royal pain in the ass to find. Thinko patch attached.
+
+Argh :-(  Did you hear my scream? :-)
+
+Thanks!  But you missed one place, I've committed the following to CVS
+now.
+
+Andreas
+
+2000-11-10  Andreas Jaeger  <aj@suse.de>
+
+	* elf/ldconfig.c (create_links): Fix alloca calculation.
+	Patch by Ben Collins <bcollins@debian.org>.
+
+
+
+============================================================
+Index: elf/ldconfig.c
+--- elf/ldconfig.c	2000/09/30 00:52:27	1.11
++++ elf/ldconfig.c	2000/11/10 14:04:18
+@@ -370,13 +370,13 @@
+ 
+   /* Get complete path.  */
+   full_libname = alloca (strlen (path) + strlen (libname) + 2);
+-  full_soname = alloca (strlen (path) + strlen (libname) + 2);
++  full_soname = alloca (strlen (path) + strlen (soname) + 2);
+   sprintf (full_libname, "%s/%s", path, libname);
+   sprintf (full_soname, "%s/%s", path, soname);
+   if (opt_chroot)
+     {
+       real_full_libname = alloca (strlen (real_path) + strlen (libname) + 2);
+-      real_full_soname = alloca (strlen (real_path) + strlen (libname) + 2);
++      real_full_soname = alloca (strlen (real_path) + strlen (soname) + 2);
+       sprintf (real_full_libname, "%s/%s", real_path, libname);
+       sprintf (real_full_soname, "%s/%s", real_path, soname);
+     }
+
+-- 
+ Andreas Jaeger
+  SuSE Labs aj@suse.de
+   private aj@arthur.inka.de
+    http://www.suse.de/~aj
+
