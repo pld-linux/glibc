@@ -597,7 +597,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/zic
 
 %attr(755,root,root) /lib/ld-*
-%attr(755,root,root) /lib/lib[BScdmprtu]*
+%attr(755,root,root) /lib/libdl*
+%attr(755,root,root) /lib/lib[BScmprtu]*
 
 %{_mandir}/man8/*
 
