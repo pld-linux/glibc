@@ -3,7 +3,7 @@ Summary(de):	GNU libc
 Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
-name:		glibc
+Name:		glibc
 Version:	2.1
 Release:	8
 Copyright:	LGPL
@@ -171,13 +171,13 @@ cp crypt/README documentation/README.crypt
 
 cp ChangeLog ChangeLog.8 documentation
 
-bzip2 -9 documentation/*
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
 
-bzip2 -9 README NEWS FAQ BUGS NOTES PROJECTS
 
-gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*}
+gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*} \
+	README NEWS FAQ BUGS NOTES PROJECTS \
+	documentation/* 
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -195,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,NEWS,FAQ,BUGS}.bz2
+%doc {README,NEWS,FAQ,BUGS}.gz
 
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
@@ -222,7 +222,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* {NOTES,PROJECTS}.bz2
+%doc documentation/* {NOTES,PROJECTS}.gz
 
 /usr/include/*.h
 /usr/include/arpa
@@ -256,7 +256,7 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man3/*
 
 %changelog
-* Mon Mar 15 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.
+* Mon Mar 15 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [2.1-7]
 - on sparc{64} ./configure must be runed throw sparc32 wrapper.
 
