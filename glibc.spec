@@ -774,7 +774,7 @@ LDFLAGS=" " ; export LDFLAGS
 
 %if %{with tests}
 env LANGUAGE=C LC_ALL=C \
-%{__make} test 2>&1 | awk '
+%{__make} tests 2>&1 | awk '
 BEGIN { file = "" }
 {
 	if (($0 ~ /\*\*\* \[.*\.out\] Error/) && (file == "")) {
@@ -782,7 +782,7 @@ BEGIN { file = "" }
 		gsub(/.*\[/, NIL, file);
 		gsub(/\].*/, NIL, file);
 	}
-	print
+	print $0;
 }
 END { if (file != "") { print "ERROR OUTPUT FROM " file; system("cat " file); exit(1); } }'
 %endif
