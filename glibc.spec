@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.2
-Release:	11
+Release:	12
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
