@@ -44,6 +44,7 @@ Patch13:	%{name}-divdi3.patch
 Patch14:	%{name}-nss_dns-overflow.patch
 Patch15:	%{name}-sunrpc-overflow.patch
 Patch16:	%{name}-calloc-overflow.patch
+Patch17:	%{name}-gcc32.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -447,6 +448,7 @@ Zabawka.
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
 
 chmod +x scripts/cpp
 
