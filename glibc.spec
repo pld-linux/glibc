@@ -16,11 +16,6 @@
 # TODO:
 # - localedb-gen man pages(?)
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
-# - fix ld.so.conf (while upgrading glibc it do NOW mv ld.so.conf ld.so.conf.rpmsave)
-#
-# WARNING:
-#	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
-#	in order to use this version!
 #
 
 %{!?min_kernel:%global          min_kernel      2.4.6}
