@@ -20,6 +20,7 @@ Patch0:		glibc-info.patch
 Patch1:		glibc-paths.patch
 Patch2:		glibc-versions.awk_fix.patch
 URL:		http://www.gnu.org/software/libc/
+BuildPrereq:	perl
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
