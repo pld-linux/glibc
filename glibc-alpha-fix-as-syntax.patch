@@ -1,0 +1,10 @@
+--- glibc-2.3.2/linuxthreads/sysdeps/unix/sysv/linux/alpha/vfork.S~	Thu Sep 11 12:43:42 2003
++++ glibc-2.3.2/linuxthreads/sysdeps/unix/sysv/linux/alpha/vfork.S	Thu Sep 11 12:43:55 2003
+@@ -56,6 +56,7 @@
+ $syscall_error:
+ 	SYSCALL_ERROR_HANDLER
+ #endif
++	.end __vfork
+ 
+ PSEUDO_END(__vfork)
+ libc_hidden_def (__vfork)
