@@ -78,6 +78,7 @@ Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-sparc64_pause.patch
 Patch25:	%{name}-linuxthreads.patch
 Patch26:	%{name}-alpha-fix-as-syntax.patch
+Patch27:	%{name}-soinit-EH_FRAME.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -101,6 +102,7 @@ Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 AutoReq:	false
+Requires:	glibc-misc = %{epoch}:%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
@@ -226,6 +228,14 @@ Can be used on: Linux kernel >= %{min_kernel}.
 часових зон (timezone databases).
 
 Can be used on: Linux kernel >= %{min_kernel}.
+
+%package misc
+Summary:	Utilities and data used by glibc
+Group:		Development/Libraries
+Requires:	%{name} = %{epoch}:%{version}
+
+%description misc
+Utilities and data used by glibc
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -750,6 +760,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch25 -p1
 %endif
 %patch26 -p1
+%patch27 -p1
 
 chmod +x scripts/cpp
 
@@ -784,7 +795,7 @@ touch libidn/libidn.texi
 
 %build
 # Build glibc
-mkdir builddir
+[ -d builddir ] || mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
@@ -833,9 +844,9 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 
-%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
-mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 %endif
 
 %{__make} -C ../linuxthreads/man
@@ -859,7 +870,7 @@ rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 # make symlinks across top-level directories absolute
 for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
 	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
-	ln -sf /lib/`cd $RPM_BUILD_ROOT/lib ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+	ln -sf /%{_lib}/`cd $RPM_BUILD_ROOT/%{_lib} ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 done
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
@@ -890,7 +901,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
 %ifnarch sparc64
-%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/lib/ld-%{version}.so}
+%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/%{_lib}/ld-%{version}.so}
 %endif
 
 # Collect locale files and mark them with %%lang()
@@ -994,9 +1005,21 @@ fi
 %endif
 
 %ifnarch sparc64
-%files -f %{name}.lang
+%files 
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
+# ld* and libc.so.6 SONAME symlinks must be in package because of
+# chicken-egg problem (postshell is dynamically linked with libc);
+# ld-*.so SONAME is ld.so.1 on ppc, ld-linux.so.2 on other archs
+%attr(755,root,root) /%{_lib}/ld*
+%attr(755,root,root) /%{_lib}/libanl*
+%attr(755,root,root) /%{_lib}/libdl*
+%attr(755,root,root) /%{_lib}/libnsl*
+%attr(755,root,root) /%{_lib}/lib[BScmprtu]*
+%dir %{_libdir}/locale
+
+%files misc -f %{name}.lang
+%defattr(644,root,root,755)
 
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
@@ -1009,7 +1032,7 @@ fi
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
-%ifnarch alpha ppc sparc64
+%ifnarch alpha ppc sparc64 amd64
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/locale
@@ -1020,21 +1043,11 @@ fi
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
-# ld* and libc.so.6 SONAME symlinks must be in package because of
-# chicken-egg problem (postshell is dynamically linked with libc);
-# ld-*.so SONAME is ld.so.1 on ppc, ld-linux.so.2 on other archs
-%attr(755,root,root) /lib/ld*
-%attr(755,root,root) /lib/libanl*
-%attr(755,root,root) /lib/libdl*
-%attr(755,root,root) /lib/libnsl*
-%attr(755,root,root) /lib/lib[BScmprtu]*
-
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
 %exclude %{_datadir}/zoneinfo/right
 
-%dir %{_libdir}/locale
 
 %{_mandir}/man1/[!lsg]*
 %{_mandir}/man1/getent.1*
@@ -1071,11 +1084,11 @@ fi
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_dns*.so*
+%attr(755,root,root) /%{_lib}/libnss_dns*.so*
 
 #%files -n nss_files
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_files*.so*
+%attr(755,root,root) /%{_lib}/libnss_files*.so*
 
 %files zoneinfo_right
 %defattr(644,root,root,755)
@@ -1083,20 +1096,20 @@ fi
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_compat*.so*
+%attr(755,root,root) /%{_lib}/libnss_compat*.so*
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_hesiod*.so*
+%attr(755,root,root) /%{_lib}/libnss_hesiod*.so*
 
 %files -n nss_nis
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_nis.so.*
-%attr(755,root,root) /lib/libnss_nis-*.so
+%attr(755,root,root) /%{_lib}/libnss_nis.so.*
+%attr(755,root,root) /%{_lib}/libnss_nis-*.so
 
 %files -n nss_nisplus
 %defattr(644,root,root,755)
-%attr(755,root,root) /lib/libnss_nisplus*.so*
+%attr(755,root,root) /%{_lib}/libnss_nisplus*.so*
 
 %if %{?_without_memusage:0}%{!?_without_memusage:1}
 %files memusage
