@@ -138,11 +138,11 @@ make -C linuxthreads/man
 install linuxthreads/man/*.3thr man-pages-*/man3/* \
 	$RPM_BUILD_ROOT%{_mandir}/man3
 
-rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
+rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf ../../../etc/localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/localtime
-ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixtime
-ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixrules
+ln -sf ../../../etc/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
+ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
 ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT/usr/lib/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
@@ -215,9 +215,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gconv/gconv-modules
 %attr(755,root,root) %{_libdir}/gconv/*.so
 
-/usr/share/i18n
-/usr/share/locale
-/usr/share/zoneinfo
+%{_datadir}/i18n
+%{_datadir}/locale
+%{_datadir}/zoneinfo
 
 %dir /var/db
 %config /var/db/db-*
