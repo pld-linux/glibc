@@ -157,6 +157,7 @@ Group(pl):	Sieciowe/Serwery
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
 Requires:	%{name} = %{version}
+Requires(post):	fileutils
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
