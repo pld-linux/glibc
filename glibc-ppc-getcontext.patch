@@ -1,0 +1,80 @@
+diff -urN libc23-cvstip-20040812/sysdeps/unix/sysv/linux/powerpc/powerpc32/getcontext.S libc23/sysdeps/unix/sysv/linux/powerpc/powerpc32/getcontext.S
+--- libc23-cvstip-20040812/sysdeps/unix/sysv/linux/powerpc/powerpc32/getcontext.S	2004-06-15 15:02:20.000000000 -0500
++++ libc23/sysdeps/unix/sysv/linux/powerpc/powerpc32/getcontext.S	2004-08-30 18:22:17.372265184 -0500
+@@ -27,13 +27,12 @@
+ 
+ 	.machine	"altivec"
+ ENTRY(__getcontext)
++	stwu	r1,-16(r1)
+ 	stw	r3,_FRAME_PARM_SAVE1(r1)
+ 	addi	r3,r3,_UC_REG_SPACE+12
+ 	clrrwi  r3,r3,4
+ 	stw	r0,_UC_GREGS+(PT_R0*4)(r3)
+ 	mflr	r0
+-	stw	r1,_UC_GREGS+(PT_R1*4)(r3)
+-	stwu	r1,-16(r1)
+ 	stw	r0,_UC_GREGS+(PT_LNK*4)(r3)
+ 	stw	r0,_UC_GREGS+(PT_NIP*4)(r3)
+ 	stw	r0,_FRAME_LR_SAVE+16(r1)
+@@ -73,6 +72,11 @@
+ 	mfcr	r0
+ 	stw	r0,_UC_GREGS+(PT_CCR*4)(r3)
+ 
++	/* Save the value of R1.  We had to push the stack before we
++	   had the address of uc_reg_space.  So compute the address of
++	   the callers stack pointer and save it as R1.  */
++	addi	r0,r1,16
++	stw	r0,_UC_GREGS+(PT_R1*4)(r3)
+ 	/* Set the return value of getcontext to "success".  R3 is the only
+ 	   register whose value is not preserved in the saved context.  */
+ 	li	r0,0
+@@ -229,7 +233,7 @@
+ 
+ L(no_vec):
+ /* Restore ucontext (parm1) from stack.  */
+-	lwz	r12,_FRAME_PARM_SAVE1+16(r1)
++	lwz	r12,_FRAME_PARM_SAVE1(r1)
+ 	li	r4,0
+ 	stw	r3,_UC_REGS_PTR(r12)
+ 	addi	r5,r12,_UC_SIGMASK
+diff -urN libc23-cvstip-20040812/sysdeps/unix/sysv/linux/powerpc/powerpc32/swapcontext.S libc23/sysdeps/unix/sysv/linux/powerpc/powerpc32/swapcontext.S
+--- libc23-cvstip-20040812/sysdeps/unix/sysv/linux/powerpc/powerpc32/swapcontext.S	2004-06-15 15:02:20.000000000 -0500
++++ libc23/sysdeps/unix/sysv/linux/powerpc/powerpc32/swapcontext.S	2004-08-30 18:22:36.391165968 -0500
+@@ -27,14 +27,13 @@
+ 
+ 	.machine	"altivec"
+ ENTRY(__swapcontext)
++	stwu	r1,-16(r1)
+ 	/* Save the current context */
+ 	stw	r3,_FRAME_PARM_SAVE1(r1)
+ 	addi	r3,r3,_UC_REG_SPACE+12
+ 	clrrwi  r3,r3,4
+ 	stw	r0,_UC_GREGS+(PT_R0*4)(r3)
+-	stw	r1,_UC_GREGS+(PT_R1*4)(r3)
+ 	mflr	r0
+-	stwu	r1,-16(r1)
+ 	stw	r0,20(r1)
+ 	stw	r31,12(r1)
+ 	stw	r31,_UC_GREGS+(PT_R31*4)(r3)
+@@ -76,6 +75,12 @@
+ 	mfcr	r0
+ 	stw	r0,_UC_GREGS+(PT_CCR*4)(r3)
+ 
++	/* Save the value of R1.  We had to push the stack before we
++	   had the address of uc_reg_space.  So compute the address of
++	   the callers stack pointer and save it as R1.  */
++	addi	r0,r1,16
++	stw	r0,_UC_GREGS+(PT_R1*4)(r3)
++
+ 	/* Set the return value of swapcontext to "success".  R3 is the only
+ 	   register whose value is not preserved in the saved context.  */
+ 	li	r0,0
+@@ -231,7 +236,7 @@
+ 
+ L(no_vec):
+ /* Restore ucontext (parm1) from stack.  */
+-	lwz	r12,_FRAME_PARM_SAVE1+16(r1)
++	lwz	r12,_FRAME_PARM_SAVE1(r1)
+ 	li	r4,0
+ 	stw	r3,_UC_REGS_PTR(r12)
+ 	addi	r5,r12,_UC_SIGMASK
