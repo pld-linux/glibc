@@ -28,7 +28,7 @@
 %endif
 
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 3
+%define		rel 0.030907.1
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
