@@ -603,14 +603,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(es) %{_mandir}/es/man3/*
 %lang(fr) %{_mandir}/fr/man3/*
 %lang(hu) %{_mandir}/hu/man3/*
-# %lang(it) %{_mandir}/it/man/*
-%lang(ja) %{_mandir}/ja/man/*
-%lang(ko) %{_mandir}/ko/man/*
-%lang(nl) %{_mandir}/nl/man/*
-%lang(pl) %{_mandir}/pl/man/*
-%lang(pt) %{_mandir}/pt/man/*
-%lang(pt_BR) %{_mandir}/pt_BR/man/*
-%lang(ru) %{_mandir}/ru/man/*
+# %lang(it) %{_mandir}/it/man3/*
+%lang(ja) %{_mandir}/ja/man3/*
+%lang(ko) %{_mandir}/ko/man3/*
+%lang(nl) %{_mandir}/nl/man3/*
+%lang(pl) %{_mandir}/pl/man3/*
+%lang(pt) %{_mandir}/pt/man3/*
+%lang(pt_BR) %{_mandir}/pt_BR/man3/*
+%lang(ru) %{_mandir}/ru/man3/*
 
 %files -n nscd
 %defattr(644,root,root,755)
