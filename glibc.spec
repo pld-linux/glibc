@@ -431,8 +431,12 @@ cd ldconfig-980708
 
 cd ldconfig-980708
 rm -f ldconfig
-gcc -c -L../ $RPM_OPT_FLAGS -D_LIBC ldconfig.c -o ldconfig.o
-gcc -nodefaultlibs -static ldconfig.o ../libc.a -o ldconfig
+gcc -c $RPM_OPT_FLAGS -D_LIBC ldconfig.c -o ldconfig.o
+
+gcc -nostdlib -nostartfiles -static -o ldconfig ../csu/crt1.o \
+	../csu/crti.o `gcc --print-file-name=crtbegin.o` ldconfig.o \
+	../libc.a -lgcc ../libc.a `gcc --print-file-name=crtend.o` \
+	../csu/crtn.o
 
 %install
 rm -rf $RPM_BUILD_ROOT
