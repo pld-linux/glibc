@@ -1,6 +1,6 @@
 #
 # You can define min_kernel macro by "rpm --define 'min_kernel version'"
-# default is 2.2.0 (no changes up to 2.3.25)
+# default is 2.4.6
 #
 # Conditional build:
 %bcond_without	fp		# build without frame pointer (pass \--enable-omitfp)
@@ -32,7 +32,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.1
+Release:	0.20040101.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
