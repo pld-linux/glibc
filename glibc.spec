@@ -351,39 +351,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%changelog
-changes from devel and getaddrinfo.patch
-
-Revision 1.54  1999/07/12 23:05:57  kloczek
-- added using CVS keywords in %changelog (for automating them).
-
-- added stripping 
-  [2.1.1-3]
-- added stripping /usr/lib/gconv/*.so modules (it saves next ~300KB),
-- added glibc-versions.awk_fix.patch (fix using sort in
-  scripts/versions.awk),
-- added stripping
-- permission on rc scripts changed to 754,
-- removed /var/db (it is in filesystem).
-
-* Wed Jun 02 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-- added static subpackage,
-- added {utmpd,nscd}.sysconfig,
-- fixed %doc && {utmpd,nscd}.init,
-- macro %configure in use ...
-
-* Wed May 26 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [2.1.1-2]
-- fixed utpmd.init,
-- added %post & %pre for utmpd subpackage.
-- macro %{_target_platform},
-- fixed %build,
-- minor changes.
-
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
-  [2.1.1-1]
-- based on RH spec,
-- spec rewrited by PLD team,
-  we start at GNU libc 2.0.92 one year ago ...
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
