@@ -78,38 +78,41 @@
       N_("Hang for SECS seconds (default 3600)")},
    {0, 0}
  };
---- glibc-2.3.1/elf/ldconfig.c.orig	Thu Jan 17 08:28:51 2002
-+++ glibc-2.3.1/elf/ldconfig.c	Mon Nov 11 14:11:24 2002
-@@ -123,12 +123,12 @@
-   { "verbose", 'v', NULL, 0, N_("Generate verbose messages"), 0},
-   { NULL, 'N', NULL, 0, N_("Don't build cache"), 0},
-   { NULL, 'X', NULL, 0, N_("Don't generate links"), 0},
--  { NULL, 'r', "ROOT", 0, N_("Change to and use ROOT as root directory"), 0},
--  { NULL, 'C', "CACHE", 0, N_("Use CACHE as cache file"), 0},
--  { NULL, 'f', "CONF", 0, N_("Use CONF as configuration file"), 0},
-+  { NULL, 'r', N_("ROOT"), 0, N_("Change to and use ROOT as root directory"), 0},
-+  { NULL, 'C', N_("CACHE"), 0, N_("Use CACHE as cache file"), 0},
-+  { NULL, 'f', N_("CONF"), 0, N_("Use CONF as configuration file"), 0},
-   { NULL, 'n', NULL, 0, N_("Only process directories specified on the command line.  Don't build cache."), 0},
-   { NULL, 'l', NULL, 0, N_("Manually link individual libraries."), 0},
--  { "format", 'c', "FORMAT", 0, N_("Format to use: new, old or compat (default)"), 0},
-+  { "format", 'c', N_("FORMAT"), 0, N_("Format to use: new, old or compat (default)"), 0},
-   { NULL, 0, NULL, 0, NULL, 0 }
- };
+--- libc/MakeTAGS.orig	2003-03-04 11:25:13.000000000 +0100
++++ libc/MakeTAGS	2004-11-27 03:03:16.819017384 +0100
+@@ -158,7 +158,7 @@
+ 	$(extract)
+ endif
  
---- libc/po/pl.po.orig	2004-07-03 00:20:47.126100000 +0200
-+++ libc/po/pl.po	2004-07-03 00:24:57.605022064 +0200
-@@ -1710,7 +1710,8 @@
+-all-pot = $P/libc-top.pot $P/subdirs.pot
++all-pot = $P/libc-top.pot $P/subdirs.pot $P/ldd.pot
+ 
+ ifndef subdir
+ # Collect all the subdir messages, massaging the file names in comments
+@@ -169,6 +169,10 @@
+ 	 do sed "/^#:/s% % $$d/%g" $P/$$d.pot; done) > $@.new
+ 	mv -f $@.new $@
+ 
++$P/ldd.pot: 
++	bash --dump-po-strings elf/ldd.bash.in > $@.new
++	mv -f $@.new $@
++
+ # Combine all the messages into the final sorted template translation file.
+ # The following code requires GNU date.
+ $P/libc.pot: $(all-pot)
+--- libc/po/pl.po.orig	2004-11-27 02:09:53.487997720 +0100
++++ libc/po/pl.po	2004-11-27 02:55:18.072797872 +0100
+@@ -1713,7 +1713,8 @@
  msgid "Another string for testing."
  msgstr "Inny ³añcuch do testów."
  
--#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:88
+-#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:99
 +#: catgets/gencat.c:111 catgets/gencat.c:115 argp/argp-parse.c:104
-+#: nscd/nscd.c:88
++#: nscd/nscd.c:99
  msgid "NAME"
  msgstr "NAZWA"
  
-@@ -3714,9 +3715,13 @@
+@@ -3372,9 +3373,13 @@
  msgid "Set the program name"
  msgstr "Okre¶lenie nazwy programu"
  
@@ -124,7 +127,7 @@
  
  #: argp/argp-parse.c:167
  msgid "Print program version"
-@@ -4246,6 +4251,102 @@
+@@ -3892,6 +3897,102 @@
  msgid "\t%s [-n netid]* [-o outfile] [infile]\n"
  msgstr "\t%s [-n id_sieci]* [-o plik_wy] [plik_we]\n"
  
@@ -224,48 +227,68 @@
 +msgid "-Y path\t\tdirectory name to find C preprocessor (cpp)\n"
 +msgstr "-Y ¶cie¿ka\tnazwa katalogu, w którym znajduje siê preprocesor C (cpp)\n"
 +
- #: sunrpc/rpc_scan.c:116
+ #: sunrpc/rpc_scan.c:118
  msgid "constant or identifier expected"
  msgstr "spodziewana sta³a lub identyfikator"
-@@ -5785,15 +5886,27 @@
- 
- #: elf/ldconfig.c:129
- msgid "Change to and use ROOT as root directory"
--msgstr "Przej¶cie do i u¿ywanie ROOT jako g³ównego katalogu"
-+msgstr "Przej¶cie do i u¿ywanie KATALOGU jako g³ównego"
+@@ -5940,3 +6040,61 @@
+ #: elf/sprof.c:1027 elf/sprof.c:1085
+ msgid "cannot allocate symbol data"
+ msgstr "nie mo¿na przydzieliæ pamiêci dla symboli"
 +
-+#: elf/ldconfig.c:129
-+msgid "ROOT"
-+msgstr "KATALOG"
++#: elf/ldd.bash.in:43
++msgid "Written by %s and %s.\n"
++msgstr "Autorami s± %s i %s.\n"
 +
-+#: elf/ldconfig.c:130
-+msgid "CACHE"
-+msgstr "BUFOR"
- 
- #: elf/ldconfig.c:130
- msgid "Use CACHE as cache file"
--msgstr "U¿ycie CACHE jako pliku bufora"
-+msgstr "U¿ycie BUFORA jako pliku bufora"
++#: elf/ldd.bash.in:48
++msgid ""
++"Usage: ldd [OPTION]... FILE...\n"
++"      --help              print this help and exit\n"
++"      --version           print version information and exit\n"
++"  -d, --data-relocs       process data relocations\n"
++"  -r, --function-relocs   process data and function relocations\n"
++"  -u, --unused            print unused direct dependencies\n"
++"  -v, --verbose           print all information\n"
++"For bug reporting instructions, please see:\n"
++"<http://www.gnu.org/software/libc/bugs.html>."
++msgstr ""
++"Sk³adnia: ldd [OPCJA]... PLIK...\n"
++"      --help              wypisanie tego opisu i zakoñczenie\n"
++"      --version           wypisanie informacji o wersji i zakoñczenie\n"
++"  -d, --data-relocs       przetworzenie relokacji danych\n"
++"  -r, --function-relocs   przetworzenie relokacji danych i funkcji\n"
++"  -u, --unused            wypisanie nieu¿ywanych bezpo¶rednich zale¿no¶ci\n"
++"  -v, --verbose           wypisanie wszystkich informacji\n"
++"Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
++"<http://www.gnu.org/software/libc/bugs.html>."
 +
-+#: elf/ldconfig.c:131
-+msgid "CONF"
-+msgstr "KONF"
- 
- #: elf/ldconfig.c:131
- msgid "Use CONF as configuration file"
--msgstr "U¿ycie CONF jako pliku konfiguracyjnego"
-+msgstr "U¿ycie KONF jako pliku konfiguracyjnego"
- 
- #: elf/ldconfig.c:132
- msgid "Only process directories specified on the command line.  Don't build cache."
-@@ -5804,6 +5917,10 @@
- msgstr "Rêczne tworzenie dowi±zañ do pojedynczych bibliotek."
- 
- #: elf/ldconfig.c:134
-+msgid "FORMAT"
-+msgstr "FORMAT"
++#: elf/ldd.bash.in:80
++msgid "ldd: option \\`$1' is ambiguous"
++msgstr "ldd: opcja \\`%1' jest niejednoznaczna"
 +
-+#: elf/ldconfig.c:134
- msgid "Format to use: new, old or compat (default)"
- msgstr "U¿ywany format: new, old lub compat (domy¶lny)"
- 
++#: elf/ldd.bash.in:87
++msgid "unrecognized option"
++msgstr "nieznana opcja"
++
++#: elf/ldd.bash.in:88 elf/ldd.bash.in:111
++msgid "Try \\`ldd --help' for more information."
++msgstr "Polecenie \\`ldd --help' pozwoli uzyskaæ wiêcej informacji."
++
++#: elf/ldd.bash.in:110
++msgid "missing file arguments"
++msgstr "brakuj±ce argumenty plikowe"
++
++#: elf/ldd.bash.in:136
++msgid "warning: you do not have execution permission for"
++msgstr "uwaga: brak uprawnieñ do wykonywania"
++
++#: elf/ldd.bash.in:161
++msgid "\tnot a dynamic executable"
++msgstr "\tnie jest dynamicznym programem wykonywalnym"
++
++#: elf/ldd.bash.in:172
++msgid "exited with unknown exit code"
++msgstr "zakoñczy³ dzia³anie z nieznanym kodem wyj¶cia"
++
++#: elf/ldd.bash.in:177
++msgid "error: you do not have read permission for"
++msgstr "b³±d: brak uprawnieñ do odczytu"
