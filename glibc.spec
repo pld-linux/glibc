@@ -197,7 +197,6 @@ kitaplýklar.
 %package kernel-headers
 Summary:	Kernel header files the glibc has been built with
 Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
-Release:	%{release}@%{_kernel_ver_str}
 Group:		Development/Libraries
 
 %description kernel-headers
