@@ -5,14 +5,15 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1
-Release:	4
+Release:	6
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
 #######		ftp://sourceware.cygnus.com/pub/glibc/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}-linuxthreads-%{version}.tar.gz
-Source2:	%{name}-crypt-2.0.111.tar.gz
+#######:	http://www.ozemail.com.au/~geoffk/glibc-crypt
+Source2:	%{name}-crypt-%{version}.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
@@ -172,6 +173,7 @@ bzip2 -9 documentation/*
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{bin/*,sbin/*}} || :
 
 bzip2 -9 README NEWS FAQ BUGS NOTES PROJECTS
+
 gzip -9fn $RPM_BUILD_ROOT/usr/{man/man*/*,info/libc*}
 
 %post   -p /sbin/ldconfig
@@ -190,7 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.bz2 NEWS.bz2 FAQ.bz2 BUGS.bz2
+%doc {README,NEWS,FAQ,BUGS}.bz2
 
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
@@ -217,7 +219,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* NOTES.bz2 PROJECTS.bz2
+%doc documentation/* {NOTES,PROJECTS}.bz2
 
 /usr/include/*.h
 /usr/include/arpa
@@ -251,6 +253,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man3/*
 
 %changelog
+* Sun Mar 14 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.1-6]
+- updated glibc-crypt to version-2.1
+
 * Sat Mar 06 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.1-5]
 - removed striping of shared libraries -- no debug info in this libs,
@@ -301,7 +307,7 @@ rm -rf $RPM_BUILD_ROOT
 - translation modified for pl, 
   (follow the suggestions Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>)
 - major changes.
-      (rewrote invalid spec file -- follow the PLD policy)
+      (rewrote spec file -- follow the PLD policy)
 
 * Wed Jul 16 1998 Wojtek ¦lusarczyk <wojtek@SHADOW.EU.ORG>
   [2.0.94-2d]
@@ -310,7 +316,7 @@ rm -rf $RPM_BUILD_ROOT
 - added %defattr
 - moved linux include links from kernel-headers to glibc-devel
 
-* Tue Jun 2 1998 Wojtek Slusarczyk <wojtek@SHADOW.EU.ORG>
+* Tue Jun 2 1998 Wojtek ¦lusarczyk <wojtek@SHADOW.EU.ORG>
   [2.0.94-1d]
 - updated to glibc 2.0.94
 
@@ -322,7 +328,8 @@ rm -rf $RPM_BUILD_ROOT
   long to compile the full featured version on my home linux box ;)
 - compilation is now performed in compile directory as advised 
   in Glibc HOWTO,
-- start at RH spec file.  
+- start at invalid RH spec file.  
+
 
   [2.1.1-1]
 - based on RH spec,
