@@ -1320,7 +1320,7 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd*
-%attr(640,root,root) /etc/logrotate.d/nscd
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
 %dir /var/run/nscd
 %{_mandir}/man5/nscd.conf.5*
