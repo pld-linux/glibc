@@ -5,16 +5,17 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.1
-Release:	1
+Release:	2	
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
 Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.tar.gz
+Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.pre1.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
+Patch1:		glibc-paths.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
@@ -70,7 +71,7 @@ C kitaplýðýný ve standart matematik kitaplýðýný içerir. Bu kitaplýklar olmadan
 Linux sistemi çalýþmayacaktýr. Yerel dil desteði ve zaman dilimi veri tabaný
 da bu pakette yer alýr.
 
-%package devel
+%package	devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
@@ -105,41 +106,12 @@ objektowe, niezbêdne do kompilacji programów wykonywalnych i innych bibliotek.
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik kitaplýklar.
 
-%package static
-Summary:	Additional libraries required to compile
-Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
-Group:		Development/Libraries
-Group(pl):	Programowanie/Biblioteki
-Requires:	%{name}-static-base = %{version}
-
-%description static
-Additional libraries required to compile static programs.
-
-%description static -l pl
-Dodatkowe biblioteki wymagane podczas kompilacji programów w wersji statycznej.
-Potrzebne tylko przy kompilacji niektórych programów.
-
-%package static-base
-Summary:	Static libc.a and libm.a
-Summary(pl):	Statyczne libc.a i libm.a
-Group:		Development/Libraries
-Group(pl):	Programowanie/Biblioteki
-Requires:	%{name}-devel = %{version}
-
-%description static-base
-Base library in static version.
-
-%description static-base -l pl
-Dwie podstawowe (libc.a i libcm.a) biblioteki w wersji statycznej.
-Potrzebne tylko przy kompilacji niektórych programów.
-
-%package -n nscd
+%package -n	nscd
 Summary:	Name Service Caching Daemon
-Summary(pl):	-
+Summary(pl):	Name Service Caching Daemon
 Group:		Networnikng/Daemons
 Group:		Sieciowe/Serwery
 Prereq:		/sbin/chkconfig
-Conflicts:	kernel < 2.2.0
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve performance
@@ -155,9 +127,9 @@ poprawiæ szybko¶æ dzia³ania NIS+.
 Nie jest mo¿liwe u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów
 po stronie j±dra w ods³udze w±tków.
 
-%package -n utmpd
+%package -n	utmpd
 Summary:	utmp and utmpx synchronizer for libc5 applications.
-Summary(pl):	Synchrnonizuje pliki utmp i utmpx.
+Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
 Group:		Daemons
 Group(pl):	Serwery
 Prereq:         /sbin/chkconfig
@@ -174,21 +146,28 @@ ze starszych programów (bazuj±cych na libc5).
 %prep 
 %setup  -q -a 1 -a 2
 %patch0 -p1
+%patch1 -p1
 
 %build
-%configure \
+CFLAGS=$RPM_OPT_FLAGS \
+    ./configure \
+	--prefix=%{_prefix} \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
-	--disable-omitfp 
-make  
+	--disable-omitfp \
+	--infodir=%{_infodir} \
+	%{_target_platform}
+make   
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,%{_mandir}/man3,var/db}
+
 make install \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
+
 make install-locales -C localedata \
 	install_root=$RPM_BUILD_ROOT
 
@@ -236,10 +215,6 @@ gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
 	documentation/*
 
-ls $RPM_BUILD_ROOT%{_libdir}/lib*.a \
-	|egrep -v '(libc.a|libc.a|libc_nonshared.a)' \
-	|sed -e "s#$RPM_BUILD_ROOT##g" >static.libs
-
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -253,9 +228,8 @@ fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
-if test -r /var/run/nscd.pid; then
-	/etc/rc.d/init.d/nscd stop >&2
-	/etc/rc.d/init.d/nscd start >&2
+if [ -f /var/lock/subsys/nscd ]; then
+	/etc/rc.d/init.d/nscd restart &>/dev/null
 else
 	echo "Run \"/etc/rc.d/init.d/nscd start\" to start nscd daemon."
 fi
@@ -264,6 +238,19 @@ fi
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del nscd
 	/etc/rc.d/init.d/nscd stop >&2
+fi
+
+%post -n utmpd
+/sbin/chkconfig --add utmpd
+
+if [ -f /var/lock/subsys/utmpd ]; then
+	/etc/rc.d/init.d/utmpd restart &>/dev/null
+fi
+
+%preun -n utmpd
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del utmpd
+	/etc/rc.d/init.d/utmpd stop >&2
 fi
 
 %clean
@@ -330,32 +317,34 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/lib/gconv/*.so
 %{_mandir}/man3/*
 
-%files static-base
-%defattr(644,root,root,755)
-%{_libdir}/libc.a
-%{_libdir}/libm.a
-%{_libdir}/libc_nonshared.a
-
-%files static -f static.libs
-%defattr(644,root,root,755)
-
 %files -n nscd
 %defattr(644,root,root,755)
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
-%attr(754,root,root) /etc/rc.d/init.d/nscd
+%attr(755,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
 
 %files -n utmpd
 %defattr(644,root,root,755)
-%attr(754,root,root) /etc/rc.d/init.d/utmpd
+%attr(755,root,root) /etc/rc.d/init.d/utmpd
 %attr(755,root,root) %{_sbindir}/utmpd
 
 %changelog
+- added static subpackage,
+- added {utmpd,nscd}.sysconfig,
+- fixed %doc && {utmpd,nscd}.init,
+- macro %configure in use ...
+
+* Wed May 26 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.1.1-2]
+- fixed utpmd.init,
 - added %post & %pre for utmpd subpackage.
 - macro %{_target_platform},
 - fixed %build,
 - minor changes.
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.  [2.1.1-1]
+
+- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
+
+  [2.1.1-1]
 - based on RH spec,
 - spec rewrited by PLD team,
   we start at GNU libc 2.0.92 one year ago ...
