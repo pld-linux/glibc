@@ -6,7 +6,7 @@ diff -ru glibc-2.2.3.org/sysdeps/unix/sysv/linux/speed.c glibc-2.2.3/sysdeps/uni
  {
    if ((speed & ~CBAUD) != 0
 -      && (speed < B57600 || speed > B460800))
-+      && (speed < B57600 ))
++      && (speed < B57600 || speed > B4000000))
      {
        __set_errno (EINVAL);
        return -1;
@@ -15,7 +15,7 @@ diff -ru glibc-2.2.3.org/sysdeps/unix/sysv/linux/speed.c glibc-2.2.3/sysdeps/uni
  {
    if ((speed & ~CBAUD) != 0
 -      && (speed < B57600 || speed > B460800))
-+      && (speed < B57600 ))
++      && (speed < B57600 || speed > B4000000))
      {
        __set_errno (EINVAL);
        return -1;
