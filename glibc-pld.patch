@@ -22,3 +22,18 @@
  #define _PATH_UTMP	"/var/run/utmp"
  #define	_PATH_VI	"/usr/bin/vi"
  #define _PATH_WTMP	"/var/log/wtmp"
+--- glibc-2.1.94/nscd/nscd.conf~	Mon May  1 23:56:50 2000
++++ glibc-2.1.94/nscd/nscd.conf	Sat Sep 23 01:18:07 2000
+@@ -21,9 +21,9 @@
+ #
+ 
+ 
+-#	logfile			/var/log/nscd.log
+-#	threads			6
+-#	server-user		nobody
++	logfile			/var/log/nscd
++	threads			6
++	server-user		nobody
+ 	debug-level		0
+ 
+ 	enable-cache		passwd		yes
