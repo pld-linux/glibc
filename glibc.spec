@@ -143,7 +143,7 @@ rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
 ln -sf ../../../etc/localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/localtime
 ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixtime
 ln -sf localtime $RPM_BUILD_ROOT/usr/share/zoneinfo/posixrules
-ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT/usr/lib/libbsd.a
+ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT/usr/lib/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
 
@@ -211,9 +211,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /lib/ld-*
 %attr(755,root,root) /lib/lib*
 
-%dir /usr/lib/gconv
-/usr/lib/gconv/gconv-modules
-%attr(755,root,root) /usr/lib/gconv/*.so
+%dir %{_libdir}/gconv
+%{_libdir}/gconv/gconv-modules
+%attr(755,root,root) %{_libdir}/gconv/*.so
 
 /usr/share/i18n
 /usr/share/locale
@@ -250,9 +250,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_infodir}/libc.inf*.gz
 
-%attr(755,root,root) /usr/lib/lib*.so
-/usr/lib/*.o
-/usr/lib/lib*.a
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/*.o
+%{_libdir}/lib*.a
 
 %{_mandir}/man3/*
 
