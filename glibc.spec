@@ -67,9 +67,11 @@ Source1:	%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
-Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+#Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+Source5:	%{name}-man-pages.tar.bz2
 # Source5-md5:	03bee93e9786b3e7dad2570ccb0cbc5c
-Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+#Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 # borrowed from util-linux
 Source7:	%{name}-localedb-gen
