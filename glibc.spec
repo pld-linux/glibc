@@ -8,8 +8,8 @@
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
-%bcond_with	nptl		# use nptl instead of linuxthreads (implies tls)
-%bcond_with	tls		# use tls
+%bcond_without	nptl		# don't use nptl instead of linuxthreads (implies tls)
+%bcond_without	tls		# don't use tls
 %bcond_with	tests		# perform "make test"
 
 #
@@ -46,7 +46,7 @@
 %endif
 
 %define		llh_version	7:2.6.6.0
-%define		_snap		20040722
+%define		_snap		20041014
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -59,7 +59,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.7%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
+Release:	0.%{_snap}.7%{!?with_nptl:+nonptl}%{!?with_nptl:%{!?with_tls:+notls}}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -86,7 +86,6 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-i786.patch
 Patch8:		%{name}-postshell.patch
 Patch9:		%{name}-missing-nls.patch
 Patch10:	%{name}-java-libc-wait.patch
@@ -122,6 +121,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 %else
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
+BuildRequires:	libselinux-devel
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
@@ -773,15 +773,16 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #setup -q -a 1 -n libc
 %setup -q -n libc
 %patch0 -p1
-%patch1 -p1
+# UPDATEME
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 %patch8 -p1
-%patch9 -p1
+# PARTIAL UPDATEME
+#%patch9 -p1
 %patch10 -p1
 %patch11 -p1
 # don't know, if it is good idea, for brave ones
@@ -796,14 +797,18 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
-%patch23 -p1
+# DROPME
+#%patch23 -p1
 %patch24 -p1
-%patch25 -p1
+# UPDATEME/DROPME
+#%patch25 -p1
 %patch26 -p1
-%patch27 -p0
-
-%patch30 -p1
-%patch31 -p1
+# UPDATEME/DROPME
+# %patch27 -p0
+# DROP
+#%patch30 -p1
+# DROP
+#%patch31 -p1
 
 chmod +x scripts/cpp
 
@@ -825,6 +830,7 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with%{!?with_tls:out}-tls \
+	--with-selinux \
 %if %{with nptl}
         --enable-add-ons=nptl \
 	--disable-profile \
