@@ -52,6 +52,7 @@ Autoreq:	false
 Prereq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
+Conflicts:	man-pages =< 1.42
 
 %description
 Contains the standard libraries that are used by multiple programs on
