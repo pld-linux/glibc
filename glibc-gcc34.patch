@@ -11,3 +11,23 @@
  extern int __lll_unlock_wake (int *__futex)
       __attribute ((regparm (1))) attribute_hidden;
  extern int lll_unlock_wake_cb (int *__futex) attribute_hidden;
+--- libc/nptl/sysdeps/unix/sysv/linux/lowlevellock.c.orig	2003-09-22 23:25:15.000000000 +0200
++++ libc/nptl/sysdeps/unix/sysv/linux/lowlevellock.c	2004-04-23 00:49:58.295145464 +0200
+@@ -25,7 +25,7 @@
+ 
+ 
+ void
+-__lll_lock_wait (int *futex)
++__lll_lock_wait (int *futex) __attribute ((regparm(1))) attribute_hidden;
+ {
+   do
+     {
+@@ -79,7 +79,7 @@
+ /* These don't get included in libc.so  */
+ #ifdef IS_IN_libpthread
+ int
+-lll_unlock_wake_cb (int *futex)
++lll_unlock_wake_cb (int *futex) __attribute ((regparm(1))) attribute_hidden;
+ {
+   int val = atomic_exchange_rel (futex, 0);
+ 
