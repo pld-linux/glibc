@@ -16,7 +16,6 @@ Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.pre1.ta
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
-Patch1:		glibc-map.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
@@ -176,7 +175,6 @@ ze starszych programów (bazuj±cych na libc5).
 %prep 
 %setup  -q -a 1 -a 2 -n %{name}-%{version}%{pre}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %configure \
@@ -240,7 +238,7 @@ gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 	documentation/*
 
 ls $RPM_BUILD_ROOT%{_libdir}/lib*.a \
-	|egrep -v '(libc.a|libc.a)' \
+	|egrep -v '(libc.a|libc.a|libc_nonshared.a)' \
 	|sed -e "s#$RPM_BUILD_ROOT%##" >static.libs
 
 %post   -p /sbin/ldconfig
@@ -337,6 +335,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libc.a
 %{_libdir}/libm.a
+%{_libdir}/libc_nonshared.a
 
 %files static -f static.libs
 %defattr(644,root,root,755)
