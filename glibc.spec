@@ -98,7 +98,6 @@ Patch20:	%{name}-tests-noproc.patch
 Patch21:	%{name}-linuxthreads-ppc-fix.patch
 Patch23:	%{name}-new-charsets.patch
 Patch26:	%{name}-sr_CS.patch
-Patch27:	%{name}-gcc34.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -782,7 +781,6 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch21 -p1
 #%patch23 -p1
 %patch26 -p1
-%patch27 -p1
 
 %patch30 -p1
 %patch31 -p1
@@ -795,6 +793,10 @@ cp /usr/share/automake/config.sub .
 cp /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
+# i786 (aka pentium4) hack
+cd nptl/sysdeps/i386 && ln -sf i686 i786 && cd -
+cd nptl/sysdeps/unix/sysv/linux/i386 && ln -sf i686 i786 && cd -
+#
 [ -d builddir ] || mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
