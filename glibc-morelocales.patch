@@ -85,11 +85,12 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  gd_GB/ISO-8859-15 \
  gez_ER/UTF-8 \
  gez_ER@abegede/UTF-8 \
-@@ -193,8 +200,12 @@
+@@ -193,8 +200,13 @@
  hi_IN/UTF-8 \
  hr_HR.UTF-8/UTF-8 \
  hr_HR/ISO-8859-2 \
-+hsb_DE/UTF-8 \
++hsb_DE.UTF-8/UTF-8 \
++hsb_DE/ISO-8859-2 \
 +hu_HU.ISO-8859-16/ISO-8859-16 \
  hu_HU.UTF-8/UTF-8 \
  hu_HU/ISO-8859-2 \
@@ -98,7 +99,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  id_ID.UTF-8/UTF-8 \
  id_ID/ISO-8859-1 \
  is_IS.UTF-8/UTF-8 \
-@@ -204,11 +215,11 @@
+@@ -204,11 +216,11 @@
  it_IT.UTF-8/UTF-8 \
  it_IT/ISO-8859-1 \
  it_IT@euro/ISO-8859-15 \
@@ -112,7 +113,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  kk_KZ/PT154 \
  kl_GL.UTF-8/UTF-8 \
  kl_GL/ISO-8859-1 \
-@@ -217,12 +228,20 @@
+@@ -217,12 +229,20 @@
  ko_KR.UTF-8/UTF-8 \
  kw_GB.UTF-8/UTF-8 \
  kw_GB/ISO-8859-1 \
@@ -133,7 +134,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  mi_NZ/ISO-8859-13 \
  mk_MK.UTF-8/UTF-8 \
  mk_MK/ISO-8859-5 \
-@@ -235,6 +254,10 @@
+@@ -235,6 +255,10 @@
  mt_MT/ISO-8859-3 \
  nb_NO.UTF-8/UTF-8 \
  nb_NO/ISO-8859-1 \
@@ -144,7 +145,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ne_NP/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
  nl_BE/ISO-8859-1 \
-@@ -244,10 +267,13 @@
+@@ -244,10 +268,13 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -158,7 +159,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  pt_BR.UTF-8/UTF-8 \
-@@ -255,6 +281,7 @@
+@@ -255,6 +282,7 @@
  pt_PT.UTF-8/UTF-8 \
  pt_PT/ISO-8859-1 \
  pt_PT@euro/ISO-8859-15 \
@@ -166,7 +167,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -263,21 +290,28 @@
+@@ -263,21 +291,28 @@
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
  se_NO/UTF-8 \
@@ -195,7 +196,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -287,12 +321,14 @@
+@@ -287,12 +322,14 @@
  sv_SE/ISO-8859-1 \
  ta_IN/UTF-8 \
  te_IN/UTF-8 \
@@ -210,7 +211,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  tl_PH/ISO-8859-1 \
  tr_TR.UTF-8/UTF-8 \
  tr_TR/ISO-8859-9 \
-@@ -304,11 +340,13 @@
+@@ -304,11 +341,13 @@
  uz_UZ@cyrillic/UTF-8 \
  vi_VN.TCVN/TCVN5712-1 \
  vi_VN/UTF-8 \
