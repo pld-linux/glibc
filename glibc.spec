@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.91
-Release:	0.7
+Release:	0.8
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -25,6 +25,7 @@ Patch5:		glibc-linuxthreads-lock.patch
 Patch6:		glibc-pthread_create-manpage.patch
 Patch7:		glibc-sparc-linux-chown.patch
 Patch8:		glibc-build-order.patch
+Patch9:		glibc-CVS-20000719.patch.gz
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -242,14 +243,14 @@ is a smaller subset of the standard libc shared library.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
+
 
 %build
 %configure \
 	--enable-add-ons=linuxthreads \
 	--enable-profile \
 	--disable-omitfp
-
-touch debug/xtrace.sh
 
 %{__make}
 
@@ -405,8 +406,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc documentation/* {NOTES,PROJECTS}.gz
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
-%attr(755,root,root) %{_bindir}/memusage
-%attr(755,root,root) %{_bindir}/memusagestat
 %attr(755,root,root) %{_bindir}/mtrace
 %attr(755,root,root) %{_bindir}/pcprofiledump
 %attr(755,root,root) %{_bindir}/sprof
@@ -474,7 +473,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
 %{_libdir}/libnsl.a
-%{_libdir}/libposix.a
 %{_libdir}/libpthread.a
 %{_libdir}/libresolv.a
 %{_libdir}/librpcsvc.a
