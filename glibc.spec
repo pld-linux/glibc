@@ -906,7 +906,7 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/run/nscd}
+install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1007,6 +1007,9 @@ bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
+:> $RPM_BUILD_ROOT/var/lib/nscd/passwd
+:> $RPM_BUILD_ROOT/var/lib/nscd/group
+:> $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
 rm -rf documentation
 install -d documentation
@@ -1201,7 +1204,7 @@ fi
 %attr(755,root,root) /%{_lib}/tls/lib[cmprt]*
 %endif
 %{?with_localedb:%dir %{_libdir}/locale}
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
 %ghost %{_sysconfdir}/ld.so.cache
 
 #%files -n nss_dns
@@ -1215,7 +1218,7 @@ fi
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
 
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config %{_sysconfdir}/rpc
 
 %attr(755,root,root) /sbin/sln
@@ -1439,13 +1442,17 @@ fi
 
 %files -n nscd
 %defattr(644,root,root,755)
-%attr(640,root,root) %config %verify(not md5 size mtime) /etc/sysconfig/nscd
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nscd.*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/nscd
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd*
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/logrotate.d/nscd
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
 %dir /var/run/nscd
+%dir /var/lib/nscd
+%attr(600,root,root) %ghost /var/lib/nscd/passwd
+%attr(600,root,root) %ghost /var/lib/nscd/group
+%attr(600,root,root) %ghost /var/lib/nscd/hosts
 %{_mandir}/man5/nscd.conf.5*
 %{_mandir}/man8/nscd.8*
 %{_mandir}/man8/nscd_nischeck.8*
