@@ -247,7 +247,12 @@ Summary(pl):	glibc ze wsparciem dla profilowania
 Summary(tr):	жlГЭm desteПi olan glibc
 Group:		Development/Libraries/Libc
 Group(de):	Entwicklung/Libraries/Libc
+Group(es):	Desarrollo/Bibliotecas/Libc
+Group(fr):	Development/Librairies/Libc
 Group(pl):	Programowanie/Biblioteki/Libc
+Group(pt_BR):	Desenvolvimento/Bibliotecas/Libc
+Group(ru):	Разработка/Библиотеки/Libc
+Group(uk):	Розробка/Б╕бл╕отеки/Libc
 Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{version}
 
@@ -274,7 +279,12 @@ Summary:	glibc PIC archive
 Summary(pl):	archiwum PIC glibc
 Group:		Development/Libraries/Libc
 Group(de):	Entwicklung/Libraries/Libc
+Group(es):	Desarrollo/Bibliotecas/Libc
+Group(fr):	Development/Librairies/Libc
 Group(pl):	Programowanie/Biblioteki/Libc
+Group(pt_BR):	Desenvolvimento/Bibliotecas/Libc
+Group(ru):	Разработка/Библиотеки/Libc
+Group(uk):	Розробка/Б╕бл╕отеки/Libc
 Requires:	%{name}-devel = %{version}
 
 %description pic
