@@ -1061,6 +1061,8 @@ fi
 %attr(755,root,root) /%{_lib}/libnsl*
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
 %dir %{_libdir}/locale
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
+%ghost %{_sysconfdir}/ld.so.cache
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
@@ -1074,10 +1076,8 @@ fi
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
 
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
 %config %{_sysconfdir}/rpc
-%ghost %{_sysconfdir}/ld.so.cache
 
 %attr(755,root,root) /sbin/sln
 %attr(755,root,root) %{_bindir}/catchsegv
