@@ -42,7 +42,7 @@
 %endif
 
 %define		llh_version	7:2.6.4.0
-%define		_snap		20040505
+%define		_snap		20040522
 
 Summary:	GNU libc
 Summary(de):	GNU libc
