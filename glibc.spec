@@ -4,7 +4,7 @@ Summary(de):	GNU libc
 Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
-name:		glibc
+Name:		glibc
 Version:	2.2.3
 Release:	16
 License:	LGPL
@@ -32,14 +32,14 @@ Patch10:	%{name}-confname.patch
 Patch11:	%{name}-nis.patch
 Patch12:	%{name}-speed.patch
 Patch13:	%{name}-paths.patch
-Patch14: 	%{name}-vaargs.patch
+Patch14:	%{name}-vaargs.patch
 URL:		http://www.gnu.org/software/libc/
-BuildRequires:	perl
 BuildRequires:	gd-devel >= 2.0.1
-BuildRequires:	libpng-devel
 BuildRequires:	gettext-devel >= 0.10.36
-BuildRequires:	texinfo
+BuildRequires:	libpng-devel
+BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0-11
+BuildRequires:	texinfo
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -88,7 +88,7 @@ programy w Twoim systemie. U¿ywanie przez programy bibliotek z tego
 pakietu oszczêdza miejsce na dysku i pamiêæ. Wiekszo¶æ kodu
 systemowego jest usytuowane w jednym miejscu i dzielone miêdzy wieloma
 programami. Pakiet ten zawiera bardzo wa¿ny zbiór bibliotek
-standardowych wspó³dzielonych (dynamicznych) bibliotek C i
+standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
 matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale) oraz definicje stref czasowych.
@@ -119,23 +119,23 @@ To develop programs which use the standard C libraries (which nearly
 all programs do), the system needs to have these standard header files
 and object files available for creating the executables.
 
-%description -l de devel
+%description devel -l de
 Bei der Entwicklung von Programmen, die die Standard-C-Libraries
 verwenden (also fast alle), benötigt das System diese Standard-Header-
 und Objektdateien zum Erstellen der ausführbaren Programme.
 
-%description -l fr devel
+%description devel -l fr
 Pour développer des programmes utilisant les bibliothèques standard du
 C (ce que presque tous les programmes font), le système doit posséder
 ces fichiers en-têtes et objets standards pour créer les exécutables.
 
-%description -l pl devel
+%description devel -l pl
 Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów
 korzystaj±cych ze standardowej biblioteki C. Znajduj± siê tutaj pliki
 nag³ówkowe oraz pliki objektowe, niezbêdne do kompilacji programów
 wykonywalnych i innych bibliotek.
 
-%description -l tr devel
+%description devel -l tr
 C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik
 kitaplýklar.
@@ -159,12 +159,12 @@ nscd happens to hit these bugs particularly hard.
 %description -n nscd -l pl
 nscd zapmiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
 drastycznie poprawiæ szybko¶æ dzia³ania NIS+. Nie jest mo¿liwe
-u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów po stronie j±dra w
-ods³udze w±tków.
+u¿ywanie nscd z j±drami serii 2.0.x z powodu b³êdów po stronie j±dra
+w ods³udze w±tków.
 
 %package -n localedb-src
 Summary:	Souce code locale database
-Summary(pl):	Kod ¬ród³owy bazy locale
+Summary(pl):	Kod ¼ród³owy bazy locale
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
@@ -172,11 +172,11 @@ Requires:	%{name} = %{version}
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
-files to use the internationalization features of the GNU libc. Glibc
+files to use the internationalization features of the GNU libc. glibc
 package contains standard set of locale binary database and You need
 this package if want build some non standard locale database.
 
-%description -l pl -n localedb-src
+%description -n localedb-src -l pl
 Pakiet ten kod ¼ród³owy baz locale który jest potrzebny do zbudowania
 binarnej wersji baz locale potrzebnej do poprawnego wspierania ró¿nych
 jêzyków przez glibc. Pakiet glibc zawira binarn± wersjê standardowych
@@ -185,7 +185,7 @@ wygenerowaæ jak±¶ niestandardow± bazê.
 
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
-Summary(pl):	Program do konwersji plików tekstowych z jednego enkodingu w inny
+Summary(pl):	Program do konwersji plików tekstowych z jednego kodowania do innego
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
@@ -197,13 +197,13 @@ this package if You want to convert some documet from one encoding to
 another or if You have installed some programs which use Generic
 Character Set Conversion Interface.
 
-%description -l pl -n iconv
-Program do konwersji plików tekstowych z jednego enkodingu w inny.
-Potrzebujesz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
-dokumentów z jednego enkodingu w inny lub je¿eli masz zainstalowane
-jakie¶ programy które korzystaj± z Generic Character Set Conversion
+%description -n iconv -l pl
+Program do konwersji plików tekstowych z jednego kodowania do innego.
+Musisz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
+dokumentów z jednego kodowania do innego lub je¿eli masz zainstalowane
+jakie¶ programy, które korzystaj± z Generic Character Set Conversion
 Interface w glibc, czyli z zestawu funkcji z tej biblioteki, które
-umo¿liwiaj± konwersjê enkodingu danych z poziomu dowolnego programu.
+umo¿liwiaj± konwersjê kodowania danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
@@ -217,13 +217,14 @@ Requires:	%{name}-devel = %{version}
 %description static
 GNU libc static libraries.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne GNU libc.
 
 %package profile
 Summary:	glibc with profiling support
 Summary(de):	glibc mit Profil-Unterstützung
 Summary(fr):	glibc avec support pour profiling
+Summary(pl):	glibc ze wsparciem dla profilowania
 Summary(tr):	Ölçüm desteði olan glibc
 Group:		Development/Libraries/Libc
 Group(de):	Entwicklung/Libraries/Libc
@@ -236,16 +237,22 @@ When programs are being profiled used gprof, they must use these
 libraries instead of the standard C libraries for gprof to be able to
 profile them correctly.
 
-%description -l de profile
+%description profile -l de
 Damit Programmprofile mit gprof richtig erstellt werden, müssen diese
 Libraries anstelle der üblichen C-Libraries verwendet werden.
 
-%description -l tr profile
+%description profile -l pl
+Programy profilowane za pomoc± gprof musz± u¿ywaæ tych bibliotek
+zamiast standardowych bibliotek C, aby gprof móg³ odpowiednio je
+wyprofilowaæ.
+
+%description profile -l tr
 gprof kullanýlarak ölçülen programlar standart C kitaplýðý yerine bu
 kitaplýðý kullanmak zorundadýrlar.
 
 %package pic
-Summary:	glibc PIC archive 
+Summary:	glibc PIC archive
+Summary(pl):	archiwum PIC glibc
 Group:		Development/Libraries/Libc
 Group(de):	Entwicklung/Libraries/Libc
 Group(pl):	Programowanie/Biblioteki/Libc
@@ -256,18 +263,29 @@ GNU C Library PIC archive contains an archive library (ar file)
 composed of individual shared objects. This is used for creating a
 library which is a smaller subset of the standard libc shared library.
 
+%description pic -l pl
+Archiwum PIC biblioteki GNU C zawiera archiwaln± bibliotekê (plik ar)
+z³o¿on± z pojedyñczych obiektów wspó³dzielonych. U¿ywana jest do
+tworzenia biblioteki bêd±cej mniejszym podzestawem standardowej
+biblioteki wspó³dzielonej libc.
+
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
+Summary(pl):	Stary modu³ NYS NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_compat
-Old style NYS NSS glibc module
+Old style NYS NSS glibc module.
+
+%description -n nss_compat -l pl
+Stary modu³ NYS NSS glibc.
 
 %package -n nss_dns
 Summary:	BIND NSS glibc module
+Summary(pl):	Modu³ BIND NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
@@ -276,8 +294,12 @@ Requires:	%{name} = %{version}
 %description -n nss_dns
 BIND NSS glibc module.
 
+%description -n nss_dns -l pl
+Modu³ BIND NSS glibc.
+
 %package -n nss_files
 Summary:	Traditional files databases NSS glibc module
+Summary(pl):	Modu³ tradycyjnych plikowych baz danych NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
@@ -286,38 +308,54 @@ Requires:	%{name} = %{version}
 %description -n nss_files
 Traditional files databases NSS glibc module.
 
+%description -n nss_files -l pl
+Modu³ tradycyjnych plikowych baz danych NSS glibc.
+
 %package -n nss_hesiod
 Summary:	Hesiod NSS glibc module
+Summary(pl):	Modu³ hesiod NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_hesiod
-Glibc NSS (Name Service Switch) module for databases acces.
+glibc NSS (Name Service Switch) module for databases access.
+
+%description -n nss_hesiod -l pl
+Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych.
 
 %package -n nss_nis
 Summary:	NIS(YP) NSS glibc module
+Summary(pl):	Modu³ NIS(YP) NSS glibc
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_nis
-Glibc NSS (Name Service Switch) module for NIS(YP) databases acces.
+glibc NSS (Name Service Switch) module for NIS(YP) databases access.
+
+%description -n nss_nis -l pl
+Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS(YP).
 
 %package -n nss_nisplus
 Summary:	NIS+ NSS module
+Summary(pl):	Modu³ NIS+ NSS
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Requires:	%{name} = %{version}
 
 %description -n nss_nisplus
-Glibc NSS (Name Service Switch) module for NIS+ databases acces.
+glibc NSS (Name Service Switch) module for NIS+ databases accesa.
+
+%description -n nss_nisplus -l pl
+Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS+.
 
 %package memusage
-Summary:	A toy.
+Summary:	A toy
+Summary(pl):	Zabawka
 Group:		Applications
 Group(de):	Applikationen
 Group(pl):	Aplikacje
@@ -327,8 +365,11 @@ Requires:	gd
 %description memusage
 A toy.
 
+%description memusage -l pl
+Zabawka.
+
 %prep
-%setup  -q -a 1
+%setup -q -a 1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -357,25 +398,25 @@ LDFLAGS=" " ; export LDFLAGS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/log}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},/var/log}
 
-env LANGUAGE=C LC_ALL=C  \
+env LANGUAGE=C LC_ALL=C \
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
-env LANGUAGE=C LC_ALL=C  \
+env LANGUAGE=C LC_ALL=C \
 %{__make} install-locales -C localedata \
 	install_root=$RPM_BUILD_ROOT
 
-PICFILES="libc_pic.a libc.map 
-          math/libm_pic.a libm.map 
-          resolv/libresolv_pic.a"
+PICFILES="libc_pic.a libc.map
+	math/libm_pic.a libm.map
+	resolv/libresolv_pic.a"
 
-install $PICFILES				$RPM_BUILD_ROOT/%{_libdir}
-install elf/soinit.os				$RPM_BUILD_ROOT/%{_libdir}/soinit.o
-install elf/sofini.os				$RPM_BUILD_ROOT/%{_libdir}/sofini.o
+install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
+install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
+install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
 mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
@@ -398,7 +439,6 @@ install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
-
 install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
 touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
@@ -407,7 +447,7 @@ touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 rm -rf documentation
 install -d documentation
 
-cp linuxthreads/ChangeLog  documentation/ChangeLog.threads
+cp linuxthreads/ChangeLog documentation/ChangeLog.threads
 cp linuxthreads/Changes documentation/Changes.threads
 cp linuxthreads/README documentation/README.threads
 cp crypt/README.ufc-crypt documentation/
@@ -425,15 +465,14 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	if [ -d $i ]; then
 		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
-		echo "%lang($lang) $dir" >>glibc.lang
+		echo "%lang($lang) $dir" >> glibc.lang
 	fi
-
 done
 
-%post   -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%post 	memusage -p /sbin/ldconfig
+%post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
 
 %post devel
@@ -462,12 +501,12 @@ fi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f glibc.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,FAQ,BUGS}.gz
 
-%config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nsswitch.conf
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ld.so.conf
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
 %config %{_sysconfdir}/rpc
 %ghost %{_sysconfdir}/ld.so.cache
 
