@@ -140,7 +140,6 @@ AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %{?with_tls:Provides:	glibc(tls)}
-Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
 Obsoletes:	%{name}-common
@@ -154,6 +153,8 @@ Conflicts:	rpm < 4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
+# avoid -s here (ld.so must not be stripped to allow any program debugging)
+%define		rpmldflags	%{nil}
 %ifarch sparc64
 %define 	specflags_sparc64	-mvis -fcall-used-g6
 %define		_libdir			/usr/lib64
@@ -831,8 +832,6 @@ cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 #
 [ -d builddir ] || mkdir builddir
 cd builddir
-# avoid stripping ld.so by -s in rpmldflags
-LDFLAGS=" " ; export LDFLAGS
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
