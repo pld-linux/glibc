@@ -1229,6 +1229,7 @@ fi
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
+%attr(640,root,root) /var/run/nscd
 %{_mandir}/man5/nscd.conf*
 %{_mandir}/man8/nscd*
 %lang(ja) %{_mandir}/ja/man5/nscd.conf*
