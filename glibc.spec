@@ -96,34 +96,32 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
-Patch8:		%{name}-postshell.patch
-Patch9:		%{name}-missing-nls.patch
-Patch10:	%{name}-java-libc-wait.patch
-Patch11:	%{name}-lthrds_noomit.patch
-Patch12:	%{name}-no_opt_override.patch
+Patch7:		%{name}-postshell.patch
+Patch8:		%{name}-missing-nls.patch
+Patch9:		%{name}-java-libc-wait.patch
+Patch10:	%{name}-lthrds_noomit.patch
+Patch11:	%{name}-no_opt_override.patch
 # this is broken (hardcoded /usr/src/linux)
-Patch13:	%{name}-kernel_includes.patch
-Patch14:	%{name}-includes.patch
-Patch15:	%{name}-soinit-EH_FRAME.patch
-Patch16:	%{name}-sparc-errno_fix.patch
-Patch17:	%{name}-csu-quotes.patch
-Patch18:	%{name}-tests-noproc.patch
-Patch19:	%{name}-new-charsets.patch
-Patch20:	%{name}-sr_CS.patch
-Patch21:	%{name}-sparc64-dl-machine.patch
-Patch22:	%{name}-tzfile-noassert.patch
-Patch23:	%{name}-ifreq.patch
-Patch24:	%{name}-morelocales.patch
-Patch25:	%{name}-ppc-getcontext.patch
-Patch26:	%{name}-locale_ZA.patch
-Patch27:	%{name}-locale_fixes.patch
-Patch28:	%{name}-LD_DEBUG.patch
+Patch12:	%{name}-kernel_includes.patch
+Patch13:	%{name}-includes.patch
+Patch14:	%{name}-soinit-EH_FRAME.patch
+Patch15:	%{name}-sparc-errno_fix.patch
+Patch16:	%{name}-csu-quotes.patch
+Patch17:	%{name}-tests-noproc.patch
+Patch18:	%{name}-new-charsets.patch
+Patch19:	%{name}-sr_CS.patch
+Patch20:	%{name}-sparc64-dl-machine.patch
+Patch21:	%{name}-tzfile-noassert.patch
+Patch22:	%{name}-morelocales.patch
+Patch23:	%{name}-locale_ZA.patch
+Patch24:	%{name}-locale_fixes.patch
+Patch25:	%{name}-LD_DEBUG.patch
 # PaX
-Patch30:	%{name}-pax_iconvconfig.patch
-Patch31:	%{name}-pax_dl-execstack.patch
-Patch32:	%{name}-sparc_comdat.patch
-Patch34:	%{name}-ia64_unwind.patch
-Patch50:	%{name}-ZA_collate.patch
+Patch26:	%{name}-pax_iconvconfig.patch
+Patch27:	%{name}-pax_dl-execstack.patch
+Patch28:	%{name}-sparc_comdat.patch
+Patch29:	%{name}-ia64_unwind.patch
+Patch30:	%{name}-ZA_collate.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -788,48 +786,40 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #setup -q -a 1 -n libc
 %setup -q -n libc
 %patch0 -p1
-# UPDATEME
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 %patch8 -p1
-# PARTIAL UPDATEME
-#%patch9 -p1
+%patch9 -p1
 %patch10 -p1
-%patch11 -p1
 # don't know, if it is good idea, for brave ones
-#%patch12 -p1
-%{?with_kernelheaders:%patch13}
-%{?!with_kernelheaders:%patch14 -p1}
-%patch15 -p1
-%patch16 -p0
+#%patch11 -p1
+%{?with_kernelheaders:%patch12}
+%{?!with_kernelheaders:%patch13 -p1}
+%patch14 -p1
+%patch15 -p0
+%patch16 -p1
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
-# DROPME
-#%patch23 -p1
+%patch23 -p1
 %patch24 -p1
 # UPDATEME/DROPME
-#%patch25 -p1
-# UPDATEME/DROPME
-# %patch26 -p1
-# UPDATEME/DROPME
-# %patch27 -p1
-# UPDATEME/DROPME
-# %patch28 -p0
+# %patch25 -p0
 # DROP
-#%patch30 -p1
+#%patch26 -p1
 # DROP
-#%patch31 -p1
-%patch32 -p1
-%patch34 -p1
-#%patch50 -p1
+#%patch27 -p1
+%patch28 -p1
+%patch29 -p1
+%patch30 -p1
 
 chmod +x scripts/cpp
 
