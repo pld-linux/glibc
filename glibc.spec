@@ -835,8 +835,7 @@ chmod +x scripts/cpp
 
 %build
 # Build glibc
-cp %{_datadir}/automake/config.sub .
-cp %{_datadir}/automake/config.sub scripts
+cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
 # i786 (aka pentium4) hack
