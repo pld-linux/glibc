@@ -7,8 +7,9 @@
 %bcond_without	memusage	# don't build memusage utility
 %bcond_with	kernelheaders	# use headers from %{_kernelsrcdir} instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
-%bcond_without	nptl		# don't use NPTL (implies using linuxthreads)
-%bcond_without	tls		# don't use tls (implies no NPTL)
+%bcond_without	linuxthreads	# don't build linuxthreads version (NPTL only)
+%bcond_without	nptl		# don't build NPTL version (linuxthreads only)
+%bcond_with	tls		# use TLS in linuxthreads
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
@@ -25,13 +26,16 @@
 #
 
 %{!?min_kernel:%global          min_kernel      2.4.6}
+%if "%{min_kernel}" < "2.6.0"
+%global		nptl_min_kernel	2.6.0
+%else
+%global		nptl_min_kernel	%{min_kernel}
+%endif
 
 %if %{with nptl}
-# it seems that nptl uses cmpxchgl (available since i486) on x86
-%ifarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparcv9 ppc ppc64
-%if "%{min_kernel}" < "2.6.0"
-%global		min_kernel	2.6.0
-%endif
+# nptl on x86 uses cmpxchgl (available since i486)
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparcv9 ppc ppc64
+%undefine	with_nptl
 %endif
 %endif
 
@@ -41,11 +45,6 @@
 %endif
 %endif
 
-%if %{without tls}
-# NPTL requires TLS
-%undefine	with_nptl
-%endif
-
 %ifarch sparc64
 %undefine	with_memusage
 %endif
@@ -53,6 +52,10 @@
 %ifarch sparc
 # broken
 %undefine	with_tls
+%endif
+
+%if %{with linuxthreads} && %{with nptl}
+%define		with_dual	1
 %endif
 
 %define		llh_version	7:2.6.6.0
@@ -814,39 +817,57 @@ Statyczne 64-bitowe biblioteki GNU libc.
 
 chmod +x scripts/cpp
 
+# i786 (aka pentium4) hack
+cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
+cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
+
 %build
 # Build glibc
 cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
-# i786 (aka pentium4) hack
-cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
-cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
-#
 install -d builddir
 cd builddir
+%if %{with linuxthreads}
 ../%configure \
-	CPPFLAGS="-I%{sysheaders}" \
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with-headers=%{sysheaders} \
 	--with%{!?with_selinux:out}-selinux \
 	--with%{!?with_tls:out}-tls \
-%if %{with nptl}
-        --enable-add-ons=nptl \
-	--disable-profile
-%else
         --enable-add-ons=linuxthreads \
 	--enable-profile
-%endif
-
 %{__make}
+%endif
+%if %{with nptl}
+%if %{with dual}
+cd ..
+install -d builddir-nptl
+cd builddir-nptl
+%endif
+../%configure \
+	--enable-kernel="%{nptl_min_kernel}" \
+	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
+	--with-headers=%{sysheaders} \
+	--with%{!?with_selinux:out}-selinux \
+	--with-tls \
+        --enable-add-ons=nptl \
+	--disable-profile
+%{__make}
+%endif
+cd ..
 
 %if %{with linuxthreads}
 %{__make} -C linuxthreads/man
 %endif
 
 %if %{with tests}
+for d in builddir \
+%if %{with dual}
+builddir-nptl \
+%endif
+; do
+cd $d
 env LANGUAGE=C LC_ALL=C \
 %{__make} tests 2>&1 | awk '
 BEGIN { file = "" }
@@ -859,6 +880,8 @@ BEGIN { file = "" }
 	print $0;
 }
 END { if (file != "") { print "ERROR OUTPUT FROM " file; system("cat " file); exit(1); } }'
+cd ..
+done
 %endif
 
 %install
@@ -888,6 +911,39 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
+
+%if %{with dual}
+env LANGUAGE=C LC_ALL=C \
+%{__make} -C builddir-nptl install \
+	install_root=$RPM_BUILD_ROOT/nptl
+
+install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl,%{_includedir}/nptl}
+for f in libc libm libpthread libthread_db librt; do
+	mv -f $RPM_BUILD_ROOT/nptl/%{_lib}/${f}[-.]* $RPM_BUILD_ROOT/%{_lib}/tls
+done
+$RPM_BUILD_ROOT/sbin/ldconfig -n $RPM_BUILD_ROOT/%{_lib}/tls
+
+for f in libc.so libpthread.so ; do
+	cat $RPM_BUILD_ROOT/nptl%{_libdir}/$f | sed \
+		-e "s|/libc.so.6|/tls/libc.so.6|g" \
+		-e "s|/libpthread.so.0|/tls/libpthread.so.0|g" \
+		-e "s|/libpthread_nonshared.a|/nptl/libpthread_nonshared.a|g" \
+		> $RPM_BUILD_ROOT%{_libdir}/nptl/$f
+done
+for f in libc.a libpthread.a libpthread_nonshared.a; do
+	mv -f $RPM_BUILD_ROOT/nptl%{_libdir}/$f $RPM_BUILD_ROOT%{_libdir}/nptl
+done
+cd $RPM_BUILD_ROOT/nptl%{_prefix}/include
+	for f in `find . -type f`; do
+		if ! [ -f $RPM_BUILD_ROOT%{_prefix}/include/$f ] \
+		   || ! cmp -s $f $RPM_BUILD_ROOT%{_prefix}/include/$f ; then
+			install -d $RPM_BUILD_ROOT%{_prefix}/include/nptl/`dirname $f`
+			cp -a $f $RPM_BUILD_ROOT%{_prefix}/include/nptl/$f
+		fi
+	done
+cd -
+rm -rf $RPM_BUILD_ROOT/nptl
+%endif
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
@@ -1102,6 +1158,10 @@ fi
 %attr(755,root,root) /%{_lib}/libdl*
 %attr(755,root,root) /%{_lib}/libnsl*
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
+%if %{with dual}
+%dir /%{_lib}/tls
+%attr(755,root,root) /%{_lib}/tls/lib[cmprt]*
+%endif
 %{?with_localedb:%dir %{_libdir}/locale}
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %ghost %{_sysconfdir}/ld.so.cache
@@ -1113,7 +1173,6 @@ fi
 #%files -n nss_files
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_files*.so*
-
 
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
@@ -1267,6 +1326,28 @@ fi
 %attr(755,root,root) %{_bindir}/*prof*
 %attr(755,root,root) %{_bindir}/*trace
 
+%attr(755,root,root) %{_libdir}/lib[!cmp]*.so
+%attr(755,root,root) %{_libdir}/libcrypt.so
+%attr(755,root,root) %{_libdir}/libm.so
+%attr(755,root,root) %{_libdir}/libpcprofile.so
+%attr(755,root,root) %{_libdir}/*crt*.o
+# ld scripts
+%{_libdir}/libc.so
+%{_libdir}/libpthread.so
+
+%{_libdir}/libbsd-compat.a
+%{_libdir}/libbsd.a
+%{_libdir}/libc_nonshared.a
+%{_libdir}/libg.a
+%{_libdir}/libieee.a
+%{_libdir}/libpthread_nonshared.a
+%{_libdir}/librpcsvc.a
+
+%if %{with dual}
+%{_libdir}/nptl
+%{_includedir}/nptl
+%endif
+
 %{_includedir}/*.h
 %ifarch alpha
 %{_includedir}/alpha
@@ -1292,17 +1373,6 @@ fi
 %{_includedir}/sys
 
 %{_infodir}/libc.info*
-
-%attr(755,root,root) %{_libdir}/lib[!m]*.so
-%attr(755,root,root) %{_libdir}/libm.so
-%attr(755,root,root) %{_libdir}/*crt*.o
-%{_libdir}/libbsd-compat.a
-%{_libdir}/libbsd.a
-%{_libdir}/libc_nonshared.a
-%{_libdir}/libg.a
-%{_libdir}/libieee.a
-%{_libdir}/libpthread_nonshared.a
-%{_libdir}/librpcsvc.a
 
 %{_mandir}/man1/getconf.1*
 %{_mandir}/man1/sprof.1*
@@ -1376,7 +1446,7 @@ fi
 %{_libdir}/librt.a
 %{_libdir}/libutil.a
 
-%if %{without nptl}
+%if %{with linuxthreads}
 %files profile
 %defattr(644,root,root,755)
 %{_libdir}/lib*_p.a
