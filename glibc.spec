@@ -100,7 +100,8 @@ Patch21:	%{name}-linuxthreads-ppc-fix.patch
 Patch22:	%{name}-alpha-sigaction.patch
 Patch23:	%{name}-new-charsets.patch
 Patch24:	%{name}-lg_UG.patch
-Patch25:	%{name}-sr_CS.patch
+Patch25:	%{name}-UTF8-locales.patch
+Patch26:	%{name}-sr_CS.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -413,14 +414,14 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description localedb-all
 This package contains locale database for all locales supported by
-glibc. In glibc 2.3.x it's one large file (about 27MB) - if you want
+glibc. In glibc 2.3.x it's one large file (about 39MB) - if you want
 something smaller with support for chosen locales only, consider
 installing localedb-src and regenerating database using localedb-gen
 script (when database is generated, localedb-src can be uninstalled).
 
 %description localedb-all -l es
 Este paquete contiene una base de datos de todos los locales soportados
-por glibc. En glibc 2.3.x ése es un fichero grande (aprox. 27 MB) -- si
+por glibc. En glibc 2.3.x ése es un fichero grande (aprox. 39 MB) -- si
 prefiere algo más pequeño, sólo con soporte de unos locales elegidos,
 considérese instalar localedb-src y regenerar la base de datos usando
 el escript localedb-gen (una vez que la base de datos esté creada,
@@ -429,7 +430,7 @@ localedb-src se podrá desinstalar).
 %description localedb-all -l pl
 Ten pakiet zawiera bazê danych locale dla wszystkich lokalizacji
 obs³ugiwanych przez glibc. W glibc 2.3.x jest to jeden du¿y plik
-(oko³o 27MB); aby mieæ co¶ mniejszego, z obs³ug± tylko wybranych
+(oko³o 39MB); aby mieæ co¶ mniejszego, z obs³ug± tylko wybranych
 lokalizacji, nale¿y zainstalowaæ pakiet localedb-src i przegenerowaæ
 bazê danych przy u¿yciu skryptu localedb-gen (po wygenerowaniu bazy
 pakiet localedb-src mo¿na odinstalowaæ).
@@ -779,8 +780,9 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch23 -p1
 mv -f localedata/locales/{lug_UG,lg_UG}
 %patch24 -p0
+%patch25 -p1
 # not applied yet - not sure about default encodings
-#%patch25 -p1
+#%patch26 -p1
 
 chmod +x scripts/cpp
 
