@@ -142,7 +142,7 @@ dil desteği ve zaman dilimi veri tabanı da bu pakette yer alır.
 %package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
-Summary(fr):	Librairies supplémentaires nécessaires à la compilation.
+Summary(fr):	Librairies supplémentaires nécessaires à la compilation
 Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
 Summary(ru):	äÏĞÏÌÎÉÔÅÌØÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍĞÉÌÑÃÉÉ
 Summary(tr):	Geliştirme için gerekli diğer kitaplıklar
