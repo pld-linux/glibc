@@ -15,7 +15,7 @@
 # Get service config - may override defaults
 [ -f /etc/sysconfig/utmpd ] && . /etc/sysconfig/utmpd
 
-
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
@@ -27,35 +27,29 @@ case "$1" in
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/utmpd
 	else
 		msg_already_running "utmpd"
-		exit 1
 	fi
 	;;
   stop)
 	if [ -f /var/lock/subsys/utmpd ]; then
 		msg_stopping "utmpd"
 		killproc utmpd
-		RETVAL=$?
 		rm -f /var/lock/subsys/utmpd >/dev/null 2>&1
 	else
 		msg_not_running "utmpd"
-		exit 1
 	fi	
 	;;
-  restart|reload)
+  restart|force-reload)
 	$0 stop
 	$0 start
 	exit $?
 	;;
-  force-reload)
-	$0 stop && $0 start
-	exit $?
-	;;
   status)
 	status utmpd
+	exit $?
 	;;
   *)
-	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
-	exit 1
+	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	exit 3
 esac
 
 exit $RETVAL
