@@ -53,7 +53,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.10%{?with_nptl:+nptl}
+Release:	0.20040101.11%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -781,8 +781,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 mv -f localedata/locales/{lug_UG,lg_UG}
 %patch24 -p0
 %patch25 -p1
-# not applied yet - not sure about default encodings
-#%patch26 -p1
+%patch26 -p1
 
 chmod +x scripts/cpp
 
@@ -953,8 +952,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# ia,li,sr@Latn (used by GNOME)
-#	note: GNOME2 uses sr (and probably uz) as cyrillic!
+# ia,li (used by GNOME)
 # nso,ss,ven (used by KDE)
 # NOTES:
 # bn is used for bn_BD or bn_IN?
@@ -962,7 +960,7 @@ done
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ar az bg bn br bs cy de_AT en en_AU eo es_AR es_MX et eu fa ga \
 	 gr he hi id is ja_JP.SJIS ka kn lg lt lv mk ml mn ms mt nn pt ro ru \
-	 se sl sq sr sr@cyrillic ta tg th uk uz vi wa xh yi zu ; do
+	 se sl sq sr sr@Latn ta tg th uk uz vi wa xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
