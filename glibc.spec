@@ -940,7 +940,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
 %ifnarch sparc64
-%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/%{_lib}/ld-%{version}.so}
+%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/%{_lib}/ld-*.so}
 %endif
 
 # Collect locale files and mark them with %%lang()
