@@ -15,6 +15,8 @@
 # - localedb-gen man pages(?)
 # - serious problem with upgrade (changing zoneinfo/posix/* dirs into symlinks)
 #   are there any other solutions than revert???
+# - fix what trojan broke while upgreading (getaddrinfo-workaround)
+#
 #
 # WARNING:
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
@@ -610,12 +612,11 @@ chmod +x scripts/cpp
 # standardize name
 mv -f localedata/locales/{lug_UG,lg_UG}
 
-# This needs to be carefully checked when new glibc version arrives
 cp -r libidn-*/lib libidn
 cp libidn-*/libc/{Makefile,configure,Versions} libidn/
 cp libidn-*/lib/*.{c,h} libidn/
-cp libidn-*/libc/getaddrinfo.c sysdeps/posix/
-cp libidn-*/libc/netdb.h resolv/
+cp libidn-*/libc/*.patch libc-idn.patch
+patch -p0 < libc-idn.patch
 touch libidn/libidn.texi
 
 #make proper symlink for asm in headers
