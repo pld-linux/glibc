@@ -1,0 +1,5 @@
+- release 4
+- incorporated /sbin/ldconfig into main package
+- added needed (pre)req/obsoletes/provides
+- moved db1 and db2 into separate set of packages
+- small %install cleanups
