@@ -12,13 +12,13 @@ Summary(ru):	GNU libc версии 2.2
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.2
 Name:		glibc
-Version:	2.2.5
-Release:	19
+Version:	2.2.92
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+Source0:	ftp://sources.redhat.com/pub/glibc/snapshots/%{name}-%{version}.tar.bz2
+Source1:	ftp://sources.redhat.com/pub/glibc/snapshots/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
