@@ -4,7 +4,6 @@
 #
 # _without_dist_kernel	build without kernel from the distribution;
 #			headers will be searched in %_kernelsrcdir/include.
-# _without_fp		build without frame pointer (pass --enable-omitfp)
 # _without_memusage	build without memusage
 #
 # _with_kernheaders	use "kernheaders" as user-space kernel headers
@@ -20,16 +19,12 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%bcond_with	nptl # enable new posix thread library (req: kernel 2.5/2.6)
-		     # instead of linuxthreads
+%bcond_without	nptl	# enable new posix thread library (req: kernel 2.5/2.6)
+			# instead of linuxthreads
+%bcond_without	fp	# build without frame pointer
 
-
-%define		min_kernel	2.5.65
-
-
-%define		_snap		200309061641
-
-
+%define		min_kernel	2.6.0
+%define		_snap		200310271512
 %define		rel 0.%{_snap}.3
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -40,13 +35,13 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-Version:	2.3.3
+Version:	2.3.2
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	http://www.kernel.pl/~djurban/glibc/%{name}-%{version}-%{_snap}.tar.bz2
+Source0:	%{name}-%{version}-%{_snap}.tar.bz2
 # Source0-md5:	d94c4320d3be063350247befc05114e4
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	http://www.kernel.pl/~djurban/glibc/%{name}-linuxthreads-%{version}.tar.bz2
@@ -64,8 +59,6 @@ Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
 # Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
-Source10:	http://www.kernel.pl/~djurban/glibc/nptl-%{_snap}.tar.bz2
-# Source10-md5:	453133cd9067a33db6f53a9cc4b6bf68
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -585,10 +578,10 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %prep
 %setup -q -a 9 -n %{name}-%{version}-%{_snap}
-%if %{with nptl}
-%{__tar} xfj %{SOURCE10}
-rm -rf linuxthreads*
-%endif
+#%if %{with nptl}
+#%{__tar} xfj %{SOURCE10}
+#rm -rf linuxthreads*
+#%endif
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
@@ -647,7 +640,7 @@ LDFLAGS=" " ; export LDFLAGS
 ../%configure \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
-	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
+	--%{!?_with_fp:en}%{?_with_fp:dis}able-omitfp \
 %if %{with nptl}
 	--enable-add-ons=nptl \
 	--with-tls \
