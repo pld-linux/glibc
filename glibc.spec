@@ -8,10 +8,9 @@
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
-%bcond_without	nptl		# don't use NPTL (implies using linuxthreads)
-%bcond_without	tls		# don't use tls (implies no NPTL)
+%bcond_with	nptl		# use nptl instead of linuxthreads (implies tls)
+%bcond_with	tls		# use tls
 %bcond_with	tests		# perform "make test"
-%bcond_without	localedb	# don't build localedb-all (is time consuming)
 
 #
 # TODO:
@@ -29,6 +28,10 @@
 %if "%{min_kernel}" < "2.6.0"
 %global		min_kernel	2.6.0
 %endif
+# NPTL requires TLS
+%define		with_tls	1
+%else
+%undefine	with_nptl
 %endif
 %endif
 
@@ -38,22 +41,12 @@
 %endif
 %endif
 
-%if %{without tls}
-# NPTL requires TLS
-%undefine	with_nptl
-%endif
-
 %ifarch sparc64
 %undefine	with_memusage
 %endif
 
-%ifarch sparc
-%undefine	with_nptl
-%undefine	with_tls
-%endif
-
 %define		llh_version	7:2.6.6.0
-%define		_snap		20041030
+%define		_snap		20040722
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -66,14 +59,13 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.8%{!?with_nptl:+nonptl}%{!?with_nptl:%{!?with_tls:+notls}}
+Release:	0.%{_snap}.7%{?with_nptl:+nptl}%{!?with_nptl:%{?with_tls:+tls}}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	4e14871efd881fbbf523a0ba16175bc7
-# Source0-size:	13680659
+# Source0-md5:	492f7dbecb7f8e5c03d48dd5443a1e88
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
 Source2:	nscd.init
@@ -82,11 +74,9 @@ Source4:	nscd.logrotate
 #Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source5:	%{name}-man-pages.tar.bz2
 # Source5-md5:	03bee93e9786b3e7dad2570ccb0cbc5c
-# Source5-size:	283971
 #Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
-# Source6-size:	1322469
 # borrowed from util-linux
 Source7:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
@@ -96,6 +86,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
+Patch7:		%{name}-i786.patch
 Patch8:		%{name}-postshell.patch
 Patch9:		%{name}-missing-nls.patch
 Patch10:	%{name}-java-libc-wait.patch
@@ -115,14 +106,13 @@ Patch22:	%{name}-tzfile-noassert.patch
 Patch23:	%{name}-ifreq.patch
 Patch24:	%{name}-morelocales.patch
 Patch25:	%{name}-ppc-getcontext.patch
-Patch26:	%{name}-locale_fixes.patch
-Patch27:	%{name}-LD_DEBUG.patch
+Patch26:	%{name}-locale_ZA.patch
+Patch27:	%{name}-locale_fixes.patch
+Patch28:	%{name}-LD_DEBUG.patch
+Patch29:	%{name}-soversions-fix.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
-Patch32:	%{name}-sparc_comdat.patch
-Patch33:	%{name}-alpha_giduidfix.patch
-Patch34:	%{name}-ia64_unwind.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -134,7 +124,6 @@ BuildRequires:	gettext-devel >= 0.10.36
 %else
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
-BuildRequires:	libselinux-devel
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
@@ -417,7 +406,6 @@ Summary(es):	Código fuente de la base de datos de los locales
 Summary(pl):	Kod ¼ród³owy bazy locale
 Group:		Daemons
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gzip
 Requires:	sed
 
 %description -n localedb-src
@@ -787,16 +775,15 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #setup -q -a 1 -n libc
 %setup -q -n libc
 %patch0 -p1
-# UPDATEME
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 %patch8 -p1
-# PARTIAL UPDATEME
-#%patch9 -p1
+%patch9 -p1
 %patch10 -p1
 %patch11 -p1
 # don't know, if it is good idea, for brave ones
@@ -811,21 +798,16 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
-# DROPME
-#%patch23 -p1
+%patch23 -p1
 %patch24 -p1
-# UPDATEME/DROPME
-#%patch25 -p1
+%patch25 -p1
 %patch26 -p1
-# UPDATEME/DROPME
-# %patch27 -p0
-# DROP
-#%patch30 -p1
-# DROP
-#%patch31 -p1
-%patch32 -p1
-%patch33 -p1
-%patch34 -p1
+%patch27 -p1
+%patch28 -p0
+%patch29 -p1
+
+%patch30 -p1
+%patch31 -p1
 
 chmod +x scripts/cpp
 
@@ -847,7 +829,6 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with%{!?with_tls:out}-tls \
-	--with-selinux \
 %if %{with nptl}
         --enable-add-ons=nptl \
 	--disable-profile \
@@ -895,12 +876,10 @@ env LANGUAGE=C LC_ALL=C \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
-%if %{with localedb}
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
 	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT
-%endif
 
 PICFILES="libc_pic.a libc.map
 	math/libm_pic.a libm.map
@@ -1002,16 +981,16 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# ia,li (used by GNOME)
-# nso,ss,ven (used by KDE)
+# tk, yo (used by GNOME)
+# ven -> ve (used by KDE)
 # NOTES:
 # bn is used for bn_BD or bn_IN?
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
     en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn \
-    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn or pa pt ro ru se \
-    sl sq sr sr@Latn sr@ije ta tg th uk uz vi wa xh yi zu ; do
+    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro ru se \
+    sl sq sr sr@Latn sr@ije ss ta tg th tlh uk uz ve vi wa xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -1119,7 +1098,7 @@ fi
 %attr(755,root,root) /%{_lib}/libdl*
 %attr(755,root,root) /%{_lib}/libnsl*
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
-%{?with_localedb:%dir %{_libdir}/locale}
+%dir %{_libdir}/locale
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
 %ghost %{_sysconfdir}/ld.so.cache
 
@@ -1365,11 +1344,9 @@ fi
 %{_datadir}/i18n
 %{_mandir}/man1/localedef.1*
 
-%if %{with localedb}
 %files localedb-all
 %defattr(644,root,root,755)
 %{_libdir}/locale/locale-archive
-%endif
 
 %files -n iconv
 %defattr(644,root,root,755)
