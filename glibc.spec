@@ -200,7 +200,6 @@ kitaplýklar.
 Summary:	Kernel header files the glibc has been built with
 Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
 Group:		Development/Libraries
-Provides:	kernel-headers = %{_kernel_ver_str}
 
 %description kernel-headers
 Kernel header files the glibc has been built with.
@@ -214,10 +213,10 @@ Summary(pl):	Demon zapamiêtuj±cy odpowiedzi serwisów nazw
 Summary(ru):	ëÜÛÉÒÕÀÝÉÊ ÄÅÍÏÎ ÓÅÒ×ÉÓÏ× ÉÍÅÎ
 Summary(uk):	ëÅÛÕÀÞÉÊ ÄÅÍÏÎ ÓÅ×¦Ó¦× ¦ÍÅÎ
 Group:		Networking/Daemons
-PreReq:		/sbin/chkconfig
 PreReq:		rc-scripts >= 0.2.0
-Requires:	%{name} = %{version}
+Requires(post,preun):	/sbin/chkconfig
 Requires(post):	fileutils
+Requires:	%{name} = %{version}
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
