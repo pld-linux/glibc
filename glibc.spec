@@ -780,7 +780,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch18 -p1
 %patch20 -p1
 %patch21 -p1
-%patch23 -p1
+#%patch23 -p1
 %patch26 -p1
 %patch27 -p1
 
