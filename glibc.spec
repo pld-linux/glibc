@@ -10,6 +10,7 @@
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	idn		# build with included libidn
 %bcond_with	nptl		# use nptl instead of linuxthreads
+%bcond_without  tls		# do not use tls
 %bcond_without  tests		# do not perform "make test"
 
 #
@@ -34,6 +35,12 @@
 %endif
 %endif
 
+%if %{with tls}
+%ifnarch i686 athlon amd64 ia64 s390 s390x alpha alphaev6 sparc sparcv9 ppc ppc64
+%undefine with_tls
+%endif
+%endif
+
 %define	gkh_version	7:2.6.0.3
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -46,7 +53,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.2%{?with_nptl:+nptl}
+Release:	0.20040101.3%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -781,6 +788,7 @@ LDFLAGS=" " ; export LDFLAGS
 	--with-tls \
 	--disable-profile \
 %else
+	%{?with_tls:--with-tls} \
         --enable-add-ons=linuxthreads \
 	--enable-profile \
 %endif
