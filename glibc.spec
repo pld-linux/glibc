@@ -9,7 +9,9 @@
 				# glibc-kernel-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	idn		# build with included libidn
+%bcond_with	nptl		# use nptl instead of linuxthreads
 %bcond_without  tests		# do not perform "make test"
+
 #
 # TODO:
 # - localedb-gen man pages(?)
@@ -19,7 +21,23 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
-%{!?min_kernel:%global		min_kernel	2.4.6}
+
+# We dont have all those archs, but just in case and
+%define		_nptl_arches 	i686 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
+
+%ifnarch	%{_nptl_arches}
+%undefine	with_nptl
+%endif
+
+%if %{with nptl}
+%{!?min_kernel:%global		min_kernel	2.6.0}
+# Doesnt go through checks.
+#%%undefine	with_fp
+%else
+%{!?min_kernel:%global          min_kernel      2.4.6}
+%endif
+
+
 %define	gkh_version	7:2.6.0.3
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -32,7 +50,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.1
+Release:	0.20040101.2%{?_with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -72,6 +90,7 @@ Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-includes.patch
 Patch26:	%{name}-alpha-fix-as-syntax.patch
 Patch27:	%{name}-soinit-EH_FRAME.patch
+Patch28:	%{name}-fix-asserts.patch
 Patch30:	%{name}-sparc-errno_fix.patch
 Patch31:	%{name}-make.patch
 Patch32:	%{name}-tests-io-tmp.patch
@@ -743,6 +762,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %{?!with_kernelheaders:%patch24 -p1}
 %patch26 -p1
 %patch27 -p1
+%patch28 -p1
 %patch30
 %patch31 -p1
 %patch32 -p1
@@ -758,21 +778,34 @@ cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
 ../%configure \
-	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{min_kernel}" \
-	--enable-profile \
 	--%{!?with_fp:en}%{?with_fp:dis}able-omitfp \
+%if %{with nptl}
+        --enable-add-ons=nptl \
+	--with-tls \
+	--disable-sanity-checks \
+	--disable-profile \
+%else
+        --enable-add-ons=linuxthreads \
+	--enable-profile \
+%endif
 %if %{with kernelheaders}
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
-	--with-headers=%{_kernelsrcdir}/include
+	--with-headers=%{_kernelsrcdir}/include 
 %else
 	CPPFLAGS="-I%{_includedir}" \
-	--with-headers=%{_includedir}
+	--with-headers=%{_includedir} 
 %endif
 
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{?parallelmkflags}
+
+
+%if %{with nptl}
+%{__make} subdirs=elf others
+%{__make} subdirs=nptl check
+%endif
 
 %if %{with tests}
 env LANGUAGE=C LC_ALL=C \
@@ -802,6 +835,25 @@ env LANGUAGE=C LC_ALL=C \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
+%if %{with nptl}
+env LANGUAGE=C LC_ALL=C \
+%{__make} install \
+	subdirs=nptl \
+	%{?parallelmkflags} \
+	install_root=$RPM_BUILD_ROOT \
+	infodir=%{_infodir} \
+	mandir=%{_mandir}
+
+env LANGUAGE=C LC_ALL=C \
+%{__make} install \
+	subdirs=nptl_db \
+	%{?parallelmkflags} \
+	install_root=$RPM_BUILD_ROOT \
+	infodir=%{_infodir} \
+	mandir=%{_mandir}
+
+%endif
+
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
 	%{?parallelmkflags} \
@@ -824,8 +876,10 @@ ln -s /%{_lib}/ldconfig 			$RPM_BUILD_ROOT/sbin
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 %endif
 
+%if %{without nptl}
 %{__make} -C ../linuxthreads/man
 install ../linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
+%endif
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
 
@@ -848,6 +902,11 @@ for l in anl BrokenLocale crypt dl m nsl pthread resolv rt thread_db util ; do
 	ln -sf /%{_lib}/`cd $RPM_BUILD_ROOT/%{_lib} ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 done
 
+%if %{with nptl}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libpthread.so
+ln -sf /lib/libpthread-*.so $RPM_BUILD_ROOT%{_libdir}/libpthread.so
+%endif
+
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
@@ -865,10 +924,12 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 rm -rf ../documentation
 install -d ../documentation
 
+%if %{without nptl}
 cp -f ../linuxthreads/ChangeLog ../documentation/ChangeLog.threads
 cp -f ../linuxthreads/Changes ../documentation/Changes.threads
 cp -f ../linuxthreads/README ../documentation/README.threads
 cp -f ../crypt/README.ufc-crypt ../documentation/
+%endif
 
 cp -f ../ChangeLog* ../documentation
 
