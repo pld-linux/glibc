@@ -1,5 +1,5 @@
 #
-# You can define min_kernel macro by "rpm --define min_kernel=version"
+# You can define min_kernel macro by "rpm --define 'min_kernel version'"
 # default is 2.2.0 (no changes up to 2.3.25)
 
 %{!?min_kernel:%define		min_kernel	2.2.0}
