@@ -52,8 +52,8 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-Version:	2.3.3
-Release:	0.20040318.3%{?with_nptl:+nptl}
+Version:	2.3.4
+Release:	0.20040318.1%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
