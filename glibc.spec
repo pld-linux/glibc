@@ -632,7 +632,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/catchsegv
-%attr(755,root,root) %{_bindir}/create-db
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/ldd
@@ -640,10 +639,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/locale
-%attr(755,root,root) %{_bindir}/makedb
 %attr(755,root,root) %{_bindir}/rpcgen
 %attr(755,root,root) %{_bindir}/tzselect
-%attr(755,root,root) %{_bindir}/update-db
 
 %attr(755,root,root) %{_sbindir}/rpcinfo
 %attr(755,root,root) %{_sbindir}/zdump
@@ -670,6 +667,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n nss_db
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/update-db
+%attr(755,root,root) %{_bindir}/create-db
+%attr(755,root,root) %{_bindir}/makedb
 %attr(755,root,root) /lib/libnss_db*.so*
 %config /var/db/Makefile
 
