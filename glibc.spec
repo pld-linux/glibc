@@ -4,35 +4,35 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1.3
-Release:	3
+Version:	2.1.91
+Release:	0.7
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
 Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.1.tar.gz
-Source3:	utmpd.init
-Source4:	nscd.init
-Source5:	utmpd.sysconfig
-Source6:	nscd.sysconfig
-Source7:	nscd.logrotate
+Source2:	nscd.init
+Source3:	nscd.sysconfig
+Source4:	nscd.logrotate
+Source5:	ldconfig.8
 Patch0:		glibc-info.patch
 Patch1:		glibc-versions.awk_fix.patch
 Patch2:		glibc-pld.patch
 Patch3:		glibc-crypt-blowfish.patch
 Patch4:		glibc-string2-pointer-arith.patch
-Patch5:		glibc-db2-alpha-mutex.patch
-Patch6:		glibc-linuxthreads-lock.patch
-Patch7:		glibc-pthread_create-manpage.patch
-Patch8:		glibc-sparc-linux-chown.patch
-Patch9:		glibc-ctype.patch
+Patch5:		glibc-linuxthreads-lock.patch
+Patch6:		glibc-pthread_create-manpage.patch
+Patch7:		glibc-sparc-linux-chown.patch
+Patch8:		glibc-build-order.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
+Provides:	ldconfig
+Provides:	/sbin/ldconfig
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
+Obsoletes:	ldconfig
 Autoreq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -144,23 +144,6 @@ drastycznie poprawiæ szybko¶æ dzia³ania NIS+. Nie jest mo¿liwe
 u¿ywanie nscd z j±drami serii 2.0.x z powodu b³adów po stronie j±dra w
 ods³udze w±tków.
 
-%package -n utmpd
-Summary:	utmp and utmpx synchronizer for libc5 applications.
-Summary(pl):	Synchrnnizuje zapis do plików utmp i utmpx.
-Group:		Daemons
-Group(pl):	Serwery
-Prereq:		/sbin/chkconfig
-Requires:	rc-scripts >= 0.2.0
-
-%description -n utmpd
-utmpd is a utmp and utmpx synchronizer. Is only needed for libc5 based
-program with utmp access.
-
-%description -n utmpd -l pl
-utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików /var/run/utmp i
-/var/run/utmpx. Potrzebny jest tylko w przypadku korzystania ze
-starszych programów (bazuj±cych na libc5).
-
 %package -n localedb-src
 Summary:	Souce code locale database
 Summary(pl):	Kod ¬ród³owy bazy locale
@@ -249,7 +232,7 @@ of individual shared objects. This is used for creating a library which
 is a smaller subset of the standard libc shared library.
 
 %prep
-%setup  -q -a 1 -a 2
+%setup  -q -a 1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -259,18 +242,20 @@ is a smaller subset of the standard libc shared library.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p0
 
 %build
 %configure \
-	--enable-add-ons=crypt,linuxthreads \
+	--enable-add-ons=linuxthreads \
 	--enable-profile \
 	--disable-omitfp
+
+touch debug/xtrace.sh
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man3,var/{db,log}}
+install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/{db,log}}
 
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
@@ -300,13 +285,14 @@ ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
-install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-install %{SOURCE3}		$RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
-install %{SOURCE6}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
-install %{SOURCE5}		$RPM_BUILD_ROOT/etc/sysconfig/utmpd
-install %{SOURCE7} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/nscd
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf $RPM_BUILD_ROOT%{_sysconfdir}
+
+install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
+touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
 install nss/db-Makefile $RPM_BUILD_ROOT/var/db/Makefile
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -324,26 +310,26 @@ install -d documentation
 cp linuxthreads/ChangeLog  documentation/ChangeLog.threads
 cp linuxthreads/Changes documentation/Changes.threads
 cp linuxthreads/README documentation/README.threads
-cp crypt/README documentation/README.crypt
+cp crypt/README.ufc-crypt documentation/
 
 cp ChangeLog ChangeLog.8 documentation
 
 gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
 	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
-	documentation/* login/README.utmpd
+	documentation/*
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
 strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
 	$RPM_BUILD_ROOT%{_libdir}/gconv/*.so
 
 # Collect locale files and mark them with %%lang()
-rm -f glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
-	if [ -d $i ]; then
-		lang=`echo $i | sed -e 's/.*locale\///' -e 's/^\(..\).*/\1/'`
-		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
-		echo "%lang($lang) $dir" >>glibc.lang
-	fi
+%{find_lang} libc
+
+# Now collect locale definition files and mark them with %%lang()
+for i in $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
+	lang=`echo $i | sed -e 's/.*locale\///' -e 's/^\(..\).*/\1/'`
+	dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
+	echo "%lang($lang) $dir" >>libc.lang
 done
 
 %post   -p /sbin/ldconfig
@@ -372,44 +358,21 @@ if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del nscd
 fi
 
-%post -n utmpd
-/sbin/chkconfig --add utmpd
-if [ -f /var/lock/subsys/utmpd ]; then
-	/etc/rc.d/init.d/utmpd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/utmpd start\" to start utmpd daemon." 1>&2
-fi
-
-%preun -n utmpd
-if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/utmpd ]; then
-		/etc/rc.d/init.d/utmpd stop 1>&2
-	fi
-	/sbin/chkconfig --del utmpd
-fi
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f glibc.lang
+%files -f libc.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,FAQ,BUGS}.gz
 
 %config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nsswitch.conf
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ld.so.conf
 %config %{_sysconfdir}/rpc
+%ghost %{_sysconfdir}/ld.so.cache
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/create-db
-%attr(755,root,root) %{_bindir}/db_archive
-%attr(755,root,root) %{_bindir}/db_checkpoint
-%attr(755,root,root) %{_bindir}/db_deadlock
-%attr(755,root,root) %{_bindir}/db_dump
-%attr(755,root,root) %{_bindir}/db_dump185
-%attr(755,root,root) %{_bindir}/db_load
-%attr(755,root,root) %{_bindir}/db_printlog
-%attr(755,root,root) %{_bindir}/db_recover
-%attr(755,root,root) %{_bindir}/db_stat
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/ldd
@@ -431,6 +394,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
 
+%dir %{_libdir}/locale
+
+%{_mandir}/man8/ldconfig*
+
 %config /var/db/Makefile
 
 %files devel
@@ -438,13 +405,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc documentation/* {NOTES,PROJECTS}.gz
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
+%attr(755,root,root) %{_bindir}/memusage
+%attr(755,root,root) %{_bindir}/memusagestat
 %attr(755,root,root) %{_bindir}/mtrace
+%attr(755,root,root) %{_bindir}/pcprofiledump
 %attr(755,root,root) %{_bindir}/sprof
 
 %{_includedir}/*.h
 %{_includedir}/arpa
 %{_includedir}/bits
-%{_includedir}/db1
 %{_includedir}/gnu
 %{_includedir}/net
 %{_includedir}/netash
@@ -466,7 +435,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/libc.inf*.gz
 
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/*.o
+%attr(755,root,root) %{_libdir}/*crt*.o
 %{_libdir}/libc_nonshared.a
 
 %{_mandir}/man3/*
@@ -479,13 +448,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/nscd
 %attr(640,root,root) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
-
-%files -n utmpd
-%defattr(644,root,root,755)
-%doc login/README.utmpd.gz
-%attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/utmpd
-%attr(754,root,root) /etc/rc.d/init.d/utmpd
-%attr(755,root,root) %{_sbindir}/utmpd
 
 %files -n localedb-src
 %defattr(644,root,root,755)
@@ -506,14 +468,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbsd.a
 %{_libdir}/libc.a
 %{_libdir}/libcrypt.a
-%{_libdir}/libdb.a
-%{_libdir}/libdb1.a
 %{_libdir}/libdl.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
-%{_libdir}/libndbm.a
 %{_libdir}/libnsl.a
 %{_libdir}/libposix.a
 %{_libdir}/libpthread.a
