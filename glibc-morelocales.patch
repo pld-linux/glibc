@@ -6182,21 +6182,21 @@ diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
 +escape_char  /
 +comment_char %
 +% Sinhala language locale for Sri Lanka.
-+% Contributed by Anuradha Ratnaweera <anuradha@gnu.org>
-+% and Himira Ratnatilake <himira@linux.lk>
++% Contributed by Anuradha Ratnaweera <anuradha at gnu org>
++% and Himira Ratnatilake <himira at linux lk>
 +
 +LC_IDENTIFICATION
 +title      "Sinhala language locale for Sri Lanka"
 +source     "Lanka Linux User Group (LKLUG) www.lug.lk, sinhala.linux.lk"
 +address    ""
 +contact    ""
-+email      "bug-glibc@gnu.org"
++email      "libc-locales@sources.redhat.com"
 +tel        ""
 +fax        ""
 +language   "Sinhala"
 +territory  "Sri Lanka"
-+revision   "0.7"
-+date       "2004.09.03"
++revision   "0.9"
++date       "2004.10.01"
 +%
 +category  "i18n:2002";LC_IDENTIFICATION
 +category  "i18n:2002";LC_CTYPE
@@ -6231,7 +6231,7 @@ diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
 +currency_symbol       "<U20A8>"
 +mon_decimal_point     "<U002E>"
 +mon_thousands_sep     "<U002C>"
-+mon_grouping          3;2
++mon_grouping          3
 +positive_sign         ""
 +negative_sign         "<U002D>"
 +int_frac_digits       2
@@ -6359,10 +6359,10 @@ diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
 +%
 +name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
 +name_gen    ""
-+name_mr     "<U004D><U0072><U002E>"
-+name_mrs    "<U004D><U0072><U0073><U002E>"
-+name_miss   "<U004D><U0069><U0073><U0073><U002E>"
-+name_ms     "<U004D><U0073><U002E>"
++name_mr     "<U0DB8><U0DBA><U0DCF>"
++name_mrs    "<U0DB8><U0DD2><U0DBA>"
++name_miss   "<U0DB8><U0DD2><U0DBA>"
++name_ms     "<U0DB8><U0DD2><U0DBA>"
 +
 +END LC_NAME
 +
