@@ -1,15 +1,19 @@
-diff -urN glibc-2.3.1-/elf/Makefile glibc-2.3.1/elf/Makefile
---- glibc-2.3.1-/elf/Makefile	Thu Oct 17 15:21:30 2002
-+++ glibc-2.3.1/elf/Makefile	Thu Oct 17 15:18:20 2002
-@@ -95,7 +95,7 @@
+--- libc-1/elf/Makefile	2004-12-28 13:32:36.000000000 +0200
++++ libc/elf/Makefile	2004-12-28 13:32:47.000000000 +0200
+@@ -110,10 +110,10 @@
  install-bin-script = ldd
  endif
  
 -others		= sprof sln
 +others		= postshell sprof sln
  install-bin	= sprof
- others-static   = sln
- install-rootsbin = sln
+-others-static   = sln
+-install-rootsbin = sln
++others-static   = postshell sln
++install-rootsbin = postshell sln
+ 
+ ifeq (yes,$(use-ldconfig))
+ ifeq (yes,$(build-shared))
 diff -urN glibc-2.3.1-/elf/postshell.c glibc-2.3.1/elf/postshell.c
 --- glibc-2.3.1-/elf/postshell.c	Thu Jan  1 01:00:00 1970
 +++ glibc-2.3.1/elf/postshell.c	Thu Oct 17 14:54:34 2002
