@@ -23,14 +23,14 @@
 %bcond_with	nptl # enable new posix thread library (req: kernel 2.5/2.6)
 		     # instead of linuxthreads
 
-%if %{with nptl}
+
 %define		min_kernel	2.5.65
-%endif
+
 
 %define		_snap		200309061641
 
-%{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 0.%{_snap}.2
+
+%define		rel 0.%{_snap}.3
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -94,9 +94,6 @@ BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 %{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%if 0%{!?_with_kernheaders:1}
-%{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.5}
-%endif
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	rpm-perlprov
@@ -591,8 +588,6 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %if %{with nptl}
 %{__tar} xfj %{SOURCE10}
 rm -rf linuxthreads*
-%else
-%{__tar} xfj %{SOURCE1}
 %endif
 %patch0 -p1
 %patch2 -p1
@@ -611,7 +606,7 @@ rm -rf linuxthreads*
 ##%patch20 -p1
 #%patch21 -p1
 ##%patch22 -p1
-%{!?_with_kernheaders:%patch23}
+%patch23
 ##%patch24 -p1
 # updated - lt
 %patch26 -p1
@@ -654,21 +649,16 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
 %if %{with nptl}
-	CPPFLAGS="-I%{_kernelsrcdir}/include" \
-	--with-headers=%{_kernelsrcdir}/include \
 	--enable-add-ons=nptl \
 	--with-tls \
+	--without-__thread \
 	--disable-sanity-checks \
 %else
 	--enable-add-ons=linuxthreads \
-%if 0%{!?_with_kernheaders:1}
+%endif
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
-%else
-	CPPFLAGS="-I$_headers_dir" \
-	--with-headers=$_headers_dir
-%endif
-%endif
+
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{?parallelmkflags}
@@ -837,15 +827,12 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 rm -f $RPM_BUILD_ROOT%{_libdir}*/pt_chown
 
 # copy actual kernel headers for glibc-kernel-headers
-%if 0%{!?_with_kernheaders:1}
+
 %{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
 %{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
 if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
 	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
 fi
-%else
-%{__cp} -Hr $_headers_dir/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
