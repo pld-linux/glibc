@@ -453,7 +453,6 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
-	--with-tls \
 	--disable-omitfp
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
