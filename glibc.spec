@@ -94,6 +94,7 @@ BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
+BuildRequires:	automake
 PreReq:		basesystem
 Provides:	ld.so.2
 Provides:	ldconfig
@@ -799,6 +800,9 @@ touch libidn/libidn.texi
 
 %build
 # Build glibc
+cp /usr/share/automake/config.sub .
+cp /usr/share/automake/config.sub scripts
+cp /usr/share/automake/config.sub libidn-*
 [ -d builddir ] || mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
