@@ -633,7 +633,8 @@ echo "chosen kernel-headers package or other kernel headers you have."
 
 %pre kernel-headers
 # useful if these are symlinks
-rm -f %{_includedir}/{asm,linux}
+if [ -h %{_includedir}/asm ]; then rm -f %{_includedir}/asm; fi
+if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
