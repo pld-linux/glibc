@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1
-Release:	7
+Release:	8
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -119,8 +119,10 @@ sparc32 \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
 	--prefix=/usr \
-	--disable-omitfp
-make  
+	--disable-omitfp \
+	--enable-add-ons=yes \
+        $RPM_ARCH-linux
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
