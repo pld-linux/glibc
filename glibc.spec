@@ -47,7 +47,7 @@ Patch16:	%{name}-calloc-overflow.patch
 Patch17:	%{name}-gcc32.patch
 Patch18:	%{name}-maxpacket.patch
 Patch19:	%{name}-setrlimit.patch
-Patch20:	%{name}-2.2.5-xdfmem.patch
+Patch20:	%{name}-2.2.5-xdrmem.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
