@@ -624,9 +624,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-echo "Please install glibc-kernel-headers or, if you are brave man,"
-echo "make appropriate links in /usr/include pointing to installed"
-echo "chosen kernel-headers package or other kernel headers you have."
+echo "Please install glibc-kernel-headers or, if you are a brave man,"
+echo "make appropriate links in /usr/include pointing to an already"
+echo "installed previously chosen kernel-headers package or other"
+echo "kernel headers you have."
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
