@@ -1,6 +1,6 @@
---- glibc-2.1.3/sysdeps/unix/sysv/linux/paths.h.wiget	Wed Aug 12 19:05:51 1998
-+++ glibc-2.1.3/sysdeps/unix/sysv/linux/paths.h	Fri Feb 25 09:08:26 2000
-@@ -52,12 +52,12 @@
+--- glibc-2.1.91/sysdeps/unix/sysv/linux/paths.h~	Wed Jun  9 20:15:35 1999
++++ glibc-2.1.91/sysdeps/unix/sysv/linux/paths.h	Sat Jul 15 00:43:01 2000
+@@ -48,18 +48,18 @@
  #define	_PATH_KMEM	"/dev/kmem"
  #define	_PATH_LASTLOG	"/var/log/lastlog"
  #define	_PATH_MAILDIR	"/var/mail"
@@ -15,16 +15,10 @@
  #define	_PATH_RWHODIR	"/var/spool/rwho"
  #define	_PATH_SENDMAIL	"/usr/sbin/sendmail"
  #define	_PATH_SHADOW	"/etc/shadow"
---- glibc-2.1.3/nscd/nscd.conf.wiget	Mon Oct  4 21:51:37 1999
-+++ glibc-2.1.3/nscd/nscd.conf	Fri Feb 25 09:10:01 2000
-@@ -19,8 +19,8 @@
- #
- 
- 
--#	logfile			/var/log/nscd.log
--#	threads			6
-+	logfile			/var/log/nscd
-+	threads			6
- 
- 	debug-level		0
- 
+ #define	_PATH_SHELLS	"/etc/shells"
+ #define	_PATH_TTY	"/dev/tty"
+-#define	_PATH_UNIX	"/vmlinux"
++#define	_PATH_UNIX	"/boot/vmlinux"
+ #define _PATH_UTMP	"/var/run/utmp"
+ #define	_PATH_VI	"/usr/bin/vi"
+ #define _PATH_WTMP	"/var/log/wtmp"
