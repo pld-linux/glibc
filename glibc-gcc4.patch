@@ -174,3 +174,20 @@ diff -u -r1.7 -r1.8
  elf_machine_lazy_rel (struct link_map *map,
  		      Elf32_Addr l_addr, const Elf32_Rela *reloc)
  {
+===================================================================
+RCS file: /cvs/glibc/libc/nptl/sysdeps/powerpc/tcb-offsets.sym,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- libc/nptl/sysdeps/powerpc/tcb-offsets.sym	2004/12/15 06:07:00	1.5
++++ libc/nptl/sysdeps/powerpc/tcb-offsets.sym	2005/02/14 22:44:12	1.6
+@@ -6,7 +6,8 @@
+ -- Abuse tls.h macros to derive offsets relative to the thread register.
+ # undef __thread_register
+ # define __thread_register	((void *) 0)
+-# define thread_offsetof(mem)	((void *) &THREAD_SELF->mem - (void *) 0)
++# define thread_offsetof(mem)	((ptrdiff_t) THREAD_SELF + offsetof (struct pthread, mem))
++
+ 
+ #if TLS_MULTIPLE_THREADS_IN_TCB
+ MULTIPLE_THREADS_OFFSET		thread_offsetof (header.multiple_threads)
