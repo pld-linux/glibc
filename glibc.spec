@@ -13,7 +13,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.2
 Name:		glibc
 Version:	2.3.1
-Release:	0.1
+Release:	0.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -24,9 +24,8 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-Source7:	postshell.c
 # borrowed from util-linux
-Source8:	sln.8
+Source7:	sln.8
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-versions.awk_fix.patch
 Patch2:		%{name}-pld.patch
@@ -38,6 +37,7 @@ Patch7:		%{name}-sparc-linux-chown.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
 Patch11:	%{name}-getaddrinfo-workaround.patch
+Patch12:	%{name}-postshell.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -440,6 +440,7 @@ Zabawka.
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 chmod +x scripts/cpp
 
@@ -456,9 +457,6 @@ LDFLAGS=" " ; export LDFLAGS
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{parallelmkflags}
-
-# this need improvements (like building agains new builded glibc) but works
-%{__cc} -o postshell %{rpmcflags} %{rpmldflags} %{SOURCE7}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -485,6 +483,8 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
+
+install elf/postshell				$RPM_BUILD_ROOT/sbin
 
 mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
 mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
@@ -562,9 +562,7 @@ for i in af az bg de_AT el en eo es_ES et eu fi gr he hr hu id is ja_JP.SJIS \
 		echo "%lang($lang) %{_datadir}/locale/$i" >> ../glibc.lang
 	fi
 done
-install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/man8
-
-install -m755 postshell $RPM_BUILD_ROOT/sbin
+install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/man8
 
 # shutup check-files
 rm -f $RPM_BUILD_ROOT/%{_mandir}/README.*
