@@ -22,8 +22,10 @@
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
 #	in order to use this version!
 #
+%bcond_with	idn
+
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 3
+%define		rel 4
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -612,6 +614,7 @@ chmod +x scripts/cpp
 # standardize name
 mv -f localedata/locales/{lug_UG,lg_UG}
 
+%if {with idn}
 cp -r libidn-*/lib libidn
 cp libidn-*/libc/{Makefile,configure,Banner,Versions} libidn/
 cp libidn-*/lib/*.{c,h} libidn/
@@ -628,6 +631,7 @@ cp libidn-*/libc/*.patch libc-idn.patch
 patch -p0 < libc-idn.patch
 
 touch libidn/libidn.texi
+%endif
 
 #make proper symlink for asm in headers
 #cd usr/include
@@ -651,7 +655,7 @@ cd builddir
 LDFLAGS=" " ; export LDFLAGS
 #CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
-	--enable-add-ons=linuxthreads,libidn \
+	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
