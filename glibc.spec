@@ -115,7 +115,7 @@ Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
-BuildRequires:	binutils >= 2.15.90.0.3
+BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 3.2
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
