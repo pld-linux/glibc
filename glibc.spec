@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	18
+Release:	19
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -20,7 +20,7 @@ Source6:	nscd.sysconfig
 Source7:	nscd.logrotate
 Source10:	ftp://ftp.yggdrasil.com/private/hjl/ldconfig-980708.tar.gz
 Source11:	ldconfig.8
-Patch0:		glibc-2.1-CVS-20000813.patch.bz2
+Patch0:		glibc-2.1-CVS-20000905.patch.bz2
 Patch1:		glibc-info.patch
 Patch2:		glibc-versions.awk_fix.patch
 Patch3:		glibc-pld.patch
@@ -32,6 +32,7 @@ Patch8:		glibc-pthread_create-manpage.patch
 Patch9:		glibc-sparc-linux-chown.patch
 Patch10:	ldconfig-glibc.patch
 Patch11:	ldconfig-bklinks.patch
+Patch12:	glibc-cvs-20000824-md5-align-clean.patch.gz
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -415,6 +416,7 @@ Berkeley DB.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch12 -p1
 cd ldconfig-980708
 %patch10 -p1
 %patch11 -p1
