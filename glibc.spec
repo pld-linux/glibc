@@ -417,6 +417,7 @@ Summary(es):	Código fuente de la base de datos de los locales
 Summary(pl):	Kod ¼ród³owy bazy locale
 Group:		Daemons
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gzip
 Requires:	sed
 
 %description -n localedb-src
