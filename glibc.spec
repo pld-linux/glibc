@@ -53,7 +53,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.8%{?with_nptl:+nptl}
+Release:	0.20040101.9%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -851,9 +851,7 @@ install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
-install elf/postshell				$RPM_BUILD_ROOT/%{_lib}
-mv $RPM_BUILD_ROOT/sbin/ldconfig 		$RPM_BUILD_ROOT/%{_lib}
-ln -s /%{_lib}/ldconfig 			$RPM_BUILD_ROOT/sbin
+install elf/postshell				$RPM_BUILD_ROOT/sbin
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
@@ -985,19 +983,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %ifnarch sparc64
 %ifarch amd64
-%post	-n %{name}64 -p /%{_lib}/postshell
+%post	-n %{name}64 -p /sbin/postshell
 %else
-%post	-p /%{_lib}/postshell
+%post	-p /sbin/postshell
 %endif
-/%{_lib}/ldconfig
+/sbin/ldconfig
 -/sbin/telinit u
 
 %ifarch amd64
-%postun	-n %{name}64 -p /%{_lib}/postshell
+%postun	-n %{name}64 -p /sbin/postshell
 %else
-%postun	-p /%{_lib}/postshell
+%postun	-p /sbin/postshell
 %endif
-/%{_lib}/ldconfig
+/sbin/ldconfig
 -/sbin/telinit u
 
 %post	memusage -p /sbin/ldconfig
@@ -1043,7 +1041,7 @@ fi
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
 # ld-*.so SONAME is ld.so.1 on ppc, ld-linux.so.2 on other archs
-%attr(755,root,root) /%{_lib}/postshell
+%attr(755,root,root) /sbin/postshell
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
 %attr(755,root,root) /%{_lib}/libdl*
