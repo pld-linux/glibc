@@ -20,6 +20,9 @@
 
 #
 # TODO:
+# - update pl.po (it's mine, don't touch --q)
+# - look at locale fixes/updates in bugzilla
+# [OLD]
 # - localedb-gen man pages(?)
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
@@ -62,7 +65,6 @@
 %endif
 
 %define		llh_version	7:2.6.6.0
-%define		_snap		20041122
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -75,15 +77,14 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.2.1
+Release:	0.99999999.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	f001b42f639d5030d2c4dd16803b393d
-#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-#Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+# Source0-md5:	174ac5ed4f2851fcc866a3bac1e4a6a5
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+# Source1-md5:	7a199cd4965eb5622163756ae64358fe
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -119,14 +120,13 @@ Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_ZA.patch
 Patch23:	%{name}-locale_fixes.patch
-Patch24:	%{name}-LD_DEBUG.patch
-# PaX
-Patch25:	%{name}-pax_iconvconfig.patch
-Patch26:	%{name}-pax_dl-execstack.patch
+Patch24:	%{name}-ZA_collate.patch
+Patch25:	%{name}-tls_fix.patch
+Patch26:	%{name}-nscd.patch
 Patch27:	%{name}-comdat.patch
-Patch28:	%{name}-ia64_unwind.patch
-Patch29:	%{name}-ZA_collate.patch
-Patch30:	%{name}-tls_fix.patch
+# PaX hacks (dropped)
+#Patch28:	%{name}-pax_iconvconfig.patch
+#Patch29:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -784,8 +784,7 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-#setup -q -a 1 -n libc
-%setup -q -n libc
+%setup -q -a1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -811,15 +810,10 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
-%patch24 -p0
-# DROP
-#%patch25 -p1
-# DROP
-#%patch26 -p1
+%patch24 -p1
+%patch25 -p1
+%patch26 -p1
 %{?with_comdat:%patch27 -p1}
-%patch28 -p1
-%patch29 -p1
-%patch30 -p1
 
 chmod +x scripts/cpp
 
@@ -1190,6 +1184,7 @@ fi
 
 %attr(755,root,root) /sbin/sln
 %attr(755,root,root) %{_bindir}/catchsegv
+%attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/ldd
@@ -1204,12 +1199,16 @@ fi
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
+%dir %{_libexecdir}/getconf
+%attr(755,root,root) %{_libexecdir}/getconf/*
+
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
 %exclude %{_datadir}/zoneinfo/right
 
 %{_mandir}/man1/catchsegv.1*
+%{_mandir}/man1/getconf.1*
 %{_mandir}/man1/getent.1*
 %{_mandir}/man1/iconv.1*
 %{_mandir}/man1/ldd.1*
@@ -1330,7 +1329,6 @@ fi
 %defattr(644,root,root,755)
 %doc documentation/* NOTES PROJECTS
 %attr(755,root,root) %{_bindir}/gencat
-%attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/*prof*
 %attr(755,root,root) %{_bindir}/*trace
 
@@ -1386,7 +1384,6 @@ fi
 
 %{_infodir}/libc.info*
 
-%{_mandir}/man1/getconf.1*
 %{_mandir}/man1/sprof.1*
 %{_mandir}/man3/*
 %lang(cs) %{_mandir}/cs/man3/*
