@@ -94,19 +94,18 @@ Patch12:	%{name}-no_opt_override.patch
 Patch13:	%{name}-kernel_includes.patch
 Patch14:	%{name}-includes.patch
 Patch15:	%{name}-soinit-EH_FRAME.patch
-Patch17:	%{name}-sparc-errno_fix.patch
-Patch18:	%{name}-make.patch
-Patch20:	%{name}-tests-noproc.patch
-Patch21:	%{name}-linuxthreads-ppc-fix.patch
-Patch23:	%{name}-new-charsets.patch
-Patch26:	%{name}-sr_CS.patch
-Patch27:	%{name}-alpha-div.patch
+Patch16:	%{name}-sparc-errno_fix.patch
+Patch17:	%{name}-make.patch
+Patch18:	%{name}-tests-noproc.patch
+Patch19:	%{name}-new-charsets.patch
+Patch20:	%{name}-sr_CS.patch
+Patch21:	%{name}-alpha-div.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
-BuildRequires:	binutils >= 2.13.90.0.2
+BuildRequires:	binutils >= 2.15.90.0.3
 BuildRequires:	gcc >= 3.2
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
@@ -778,13 +777,12 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %{?with_kernelheaders:%patch13}
 %{?!with_kernelheaders:%patch14 -p1}
 %patch15 -p1
-%patch17 -p0
+%patch16 -p0
+%patch17 -p1
 %patch18 -p1
+%patch19 -p1
 %patch20 -p1
 %patch21 -p1
-%patch23 -p1
-%patch26 -p1
-%patch27 -p1
 
 %patch30 -p1
 %patch31 -p1
