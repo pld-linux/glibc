@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2.3
-Release:	6
+Release:	14
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -346,7 +346,7 @@ A toy.
 
 %build
 LDFLAGS=" " ; export LDFLAGS
-%configure \
+%configure2_13 \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
