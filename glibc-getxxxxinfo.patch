@@ -1,0 +1,379 @@
+; From GLIBC pre 2.2.1 CVS Repository
+;
+Index: inet/getnameinfo.c
+===================================================================
+RCS file: /cvs/glibc/libc/inet/getnameinfo.c,v
+retrieving revision 1.21
+retrieving revision 1.23
+diff -u -r1.21 -r1.23
+--- libc/inet/getnameinfo.c	2000/10/28 00:29:47	1.21
++++ libc/inet/getnameinfo.c	2000/11/10 05:02:55	1.23
+@@ -175,25 +175,28 @@
+   struct hostent th;
+   int ok = 0;
+ 
++  if (flags & ~(NI_NUMERICHOST|NI_NUMERICSERV|NI_NOFQDN|NI_NAMEREQD|NI_DGRAM))
++    return EAI_BADFLAGS;
++
+   if (sa == NULL || addrlen < sizeof (sa_family_t))
+-    return -1;
++    return EAI_FAMILY;
+ 
+   switch (sa->sa_family)
+     {
+     case AF_LOCAL:
+       if (addrlen < (socklen_t) (((struct sockaddr_un *) NULL)->sun_path))
+-	return -1;
++	return EAI_FAMILY;
+       break;
+     case AF_INET:
+       if (addrlen < sizeof (struct sockaddr_in))
+-	return -1;
++	return EAI_FAMILY;
+       break;
+     case AF_INET6:
+       if (addrlen < sizeof (struct sockaddr_in6))
+-	return -1;
++	return EAI_FAMILY;
+       break;
+     default:
+-      return -1;
++      return EAI_FAMILY;
+     }
+ 
+   if (host != NULL && hostlen > 0)
+@@ -224,7 +227,7 @@
+ 			      {
+ 				__set_h_errno (herrno);
+ 				__set_errno (serrno);
+-				return -1;
++				return EAI_SYSTEM;
+ 			      }
+ 			  }
+ 			else
+@@ -255,26 +258,23 @@
+ 
+ 	    if (h)
+ 	      {
+-		if (flags & NI_NOFQDN)
++		char *c;
++		if ((flags & NI_NOFQDN) == 0
++		    && (c = nrl_domainname ())
++		    && (c = strstr (h->h_name, c))
++		    && (c != h->h_name) && (*(--c) == '.'))
++		  {
++		    strncpy (host, h->h_name,
++			     min(hostlen, (size_t) (c - h->h_name)));
++		    host[min(hostlen - 1, (size_t) (c - h->h_name))]
++		      = '\0';
++		    ok = 1;
++		  }
++		else
+ 		  {
+-		    char *c;
+-		    if ((c = nrl_domainname ()) && (c = strstr(h->h_name, c))
+-			&& (c != h->h_name) && (*(--c) == '.'))
+-		      {
+-			strncpy (host, h->h_name,
+-				 min(hostlen, (size_t) (c - h->h_name)));
+-			host[min(hostlen - 1, (size_t) (c - h->h_name))]
+-			  = '\0';
+-			ok = 1;
+-		      }
+-		    else
+-		      {
+-			strncpy (host, h->h_name, hostlen);
+-			ok = 1;
+-		      }
++		    strncpy (host, h->h_name, hostlen);
++		    ok = 1;
+ 		  }
+-		strncpy (host, h->h_name, hostlen);
+-		ok = 1;
+ 	      }
+ 	  }
+ 
+@@ -283,7 +283,7 @@
+ 	    if (flags & NI_NAMEREQD)
+ 	      {
+ 		__set_errno (serrno);
+-		return -1;
++		return EAI_NONAME;
+ 	      }
+ 	    else
+ 	      {
+@@ -295,40 +295,43 @@
+ 
+ 		    c = inet_ntop (AF_INET6,
+ 				   (void *) &sin6p->sin6_addr, host, hostlen);
+-		    if (addrlen > sizeof (struct sockaddr_in6)
+-			&& (scopeid = sin6p->sin6_scope_id))
++		    scopeid = sin6p->sin6_scope_id;
++		    if (scopeid != 0)
+ 		      {
+ 			/* Buffer is >= IFNAMSIZ+1.  */
+ 			char scopebuf[IFNAMSIZ + 1];
++			char *scopeptr;
+ 			int ni_numericscope = 0;
++			size_t real_hostlen = __strnlen (host, hostlen);
++			size_t scopelen = 0;
++
++			scopebuf[0] = SCOPE_DELIMITER;
++			scopebuf[1] = '\0';
++			scopeptr = &scopebuf[1];
+ 
+ 			if (IN6_IS_ADDR_LINKLOCAL (&sin6p->sin6_addr)
+ 			    || IN6_IS_ADDR_MC_LINKLOCAL (&sin6p->sin6_addr))
+ 			  {
+-			    if (if_indextoname (scopeid, scopebuf) == NULL)
++			    if (if_indextoname (scopeid, scopeptr) == NULL)
+ 			      ++ni_numericscope;
++			    else
++			      scopelen = strlen (scopebuf);
+ 			  }
+ 			else
+ 			  ++ni_numericscope;
+ 
+ 			if (ni_numericscope)
+-			  {
+-			    char *scopeptr = &scopebuf[1];
+-			    size_t real_hostlen;
+-			    size_t scopelen;
+-
+-			    scopebuf[0] = SCOPE_DELIMITER;
+-			    scopelen = 1 + __snprintf (scopeptr,
+-						       (scopebuf
+-							+ sizeof scopebuf
+-							- scopeptr),
+-						       "%u", scopeid);
+-
+-			    real_hostlen = __strnlen (host, hostlen);
+-			    if (real_hostlen + scopelen + 1 > hostlen)
+-			      return -1;
+-			    memcpy (host + real_hostlen, scopebuf, scopelen);
+-			  }
++			  scopelen = 1 + __snprintf (scopeptr,
++						     (scopebuf
++						      + sizeof scopebuf
++						      - scopeptr),
++						     "%u", scopeid);
++
++			if (real_hostlen + scopelen + 1 > hostlen)
++			  /* XXX We should not fail here.  Simply enlarge
++			     the buffer or return with out of memory.  */
++			  return EAI_SYSTEM;
++			memcpy (host + real_hostlen, scopebuf, scopelen + 1);
+ 		      }
+ 		  }
+ 		else
+@@ -338,7 +341,7 @@
+ 		if (c == NULL)
+ 		  {
+ 		    __set_errno (serrno);
+-		    return -1;
++		    return EAI_SYSTEM;
+ 		  }
+ 	      }
+ 	    ok = 1;
+@@ -360,14 +363,14 @@
+ 	if (flags & NI_NAMEREQD)
+ 	   {
+ 	    __set_errno (serrno);
+-	    return -1;
++	    return EAI_NONAME;
+ 	  }
+ 
+ 	strncpy (host, "localhost", hostlen);
+ 	break;
+ 
+       default:
+-        return -1;
++        return EAI_FAMILY;
+     }
+ 
+   if (serv && (servlen > 0))
+@@ -392,7 +395,7 @@
+ 		    else
+ 		      {
+ 			__set_errno (serrno);
+-			return -1;
++			return EAI_SYSTEM;
+ 		      }
+ 		  }
+ 		else
+Index: sysdeps/posix/getaddrinfo.c
+===================================================================
+RCS file: /cvs/glibc/libc/sysdeps/posix/getaddrinfo.c,v
+retrieving revision 1.32
+retrieving revision 1.33
+diff -u -r1.32 -r1.33
+--- libc/sysdeps/posix/getaddrinfo.c	2000/09/29 05:27:20	1.32
++++ libc/sysdeps/posix/getaddrinfo.c	2000/11/10 04:15:44	1.33
+@@ -99,13 +99,14 @@
+ 
+ /* Values for `protoflag'.  */
+ #define GAI_PROTO_NOSERVICE	1
++#define GAI_PROTO_PROTOANY	2
+ 
+ static struct gaih_typeproto gaih_inet_typeproto[] =
+ {
+   { 0, 0, NULL, 0 },
+   { SOCK_STREAM, IPPROTO_TCP, (char *) "tcp", 0 },
+   { SOCK_DGRAM, IPPROTO_UDP, (char *) "udp", 0 },
+-  { SOCK_RAW, IPPROTO_RAW, (char *) "raw", GAI_PROTO_NOSERVICE },
++  { SOCK_RAW, 0, (char *) "raw", GAI_PROTO_PROTOANY|GAI_PROTO_NOSERVICE },
+   { 0, 0, NULL, 0 }
+ };
+ 
+@@ -150,6 +151,7 @@
+ 	     && ((tp->protoflag & GAI_PROTO_NOSERVICE) != 0
+ 		 || (req->ai_socktype != 0 && req->ai_socktype != tp->socktype)
+ 		 || (req->ai_protocol != 0
++		     && !(tp->protoflag & GAI_PROTO_PROTOANY)
+ 		     && req->ai_protocol != tp->protocol)))
+ 	++tp;
+ 
+@@ -229,7 +231,7 @@
+ 
+ static int
+ gaih_inet_serv (const char *servicename, struct gaih_typeproto *tp,
+-	       struct gaih_servtuple *st)
++	       const struct addrinfo *req, struct gaih_servtuple *st)
+ {
+   struct servent *s;
+   size_t tmpbuflen = 1024;
+@@ -255,7 +257,8 @@
+ 
+   st->next = NULL;
+   st->socktype = tp->socktype;
+-  st->protocol = tp->protocol;
++  st->protocol = ((tp->protoflag & GAI_PROTO_PROTOANY)
++		  ? req->ai_protocol : tp->protocol);
+   st->port = s->s_port;
+ 
+   return 0;
+@@ -291,8 +294,10 @@
+     {								\
+       for (i = 0; h->h_addr_list[i]; i++)			\
+ 	{							\
+-	  if (*pat == NULL)					\
++	  if (*pat == NULL) {					\
+ 	    *pat = __alloca (sizeof(struct gaih_addrtuple));	\
++	    (*pat)->scopeid = 0;				\
++	  }							\
+ 	  (*pat)->next = NULL;					\
+ 	  (*pat)->family = _family;				\
+ 	  memcpy ((*pat)->addr, h->h_addr_list[i],		\
+@@ -319,6 +324,7 @@
+       while (tp->name != NULL
+ 	     && ((req->ai_socktype != 0 && req->ai_socktype != tp->socktype)
+ 		 || (req->ai_protocol != 0
++		     && !(tp->protoflag & GAI_PROTO_PROTOANY)
+ 		     && req->ai_protocol != tp->protocol)))
+ 	++tp;
+ 
+@@ -343,7 +349,7 @@
+ 	      st = (struct gaih_servtuple *)
+ 		__alloca (sizeof (struct gaih_servtuple));
+ 
+-	      if ((rc = gaih_inet_serv (service->name, tp, st)))
++	      if ((rc = gaih_inet_serv (service->name, tp, req, st)))
+ 		return rc;
+ 	    }
+ 	  else
+@@ -359,11 +365,15 @@
+ 		  if (req->ai_socktype != 0
+ 		      && req->ai_socktype != tp->socktype)
+ 		    continue;
++		  if (req->ai_protocol != 0
++		      && !(tp->protoflag & GAI_PROTO_PROTOANY)
++		      && req->ai_protocol != tp->protocol)
++		    continue;
+ 
+ 		  newp = (struct gaih_servtuple *)
+ 		    __alloca (sizeof (struct gaih_servtuple));
+ 
+-		  if ((rc = gaih_inet_serv (service->name, tp, newp)))
++		  if ((rc = gaih_inet_serv (service->name, tp, req, newp)))
+ 		    {
+ 		      if (rc & GAIH_OKIFUNSPEC)
+ 			continue;
+@@ -382,7 +392,8 @@
+ 	  st = __alloca (sizeof (struct gaih_servtuple));
+ 	  st->next = NULL;
+ 	  st->socktype = tp->socktype;
+-	  st->protocol = tp->protocol;
++	  st->protocol = ((tp->protoflag & GAI_PROTO_PROTOANY)
++			  ? req->ai_protocol : tp->protocol);
+ 	  st->port = htons (service->num);
+ 	}
+     }
+@@ -390,8 +401,9 @@
+     {
+       st = __alloca (sizeof (struct gaih_servtuple));
+       st->next = NULL;
+-      st->socktype = req->ai_socktype;
+-      st->protocol = req->ai_protocol;
++      st->socktype = tp->socktype;
++      st->protocol = ((tp->protoflag & GAI_PROTO_PROTOANY)
++		      ? req->ai_protocol : tp->protocol);
+       st->port = 0;
+     }
+   else
+@@ -542,6 +554,7 @@
+     struct gaih_servtuple *st2;
+     struct gaih_addrtuple *at2 = at;
+     size_t socklen, namelen;
++    sa_family_t family;
+ 
+     /*
+       buffer is the size of an unformatted IPv6 address in printable format.
+@@ -597,9 +610,15 @@
+ 	  namelen = 0;
+ 
+ 	if (at2->family == AF_INET6)
+-	  socklen = sizeof (struct sockaddr_in6);
++	  {
++	    family = AF_INET6;
++	    socklen = sizeof (struct sockaddr_in6);
++	  }
+ 	else
+-	  socklen = sizeof (struct sockaddr_in);
++	  {
++	    family = AF_INET;
++	    socklen = sizeof (struct sockaddr_in);
++	  }
+ 
+ 	for (st2 = st; st2 != NULL; st2 = st2->next)
+ 	  {
+@@ -608,7 +627,7 @@
+ 	      return -EAI_MEMORY;
+ 
+ 	    (*pai)->ai_flags = req->ai_flags;
+-	    (*pai)->ai_family = at2->family;
++	    (*pai)->ai_family = family;
+ 	    (*pai)->ai_socktype = st2->socktype;
+ 	    (*pai)->ai_protocol = st2->protocol;
+ 	    (*pai)->ai_addrlen = socklen;
+@@ -616,9 +635,9 @@
+ #if SALEN
+ 	    (*pai)->ai_addr->sa_len = socklen;
+ #endif /* SALEN */
+-	    (*pai)->ai_addr->sa_family = at2->family;
++	    (*pai)->ai_addr->sa_family = family;
+ 
+-	    if (at2->family == AF_INET6)
++	    if (family == AF_INET6)
+ 	      {
+ 		struct sockaddr_in6 *sin6p =
+ 		  (struct sockaddr_in6 *) (*pai)->ai_addr;
+@@ -703,7 +722,7 @@
+       else
+ 	/* Can't specify a numerical socket unless a protocol family was
+ 	   given. */
+-        if (hints->ai_socktype == 0)
++        if (hints->ai_socktype == 0 && hints->ai_protocol == 0)
+           return EAI_SERVICE;
+       pservice = &gaih_service;
+     }
+
