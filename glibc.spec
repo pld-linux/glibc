@@ -56,6 +56,7 @@ BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers}
+BuildRequires:	sed >= 4.0.5
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
