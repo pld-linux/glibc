@@ -1,12 +1,19 @@
-%define		min_kernel	2.2.0
+#
+# You can define min_kernel macro by "rpm --define 'min_kernel version'"
+# default is 2.2.0 (no changes up to 2.3.25)
+
+%{!?min_kernel:%define		min_kernel	2.2.0}
+
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
 Summary(pl):	GNU libc
+Summary(ru):	GNU libc версии 2.2
 Summary(tr):	GNU libc
+Summary(uk):	GNU libc верс╕╖ 2.2
 Name:		glibc
-Version:	2.2.4
-Release:	13
+Version:	2.2.5
+Release:	1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -26,8 +33,8 @@ Group(ru):	Библиотеки
 Group(sl):	Knji╬nice
 Group(sv):	Bibliotek
 Group(uk):	Б╕бл╕отеки
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.gz
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.gz
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -44,10 +51,8 @@ Patch7:		%{name}-sparc-linux-chown.patch
 Patch8:		%{name}-ldconfig-bklinks.patch
 Patch9:		%{name}-paths.patch
 Patch10:	%{name}-vaargs.patch
-Patch11:	%{name}-malloc.patch
-Patch12:	%{name}-glob.patch
-Patch13:	%{name}-getaddrinfo-workaround.patch
-Patch14:	%{name}-gcc3.patch
+Patch11:	%{name}-getaddrinfo-workaround.patch
+Patch12:	%{name}-use-int-not-arpa.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
@@ -112,6 +117,17 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaФ.
 Znajduj╠ siЙ tutaj rСwnie© definicje rС©nych informacji dla wielu
 jЙzykСw (locale) oraz definicje stref czasowych.
 
+%description -l ru
+Содержит стандартные библиотеки, используемые многочисленными
+программами в системе. Для того, чтобы сохранить дисковое пространство
+и память, а также для простоты обновления, системный код, общий для
+всех программ, хранится в одном месте и коллективно используется всеми
+программами. Этот пакет содержит наиболее важные из разделяемых
+библиотек - стандартную библиотеку C и стандартную библиотеку
+математики. Без этих библиотек Linux функционировать не будет. Также
+пакет содержит поддержку национальных языков (locale) и базы данных
+временных зон (timezone databases).
+
 %description -l tr
 Bu paket, birГok programЩn kullandЩПЩ standart kitaplЩklarЩ iГerir.
 Disk alanЩ ve bellek kullanЩmЩnЩ azaltmak ve aynЩ zamanda gЭncelleme
@@ -121,12 +137,25 @@ kitaplЩklarЩ, standart C kitaplЩПЩnЩ ve standart matematik kitaplЩПЩnЩ
 iГerir. Bu kitaplЩklar olmadan Linux sistemi ГalЩЧmayacaktЩr. Yerel
 dil desteПi ve zaman dilimi veri tabanЩ da bu pakette yer alЩr.
 
+%description -l uk
+М╕стить стандартн╕ б╕бл╕отеки, котр╕ використовуються численними
+програмами в систем╕. Для того, щоб зберегти дисковий прост╕р та
+пам'ять, а також для простоти поновлення системи, системний код,
+сп╕льний для вс╕х програм, збер╕га╓ться в одному м╕сц╕ ╕ колективно
+використову╓ться вс╕ма програмами. Цей пакет м╕стить найб╕льш важлив╕
+з динам╕чних б╕бл╕отек - стандартну б╕бл╕отеку С та стандартну
+б╕бл╕отеку математики. Без цих б╕бл╕отек Linux функц╕онувати не буде.
+Також пакет м╕стить п╕дтримку нац╕ональних мов (locale) та бази данних
+часових зон (timezone databases).
+
 %package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplИmentaires nИcessaires Ю la compilation.
 Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
+Summary(ru):	Дополнительные библиотеки, необходимые для компиляции
 Summary(tr):	GeliЧtirme iГin gerekli diПer kitaplЩklar
+Summary(uk):	Додатков╕ б╕бл╕отеки, потр╕бн╕ для комп╕ляц╕╖
 Group:		Development/Libraries
 Group(cs):	VЩvojovИ prostЬedky/Knihovny
 Group(da):	Udvikling/Biblioteker
@@ -167,14 +196,28 @@ korzystaj╠cych ze standardowej biblioteki C. Znajduj╠ siЙ tutaj pliki
 nagЁСwkowe oraz pliki objektowe, niezbЙdne do kompilacji programСw
 wykonywalnych i innych bibliotek.
 
+%description devel -l ru
+Для разработки программ, использующих стандартные библиотеки C (а
+практически все программы их используют), системе НЕОБХОДИМЫ хедеры и
+объектные файлы, содержащиеся в этом пакете, чтобы создавать
+исполняемые файлы.
+
 %description devel -l tr
 C kitaplЩПЩnЩ kullanan (ki hemen hemen hepsi kullanЩyor) programlar
 geliЧtirmek iГin gereken standart baЧlЩk dosyalarЩ ve statik
 kitaplЩklar.
 
+%description devel -l uk
+Для розробки програм, що використовують стандартн╕ б╕бл╕отеки C
+(практично вс╕ програми ╖х використовують), систем╕ НЕОБХ╤ДН╤ хедери
+та об'╓ктн╕ файли, що м╕стяться в цьому пакет╕, цоб створювати
+виконуван╕ файли.
+
 %package -n nscd
 Summary:	Name Service Caching Daemon
 Summary(pl):	Demon zapamiЙtuj╠cy odpowiedzi serwisСw nazw
+Summary(ru):	Кэширующий демон сервисов имен
+Summary(uk):	Кешуючий демон сев╕с╕в ╕мен
 Group:		Networking/Daemons
 Group(cs):	SМ╩ovИ/DИmoni
 Group(da):	NetvФrks/DФmoner
@@ -206,6 +249,15 @@ nscd zapamiЙtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
 drastycznie poprawiФ szybko╤Ф dziaЁania NIS+. Nie jest mo©liwe
 u©ywanie nscd z j╠drami serii 2.0.x z powodu bЁЙdСw po stronie j╠dra w
 obsЁudze w╠tkСw.
+
+%description -n nscd -l ru
+nscd кэширует результаты запросов к сервисам имен; это может резко
+увеличить производительность работы с NIS+ и, также, может помочь с
+DNS.
+
+%description -n nscd -l uk
+nscd кешу╓ результати запрос╕в до серв╕с╕в ╕мен; це може сильно
+зб╕льшити швидк╕сть роботи з NIS+ ╕, також, може допомогти з DNS.
 
 %package -n localedb-src
 Summary:	locale database source code
@@ -280,6 +332,8 @@ umo©liwiaj╠ konwersjЙ kodowania danych z poziomu dowolnego programu.
 %package static
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
+Summary(ru):	Статические библиотеки glibc
+Summary(uk):	Статичн╕ б╕бл╕отеки glibc
 Group:		Development/Libraries
 Group(cs):	VЩvojovИ prostЬedky/Knihovny
 Group(da):	Udvikling/Biblioteker
@@ -305,12 +359,22 @@ GNU libc static libraries.
 %description static -l pl
 Biblioteki statyczne GNU libc.
 
+%description static -l ru
+Это отдельный пакет со статическими библиотеками, которые больше не
+входят в glibc-devel.
+
+%description static -l uk
+Це окремий пакет з╕ статичними б╕бл╕отеками, що б╕льше не входять в
+склад glibc-devel.
+
 %package profile
 Summary:	glibc with profiling support
 Summary(de):	glibc mit Profil-UnterstЭtzung
 Summary(fr):	glibc avec support pour profiling
 Summary(pl):	glibc ze wsparciem dla profilowania
+Summary(ru):	GNU libc с поддержкой профайлера
 Summary(tr):	жlГЭm desteПi olan glibc
+Summary(uk):	GNU libc з п╕дтримкою профайлера
 Group:		Development/Libraries/Libc
 Group(cs):	VЩvojovИ prostЬedky/Knihovny/Libc
 Group(da):	Udvikling/Biblioteker/Libc
@@ -345,9 +409,23 @@ Programy profilowane za pomoc╠ gprof musz╠ u©ywaФ tych bibliotek
 zamiast standardowych bibliotek C, aby gprof mСgЁ odpowiednio je
 wyprofilowaФ.
 
+%description profile -l uk
+Коли програми досл╕джуються профайлером gprof, вони повинн╕
+використовувати зам╕сть стандартних б╕бл╕отек б╕бл╕отеки, що м╕стяться
+в цьому пакет╕. При використанн╕ стандартних б╕бл╕отек gprof зам╕сть
+реальних результат╕в буде показувати ц╕ни на папайю в Гонолулу в
+позаминулому роц╕...
+
 %description profile -l tr
 gprof kullanЩlarak ЖlГЭlen programlar standart C kitaplЩПЩ yerine bu
 kitaplЩПЩ kullanmak zorundadЩrlar.
+
+%description profile -l ru
+Когда программы исследуются профайлером gprof, они должны
+использовать, вместо стандартных библиотек, библиотеки, включенные в
+этот пакет. При использовании стандартных библиотек gprof вместо
+реальных результатов будет показывать цены на папайю в Гонолулу в
+позапрошлом году...
 
 %package pic
 Summary:	glibc PIC archive
@@ -388,7 +466,7 @@ Summary(pl):	Stary moduЁ NYS NSS glibc
 Group:		Base
 Group(cs):	ZАklad
 Group(da):	Basal
-Group(de):	Basis
+Group(de):	GrundsДtzlich
 Group(es):	Base
 Group(fr):	Base
 Group(is):	Grunnforrit
@@ -416,7 +494,7 @@ Summary(pl):	ModuЁ BIND NSS glibc
 Group:		Base
 Group(cs):	ZАklad
 Group(da):	Basal
-Group(de):	Basis
+Group(de):	GrundsДtzlich
 Group(es):	Base
 Group(fr):	Base
 Group(is):	Grunnforrit
@@ -444,7 +522,7 @@ Summary(pl):	ModuЁ tradycyjnych plikowych baz danych NSS glibc
 Group:		Base
 Group(cs):	ZАklad
 Group(da):	Basal
-Group(de):	Basis
+Group(de):	GrundsДtzlich
 Group(es):	Base
 Group(fr):	Base
 Group(is):	Grunnforrit
@@ -472,7 +550,7 @@ Summary(pl):	ModuЁ hesiod NSS glibc
 Group:		Base
 Group(cs):	ZАklad
 Group(da):	Basal
-Group(de):	Basis
+Group(de):	GrundsДtzlich
 Group(es):	Base
 Group(fr):	Base
 Group(is):	Grunnforrit
@@ -500,7 +578,7 @@ Summary(pl):	ModuЁ NIS(YP) NSS glibc
 Group:		Base
 Group(cs):	ZАklad
 Group(da):	Basal
-Group(de):	Basis
+Group(de):	GrundsДtzlich
 Group(es):	Base
 Group(fr):	Base
 Group(is):	Grunnforrit
@@ -528,7 +606,7 @@ Summary(pl):	ModuЁ NIS+ NSS
 Group:		Base
 Group(cs):	ZАklad
 Group(da):	Basal
-Group(de):	Basis
+Group(de):	GrundsДtzlich
 Group(es):	Base
 Group(fr):	Base
 Group(is):	Grunnforrit
@@ -595,8 +673,8 @@ Zabawka.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
-%patch14 -p1
+
+chmod +x scripts/cpp
 
 %build
 LDFLAGS=" " ; export LDFLAGS
