@@ -84,7 +84,6 @@ Group:		Libraries
 Source0:	libc-%{version}-%{_snap}.tar.bz2
 # Source0-md5:	46e7a9acc5b115d6c0cf65bd9c037f93
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-# Source1-md5:	7a199cd4965eb5622163756ae64358fe
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -110,10 +109,10 @@ Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-soinit-EH_FRAME.patch
 Patch14:	%{name}-sparc-errno_fix.patch
-#Patch15:	%{name}-csu-quotes.patch		OBSOLETE
+
 Patch16:	%{name}-tests-noproc.patch
 Patch17:	%{name}-new-charsets.patch
-#Patch18:	%{name}-sr_CS.patch			OBSOLETE
+
 Patch19:	%{name}-sparc64-dl-machine.patch
 Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
@@ -811,10 +810,10 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %{!?with_kernelheaders:%patch12 -p1}
 %patch13 -p1
 %patch14 -p0
-#patch15 -p1		OBSOLETE
+
 %patch16 -p1
 %patch17 -p1
-#patch18 -p1		OBSOLETE
+
 %patch19 -p1
 %patch20 -p1
 %patch21 -p1
