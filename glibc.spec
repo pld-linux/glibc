@@ -70,7 +70,6 @@ Conflicts:	man-pages < 1.43
 Conflicts:	ld.so < 1.9.9-10
 
 %define		debugcflags	-O1 -g
-%define		configuredir	%{u2p:%{_builddir}}/%{name}-%{version}/
 #define		parallelmkflags PARALLELMFLAGS="-j 4"	
 %define		parallelmkflags %{nil}	
 
@@ -479,7 +478,7 @@ mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
-%configure \
+../%configure \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
