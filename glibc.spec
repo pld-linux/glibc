@@ -7,11 +7,7 @@
 # _without_fp		build without frame pointer (pass --enable-omitfp)
 # _without_memusage	build without memusage
 #
-# TODO:
-#
-# check if there's resolved problem with /usr/lib/locale/locale-archive
-# (it is big and need to be regenerated, to have locale for person, who's
-# installing glibc) - from wrobell
+# TODO: localedb-gen man pages(?)
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
 Summary:	GNU libc
@@ -41,6 +37,7 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # Source6-md5:	2e3992c2e1bc94212c2cd33236de6058
 # borrowed from util-linux
 Source7:	sln.8
+Source8:	%{name}-localedb-gen
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -57,6 +54,7 @@ Patch16:	%{name}-java-libc-wait.patch
 Patch17:	%{name}-morelocales.patch
 Patch18:	%{name}-lthrds_noomit.patch
 Patch19:	%{name}-no_opt_override.patch
+Patch20:	%{name}-gcc33.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -249,7 +247,6 @@ kitaplýklar.
 ÔÁ ÏÂ'¤ËÔÎ¦ ÆÁÊÌÉ, ÝÏ Í¦ÓÔÑÔØÓÑ × ÃØÏÍÕ ÐÁËÅÔ¦, ÃÏÂ ÓÔ×ÏÒÀ×ÁÔÉ
 ×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
 
-
 %package kernel-headers
 Summary:	Kernel header files the glibc has been built with
 Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
@@ -311,17 +308,33 @@ Requires:	%{name} = %{version}
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
-files to use the internationalization features of the GNU libc. glibc
-package contains standard set of locale binary database so you need
-this package only when you want to build some non-standard locale
-database.
+files to use the internationalization features of the GNU libc.
 
 %description -n localedb-src -l pl
 Pakiet ten zawiera dane niezbêdne do zbudowania binarnych plików
 lokalizacyjnych, by móc wykorzystaæ mo¿liwo¶ci oferowane przez GNU
-libc. glibc zawiera standardowy zestaw binarnych baz lokalizacyjnych,
-w zwi±zku z czym ten pakiet jest potrzebny tylko w sytuacji budowania
-jakiej¶ niestandardowej bazy.
+libc.
+
+%package localedb-all
+Summary:	locale database for all locales supported by glibc
+Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs³ugiwanych przez glibc
+Group:		Libraries
+Requires:	%{name} = %{version}
+
+%description localedb-all
+This package contains locale database for all locales supported by
+glibc. In glibc 2.3.x it's one large file (about 19MB) - if you want
+something smaller with support for chosen locales only, consider
+installing localedb-src and regenerating database using localedb-gen
+script (when database is generated, localedb-src can be uninstalled).
+
+%description localedb-all -l pl
+Ten pakiet zawiera bazê danych locale dla wszystkich lokalizacji
+obs³ugiwanych przez glibc. W glibc 2.3.x jest to jeden du¿y plik
+(oko³o 19MB); aby mieæ co¶ mniejszego, z obs³ug± tylko wybranych
+lokalizacji, nale¿y zainstalowaæ pakiet localedb-src i przegenerowaæ
+bazê danych przy u¿yciu skryptu localedb-gen (po wygenerowaniu bazy
+pakiet localedb-src mo¿na odinstalowaæ).
 
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
@@ -498,7 +511,6 @@ glibc NSS (Name Service Switch) module for NIS+ databases accesa.
 %description -n nss_nisplus -l pl
 Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS+.
 
-%if %{?_without_memusage:0}%{!?_without_memusage:1}
 %package memusage
 Summary:	A toy
 Summary(pl):	Zabawka
@@ -511,7 +523,6 @@ A toy.
 
 %description memusage -l pl
 Zabawka.
-%endif
 
 %package zoneinfo_right
 Summary:	Non-POSIX (real) time zones
@@ -546,6 +557,7 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %patch18 -p1
 # don't know, if it is good idea, for brave ones
 #%patch19 -p1
+%patch20 -p1
 
 chmod +x scripts/cpp
 
@@ -565,7 +577,7 @@ LDFLAGS=" " ; export LDFLAGS
 	--with-headers=%{_kernelsrcdir}/include
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
-%{__make} %{parallelmkflags}
+%{__make} %{?parallelmkflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -575,14 +587,14 @@ cd builddir
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
-	%{parallelmkflags} \
+	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
-	%{parallelmkflags} \
+	%{?parallelmkflags} \
 	install_root=$RPM_BUILD_ROOT
 
 PICFILES="libc_pic.a libc.map
@@ -691,6 +703,14 @@ for i in af ar az be bg br bs cy de_AT el en eo es_AR et eu fa fi ga gr he hi \
 done
 install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/man8
 
+# localedb-gen infrastructure
+install %{SOURCE8} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+cat > $RPM_BUILD_ROOT/etc/sysconfig/localedb <<EOF
+# list of supported locales
+#SUPPORTED_LOCALES="pl_PL/ISO-8859-2 de_DE/ISO-8859-2 en_GB/ISO-8859-1 en_US/ISO-8859-1"
+EOF
+install ../localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
+
 # shutup check-files
 rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
 rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
@@ -716,10 +736,8 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%if %{?_without_memusage:0}%{!?_without_memusage:1}
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
-%endif
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
@@ -793,7 +811,6 @@ fi
 %exclude %{_datadir}/zoneinfo/right
 
 %dir %{_libdir}/locale
-%{_libdir}/locale/locale-archive
 
 %{_mandir}/man1/[!lsg]*
 %{_mandir}/man1/getent.1*
@@ -948,8 +965,14 @@ fi
 %files -n localedb-src
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/localedef
+%attr(755,root,root) %{_bindir}/localedb-gen
 %{_datadir}/i18n
 %{_mandir}/man1/localedef*
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/localedb
+
+%files localedb-all
+%defattr(644,root,root,755)
+%{_libdir}/locale/locale-archive
 
 %files -n iconv
 %defattr(644,root,root,755)
