@@ -6,9 +6,14 @@
 #			headers will be searched in %_kernelsrcdir/include.
 # _without_fp		build without frame pointer (pass --enable-omitfp)
 # _without_memusage	build without memusage
-
+#
+# TODO:
+#
+# check if there's resolved problem with /usr/lib/locale/locale-archive
+# (it is big and need to be regenerated, to have locale for person, who's
+# installing glibc) - from wrobell
+#
 %{!?min_kernel:%define		min_kernel	2.2.0}
-
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -19,7 +24,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.2
-Release:	3
+Release:	2.9
 Epoch:		6
 License:	LGPL
 Group:		Libraries
