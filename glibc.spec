@@ -66,7 +66,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.8%{!?with_nptl:+nonptl}%{!?with_nptl:%{!?with_tls:+notls}}
+Release:	0.%{_snap}.9%{!?with_nptl:+nonptl}%{!?with_nptl:%{!?with_tls:+notls}}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -115,8 +115,9 @@ Patch22:	%{name}-tzfile-noassert.patch
 Patch23:	%{name}-ifreq.patch
 Patch24:	%{name}-morelocales.patch
 Patch25:	%{name}-ppc-getcontext.patch
-Patch26:	%{name}-locale_fixes.patch
-Patch27:	%{name}-LD_DEBUG.patch
+Patch26:	%{name}-locale_ZA.patch
+Patch27:	%{name}-locale_fixes.patch
+Patch28:	%{name}-LD_DEBUG.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -817,8 +818,9 @@ Statyczne 64-bitowe biblioteki GNU libc.
 # UPDATEME/DROPME
 #%patch25 -p1
 %patch26 -p1
+%patch27 -p1
 # UPDATEME/DROPME
-# %patch27 -p0
+# %patch28 -p0
 # DROP
 #%patch30 -p1
 # DROP
