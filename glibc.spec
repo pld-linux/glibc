@@ -838,7 +838,7 @@ env LANGUAGE=C LC_ALL=C \
 %{__make} tests 2>&1 | awk '
 BEGIN { file = "" }
 {
-	if (($0 ~ /\*\*\* \[.*\.out\] Error/) && (file == "")) {
+	if (($0 ~ /\*\*\* \[.*\.out\] Error/) && ($0 !~ /annexc/) && (file == "")) {
 		file=$0;
 		gsub(/.*\[/, NIL, file);
 		gsub(/\].*/, NIL, file);
