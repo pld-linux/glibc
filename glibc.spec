@@ -5,15 +5,19 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.1
-Release:	2	
+Release:	3	
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.pre1.tar.gz
+########	ftp://sourceware.cygnus.com/pub/glibc/
+Source0:	%{name}-%{version}.tar.gz
+Source1:	%{name}-linuxthreads-%{version}.tar.gz
+########	http://www.ozemail.com.au/~geoffk/glibc-crypt
+Source2:	%{name}-crypt-%{version}.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
+Source5:	utmpd.sysconfig
+Source6:	nscd.sysconfig
 Patch0:		glibc-info.patch
 Patch1:		glibc-paths.patch
 URL:		http://www.gnu.org/software/libc/
@@ -143,25 +147,37 @@ utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików
 /var/run/utmp i /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania
 ze starszych programów (bazuj±cych na libc5).
 
+%package	static
+Summary:	Static libraries
+Summary(pl):	Biblioteki statyczne 
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
+
+%description static
+GNU libc-2.1 Static libraries
+
+%description -l pl static
+GNU libc-2.1 Static libraries
+
 %prep 
 %setup  -q -a 1 -a 2
 %patch0 -p1
 %patch1 -p1
 
 %build
-CFLAGS=$RPM_OPT_FLAGS \
-    ./configure \
-	--prefix=%{_prefix} \
+
+    %configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
 	--disable-omitfp \
 	--infodir=%{_infodir} \
-	%{_target_platform}
+	--mandir=%{_mandir}
 make   
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,%{_mandir}/man3,var/db}
+install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig},%{_mandir}/man3,var/db}
 
 make install \
 	install_root=$RPM_BUILD_ROOT \
@@ -174,7 +190,7 @@ make install-locales -C localedata \
 make -C linuxthreads/man
 install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
 
-rm -rf $RPM_BUILD_ROOT/usr/share/zoneinfo/{localtime,posixtime,posixrules}
+rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
 ln -sf ../../../etc/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
@@ -183,11 +199,10 @@ ln -sf ../../usr/lib/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT/etc/localtime
 
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/nsswitch.conf
-
-install %{SOURCE4} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
-
+install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+install %{SOURCE3}		$RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
+install %{SOURCE6}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
+install %{SOURCE5}		$RPM_BUILD_ROOT/etc/sysconfig/utmpd
 install nscd/nscd.conf		$RPM_BUILD_ROOT/etc
 install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
 
@@ -206,14 +221,13 @@ install -d documentation
 cp linuxthreads/ChangeLog  documentation/ChangeLog.threads
 cp linuxthreads/Changes documentation/Changes.threads
 cp linuxthreads/README documentation/README.threads
-cp login/README.utmpd documentation/
 cp crypt/README documentation/README.crypt
 
 cp ChangeLog ChangeLog.8 documentation
 
 gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
-	documentation/*
+	documentation/* login/README.utmpd
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -237,7 +251,7 @@ fi
 %preun -n nscd
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del nscd
-	/etc/rc.d/init.d/nscd stop >&2
+	/etc/rc.d/init.d/nscd stop &>/dev/null
 fi
 
 %post -n utmpd
@@ -250,7 +264,7 @@ fi
 %preun -n utmpd
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del utmpd
-	/etc/rc.d/init.d/utmpd stop >&2
+	/etc/rc.d/init.d/utmpd stop &>/dev/null
 fi
 
 %clean
@@ -258,7 +272,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz NEWS.gz FAQ.gz BUGS.gz
+%doc {README,NEWS,FAQ,BUGS}.gz
 
 %config(noreplace) %verify(not mtime md5 size) /etc/nsswitch.conf
 %config /etc/rpc
@@ -284,7 +298,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* NOTES.gz PROJECTS.gz
+%doc documentation/* {NOTES,PROJECTS}.gz
 
 %{_includedir}/*.h
 %{_includedir}/arpa
@@ -312,23 +326,35 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/*.o
-%{_libdir}/lib*.a
+%attr(755,root,root) %{_libdir}/gconv/*.so
 
-%attr(755,root,root) /usr/lib/gconv/*.so
 %{_mandir}/man3/*
 
 %files -n nscd
 %defattr(644,root,root,755)
+%attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %attr(755,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
 
 %files -n utmpd
 %defattr(644,root,root,755)
+%doc login/README.utmpd.gz
+%attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/utmpd
 %attr(755,root,root) /etc/rc.d/init.d/utmpd
 %attr(755,root,root) %{_sbindir}/utmpd
 
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
+
 %changelog
+  scripts/versions.awk),
+- added static subpackage (please, don't ask me why ...)
+- added {utmpd,nscd}.sysconfig
+- removed /var/db (it is in filesystem).
+
+* Wed Jun 02 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
 - added static subpackage,
 - added {utmpd,nscd}.sysconfig,
 - fixed %doc && {utmpd,nscd}.init,
