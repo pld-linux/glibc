@@ -1,6 +1,10 @@
 #
 # You can define min_kernel macro by "rpm --define 'min_kernel version'"
 # default is 2.2.0 (no changes up to 2.3.25)
+#
+# _without_dist_kernel	build without kernel from the distribution;
+#			headers will be searched in %_kernelsrcdir/include.
+#
 
 %{!?min_kernel:%define		min_kernel	2.2.0}
 
@@ -13,7 +17,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.1
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -44,11 +48,11 @@ BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	gettext-devel >= 0.10.36
-BuildRequires:	kernel-headers
 BuildRequires:	libpng-devel
 BuildRequires:	perl
 BuildRequires:	rpm-build >= 4.0.2-46
 BuildRequires:	texinfo
+%{!?without_dist_kernel:BuildRequires:	kernel-headers}
 Provides:	ld.so.2
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -150,7 +154,7 @@ Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	kernel-headers = %(rpm -q kernel-headers --queryformat '%{VERSION}')
+Requires:	%{name}-kernel-headers = %{version}-%{release}
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -189,6 +193,20 @@ kitaplýklar.
 (ÐÒÁËÔÉÞÎÏ ×Ó¦ ÐÒÏÇÒÁÍÉ §È ×ÉËÏÒÉÓÔÏ×ÕÀÔØ), ÓÉÓÔÅÍ¦ îåïâè¶äî¶ ÈÅÄÅÒÉ
 ÔÁ ÏÂ'¤ËÔÎ¦ ÆÁÊÌÉ, ÝÏ Í¦ÓÔÑÔØÓÑ × ÃØÏÍÕ ÐÁËÅÔ¦, ÃÏÂ ÓÔ×ÏÒÀ×ÁÔÉ
 ×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
+
+
+%package kernel-headers
+Summary:	/usr/include/{asm,linux}/*.h
+Group:		Development/Libraries
+
+%description kernel-headers
+
+Kernel header files: /usr/include/{asm,linux}/*.h.
+
+%description kernel-headers -l pl
+
+Pliki nag³ówkowe j±dra: /usr/include/{asm,linux}/*.h.
+
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -457,7 +475,8 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
 	--enable-profile \
-	--disable-omitfp
+	--disable-omitfp \
+	--with-headers=%{_kernelsrcdir}/include
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
 
 %{__make} %{parallelmkflags}
@@ -581,6 +600,20 @@ rm -f $RPM_BUILD_ROOT/%{_infodir}/dir
 # we don't support kernel without ptys support
 rm -f $RPM_BUILD_ROOT/%{_libdir}/pt_chown
 
+# list of includes from _includedir for glibc-devel
+find $RPM_BUILD_ROOT%{_includedir} -mindepth 1 \
+	| sed -e "s#^$RPM_BUILD_ROOT/*#/#" \
+	> %{_builddir}/%{name}-%{version}/includes_for_devel
+if [ -e $RPM_BUILD_ROOT%{_includedir}/asm -o -e $RPM_BUILD_ROOT%{_includedir}/linux ]; then
+	echo "something is wrong: $RPM_BUILD_ROOT%{_includedir}/asm" \
+	     "and/or $RPM_BUILD_ROOT%{_includedir}/linux exist; exiting"
+	exit 1
+fi
+
+# copy actual kernel headers for glibc-kernel-headers
+%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
+%{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -605,6 +638,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+
+%pre kernel-headers
+# useful if these are symlinks
+rm -f %{_includedir}/{asm,linux}
 
 %post -n nscd
 /sbin/chkconfig --add nscd
@@ -725,15 +762,13 @@ fi
 %attr(755,root,root) %{_bindir}/memusage*
 %attr(755,root,root) %{_libdir}/libmemusage*
 
-%files devel
+%files devel -f includes_for_devel
 %defattr(644,root,root,755)
 %doc documentation/* NOTES PROJECTS
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/*prof*
 %attr(755,root,root) %{_bindir}/*trace
-
-%{_includedir}/*
 
 %{_infodir}/libc.info*
 
@@ -763,6 +798,11 @@ fi
 %lang(pt) %{_mandir}/pt/man3/*
 %lang(pt_BR) %{_mandir}/pt_BR/man3/*
 %lang(ru) %{_mandir}/ru/man3/*
+
+%files kernel-headers
+%defattr(644,root,root,755)
+%{_includedir}/asm
+%{_includedir}/linux
 
 %files -n nscd
 %defattr(644,root,root,755)
