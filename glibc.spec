@@ -32,6 +32,7 @@ Patch10:	%{name}-confname.patch
 Patch11:	%{name}-nis.patch
 Patch12:	%{name}-speed.patch
 Patch13:	%{name}-paths.patch
+Patch14: 	%{name}-vaargs.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 BuildRequires:	gd-devel
@@ -341,6 +342,7 @@ A toy.
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 %build
 LDFLAGS=" " ; export LDFLAGS
