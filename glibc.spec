@@ -21,7 +21,7 @@
 #	in order to use this version!
 #
 %{!?min_kernel:%define		min_kernel	2.2.0}
-%define		rel 2.16
+%define		rel 2.17
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
@@ -71,6 +71,7 @@ Patch18:	%{name}-lthrds_noomit.patch
 Patch19:	%{name}-no_opt_override.patch
 Patch20:	%{name}-gcc33.patch
 #Patch21:	%{name}-sanity.patch
+Patch22:	%{name}-secureexec.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -585,6 +586,7 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 #%patch19 -p1
 %patch20 -p1
 #%patch21 -p1
+%patch22 -p1
 
 chmod +x scripts/cpp
 
