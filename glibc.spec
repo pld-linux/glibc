@@ -301,6 +301,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
 Obsoletes:	libiconv-devel
+Obsoletes:	glibc-headers
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
