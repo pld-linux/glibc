@@ -597,7 +597,9 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %{!?_with_kernheaders:%patch23}
 %patch24 -p1
 # updated - lt
+%ifnarch alpha
 %patch25 -p1
+%endif
 
 chmod +x scripts/cpp
 
