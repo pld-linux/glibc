@@ -73,7 +73,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.1.2
+Release:	0.%{_snap}.1.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -124,6 +124,7 @@ Patch26:	%{name}-pax_dl-execstack.patch
 Patch27:	%{name}-sparc_comdat.patch
 Patch28:	%{name}-ia64_unwind.patch
 Patch29:	%{name}-ZA_collate.patch
+Patch30:	%{name}-fix_tls_linkage.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -816,6 +817,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch27 -p1
 %patch28 -p1
 %patch29 -p1
+%patch30 -p0
 
 chmod +x scripts/cpp
 
