@@ -1,0 +1,10 @@
+- start preparing for 2.2
+- branch GLIBC_2_2
+- updated to 2.1.91
+- removed utmp, libdb*
+- crypt sources are now in mainstream
+- added ldconfig man page
+- obsoletes/provides (/sbin/)ldconfig
+- removed/updated patches
+- added %%{find_lang}
+- fixed duplicate files in pic and main package
