@@ -106,9 +106,10 @@ Patch22:	%{name}-tzfile-noassert.patch
 Patch23:	%{name}-ifreq.patch
 Patch24:	%{name}-morelocales.patch
 Patch25:	%{name}-ppc-getcontext.patch
-Patch26:	%{name}-locale_fixes.patch
-Patch27:	%{name}-LD_DEBUG.patch
-Patch28:	%{name}-soversions-fix.patch
+Patch26:	%{name}-locale_ZA.patch
+Patch27:	%{name}-locale_fixes.patch
+Patch28:	%{name}-LD_DEBUG.patch
+Patch29:	%{name}-soversions-fix.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -801,8 +802,9 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
-%patch27 -p0
-%patch28 -p1
+%patch27 -p1
+%patch28 -p0
+%patch29 -p1
 
 %patch30 -p1
 %patch31 -p1
@@ -979,16 +981,16 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# ia,li (used by GNOME)
-# nso,ss,ven (used by KDE)
+# tk, yo (used by GNOME)
+# ven -> ve (used by KDE)
 # NOTES:
 # bn is used for bn_BD or bn_IN?
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
     en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn \
-    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn or pa pt ro ru se \
-    sl sq sr sr@Latn sr@ije ta tg th uk uz vi wa xh yi zu ; do
+    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro ru se \
+    sl sq sr sr@Latn sr@ije ss ta tg th tlh uk uz ve vi wa xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
