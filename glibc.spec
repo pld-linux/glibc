@@ -10,7 +10,7 @@
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_with	nptl		# use nptl instead of linuxthreads
 %bcond_without  tls		# do not use tls
-%bcond_without  tests		# do not perform "make test"
+%bcond_with	tests		# do not perform "make test"
 
 #
 # TODO:
@@ -25,7 +25,8 @@
 %{!?min_kernel:%global          min_kernel      2.4.6}
 
 %if %{with nptl}
-%ifarch i686 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
+# it seems that nptl uses cmpxchgl (available since i486) on x86
+%ifarch i486 i586 i686 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
 %if "%{min_kernel}" < "2.6.0"
 %global		min_kernel	2.6.0
 %endif
@@ -35,7 +36,7 @@
 %endif
 
 %if %{with tls}
-%ifnarch i686 athlon amd64 ia64 s390 s390x sparc sparcv9 ppc ppc64
+%ifnarch %{ix86} amd64 ia64 s390 s390x sparc sparcv9 ppc ppc64
 %undefine with_tls
 %endif
 %endif
