@@ -431,7 +431,7 @@ cd ldconfig-980708
 
 cd ldconfig-980708
 rm -f ldconfig
-gcc -c $RPM_OPT_FLAGS -D_LIBC ldconfig.c -o ldconfig.o
+gcc -c -L../ $RPM_OPT_FLAGS -D_LIBC ldconfig.c -o ldconfig.o
 gcc -nodefaultlibs -static ldconfig.o ../libc.a -o ldconfig
 
 %install
