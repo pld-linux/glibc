@@ -218,6 +218,7 @@ Summary(de):	glibc mit Profil-Unterstützung
 Summary(fr):	glibc avec support pour profiling
 Summary(tr):	Ölçüm desteði olan glibc
 Group:		Development/Libraries/Libc
+Group(pl):	Programowanie/Biblioteki/Libc
 Obsoletes:	libc-profile
 Requires:	%{name}-devel = %{version}
 
