@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 Name:		glibc
 Version:	2.2.4
-Release:	5
+Release:	6
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -52,7 +52,8 @@ Autoreq:	false
 Prereq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
-Conflicts:	man-pages < 1.40-3
+Conflicts:	man-pages < 1.43
+Conflicts:	ld.so < 1.9.9-9
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -559,19 +560,36 @@ fi
 
 %dir %{_libdir}/locale
 
-%{_mandir}/man[578]/*
+%{_mandir}/man1/[^ls]*
+%{_mandir}/man1/locale.1*
+%{_mandir}/man1/ldd.1*
+%{_mandir}/man5/???[^d]*
+%{_mandir}/man7/*
+%{_mandir}/man8/[^n]*
 %lang(cs) %{_mandir}/cs/man[578]/*
 %lang(de) %{_mandir}/de/man[578]/*
 %lang(es) %{_mandir}/es/man[578]/*
+%lang(fi) %{_mandir}/fi/man1/ldd.1*
+%lang(fr) %{_mandir}/fr/man1/ldd.1*
 %lang(fr) %{_mandir}/fr/man[578]/*
+%lang(hu) %{_mandir}/hu/man1/ldd.1*
 %lang(hu) %{_mandir}/hu/man[578]/*
 %lang(it) %{_mandir}/it/man[578]/*
-%lang(ja) %{_mandir}/ja/man[578]/*
+%lang(ja) %{_mandir}/ja/man1/[^ls]*
+%lang(ja) %{_mandir}/ja/man1/ldd.1*
+%lang(ja) %{_mandir}/ja/man5/???[^d]*
+%lang(ja) %{_mandir}/ja/man7/*
+%lang(ja) %{_mandir}/ja/man8/[^n]*
 %lang(ko) %{_mandir}/ko/man[578]/*
-# %lang(nl) %{_mandir}/pl/man[578]/*
+# %lang(nl) %{_mandir}/nl/man[578]/*
+%lang(pl) %{_mandir}/pl/man1/ldd.1*
 %lang(pl) %{_mandir}/pl/man[578]/*
-%lang(pt) %{_mandir}/pt/man[578]/*
-%lang(pt_BR) %{_mandir}/pt_BR/man[578]/*
+%lang(pt) %{_mandir}/pt/man5/???[^d]*
+%lang(pt) %{_mandir}/pt/man7/*
+%lang(pt) %{_mandir}/pt/man8/[^n]*
+%lang(pt_BR) %{_mandir}/pt_BR/man5/???[^d]*
+%lang(pt_BR) %{_mandir}/pt_BR/man7/*
+%lang(pt_BR) %{_mandir}/pt_BR/man8/[^n]*
 %lang(ru) %{_mandir}/ru/man[578]/*
 
 #%files -n nss_dns
@@ -620,6 +638,7 @@ fi
 %attr(755,root,root) %{_libdir}/*crt*.o
 %{_libdir}/libc_nonshared.a
 
+%{_mandir}/man1/sprof*
 %{_mandir}/man3/*
 %lang(cs) %{_mandir}/cs/man3/*
 %lang(de) %{_mandir}/de/man3/*
@@ -643,11 +662,20 @@ fi
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
+%{_mandir}/man5/nscd.conf*
+%{_mandir}/man8/nscd*
+%lang(ja) %{_mandir}/ja/man5/nscd.conf*
+%lang(ja) %{_mandir}/ja/man8/nscd*
+%lang(pt) %{_mandir}/pt/man5/nscd.conf*
+%lang(pt) %{_mandir}/pt/man8/nscd*
+%lang(pt_BR) %{_mandir}/pt_BR/man5/nscd.conf*
+%lang(pt_BR) %{_mandir}/pt_BR/man8/nscd*
 
 %files -n localedb-src
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/localedef
 %{_datadir}/i18n
+%{_mandir}/man1/localedef*
 
 %files -n iconv
 %defattr(644,root,root,755)
