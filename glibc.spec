@@ -444,7 +444,7 @@ kitaplýðý kullanmak zorundadýrlar.
 
 %package pic
 Summary:	glibc PIC archive
-Summary(pl):	archiwum PIC glibc
+Summary(pl):	Archiwum PIC glibc
 Release:	%{rel}
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}
@@ -500,7 +500,7 @@ Traditional files databases NSS glibc module.
 Modu³ tradycyjnych plikowych baz danych NSS glibc.
 
 %package -n nss_hesiod
-Summary:	Hesiod NSS glibc module
+Summary:	hesiod NSS glibc module
 Summary(pl):	Modu³ hesiod NSS glibc
 Release:	%{rel}
 Group:		Base
@@ -751,9 +751,9 @@ done
 # ia,kn,li,mn,sr@Latn (used by GNOME)
 #	note: GNOME2 uses sr as cyrillic!
 # nso,ss,ven,xh,zu (used by KDE)
-for i in af ar az be bg br bs cy de_AT el en eo es_AR es_MX et eu fa fi ga gr \
-	 he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru se sl \
-	 sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
+for i in af ar az be bg br bs cy de_AT el en en_AU eo es_AR es_MX et eu fa fi \
+	 ga gr he hi hr hu id is ja_JP.SJIS ka lg lt lv mk ms mt nn pt ro ru \
+	 se sl sq sr sr@cyrillic ta tg th uk uz vi wa yi zh_CN ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -824,7 +824,10 @@ if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
-touch /var/log/nscd && (chmod 000 /var/log/nscd; chown root.root /var/log/nscd; chmod 640 /var/log/nscd)
+touch /var/log/nscd
+chmod 000 /var/log/nscd
+chown root:root /var/log/nscd
+chmod 640 /var/log/nscd
 if [ -f /var/lock/subsys/nscd ]; then
 	/etc/rc.d/init.d/nscd restart 1>&2
 else
