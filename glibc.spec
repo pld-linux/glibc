@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	3
+Release:	4
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
@@ -18,6 +18,8 @@ Source4:	nscd.init
 Source5:	utmpd.sysconfig
 Source6:	nscd.sysconfig
 Source7:	nscd.logrotate
+Source10:	ftp://ftp.yggdrasil.com/private/hjl/ldconfig-980708.tar.gz
+Source11:	ldconfig.8
 Patch0:		glibc-info.patch
 Patch1:		glibc-versions.awk_fix.patch
 Patch2:		glibc-pld.patch
@@ -28,11 +30,17 @@ Patch6:		glibc-linuxthreads-lock.patch
 Patch7:		glibc-pthread_create-manpage.patch
 Patch8:		glibc-sparc-linux-chown.patch
 Patch9:		glibc-ctype.patch
+Patch10:	ldconfig-glibc.patch
+Patch11:	ldconfig-bklinks.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
+Provides:	ldconfig
+Provides:	/sbin/ldconfig
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
+Obsoletes:	ldconfig
+Prereq:		basesystem
 Autoreq:	false
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -248,8 +256,93 @@ GNU C Library PIC archive contains an archive library (ar file) composed
 of individual shared objects. This is used for creating a library which
 is a smaller subset of the standard libc shared library.
 
+%package db1
+Summary:	BSD database library for C
+Group:		Libraries
+PreReq:		/sbin/ldconfig
+
+%description db1
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
+embedded database support for both traditional and client/server applications.
+It should be installed if compatibility is needed with databases created with
+db1. This library used to be part of the glibc package.
+
+%package db1-devel
+Summary:	Development libraries and header files for Berkeley database library
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-db1 = %{version}
+
+%description db1-devel
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
+embedded database support for both traditional and client/server applications.
+Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
+methods.
+
+This package contains the header files, libraries, and documentation
+for building programs which use Berkeley DB.
+
+%package db1-static
+Summary:	Static libraries for Berkeley database library
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-db1-devel = %{version}
+
+%description db1-static
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
+embedded database support for both traditional and client/server applications.
+Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
+methods.
+
+This package contains the static libraries for building programs which use
+Berkeley DB.
+
+%package db2
+Summary:	BSD database library for C
+Group:		Libraries
+PreReq:		/sbin/ldconfig
+
+%description db2
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
+embedded database support for both traditional and client/server applications.
+This library used to be part of the glibc package.
+
+%package db2-devel
+Summary:	Development libraries and header files for Berkeley database library
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-db2 = %{version}
+
+%description db2-devel
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
+embedded database support for both traditional and client/server applications.
+Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
+methods.
+
+This package contains the header files, libraries, and documentation
+for building programs which use Berkeley DB.
+
+%package db2-static
+Summary:	Static libraries for Berkeley database library
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-db2-devel = %{version}
+
+%description db2-static
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
+embedded database support for both traditional and client/server applications.
+Berkeley DB includes B tree, Hashing, Fixed and Variable-length record access
+methods.
+
+This package contains the static libraries for building programs which use
+Berkeley DB.
+
 %prep
-%setup  -q -a 1 -a 2
+%setup -q -a 1 -a 2 -a 10
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -260,17 +353,25 @@ is a smaller subset of the standard libc shared library.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p0
+cd ldconfig-980708
+%patch10 -p1
+%patch11 -p1
 
 %build
 %configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--enable-profile \
 	--disable-omitfp
-%{__make}
+
+%{__make} LDFLAGS=""
+
+cd ldconfig-980708
+rm -f ldconfig
+gcc -o ldconfig $RPM_OPT_FLAGS -D_LIBC -static ldconfig.c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man3,var/{db,log}}
+install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/{db,log}}
 
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
@@ -296,17 +397,25 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 ln -sf ../../..%{_sysconfdir}/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
+ln -sf libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
+ln -sf libdb.a $RPM_BUILD_ROOT%{_libdir}/libdb2.a
+ln -sf ../../lib/libdb.so.3 $RPM_BUILD_ROOT%{_libdir}/libdb2.so
+ln -sf libdb.so.3 $RPM_BUILD_ROOT/lib/libdb2.so.3
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
-install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-install %{SOURCE3}		$RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
-install %{SOURCE6}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
-install %{SOURCE5}		$RPM_BUILD_ROOT/etc/sysconfig/utmpd
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
+install %{SOURCE6} $RPM_BUILD_ROOT/etc/sysconfig/nscd
+install %{SOURCE5} $RPM_BUILD_ROOT/etc/sysconfig/utmpd
 install %{SOURCE7} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf $RPM_BUILD_ROOT%{_sysconfdir}
+
+install -s ldconfig-980708/ldconfig $RPM_BUILD_ROOT/sbin/ldconfig
+
+install %{SOURCE11} $RPM_BUILD_ROOT%{_mandir}/man8
+touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
 install nss/db-Makefile $RPM_BUILD_ROOT/var/db/Makefile
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -325,12 +434,13 @@ cp linuxthreads/ChangeLog  documentation/ChangeLog.threads
 cp linuxthreads/Changes documentation/Changes.threads
 cp linuxthreads/README documentation/README.threads
 cp crypt/README documentation/README.crypt
+cp ldconfig-980708/README ldconfig-980708/README.ldconfig
 
 cp ChangeLog ChangeLog.8 documentation
 
 gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
 	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
-	documentation/* login/README.utmpd
+	documentation/* login/README.utmpd ldconfig-980708/README.ldconfig
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
 strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
@@ -388,28 +498,28 @@ if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del utmpd
 fi
 
+%post db1  -p /sbin/ldconfig
+%postun db1 -p /sbin/ldconfig
+
+%post db2  -p /sbin/ldconfig
+%postun db2 -p /sbin/ldconfig
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -f glibc.lang
 %defattr(644,root,root,755)
-%doc {README,NEWS,FAQ,BUGS}.gz
+%doc {README,NEWS,FAQ,BUGS,ldconfig-980708/README.ldconfig}.gz
 
 %config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nsswitch.conf
 %config %{_sysconfdir}/rpc
 
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ld.so.conf
+%ghost %{_sysconfdir}/ld.so.cache
+
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/create-db
-%attr(755,root,root) %{_bindir}/db_archive
-%attr(755,root,root) %{_bindir}/db_checkpoint
-%attr(755,root,root) %{_bindir}/db_deadlock
-%attr(755,root,root) %{_bindir}/db_dump
-%attr(755,root,root) %{_bindir}/db_dump185
-%attr(755,root,root) %{_bindir}/db_load
-%attr(755,root,root) %{_bindir}/db_printlog
-%attr(755,root,root) %{_bindir}/db_recover
-%attr(755,root,root) %{_bindir}/db_stat
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/ldd
@@ -425,7 +535,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/zic
 
 %attr(755,root,root) /lib/ld-*
-%attr(755,root,root) /lib/lib*
+%attr(755,root,root) /lib/lib[A-Z]*
+%attr(755,root,root) /lib/libc*
+%attr(755,root,root) /lib/libdl*
+%attr(755,root,root) /lib/lib[m-z]*
+
+%{_mandir}/man8/*
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
@@ -444,7 +559,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*.h
 %{_includedir}/arpa
 %{_includedir}/bits
-%{_includedir}/db1
 %{_includedir}/gnu
 %{_includedir}/net
 %{_includedir}/netash
@@ -465,7 +579,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_infodir}/libc.inf*.gz
 
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib[A-Z]*.so
+%attr(755,root,root) %{_libdir}/libc*.so
+%attr(755,root,root) %{_libdir}/libdl*.so
+%attr(755,root,root) %{_libdir}/libm*.so
+%attr(755,root,root) %{_libdir}/libnsl*.so
+%attr(755,root,root) %{_libdir}/libnss*.so
+%attr(755,root,root) %{_libdir}/lib[p-z]*.so
 %attr(755,root,root) %{_libdir}/*.o
 %{_libdir}/libc_nonshared.a
 
@@ -506,14 +626,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbsd.a
 %{_libdir}/libc.a
 %{_libdir}/libcrypt.a
-%{_libdir}/libdb.a
-%{_libdir}/libdb1.a
 %{_libdir}/libdl.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
-%{_libdir}/libndbm.a
 %{_libdir}/libnsl.a
 %{_libdir}/libposix.a
 %{_libdir}/libpthread.a
@@ -524,7 +641,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files profile
 %defattr(644,root,root,755)
-%{_libdir}/lib*_p.a
+%{_libdir}/libBrokenLocale_p.a
+%{_libdir}/libc_p.a
+%{_libdir}/libcrypt_p.a
+%{_libdir}/libdl_p.a
+%{_libdir}/libm_p.a
+%{_libdir}/libnsl_p.a
+%{_libdir}/libpthread_p.a
+%{_libdir}/libresolv_p.a
+%{_libdir}/librpcsvc_p.a
+%{_libdir}/librt_p.a
+%{_libdir}/libutil_p.a
 
 %files pic
 %defattr(644,root,root,755)
@@ -532,3 +659,45 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.map
 %{_libdir}/soinit.o
 %{_libdir}/sofini.o
+
+%files db1
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libdb1*
+%attr(755,root,root) /lib/libdb.so.2
+
+%files db1-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/db_dump185
+%attr(755,root,root) %{_libdir}/libdb1.so
+%{_includedir}/db1
+
+%files db1-static
+%defattr(644,root,root,755)
+%{_libdir}/libdb1.a
+
+%files db2
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libdb-*
+%attr(755,root,root) /lib/libdb.so.3
+%attr(755,root,root) /lib/libdb2.so.3
+
+%files db2-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/db_archive
+%attr(755,root,root) %{_bindir}/db_checkpoint
+%attr(755,root,root) %{_bindir}/db_deadlock
+%attr(755,root,root) %{_bindir}/db_dump
+%attr(755,root,root) %{_bindir}/db_load
+%attr(755,root,root) %{_bindir}/db_printlog
+%attr(755,root,root) %{_bindir}/db_recover
+%attr(755,root,root) %{_bindir}/db_stat
+%attr(755,root,root) %{_libdir}/libdb.so
+%attr(755,root,root) %{_libdir}/libdb2.so
+%attr(755,root,root) %{_libdir}/libndbm.so
+%{_includedir}/db*.h
+
+%files db2-static
+%defattr(644,root,root,755)
+%{_libdir}/libdb.a
+%{_libdir}/libdb2.a
+%{_libdir}/libndbm.a
