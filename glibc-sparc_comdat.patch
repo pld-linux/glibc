@@ -1,0 +1,16 @@
+--- libc/sysdeps/sparc/sparc32/bits/atomic.h~	2004-03-20 22:24:26.000000000 +0000
++++ libc/sysdeps/sparc/sparc32/bits/atomic.h	2004-10-30 16:09:39.606704683 +0000
+@@ -26,12 +26,8 @@
+    per library and assumes no variable will be accessed using atomic.h
+    macros from two different libraries.  */
+ 
+-__make_section_unallocated
+-  (".gnu.linkonce.b.__sparc32_atomic_locks, \"aw\", %nobits");
+-
+ volatile unsigned char __sparc32_atomic_locks[64]
+-  __attribute__ ((nocommon, section (".gnu.linkonce.b.__sparc32_atomic_locks"
+-				     __sec_comment),
++  __attribute__ ((nocommon, section (".gnu.linkonce.b.__sparc32_atomic_locks"),
+ 		  visibility ("hidden")));
+ 
+ #define __sparc32_atomic_do_lock(addr) \
