@@ -984,8 +984,8 @@ done
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU en_CA \
-    en_US eo es_AR es_MX et eu fa fo ga gu he hi ia id is ka kn leet lg li lo \
-    lt lv mi mk ml mn mr ms mt nds ne nn pa pt ro ru se sl sq sr sr@Latn \
+    en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn leet lg \
+    li lo lt lv mi mk ml mn mr ms mt nds ne nn pa pt ro ru se sl sq sr sr@Latn \
     sr@ije ta tg th uk uz vi wa xh yi zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
