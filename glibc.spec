@@ -16,9 +16,12 @@ Source3:	utmpd.init
 Source4:	nscd.init
 Source5:	utmpd.sysconfig
 Source6:	nscd.sysconfig
+Source7:	nscd.logrotate
 Patch0:		glibc-info.patch
 Patch1:		glibc-paths.patch
 Patch2:		glibc-versions.awk_fix.patch
+Patch3:		glibc-pld.patch
+Patch4:		glibc-getaddrinfo.patch
 URL:		http://www.gnu.org/software/libc/
 BuildPrereq:	perl
 Provides:	ld.so.2
@@ -165,6 +168,8 @@ GNU libc-2.1 Static libraries
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 %configure \
@@ -203,14 +208,16 @@ install %{SOURCE4}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/rc.d/init.d/utmpd
 install %{SOURCE6}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE5}		$RPM_BUILD_ROOT/etc/sysconfig/utmpd
+install %{SOURCE7}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf		$RPM_BUILD_ROOT/etc
 install nss/nsswitch.conf	$RPM_BUILD_ROOT/etc
 
-install nss/db-Makefile $RPM_BUILD_ROOT/var/db
+install nss/db-Makefile $RPM_BUILD_ROOT/var/db/Makefile
+:> $RPM_BUILD_ROOT/var/log/nscd
 
 cat << EOF > $RPM_BUILD_ROOT/usr/bin/create-db
 #!/bin/sh
-/usr/bin/make -f /var/db/db-Makefile
+/usr/bin/make -sC /var/db/
 EOF
 
 ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db 
@@ -246,30 +253,31 @@ fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
+touch /var/log/nscd && chmod 640 root.root /var/log/nscd
 if [ -f /var/lock/subsys/nscd ]; then
-	/etc/rc.d/init.d/nscd restart &>/dev/null
+	/etc/rc.d/init.d/nscd restart 1>&2
 else
-	echo "Run \"/etc/rc.d/init.d/nscd start\" to start nscd daemon."
+	echo "Run \"/etc/rc.d/init.d/nscd start\" to start nscd daemon." 1>&2
 fi
 
 %preun -n nscd
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del nscd
-	/etc/rc.d/init.d/nscd stop
+	/etc/rc.d/init.d/nscd stop 1>&2
 fi
 
 %post -n utmpd
 /sbin/chkconfig --add utmpd
 if [ -f /var/lock/subsys/utmpd ]; then
-	/etc/rc.d/init.d/utmpd restart
+	/etc/rc.d/init.d/utmpd restart 1>&2
 else
-	echo "Run \"/etc/rc.d/init.d/utmpd start\" to start utmpd daemon."
+	echo "Run \"/etc/rc.d/init.d/utmpd start\" to start utmpd daemon." 1>&2
 fi
 
 %preun -n utmpd
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del utmpd
-	/etc/rc.d/init.d/utmpd stop
+	/etc/rc.d/init.d/utmpd stop 1>&2
 fi
 
 %clean
@@ -298,7 +306,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale
 %{_datadir}/zoneinfo
 
-%config /var/db/db-*
+%config /var/db/Makefile
 
 %files devel
 %defattr(644,root,root,755)
@@ -340,6 +348,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) /etc/nscd.*
 %attr(755,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd
+%attr(640,root,root) /etc/logrotate.d/nscd
+%attr(640,root,root) %ghost /var/log/nscd
 
 %files -n utmpd
 %defattr(644,root,root,755)
