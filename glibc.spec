@@ -739,7 +739,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 # don't know, if it is good idea, for brave ones
 #%patch19 -p1
 %{?with_kernelheaders:%patch23}
-%{?without_kernelheaders:%patch24 -p1}
+%{?!with_kernelheaders:%patch24 -p1}
 %patch26 -p1
 %patch27 -p1
 %patch30
