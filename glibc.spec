@@ -206,7 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) /usr/sbin/*
+%attr(755,root,root) %{_sbindir}/*
 
 %attr(755,root,root) /lib/ld-*
 %attr(755,root,root) /lib/lib*
@@ -226,27 +226,27 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc documentation/* {NOTES,PROJECTS}.gz
 
-/usr/include/*.h
-/usr/include/arpa
-/usr/include/bits
-/usr/include/db1
-/usr/include/gnu
-/usr/include/net
-/usr/include/netash
-/usr/include/netatalk
-/usr/include/netax25
-/usr/include/neteconet
-/usr/include/netinet
-/usr/include/netipx
-/usr/include/netpacket
-/usr/include/netrom
-/usr/include/netrose
-/usr/include/nfs
-/usr/include/protocols
-/usr/include/rpc
-/usr/include/rpcsvc
-/usr/include/scsi
-/usr/include/sys
+%{_includedir}/*.h
+%{_includedir}/arpa
+%{_includedir}/bits
+%{_includedir}/db1
+%{_includedir}/gnu
+%{_includedir}/net
+%{_includedir}/netash
+%{_includedir}/netatalk
+%{_includedir}/netax25
+%{_includedir}/neteconet
+%{_includedir}/netinet
+%{_includedir}/netipx
+%{_includedir}/netpacket
+%{_includedir}/netrom
+%{_includedir}/netrose
+%{_includedir}/nfs
+%{_includedir}/protocols
+%{_includedir}/rpc
+%{_includedir}/rpcsvc
+%{_includedir}/scsi
+%{_includedir}/sys
 
 %{_infodir}/libc.inf*.gz
 
@@ -297,7 +297,7 @@ rm -rf $RPM_BUILD_ROOT
   [2.1-3d]
 - updated to stable version,
 - fixed stripping ELF binaries,
-- removed obsoletes /usr/include/{asm,linux}
+- removed obsoletes %{_includedir}/{asm,linux}
 
 * Fri Jan 29 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [2.0.111-1d]
