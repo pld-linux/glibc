@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2.3
-Release:	15
+Release:	16
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -35,7 +35,7 @@ Patch13:	%{name}-paths.patch
 Patch14: 	%{name}-vaargs.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
-BuildRequires:	gd-devel
+BuildRequires:	gd-devel >= 2.0.1
 BuildRequires:	libpng-devel
 BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	texinfo
