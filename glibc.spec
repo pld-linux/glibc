@@ -358,30 +358,30 @@ PICFILES="libc_pic.a libc.map
           math/libm_pic.a libm.map 
           resolv/libresolv_pic.a"
 
-install $PICFILES $RPM_BUILD_ROOT/%{_libdir}
-install elf/soinit.os $RPM_BUILD_ROOT/%{_libdir}/soinit.o
-install elf/sofini.os $RPM_BUILD_ROOT/%{_libdir}/sofini.o
+install $PICFILES				$RPM_BUILD_ROOT/%{_libdir}
+install elf/soinit.os				$RPM_BUILD_ROOT/%{_libdir}/soinit.o
+install elf/sofini.os				$RPM_BUILD_ROOT/%{_libdir}/sofini.o
 
-mv -f $RPM_BUILD_ROOT/lib/libmemusage.so $RPM_BUILD_ROOT%{_libdir}
-mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so $RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/lib/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/lib/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 %{__make} -C linuxthreads/man
-install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
+install linuxthreads/man/*.3thr			$RPM_BUILD_ROOT%{_mandir}/man3
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules}
 
-ln -sf ../../..%{_sysconfdir}/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf ../..%{_libdir}/libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
+ln -sf ../../..%{_sysconfdir}/localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
+ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
+ln -sf localtime				$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
+ln -sf ../..%{_libdir}/libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/nscd
-install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf $RPM_BUILD_ROOT%{_sysconfdir}
-install nss/nsswitch.conf $RPM_BUILD_ROOT%{_sysconfdir}
+install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
+install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
+install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 
 install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
@@ -414,6 +414,9 @@ done
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%post 	memusage -p /sbin/ldconfig
+%postun memusage -p /sbin/ldconfig
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
@@ -505,6 +508,7 @@ rm -rf $RPM_BUILD_ROOT
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
+%attr(755,root,root) %{_libdir}/libmemusage*
 
 %files devel
 %defattr(644,root,root,755)
