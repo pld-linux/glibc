@@ -1,15 +1,21 @@
---- libc/po/pl.po.orig	2004-10-14 21:11:41.000000000 +0200
-+++ libc/po/pl.po	2004-11-27 02:06:01.401280264 +0100
-@@ -5,9 +5,9 @@
+--- glibc-2.3.4/po/pl.po.orig	2005-02-09 00:05:01.651821000 +0100
++++ glibc-2.3.4/po/pl.po	2005-02-09 00:20:35.954786232 +0100
+@@ -1,13 +1,13 @@
+ # Polish translation for GNU libc.
+-# Copyright (C) 1996, 1997, 1998, 1999, 2002, 2003, 2004 Free Software Foundation, Inc.
++# Copyright (C) 1996, 1997, 1998, 1999, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+ # Pawe³ Krawczyk <kravietz@ceti.pl>, 1996,97,98,99.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2002, 2003, 2004.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2002-2005.
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libc 2.3.3\n"
 -"POT-Creation-Date: 2004-08-05 09:16+0200\n"
 -"PO-Revision-Date: 2004-08-06 00:01+0200\n"
-+"Project-Id-Version: libc 2.3.4-20041122\n"
-+"POT-Creation-Date: 2004-11-27 00:47+0100\n"
-+"PO-Revision-Date: 2004-11-27 00:53+0100\n"
++"Project-Id-Version: libc 2.3.4\n"
++"POT-Creation-Date: 2005-02-09 00:14+0100\n"
++"PO-Revision-Date: 2005-02-09 00:14+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -64,7 +70,7 @@
  msgstr "b³±d podczas zamykania pliku wyj¶ciowego"
  
 -#: iconv/iconv_prog.c:409 iconv/iconvconfig.c:357 locale/programs/locale.c:279
-+#: iconv/iconv_prog.c:408 iconv/iconvconfig.c:357
++#: iconv/iconv_prog.c:408 iconv/iconvconfig.c:381
  #: locale/programs/localedef.c:372 catgets/gencat.c:233
 -#: malloc/memusagestat.c:602 debug/pcprofiledump.c:199
 -msgid "Report bugs using the `glibcbug' script to <bugs@gnu.org>.\n"
@@ -82,8 +88,8 @@
 +"Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
 +"<http://www.gnu.org/software/libc/bugs.html>.\n"
 +
-+#: iconv/iconv_prog.c:423 iconv/iconvconfig.c:372 locale/programs/locale.c:276
-+#: locale/programs/localedef.c:388 catgets/gencat.c:247 posix/getconf.c:957
++#: iconv/iconv_prog.c:423 iconv/iconvconfig.c:396 locale/programs/locale.c:276
++#: locale/programs/localedef.c:388 catgets/gencat.c:247 posix/getconf.c:963
 +#: nss/getent.c:82 nscd/nscd.c:394 nscd/nscd_nischeck.c:90 elf/ldconfig.c:278
 +#: elf/sprof.c:355
  #, c-format
@@ -97,8 +103,8 @@
 -#: locale/programs/localedef.c:391 catgets/gencat.c:251 posix/getconf.c:918
 -#: nss/getent.c:79 nscd/nscd.c:360 nscd/nscd_nischeck.c:95 elf/ldconfig.c:279
 -#: elf/sprof.c:355
-+#: iconv/iconv_prog.c:428 iconv/iconvconfig.c:377 locale/programs/locale.c:281
-+#: locale/programs/localedef.c:393 catgets/gencat.c:252 posix/getconf.c:962
++#: iconv/iconv_prog.c:428 iconv/iconvconfig.c:401 locale/programs/locale.c:281
++#: locale/programs/localedef.c:393 catgets/gencat.c:252 posix/getconf.c:968
 +#: nss/getent.c:87 nscd/nscd.c:399 nscd/nscd_nischeck.c:95 elf/ldconfig.c:283
 +#: elf/sprof.c:361
  #, c-format
@@ -132,21 +138,53 @@
  msgid ""
  "The following list contain all the coded character sets known.  This does\n"
  "not necessarily mean that all combinations of these names can be used for\n"
-@@ -367,11 +370,11 @@
+@@ -351,27 +354,39 @@
+ "\n"
+ "  "
+ 
+-#: iconv/iconvconfig.c:110
++#: iconv/iconvconfig.c:111
+ msgid "Create fastloading iconv module configuration file."
+ msgstr "Tworzenie pliku konfiguracyjnego do szybkiego wczytywania modu³ów iconv."
+ 
+-#: iconv/iconvconfig.c:114
++#: iconv/iconvconfig.c:115
+ msgid "[DIR...]"
+ msgstr "[KATALOG...]"
+ 
+-#: iconv/iconvconfig.c:126
++#: iconv/iconvconfig.c:128
+ msgid "Prefix used for all file accesses"
+ msgstr "Prefiks u¿ywany przy ka¿dym dostêpie do pliku"
+ 
+-#: iconv/iconvconfig.c:327 locale/programs/localedef.c:292
++#: iconv/iconvconfig.c:129
++msgid "Put output in FILE instead of installed location (--prefix does not apply to FILE)"
++msgstr "Umieszczenie wyj¶cia w PLIKU zamiast miejsca instalacji (--prefix nie wp³ywa na PLIK)"
++
++#: iconv/iconvconfig.c:133
++msgid "Do not search standard directories, only those on the command line"
++msgstr "Nie przeszukiwanie standardowych katalogów, a wy³±cznie podanych z linii poleceñ"
++
++#: iconv/iconvconfig.c:302
++msgid "Directory arguments required when using --nostdlib"
++msgstr "W przypadku u¿ycia --nostdlib wymagane jest podanie katalogów jako argumentów"
++
++#: iconv/iconvconfig.c:344 locale/programs/localedef.c:292
  msgid "no output file produced because warning were issued"
  msgstr "nie utworzono pliku wyj¶ciowego, poniewa¿ wyst±pi³y ostrze¿enia"
  
 -#: iconv/iconvconfig.c:405
-+#: iconv/iconvconfig.c:406
++#: iconv/iconvconfig.c:430
  msgid "while inserting in search tree"
  msgstr "b³±d podczas wstawiania do drzewa wyszukiwañ"
  
 -#: iconv/iconvconfig.c:1204
-+#: iconv/iconvconfig.c:1206
++#: iconv/iconvconfig.c:1235
  msgid "cannot generate output file"
  msgstr "nie mo¿na wygenerowaæ pliku wyj¶ciowego"
  
-@@ -380,159 +383,159 @@
+@@ -380,159 +395,159 @@
  msgid "cannot read character map directory `%s'"
  msgstr "nie mo¿na odczytaæ katalogu mapy znaków `%s'"
  
@@ -348,7 +386,7 @@
  msgid "resulting bytes for range not representable."
  msgstr "wynikowe bajty dla przedzia³u nie mog± zostaæ wyra¿one."
  
-@@ -596,14 +599,14 @@
+@@ -596,14 +611,14 @@
  msgstr "%s: liczbowy kod kraju `%d' jest niepoprawny"
  
  #: locale/programs/ld-address.c:497 locale/programs/ld-address.c:534
@@ -366,7 +404,7 @@
  #, c-format
  msgid "%s: field `%s' declared more than once"
  msgstr "%s: pole `%s' zadeklarowane wiêcej ni¿ raz"
-@@ -612,29 +615,29 @@
+@@ -612,29 +627,29 @@
  #: locale/programs/ld-identification.c:369 locale/programs/ld-messages.c:312
  #: locale/programs/ld-monetary.c:704 locale/programs/ld-monetary.c:739
  #: locale/programs/ld-name.c:285 locale/programs/ld-numeric.c:268
@@ -403,7 +441,7 @@
  #, c-format
  msgid "%1$s: definition does not end with `END %1$s'"
  msgstr "%1$s: definicja nie koñczy siê przez `END %1$s'"
-@@ -642,13 +645,13 @@
+@@ -642,13 +657,13 @@
  #: locale/programs/ld-address.c:596 locale/programs/ld-collate.c:523
  #: locale/programs/ld-collate.c:575 locale/programs/ld-collate.c:871
  #: locale/programs/ld-collate.c:884 locale/programs/ld-collate.c:2640
@@ -421,7 +459,7 @@
  #, c-format
  msgid "%s: syntax error"
  msgstr "%s: b³±d sk³adni"
-@@ -741,7 +744,7 @@
+@@ -741,7 +756,7 @@
  msgid "%s: symbolic range ellipsis must not be directly followed by `order_end'"
  msgstr "%s: wyrzutnia symbolicznego przedzia³u nie mo¿e byæ bezpo¶rednio przed `order_end'"
  
@@ -430,7 +468,7 @@
  #, c-format
  msgid "`%s' and `%.*s' are no valid names for symbolic range"
  msgstr "`%s' i `%.*s' nie s± poprawnymi nazwami dla symbolicznego przedzia³u"
-@@ -953,158 +956,158 @@
+@@ -953,158 +968,158 @@
  msgid "not all characters used in `outdigit' are available in the repertoire"
  msgstr "nie wszystkie znaki u¿yte w `outdigit' s± dostêpne w repertuarze"
  
@@ -631,7 +669,7 @@
  #, c-format
  msgid "%s: table for width: %lu bytes\n"
  msgstr "%s: tablica dla szeroko¶ci: %lu bajtów\n"
-@@ -1259,58 +1262,58 @@
+@@ -1259,58 +1274,58 @@
  msgid "%s: values for field `%s' must not be larger than %d"
  msgstr "%s: warto¶ci w polu `%s' nie mog± byæ wiêksze ni¿ %d"
  
@@ -703,7 +741,7 @@
  #, c-format
  msgid "symbol `%.*s' not in repertoire map"
  msgstr "brak symbolu `%.*s' w tablicy repertuaru"
-@@ -1344,10 +1347,14 @@
+@@ -1344,10 +1359,14 @@
  msgstr "Wypisanie wiêkszej ilo¶ci informacji"
  
  #: locale/programs/locale.c:88
@@ -721,7 +759,7 @@
  msgid ""
  "NAME\n"
  "[-a|-m]"
-@@ -1355,23 +1362,23 @@
+@@ -1355,23 +1374,23 @@
  "NAZWA\n"
  "[-a|-m]"
  
@@ -750,7 +788,7 @@
  msgid "while preparing output"
  msgstr "podczas przygotowywania wyników"
  
-@@ -1466,7 +1473,7 @@
+@@ -1466,7 +1485,7 @@
  msgstr "OSTATECZNE: system nie definiuje `_POSIX2_LOCALEDEF'"
  
  #: locale/programs/localedef.c:258 locale/programs/localedef.c:274
@@ -759,7 +797,7 @@
  #, c-format
  msgid "cannot open locale definition file `%s'"
  msgstr "nie mo¿na otworzyæ pliku definicji lokalizacji `%s'"
-@@ -1491,29 +1498,29 @@
+@@ -1491,29 +1510,29 @@
  "                ¶cie¿ka lokalizacji: %s\n"
  "%s"
  
@@ -796,7 +834,7 @@
  msgid "cannot map archive header"
  msgstr "nie mo¿na odwzorowaæ nag³ówka archiwum"
  
-@@ -1525,162 +1532,162 @@
+@@ -1525,162 +1544,162 @@
  msgid "cannot change mode of new locale archive"
  msgstr "nie mo¿na zmieniæ uprawnieñ nowego archiwum lokalizacji"
  
@@ -993,11 +1031,11 @@
 -#: locale/programs/xmalloc.c:70 malloc/obstack.c:505 malloc/obstack.c:508
 -#: posix/getconf.c:1007
 +#: locale/programs/xmalloc.c:70 malloc/obstack.c:415 malloc/obstack.c:418
-+#: posix/getconf.c:1051 elf/ldconfig.c:1045
++#: posix/getconf.c:1104 elf/ldconfig.c:1045
  msgid "memory exhausted"
  msgstr "pamiêæ wyczerpana"
  
-@@ -1706,7 +1713,7 @@
+@@ -1706,7 +1725,7 @@
  msgid "Another string for testing."
  msgstr "Inny ³añcuch do testów."
  
@@ -1006,7 +1044,7 @@
  msgid "NAME"
  msgstr "NAZWA"
  
-@@ -1738,74 +1745,74 @@
+@@ -1738,74 +1757,74 @@
  "-o PLIK-WY [PLIK-WE]...\n"
  "[PLIK-WY [PLIK-WE]...]"
  
@@ -1098,14 +1136,14 @@
  msgid "cannot determine escape character"
  msgstr "nie mo¿na okre¶liæ znaku escape"
  
-@@ -1814,28 +1821,26 @@
+@@ -1814,28 +1833,26 @@
  msgid "makecontext: does not know how to handle more than 8 arguments\n"
  msgstr "makecontext: nie wiadomo jak obs³u¿yæ wiêcej ni¿ 8 argumentów\n"
  
 -#: stdio-common/../sysdeps/gnu/errlist.c:12 posix/regcomp.c:147
 -#: nis/nis_error.c:29 nis/ypclnt.c:778 nis/ypclnt.c:852
 +#: stdio-common/../sysdeps/gnu/errlist.c:20 posix/regcomp.c:158
-+#: nis/nis_error.c:29 nis/ypclnt.c:792 nis/ypclnt.c:859
++#: nis/nis_error.c:29 nis/ypclnt.c:792 nis/ypclnt.c:854
  msgid "Success"
  msgstr "Sukces"
  
@@ -1132,7 +1170,7 @@
  msgid "No such process"
  msgstr "Nie ma takiego procesu"
  
-@@ -1846,13 +1851,12 @@
+@@ -1846,13 +1863,12 @@
  #. TRANS You can choose to have functions resume after a signal that is handled,
  #. TRANS rather than failing with @code{EINTR}; see @ref{Interrupted
  #. TRANS Primitives}.
@@ -1148,7 +1186,7 @@
  msgid "Input/output error"
  msgstr "B³±d wej¶cia/wyj¶cia"
  
-@@ -1861,8 +1865,7 @@
+@@ -1861,8 +1877,7 @@
  #. TRANS This can mean that the device file was installed incorrectly, or that
  #. TRANS the physical device is missing or not correctly attached to the
  #. TRANS computer.
@@ -1158,7 +1196,7 @@
  msgid "No such device or address"
  msgstr "Nie ma takiego urz±dzenia ani adresu"
  
-@@ -1870,29 +1873,27 @@
+@@ -1870,29 +1885,27 @@
  #. TRANS being executed with one of the @code{exec} functions (@pxref{Executing a
  #. TRANS File}) occupy too much memory space.  This condition never arises in the
  #. TRANS GNU system.
@@ -1192,7 +1230,7 @@
  msgid "No child processes"
  msgstr "Brak procesów potomnych"
  
-@@ -1900,83 +1901,75 @@
+@@ -1900,83 +1913,75 @@
  #. TRANS deadlock situation.  The system does not guarantee that it will notice
  #. TRANS all such situations.  This error means you got lucky and the system
  #. TRANS noticed; it might just hang.  @xref{File Locks}, for an example.
@@ -1289,7 +1327,7 @@
  msgid "Invalid argument"
  msgstr "Z³y argument"
  
-@@ -1987,22 +1980,20 @@
+@@ -1987,22 +1992,20 @@
  #. TRANS limit that can usually be increased.  If you get this error, you might
  #. TRANS want to increase the @code{RLIMIT_NOFILE} limit or make it unlimited;
  #. TRANS @pxref{Limits on Resources}.
@@ -1315,7 +1353,7 @@
  msgid "Inappropriate ioctl for device"
  msgstr "Niew³a¶ciwy ioctl dla urz±dzenia"
  
-@@ -2011,53 +2002,47 @@
+@@ -2011,53 +2014,47 @@
  #. TRANS debugger to run a program is considered having it open for writing and
  #. TRANS will cause this error.  (The name stands for ``text file busy''.)  This
  #. TRANS is not an error in the GNU system; the text is copied as necessary.
@@ -1377,7 +1415,7 @@
  msgid "Numerical result out of range"
  msgstr "Wynik liczbowy poza zakresem"
  
-@@ -2090,8 +2075,7 @@
+@@ -2090,8 +2087,7 @@
  #. TRANS so usually an interactive program should report the error to the user
  #. TRANS and return to its command loop.
  #. TRANS @end itemize
@@ -1387,7 +1425,7 @@
  msgid "Resource temporarily unavailable"
  msgstr "Zasoby chwilowo niedostêpne"
  
-@@ -2100,7 +2084,7 @@
+@@ -2100,7 +2096,7 @@
  #. TRANS
  #. TRANS C libraries in many older Unix systems have @code{EWOULDBLOCK} as a
  #. TRANS separate error code.
@@ -1396,7 +1434,7 @@
  msgid "Operation would block"
  msgstr "Operacja spowodowa³aby blokadê"
  
-@@ -2112,54 +2096,47 @@
+@@ -2112,54 +2108,47 @@
  #. TRANS the object before the call completes return @code{EALREADY}.  You can
  #. TRANS use the @code{select} function to find out when the pending operation
  #. TRANS has completed; @pxref{Waiting for I/O}.
@@ -1459,7 +1497,7 @@
  msgid "Socket type not supported"
  msgstr "Nie obs³ugiwany typ gniazda"
  
-@@ -2169,81 +2146,71 @@
+@@ -2169,81 +2158,71 @@
  #. TRANS error can happen for many calls when the object does not support the
  #. TRANS particular operation; it is a generic indication that the server knows
  #. TRANS nothing to do for that call.
@@ -1553,7 +1591,7 @@
  msgid "Transport endpoint is already connected"
  msgstr "Drugi koniec jest ju¿ po³±czony"
  
-@@ -2251,93 +2218,83 @@
+@@ -2251,93 +2230,83 @@
  #. TRANS try to transmit data over a socket, without first specifying a
  #. TRANS destination for the data.  For a connectionless socket (for datagram
  #. TRANS protocols, such as UDP), you get @code{EDESTADDRREQ} instead.
@@ -1661,7 +1699,7 @@
  msgid "Disk quota exceeded"
  msgstr "Przekroczony limit dyskowy"
  
-@@ -2345,8 +2302,7 @@
+@@ -2345,8 +2314,7 @@
  #. TRANS system which is due to file system rearrangements on the server host.
  #. TRANS Repairing this condition usually requires unmounting and remounting
  #. TRANS the NFS file system on the local host.
@@ -1671,7 +1709,7 @@
  msgid "Stale NFS file handle"
  msgstr "Nieaktualny uchwyt pliku NFS"
  
-@@ -2356,33 +2312,32 @@
+@@ -2356,33 +2324,32 @@
  #. TRANS already specifies an NFS-mounted file.
  #. TRANS (This is an error on some operating systems, but we expect it to work
  #. TRANS properly on the GNU system, making this error code impossible.)
@@ -1711,7 +1749,7 @@
  msgid "RPC bad procedure for program"
  msgstr "Z³a procedura RPC dla programu"
  
-@@ -2390,7 +2345,7 @@
+@@ -2390,7 +2357,7 @@
  #. TRANS @ref{File Locks}.  This error is never generated by the GNU system, but
  #. TRANS it can result from an operation to an NFS server running another
  #. TRANS operating system.
@@ -1720,7 +1758,7 @@
  msgid "No locks available"
  msgstr "Brak dostêpnych blokad"
  
-@@ -2399,17 +2354,17 @@
+@@ -2399,17 +2366,17 @@
  #. TRANS
  #. TRANS On some systems @code{chmod} returns this error if you try to set the
  #. TRANS sticky bit on a non-directory file; @pxref{Setting Permissions}.
@@ -1741,7 +1779,7 @@
  msgid "Need authenticator"
  msgstr "Wymagane uwierzytelnienie"
  
-@@ -2418,7 +2373,7 @@
+@@ -2418,7 +2385,7 @@
  #. TRANS operating system.  When you get this error, you can be sure that this
  #. TRANS particular function will always fail with @code{ENOSYS} unless you
  #. TRANS install a new version of the C library or the operating system.
@@ -1750,7 +1788,7 @@
  msgid "Function not implemented"
  msgstr "Nie zaimplementowana funkcja"
  
-@@ -2434,13 +2389,13 @@
+@@ -2434,13 +2401,13 @@
  #. TRANS
  #. TRANS If the entire function is not available at all in the implementation,
  #. TRANS it returns @code{ENOSYS} instead.
@@ -1766,7 +1804,7 @@
  msgid "Invalid or incomplete multibyte or wide character"
  msgstr "B³êdny lub niepe³ny znak wielobajtowy"
  
-@@ -2450,89 +2405,81 @@
+@@ -2450,89 +2417,81 @@
  #. TRANS error because functions such as @code{read} and @code{write} translate
  #. TRANS it into a @code{SIGTTIN} or @code{SIGTTOU} signal.  @xref{Job Control},
  #. TRANS for information on process groups and these signals.
@@ -1873,7 +1911,7 @@
  msgid "Timer expired"
  msgstr "Up³yn±³ czas stopera"
  
-@@ -2540,187 +2487,163 @@
+@@ -2540,187 +2499,163 @@
  #. TRANS completed.  @xref{Asynchronous I/O}.  When you call @code{aio_cancel},
  #. TRANS the normal result is for the operations affected to complete with this
  #. TRANS error; @pxref{Cancel AIO Operations}.
@@ -2101,7 +2139,7 @@
  msgid "Wrong medium type"
  msgstr "Niew³a¶ciwy typ medium"
  
-@@ -2732,341 +2655,80 @@
+@@ -2732,341 +2667,80 @@
  msgid "IOT trap"
  msgstr "Pu³apka IOT"
  
@@ -2468,7 +2506,7 @@
  msgid "Unknown error"
  msgstr "Nieznany b³±d"
  
-@@ -3080,12 +2742,12 @@
+@@ -3080,12 +2754,12 @@
  msgid "Unknown signal %d"
  msgstr "Nieznany sygna³ %d"
  
@@ -2483,7 +2521,7 @@
  msgid "Error writing standard output"
  msgstr "B³±d podczas pisania na standardowe wyj¶cie"
  
-@@ -3196,7 +2858,7 @@
+@@ -3196,7 +2870,7 @@
  msgid "%s: Leap line in non leap seconds file %s\n"
  msgstr "%s: linia Leap nie znajduje siê w pliku sekund przestêpnych %s\n"
  
@@ -2492,7 +2530,7 @@
  #, c-format
  msgid "%s: panic: Invalid l_value %d\n"
  msgstr "%s: panika: B³êdna l-warto¶æ %d\n"
-@@ -3215,224 +2877,228 @@
+@@ -3215,224 +2889,228 @@
  msgid "expected continuation line not found"
  msgstr "brak spodziewanej linii kontynuacji"
  
@@ -2776,7 +2814,7 @@
  #, c-format
  msgid "%s: %d did not sign extend correctly\n"
  msgstr "%s: %d niepoprawnie rozszerzy³ znak\n"
-@@ -3505,221 +3171,225 @@
+@@ -3505,221 +3183,230 @@
  msgid "Interrupted by a signal"
  msgstr "Przerwane przez sygna³"
  
@@ -2785,24 +2823,29 @@
 +msgid "Parameter string not correctly encoded"
 +msgstr "£añcuch parametru niepoprawnie zakodowany"
 +
-+#: posix/getconf.c:936
++#: posix/getconf.c:942
  #, c-format
  msgid "Usage: %s [-v specification] variable_name [pathname]\n"
  msgstr "Sk³adnia: %s [-v specyfikacja] nazwa_zmiennej [¶cie¿ka]\n"
  
 -#: posix/getconf.c:950
-+#: posix/getconf.c:994
++#: posix/getconf.c:1018
  #, c-format
  msgid "unknown specification \"%s\""
  msgstr "nieznana specyfikacja \"%s\""
  
 -#: posix/getconf.c:979 posix/getconf.c:995
-+#: posix/getconf.c:1023 posix/getconf.c:1039
++#: posix/getconf.c:1046
++#, c-format
++msgid "Couldn't execute %s"
++msgstr "Nie mo¿na wykonaæ %s"
++
++#: posix/getconf.c:1076 posix/getconf.c:1092
  msgid "undefined"
  msgstr "niezdefiniowana"
  
 -#: posix/getconf.c:1017
-+#: posix/getconf.c:1061
++#: posix/getconf.c:1114
  #, c-format
  msgid "Unrecognized variable `%s'"
  msgstr "Nierozpoznana zmienna `%s'"
@@ -2958,7 +3001,7 @@
  msgstr "Niesparowane ) lub \\)"
  
 -#: posix/regcomp.c:661
-+#: posix/regcomp.c:699
++#: posix/regcomp.c:697
  msgid "No previous regular expression"
  msgstr "Brak wyra¿enia regularnego"
  
@@ -3053,7 +3096,7 @@
  msgid "(PROGRAM ERROR) Option should have been recognized!?"
  msgstr "(B£¡D PROGRAMU) Opcja powinna zostaæ rozpoznana?!"
  
-@@ -3751,42 +3421,42 @@
+@@ -3751,42 +3438,42 @@
  msgid "Unknown resolver error"
  msgstr "Nieznany b³±d biblioteki rozwi±zuj±cej nazwy"
  
@@ -3104,7 +3147,7 @@
  #, c-format
  msgid "%s: line %d: ignoring trailing garbage `%s'\n"
  msgstr "%s: linia %d: zignorowano koñcowe ¶mieci `%s'\n"
-@@ -3799,24 +3469,28 @@
+@@ -3799,24 +3486,28 @@
  msgid "Service configuration to be used"
  msgstr "U¿ycie tej konfiguracji us³ugi rozwi±zywania nazw"
  
@@ -3141,7 +3184,7 @@
  #, c-format
  msgid "Unknown database: %s\n"
  msgstr "Nieznana baza `%s'\n"
-@@ -3845,72 +3519,72 @@
+@@ -3845,72 +3536,72 @@
  msgid "invalid pointer size"
  msgstr "nieprawid³owy rozmiar wska¼nika"
  
@@ -3230,7 +3273,7 @@
  msgid "hard linked somewhere"
  msgstr "gdzie¶ twardo dowi±zany"
  
-@@ -3931,11 +3605,11 @@
+@@ -3931,11 +3622,11 @@
  msgid "Unknown .netrc keyword %s"
  msgstr "Nieznane s³owo kluczowe w .netrc: %s"
  
@@ -3244,7 +3287,7 @@
  msgid "auth_none.c - Fatal marshalling problem"
  msgstr "auth_none.c - Krytyczny problem z prze³±czaniem"
  
-@@ -4069,7 +3743,7 @@
+@@ -4069,7 +3760,7 @@
  msgid "clnttcp_create: out of memory\n"
  msgstr "clnttcp_create: brak pamiêci\n"
  
@@ -3253,7 +3296,7 @@
  msgid "clntudp_create: out of memory\n"
  msgstr "clntudp_create: brak pamiêci\n"
  
-@@ -4077,180 +3751,164 @@
+@@ -4077,180 +3768,164 @@
  msgid "clntunix_create: out of memory\n"
  msgstr "clntunix_create: brak pamiêci\n"
  
@@ -3468,7 +3511,7 @@
  msgid "preprocessor error"
  msgstr "b³±d preprocesora"
  
-@@ -4343,25 +4001,25 @@
+@@ -4343,25 +4018,25 @@
  msgid "can't reassign procedure number %ld\n"
  msgstr "nie mo¿na ponownie przypisaæ procedury numer %ld\n"
  
@@ -3499,7 +3542,7 @@
  #, c-format
  msgid "never registered prog %d\n"
  msgstr "program %d nie by³ nigdy zarejestrowany\n"
-@@ -4502,6 +4160,10 @@
+@@ -4502,6 +4177,10 @@
  msgid "First/next chain broken"
  msgstr "£añcuch pierwszy/nastêpny jest uszkodzony"
  
@@ -3510,7 +3553,7 @@
  #: nis/nis_error.c:41
  msgid "Name not served by this server"
  msgstr "Nazwa nie jest obs³ugiwana przez ten serwer"
-@@ -4647,7 +4309,7 @@
+@@ -4647,7 +4326,7 @@
  msgid "Master server busy, full dump rescheduled."
  msgstr "Serwer nadrzêdny jest zajêty, pe³ny zrzut danych przesuniêty na pó¼niej."
  
@@ -3519,7 +3562,7 @@
  #, c-format
  msgid "LOCAL entry for UID %d in directory %s not unique\n"
  msgstr "Wpis LOKALNY dla UID %d w katalogu %s nie jest unikalny\n"
-@@ -4692,83 +4354,83 @@
+@@ -4692,83 +4371,83 @@
  msgid "(Unknown object)\n"
  msgstr "(Nieznany obiekt)\n"
  
@@ -3621,7 +3664,7 @@
  msgid ""
  "\n"
  "Group Members :\n"
-@@ -4776,95 +4438,95 @@
+@@ -4776,95 +4455,95 @@
  "\n"
  "Cz³onkowie grupy :\n"
  
@@ -3737,7 +3780,7 @@
  #, c-format
  msgid ""
  "\n"
-@@ -4873,87 +4535,87 @@
+@@ -4873,87 +4552,87 @@
  "\n"
  "Czas ¿ycia    : "
  
@@ -3844,7 +3887,7 @@
  msgid "    No recursive nonmembers\n"
  msgstr "   Brak rekursywnych nie-cz³onków\n"
  
-@@ -4996,323 +4658,440 @@
+@@ -4996,323 +4675,440 @@
  msgid "netname2user: should not have uid 0"
  msgstr "netname2user: UID 0 nie powinien wyst±piæ"
  
@@ -3935,32 +3978,32 @@
  msgstr "Nieznany kod b³êdu NIS"
  
 -#: nis/ypclnt.c:854
-+#: nis/ypclnt.c:861
++#: nis/ypclnt.c:856
  msgid "Internal ypbind error"
  msgstr "B³±d wewnêtrzny ypbind"
  
 -#: nis/ypclnt.c:856
-+#: nis/ypclnt.c:863
++#: nis/ypclnt.c:858
  msgid "Domain not bound"
  msgstr "Domena nie zosta³a zwi±zana"
  
 -#: nis/ypclnt.c:858
-+#: nis/ypclnt.c:865
++#: nis/ypclnt.c:860
  msgid "System resource allocation failure"
  msgstr "Wyst±pi³ b³±d podczas przydzielania zasobów systemowych"
  
 -#: nis/ypclnt.c:860
-+#: nis/ypclnt.c:867
++#: nis/ypclnt.c:862
  msgid "Unknown ypbind error"
  msgstr "Nieznany b³±d ypbind"
  
 -#: nis/ypclnt.c:899
-+#: nis/ypclnt.c:906
++#: nis/ypclnt.c:901
  msgid "yp_update: cannot convert host to netname\n"
  msgstr "yp_update: nie mo¿na przekonwertowaæ nazwy hosta na nazwê sieci\n"
  
 -#: nis/ypclnt.c:911
-+#: nis/ypclnt.c:918
++#: nis/ypclnt.c:913
  msgid "yp_update: cannot get server address\n"
  msgstr "yp_update: nie mo¿na uzyskaæ adresu serwera\n"
  
@@ -3976,13 +4019,13 @@
 +#, c-format
 +msgid "Reloading \"%s\" in hosts cache!"
 +msgstr "Prze³adowywanie \"%s\" w buforze hostów!"
-+
+ 
+-#: nscd/cache.c:162 nscd/connections.c:184
 +#: nscd/cache.c:127
 +#, c-format
 +msgid "add new entry \"%s\" of type %s for %s to cache%s"
 +msgstr "dodanie nowego wpisu \"%s\" typu %s dla %s do bufora%s"
- 
--#: nscd/cache.c:162 nscd/connections.c:184
++
 +#: nscd/cache.c:207 nscd/connections.c:486
  #, c-format
  msgid "cannot stat() file `%s': %s"
@@ -4008,18 +4051,18 @@
 +msgstr "rozmiar pliku siê nie zgadza"
 +
 +#: nscd/connections.c:270
++#, c-format
++msgid "suggested size of table for database %s larger than the persistent database's table"
++msgstr "sugerowany rozmiar tablicy dla bazy danych %s wiêkszy od bufora trwa³ej bazy danych"
++
++#: nscd/connections.c:280 nscd/connections.c:361
  #, c-format
 -msgid "while allocating cache: %s"
 -msgstr "podczas przydzielania bufora: %s"
-+msgid "suggested size of table for database %s larger than the persistent database's table"
-+msgstr "sugerowany rozmiar tablicy dla bazy danych %s wiêkszy od bufora trwa³ej bazy danych"
- 
--#: nscd/connections.c:197
-+#: nscd/connections.c:280 nscd/connections.c:361
-+#, c-format
 +msgid "cannot create read-only descriptor for \"%s\"; no mmap"
 +msgstr "nie mo¿na utworzyæ deskryptora tylko dla odczytu dla \"%s\"; brak mmap"
-+
+ 
+-#: nscd/connections.c:197
 +#: nscd/connections.c:340
 +#, c-format
 +msgid "database for %s corrupted or simultaneously used; remove %s manually if necessary and restart"
@@ -4106,18 +4149,18 @@
 +msgstr "nie mo¿na zmieniæ na stary GID: %s; wy³±czono tryb paranoiczny"
 +
 +#: nscd/connections.c:908
-+#, c-format
-+msgid "cannot change to old working directory: %s; disabling paranoia mode"
-+msgstr "nie mo¿na przej¶æ do starego katalog roboczego: %s; wy³±czono tryb paranoiczny"
-+
-+#: nscd/connections.c:936
  #, c-format
 -msgid "while accepting connection: %s"
 -msgstr "podczas przyjmowania po³±czenia: %s"
-+msgid "re-exec failed: %s; disabling paranoia mode"
-+msgstr "ponowne wywo³anie nie powiod³o siê: %s; wy³±czono tryb paranoiczny"
++msgid "cannot change to old working directory: %s; disabling paranoia mode"
++msgstr "nie mo¿na przej¶æ do starego katalog roboczego: %s; wy³±czono tryb paranoiczny"
  
 -#: nscd/connections.c:498
++#: nscd/connections.c:936
++#, c-format
++msgid "re-exec failed: %s; disabling paranoia mode"
++msgstr "ponowne wywo³anie nie powiod³o siê: %s; wy³±czono tryb paranoiczny"
++
 +#: nscd/connections.c:1061
  #, c-format
  msgid "short read while reading request: %s"
@@ -4380,7 +4423,7 @@
  #, c-format
  msgid ""
  "nscd configuration:\n"
-@@ -5323,96 +5102,167 @@
+@@ -5323,96 +5119,167 @@
  "\n"
  "%15d  poziom komunikatów diagnostycznych\n"
  
@@ -4590,7 +4633,7 @@
  msgid "cannot create capability list"
  msgstr "nie mo¿na utworzyæ listy uprawnieñ"
  
-@@ -5463,7 +5313,7 @@
+@@ -5463,7 +5330,7 @@
  msgid ", OS ABI: %s %d.%d.%d"
  msgstr ", ABI systemu: %s %d.%d.%d"
  
@@ -4599,7 +4642,7 @@
  #, c-format
  msgid "Can't open cache file %s\n"
  msgstr "Nie mo¿na otworzyæ pliku bufora %s\n"
-@@ -5513,19 +5363,19 @@
+@@ -5513,19 +5380,19 @@
  msgid "shared object not open"
  msgstr "obiekt dzielony nie jest otwarty"
  
@@ -4625,7 +4668,7 @@
  #, c-format
  msgid "cannot load auxiliary `%s' because of empty dynamic string token substitution\n"
  msgstr "nie mo¿na wczytaæ pomocniczego `%s' z powodu pustego dynamicznego podstawienia\n"
-@@ -5550,166 +5400,190 @@
+@@ -5550,166 +5417,190 @@
  msgid "error while loading shared libraries"
  msgstr "b³±d podczas wczytywania bibliotek dzielonych"
  
@@ -4864,7 +4907,7 @@
  #: elf/dl-reloc.c:57
  msgid "cannot allocate memory in static TLS block"
  msgstr "nie mo¿na przydzieliæ pamiêci w statycznym bloku TLS"
-@@ -5718,21 +5592,25 @@
+@@ -5718,21 +5609,25 @@
  msgid "cannot make segment writable for relocation"
  msgstr "nie mo¿na uczyniæ segmentu zapisywalnym w celu relokacji"
  
@@ -4894,7 +4937,7 @@
  msgid "RTLD_NEXT used in code not dynamically loaded"
  msgstr "RTLD_NEXT wyst±pi³o w kodzie nie ³adowanym dynamicznie"
  
-@@ -5740,51 +5618,67 @@
+@@ -5740,51 +5635,67 @@
  msgid "cannot allocate version reference table"
  msgstr "nie mo¿na przydzieliæ tablicy odniesieñ do wersji"
  
@@ -4977,7 +5020,7 @@
  #, c-format
  msgid "Path `%s' given more than once"
  msgstr "¦cie¿ka `%s' podana wiêcej ni¿ raz"
-@@ -5794,114 +5688,123 @@
+@@ -5794,114 +5705,123 @@
  msgid "%s is not a known library type"
  msgstr "%s nie jest znanym rodzajem biblioteki"
  
@@ -5124,7 +5167,7 @@
  #, c-format
  msgid "Can't open cache file directory %s\n"
  msgstr "Nie mo¿na otworzyæ katalogu pliku bufora %s\n"
-@@ -5911,107 +5814,129 @@
+@@ -5911,107 +5831,129 @@
  msgid "Cannot fstat file %s.\n"
  msgstr "Nie mo¿na wykonaæ fstat na pliku %s.\n"
  
