@@ -86,6 +86,7 @@ Patch22:	%{name}-secureexec.patch
 Patch23:	%{name}-kernel_includes.patch
 Patch24:	%{name}-sparc64_pause.patch
 Patch25:	%{name}-linuxthreads.patch
+Patch26:        %{name}-csu-verfix.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
@@ -610,6 +611,7 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 %{!?_with_kernheaders:%patch23}
 ##%patch24 -p1
 # updated - lt
+%patch26 -p1
 
 %if %{without nptl}
 %patch5 -p1
