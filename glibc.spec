@@ -17,7 +17,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.2
-Release:	1.1@%{_kernel_ver_str}
+Release:	1.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -82,6 +82,8 @@ libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
 
+Linux kernel %{_kernel_ver_str}.
+
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im
 System benutzt werden. Um Festplatten- und Arbeitsspeicher zu sparen
@@ -92,6 +94,8 @@ shared Libraries, die Standard-C-Library und die
 Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
+
+Linux kernel %{_kernel_ver_str}.
 
 %description -l fr
 Contient les bibliothèques standards utilisées par de nombreux
@@ -104,6 +108,8 @@ système Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de données des zones
 horaires.
 
+Linux kernel %{_kernel_ver_str}.
+
 %description -l pl
 W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
 programy w Twoim systemie. U¿ywanie przez programy bibliotek z tego
@@ -114,6 +120,8 @@ standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
 matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale) oraz definicje stref czasowych.
+
+Linux kernel %{_kernel_ver_str}.
 
 %description -l ru
 óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓĞÏÌØÚÕÅÍÙÅ ÍÎÏÇÏŞÉÓÌÅÎÎÙÍÉ
@@ -126,6 +134,8 @@ jêzyków (locale) oraz definicje stref czasowych.
 ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ĞÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
 ×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
 
+Linux kernel %{_kernel_ver_str}.
+
 %description -l tr
 Bu paket, birçok programın kullandığı standart kitaplıkları içerir.
 Disk alanı ve bellek kullanımını azaltmak ve aynı zamanda güncelleme
@@ -134,6 +144,8 @@ tutulup programlar arasında paylaştırılır. Bu paket en önemli ortak
 kitaplıkları, standart C kitaplığını ve standart matematik kitaplığını
 içerir. Bu kitaplıklar olmadan Linux sistemi çalışmayacaktır. Yerel
 dil desteği ve zaman dilimi veri tabanı da bu pakette yer alır.
+
+Linux kernel %{_kernel_ver_str}.
 
 %description -l uk
 í¦ÓÔÉÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ, ËÏÔÒ¦ ×ÉËÏÒÉÓÔÏ×ÕÀÔØÓÑ ŞÉÓÌÅÎÎÉÍÉ
@@ -145,6 +157,8 @@ dil desteği ve zaman dilimi veri tabanı da bu pakette yer alır.
 Â¦ÂÌ¦ÏÔÅËÕ ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÃÉÈ Â¦ÂÌ¦ÏÔÅË Linux ÆÕÎËÃ¦ÏÎÕ×ÁÔÉ ÎÅ ÂÕÄÅ.
 ôÁËÏÖ ĞÁËÅÔ Í¦ÓÔÉÔØ Ğ¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
 ŞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
+
+Linux kernel %{_kernel_ver_str}.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -202,10 +216,10 @@ Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
 Group:		Development/Libraries
 
 %description kernel-headers
-Kernel header files the glibc has been built with.
+Kernel header files the glibc has been built with (Linux %{_kernel_ver_str}).
 
 %description kernel-headers -l pl
-Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc.
+Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc (Linux %{_kernel_ver_str}).
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
