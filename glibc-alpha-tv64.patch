@@ -812,12 +812,12 @@ diff -c -p -d -u -r1.56 syscalls.list
  sendfile	-	sendfile	i:iipi	sendfile	sendfile64
  
 -# these are actually common with the x86:
--sys_ustat	ustat	ustat		i:ip	__syscall_ustat
--sys_mknod	xmknod	mknod		i:sii	__syscall_mknod
+-sys_ustat	ustat	ustat		2	__syscall_ustat
+-sys_mknod	xmknod	mknod		3	__syscall_mknod
 -
  # proper socket implementations:
- accept		-	accept		Ci:iBN	__libc_accept	__accept accept
- bind		-	bind		i:ipi	__bind		bind
+ accept		-	accept		C:3	__libc_accept	__accept accept
+ bind		-	bind		3	__bind		bind
 @@ -64,9 +59,6 @@ pciconfig_read	EXTRA	pciconfig_read	5	pc
  pciconfig_write	EXTRA	pciconfig_write	5	pciconfig_write
  pciconfig_iobase EXTRA	pciconfig_iobase 3	__pciconfig_iobase pciconfig_iobase
@@ -1059,12 +1059,13 @@ retrieving revision 1.4
 diff -c -p -d -u -r1.4 xstatconv.c
 --- sysdeps/unix/sysv/linux/alpha/xstatconv.c	11 Jun 2003 22:37:05 -0000	1.4
 +++ sysdeps/unix/sysv/linux/alpha/xstatconv.c	20 Jun 2003 06:31:48 -0000
-@@ -20,7 +20,7 @@
- #include <errno.h>
+@@ -19,6 +19,9 @@
+ 
  #include <string.h>
- #include <sys/stat.h>
--
+
++#include <errno.h>
++#include <sys/stat.h>
 +#include <kernel_stat.h>
- #include <xstatconv.h>
  
- 
+ static inline int
+ xstat_conv (int vers, struct kernel_stat *kbuf, void *ubuf)
