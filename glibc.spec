@@ -17,13 +17,18 @@ Release:	23
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+#ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:        %{name}-%{version}.tar.bz2
+# Source0-md5:  5be613d02b934d8e305dd2f93062fa6c
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+# Source1-md5:	33b9ae01d51263867d338adfba105278
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+# Source5-md5:	ddba280857330dabba4d8c16d24a6dfd
 Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+# Source6-md5:	2e3992c2e1bc94212c2cd33236de6058
 Source7:	postshell.c
 # borrowed from util-linux
 Source8:	sln.8
