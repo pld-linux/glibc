@@ -824,6 +824,7 @@ BuildGlibc() {
 		if [ "`uname -m`" = "x86_64" -o "`uname -m`" = "amd64" ]; then
 			BuildCC="$BuildCC -m32"
 		fi
+		BuildCCFlags="-march=${arch}"
 		;;
 	sparc64)
 		BuildCC="$BuildCC -m64"
