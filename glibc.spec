@@ -26,7 +26,7 @@
 
 %if %{with nptl}
 # it seems that nptl uses cmpxchgl (available since i486) on x86
-%ifarch i486 i586 i686 pentium3 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
+%ifarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 s390 s390x sparcv9 ppc ppc64
 %if "%{min_kernel}" < "2.6.0"
 %global		min_kernel	2.6.0
 %endif
