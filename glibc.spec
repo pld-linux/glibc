@@ -20,7 +20,6 @@
 
 #
 # TODO:
-# - update pl.po (it's mine, don't touch --q)
 # - look at locale fixes/updates in bugzilla
 # [OLD]
 # - localedb-gen man pages(?)
