@@ -8,8 +8,8 @@
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
 %bcond_without	dist_kernel	# for above, allow non-distribution kernel
-%bcond_without	nptl		# don't use nptl instead of linuxthreads (implies tls)
-%bcond_without	tls		# don't use tls
+%bcond_without	nptl		# don't use NPTL (implies using linuxthreads)
+%bcond_without	tls		# don't use tls (implies no NPTL)
 %bcond_with	tests		# perform "make test"
 
 #
@@ -28,10 +28,6 @@
 %if "%{min_kernel}" < "2.6.0"
 %global		min_kernel	2.6.0
 %endif
-# NPTL requires TLS
-%define		with_tls	1
-%else
-%undefine	with_nptl
 %endif
 %endif
 
@@ -39,6 +35,11 @@
 %ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc sparcv9 ppc ppc64
 %undefine	with_tls
 %endif
+%endif
+
+%if %{without tls}
+# NPTL requires TLS
+%undefine	with_nptl
 %endif
 
 %ifarch sparc64
