@@ -53,7 +53,7 @@
 %endif
 
 %define		llh_version	7:2.6.6.0
-%define		_snap		20041030
+%define		_snap		20041122
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -66,13 +66,13 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.4
-Release:	0.%{_snap}.9%{!?with_nptl:+nonptl}%{!?with_nptl:%{!?with_tls:+notls}}
+Release:	0.%{_snap}.1%{!?with_nptl:+nonptl}%{!?with_nptl:%{!?with_tls:+notls}}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	4e14871efd881fbbf523a0ba16175bc7
+# Source0-md5:	f001b42f639d5030d2c4dd16803b393d
 # Source0-size:	13680659
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 #Source1:	%{name}-linuxthreads-2.3.3.tar.bz2
@@ -122,9 +122,8 @@ Patch28:	%{name}-LD_DEBUG.patch
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
 Patch32:	%{name}-sparc_comdat.patch
-Patch33:	%{name}-alpha_giduidfix.patch
 Patch34:	%{name}-ia64_unwind.patch
-Patch50:	glibc-ZA_collate.patch
+Patch50:	%{name}-ZA_collate.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -818,8 +817,10 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch24 -p1
 # UPDATEME/DROPME
 #%patch25 -p1
-%patch26 -p1
-%patch27 -p1
+# UPDATEME/DROPME
+# %patch26 -p1
+# UPDATEME/DROPME
+# %patch27 -p1
 # UPDATEME/DROPME
 # %patch28 -p0
 # DROP
@@ -827,9 +828,8 @@ Statyczne 64-bitowe biblioteki GNU libc.
 # DROP
 #%patch31 -p1
 %patch32 -p1
-%patch33 -p1
 %patch34 -p1
-%patch50 -p1
+#%patch50 -p1
 
 chmod +x scripts/cpp
 
