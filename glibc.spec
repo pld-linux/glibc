@@ -4,14 +4,14 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1.91
-Release:	0.8
+Version:	2.1.94
+Release:	1
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -24,8 +24,6 @@ Patch4:		glibc-string2-pointer-arith.patch
 Patch5:		glibc-linuxthreads-lock.patch
 Patch6:		glibc-pthread_create-manpage.patch
 Patch7:		glibc-sparc-linux-chown.patch
-Patch8:		glibc-build-order.patch
-Patch9:		glibc-CVS-20000719.patch.gz
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -232,6 +230,54 @@ GNU C Library PIC archive contains an archive library (ar file) composed
 of individual shared objects. This is used for creating a library which
 is a smaller subset of the standard libc shared library.
 
+%package -n nss_compat
+Summary:	Old style NYS NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_compat
+Old style NYS NSS glibc module
+
+%package -n nss_dns
+Summary:	BIND NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_dns
+BIND NSS glibc module.
+
+%package -n nss_files
+Summary:	Traditional files databases NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_files
+Traditional files databases NSS glibc module.
+
+%package -n nss_hesiod
+Summary:	Hesiod NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_hesiod
+Glibc NSS (Name Service Switch) module for databases acces.
+
+%package -n nss_nis
+Summary:	NIS(YP) NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_nis
+Glibc NSS (Name Service Switch) module for NIS(YP) databases acces.
+
+%package -n nss_nisplus
+Summary:	NIS+ NSS module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_nisplus
+Glibc NSS (Name Service Switch) module for NIS+ databases acces.
+
 %prep
 %setup  -q -a 1
 %patch0 -p1
@@ -242,13 +288,11 @@ is a smaller subset of the standard libc shared library.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
-%patch9 -p1
-
 
 %build
 %configure \
 	--enable-add-ons=linuxthreads \
+%{?kernel:--enable-kernel=%{kernel}} \
 	--enable-profile \
 	--disable-omitfp
 
@@ -256,7 +300,7 @@ is a smaller subset of the standard libc shared library.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/{db,log}}
+install -d $RPM_BUILD_ROOT/{etc/{rc.d/init.d,sysconfig,logrotate.d},%{_mandir}/man{3,8},var/log}
 
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
@@ -273,6 +317,9 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES $RPM_BUILD_ROOT/%{_libdir}
 install elf/soinit.os $RPM_BUILD_ROOT/%{_libdir}/soinit.o
 install elf/sofini.os $RPM_BUILD_ROOT/%{_libdir}/sofini.o
+
+mv $RPM_BUILD_ROOT/lib/libmemusage.so $RPM_BUILD_ROOT%{_libdir}
+mv $RPM_BUILD_ROOT/lib/libpcprofile.so $RPM_BUILD_ROOT%{_libdir}
 
 %{__make} -C linuxthreads/man
 install linuxthreads/man/*.3thr $RPM_BUILD_ROOT%{_mandir}/man3
@@ -295,15 +342,7 @@ install nss/nsswitch.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man8/
 touch	$RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
 
-install nss/db-Makefile $RPM_BUILD_ROOT/var/db/Makefile
 :> $RPM_BUILD_ROOT/var/log/nscd
-
-cat << EOF > $RPM_BUILD_ROOT%{_bindir}/create-db
-#!/bin/sh
-/usr/bin/make -sC /var/db/
-EOF
-
-ln -sf create-db $RPM_BUILD_ROOT%{_bindir}/update-db
 
 rm -rf documentation
 install -d documentation
@@ -315,13 +354,7 @@ cp crypt/README.ufc-crypt documentation/
 
 cp ChangeLog ChangeLog.8 documentation
 
-gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS \
-	$RPM_BUILD_ROOT{%{_mandir}/man*/*,%{_infodir}/libc*} \
-	documentation/*
-
-strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
-strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
-	$RPM_BUILD_ROOT%{_libdir}/gconv/*.so
+gzip -9nf README NEWS FAQ BUGS NOTES PROJECTS documentation/*
 
 # Collect locale files and mark them with %%lang()
 %{find_lang} libc
@@ -373,23 +406,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/catchsegv
-%attr(755,root,root) %{_bindir}/create-db
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/glibcbug
 %attr(755,root,root) %{_bindir}/ldd
 %attr(755,root,root) %{_bindir}/lddlibc4
 %attr(755,root,root) %{_bindir}/locale
-%attr(755,root,root) %{_bindir}/makedb
 %attr(755,root,root) %{_bindir}/rpcgen
 %attr(755,root,root) %{_bindir}/tzselect
-%attr(755,root,root) %{_bindir}/update-db
 
 %attr(755,root,root) %{_sbindir}/rpcinfo
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
 %attr(755,root,root) /lib/ld-*
-%attr(755,root,root) /lib/lib*
+%attr(755,root,root) /lib/libdl*
+%attr(755,root,root) /lib/libnsl*
+%attr(755,root,root) /lib/lib[BScmprtu]*
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
@@ -399,16 +431,39 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_mandir}/man8/ldconfig*
 
-%config /var/db/Makefile
+#%files -n nss_dns
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_dns*.so*
+
+#%files -n nss_files
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_files*.so*
+
+%files -n nss_compat
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_compat*.so*
+
+%files -n nss_hesiod
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_hesiod*.so*
+
+%files -n nss_nis
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_nis.so.*
+%attr(755,root,root) /lib/libnss_nis-*.so
+
+%files -n nss_nisplus
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_nisplus*.so*
 
 %files devel
 %defattr(644,root,root,755)
 %doc documentation/* {NOTES,PROJECTS}.gz
 %attr(755,root,root) %{_bindir}/gencat
 %attr(755,root,root) %{_bindir}/getconf
-%attr(755,root,root) %{_bindir}/mtrace
-%attr(755,root,root) %{_bindir}/pcprofiledump
-%attr(755,root,root) %{_bindir}/sprof
+%attr(755,root,root) %{_bindir}/memusage*
+%attr(755,root,root) %{_bindir}/*prof*
+%attr(755,root,root) %{_bindir}/*trace
 
 %{_includedir}/*.h
 %{_includedir}/arpa
@@ -444,7 +499,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
-%attr(755,root,root) %{_sbindir}/nscd
+%attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
 
