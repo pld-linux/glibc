@@ -1004,16 +1004,16 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# ia,li (used by GNOME)
-# nso,ss,ven (used by KDE)
+# tk, yo (used by GNOME)
+# ven -> ve (used by KDE)
 # NOTES:
 # bn is used for bn_BD or bn_IN?
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
     en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn \
-    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn or pa pt ro ru se \
-    sl sq sr sr@Latn sr@ije ta tg th uk uz vi wa xh yi zu ; do
+    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro ru se \
+    sl sq sr sr@Latn sr@ije ss ta tg th tlh uk uz ve vi wa xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
