@@ -444,6 +444,9 @@ chmod +x scripts/cpp
 
 %build
 LDFLAGS=" " ; export LDFLAGS
+if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
+	CPPFLAGS="`pkg-config libpng12 --cflags`"
+fi
 %configure2_13 \
 	--enable-add-ons=linuxthreads \
 	--enable-kernel="%{?kernel:%{kernel}}%{!?kernel:%{min_kernel}}" \
@@ -549,6 +552,9 @@ rm -rf $RPM_BUILD_ROOT
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
 
+%post iconv -p %{_sbindir}/iconvconfig
+# not run iconvconfig in %%postun iconv because iconvconfig don't exist when %%postun is runned
+
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
@@ -599,6 +605,7 @@ fi
 %attr(755,root,root) %{_sbindir}/zic
 
 %attr(755,root,root) /lib/ld-*
+%attr(755,root,root) /lib/libanl*
 %attr(755,root,root) /lib/libdl*
 %attr(755,root,root) /lib/libnsl*
 %attr(755,root,root) /lib/lib[BScmprtu]*
@@ -731,12 +738,14 @@ fi
 
 %files -n iconv
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_sbindir}/iconvconfig
 %dir %{_libdir}/gconv
 %{_libdir}/gconv/gconv-modules
 %attr(755,root,root) %{_libdir}/gconv/*.so
 
 %files static
 %defattr(644,root,root,755)
+%{_libdir}/libanl.a
 %{_libdir}/libBrokenLocale.a
 %{_libdir}/libbsd-compat.a
 %{_libdir}/libbsd.a
