@@ -53,7 +53,7 @@ Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 Autoreq:	false
-Prereq:		basesystem
+PreReq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	man-pages < 1.43
@@ -189,8 +189,8 @@ Summary(pl):	Demon zapamiêtuj±cy odpowiedzi serwisów nazw
 Summary(ru):	ëÜÛÉÒÕÀÝÉÊ ÄÅÍÏÎ ÓÅÒ×ÉÓÏ× ÉÍÅÎ
 Summary(uk):	ëÅÛÕÀÞÉÊ ÄÅÍÏÎ ÓÅ×¦Ó¦× ¦ÍÅÎ
 Group:		Networking/Daemons
-Prereq:		/sbin/chkconfig
-Prereq:		rc-scripts >= 0.2.0
+PreReq:		/sbin/chkconfig
+PreReq:		rc-scripts >= 0.2.0
 Requires:	%{name} = %{version}
 Requires(post):	fileutils
 
@@ -238,7 +238,7 @@ jakiej¶ niestandardowej bazy.
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
 Summary(pl):	Program do konwersji plików tekstowych z jednego kodowania do innego
-Group:		Daemons
+Group:		Applications/Text
 Requires:	%{name} = %{version}
 
 %description -n iconv
