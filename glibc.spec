@@ -698,13 +698,13 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 %endif
 
 %description -n %{name}64
-64-bit GNU libc libraries for sparc64 architecture.
+64-bit GNU libc libraries for 64bit architecture.
 
 %description -n %{name}64 -l es
-Bibliotecas GNU libc de 64 bits para la arquitectura sparc64.
+Bibliotecas GNU libc de 64 bits para la arquitectura 64bit.
 
 %description -n %{name}64 -l pl
-Biblioteki 64-bitowe GNU libc dla architektury sparc64.
+Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 
 %package -n %{name}64-devel
 Summary:	Development files for 64-bit GNU libc libraries
@@ -714,16 +714,16 @@ Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description -n %{name}64-devel
-Development files for 64-bit GNU libc libraries for sparc64
+Development files for 64-bit GNU libc libraries for 64bit
 architecture.
 
 %description -n %{name}64-devel -l es
 Ficheros de desarrollo para las bibliotecas GNU libc de 64 bits para la
-arquitectura sparc64.
+arquitectura 64bit.
 
 %description -n %{name}64-devel -l pl
 Pliki do programowania z u¿yciem 64-bitowych bibliotek GNU libc dla
-architektury sparc64.
+architektury 64bit.
 
 %package -n %{name}64-static
 Summary:	Static 64-bit GNU libc libraries
