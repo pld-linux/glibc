@@ -1,0 +1,2 @@
+- release 8.1
+- added /lib/libdb.so.2.1 to %files on alpha
