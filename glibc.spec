@@ -65,8 +65,9 @@ Autoreq:	false
 PreReq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
-Conflicts:	man-pages < 1.43
 Conflicts:	ld.so < 1.9.9-10
+Conflicts:	man-pages < 1.43
+Conflicts:	rpm < 4.1
 
 %define		debugcflags	-O1 -g
 #define		parallelmkflags PARALLELMFLAGS="-j 4"	
