@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	22
+Release:	23
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -509,9 +509,9 @@ ln -sf ../../..%{_sysconfdir}/localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/loca
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
 ln -sf localtime $RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
 ln -sf libbsd-compat.a $RPM_BUILD_ROOT%{_libdir}/libbsd.a
-ln -sf libdb.a $RPM_BUILD_ROOT%{_libdir}/libdb2.a
 ln -sf ../../lib/libdb.so.3 $RPM_BUILD_ROOT%{_libdir}/libdb2.so
 ln -sf libdb.so.3 $RPM_BUILD_ROOT/lib/libdb2.so.3
+mv -f $RPM_BUILD_ROOT%{_libdir}/libdb.a $RPM_BUILD_ROOT%{_libdir}/libdb2.a
 
 %ifarch alpha
 ln -sf libdb.so.2.1 $RPM_BUILD_ROOT/lib/libdb.so.2
@@ -838,13 +838,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/db_printlog
 %attr(755,root,root) %{_bindir}/db_recover
 %attr(755,root,root) %{_bindir}/db_stat
-%attr(755,root,root) %{_libdir}/libdb.so
 %attr(755,root,root) %{_libdir}/libdb2.so
-%attr(755,root,root) %{_libdir}/libndbm.so
 %{_includedir}/db2
 
 %files db2-static
 %defattr(644,root,root,755)
-%{_libdir}/libdb.a
 %{_libdir}/libdb2.a
-%{_libdir}/libndbm.a
