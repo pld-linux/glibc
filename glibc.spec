@@ -29,7 +29,6 @@ Patch8:		glibc-sparc-linux-chown.patch
 Patch9:		glibc-ctype.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
-Prereq:		basesystem
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
