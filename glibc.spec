@@ -229,7 +229,7 @@ gzip -9fn README NEWS FAQ BUGS NOTES PROJECTS \
 	documentation/* login/README.utmpd
 
 strip $RPM_BUILD_ROOT/{sbin/*,usr/{sbin/*,bin/*}} ||:
-strip --strip--unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
+strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
 	$RPM_BUILD_ROOT/usr/lib/gconv/*.so
 
 %post   -p /sbin/ldconfig
