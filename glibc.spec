@@ -53,8 +53,8 @@ Source8:	%{name}-localedb-gen
 # Kernel headers for userspace
 Source9:	%{name}-kernheaders.tar.bz2
 # Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
-Source10:	http://josefsson.org/libidn/releases/libidn-0.2.3a.tar.gz
-# Source10-md5:	b0f71f269214ea8585c8d75713f88780
+Source10:	http://josefsson.org/libidn/releases/libidn-0.2.4rc1.tar.gz
+# Source10-md5:	c0f084d0cf653746020bcd7a9c3d7db1
 Patch0:		%{name}-info.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -611,11 +611,12 @@ chmod +x scripts/cpp
 mv -f localedata/locales/{lug_UG,lg_UG}
 
 # This needs to be carefully checked when new glibc version arrives
-ln -s libidn-* libidn
-cp libidn/libc/Makefile libidn/libc/configure libidn/libc/Versions libidn/
-cp libidn/libc/getaddrinfo.c sysdeps/posix/
-cp libidn/libc/netdb.h resolv/
-echo > libidn/libidn.texi
+cp -r libidn-*/lib libidn
+cp libidn-*/libc/{Makefile,configure,Versions} libidn/
+cp libidn-*/lib/*.{c,h} libidn/
+cp libidn-*/libc/getaddrinfo.c sysdeps/posix/
+cp libidn-*/libc/netdb.h resolv/
+touch libidn/libidn.texi
 
 #make proper symlink for asm in headers
 #cd usr/include
