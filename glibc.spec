@@ -4,14 +4,14 @@ Summary(fr):	GNU libc
 Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
-Version:	2.1.1
-Release:	6
+Version:	2.1.2
+Release:	8
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
-Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.gz
-Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-%{version}.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}.tar.bz2
+Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}.tar.bz2
+Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.1.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Source5:	utmpd.sysconfig
@@ -21,8 +21,6 @@ Patch0:		glibc-info.patch
 Patch1:		glibc-paths.patch
 Patch2:		glibc-versions.awk_fix.patch
 Patch3:		glibc-pld.patch
-Patch4:		glibc-getaddrinfo.patch
-Patch5:		glibc-gcc-2.95.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	perl
 Provides:	ld.so.2
@@ -170,15 +168,12 @@ GNU libc-2.1 Static libraries
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
 %configure \
 	--enable-add-ons=crypt,linuxthreads \
 	--disable-profile \
 	--disable-omitfp \
-	--infodir=%{_infodir} \
 	--mandir=%{_mandir}
 make   
 
