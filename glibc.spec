@@ -6,7 +6,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.2
-Release:	7
+Release:	8
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -39,6 +39,7 @@ Obsoletes:	%{name}-profile
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
 Autoreq:	false
+Prereq:		basesystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Conflicts:	kernel < %{min_kernel}
 
