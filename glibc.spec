@@ -3,19 +3,16 @@
 # default is 2.2.0 (no changes up to 2.3.25)
 #
 # Conditional build:
-# _without_dist_kernel	build without kernel from the distribution;
-#			headers will be searched in %_kernelsrcdir/include.
-# _without_fp		build without frame pointer (pass --enable-omitfp)
-# _without_memusage	build without memusage
-#
-%bcond_with kernelheaders	# use headers from kernel-headers instead of
-							# glibc-kernel-headers
-%bcond_with	idn				# build with included libidn
+%bcond_without	fp		# build without frame pointer (pass --enable-omitfp)
+%bcond_without	memusage	# don't build memusage utility
+%bcond_with	kernelheaders	# use headers from kernel-headers instead of
+				# glibc-kernel-headers (evil, breakage etc., don't use)
+%bcond_without	dist_kernel	# for above, allow non-distribution kernel
+%bcond_with	idn		# build with included libidn
 #
 # TODO:
 # - localedb-gen man pages(?)
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
-#
 #
 # WARNING:
 #	posix zoneinfo dir removed, /etc/rc.d/init.d/timezone must be changed
@@ -82,10 +79,10 @@ Patch27:	%{name}-soinit-EH_FRAME.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
-%{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
+%{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
 %if %{with kernelheaders}
-%{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.5}
+%{?with_dist_kernel:BuildRequires:	kernel-headers < 2.5}
 %else
 BuildRequires:	glibc-kernel-headers >= 1:1-2
 %endif
@@ -113,7 +110,7 @@ Conflicts:	rpm < 4.1
 
 %define		debugcflags	-O1 -g
 %ifarch sparc64
-%define		_without_memusage	1
+%undefine	with_memusage
 %define 	specflags_sparc64	-mvis -fcall-used-g6
 %define		_libdir			/usr/lib64
 %endif
@@ -232,11 +229,15 @@ Can be used on: Linux kernel >= %{min_kernel}.
 
 %package misc
 Summary:	Utilities and data used by glibc
+Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
 %description misc
-Utilities and data used by glibc
+Utilities and data used by glibc.
+
+%description misc -l pl
+Narzêdzia i dane u¿ywane przez glibc.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -811,7 +812,7 @@ LDFLAGS=" " ; export LDFLAGS
 	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
 	--enable-kernel="%{min_kernel}" \
 	--enable-profile \
-	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
+	--%{!?with_fp:en}%{?with_fp:dis}able-omitfp \
 %if %{with kernelheaders}
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
@@ -854,7 +855,7 @@ install elf/postshell				$RPM_BUILD_ROOT/%{_lib}
 mv $RPM_BUILD_ROOT/sbin/ldconfig 		$RPM_BUILD_ROOT/%{_lib}
 ln -s /%{_lib}/ldconfig 			$RPM_BUILD_ROOT/sbin
 
-%{!?_without_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 %ifnarch sparc64
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 %endif
@@ -1135,11 +1136,11 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_nisplus*.so*
 
-%if %{?_without_memusage:0}%{!?_without_memusage:1}
+%if %{with memusage}
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage*
-%attr(755,root,root) %{_libdir}/libmemusage*
+%attr(755,root,root) %{_libdir}/libmemusage.so
 %endif
 
 %files devel
