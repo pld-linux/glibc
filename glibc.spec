@@ -12,10 +12,11 @@ Group:		Libraries
 Group(pl):	Biblioteki
 Source0:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-%{version}pre3.tar.gz
 Source1:	ftp://sourceware.cygnus.com/pub/glibc/%{name}-linuxthreads-%{version}pre3.tar.gz
-Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt%{name}-crypt-2.1.pre1.tar.gz
+Source2:	http://www.ozemail.com.au/~geoffk/glibc-crypt/%{name}-crypt-2.1.pre1.tar.gz
 Source3:	utmpd.init
 Source4:	nscd.init
 Patch0:		glibc-info.patch
+Patch1:		glibc-map.patch
 URL:		http://www.gnu.org/software/libc/
 Provides:	ld.so.2
 Obsoletes:	%{name}-profile
@@ -173,8 +174,9 @@ utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików
 ze starszych programów (bazuj±cych na libc5).
 
 %prep 
-%setup -q -a 1 -a 2 -n %{name}-%{version}%{pre}
-%patch -p1
+%setup  -q -a 1 -a 2 -n %{name}-%{version}%{pre}
+%patch0 -p1
+%patch1 -p1
 
 %build
 %configure \
