@@ -1,13 +1,12 @@
 #
 # You can define min_kernel macro by "rpm --define 'min_kernel version'"
-# default is 2.4.6
+# default is 2.4.6 for linuxthreads, 2.6.0 for NPTL
 #
 # Conditional build:
 %bcond_with	omitfp		# build without frame pointer (pass \--enable-omitfp)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_with	kernelheaders	# use headers from kernel-headers instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
-%bcond_without	dist_kernel	# for above, allow non-distribution kernel
 %bcond_without	nptl		# don't use NPTL (implies using linuxthreads)
 %bcond_without	tls		# don't use tls (implies no NPTL)
 %bcond_with	tests		# perform "make test"
@@ -125,9 +124,7 @@ BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 3.2
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%if %{with kernelheaders}
-%{?with_dist_kernel:BuildRequires:	kernel-headers < 2.5}
-%else
+%if %{without kernelheaders}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
 BuildRequires:	libselinux-devel
