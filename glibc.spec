@@ -104,9 +104,8 @@ Patch17:	%{name}-csu-quotes.patch
 Patch18:	%{name}-tests-noproc.patch
 Patch19:	%{name}-new-charsets.patch
 Patch20:	%{name}-sr_CS.patch
-
-Patch22:	%{name}-alpha-relro.patch
-Patch23:	%{name}-sparc64-dl-machine.patch
+Patch21:	%{name}-alpha-relro.patch
+Patch22:	%{name}-sparc64-dl-machine.patch
 # PaX
 Patch30:	%{name}-pax_iconvconfig.patch
 Patch31:	%{name}-pax_dl-execstack.patch
@@ -790,9 +789,8 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
-
+%patch21 -p1
 %patch22 -p1
-%patch23 -p1
 
 %patch30 -p1
 %patch31 -p1
