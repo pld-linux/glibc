@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.3
-Release:	21
+Release:	22
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -517,6 +517,9 @@ ln -sf libdb.so.3 $RPM_BUILD_ROOT/lib/libdb2.so.3
 ln -sf libdb.so.2.1 $RPM_BUILD_ROOT/lib/libdb.so.2
 %endif
 
+install -d $RPM_BUILD_ROOT%{_includedir}/db2
+mv $RPM_BUILD_ROOT%{_includedir}/db*.h $RPM_BUILD_ROOT%{_includedir}/db2/
+
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
@@ -838,7 +841,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libdb.so
 %attr(755,root,root) %{_libdir}/libdb2.so
 %attr(755,root,root) %{_libdir}/libndbm.so
-%{_includedir}/db*.h
+%{_includedir}/db2
 
 %files db2-static
 %defattr(644,root,root,755)
