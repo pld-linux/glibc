@@ -8,11 +8,9 @@
 # _without_fp		build without frame pointer (pass --enable-omitfp)
 # _without_memusage	build without memusage
 #
-# _with_kernheaders	use "kernheaders" as user-space kernel headers
-#			(instead of copying from kernel-headers 2.4.x)
-#			[broken at the moment]
-#
-%bcond_with	idn	# build with included libidn
+%bcond_with kernelheaders	# use headers from kernel-headers instead of
+							# glibc-kernel-headers
+%bcond_with	idn				# build with included libidn
 #
 # TODO:
 # - localedb-gen man pages(?)
@@ -35,7 +33,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.2
-%define		rel 8
+%define		rel 9
 Release:	%{rel}
 Epoch:		6
 License:	LGPL
@@ -54,9 +52,6 @@ Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # borrowed from util-linux
 Source7:	sln.8
 Source8:	%{name}-localedb-gen
-# Kernel headers for userspace
-Source9:	%{name}-kernheaders.tar.bz2
-# Source9-md5:  b48fec281f854627d6b8781cd1dd72d2
 Source10:	http://josefsson.org/libidn/releases/libidn-0.3.0rc3.tar.gz
 # Source10-md5:	ded0b439efe16dd29ce5a24d3d3dcebf
 Patch0:		%{name}-info.patch
@@ -88,8 +83,10 @@ BuildRequires:	binutils >= 2.13.90.0.2
 BuildRequires:	gcc >= 3.2
 %{!?_without_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%if 0%{!?_with_kernheaders:1}
+%if %{with kernelheaders}
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.5}
+%else
+BuildRequires:	glibc-kernel-headers >= 1:1-2
 %endif
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.0.2-46
@@ -294,22 +291,6 @@ kitaplýklar.
 (ÐÒÁËÔÉÞÎÏ ×Ó¦ ÐÒÏÇÒÁÍÉ §È ×ÉËÏÒÉÓÔÏ×ÕÀÔØ), ÓÉÓÔÅÍ¦ îåïâè¶äî¶ ÈÅÄÅÒÉ
 ÔÁ ÏÂ'¤ËÔÎ¦ ÆÁÊÌÉ, ÝÏ Í¦ÓÔÑÔØÓÑ × ÃØÏÍÕ ÐÁËÅÔ¦, ÃÏÂ ÓÔ×ÏÒÀ×ÁÔÉ
 ×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
-
-%package kernel-headers
-Summary:	Kernel header files the glibc has been built with
-Summary(es):	Los ficheros de cabecera del núcleo con los que se ha construido glibc
-Summary(pl):	Pliki nag³ówkowe j±dra, z którymi zosta³a zbudowana ta wersja glibc
-Release:	%{rel}
-Group:		Development/Libraries
-
-%description kernel-headers
-Kernel header files for userspace.
-
-%description kernel-headers -l es
-Los ficheros de cabecera del núcleo para el espacio del usuario.
-
-%description kernel-headers -l pl
-Pliki nag³ówkowe j±dra dla przestrzeni u¿ytkownika
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -740,7 +721,7 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -a 1 -a 9 -a 10
+%setup -q -a 1 -a 10
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -762,7 +743,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch20 -p1
 #%patch21 -p1
 %patch22 -p1
-%{!?_with_kernheaders:%patch23}
+%{?with_kernelheaders:%patch23}
 %patch24 -p1
 # updated - lt
 %ifnarch alpha
@@ -802,30 +783,22 @@ touch libidn/libidn.texi
 #cd ../..
 
 %build
-# Prepare kernel headers
-TARGET_CPU=$(echo "%{_target_cpu}" | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
-				   -e s/athlon/i386/ -e s/arm.*/arm/ \
-				   -e s/sa110/arm/ -e s/s390x/s390/)
-_headers_dir=`pwd`/usr/include; export _headers_dir;
-(cd $_headers_dir && ln -s asm-${TARGET_CPU} asm)
-
 # Build glibc
 mkdir builddir
 cd builddir
 # avoid stripping ld.so by -s in rpmldflags
 LDFLAGS=" " ; export LDFLAGS
-#CFLAGS="-I $_headers_dir %{rpmcflags}"; export CFLAGS
 ../%configure \
 	--enable-add-ons=linuxthreads%{?with_idn:,libidn} \
 	--enable-kernel="%{min_kernel}" \
 	--enable-profile \
 	--%{?_without_fp:en}%{!?_without_fp:dis}able-omitfp \
-%if 0%{!?_with_kernheaders:1}
+%if %{with kernelheaders}
 	CPPFLAGS="-I%{_kernelsrcdir}/include" \
 	--with-headers=%{_kernelsrcdir}/include
 %else
-	CPPFLAGS="-I$_headers_dir" \
-	--with-headers=$_headers_dir
+	CPPFLAGS="-I%{_includedir}" \
+	--with-headers=%{_includedir}
 %endif
 
 # problem compiling with --enable-bounded (must be reported to libc-alpha)
@@ -835,8 +808,6 @@ LDFLAGS=" " ; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log}
-
-_headers_dir=`pwd`/usr/include; export _headers_dir;
 
 cd builddir
 
@@ -974,16 +945,6 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
 rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
 
-# copy actual kernel headers for glibc-kernel-headers
-%if 0%{!?_with_kernheaders:1}
-%{__mkdir} -p $RPM_BUILD_ROOT%{_includedir}
-%{__cp} -Hr %{_kernelsrcdir}/include/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
-if [ -d %{_kernelsrcdir}/include/asm-generic ] ; then
-	%{__cp} -Hr %{_kernelsrcdir}/include/asm-generic $RPM_BUILD_ROOT%{_includedir}
-fi
-%else
-%{__cp} -Hr $_headers_dir/{asm,linux} $RPM_BUILD_ROOT%{_includedir}
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -1007,18 +968,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-echo "Please install glibc-kernel-headers or, if you are a brave man,"
-echo "make appropriate links in /usr/include pointing to an already"
-echo "installed previously chosen kernel-headers package or other"
-echo "kernel headers you have."
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-
-%pre kernel-headers
-# useful if these are symlinks
-if [ -h %{_includedir}/asm ]; then rm -f %{_includedir}/asm; fi
-if [ -h %{_includedir}/linux ]; then rm -f %{_includedir}/linux; fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
@@ -1214,11 +1166,6 @@ fi
 %lang(pt) %{_mandir}/pt/man3/*
 %lang(pt_BR) %{_mandir}/pt_BR/man3/*
 %lang(ru) %{_mandir}/ru/man3/*
-
-%files kernel-headers
-%defattr(644,root,root,755)
-%{_includedir}/asm*
-%{_includedir}/linux
 
 %files -n nscd
 %defattr(644,root,root,755)
