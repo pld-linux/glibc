@@ -11,6 +11,7 @@
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(fr):	GNU libc
+Summary(ja):	GNU libc •È•§•÷•È•Í
 Summary(pl):	GNU libc
 Summary(ru):	GNU libc ◊≈“”…… 2.3
 Summary(tr):	GNU libc
@@ -73,8 +74,6 @@ Conflicts:	man-pages < 1.43
 Conflicts:	rpm < 4.1
 
 %define		debugcflags	-O1 -g
-#define		parallelmkflags PARALLELMFLAGS="-j 4"	
-%define		parallelmkflags %{nil}	
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -85,8 +84,8 @@ libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
 
-Compiled on: Linux kernel %{_kernel_ver_str}.
-Can be used on: Linux kernel >= %{min_kernel}.
+Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
+kernel >= %{min_kernel}.
 
 %description -l de
 Enth‰lt die Standard-Libraries, die von verschiedenen Programmen im
@@ -99,8 +98,8 @@ Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enth‰lt es den Support f¸r die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
 
-Compiled on: Linux kernel %{_kernel_ver_str}.
-Can be used on: Linux kernel >= %{min_kernel}.
+Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
+kernel >= %{min_kernel}.
 
 %description -l fr
 Contient les bibliothËques standards utilisÈes par de nombreux
@@ -113,8 +112,19 @@ systËme Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de donnÈes des zones
 horaires.
 
-Compiled on: Linux kernel %{_kernel_ver_str}.
-Can be used on: Linux kernel >= %{min_kernel}.
+Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
+kernel >= %{min_kernel}.
+
+%description -l ja
+glibc
+•—•√•±°º•∏§œ•∑•π•∆•‡æÂ§Œ £øÙ§Œ•◊•Ì•∞•È•‡§«ª»§Ô§Ï§Î…∏Ω‡•È•§•÷•È•Í§Ú
+§’§Ø§ﬂ§ﬁ§π°£•«•£•π•Ø•π•⁄°º•π§»•·•‚•Í§Ú¿·ÃÛ§∑§ø§Í°¢•¢•√•◊•∞•Ï°º•…§Ú
+Õ—∞’§À§π§Î§ø§·§À°¢∂¶ƒÃ§Œ•∑•π•∆•‡•≥°º•…§œ∞Ï§ƒ§ŒæÏΩÍ§À§™§´§Ï°¢•◊•Ì•∞•È•‡
+¥÷§«∂¶Õ≠§µ§Ï§ﬁ§π°£§≥§Œ…Ù ¨≈™§ •—•√•±°º•∏§œ•∑•ß•¢•…•È•§•÷•È•Í§Œ§´§ §Í
+Ω≈Õ◊§ •ª•√•»§Ú§’§Ø§ﬂ§ﬁ§π: …∏Ω‡ C •È•§•÷•È•Í§»…∏Ω‡øÙ√Õ•È•§•÷•È•Í§«§π°£
+§≥§Œ∆Û§ƒ§Œ•È•§•÷•È•Í»¥§≠§«§œ°¢Linux •∑•π•∆•‡§œµ°«Ω§∑§ﬁ§ª§Û°£ glibc
+•—•√•±°º•∏§œ§ﬁ§ø√œ∞Ë∏¿∏Ï (locale) •µ•›°º•»§»•ø•§•‡•æ°º•Û•«°º•ø•Ÿ°º•π
+•µ•›°º•»§Ú§’§Ø§ﬂ§ﬁ§π°£
 
 %description -l pl
 W pakiecie znajduj± siÍ podstawowe biblioteki, uøywane przez rÛøne
@@ -141,8 +151,8 @@ Moøna go uøywaÊ na j±drach Linuksa >= %{min_kernel}.
 –¡À≈‘ ”œƒ≈“÷…‘ –œƒƒ≈“÷À’ Œ¡√…œŒ¡ÃÿŒŸ» —⁄ŸÀœ◊ (locale) … ¬¡⁄Ÿ ƒ¡ŒŒŸ»
 ◊“≈Õ≈ŒŒŸ» ⁄œŒ (timezone databases).
 
-Compiled on: Linux kernel %{_kernel_ver_str}.
-Can be used on: Linux kernel >= %{min_kernel}.
+Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
+kernel >= %{min_kernel}.
 
 %description -l tr
 Bu paket, birÁok program˝n kulland˝˝ standart kitapl˝klar˝ iÁerir.
@@ -153,8 +163,8 @@ kitapl˝klar˝, standart C kitapl˝˝n˝ ve standart matematik kitapl˝˝n˝
 iÁerir. Bu kitapl˝klar olmadan Linux sistemi Áal˝˛mayacakt˝r. Yerel
 dil destei ve zaman dilimi veri taban˝ da bu pakette yer al˝r.
 
-Compiled on: Linux kernel %{_kernel_ver_str}.
-Can be used on: Linux kernel >= %{min_kernel}.
+Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
+kernel >= %{min_kernel}.
 
 %description -l uk
 Ì¶”‘…‘ÿ ”‘¡Œƒ¡“‘Œ¶ ¬¶¬Ã¶œ‘≈À…, Àœ‘“¶ ◊…Àœ“…”‘œ◊’¿‘ÿ”— ﬁ…”Ã≈ŒŒ…Õ…
@@ -167,13 +177,14 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Ù¡Àœ÷ –¡À≈‘ Õ¶”‘…‘ÿ –¶ƒ‘“…ÕÀ’ Œ¡√¶œŒ¡ÃÿŒ…» Õœ◊ (locale) ‘¡ ¬¡⁄… ƒ¡ŒŒ…»
 ﬁ¡”œ◊…» ⁄œŒ (timezone databases).
 
-Compiled on: Linux kernel %{_kernel_ver_str}.
-Can be used on: Linux kernel >= %{min_kernel}.
+Compiled on: Linux kernel %{_kernel_ver_str}. Can be used on: Linux
+kernel >= %{min_kernel}.
 
 %package devel
 Summary:	Additional libraries required to compile
 Summary(de):	Weitere Libraries zum Kompilieren
 Summary(fr):	Librairies supplÈmentaires nÈcessaires ‡ la compilation
+Summary(ja):	…∏Ω‡ C •È•§•÷•È•Í§«ª»§Ô§Ï§Î•ÿ•√•¿°º§»•™•÷•∏•ß•Ø•»•’•°•§•Î
 Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
 Summary(ru):	‰œ–œÃŒ…‘≈ÃÿŒŸ≈ ¬…¬Ã…œ‘≈À…, Œ≈œ¬»œƒ…ÕŸ≈ ƒÃ— ÀœÕ–…Ã—√……
 Summary(tr):	Geli˛tirme iÁin gerekli dier kitapl˝klar
@@ -195,6 +206,14 @@ und Objektdateien zum Erstellen der ausf¸hrbaren Programme.
 Pour dÈvelopper des programmes utilisant les bibliothËques standard du
 C (ce que presque tous les programmes font), le systËme doit possÈder
 ces fichiers en-tÍtes et objets standards pour crÈer les exÈcutables.
+
+%description devel -l ja
+glibc-devel •—•√•±°º•∏§œ(§€§»§Û§…§π§Ÿ§∆§Œ•◊•Ì•∞•È•‡§«ª»§Ô§Ï§Î)…∏Ω‡ C
+•È•§•÷•È•Í§Úª»Õ—§∑§ø•◊•Ì•∞•È•‡§Ú≥´»Ø§π§Î§ø§·§Œ•ÿ•√•¿°º§»•™•÷•∏•ß•Ø•»
+•’•°•§•Î§Ú¥ﬁ§ﬂ§ﬁ§π°£§‚§∑…∏Ω‡ C
+•È•§•÷•È•Í§Úª»Õ—§π§Î•◊•Ì•∞•È•‡§Ú≥´»Ø§π§Î§ §È
+º¬π‘•’•°•§•Î§Ú∫Ó¿Æ§π§ÎÃ‹≈™§«§≥§Ï§È§Œ…∏Ω‡•ÿ•√•¿§»•™•÷•∏•ß•Ø•»•’•°•§•Î
+§¨ª»Õ—§«§≠§ﬁ§π°£
 
 %description devel -l pl
 Pakiet ten jest niezbÍdny przy tworzeniu w≥asnych programÛw
@@ -226,13 +245,16 @@ Summary(pl):	Pliki nag≥Ûwkowe j±dra, z ktÛrymi zosta≥a zbudowana ta wersja glibc
 Group:		Development/Libraries
 
 %description kernel-headers
-Kernel header files the glibc has been built with (Linux %{_kernel_ver_str}).
+Kernel header files the glibc has been built with (Linux
+%{_kernel_ver_str}).
 
 %description kernel-headers -l pl
-Pliki nag≥Ûwkowe j±dra, z ktÛrymi zosta≥a zbudowana ta wersja glibc (Linux %{_kernel_ver_str}).
+Pliki nag≥Ûwkowe j±dra, z ktÛrymi zosta≥a zbudowana ta wersja glibc
+(Linux %{_kernel_ver_str}).
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
+Summary(ja):	•Õ°º•‡•µ°º•”•π•≠•„•√•∑•Û•∞•«°º•‚•Û (nacd)
 Summary(pl):	Demon zapamiÍtuj±cy odpowiedzi serwisÛw nazw
 Summary(ru):	Î‹€…“’¿›…  ƒ≈ÕœŒ ”≈“◊…”œ◊ …Õ≈Œ
 Summary(uk):	Î≈€’¿ﬁ…  ƒ≈ÕœŒ ”≈◊¶”¶◊ ¶Õ≈Œ
@@ -247,6 +269,13 @@ nscd caches name service lookups; it can dramatically improve
 performance with NIS+, and may help with DNS as well. You cannot use
 nscd with 2.0 kernels, due to bugs in the kernel-side thread support.
 nscd happens to hit these bugs particularly hard.
+
+%description -n nscd -l ja
+Nscd §œ•Õ°º•‡•µ°º•”•πª≤æ»§Ú•≠•„•√•∑•Â§∑°¢NIS+ §Œ•—•’•©°º•ﬁ•Û•π§Ú
+•…•È•ﬁ•∆•£•√•Ø§À≤˛¡±§π§Î§≥§»§¨§«§≠°¢DNS §Ú∆±ÕÕ§À ‰Ωı§∑§ﬁ§π°£ 2.0
+•´°º•Õ•Î§« nscd §Úª»Õ—§π§Î§≥§»§œ§«§≠§ §§§≥§»§À√Ì∞’§∑§∆§Ø§¿§µ§§°£
+§Ω§Ï§œ°¢•´°º•Õ•Î¬¶§Œ•π•Ï•√•…•µ•›°º•»§À•–•∞§¨§¢§Î§´§È§«§π°£…‘π¨§ §≥§»§À°¢
+nscd §œ§≥§Ï§È§Œ•–•∞§À∆√§À§œ§≤§∑§Ø§¢§ø§√§∆§∑§ﬁ§§§ﬁ§π°£
 
 %description -n nscd -l pl
 nscd zapamiÍtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
@@ -628,8 +657,8 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 				lang=`echo $lang | sed "s,\..*,,"`
 			else
 				lang=`echo $lang | sed "s,_.*,,"`
-			fi 
-		fi	
+			fi
+		fi
 		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
 		echo "%lang($lang) $dir" >> ../glibc.lang
 	fi
@@ -670,7 +699,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%postun -p /sbin/postshell 
+%postun -p /sbin/postshell
 /sbin/ldconfig
 -/sbin/telinit u
 
