@@ -1,0 +1,3 @@
+- fix %%post for iconv package
+- build postshell with correct CFLAGS/LDFLAGS
+- release 10
