@@ -462,7 +462,8 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-touch $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.{cache,conf}
+> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
+> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 rm -f %{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -509,7 +510,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post -n nscd
 /sbin/chkconfig --add nscd
-touch /var/log/nscd && (chown root.root /var/log/nscd ; chmod 640 /var/log/nscd)
+touch /var/log/nscd && (chmod 000 /var/log/nscd; chown root.root /var/log/nscd; chmod 640 /var/log/nscd)
 if [ -f /var/lock/subsys/nscd ]; then
 	/etc/rc.d/init.d/nscd restart 1>&2
 else
