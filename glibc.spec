@@ -132,6 +132,62 @@ C kitaplýðýný kullanan (ki hemen hemen hepsi kullanýyor) programlar
 geliþtirmek için gereken standart baþlýk dosyalarý ve statik
 kitaplýklar.
 
+%package -n nss_compat
+Summary:	Old style NYS NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_compat
+Old style NYS NSS glibc module
+
+%package -n nss_db
+Summary:	Berkeley DB NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_db
+Berkeley DB NSS glibc module.
+
+%package -n nss_dns
+Summary:	BIND NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_dns
+BIND NSS glibc module.
+
+%package -n nss_files
+Summary:	Traditional files databases NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_files
+Traditional files databases NSS glibc module.
+
+%package -n nss_hesiod
+Summary:	Hesiod NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_hesiod
+Glibc NSS (Name Service Switch) module for databases acces.
+
+%package -n nss_nis
+Summary:	NIS(YP) NSS glibc module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_nis
+Glibc NSS (Name Service Switch) module for NIS(YP) databases acces.
+
+%package -n nss_nisplus
+Summary:	NIS+ NSS module
+Group:		Base
+Requires:	%{name} = %{version}
+
+%description -n nss_nisplus
+Glibc NSS (Name Service Switch) module for NIS+ databases acces.
+
 %package -n nscd
 Summary:	Name Service Caching Daemon
 Summary(pl):	Name Service Caching Daemon
@@ -541,10 +597,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/zic
 
 %attr(755,root,root) /lib/ld-*
-%attr(755,root,root) /lib/lib[A-Z]*
-%attr(755,root,root) /lib/libc*
-%attr(755,root,root) /lib/libdl*
-%attr(755,root,root) /lib/lib[m-z]*
+%attr(755,root,root) /lib/lib[^(nss)(db)]*
 
 %{_mandir}/man8/*
 
@@ -552,7 +605,35 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/locale.alias
 %{_datadir}/zoneinfo
 
+%files -n nss_compat
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_compat*.so*
+
+%files -n nss_db
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_db*.so*
 %config /var/db/Makefile
+
+%files -n nss_dns
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_dns*.so*
+
+%files -n nss_files
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_files*.so*
+
+%files -n nss_hesiod
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_hesiod*.so*
+
+%files -n nss_nis
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_nis.so.*
+%attr(755,root,root) /lib/libnss_nis-*.so
+
+%files -n nss_nisplus
+%defattr(644,root,root,755)
+%attr(755,root,root) /lib/libnss_nisplus*.so*
 
 %files devel
 %defattr(644,root,root,755)
@@ -585,13 +666,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_infodir}/libc.inf*.gz
 
-%attr(755,root,root) %{_libdir}/lib[A-Z]*.so
-%attr(755,root,root) %{_libdir}/libc*.so
-%attr(755,root,root) %{_libdir}/libdl*.so
-%attr(755,root,root) %{_libdir}/libm*.so
-%attr(755,root,root) %{_libdir}/libnsl*.so
-%attr(755,root,root) %{_libdir}/libnss*.so
-%attr(755,root,root) %{_libdir}/lib[p-z]*.so
+%attr(755,root,root) %{_libdir}/lib[^(db)]*.so
 %attr(755,root,root) %{_libdir}/*.o
 %{_libdir}/libc_nonshared.a
 
