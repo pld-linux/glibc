@@ -53,14 +53,14 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.3
-Release:	0.20040101.14%{?with_nptl:+nptl}
+Release:	0.20040318.1%{?with_nptl:+nptl}
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 # 20040101 snapshot
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	b4e3f037a0b36afc705af344033a91c7
+# Source0-md5:	abb1508f747df2a73b38f49a120d7461
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source1:	%{name}-linuxthreads-%{version}.tar.bz2
 # Source1-md5:	97c30992592f854a67107579dcef61dd
@@ -92,20 +92,17 @@ Patch12:	%{name}-no_opt_override.patch
 Patch13:	%{name}-kernel_includes.patch
 Patch14:	%{name}-includes.patch
 Patch15:	%{name}-soinit-EH_FRAME.patch
-Patch16:	%{name}-fix-asserts.patch
 Patch17:	%{name}-sparc-errno_fix.patch
 Patch18:	%{name}-make.patch
-Patch19:	%{name}-tests-io-tmp.patch
 Patch20:	%{name}-tests-noproc.patch
 Patch21:	%{name}-linuxthreads-ppc-fix.patch
-Patch22:	%{name}-alpha-sigaction.patch
 Patch23:	%{name}-new-charsets.patch
-Patch24:	%{name}-lg_UG.patch
-Patch25:	%{name}-UTF8-locales.patch
 Patch26:	%{name}-sr_CS.patch
-Patch27:	%{name}-addrinfo_match_prefix.patch
-Patch28:	%{name}-pt_pax_flags.patch
-Patch29:	%{name}-gcc34.patch
+#Patch28:	%{name}-gcc34.patch
+# PaX
+#Patch29:	%{name}-pt_pax_flags.patch		(already in glibc-cvs)
+#Patch30:	%{name}-pax_iconvconfig.patch
+#Patch31:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2.13.90.0.2
@@ -758,7 +755,7 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -a 1
+%setup -q -a 1 -n libc
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -776,21 +773,12 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %{?with_kernelheaders:%patch13}
 %{?!with_kernelheaders:%patch14 -p1}
 %patch15 -p1
-%patch16 -p1
 %patch17
 %patch18 -p1
-%patch19 -p1
 %patch20 -p1
 %patch21 -p1
-%patch22 -p1
 %patch23 -p1
-mv -f localedata/locales/{lug_UG,lg_UG}
-%patch24 -p0
-%patch25 -p1
 %patch26 -p1
-%patch27 -p1
-%patch28 -p1
-%patch29 -p1
 
 chmod +x scripts/cpp
 
