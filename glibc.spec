@@ -24,7 +24,7 @@
 		     # instead of linuxthreads
 
 %if %{with nptl}
-%define         min_kernel      2.5.41
+%define         min_kernel      2.5.65
 %endif
 
 %{!?min_kernel:%define		min_kernel	2.2.0}
