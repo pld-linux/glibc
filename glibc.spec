@@ -5,7 +5,7 @@ Summary(pl):	GNU libc
 Summary(tr):	GNU libc
 name:		glibc
 Version:	2.1.2
-Release:	9
+Release:	10
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -86,7 +86,7 @@ Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
 Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
-Prereq:		/sbin/install-info
+Prereq:		/usr/sbin/fix-info-dir
 Requires:	%{name} = %{version}
 
 %description devel
@@ -152,6 +152,45 @@ utmpd stara siê utrzymaæ tak± sam± zawarto¶æ plików
 /var/run/utmp i /var/run/utmpx. Potrzebny jest tylko w przypadku korzystania
 ze starszych programów (bazuj±cych na libc5).
 
+%package -n localedb-src
+Summary:	Souce code locale database
+Summary(pl):	Kod ¬ród³owy bazy locale
+Group:		Daemons
+Group(pl):	Serwery
+
+%description -n localedb-src
+This add-on package contains the data needed to build the locale data files
+to use the internationalization features of the GNU libc. Glibc package
+contains standard set of locale binary database and You need this package if
+want build some non standard locale database.
+
+%description -l pl -n localedb-src
+Pakiet ten kod ¼ród³owy baz locale który jest potrzebny do zbudowania
+binarnej wersji baz locale potrzebnej do poprawnego wspierania ró¿nych
+jêzyków przez glibc. Pakiet glibc zawira binarn± wersjê standardowych baz
+locale i ten pakiet jest potrzebny tylko w sytuacji kiedy potrzeba
+wygenerowaæ jak±¶ niestandardow± bazê.
+
+%package -n iconv
+Summary:	Convert encoding of given files from one encoding to another
+Summary(pl):	Program do konwersji plików tekstowych z jednego enkodingu w inny
+Group:		Daemons
+Group(pl):	Serwery
+
+%description -n iconv
+Convert encoding of given files from one encoding to another.
+You neet this package if You want to convert some documet from one encoding
+to another or if Yoo have installed some programs which use Generic
+Character Set Conversion Interface.
+
+%description -l pl -n iconv
+Program do konwersji plików tekstowych z jednego enkodingu w inny.
+Potrzebujesz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
+dokumentów z jednego enkodingu w inny lub je¿eli masz zainstalowane jakie¶
+programy które korzystaj± Generic Character Set Conversion Interface w glibc
+czyli zestawu funkcji z tej biblioteki które umo¿liwiaj± kowersje enkodingu
+danych z poziomu dowolnego programu.
+
 %package static
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne 
@@ -160,10 +199,32 @@ Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
-GNU libc-2.1 Static libraries
+GNU libc static libraries.
 
 %description -l pl static
-GNU libc-2.1 Static libraries
+Biblioteki statyczne GNU libc.
+
+%package profile
+Summary:	glibc with profiling support
+Summary(de):	glibc mit Profil-Unterstützung
+Summary(fr):	glibc avec support pour profiling
+Summary(tr):	Ölçüm desteði olan glibc
+Group:		Development/Libraries/Libc
+Obsoletes:	libc-profile
+Requires:	%{name}-devel = %{version}
+
+%description profile
+When programs are being profiled used gprof, they must use these libraries
+instrad of the standard C libraries for gprof to be able to profile them
+correctly.
+
+%description -l de profile
+Damit Programmprofile mit gprof richtig erstellt werden, müssen diese
+Libraries anstelle der üblichen C-Libraries verwendet werden.
+
+%description -l tr profile
+gprof kullanýlarak ölçülen programlar standart C kitaplýðý yerine bu
+kitaplýðý kullanmak zorundadýrlar.
 
 %prep 
 %setup  -q -a 1 -a 2
@@ -176,9 +237,8 @@ GNU libc-2.1 Static libraries
 %build
 %configure \
 	--enable-add-ons=crypt,linuxthreads \
-	--disable-profile \
-	--disable-omitfp \
-	--mandir=%{_mandir}
+	--enable-profile \
+	--disable-omitfp
 make   
 
 %install
@@ -245,12 +305,10 @@ strip --strip-unneeded $RPM_BUILD_ROOT/lib/lib*.so.* \
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info %{_infodir}/libc.info.gz /etc/info-dir
+/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%preun devel
-if [ "$1" = 0 ]; then
-	/sbin/install-info --delete %{_infodir}/libc.info.gz /etc/info-dir
-fi
+%postun devel
+/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %post -n nscd
 /sbin/chkconfig --add nscd
@@ -300,10 +358,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /lib/ld-*
 %attr(755,root,root) /lib/lib*
 
-%dir %{_libdir}/gconv
-%{_libdir}/gconv/gconv-modules
-
-%{_datadir}/i18n
 %{_datadir}/locale
 %{_datadir}/zoneinfo
 
@@ -339,7 +393,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/*.o
-%attr(755,root,root) %{_libdir}/gconv/*.so
+%{_libdir}/libc_nonshared.a
 
 %{_mandir}/man3/*
 
@@ -359,6 +413,39 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/rc.d/init.d/utmpd
 %attr(755,root,root) %{_sbindir}/utmpd
 
+%files -n localedb-src
+%defattr(644,root,root,755)
+%{_datadir}/i18n
+
+%files -n iconv
+%defattr(644,root,root,755)
+%dir %{_libdir}/gconv
+%{_libdir}/gconv/gconv-modules
+%attr(755,root,root) %{_libdir}/gconv/*.so
+
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libBrokenLocale.a
+%{_libdir}/libbsd-compat.a
+%{_libdir}/libbsd.a
+%{_libdir}/libc.a
+%{_libdir}/libcrypt.a
+%{_libdir}/libdb.a
+%{_libdir}/libdb1.a
+%{_libdir}/libdl.a
+%{_libdir}/libg.a
+%{_libdir}/libieee.a
+%{_libdir}/libm.a
+%{_libdir}/libmcheck.a
+%{_libdir}/libndbm.a
+%{_libdir}/libnsl.a
+%{_libdir}/libposix.a
+%{_libdir}/libpthread.a
+%{_libdir}/libresolv.a
+%{_libdir}/librpcsvc.a
+%{_libdir}/librt.a
+%{_libdir}/libutil.a
+
+%files profile
+%defattr(644,root,root,755)
+%{_libdir}/lib*_p.a
