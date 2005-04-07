@@ -1,6 +1,6 @@
---- libc/linuxthreads/Makefile.orig	Mon Jul 26 14:08:41 2004
-+++ libc/linuxthreads/Makefile	Mon Jul 26 16:41:24 2004
-@@ -111,12 +111,12 @@
+--- glibc-2.3.5/linuxthreads/Makefile.orig	2005-04-07 10:30:27.000000000 +0200
++++ glibc-2.3.5/linuxthreads/Makefile	2005-04-07 10:33:45.000000000 +0200
+@@ -110,12 +110,12 @@
  CFLAGS-pt-initfini.s = -g0 -fPIC -fno-inline-functions $(fno-unit-at-a-time)
  endif
  
@@ -12,6 +12,6 @@
  	tst-cancel1 tst-cancel2 tst-cancel3 tst-cancel4 tst-cancel5 \
 -	tst-cancel6 tst-cancel7 tst-cancel8 tst-popen tst-popen2 tst-attr1 \
 +	tst-cancel6 tst-cancel7 tst-cancel8 tst-popen tst-popen2 \
- 	tst-stack1
+ 	tst-stack1 tst-align tst-tsd1
  test-srcs = tst-signal
  # These tests are linked with libc before libpthread
