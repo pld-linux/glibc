@@ -74,15 +74,15 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-Version:	2.3.4
-Release:	1.5
+Version:	2.3.5
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	174ac5ed4f2851fcc866a3bac1e4a6a5
+# Source0-md5:	93d9c51850e0513aa4846ac0ddcef639
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-# Source1-md5:	7a199cd4965eb5622163756ae64358fe
+# Source1-md5:	77011b0898393c56b799bc011a0f37bf
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -119,13 +119,12 @@ Patch22:	%{name}-locale_ZA.patch
 Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
-Patch26:	%{name}-nscd.patch
-Patch27:	%{name}-iconvconfig-nxstack.patch
+Patch26:	%{name}-iconvconfig-nxstack.patch
+Patch27:	%{name}-cross-gcc_eh.patch
 Patch28:	%{name}-gcc4.patch
-Patch29:	%{name}-cross-gcc_eh.patch
-Patch30:	%{name}-no_uint128_t.patch
+Patch29:	%{name}-no_uint128_t.patch
 # PaX hack (dropped)
-#Patch30:	%{name}-pax_dl-execstack.patch
+#PatchX:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -824,10 +823,9 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
-%patch27 -p1
-%patch28 -p1
-%{?with_cross:%patch29 -p1}
-%patch30 -p1
+%{?with_cross:%patch27 -p1}
+#%patch28 -p1
+#%patch29 -p1
 
 chmod +x scripts/cpp
 
