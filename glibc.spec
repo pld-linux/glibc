@@ -77,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	0.1
+Release:	0.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -122,7 +122,8 @@ Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-iconvconfig-nxstack.patch
-Patch27:	%{name}-cross-gcc_eh.patch
+Patch27:	%{name}-execvp.patch
+Patch28:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #PatchX:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -823,7 +824,8 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
-%{?with_cross:%patch27 -p1}
+%patch27 -p1
+%{?with_cross:%patch28 -p1}
 
 chmod +x scripts/cpp
 
