@@ -75,14 +75,14 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.90
-%define		_snap	20050403
+%define		_snap	20050415
 Release:	0.%{_snap}.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	libc-%{version}-%{_snap}.tar.bz2
-# Source0-md5:	46e7a9acc5b115d6c0cf65bd9c037f93
+# Source0-md5:	d9b313812760aec9c3c7abacb7a174a1
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
