@@ -708,7 +708,6 @@ Summary(es):	Un juguete
 Summary(pl):	Zabawka
 Group:		Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gd
 
 %description memusage
 A toy.
