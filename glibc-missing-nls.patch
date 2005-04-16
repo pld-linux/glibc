@@ -263,7 +263,7 @@
 +
 +#: elf/ldd.bash.in:80
 +msgid "ldd: option \\`$1' is ambiguous"
-+msgstr "ldd: opcja \\`%1' jest niejednoznaczna"
++msgstr "ldd: opcja \\`$1' jest niejednoznaczna"
 +
 +#: elf/ldd.bash.in:87
 +msgid "unrecognized option"
