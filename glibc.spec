@@ -77,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	0.3
+Release:	0.4
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -161,6 +161,7 @@ Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
+Conflicts:	poldek < 0.18.8-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
