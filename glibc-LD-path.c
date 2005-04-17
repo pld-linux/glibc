@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004 Elan Ruusamäe <glen@pld-linux.org>.
+ * Copyright (c) 2004, 2005 Elan Ruusamäe <glen@pld-linux.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,8 @@
  * For example, in glibc.spec:
  *
  * %post -p /sbin/postshell
- * /sbin/glibc-postrm /%{_lib}/i686
+ * /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
+ * /sbin/ldconfig /%{_lib} %{_prefix}/%{_lib}
  *
  * Patches and bugreports are welcome, direct them to Elan Ruusamäe
  * <glen@pld-linux.org>.
