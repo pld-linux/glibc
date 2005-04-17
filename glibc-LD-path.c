@@ -47,14 +47,15 @@
  */
 
 
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <limits.h>
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+
+#define error(msg) write(2, msg, strlen(msg))
+#define warn(msg) write(2, msg, strlen(msg))
 
 int main (int argc, char *argv[])
 {
@@ -62,7 +63,7 @@ struct stat st;
 int i, rv = 0;
 
 	if (argc == 1) {
-		fprintf(stderr, "This program is intended to be used by glibc postinstall stage.\n");
+		error("This program is intended to be used by glibc postinstall stage.\n");
 		exit(1);
 	}
 
@@ -79,10 +80,12 @@ int i, rv = 0;
 		}
 
 		if (S_ISDIR(st.st_mode)) {
-			char p[strlen(path) + sizeof(".rpmsave") + 1];
+			int l = strlen(path);
+			char p[l + sizeof(".rpmsave") + 1];
 
-			sprintf(p, "%s.rpmsave", path);
-			fprintf(stderr, "Renaming %s to %s\n", path, p);
+			strcpy(p, path);
+			strcpy(p + l, ".rpmsave");
+			warn("Renaming "); warn(path); warn(" to "); warn(p); warn("\n");
 			if (rename(path, p) == -1) {
 				perror("rename");
 				rv = 1;
@@ -92,4 +95,3 @@ int i, rv = 0;
 
 	exit(rv);
 }
-
