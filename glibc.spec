@@ -843,6 +843,7 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 %if %{with linuxthreads}
 ../%configure \
+	libc_cv_as_needed=no \
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with%{!?with___thread:out}-__thread \
@@ -861,6 +862,7 @@ install -d builddir-nptl
 cd builddir-nptl
 %endif
 ../%configure \
+	libc_cv_as_needed=no \
 	--enable-kernel="%{nptl_min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with-headers=%{sysheaders} \
