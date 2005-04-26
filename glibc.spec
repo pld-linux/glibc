@@ -159,9 +159,9 @@ Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
+Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
-Conflicts:	poldek < 0.18.8-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
