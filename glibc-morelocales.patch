@@ -34,23 +34,23 @@ diff -uNr libc.old/intl/locale.alias libc/intl/locale.alias
 diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
 --- libc.old/localedata/SUPPORTED	2004-09-10 09:30:22.000000000 +0200
 +++ libc/localedata/SUPPORTED	2004-09-10 09:29:21.000000000 +0200
-@@ -2,12 +2,15 @@
- # If you have any additions please use the glibcbug script to send an
- # appropriate message.
+@@ -1,6 +1,7 @@
+ # This file names the currently supported and somewhat tested locales.
+ # If you have any additions please file a glibc bug report.
  SUPPORTED-LOCALES=\
 +aa_DJ.UTF-8/UTF-8 \
  aa_DJ/ISO-8859-1 \
  aa_ER/UTF-8 \
  aa_ER@saaho/UTF-8 \
- aa_ET/UTF-8 \
-+af_ZA.UTF-8/UTF-8 \
+@@ -8,6 +9,7 @@
+ af_ZA.UTF-8/UTF-8 \
  af_ZA/ISO-8859-1 \
  am_ET/UTF-8 \
 +an_ES.UTF-8/UTF-8 \
  an_ES/ISO-8859-15 \
  ar_AE.UTF-8/UTF-8 \
  ar_AE/ISO-8859-6 \
-@@ -44,15 +47,18 @@
+@@ -44,15 +46,18 @@
  ar_TN/ISO-8859-6 \
  ar_YE.UTF-8/UTF-8 \
  ar_YE/ISO-8859-6 \
@@ -70,7 +70,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  bs_BA/ISO-8859-2 \
  byn_ER/UTF-8 \
  ca_ES.UTF-8/UTF-8 \
-@@ -60,6 +66,7 @@
+@@ -60,6 +65,7 @@
  ca_ES@euro/ISO-8859-15 \
  cs_CZ.UTF-8/UTF-8 \
  cs_CZ/ISO-8859-2 \
@@ -78,7 +78,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  cy_GB.UTF-8/UTF-8 \
  cy_GB/ISO-8859-14 \
  da_DK.UTF-8/UTF-8 \
-@@ -78,6 +85,8 @@
+@@ -78,6 +84,8 @@
  de_LU.UTF-8/UTF-8 \
  de_LU/ISO-8859-1 \
  de_LU@euro/ISO-8859-15 \
@@ -87,7 +87,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  el_GR.UTF-8/UTF-8 \
  el_GR/ISO-8859-7 \
  en_AU.UTF-8/UTF-8 \
-@@ -159,6 +168,8 @@
+@@ -159,6 +167,8 @@
  fi_FI.UTF-8/UTF-8 \
  fi_FI/ISO-8859-1 \
  fi_FI@euro/ISO-8859-15 \
@@ -122,7 +122,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  id_ID.UTF-8/UTF-8 \
  id_ID/ISO-8859-1 \
  is_IS.UTF-8/UTF-8 \
-@@ -204,11 +221,13 @@
+@@ -204,25 +221,39 @@
  it_IT.UTF-8/UTF-8 \
  it_IT/ISO-8859-1 \
  it_IT@euro/ISO-8859-15 \
@@ -138,7 +138,6 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  kk_KZ/PT154 \
  kl_GL.UTF-8/UTF-8 \
  kl_GL/ISO-8859-1 \
-@@ -215,14 +234,26 @@
  kn_IN/UTF-8 \
  ko_KR.EUC-KR/EUC-KR \
  ko_KR.UTF-8/UTF-8 \
@@ -165,7 +164,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  mi_NZ/ISO-8859-13 \
  mk_MK.UTF-8/UTF-8 \
  mk_MK/ISO-8859-5 \
-@@ -235,6 +267,10 @@
+@@ -235,6 +266,10 @@
  mt_MT/ISO-8859-3 \
  nb_NO.UTF-8/UTF-8 \
  nb_NO/ISO-8859-1 \
@@ -176,7 +175,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ne_NP/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
  nl_BE/ISO-8859-1 \
-@@ -244,10 +280,18 @@
+@@ -244,10 +279,18 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -195,7 +194,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  pt_BR.UTF-8/UTF-8 \
-@@ -255,6 +299,7 @@
+@@ -255,6 +298,7 @@
  pt_PT.UTF-8/UTF-8 \
  pt_PT/ISO-8859-1 \
  pt_PT@euro/ISO-8859-15 \
@@ -203,7 +202,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -262,22 +307,31 @@
+@@ -262,22 +306,31 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -235,7 +234,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -287,28 +341,40 @@
+@@ -287,28 +340,40 @@
  sv_SE/ISO-8859-1 \
  ta_IN/UTF-8 \
  te_IN/UTF-8 \
