@@ -7,7 +7,7 @@
 %bcond_without	memusage	# don't build memusage utility
 %bcond_with	kernelheaders	# use headers from %{_kernelsrcdir} instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
-%bcond_without	linuxthreads	# don't build linuxthreads version (NPTL only)
+%bcond_with	linuxthreads	# don't build linuxthreads version (NPTL only)
 %bcond_without	nptl		# don't build NPTL version (linuxthreads only)
 %bcond_without	tls		# don't support TLS at all (implies no NPTL)
 %bcond_with	__thread	# use TLS in linuxthreads
