@@ -37,7 +37,7 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 %undefine	with_tls
 %endif
 %endif
@@ -45,7 +45,7 @@
 %if %{with nptl}
 # on x86 uses cmpxchgl (available since i486)
 # on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -76,7 +76,7 @@ Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.90
 %define		_snap	20050415
-Release:	0.%{_snap}.2
+Release:	0.%{_snap}.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -142,7 +142,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.159
+BuildRequires:	rpmbuild(macros) >= 1.211
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 AutoReq:	false
@@ -741,7 +741,7 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 Provides:	glibc = %{epoch}:%{version}-%{release}
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %else
@@ -1092,7 +1092,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %post	-n %{name}64 -p /sbin/postshell
 %else
 %post	-p /sbin/postshell
@@ -1100,7 +1100,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %postun	-n %{name}64 -p /sbin/postshell
 %else
 %postun	-p /sbin/postshell
@@ -1108,7 +1108,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 %else
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
@@ -1170,7 +1170,7 @@ if [ "$1" = "0" ]; then
 	%groupremove nscd
 fi
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %files -n glibc64
 %defattr(644,root,root,755)
 %else
@@ -1187,7 +1187,7 @@ fi
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
 #   ld-linux-ia64.so.2 on ia64
-#   ld-linux-x86-64.so.2 on amd64
+#   ld-linux-x86-64.so.2 on x86-64
 #   ld-linux.so.2 on other archs
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
