@@ -7,7 +7,7 @@
 %bcond_without	memusage	# don't build memusage utility
 %bcond_with	kernelheaders	# use headers from %{_kernelsrcdir} instead of
 				# linux-libc-headers (evil, breakage etc., don't use)
-%bcond_without	linuxthreads	# don't build linuxthreads version (NPTL only)
+%bcond_with	linuxthreads	# don't build linuxthreads version (NPTL only)
 %bcond_without	nptl		# don't build NPTL version (linuxthreads only)
 %bcond_without	tls		# don't support TLS at all (implies no NPTL)
 %bcond_with	__thread	# use TLS in linuxthreads
@@ -19,10 +19,6 @@
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
-# - usable persitent storage in nscd:
-#   - change persistent storage paths to /var/lib/nscd (to be FHS 2.3 compliant)
-#     (see glibc/nscd/nscd.h)
-#   - create nscd user, use it in nscd.conf (see -pld.patch)
 # [OLD]
 # - localedb-gen man pages(?)
 # - fix what trojan broke while upgreading (getaddrinfo-workaround)
@@ -41,7 +37,7 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 %undefine	with_tls
 %endif
 %endif
@@ -49,7 +45,7 @@
 %if %{with nptl}
 # on x86 uses cmpxchgl (available since i486)
 # on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon amd64 ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -66,7 +62,7 @@
 %define		with_dual	1
 %endif
 
-%define		llh_version	7:2.6.6.0
+%define		llh_version	7:2.6.10.0-3
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -78,15 +74,16 @@ Summary(ru):	GNU libc ×ÅÒÓÉÉ 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
-Version:	2.3.4
-Release:	0.99999999.2
+Version:	2.3.90
+%define		_snap	20050415
+Release:	0.%{_snap}.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	174ac5ed4f2851fcc866a3bac1e4a6a5
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-# Source1-md5:	7a199cd4965eb5622163756ae64358fe
+#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	libc-%{version}-%{_snap}.tar.bz2
+# Source0-md5:	d9b313812760aec9c3c7abacb7a174a1
+#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -112,7 +109,7 @@ Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-soinit-EH_FRAME.patch
 Patch14:	%{name}-sparc-errno_fix.patch
-Patch15:	%{name}-csu-quotes.patch
+
 Patch16:	%{name}-tests-noproc.patch
 Patch17:	%{name}-new-charsets.patch
 Patch18:	%{name}-sr_CS.patch
@@ -120,19 +117,17 @@ Patch19:	%{name}-sparc64-dl-machine.patch
 Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_ZA.patch
-Patch23:	%{name}-locale_fixes.patch
+#Patch23:	%{name}-locale_fixes.patch		NEEDS UPDATE
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
-Patch26:	%{name}-nscd.patch
-Patch27:	%{name}-iconvconfig-nxstack.patch
-Patch28:	%{name}-gcc4.patch
-Patch29:	%{name}-cross-gcc_eh.patch
+Patch26:	%{name}-iconvconfig-nxstack.patch
+Patch27:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-BuildRequires:	gcc >= 3.2
+BuildRequires:	gcc >= 5:3.4
 %ifarch ppc ppc64 sparc sparcv9 sparc64
 %if %{with nptl} || %{with __thread}
 BuildRequires:	gcc >= 5:3.4
@@ -147,7 +142,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.159
+BuildRequires:	rpmbuild(macros) >= 1.211
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 AutoReq:	false
@@ -746,7 +741,7 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 Provides:	glibc = %{epoch}:%{version}-%{release}
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %else
@@ -798,7 +793,7 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -a1
+%setup -q -n libc
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -815,7 +810,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %{!?with_kernelheaders:%patch12 -p1}
 %patch13 -p1
 %patch14 -p0
-%patch15 -p1
+
 %patch16 -p1
 %patch17 -p1
 %patch18 -p1
@@ -823,13 +818,11 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
-%patch23 -p1
+#patch23 -p1		NEEDS UPDATE
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
-%patch27 -p1
-%patch28 -p1
-%{?with_cross:%patch29 -p1}
+%{?with_cross:%patch27 -p1}
 
 chmod +x scripts/cpp
 
@@ -850,6 +843,7 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 %if %{with linuxthreads}
 ../%configure \
+	libc_cv_as_needed=no \
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with%{!?with___thread:out}-__thread \
@@ -868,6 +862,7 @@ install -d builddir-nptl
 cd builddir-nptl
 %endif
 ../%configure \
+	libc_cv_as_needed=no \
 	--enable-kernel="%{nptl_min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with-headers=%{sysheaders} \
@@ -906,7 +901,7 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/run/nscd}
+install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1007,6 +1002,9 @@ bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
+:> $RPM_BUILD_ROOT/var/lib/nscd/passwd
+:> $RPM_BUILD_ROOT/var/lib/nscd/group
+:> $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
 rm -rf documentation
 install -d documentation
@@ -1094,7 +1092,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %post	-n %{name}64 -p /sbin/postshell
 %else
 %post	-p /sbin/postshell
@@ -1102,7 +1100,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %postun	-n %{name}64 -p /sbin/postshell
 %else
 %postun	-p /sbin/postshell
@@ -1110,7 +1108,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 %else
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
@@ -1172,7 +1170,7 @@ if [ "$1" = "0" ]; then
 	%groupremove nscd
 fi
 
-%ifarch amd64 ppc64 s390x sparc64
+%ifarch %{x8664} ppc64 s390x sparc64
 %files -n glibc64
 %defattr(644,root,root,755)
 %else
@@ -1189,7 +1187,7 @@ fi
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
 #   ld-linux-ia64.so.2 on ia64
-#   ld-linux-x86-64.so.2 on amd64
+#   ld-linux-x86-64.so.2 on x86-64
 #   ld-linux.so.2 on other archs
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
@@ -1201,7 +1199,7 @@ fi
 %attr(755,root,root) /%{_lib}/tls/lib[cmprt]*
 %endif
 %{?with_localedb:%dir %{_libdir}/locale}
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/ld.so.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
 %ghost %{_sysconfdir}/ld.so.cache
 
 #%files -n nss_dns
@@ -1215,7 +1213,7 @@ fi
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
 
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nsswitch.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config %{_sysconfdir}/rpc
 
 %attr(755,root,root) /sbin/sln
@@ -1439,13 +1437,17 @@ fi
 
 %files -n nscd
 %defattr(644,root,root,755)
-%attr(640,root,root) %config %verify(not md5 size mtime) /etc/sysconfig/nscd
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/nscd.*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/nscd
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
 %attr(755,root,root) %{_sbindir}/nscd*
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/logrotate.d/nscd
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
 %dir /var/run/nscd
+%dir /var/lib/nscd
+%attr(600,root,root) %ghost /var/lib/nscd/passwd
+%attr(600,root,root) %ghost /var/lib/nscd/group
+%attr(600,root,root) %ghost /var/lib/nscd/hosts
 %{_mandir}/man5/nscd.conf.5*
 %{_mandir}/man8/nscd.8*
 %{_mandir}/man8/nscd_nischeck.8*
