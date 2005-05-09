@@ -76,7 +76,7 @@ Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.90
 %define		_snap	20050415
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
