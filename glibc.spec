@@ -129,7 +129,8 @@ Patch30:	%{name}-no_uint128_t.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-BuildRequires:	gcc >= 3.2
+BuildRequires:	gcc >= 5:3.2
+BuildRequires:	gcc < 5:4.0
 %ifarch ppc ppc64 sparc sparcv9 sparc64
 %if %{with nptl} || %{with __thread}
 BuildRequires:	gcc >= 5:3.4
