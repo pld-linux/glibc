@@ -154,8 +154,8 @@ Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %{?with_tls:Provides:	glibc(tls)}
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
-Obsoletes:	%{name}-common
-Obsoletes:	%{name}-debug
+Obsoletes:	glibc-common
+Obsoletes:	glibc-debug
 Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
@@ -744,12 +744,20 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
-%ifarch %{x8664} ppc64 s390x sparc64
+PreReq:		basesystem
+Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Provides:	glibc = %{epoch}:%{version}-%{release}
-Requires:	glibc-misc = %{epoch}:%{version}-%{release}
-%else
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-%endif
+%{?with_tls:Provides:	glibc(tls)}
+Provides:	ldconfig
+Obsoletes:	glibc-common
+Obsoletes:	glibc-debug
+Obsoletes:	ldconfig
+Conflicts:	kernel < %{min_kernel}
+Conflicts:	ld.so < 1.9.9-10
+Conflicts:	man-pages < 1.43
+Conflicts:	rc-scripts < 0.3.1-13
+Conflicts:	rpm < 4.1
+Conflicts:	poldek < 0.18.8-4
 
 %description -n %{name}64
 64-bit GNU libc libraries for 64bit architecture.
@@ -759,41 +767,6 @@ Bibliotecas GNU libc de 64 bits para la arquitectura 64bit.
 
 %description -n %{name}64 -l pl
 Biblioteki 64-bitowe GNU libc dla architektury 64bit.
-
-%package -n %{name}64-devel
-Summary:	Development files for 64-bit GNU libc libraries
-Summary(es):	Ficheros de desarrollo para bibliotecas GNU libc de 64 bits
-Summary(pl):	Pliki do programowania z u¿yciem 64-bitowych bibliotek GNU libc
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-
-%description -n %{name}64-devel
-Development files for 64-bit GNU libc libraries for 64bit
-architecture.
-
-%description -n %{name}64-devel -l es
-Ficheros de desarrollo para las bibliotecas GNU libc de 64 bits para
-la arquitectura 64bit.
-
-%description -n %{name}64-devel -l pl
-Pliki do programowania z u¿yciem 64-bitowych bibliotek GNU libc dla
-architektury 64bit.
-
-%package -n %{name}64-static
-Summary:	Static 64-bit GNU libc libraries
-Summary(es):	Bibliotecas estáticas GNU libc de 64 bits
-Summary(pl):	Statyczne 64-bitowe biblioteki GNU libc
-Group:		Development/Libraries
-Requires:	%{name}64-devel = %{epoch}:%{version}-%{release}
-
-%description -n %{name}64-static
-Static 64-bit GNU libc libraries.
-
-%description -n %{name}64-static -l es
-Bibliotecas estáticas GNU libc de 64 bits.
-
-%description -n %{name}64-static -l pl
-Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
 %setup -q -a1
@@ -1161,7 +1134,7 @@ if [ "$1" = "0" ]; then
 fi
 
 %ifarch %{x8664} ppc64 s390x sparc64
-%files -n glibc64
+%files -n %{name}64
 %defattr(644,root,root,755)
 %else
 %files
