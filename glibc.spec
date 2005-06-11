@@ -37,7 +37,8 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_tls
 %endif
 %endif
@@ -45,7 +46,8 @@
 %if %{with nptl}
 # on x86 uses cmpxchgl (available since i486)
 # on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -75,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	0.2
+Release:	2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -121,9 +123,8 @@ Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-execvp.patch
-Patch28:	%{name}-cross-gcc_eh.patch
-Patch29:	%{name}-gcc4.patch
-Patch30:	%{name}-no_uint128_t.patch
+Patch28:	%{name}-sys-kd.patch
+Patch29:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #PatchX:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -160,9 +161,9 @@ Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
+Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
-Conflicts:	poldek < 0.18.8-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
@@ -799,9 +800,8 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
-%{?with_cross:%patch28 -p1}
-#%patch29 -p1
-#%patch30 -p1
+%patch28 -p1
+%{?with_cross:%patch29 -p1}
 
 chmod +x scripts/cpp
 
@@ -1104,8 +1104,22 @@ rm -rf $RPM_BUILD_ROOT
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %pre -n nscd
-%groupadd -P nscd -g 144 -r nscd
-%useradd -P nscd -u 144 -r -d /tmp -s /bin/false -c "nscd" -g nscd nscd
+if [ -n "`/usr/bin/getgid nscd`" ]; then
+	if [ "`/usr/bin/getgid nscd`" != "144" ]; then
+		echo "Error: group nscd doesn't have gid=144. Correct this before installing nscd." 1>&2
+		exit 1
+	fi
+else
+	/usr/sbin/groupadd -g 144 -r nscd
+fi
+if [ -n "`/bin/id -u nscd 2>/dev/null`" ]; then
+	if [ "`/bin/id -u nscd`" != "144" ]; then
+		echo "Error: user nscd doesn't have uid=144. Correct this before installing nscd." 1>&2
+		exit 1
+	fi
+else
+	/usr/sbin/useradd -u 144 -r -d /tmp -s /bin/false -c "nscd" -g nscd nscd 1>&2
+fi
 
 %post -n nscd
 /sbin/chkconfig --add nscd
