@@ -1,0 +1,18 @@
+--- glibc-2.3.5/sysdeps/unix/sysv/linux/sys/kd.h.orig	2001-07-06 06:56:21.000000000 +0200
++++ glibc-2.3.5/sysdeps/unix/sysv/linux/sys/kd.h	2005-06-11 15:33:34.221698688 +0200
+@@ -21,9 +21,15 @@
+ 
+ /* Make sure the <linux/types.h> header is not loaded.  */
+ #ifndef _LINUX_TYPES_H
++# define __undef_LINUX_TYPES_H
+ # define _LINUX_TYPES_H	1
+ #endif
+ 
+ #include <linux/kd.h>
+ 
++#ifdef __undef_LINUX_TYPES_H
++# undef _LINUX_TYPES_H
++# undef __undef_LINUX_TYPES_H
++#endif
++
+ #endif	/* sys/kd.h */
