@@ -128,6 +128,7 @@ Patch29:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #PatchX:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.2
