@@ -77,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	3
+Release:	3.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -95,6 +95,7 @@ Source5:	%{name}-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 Source7:	%{name}-localedb-gen
+Source8:	%{name}-LD-path.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -150,6 +151,7 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
+BuildRequires:	dietlibc-static
 AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
@@ -877,6 +879,12 @@ cd ..
 done
 %endif
 
+diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+# compiling static using diet vs glibc saves 400k
+# TODO: use SOURCEX
+# TODO2: remove fprintf/fopen from postshell.c to save 7kb?
+diet -Os %{__cc} elf/postshell.c %{rpmcflags} -static -o postshell
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
@@ -901,9 +909,10 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
-
-install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
+
+install postshell					$RPM_BUILD_ROOT/sbin
+install glibc-postinst				$RPM_BUILD_ROOT/sbin
 
 %if %{with dual}
 env LANGUAGE=C LC_ALL=C \
@@ -1080,6 +1089,7 @@ rm -rf $RPM_BUILD_ROOT
 %else
 %post	-p /sbin/postshell
 %endif
+/sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 /sbin/ldconfig
 -/sbin/telinit u
 
@@ -1163,6 +1173,7 @@ fi
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %attr(755,root,root) /sbin/postshell
+%attr(755,root,root) /sbin/glibc-postinst
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
