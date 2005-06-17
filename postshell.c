@@ -194,12 +194,15 @@ void exec_file(FILE *f)
 	}
 }
 
+#define error(msg) write(2, msg, strlen(msg))
 int main(int argc, char **argv)
 {
 	FILE *f;
 
 	if (argc < 2) {
-		fprintf(stderr, "USAGE: %s filename\n", argv[0]);
+		error("USAGE: ");
+		error(argv[0]);
+		error(" filename\n");
 		exit(1);
 	}
 
