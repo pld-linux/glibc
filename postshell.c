@@ -73,6 +73,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fcntl.h>
+#include <sys/mman.h>
 
 #define MAX_LINE 1024
 #define MAX_ARGS 32
@@ -181,23 +183,48 @@ void exec_line(char *s)
 		exit_status = ret;
 }
 
-void exec_file(FILE *f)
+void exec_file(int fd)
 {
 	char line[MAX_LINE];
+	struct stat sbuf;
+	char *p, *s, *a;
 
-	while (fgets(line, sizeof(line), f)) {
-		/* chomp it */
-		if (line[strlen(line) - 1] == '\n')
-			line[strlen(line) - 1] = 0;
-		/* and exec. */
+	if (fstat(fd, &sbuf) < 0) {
+		perror("fstat()");
+		exit(1);
+	}
+
+	if ((p = mmap(0, sbuf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) < 0) {
+		perror("mmap()");
+		exit(1);
+	}
+
+	for (a = s = p; s < p + sbuf.st_size; s++) {
+		if (*s == '\n') {
+			memcpy(line, a, s - a);
+			line[s - a] = '\0';
+			exec_line(line);
+			a = ++s;
+		}
+	}
+
+	// last line was not terminated.
+	if (s == p + sbuf.st_size) {
+		memcpy(line, a, s - a);
+		line[s - a] = '\0';
 		exec_line(line);
+	}
+
+   	if (munmap(p, sbuf.st_size) < 0) {
+		perror("munmap()");
+		exit(1);
 	}
 }
 
 #define error(msg) write(2, msg, strlen(msg))
 int main(int argc, char **argv)
 {
-	FILE *f;
+	int fd;
 
 	if (argc < 2) {
 		error("USAGE: ");
@@ -206,14 +233,14 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
-	f = fopen(argv[1], "r");
+	fd = open(argv[1], O_RDONLY);
 	
-	if (f == NULL) {
+	if (fd == -1) {
 		perror(argv[1]);
 		exit(1);
 	}
 
-	exec_file(f);
-	fclose(f);
+	exec_file(fd);
+	close(fd);
 	exit(exit_status);
 }
