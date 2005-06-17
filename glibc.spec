@@ -77,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	3.1
+Release:	3.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -96,6 +96,7 @@ Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 Source7:	%{name}-localedb-gen
 Source8:	%{name}-LD-path.c
+Source9:	postshell.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -103,7 +104,6 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-postshell.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-lthrds_noomit.patch
@@ -781,7 +781,6 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
@@ -879,11 +878,9 @@ cd ..
 done
 %endif
 
-diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
 # compiling static using diet vs glibc saves 400k
-# TODO: use SOURCEX
-# TODO2: remove fprintf/fopen from postshell.c to save 7kb?
-diet -Os %{__cc} elf/postshell.c %{rpmcflags} -static -o postshell
+diet -Os %{__cc} %{SOURCE9} %{rpmcflags} -static -o postshell
+diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
