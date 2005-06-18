@@ -75,7 +75,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	2.1
+Release:	2.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -93,6 +93,8 @@ Source5:	%{name}-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 Source7:	%{name}-localedb-gen
+Source8:	%{name}-LD-path.c
+Source9:	postshell.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -100,7 +102,6 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-postshell.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-lthrds_noomit.patch
@@ -149,6 +150,7 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
+BuildRequires:	dietlibc-static
 AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
@@ -778,7 +780,6 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
@@ -878,6 +879,10 @@ cd ..
 done
 %endif
 
+# compiling static using diet vs glibc saves 400k
+diet -Os %{__cc} %{SOURCE9} %{rpmcflags} -static -o postshell
+diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
@@ -902,9 +907,10 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
-
-install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
+
+install postshell					$RPM_BUILD_ROOT/sbin
+install glibc-postinst				$RPM_BUILD_ROOT/sbin
 
 %if %{with dual}
 env LANGUAGE=C LC_ALL=C \
@@ -1080,6 +1086,7 @@ rm -rf $RPM_BUILD_ROOT
 %else
 %post	-p /sbin/postshell
 %endif
+/sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 /sbin/ldconfig
 -/sbin/telinit u
 
@@ -1149,6 +1156,7 @@ fi
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %attr(755,root,root) /sbin/postshell
+%attr(755,root,root) /sbin/glibc-postinst
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
