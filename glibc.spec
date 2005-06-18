@@ -1117,22 +1117,8 @@ rm -rf $RPM_BUILD_ROOT
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %pre -n nscd
-if [ -n "`/usr/bin/getgid nscd`" ]; then
-	if [ "`/usr/bin/getgid nscd`" != "144" ]; then
-		echo "Error: group nscd doesn't have gid=144. Correct this before installing nscd." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/groupadd -g 144 -r nscd
-fi
-if [ -n "`/bin/id -u nscd 2>/dev/null`" ]; then
-	if [ "`/bin/id -u nscd`" != "144" ]; then
-		echo "Error: user nscd doesn't have uid=144. Correct this before installing nscd." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/useradd -u 144 -r -d /tmp -s /bin/false -c "nscd" -g nscd nscd 1>&2
-fi
+%groupadd -P nscd -g 144 -r nscd
+%useradd -P nscd -u 144 -r -d /tmp -s /bin/false -c "nscd" -g nscd nscd
 
 %post -n nscd
 /sbin/chkconfig --add nscd
