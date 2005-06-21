@@ -77,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	3.2
+Release:	3.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -324,9 +324,10 @@ Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-doc = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
-Obsoletes:	glibc-headers
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -379,6 +380,84 @@ kitaplýklar.
 (ÐÒÁËÔÉÞÎÏ ×Ó¦ ÐÒÏÇÒÁÍÉ §È ×ÉËÏÒÉÓÔÏ×ÕÀÔØ), ÓÉÓÔÅÍ¦ îåïâè¶äî¶ ÈÅÄÅÒÉ
 ÔÁ ÏÂ'¤ËÔÎ¦ ÆÁÊÌÉ, ÝÏ Í¦ÓÔÑÔØÓÑ × ÃØÏÍÕ ÐÁËÅÔ¦, ÃÏÂ ÓÔ×ÏÒÀ×ÁÔÉ
 ×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
+
+%package headers
+Summary:	Header files for development using standard C libraries.
+Group:		Development/Libraries
+Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-headers(i386)
+Obsoletes:	%{name}-headers(i486)
+Obsoletes:	%{name}-headers(i586)
+Obsoletes:	%{name}-headers(i686)
+Obsoletes:	%{name}-headers(athlon)
+Obsoletes:	%{name}-headers(pentium3)
+Obsoletes:	%{name}-headers(pentium4)
+%endif
+%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+
+%description headers
+The glibc-headers package contains the header files necessary
+for developing programs which use the standard C libraries (which are
+used by nearly all programs).  If you are developing programs which
+will use the standard C libraries, your system needs to have these
+standard header files available in order to create the
+executables.
+
+Install glibc-headers if you are going to develop programs which will
+use the standard C libraries.
+
+%package devel-utils
+Summary:	Utilities needed for development using standard C libraries.
+Group:		Development/Libraries
+Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-devel-utils(i386)
+Obsoletes:	%{name}-devel-utils(i486)
+Obsoletes:	%{name}-devel-utils(i586)
+Obsoletes:	%{name}-devel-utils(i686)
+Obsoletes:	%{name}-devel-utils(athlon)
+Obsoletes:	%{name}-devel-utils(pentium3)
+Obsoletes:	%{name}-devel-utils(pentium4)
+%endif
+
+%description devel-utils
+The glibc-devel-utils package contains utilities necessary
+for developing programs which use the standard C libraries (which are
+used by nearly all programs).  If you are developing programs which
+will use the standard C libraries, your system needs to have these
+utilities available.
+
+Install glibc-devel-utils if you are going to develop programs
+which will use the standard C libraries.
+
+%package devel-doc
+Summary:	Documentation needed for development using standard C libraries.
+Group:		Development/Libraries
+Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-devel-doc(i386)
+Obsoletes:	%{name}-devel-doc(i486)
+Obsoletes:	%{name}-devel-doc(i586)
+Obsoletes:	%{name}-devel-doc(i686)
+Obsoletes:	%{name}-devel-doc(athlon)
+Obsoletes:	%{name}-devel-doc(pentium3)
+Obsoletes:	%{name}-devel-doc(pentium4)
+%endif
+
+%description devel-doc
+The glibc-devel-utils package contains info and manual pages necessary
+for developing programs which use the standard C libraries (which are
+used by nearly all programs).
+
+Install glibc-devel-doc if you are going to develop programs
+which will use the standard C libraries.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -960,6 +1039,30 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix
 #done
 #cd -
 
+# Where should s390 go?
+%ifarch %{ix86} ppc sparc
+mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-32.h
+%endif
+
+%ifarch %{x8664} ppc64 sparc64 alpha
+mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-64.h
+%endif
+
+cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
+/* This file selects the right generated file of '__stub_FUNCTION' macros
+   based on the architecture being compiled for.  */
+
+#include <bits/wordsize.h>
+
+#if __WORDSIZE == 32
+# include <gnu/stubs-32.h>
+#elif __WORDSIZE == 64
+# include <gnu/stubs-64.h>
+#else
+# error "unexpected value for __WORDSIZE macro"
+#endif
+EOF
+
 ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
@@ -1338,11 +1441,6 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* NOTES PROJECTS
-%attr(755,root,root) %{_bindir}/gencat
-%attr(755,root,root) %{_bindir}/*prof*
-%attr(755,root,root) %{_bindir}/*trace
-
 %attr(755,root,root) %{_libdir}/lib[!cmp]*.so
 %attr(755,root,root) %{_libdir}/libcrypt.so
 %attr(755,root,root) %{_libdir}/libm.so
@@ -1366,16 +1464,19 @@ fi
 %{_libdir}/nptl/libc.so
 %{_libdir}/nptl/libpthread.so
 %{_libdir}/nptl/libpthread_nonshared.a
-%{_includedir}/nptl
 %endif
 
+%{_includedir}/gnu/stubs-*.h
+
+%files headers
 %{_includedir}/*.h
 %ifarch alpha
 %{_includedir}/alpha
 %endif
 %{_includedir}/arpa
 %{_includedir}/bits
-%{_includedir}/gnu
+%{_includedir}/gnu/lib*.h
+%{_includedir}/gnu/stubs.h
 %{_includedir}/net
 %{_includedir}/netash
 %{_includedir}/netatalk
@@ -1393,6 +1494,18 @@ fi
 %{_includedir}/scsi
 %{_includedir}/sys
 
+%if %{with dual}
+%{_includedir}/nptl
+%endif
+
+%files devel-utils
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/gencat
+%attr(755,root,root) %{_bindir}/*prof*
+%attr(755,root,root) %{_bindir}/*trace
+
+%files devel-doc
+%doc documentation/* NOTES PROJECTS
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
