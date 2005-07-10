@@ -32,7 +32,7 @@ Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.90
 %define		_snap	20050709T1351UTC
-Release:	0.%{_snap}.0.1
+Release:	0.%{_snap}.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1061,10 +1061,6 @@ fi
 %attr(755,root,root) /%{_lib}/libdl*
 %attr(755,root,root) /%{_lib}/libnsl*
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
-%if %{with dual}
-%dir /%{_lib}/tls
-%attr(755,root,root) /%{_lib}/tls/lib[cmprt]*
-%endif
 %{?with_localedb:%dir %{_libdir}/locale}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
 %ghost %{_sysconfdir}/ld.so.cache
@@ -1241,7 +1237,6 @@ fi
 # ld scripts
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
-
 %{_libdir}/libbsd-compat.a
 %{_libdir}/libbsd.a
 %{_libdir}/libc_nonshared.a
@@ -1249,16 +1244,6 @@ fi
 %{_libdir}/libieee.a
 %{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
-
-%if %{with dual}
-%dir %{_libdir}/nptl
-# ld scripts
-%{_libdir}/nptl/libc.so
-%{_libdir}/nptl/libpthread.so
-%{_libdir}/nptl/libpthread_nonshared.a
-%{_includedir}/nptl
-%endif
-
 %{_includedir}/*.h
 %ifarch alpha
 %{_includedir}/alpha
@@ -1359,10 +1344,6 @@ fi
 %{_libdir}/libresolv.a
 %{_libdir}/librt.a
 %{_libdir}/libutil.a
-%if %{with dual}
-%{_libdir}/nptl/libc.a
-%{_libdir}/nptl/libpthread.a
-%endif
 
 %files profile
 %defattr(644,root,root,755)
