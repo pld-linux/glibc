@@ -11,12 +11,8 @@
 # - look at locale fixes/updates in bugzilla
 # [OLD]
 # - localedb-gen man pages(?)
-# - fix what trojan broke while upgreading (getaddrinfo-workaround)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
-#   linuxthreads/tst-cancel8, debug/backtrace-tst(SEGV)  fail on alpha
-# - problem compiling with --enable-bounded (must be reported to libc-alpha)
-#   (is this comment still valid???)
-#
+#   debug/backtrace-tst(SEGV)  fail on alpha
 
 %ifarch sparc64
 %undefine	with_memusage
@@ -84,6 +80,7 @@ Patch27:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.4
