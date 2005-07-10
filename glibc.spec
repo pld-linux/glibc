@@ -1,19 +1,9 @@
 #
-# You can define min_kernel macro by "rpm --define 'min_kernel version'"
-# default is 2.4.6 for linuxthreads, 2.6.0 for NPTL
-#
 # Conditional build:
 %bcond_with	omitfp		# build without frame pointer (pass \--enable-omitfp)
 %bcond_without	memusage	# don't build memusage utility
-%bcond_with	kernelheaders	# use headers from %{_kernelsrcdir} instead of
-				# linux-libc-headers (evil, breakage etc., don't use)
-%bcond_with	linuxthreads	# don't build linuxthreads version (NPTL only)
-%bcond_without	nptl		# don't build NPTL version (linuxthreads only)
-%bcond_without	tls		# don't support TLS at all (implies no NPTL)
-%bcond_with	__thread	# use TLS in linuxthreads
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
-%bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
 #
@@ -28,38 +18,8 @@
 #   (is this comment still valid???)
 #
 
-%{!?min_kernel:%global          min_kernel      2.4.6}
-%if "%{min_kernel}" < "2.6.0"
-%global		nptl_min_kernel	2.6.0
-%else
-%global		nptl_min_kernel	%{min_kernel}
-%endif
-
-%if %{with tls}
-# sparc temporarily removed (broken)
-%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
-%undefine	with_tls
-%endif
-%endif
-
-%if %{with nptl}
-# on x86 uses cmpxchgl (available since i486)
-# on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
-%undefine	with_nptl
-%else
-%if %{without tls}
-%undefine	with_nptl
-%endif
-%endif
-%endif
-
 %ifarch sparc64
 %undefine	with_memusage
-%endif
-
-%if %{with linuxthreads} && %{with nptl}
-%define		with_dual	1
 %endif
 
 %define		llh_version	7:2.6.10.0-3
@@ -75,14 +35,14 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.90
-%define		_snap	20050415
-Release:	0.%{_snap}.3
+%define		_snap	20050709T1351UTC
+Release:	0.%{_snap}.0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	libc-%{version}-%{_snap}.tar.bz2
-# Source0-md5:	d9b313812760aec9c3c7abacb7a174a1
+Source0:	libc-%{version}_%{_snap}.tar.bz2
+# Source0-md5:	b9946a2f137316b8301eb1af2ea3e8cb
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
@@ -98,28 +58,27 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
-Patch4:		%{name}-linuxthreads-lock.patch
-Patch5:		%{name}-pthread_create-manpage.patch
+
 Patch6:		%{name}-paths.patch
 Patch7:		%{name}-postshell.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
-Patch10:	%{name}-lthrds_noomit.patch
+
 Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-soinit-EH_FRAME.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
-Patch16:	%{name}-tests-noproc.patch
 Patch17:	%{name}-new-charsets.patch
 Patch18:	%{name}-sr_CS.patch
 Patch19:	%{name}-sparc64-dl-machine.patch
 Patch20:	%{name}-tzfile-noassert.patch
-Patch21:	%{name}-morelocales.patch
-Patch22:	%{name}-locale_ZA.patch
+
+#Patch21:	%{name}-morelocales.patch		NEEDS UPDATE
+#Patch22:	%{name}-locale_ZA.patch			NEEDS UPDATE
 #Patch23:	%{name}-locale_fixes.patch		NEEDS UPDATE
-Patch24:	%{name}-ZA_collate.patch
-Patch25:	%{name}-tls_fix.patch
+#Patch24:	%{name}-ZA_collate.patch		NEEDS UPDATE
+
 Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
@@ -128,16 +87,9 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.4
-%ifarch ppc ppc64 sparc sparcv9 sparc64
-%if %{with nptl} || %{with __thread}
-BuildRequires:	gcc >= 5:3.4
-%endif
-%endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%if %{without kernelheaders}
 BuildRequires:	linux-libc-headers >= %{llh_version}
-%endif
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
@@ -148,20 +100,21 @@ BuildRequires:	texinfo
 AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
-%{?with_tls:Provides:	glibc(tls)}
+Provides:	glibc(nptl)
+Provides:	glibc(tls)
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
 Obsoletes:	%{name}-common
 Obsoletes:	%{name}-debug
 Obsoletes:	ldconfig
-Conflicts:	kernel < %{min_kernel}
+Conflicts:	kernel < 2.6.0
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		debugcflags	-O1 -g
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		rpmldflags	%{nil}
 %define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
@@ -172,11 +125,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # patched not to crash on partial hardlinks too)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
-%if %{with kernelheaders}
-%define		sysheaders	%{_kernelsrcdir}/include
-%else
-%define		sysheaders	%{_includedir}
-%endif
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -187,7 +135,7 @@ libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
 national language (locale) support and timezone databases.
 
-Can be used on: Linux kernel >= %{min_kernel}.
+Can be used on: Linux kernel >= 2.6.0.
 
 %description -l es
 Contiene las bibliotecas estándared que son usadas por varios
@@ -200,7 +148,7 @@ Sin éstas, un sistema Linux no podrá funcionar. También está incluido
 soporte de idiomas nacionales (locale) y bases de datos de zona de
 tiempo.
 
-Puede usarse con: núcleo Linux >= %{min_kernel}.
+Puede usarse con: núcleo Linux >= 2.6.0.
 
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im
@@ -213,7 +161,7 @@ Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
 (locale) und die Zeitzonen-Datenbank.
 
-Can be used on: Linux kernel >= %{min_kernel}.
+Can be used on: Linux kernel >= 2.6.0.
 
 %description -l fr
 Contient les bibliothèques standards utilisées par de nombreux
@@ -226,7 +174,7 @@ système Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales) et les bases de données des zones
 horaires.
 
-Can be used on: Linux kernel >= %{min_kernel}.
+Can be used on: Linux kernel >= 2.6.0.
 
 %description -l ja
 glibc
@@ -239,7 +187,7 @@ glibc
 ¥Ñ¥Ã¥±¡¼¥¸¤Ï¤Þ¤¿ÃÏ°è¸À¸ì (locale) ¥µ¥Ý¡¼¥È¤È¥¿¥¤¥à¥¾¡¼¥ó¥Ç¡¼¥¿¥Ù¡¼¥¹
 ¥µ¥Ý¡¼¥È¤ò¤Õ¤¯¤ß¤Þ¤¹¡£
 
-Can be used on: Linux kernel >= %{min_kernel}.
+Can be used on: Linux kernel >= 2.6.0.
 
 %description -l pl
 W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
@@ -252,7 +200,7 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale) oraz definicje stref czasowych.
 
-Przeznaczony dla j±dra Linux >= %{min_kernel}.
+Przeznaczony dla j±dra Linux >= 2.6.0.
 
 %description -l ru
 óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓÐÏÌØÚÕÅÍÙÅ ÍÎÏÇÏÞÉÓÌÅÎÎÙÍÉ
@@ -265,7 +213,7 @@ Przeznaczony dla j±dra Linux >= %{min_kernel}.
 ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÐÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
 ×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
 
-Can be used on: Linux kernel >= %{min_kernel}.
+Can be used on: Linux kernel >= 2.6.0.
 
 %description -l tr
 Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir.
@@ -276,7 +224,7 @@ kitaplýklarý, standart C kitaplýðýný ve standart matematik kitaplýðýný
 içerir. Bu kitaplýklar olmadan Linux sistemi çalýþmayacaktýr. Yerel
 dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
 
-Can be used on: Linux kernel >= %{min_kernel}.
+Can be used on: Linux kernel >= 2.6.0.
 
 %description -l uk
 í¦ÓÔÉÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ, ËÏÔÒ¦ ×ÉËÏÒÉÓÔÏ×ÕÀÔØÓÑ ÞÉÓÌÅÎÎÉÍÉ
@@ -289,7 +237,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 ôÁËÏÖ ÐÁËÅÔ Í¦ÓÔÉÔØ Ð¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
 ÞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
 
-Can be used on: Linux kernel >= %{min_kernel}.
+Can be used on: Linux kernel >= 2.6.0.
 
 %package misc
 Summary:	Utilities and data used by glibc
@@ -316,7 +264,7 @@ Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+Requires:	linux-libc-headers >= %{llh_version}
 Obsoletes:	libiconv-devel
 Obsoletes:	glibc-headers
 
@@ -793,34 +741,31 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -n libc
+%setup -q -n libc-%{version}_%{_snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
+
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p1
-# don't know, if it is good idea, for brave ones
-#%patch11 -p1
-%{!?with_kernelheaders:%patch12 -p1}
+
+%patch11 -p1
+%patch12 -p1
 %patch13 -p1
 %patch14 -p0
 
-%patch16 -p1
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
-%patch21 -p1
-%patch22 -p1
+#patch21 -p1		NEEDS UPDATE
+#patch22 -p1		NEEDS UPDATE
 #patch23 -p1		NEEDS UPDATE
-%patch24 -p1
-%patch25 -p1
+#patch24 -p1		NEEDS UPDATE
+
 %patch26 -p1
 %{?with_cross:%patch27 -p1}
 
@@ -831,57 +776,31 @@ cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
 cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 
 %build
-# Build glibc
 cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
-rm -rf builddir
-install -d builddir
-cd builddir
+
+rm -rf builddir && install -d builddir && cd builddir
+
 %ifarch sparc64
 CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
-%if %{with linuxthreads}
 ../%configure \
 	libc_cv_as_needed=no \
-	--enable-kernel="%{min_kernel}" \
+	--enable-kernel="2.6.0" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
-	--with%{!?with___thread:out}-__thread \
-	--with-headers=%{sysheaders} \
-	--with%{!?with_selinux:out}-selinux \
-	--with%{!?with_tls:out}-tls \
-        --enable-add-ons=linuxthreads \
-	--enable-profile
-%{__make}
-%endif
-%if %{with nptl}
-%if %{with dual}
-cd ..
-rm -rf builddir-nptl
-install -d builddir-nptl
-cd builddir-nptl
-%endif
-../%configure \
-	libc_cv_as_needed=no \
-	--enable-kernel="%{nptl_min_kernel}" \
-	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
-	--with-headers=%{sysheaders} \
+	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
         --enable-add-ons=nptl \
+	--enable-stackguard-randomization \
 	--enable-profile
-# simulate cross-compiling so we can perform dual builds on 2.4.x kernel
-%{__make} \
-	%{?with_dual:cross-compiling=yes}
-%endif
+
+%{__make}
 cd ..
 
-%if %{with linuxthreads}
-%{__make} -C linuxthreads/man
-%endif
-
 %if %{with tests}
-for d in builddir %{?with_tests_nptl:builddir-nptl} ; do
+for d in builddir; do
 cd $d
 env LANGUAGE=C LC_ALL=C \
 %{__make} tests 2>&1 | awk '
@@ -927,46 +846,8 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
 
-%if %{with dual}
-env LANGUAGE=C LC_ALL=C \
-%{__make} -C builddir-nptl install \
-	cross-compiling=yes \
-	install_root=$RPM_BUILD_ROOT/nptl
-
-install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl,%{_includedir}/nptl}
-for f in libc libm libpthread libthread_db librt; do
-	mv -f $RPM_BUILD_ROOT/nptl/%{_lib}/${f}[-.]* $RPM_BUILD_ROOT/%{_lib}/tls
-done
-$RPM_BUILD_ROOT/sbin/ldconfig -n $RPM_BUILD_ROOT/%{_lib}/tls
-
-for f in libc.so libpthread.so ; do
-	cat $RPM_BUILD_ROOT/nptl%{_libdir}/$f | sed \
-		-e "s|/libc.so.6|/tls/libc.so.6|g" \
-		-e "s|/libpthread.so.0|/tls/libpthread.so.0|g" \
-		-e "s|/libpthread_nonshared.a|/nptl/libpthread_nonshared.a|g" \
-		> $RPM_BUILD_ROOT%{_libdir}/nptl/$f
-done
-for f in libc.a libpthread.a libpthread_nonshared.a; do
-	mv -f $RPM_BUILD_ROOT/nptl%{_libdir}/$f $RPM_BUILD_ROOT%{_libdir}/nptl
-done
-cd $RPM_BUILD_ROOT/nptl%{_prefix}/include
-	for f in `find . -type f`; do
-		if ! [ -f $RPM_BUILD_ROOT%{_prefix}/include/$f ] \
-		   || ! cmp -s $f $RPM_BUILD_ROOT%{_prefix}/include/$f ; then
-			install -d $RPM_BUILD_ROOT%{_prefix}/include/nptl/`dirname $f`
-			cp -a $f $RPM_BUILD_ROOT%{_prefix}/include/nptl/$f
-		fi
-	done
-cd -
-rm -rf $RPM_BUILD_ROOT/nptl
-%endif
-
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
-
-%if %{with linuxthreads}
-install linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
-%endif
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
 
@@ -1006,21 +887,11 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 :> $RPM_BUILD_ROOT/var/lib/nscd/group
 :> $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
-rm -rf documentation
-install -d documentation
-
-%if %{with linuxthreads}
-for f in ChangeLog Changes README ; do
-	cp -f linuxthreads/$f documentation/${f}.linuxthreads
-done
-%endif
-%if %{with nptl}
+rm -rf documentation && install -d documentation
 for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing} ;  do
-	cp -f nptl/$f documentation/${f}.nptl
+	cp -f $f documentation/
 done
-%endif
 cp -f crypt/README.ufc-crypt documentation
-
 cp -f ChangeLog* documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
