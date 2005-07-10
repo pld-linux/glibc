@@ -885,11 +885,10 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 :> $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
 rm -rf documentation && install -d documentation
-for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing} ;  do
-	cp -f $f documentation/
+for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
+       cp -f nptl/$f documentation/$f.nptl
 done
-cp -f crypt/README.ufc-crypt documentation
-cp -f ChangeLog* documentation
+cp -f crypt/README.ufc-crypt ChangeLog* documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
@@ -939,8 +938,8 @@ for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
 	fi
 done
 cd $RPM_BUILD_ROOT%{_datadir}/locale
-ln -s zh_CN zh_SG
-ln -s zh_CN zh_HK
+ln -sf zh_CN zh_SG
+ln -sf zh_CN zh_HK
 cd -
 
 # localedb-gen infrastructure
