@@ -885,8 +885,9 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 :> $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
 rm -rf documentation && install -d documentation
+
 for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
-       cp -f nptl/$f documentation/$f.nptl
+	cp -f nptl/$f documentation/$f.nptl
 done
 cp -f crypt/README.ufc-crypt ChangeLog* documentation
 
