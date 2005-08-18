@@ -77,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	4
+Release:	4.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -323,6 +323,7 @@ Summary(ru):	Дополнительные библиотеки, необходимые для компиляции
 Summary(tr):	GeliЧtirme iГin gerekli diПer kitaplЩklar
 Summary(uk):	Додатков╕ б╕бл╕отеки, потр╕бн╕ для комп╕ляц╕╖
 Group:		Development/Libraries
+Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
