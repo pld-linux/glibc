@@ -37,7 +37,8 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_tls
 %endif
 %endif
@@ -45,7 +46,8 @@
 %if %{with nptl}
 # on x86 uses cmpxchgl (available since i486)
 # on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -75,7 +77,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	2.1
+Release:	5
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -93,6 +95,8 @@ Source5:	%{name}-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 Source7:	%{name}-localedb-gen
+Source8:	%{name}-LD-path.c
+Source9:	postshell.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -100,7 +104,6 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-postshell.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-lthrds_noomit.patch
@@ -123,11 +126,10 @@ Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-execvp.patch
 Patch28:	%{name}-sys-kd.patch
 Patch29:	%{name}-cross-gcc_eh.patch
-Patch30:	%{name}-gcc4.patch
-Patch31:	%{name}-no_uint128_t.patch
 # PaX hack (dropped)
 #PatchX:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.2
@@ -149,6 +151,7 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
+BuildRequires:	dietlibc-static
 AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
@@ -161,9 +164,9 @@ Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
+Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
-Conflicts:	poldek < 0.18.8-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
@@ -320,10 +323,12 @@ Summary(ru):	äÏÐÏÌÎÉÔÅÌØÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍÐÉÌÑÃÉÉ
 Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
+Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-doc = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
-Obsoletes:	glibc-headers
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -376,6 +381,84 @@ kitaplýklar.
 (ÐÒÁËÔÉÞÎÏ ×Ó¦ ÐÒÏÇÒÁÍÉ §È ×ÉËÏÒÉÓÔÏ×ÕÀÔØ), ÓÉÓÔÅÍ¦ îåïâè¶äî¶ ÈÅÄÅÒÉ
 ÔÁ ÏÂ'¤ËÔÎ¦ ÆÁÊÌÉ, ÝÏ Í¦ÓÔÑÔØÓÑ × ÃØÏÍÕ ÐÁËÅÔ¦, ÃÏÂ ÓÔ×ÏÒÀ×ÁÔÉ
 ×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
+
+%package headers
+Summary:	Header files for development using standard C libraries.
+Group:		Development/Libraries
+Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-headers(i386)
+Obsoletes:	%{name}-headers(i486)
+Obsoletes:	%{name}-headers(i586)
+Obsoletes:	%{name}-headers(i686)
+Obsoletes:	%{name}-headers(athlon)
+Obsoletes:	%{name}-headers(pentium3)
+Obsoletes:	%{name}-headers(pentium4)
+%endif
+%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+
+%description headers
+The glibc-headers package contains the header files necessary
+for developing programs which use the standard C libraries (which are
+used by nearly all programs).  If you are developing programs which
+will use the standard C libraries, your system needs to have these
+standard header files available in order to create the
+executables.
+
+Install glibc-headers if you are going to develop programs which will
+use the standard C libraries.
+
+%package devel-utils
+Summary:	Utilities needed for development using standard C libraries.
+Group:		Development/Libraries
+Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-devel-utils(i386)
+Obsoletes:	%{name}-devel-utils(i486)
+Obsoletes:	%{name}-devel-utils(i586)
+Obsoletes:	%{name}-devel-utils(i686)
+Obsoletes:	%{name}-devel-utils(athlon)
+Obsoletes:	%{name}-devel-utils(pentium3)
+Obsoletes:	%{name}-devel-utils(pentium4)
+%endif
+
+%description devel-utils
+The glibc-devel-utils package contains utilities necessary
+for developing programs which use the standard C libraries (which are
+used by nearly all programs).  If you are developing programs which
+will use the standard C libraries, your system needs to have these
+utilities available.
+
+Install glibc-devel-utils if you are going to develop programs
+which will use the standard C libraries.
+
+%package devel-doc
+Summary:	Documentation needed for development using standard C libraries.
+Group:		Development/Libraries
+Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-devel-doc(i386)
+Obsoletes:	%{name}-devel-doc(i486)
+Obsoletes:	%{name}-devel-doc(i586)
+Obsoletes:	%{name}-devel-doc(i686)
+Obsoletes:	%{name}-devel-doc(athlon)
+Obsoletes:	%{name}-devel-doc(pentium3)
+Obsoletes:	%{name}-devel-doc(pentium4)
+%endif
+
+%description devel-doc
+The glibc-devel-utils package contains info and manual pages necessary
+for developing programs which use the standard C libraries (which are
+used by nearly all programs).
+
+Install glibc-devel-doc if you are going to develop programs
+which will use the standard C libraries.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -778,7 +861,6 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
@@ -802,8 +884,6 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch27 -p1
 %patch28 -p1
 %{?with_cross:%patch29 -p1}
-#%patch30 -p1
-#%patch31 -p1
 
 chmod +x scripts/cpp
 
@@ -878,6 +958,10 @@ cd ..
 done
 %endif
 
+# compiling static using diet vs glibc saves 400k
+diet -Os %{__cc} %{SOURCE9} %{rpmcflags} -static -o postshell
+diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
@@ -902,9 +986,10 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
-
-install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
+
+install postshell					$RPM_BUILD_ROOT/sbin
+install glibc-postinst				$RPM_BUILD_ROOT/sbin
 
 %if %{with dual}
 env LANGUAGE=C LC_ALL=C \
@@ -954,6 +1039,30 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix
 #	ln -s ../$i posix
 #done
 #cd -
+
+# Where should s390 go?
+%ifarch %{ix86} ppc sparc
+mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-32.h
+%endif
+
+%ifarch %{x8664} ppc64 sparc64 alpha
+mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-64.h
+%endif
+
+cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
+/* This file selects the right generated file of '__stub_FUNCTION' macros
+   based on the architecture being compiled for.  */
+
+#include <bits/wordsize.h>
+
+#if __WORDSIZE == 32
+# include <gnu/stubs-32.h>
+#elif __WORDSIZE == 64
+# include <gnu/stubs-64.h>
+#else
+# error "unexpected value for __WORDSIZE macro"
+#endif
+EOF
 
 ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
@@ -1044,9 +1153,10 @@ done
 # omitted here - already existing (with libc.mo):
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
 for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
-    en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is it_CH ka kn ku \
-    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro ru rw \
-    se sl sq sr sr@Latn sr@ije ss ta tg th tl tlh uk uz ve vi wa xh yi zu ; do
+    en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is it_CH ka \
+    kn ku leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro \
+    ru rw se sl sq sr sr@Latn sr@ije ss ta tg th tl tlh uk uz ve vi wa xh yi \
+    zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -1080,6 +1190,7 @@ rm -rf $RPM_BUILD_ROOT
 %else
 %post	-p /sbin/postshell
 %endif
+/sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 /sbin/ldconfig
 -/sbin/telinit u
 
@@ -1149,6 +1260,7 @@ fi
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %attr(755,root,root) /sbin/postshell
+%attr(755,root,root) /sbin/glibc-postinst
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
@@ -1330,11 +1442,6 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* NOTES PROJECTS
-%attr(755,root,root) %{_bindir}/gencat
-%attr(755,root,root) %{_bindir}/*prof*
-%attr(755,root,root) %{_bindir}/*trace
-
 %attr(755,root,root) %{_libdir}/lib[!cmp]*.so
 %attr(755,root,root) %{_libdir}/libcrypt.so
 %attr(755,root,root) %{_libdir}/libm.so
@@ -1358,16 +1465,19 @@ fi
 %{_libdir}/nptl/libc.so
 %{_libdir}/nptl/libpthread.so
 %{_libdir}/nptl/libpthread_nonshared.a
-%{_includedir}/nptl
 %endif
 
+%{_includedir}/gnu/stubs-*.h
+
+%files headers
 %{_includedir}/*.h
 %ifarch alpha
 %{_includedir}/alpha
 %endif
 %{_includedir}/arpa
 %{_includedir}/bits
-%{_includedir}/gnu
+%{_includedir}/gnu/lib*.h
+%{_includedir}/gnu/stubs.h
 %{_includedir}/net
 %{_includedir}/netash
 %{_includedir}/netatalk
@@ -1385,6 +1495,18 @@ fi
 %{_includedir}/scsi
 %{_includedir}/sys
 
+%if %{with dual}
+%{_includedir}/nptl
+%endif
+
+%files devel-utils
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/gencat
+%attr(755,root,root) %{_bindir}/*prof*
+%attr(755,root,root) %{_bindir}/*trace
+
+%files devel-doc
+%doc documentation/* NOTES PROJECTS
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
