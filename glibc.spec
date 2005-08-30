@@ -16,6 +16,7 @@
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
+%bcond_with	pax		# apply PaX patches
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -126,8 +127,7 @@ Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-execvp.patch
 Patch28:	%{name}-sys-kd.patch
 Patch29:	%{name}-cross-gcc_eh.patch
-# PaX hack (dropped)
-#PatchX:	%{name}-pax_dl-execstack.patch
+Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -884,6 +884,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch27 -p1
 %patch28 -p1
 %{?with_cross:%patch29 -p1}
+%{?with_pax:%patch30 -p1}
 
 chmod +x scripts/cpp
 
