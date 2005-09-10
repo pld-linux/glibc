@@ -78,7 +78,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -105,6 +105,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
+Patch7:		%{name}-dl-execstack.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-lthrds_noomit.patch
@@ -861,6 +862,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
