@@ -1,70 +1,39 @@
---- glibc-2.3.3/sysdeps/unix/sysv/linux/dl-execstack.c.orig	2003-12-05 01:26:05.000000000 +0100
-+++ glibc-2.3.3/sysdeps/unix/sysv/linux/dl-execstack.c	2004-03-18 16:09:49.200234840 +0100
-@@ -47,11 +47,17 @@
- 		      PROT_READ|PROT_WRITE|PROT_EXEC|PROT_GROWSDOWN) == 0)
- 	goto return_success;
- #  if __ASSUME_PROT_GROWSUPDOWN == 0
--      if (errno == EINVAL)
-+      if (errno == EINVAL) {
- 	no_growsdown = true;
--      else
-+      } else {
-+#  endif
-+	if (errno == EACCES)		/* PAX is enabled */
-+	  return 0;
-+	else
-+	  return errno;
-+#  if __ASSUME_PROT_GROWSUPDOWN == 0
-+      }
- #  endif
--	return errno;
-     }
- # endif
- 
-@@ -73,8 +79,11 @@
- 	page -= size;
+diff -urN glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c glibc-2.3.5/sysdeps/unix/sysv/linux/dl-execstack.c
+--- glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c	2005-09-23 13:07:35.000000000 +0200
++++ glibc-2.3.5/sysdeps/unix/sysv/linux/dl-execstack.c	2005-09-23 13:31:45.000000000 +0200
+@@ -60,7 +60,10 @@
+ 	no_growsupdown = true;
        else
- 	{
--	  if (errno != ENOMEM)	/* Unexpected failure mode.  */
-+	  if (errno == EACCES) {	/* PAX is enabled */
+ # endif
+-	return errno;
++	if (errno == EACCESS) /* PaX */
 +	    return 0;
-+	  } else if (errno != ENOMEM) {	/* Unexpected failure mode.  */
- 	    return errno;
-+	  }
++	else
++	    return errno;
+     }
+ #endif
  
- 	  if (size == GL(dl_pagesize))
+@@ -86,7 +89,10 @@
+ 	{
+ 	  /* Unexpected failure mode.  */
+ 	  if (errno != ENOMEM && errno != EFAULT)
+-	    return errno;
++	    if (errno == EACCESS) /* PaX */
++		return 0;
++	    else
++	    	return errno;
+ 
+ 	  if (size == GLRO(dl_pagesize))
  	    /* We just tried to mprotect the top hole page and failed.
-@@ -105,11 +114,17 @@
- 		      PROT_READ|PROT_WRITE|PROT_EXEC|PROT_GROWSUP) == 0)
- 	goto return_success;
- #  if __ASSUME_PROT_GROWSUPDOWN == 0
--      if (errno == EINVAL)
-+      if (errno == EINVAL) {
- 	no_growsup = true;
--      else
-+      } else {
-+#  endif
-+	if (errno == EACCES)		/* PAX is enabled */
-+	  return 0;
-+	else
-+	  return errno;
-+#  if __ASSUME_PROT_GROWSUPDOWN == 0
-+      }
- #  endif
--	return errno;
-     }
- # endif
- 
-@@ -130,8 +145,11 @@
- 	page += size;
-       else
+@@ -110,7 +116,10 @@
  	{
--	  if (errno != ENOMEM)	/* Unexpected failure mode.  */
-+	  if (errno == EACCES) {	/* PAX is enabled */
-+	    return 0;
-+	  } else if (errno != ENOMEM) {	/* Unexpected failure mode.  */
- 	    return errno;
-+	  }
+ 	  /* Unexpected failure mode.  */
+ 	  if (errno != ENOMEM && errno != EFAULT)
+-	    return errno;
++	    if (errno == EACCESS) /* PaX */
++		return 0;
++	    else
++	    	return errno;
  
- 	  if (size == GL(dl_pagesize))
+ 	  if (size == GLRO(dl_pagesize))
  	    /* We just tried to mprotect the lowest hole page and failed.
