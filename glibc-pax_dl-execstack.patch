@@ -6,7 +6,7 @@ diff -urN glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c glibc-2.3.5/sy
        else
  # endif
 -	return errno;
-+	if (errno == EACCESS) /* PaX */
++	if (errno == EACCES) /* PaX */
 +	    return 0;
 +	else
 +	    return errno;
@@ -18,7 +18,7 @@ diff -urN glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c glibc-2.3.5/sy
  	  /* Unexpected failure mode.  */
  	  if (errno != ENOMEM && errno != EFAULT)
 -	    return errno;
-+	    if (errno == EACCESS) /* PaX */
++	    if (errno == EACCES) /* PaX */
 +		return 0;
 +	    else
 +	    	return errno;
@@ -30,7 +30,7 @@ diff -urN glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c glibc-2.3.5/sy
  	  /* Unexpected failure mode.  */
  	  if (errno != ENOMEM && errno != EFAULT)
 -	    return errno;
-+	    if (errno == EACCESS) /* PaX */
++	    if (errno == EACCES) /* PaX */
 +		return 0;
 +	    else
 +	    	return errno;
