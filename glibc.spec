@@ -78,7 +78,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1471,6 +1471,7 @@ fi
 %endif
 
 %{_includedir}/gnu/stubs-*.h
+%dir %{_includedir}/gnu
 
 %files headers
 %{_includedir}/*.h
