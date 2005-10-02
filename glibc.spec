@@ -1375,7 +1375,8 @@ fi
 %endif
 %{_includedir}/arpa
 %{_includedir}/bits
-%{_includedir}/gnu
+%dir %{_includedir}/gnu
+%{_includedir}/gnu/*.h
 %{_includedir}/net
 %{_includedir}/netash
 %{_includedir}/netatalk
