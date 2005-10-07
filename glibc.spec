@@ -1505,7 +1505,9 @@ fi
 %{_libdir}/nptl/libpthread_nonshared.a
 %endif
 
+%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
 %{_includedir}/gnu/stubs-*.h
+%endif
 
 %files headers
 %defattr(644,root,root,755)
