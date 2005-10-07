@@ -404,8 +404,8 @@ Obsoletes:	%{name}-headers(pentium4)
 %description headers
 The glibc-headers package contains the header files necessary for
 developing programs which use the standard C libraries (which are used
-by nearly all programs). If you are developing programs which will
-use the standard C libraries, your system needs to have these standard
+by nearly all programs). If you are developing programs which will use
+the standard C libraries, your system needs to have these standard
 header files available in order to create the executables.
 
 Install glibc-headers if you are going to develop programs which will
