@@ -1076,7 +1076,6 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix
 #done
 #cd -
 
-# Where should s390 go?
 %ifarch %{ix86} ppc s390 sparc sparcv9
 mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-32.h
 %endif
@@ -1550,7 +1549,6 @@ fi
 %files devel-doc
 %defattr(644,root,root,755)
 %doc documentation/* NOTES PROJECTS
-
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
