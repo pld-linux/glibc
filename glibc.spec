@@ -404,7 +404,7 @@ Obsoletes:	%{name}-headers(pentium4)
 %description headers
 The glibc-headers package contains the header files necessary for
 developing programs which use the standard C libraries (which are used
-by nearly all programs).  If you are developing programs which will
+by nearly all programs). If you are developing programs which will
 use the standard C libraries, your system needs to have these standard
 header files available in order to create the executables.
 
@@ -1514,8 +1514,8 @@ fi
 %endif
 %{_includedir}/arpa
 %{_includedir}/bits
-%{_includedir}/gnu/lib*.h
 %dir %{_includedir}/gnu
+%{_includedir}/gnu/lib*.h
 %{_includedir}/gnu/stubs.h
 %{_includedir}/net
 %{_includedir}/netash
