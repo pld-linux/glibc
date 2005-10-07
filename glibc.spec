@@ -16,7 +16,7 @@
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
-%bcond_with	pax		# apply PaX patches
+%bcond_with	pax		# apply PaX hack
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -324,11 +324,11 @@ Summary(ru):	äÏÐÏÌÎÉÔÅÌØÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍÐÉÌÑÃÉÉ
 Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
-Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-doc = %{epoch}:%{version}-%{release}
+Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
 
 %description devel
@@ -384,7 +384,8 @@ kitaplýklar.
 ×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
 
 %package headers
-Summary:	Header files for development using standard C libraries.
+Summary:	Header files for development using standard C libraries
+Summary(pl):	Pliki nag³ówkowe do tworzenia programów przy u¿yciu standardowych bibliotek C
 Group:		Development/Libraries
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -401,18 +402,29 @@ Obsoletes:	%{name}-headers(pentium4)
 %{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
 
 %description headers
-The glibc-headers package contains the header files necessary
-for developing programs which use the standard C libraries (which are
-used by nearly all programs).  If you are developing programs which
-will use the standard C libraries, your system needs to have these
-standard header files available in order to create the
-executables.
+The glibc-headers package contains the header files necessary for
+developing programs which use the standard C libraries (which are used
+by nearly all programs).  If you are developing programs which will
+use the standard C libraries, your system needs to have these standard
+header files available in order to create the executables.
 
 Install glibc-headers if you are going to develop programs which will
 use the standard C libraries.
 
+%description headers -l pl
+Pakiet glibc-headers zawiera pliki nag³ówkowe niezbêdne do rozwijania
+programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
+prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
+standardowych bibliotek C, system wymaga dostêpno¶ci tych
+standardowych plików nag³ówkowych do tworzenia programów
+wykonywalnych.
+
+Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
+korzystaj±ce ze standardowych bibliotek C.
+
 %package devel-utils
-Summary:	Utilities needed for development using standard C libraries.
+Summary:	Utilities needed for development using standard C libraries
+Summary(pl):	Narzêdzia do tworzenia programów przy u¿yciu standardowych bibliotek C
 Group:		Development/Libraries
 Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -428,18 +440,29 @@ Obsoletes:	%{name}-devel-utils(pentium4)
 %endif
 
 %description devel-utils
-The glibc-devel-utils package contains utilities necessary
-for developing programs which use the standard C libraries (which are
-used by nearly all programs).  If you are developing programs which
-will use the standard C libraries, your system needs to have these
-utilities available.
+The glibc-devel-utils package contains utilities necessary for
+developing programs which use the standard C libraries (which are used
+by nearly all programs). If you are developing programs which will use
+the standard C libraries, your system needs to have these utilities
+available.
 
-Install glibc-devel-utils if you are going to develop programs
-which will use the standard C libraries.
+Install glibc-devel-utils if you are going to develop programs which
+will use the standard C libraries.
+
+%description devel-utils -l pl
+Pakiet glibc-devel-utils zawiera narzêdzia niezbêdne do rozwijania
+programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
+prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
+standardowych bibliotek C, system wymaga dostêpno¶ci tych
+narzêdzi do tworzenia programów wykonywalnych.
+
+Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
+korzystaj±ce ze standardowych bibliotek C.
 
 %package devel-doc
-Summary:	Documentation needed for development using standard C libraries.
-Group:		Development/Libraries
+Summary:	Documentation needed for development using standard C libraries
+Summary(pl):	Dokumentacja do tworzenia programów przy u¿yciu standardowych bibliotek C
+Group:		Documentation
 Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
@@ -454,12 +477,20 @@ Obsoletes:	%{name}-devel-doc(pentium4)
 %endif
 
 %description devel-doc
-The glibc-devel-utils package contains info and manual pages necessary
+The glibc-devel-doc package contains info and manual pages necessary
 for developing programs which use the standard C libraries (which are
 used by nearly all programs).
 
-Install glibc-devel-doc if you are going to develop programs
-which will use the standard C libraries.
+Install glibc-devel-doc if you are going to develop programs which
+will use the standard C libraries.
+
+%description devel-doc -l pl
+Pakiet glibc-devel-doc zawiera strony info i manuala przydatne do
+rozwijania programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych
+przez prawie wszystkie programy).
+
+Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
+korzystaj±ce ze standardowych bibliotek C.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -1043,15 +1074,15 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix
 #done
 #cd -
 
-# Where should s390 go?
-%ifarch %{ix86} ppc sparc
+%ifarch %{ix86} ppc s390 sparc sparcv9
 mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-32.h
 %endif
 
-%ifarch %{x8664} ppc64 sparc64 alpha
+%ifarch %{x8664} ppc64 s390x sparc64
 mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-64.h
 %endif
 
+%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
 cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
 /* This file selects the right generated file of '__stub_FUNCTION' macros
    based on the architecture being compiled for.  */
@@ -1066,6 +1097,7 @@ cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
 # error "unexpected value for __WORDSIZE macro"
 #endif
 EOF
+%endif
 
 ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
@@ -1470,10 +1502,12 @@ fi
 %{_libdir}/nptl/libpthread_nonshared.a
 %endif
 
+%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
 %{_includedir}/gnu/stubs-*.h
-%dir %{_includedir}/gnu
+%endif
 
 %files headers
+%defattr(644,root,root,755)
 %{_includedir}/*.h
 %ifarch alpha
 %{_includedir}/alpha
@@ -1481,6 +1515,7 @@ fi
 %{_includedir}/arpa
 %{_includedir}/bits
 %{_includedir}/gnu/lib*.h
+%dir %{_includedir}/gnu
 %{_includedir}/gnu/stubs.h
 %{_includedir}/net
 %{_includedir}/netash
@@ -1510,6 +1545,7 @@ fi
 %attr(755,root,root) %{_bindir}/*trace
 
 %files devel-doc
+%defattr(644,root,root,755)
 %doc documentation/* NOTES PROJECTS
 %{_infodir}/libc.info*
 
