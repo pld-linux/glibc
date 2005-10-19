@@ -78,7 +78,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	7
+Release:	7.6
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1121,7 +1121,8 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
-> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
+echo 'include ld.so.conf.d/*.conf'> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -1244,6 +1245,17 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 -/bin/mv %{_sysconfdir}/ld.so.conf.rpmsave %{_sysconfdir}/ld.so.conf
 
+%if 0
+# as we're run from trigger, need not to care about being installed to empty directory structure?
+# and need to to use postshell? this trigger needs to be on -misc package?
+%endif
+%ifarch %{x8664} ppc64 s390x sparc64
+%triggerpostun -n %{name}64 -p /sbin/postshell -- %{name}64 < 6:2.3.5-7.6
+%else
+%triggerpostun -p /sbin/postshell -- %{name} < 6:2.3.5-7.6
+%endif
+-/bin/sh -c "/bin/grep -qs 'include ld.so.conf.d/*.conf' /etc/ld.so.conf || echo 'include ld.so.conf.d/*.conf' >> /etc/ld.so.conf"
+
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
 
@@ -1316,6 +1328,7 @@ fi
 %endif
 %{?with_localedb:%dir %{_libdir}/locale}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
+%dir %{_sysconfdir}/ld.so.conf.d
 %ghost %{_sysconfdir}/ld.so.cache
 
 #%files -n nss_dns
