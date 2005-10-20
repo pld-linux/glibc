@@ -78,7 +78,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.5
-Release:	7.6
+Release:	8
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1245,10 +1245,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 -/bin/mv %{_sysconfdir}/ld.so.conf.rpmsave %{_sysconfdir}/ld.so.conf
 
-%if 0
-# as we're run from trigger, need not to care about being installed to empty directory structure?
-# and need to to use postshell? this trigger needs to be on -misc package?
-%endif
 %ifarch %{x8664} ppc64 s390x sparc64
 %triggerpostun -n %{name}64 -p /sbin/postshell -- %{name}64 < 6:2.3.5-7.6
 %else
