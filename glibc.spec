@@ -1254,7 +1254,8 @@ rm -rf $RPM_BUILD_ROOT
 %else
 %triggerpostun -p /sbin/postshell -- %{name} < 6:2.3.5-7.6
 %endif
--/bin/sh -c "/bin/grep -qs 'include ld.so.conf.d/*.conf' /etc/ld.so.conf || echo 'include ld.so.conf.d/*.conf' >> /etc/ld.so.conf"
+-cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
+-sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
