@@ -911,14 +911,10 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
-# APPLIED?, checkme
-#%patch21 -p1
-# FIXME
-#%patch22 -p1
-# FIXME
-#%patch23 -p1
-# FIXME
-#%patch24 -p1
+%patch21 -p1
+%patch22 -p1
+%patch23 -p1
+%patch24 -p1
 %patch25 -p1
 %patch26 -p1
 # APPLIED?, checkme
