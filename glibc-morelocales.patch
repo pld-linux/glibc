@@ -7022,13 +7022,13 @@ diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
 +measurement    1
 +END LC_MEASUREMENT
 +
-diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
---- libc.old/localedata/locales/si_LK	1970-01-01 01:00:00.000000000 +0100
-+++ libc/localedata/locales/si_LK	2004-09-10 09:29:21.000000000 +0200
-@@ -0,0 +1,221 @@
+--- glibc-2.3-20051017/localedata/locales/si_LK.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.3-20051017/localedata/locales/si_LK	2005-10-24 12:50:39.000000000 +0200
+@@ -0,0 +1,222 @@
 +escape_char  /
 +comment_char %
 +% Sinhala language locale for Sri Lanka.
++% Charset: UTF-8
 +% Contributed by Anuradha Ratnaweera <anuradha at gnu org>
 +% and Himira Ratnatilake <himira at linux lk>
 +
@@ -7204,7 +7204,7 @@ diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
 +LC_NAME
 +% This is the ISO_IEC TR14652 Locale definition for the LC_NAME category
 +%
-+name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
++name_fmt    "<U0025><U0067><U0025><U0074><U0025><U006D><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0073>"
 +name_gen    ""
 +name_mr     "<U0DB8><U0DBA><U0DCF>"
 +name_mrs    "<U0DB8><U0DD2><U0DBA>"
