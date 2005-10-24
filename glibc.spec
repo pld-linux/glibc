@@ -908,8 +908,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
-# APPLIED?, checkme
-#%patch18 -p1
+%patch18 -p1
 %patch19 -p1
 %patch20 -p1
 # APPLIED?, checkme
