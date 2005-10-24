@@ -127,10 +127,9 @@ Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-iconvconfig-nxstack.patch
-Patch27:	%{name}-execvp.patch
-Patch28:	%{name}-sys-kd.patch
-Patch29:	%{name}-cross-gcc_eh.patch
-Patch30:	%{name}-pax_dl-execstack.patch
+Patch27:	%{name}-sys-kd.patch
+Patch28:	%{name}-cross-gcc_eh.patch
+Patch29:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -917,11 +916,9 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
-# APPLIED?, checkme
-# %patch27 -p1
-%patch28 -p1
-%{?with_cross:%patch29 -p1}
-%{?with_pax:%patch30 -p1}
+%patch27 -p1
+%{?with_cross:%patch28 -p1}
+%{?with_pax:%patch29 -p1}
 
 chmod +x scripts/cpp
 
