@@ -1,5 +1,5 @@
---- glibc-2.3.3/localedata/locales/sr_CS@Latn.orig	Thu Jan  1 01:00:00 1970
-+++ glibc-2.3.3/localedata/locales/sr_CS@Latn	Mon Jan 19 15:13:42 2004
+--- glibc-2.3-20051017/localedata/locales/sr_CS@Latn.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.3-20051017/localedata/locales/sr_CS@Latn	2005-10-24 10:40:20.000000000 +0200
 @@ -0,0 +1,179 @@
 +comment_char %
 +escape_char  /
@@ -14,8 +14,8 @@
 +% Fax: none
 +% Language: sr
 +% Territory: CS
-+% Revision: 1.0
-+% Date: 2003-08-13
++% Revision: 1.2
++% Date: 2004-08-09
 +% Application: general
 +% Users: general
 +% Charset: UTF-8, ISO-8859-2
@@ -36,24 +36,24 @@
 +fax        ""
 +language   "Serbian"
 +territory  "Serbia and Montenegro"
-+revision   "1.1"
-+date       "2004-01-10"
++revision   "1.2"
++date       "2004-08-09"
 +audience   "general"
 +application   "GNU locale"
 +abbreviation  ""
 +%
-+category  i18n:1997;LC_IDENTIFICATION
-+category  i18n:1997;LC_CTYPE
-+category  i18n:1997;LC_COLLATE
-+category  i18n:1997;LC_MONETARY
-+category  i18n:1997;LC_NUMERIC
-+category  i18n:1997;LC_TIME
-+category  i18n:1997;LC_MESSAGES
-+category  i18n:1997;LC_PAPER
-+category  i18n:1997;LC_NAME
-+category  i18n:1997;LC_ADDRESS
-+category  i18n:1997;LC_TELEPHONE
-+category  i18n:1997;LC_MEASUREMENT
++category  "i18n:1997";LC_IDENTIFICATION
++category  "i18n:1997";LC_CTYPE
++category  "i18n:1997";LC_COLLATE
++category  "i18n:1997";LC_MONETARY
++category  "i18n:1997";LC_NUMERIC
++category  "i18n:1997";LC_TIME
++category  "i18n:1997";LC_MESSAGES
++category  "i18n:1997";LC_PAPER
++category  "i18n:1997";LC_NAME
++category  "i18n:1997";LC_ADDRESS
++category  "i18n:1997";LC_TELEPHONE
++category  "i18n:1997";LC_MEASUREMENT
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -65,7 +65,7 @@
 +END LC_COLLATE
 +
 +LC_MONETARY
-+int_curr_symbol           "<U0059><U0055><U004D><U0020>"
++int_curr_symbol           "<U0043><U0053><U0044><U0020>"
 +currency_symbol           "<U0064><U0069><U006E>"
 +mon_decimal_point         "<U002C>"
 +mon_thousands_sep         "<U002E>"
@@ -133,8 +133,8 @@
 +END LC_TIME
 +
 +LC_MESSAGES
-+yesexpr "<U005B><U0064><U0044><U0079><U0059><U0031><U005D><U002E><U002A>"
-+noexpr  "<U005B><U006E><U004E><U0030><U005D><U002E><U002A>"
++yesexpr "<U005E><U005B><U0064><U0044><U0079><U0059><U005D>"
++noexpr  "<U005E><U005B><U006E><U004E><U005D>"
 +END LC_MESSAGES
 +
 +LC_PAPER
