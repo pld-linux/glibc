@@ -77,13 +77,15 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
+%define	snap	20051017
 Version:	2.3.5
-Release:	8
+Release:	8.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	93d9c51850e0513aa4846ac0ddcef639
+# Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	ftp://sources.redhat.com/pub/glibc/snapshots/%{name}-2.3-%{snap}.tar.bz2
+# Source0-md5:	aa84360c8476e785501cd71a7bdda6d8
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 # Source1-md5:	77011b0898393c56b799bc011a0f37bf
 Source2:	nscd.init
@@ -885,7 +887,7 @@ Bibliotecas GNU libc de 64 bits para la arquitectura 64bit.
 Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 
 %prep
-%setup -q -a1
+%setup -q -n %{name}-2.3-%{snap} -a1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -893,7 +895,8 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
+# FIXME
+#%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
@@ -905,16 +908,22 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
-%patch18 -p1
+# APPLIED?, checkme
+#%patch18 -p1
 %patch19 -p1
 %patch20 -p1
-%patch21 -p1
-%patch22 -p1
-%patch23 -p1
-%patch24 -p1
+# APPLIED?, checkme
+#%patch21 -p1
+# FIXME
+#%patch22 -p1
+# FIXME
+#%patch23 -p1
+# FIXME
+#%patch24 -p1
 %patch25 -p1
 %patch26 -p1
-%patch27 -p1
+# APPLIED?, checkme
+# %patch27 -p1
 %patch28 -p1
 %{?with_cross:%patch29 -p1}
 %{?with_pax:%patch30 -p1}
