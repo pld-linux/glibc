@@ -6866,9 +6866,8 @@ diff -uNr libc.old/localedata/locales/pap_AN@euro libc/localedata/locales/pap_AN
 +LC_ADDRESS
 +copy "pap_AN"
 +END LC_ADDRESS
-diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
---- libc.old/localedata/locales/rw_RW	2004-07-16 01:24:39.000000000 +0100
-+++ libc/localedata/locales/rw_RW	2004-11-14 03:07:27.000000000 +0200
+--- glibc-2.3-20051017/localedata/locales/rw_RW.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.3-20051017/localedata/locales/rw_RW	2005-10-24 12:58:25.000000000 +0200
 @@ -0,0 +1,152 @@
 +escape_char /
 +comment_char %
@@ -6878,7 +6877,7 @@ diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
 +%  Mr. Safali
 +
 +LC_IDENTIFICATION
-+title      "Kinyarwanda locale for Rwanda"
++title      "Kinyarwanda language locale for Rwanda"
 +source     "Rwanda"
 +address    "Rwanda, Africa"
 +contact    "Steve Murphy"
@@ -7000,15 +6999,15 @@ diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
 +<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
 +<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
 +<U004E><U0025><U0063><U0025><U004E>"
-+country_name   "Rwanda"
-+country_ab2    "RW"
-+country_ab3    "RWA"
++country_name   "<U0052><U0077><U0061><U006E><U0064><U0061>"
++country_ab2    "<U0052><U0057>"
++country_ab3    "<U0052><U0057><U0041>"
 +country_num    646
-+country_car    "RWA"
-+lang_name      "Kinyarwanda"
-+lang_ab        "rw"
-+lang_term      "kin"
-+lang_lib       "kin"
++country_car    "<U0052><U0057><U0041>"
++lang_name      "<U004B><U0069><U006E><U0079><U0061><U0072><U0077><U0061><U006E><U0064><U0061>"
++lang_ab        "<U0072><U0077>"
++lang_term      "<U006B><U0069><U006E>"
++lang_lib       "<U006B><U0069><U006E>"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
