@@ -630,6 +630,7 @@ Summary(ru):	Статические библиотеки glibc
 Summary(uk):	Статичн╕ б╕бл╕отеки glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-static
 
 %description static
