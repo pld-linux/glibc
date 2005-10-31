@@ -77,7 +77,7 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-%define	snap	20051024
+%define	snap	20051031
 Version:	2.3.5
 Release:	8.1
 Epoch:		6
@@ -85,7 +85,7 @@ License:	LGPL
 Group:		Libraries
 # Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	ftp://sources.redhat.com/pub/glibc/snapshots/%{name}-2.3-%{snap}.tar.bz2
-# Source0-md5:	71fe6421e676a775377d5f4eef166418
+# Source0-md5:	86acd77624a0d699f023f5d1798095fe
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 # Source1-md5:	77011b0898393c56b799bc011a0f37bf
 Source2:	nscd.init
@@ -887,7 +887,7 @@ Bibliotecas GNU libc de 64 bits para la arquitectura 64bit.
 Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 
 %prep
-%setup -q -n %{name}-2.3-%{snap} -a1
+%setup -q -n %{name}-2.3-%{snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
