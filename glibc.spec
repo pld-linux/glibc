@@ -922,16 +922,31 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# tk, yo (used by GNOME)
-# ven -> ve (used by KDE)
+# as (atk, gail)
+# az_IR (gtk+)
+# chs (gtklp)
+# dv (iso-codes)
+# fy (kde)
+# kok (iso-codes)
+# my (gaim)
+# ps (iso-codes)
+# rm (gtkspell, bluez-pin)
+# sa, sw, syr (iso-codes)
+# tk, ug, yo (used by GNOME)
+#
 # NOTES:
-# bn is used for bn_BD or bn_IN?
+# bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
+#   till now
+#
 # omitted here - already existing (with libc.mo):
-#   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
-for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
-    en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is ka kn \
-    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro ru se \
-    sl sq sr sr@Latn sr@ije ss ta tg th tlh uk uz ve vi wa xh yi zu ; do
+#   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,
+#   tr,zh_CN,zh_TW
+for i in aa af am ang ar az bg bn br bs byn cy de_AT en en@boldquot en@quot \
+    en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo ga gez gu gv he hi \
+    hsb hy ia id is it_CH iu ka kk kl kn ku kw ky leet lg li lo lt lv mi mk \
+    ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt ro ru rw se sid sl so \
+    sq sr sr@Latn sr@ije ss ta te tg th ti tig tl tlh tt uk ur uz ve vi wa \
+    wal xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
