@@ -79,7 +79,7 @@ Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 %define	snap	20051031
 Version:	2.3.5
-Release:	8.1
+Release:	9
 Epoch:		6
 License:	LGPL
 Group:		Libraries
