@@ -544,7 +544,7 @@ nscd ËÅÛÕ¤ ÒÅÚÕÌØÔÁÔÉ ÚÁĞÒÏÓ¦× ÄÏ ÓÅÒ×¦Ó¦× ¦ÍÅÎ; ÃÅ ÍÏÖÅ ÓÉÌØÎÏ
 Summary:	locale database source code
 Summary(es):	Código fuente de la base de datos de los locales
 Summary(pl):	Kod ¼ród³owy bazy locale
-Group:		Daemons
+Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gzip
 Requires:	sed
@@ -597,8 +597,8 @@ pakiet localedb-src mo¿na odinstalowaæ).
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
 Summary(es):	Convierte entre varias codificaciones de los ficheros dados
-Summary(pl):	Program do konwersji plików tekstowych z jednego kodowania do innego
-Group:		Applications/Text
+Summary(pl):	Modu³y do konwersji plików tekstowych z jednego kodowania do innego
+Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n iconv
@@ -615,12 +615,12 @@ Generic Character Set Conversion Interface (interfaz genérica de
 conversión de juegos de caracteres).
 
 %description -n iconv -l pl
-Program do konwersji plików tekstowych z jednego kodowania do innego.
-Musisz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
-dokumentów z jednego kodowania do innego lub je¿eli masz zainstalowane
-jakie¶ programy, które korzystaj± z Generic Character Set Conversion
-Interface w glibc, czyli z zestawu funkcji z tej biblioteki, które
-umo¿liwiaj± konwersjê kodowania danych z poziomu dowolnego programu.
+Modu³y do konwersji plików tekstowych z jednego kodowania do innego.
+Trzeba mieæ zainstalowany ten pakiet, aby wykonywaæ konwersjê
+dokumentów z jednego kodowania do innego lub do u¿ywania programów
+korzystaj±cych z Generic Character Set Conversion Interface w glibc,
+czyli z zestawu funkcji z tej biblioteki, które umo¿liwiaj± konwersjê
+kodowania danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
