@@ -16,6 +16,7 @@
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
+%bcond_with	pax		# apply PaX hack
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -37,7 +38,8 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_tls
 %endif
 %endif
@@ -45,7 +47,8 @@
 %if %{with nptl}
 # on x86 uses cmpxchgl (available since i486)
 # on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -74,15 +77,15 @@ Summary(ru):	GNU libc ×ÅÒÓÉÉ 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
-Version:	2.3.5
-Release:	2.2
+Version:	2.3.6
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	93d9c51850e0513aa4846ac0ddcef639
+# Source0-md5:	bfdce99f82d6dbcb64b7f11c05d6bc96
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-# Source1-md5:	77011b0898393c56b799bc011a0f37bf
+# Source1-md5:	d4eeda37472666a15cc1f407e9c987a9
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -102,6 +105,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-linuxthreads-lock.patch
 Patch5:		%{name}-pthread_create-manpage.patch
 Patch6:		%{name}-paths.patch
+Patch7:		%{name}-dl-execstack.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-lthrds_noomit.patch
@@ -121,14 +125,11 @@ Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
 Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-iconvconfig-nxstack.patch
-Patch27:	%{name}-execvp.patch
-Patch28:	%{name}-sys-kd.patch
-Patch29:	%{name}-cross-gcc_eh.patch
-Patch30:	%{name}-gcc4.patch
-Patch31:	%{name}-no_uint128_t.patch
-# PaX hack (dropped)
-#PatchX:	%{name}-pax_dl-execstack.patch
+Patch27:	%{name}-sys-kd.patch
+Patch28:	%{name}-cross-gcc_eh.patch
+Patch29:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.2
@@ -163,9 +164,9 @@ Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
+Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
-Conflicts:	poldek < 0.18.8-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		debugcflags	-O1 -g
@@ -323,9 +324,11 @@ Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-doc = %{epoch}:%{version}-%{release}
+Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
-Obsoletes:	glibc-headers
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
@@ -379,6 +382,115 @@ kitaplýklar.
 ÔÁ ÏÂ'¤ËÔÎ¦ ÆÁÊÌÉ, ÝÏ Í¦ÓÔÑÔØÓÑ × ÃØÏÍÕ ÐÁËÅÔ¦, ÃÏÂ ÓÔ×ÏÒÀ×ÁÔÉ
 ×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
 
+%package headers
+Summary:	Header files for development using standard C libraries
+Summary(pl):	Pliki nag³ówkowe do tworzenia programów przy u¿yciu standardowych bibliotek C
+Group:		Development/Libraries
+Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-headers(i386)
+Obsoletes:	%{name}-headers(i486)
+Obsoletes:	%{name}-headers(i586)
+Obsoletes:	%{name}-headers(i686)
+Obsoletes:	%{name}-headers(athlon)
+Obsoletes:	%{name}-headers(pentium3)
+Obsoletes:	%{name}-headers(pentium4)
+%endif
+%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+
+%description headers
+The glibc-headers package contains the header files necessary for
+developing programs which use the standard C libraries (which are used
+by nearly all programs). If you are developing programs which will use
+the standard C libraries, your system needs to have these standard
+header files available in order to create the executables.
+
+Install glibc-headers if you are going to develop programs which will
+use the standard C libraries.
+
+%description headers -l pl
+Pakiet glibc-headers zawiera pliki nag³ówkowe niezbêdne do rozwijania
+programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
+prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
+standardowych bibliotek C, system wymaga dostêpno¶ci tych
+standardowych plików nag³ówkowych do tworzenia programów
+wykonywalnych.
+
+Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
+korzystaj±ce ze standardowych bibliotek C.
+
+%package devel-utils
+Summary:	Utilities needed for development using standard C libraries
+Summary(pl):	Narzêdzia do tworzenia programów przy u¿yciu standardowych bibliotek C
+Group:		Development/Libraries
+Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-devel-utils(i386)
+Obsoletes:	%{name}-devel-utils(i486)
+Obsoletes:	%{name}-devel-utils(i586)
+Obsoletes:	%{name}-devel-utils(i686)
+Obsoletes:	%{name}-devel-utils(athlon)
+Obsoletes:	%{name}-devel-utils(pentium3)
+Obsoletes:	%{name}-devel-utils(pentium4)
+%endif
+
+%description devel-utils
+The glibc-devel-utils package contains utilities necessary for
+developing programs which use the standard C libraries (which are used
+by nearly all programs). If you are developing programs which will use
+the standard C libraries, your system needs to have these utilities
+available.
+
+Install glibc-devel-utils if you are going to develop programs which
+will use the standard C libraries.
+
+%description devel-utils -l pl
+Pakiet glibc-devel-utils zawiera narzêdzia niezbêdne do rozwijania
+programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
+prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
+standardowych bibliotek C, system wymaga dostêpno¶ci tych
+narzêdzi do tworzenia programów wykonywalnych.
+
+Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
+korzystaj±ce ze standardowych bibliotek C.
+
+%package devel-doc
+Summary:	Documentation needed for development using standard C libraries
+Summary(pl):	Dokumentacja do tworzenia programów przy u¿yciu standardowych bibliotek C
+Group:		Documentation
+Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{x8664}
+# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# have to be installed, not ix86 one.
+Obsoletes:	%{name}-devel-doc(i386)
+Obsoletes:	%{name}-devel-doc(i486)
+Obsoletes:	%{name}-devel-doc(i586)
+Obsoletes:	%{name}-devel-doc(i686)
+Obsoletes:	%{name}-devel-doc(athlon)
+Obsoletes:	%{name}-devel-doc(pentium3)
+Obsoletes:	%{name}-devel-doc(pentium4)
+%endif
+
+%description devel-doc
+The glibc-devel-doc package contains info and manual pages necessary
+for developing programs which use the standard C libraries (which are
+used by nearly all programs).
+
+Install glibc-devel-doc if you are going to develop programs which
+will use the standard C libraries.
+
+%description devel-doc -l pl
+Pakiet glibc-devel-doc zawiera strony info i manuala przydatne do
+rozwijania programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych
+przez prawie wszystkie programy).
+
+Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
+korzystaj±ce ze standardowych bibliotek C.
+
 %package -n nscd
 Summary:	Name Service Caching Daemon
 Summary(es):	Demonio de caché del servicio de nombres
@@ -431,7 +543,7 @@ nscd ËÅÛÕ¤ ÒÅÚÕÌØÔÁÔÉ ÚÁÐÒÏÓ¦× ÄÏ ÓÅÒ×¦Ó¦× ¦ÍÅÎ; ÃÅ ÍÏÖÅ ÓÉÌØÎÏ
 Summary:	locale database source code
 Summary(es):	Código fuente de la base de datos de los locales
 Summary(pl):	Kod ¼ród³owy bazy locale
-Group:		Daemons
+Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gzip
 Requires:	sed
@@ -484,8 +596,8 @@ pakiet localedb-src mo¿na odinstalowaæ).
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
 Summary(es):	Convierte entre varias codificaciones de los ficheros dados
-Summary(pl):	Program do konwersji plików tekstowych z jednego kodowania do innego
-Group:		Applications/Text
+Summary(pl):	Modu³y do konwersji plików tekstowych z jednego kodowania do innego
+Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n iconv
@@ -502,12 +614,12 @@ Generic Character Set Conversion Interface (interfaz genérica de
 conversión de juegos de caracteres).
 
 %description -n iconv -l pl
-Program do konwersji plików tekstowych z jednego kodowania do innego.
-Musisz mieæ zainstalowany ten pakiet je¿eli wykonujesz konwersjê
-dokumentów z jednego kodowania do innego lub je¿eli masz zainstalowane
-jakie¶ programy, które korzystaj± z Generic Character Set Conversion
-Interface w glibc, czyli z zestawu funkcji z tej biblioteki, które
-umo¿liwiaj± konwersjê kodowania danych z poziomu dowolnego programu.
+Modu³y do konwersji plików tekstowych z jednego kodowania do innego.
+Trzeba mieæ zainstalowany ten pakiet, aby wykonywaæ konwersjê
+dokumentów z jednego kodowania do innego lub do u¿ywania programów
+korzystaj±cych z Generic Character Set Conversion Interface w glibc,
+czyli z zestawu funkcji z tej biblioteki, które umo¿liwiaj± konwersjê
+kodowania danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
@@ -517,6 +629,7 @@ Summary(ru):	óÔÁÔÉÞÅÓËÉÅ ÂÉÂÌÉÏÔÅËÉ glibc
 Summary(uk):	óÔÁÔÉÞÎ¦ Â¦ÂÌ¦ÏÔÅËÉ glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-static
 
 %description static
@@ -780,6 +893,8 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+# FIXME
+#%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
@@ -801,10 +916,8 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
-%patch28 -p1
-%{?with_cross:%patch29 -p1}
-#%patch30 -p1
-#%patch31 -p1
+%{?with_cross:%patch28 -p1}
+%{?with_pax:%patch29 -p1}
 
 chmod +x scripts/cpp
 
@@ -961,6 +1074,31 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix
 #done
 #cd -
 
+%ifarch %{ix86} ppc s390 sparc sparcv9
+mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-32.h
+%endif
+
+%ifarch %{x8664} ppc64 s390x sparc64
+mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-64.h
+%endif
+
+%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
+cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
+/* This file selects the right generated file of '__stub_FUNCTION' macros
+   based on the architecture being compiled for.  */
+
+#include <bits/wordsize.h>
+
+#if __WORDSIZE == 32
+# include <gnu/stubs-32.h>
+#elif __WORDSIZE == 64
+# include <gnu/stubs-64.h>
+#else
+# error "unexpected value for __WORDSIZE macro"
+#endif
+EOF
+%endif
+
 ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
@@ -983,7 +1121,8 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
-> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
+echo 'include ld.so.conf.d/*.conf'> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -1041,18 +1180,25 @@ done
 # XXX: to be added when become supported by glibc
 # as (atk, gail)
 # az_IR (gtk+)
+# dv, kok, ps, sw (iso-codes)
+# fy (kde)
 # my (gaim)
-# rm (gtkspell)
-# tk, yo (used by GNOME)
+# tk, ug, yo (used by GNOME)
 #
 # NOTES:
-# bn is used for bn_BD or bn_IN?
+# bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
+#   till now
+#
 # omitted here - already existing (with libc.mo):
-#   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,tr,zh_CN,zh_TW
-for i in af am ang ar az bg bn br bs cy de_AT en en@boldquot en@quot en_AU \
-    en_CA en_US eo es_AR es_MX et eu fa fo ga gu he hi hsb ia id is it_CH ka kn ku \
-    leet lg li lo lt lv mi mk ml mn mr ms mt nds ne nn nso or pa pt ro ru rw \
-    se sl sq sr sr@Latn sr@ije ss ta tg th tl tlh uk uz ve vi wa xh yi zu ; do
+#   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,
+#   tr,zh_CN,zh_TW
+#
+for i in aa af am ang ar az bg bn br bs byn cy de_AT en en@boldquot en@quot \
+    en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo ga gez gu gv he hi \
+    hsb hy ia id is it_CH iu ka kk kl kn ku kw ky leet lg li lo lt lv mi mk \
+    ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro ru rw sa se sid \
+    sl so sq sr sr@Latn sr@ije ss syr ta te tg th ti tig tl tlh tt uk ur uz \
+    ve vi wa wal xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -1104,6 +1250,14 @@ rm -rf $RPM_BUILD_ROOT
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 %endif
 -/bin/mv %{_sysconfdir}/ld.so.conf.rpmsave %{_sysconfdir}/ld.so.conf
+
+%ifarch %{x8664} ppc64 s390x sparc64
+%triggerpostun -n %{name}64 -p /sbin/postshell -- %{name}64 < 6:2.3.5-7.6
+%else
+%triggerpostun -p /sbin/postshell -- %{name} < 6:2.3.5-7.6
+%endif
+-/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
+-/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
@@ -1177,6 +1331,7 @@ fi
 %endif
 %{?with_localedb:%dir %{_libdir}/locale}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
+%dir %{_sysconfdir}/ld.so.conf.d
 %ghost %{_sysconfdir}/ld.so.cache
 
 #%files -n nss_dns
@@ -1338,11 +1493,6 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%doc documentation/* NOTES PROJECTS
-%attr(755,root,root) %{_bindir}/gencat
-%attr(755,root,root) %{_bindir}/*prof*
-%attr(755,root,root) %{_bindir}/*trace
-
 %attr(755,root,root) %{_libdir}/lib[!cmp]*.so
 %attr(755,root,root) %{_libdir}/libcrypt.so
 %attr(755,root,root) %{_libdir}/libm.so
@@ -1366,16 +1516,23 @@ fi
 %{_libdir}/nptl/libc.so
 %{_libdir}/nptl/libpthread.so
 %{_libdir}/nptl/libpthread_nonshared.a
-%{_includedir}/nptl
 %endif
 
+%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
+%{_includedir}/gnu/stubs-*.h
+%endif
+
+%files headers
+%defattr(644,root,root,755)
 %{_includedir}/*.h
 %ifarch alpha
 %{_includedir}/alpha
 %endif
 %{_includedir}/arpa
 %{_includedir}/bits
-%{_includedir}/gnu
+%dir %{_includedir}/gnu
+%{_includedir}/gnu/lib*.h
+%{_includedir}/gnu/stubs.h
 %{_includedir}/net
 %{_includedir}/netash
 %{_includedir}/netatalk
@@ -1393,6 +1550,19 @@ fi
 %{_includedir}/scsi
 %{_includedir}/sys
 
+%if %{with dual}
+%{_includedir}/nptl
+%endif
+
+%files devel-utils
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/gencat
+%attr(755,root,root) %{_bindir}/*prof*
+%attr(755,root,root) %{_bindir}/*trace
+
+%files devel-doc
+%defattr(644,root,root,755)
+%doc documentation/* NOTES PROJECTS
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
