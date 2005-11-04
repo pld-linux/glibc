@@ -34,23 +34,7 @@ diff -uNr libc.old/intl/locale.alias libc/intl/locale.alias
 diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
 --- libc.old/localedata/SUPPORTED	2004-09-10 09:30:22.000000000 +0200
 +++ libc/localedata/SUPPORTED	2004-09-10 09:29:21.000000000 +0200
-@@ -2,12 +2,15 @@
- # If you have any additions please use the glibcbug script to send an
- # appropriate message.
- SUPPORTED-LOCALES=\
-+aa_DJ.UTF-8/UTF-8 \
- aa_DJ/ISO-8859-1 \
- aa_ER/UTF-8 \
- aa_ER@saaho/UTF-8 \
- aa_ET/UTF-8 \
-+af_ZA.UTF-8/UTF-8 \
- af_ZA/ISO-8859-1 \
- am_ET/UTF-8 \
-+an_ES.UTF-8/UTF-8 \
- an_ES/ISO-8859-15 \
- ar_AE.UTF-8/UTF-8 \
- ar_AE/ISO-8859-6 \
-@@ -44,15 +47,18 @@
+@@ -46,7 +46,8 @@
  ar_TN/ISO-8859-6 \
  ar_YE.UTF-8/UTF-8 \
  ar_YE/ISO-8859-6 \
@@ -60,17 +44,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  be_BY.UTF-8/UTF-8 \
  be_BY/CP1251 \
  bg_BG.UTF-8/UTF-8 \
- bg_BG/CP1251 \
- bn_BD/UTF-8 \
- bn_IN/UTF-8 \
-+br_FR.UTF-8/UTF-8 \
- br_FR/ISO-8859-1 \
- br_FR@euro/ISO-8859-15 \
-+bs_BA.UTF-8/UTF-8 \
- bs_BA/ISO-8859-2 \
- byn_ER/UTF-8 \
- ca_ES.UTF-8/UTF-8 \
-@@ -60,6 +66,7 @@
+@@ -64,6 +65,7 @@
  ca_ES@euro/ISO-8859-15 \
  cs_CZ.UTF-8/UTF-8 \
  cs_CZ/ISO-8859-2 \
@@ -78,7 +52,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  cy_GB.UTF-8/UTF-8 \
  cy_GB/ISO-8859-14 \
  da_DK.UTF-8/UTF-8 \
-@@ -78,6 +85,8 @@
+@@ -82,6 +84,8 @@
  de_LU.UTF-8/UTF-8 \
  de_LU/ISO-8859-1 \
  de_LU@euro/ISO-8859-15 \
@@ -87,7 +61,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  el_GR.UTF-8/UTF-8 \
  el_GR/ISO-8859-7 \
  en_AU.UTF-8/UTF-8 \
-@@ -159,6 +168,8 @@
+@@ -163,6 +167,8 @@
  fi_FI.UTF-8/UTF-8 \
  fi_FI/ISO-8859-1 \
  fi_FI@euro/ISO-8859-15 \
@@ -96,14 +70,6 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  fo_FO.UTF-8/UTF-8 \
  fo_FO/ISO-8859-1 \
  fr_BE.UTF-8/UTF-8 \
-@@ -177,6 +187,7 @@
- ga_IE.UTF-8/UTF-8 \
- ga_IE/ISO-8859-1 \
- ga_IE@euro/ISO-8859-15 \
-+gd_GB.UTF-8/UTF-8 \
- gd_GB/ISO-8859-15 \
- gez_ER/UTF-8 \
- gez_ER@abegede/UTF-8 \
 @@ -190,11 +201,17 @@
  gv_GB/ISO-8859-1 \
  he_IL.UTF-8/UTF-8 \
@@ -122,7 +88,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  id_ID.UTF-8/UTF-8 \
  id_ID/ISO-8859-1 \
  is_IS.UTF-8/UTF-8 \
-@@ -204,11 +221,13 @@
+@@ -204,10 +221,10 @@
  it_IT.UTF-8/UTF-8 \
  it_IT/ISO-8859-1 \
  it_IT@euro/ISO-8859-15 \
@@ -132,13 +98,10 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ja_JP.EUC-JP/EUC-JP \
  ja_JP.UTF-8/UTF-8 \
 +ka_GE.GEORGIAN-ACADEMY/GEORGIAN-ACADEMY \
-+ka_GE.UTF-8/UTF-8 \
+ ka_GE.UTF-8/UTF-8 \
  ka_GE/GEORGIAN-PS \
-+kk_KZ.UTF-8/UTF-8 \
- kk_KZ/PT154 \
- kl_GL.UTF-8/UTF-8 \
- kl_GL/ISO-8859-1 \
-@@ -215,14 +234,26 @@
+ kk_KZ.UTF-8/UTF-8 \
+@@ -215,10 +234,20 @@
  kn_IN/UTF-8 \
  ko_KR.EUC-KR/EUC-KR \
  ko_KR.UTF-8/UTF-8 \
@@ -147,7 +110,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  kw_GB/ISO-8859-1 \
 +ky_KG.UTF-8/UTF-8 \
 +ky_KG/KOI8-K \
-+lg_UG.UTF-8/UTF-8 \
+ lg_UG.UTF-8/UTF-8 \
  lg_UG/ISO-8859-10 \
 +li_BE.UTF-8/UTF-8 \
 +li_BE/ISO-8859-1 \
@@ -159,12 +122,6 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  lo_LA/UTF-8 \
  lt_LT.UTF-8/UTF-8 \
  lt_LT/ISO-8859-13 \
- lv_LV.UTF-8/UTF-8 \
- lv_LV/ISO-8859-13 \
-+mi_NZ.UTF-8/UTF-8 \
- mi_NZ/ISO-8859-13 \
- mk_MK.UTF-8/UTF-8 \
- mk_MK/ISO-8859-5 \
 @@ -235,6 +267,10 @@
  mt_MT/ISO-8859-3 \
  nb_NO.UTF-8/UTF-8 \
@@ -176,15 +133,14 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ne_NP/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
  nl_BE/ISO-8859-1 \
-@@ -244,10 +280,18 @@
- nl_NL@euro/ISO-8859-15 \
+@@ -244,11 +280,17 @@
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
-+oc_FR.UTF-8/UTF-8 \
+ oc_FR.UTF-8/UTF-8 \
 +oc_FR@euro/ISO-8859-15 \
  oc_FR/ISO-8859-1 \
  om_ET/UTF-8 \
-+om_KE.UTF-8/UTF-8 \
+ om_KE.UTF-8/UTF-8 \
  om_KE/ISO-8859-1 \
 +or_IN/UTF-8 \
  pa_IN/UTF-8 \
@@ -203,7 +159,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -262,22 +307,31 @@
+@@ -262,25 +307,31 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -217,12 +173,12 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
 +sl_SI.ISO-8859-16/ISO-8859-16 \
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
-+so_DJ.UTF-8/UTF-8 \
+ so_DJ.UTF-8/UTF-8 \
  so_DJ/ISO-8859-1 \
  so_ET/UTF-8 \
-+so_KE.UTF-8/UTF-8 \
+ so_KE.UTF-8/UTF-8 \
  so_KE/ISO-8859-1 \
-+so_SO.UTF-8/UTF-8 \
+ so_SO.UTF-8/UTF-8 \
  so_SO/ISO-8859-1 \
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
@@ -235,12 +191,12 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
  sv_FI.UTF-8/UTF-8 \
-@@ -287,28 +341,40 @@
+@@ -287,28 +341,37 @@
  sv_SE/ISO-8859-1 \
  ta_IN/UTF-8 \
  te_IN/UTF-8 \
 +tg_TJ.KOI8-K/KOI8-K \
-+tg_TJ.UTF-8/UTF-8 \
+ tg_TJ.UTF-8/UTF-8 \
  tg_TJ/KOI8-T \
 +th_TH.ISO-8859-11/ISO-8859-11 \
  th_TH.UTF-8/UTF-8 \
@@ -248,7 +204,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ti_ER/UTF-8 \
  ti_ET/UTF-8 \
  tig_ER/UTF-8 \
-+tl_PH.UTF-8/UTF-8 \
+ tl_PH.UTF-8/UTF-8 \
  tl_PH/ISO-8859-1 \
 +tr_CY.UTF-8/UTF-8 \
 +tr_CY/ISO-8859-9 \
@@ -273,10 +229,7 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
 +wal_ET/UTF-8 \
  xh_ZA.UTF-8/UTF-8 \
  xh_ZA/ISO-8859-1 \
-+yi_US.UTF-8/UTF-8 \
- yi_US/CP1255 \
- zh_CN.GB18030/GB18030 \
- zh_CN.GBK/GBK \
+ yi_US.UTF-8/UTF-8 \
 diff -uNr libc.old/localedata/locales/csb_PL libc/localedata/locales/csb_PL
 --- libc.old/localedata/locales/csb_PL	1970-01-01 01:00:00.000000000 +0100
 +++ libc/localedata/locales/csb_PL	2004-09-10 09:29:21.000000000 +0200
@@ -6913,9 +6866,8 @@ diff -uNr libc.old/localedata/locales/pap_AN@euro libc/localedata/locales/pap_AN
 +LC_ADDRESS
 +copy "pap_AN"
 +END LC_ADDRESS
-diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
---- libc.old/localedata/locales/rw_RW	2004-07-16 01:24:39.000000000 +0100
-+++ libc/localedata/locales/rw_RW	2004-11-14 03:07:27.000000000 +0200
+--- glibc-2.3-20051017/localedata/locales/rw_RW.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.3-20051017/localedata/locales/rw_RW	2005-10-24 12:58:25.000000000 +0200
 @@ -0,0 +1,152 @@
 +escape_char /
 +comment_char %
@@ -6925,7 +6877,7 @@ diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
 +%  Mr. Safali
 +
 +LC_IDENTIFICATION
-+title      "Kinyarwanda locale for Rwanda"
++title      "Kinyarwanda language locale for Rwanda"
 +source     "Rwanda"
 +address    "Rwanda, Africa"
 +contact    "Steve Murphy"
@@ -7047,15 +6999,15 @@ diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
 +<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
 +<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
 +<U004E><U0025><U0063><U0025><U004E>"
-+country_name   "Rwanda"
-+country_ab2    "RW"
-+country_ab3    "RWA"
++country_name   "<U0052><U0077><U0061><U006E><U0064><U0061>"
++country_ab2    "<U0052><U0057>"
++country_ab3    "<U0052><U0057><U0041>"
 +country_num    646
-+country_car    "RWA"
-+lang_name      "Kinyarwanda"
-+lang_ab        "rw"
-+lang_term      "kin"
-+lang_lib       "kin"
++country_car    "<U0052><U0057><U0041>"
++lang_name      "<U004B><U0069><U006E><U0079><U0061><U0072><U0077><U0061><U006E><U0064><U0061>"
++lang_ab        "<U0072><U0077>"
++lang_term      "<U006B><U0069><U006E>"
++lang_lib       "<U006B><U0069><U006E>"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
@@ -7069,13 +7021,13 @@ diff -uNr libc.old/localedata/locales/rw_RW libc/localedata/locales/rw_RW
 +measurement    1
 +END LC_MEASUREMENT
 +
-diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
---- libc.old/localedata/locales/si_LK	1970-01-01 01:00:00.000000000 +0100
-+++ libc/localedata/locales/si_LK	2004-09-10 09:29:21.000000000 +0200
-@@ -0,0 +1,221 @@
+--- glibc-2.3-20051017/localedata/locales/si_LK.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.3-20051017/localedata/locales/si_LK	2005-10-24 12:50:39.000000000 +0200
+@@ -0,0 +1,222 @@
 +escape_char  /
 +comment_char %
 +% Sinhala language locale for Sri Lanka.
++% Charset: UTF-8
 +% Contributed by Anuradha Ratnaweera <anuradha at gnu org>
 +% and Himira Ratnatilake <himira at linux lk>
 +
@@ -7251,7 +7203,7 @@ diff -uNr libc.old/localedata/locales/si_LK libc/localedata/locales/si_LK
 +LC_NAME
 +% This is the ISO_IEC TR14652 Locale definition for the LC_NAME category
 +%
-+name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
++name_fmt    "<U0025><U0067><U0025><U0074><U0025><U006D><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0073>"
 +name_gen    ""
 +name_mr     "<U0DB8><U0DBA><U0DCF>"
 +name_mrs    "<U0DB8><U0DD2><U0DBA>"
