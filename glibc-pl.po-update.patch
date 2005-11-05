@@ -1,5 +1,5 @@
---- glibc-2.3.5/po/pl.po.orig	2004-08-06 00:50:55.000000000 +0200
-+++ glibc-2.3.5/po/pl.po	2005-04-14 08:38:25.505221360 +0200
+--- glibc-2.3.6/po/pl.po.orig	2004-08-06 00:50:55.000000000 +0200
++++ glibc-2.3.6/po/pl.po	2005-11-05 07:15:38.709608000 +0100
 @@ -1,13 +1,13 @@
  # Polish translation for GNU libc.
 -# Copyright (C) 1996, 1997, 1998, 1999, 2002, 2003, 2004 Free Software Foundation, Inc.
@@ -13,9 +13,9 @@
 -"Project-Id-Version: libc 2.3.3\n"
 -"POT-Creation-Date: 2004-08-05 09:16+0200\n"
 -"PO-Revision-Date: 2004-08-06 00:01+0200\n"
-+"Project-Id-Version: libc 2.3.5\n"
-+"POT-Creation-Date: 2005-04-07 21:30-0700\n"
-+"PO-Revision-Date: 2005-04-14 08:20+0200\n"
++"Project-Id-Version: libc 2.3.6\n"
++"POT-Creation-Date: 2005-11-05 06:53+0100\n"
++"PO-Revision-Date: 2005-11-05 07:14+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@
 +#: iconv/iconv_prog.c:423 iconv/iconvconfig.c:396 locale/programs/locale.c:276
 +#: locale/programs/localedef.c:388 catgets/gencat.c:247 posix/getconf.c:963
 +#: nss/getent.c:82 nscd/nscd.c:394 nscd/nscd_nischeck.c:90 elf/ldconfig.c:278
-+#: elf/sprof.c:355
++#: elf/ldd.bash.in:39 elf/sprof.c:355
  #, c-format
  msgid ""
  "Copyright (C) %s Free Software Foundation, Inc.\n"
@@ -1159,7 +1159,7 @@
  #. TRANS expected to already exist.
 -#: stdio-common/../sysdeps/gnu/errlist.c:28
 -#: stdio-common/../sysdeps/unix/sysv/sysv4/solaris2/sparc/errlist.c:32
-+#: stdio-common/../sysdeps/gnu/errlist.c:36
++#: stdio-common/../sysdeps/gnu/errlist.c:36 elf/ldd.bash.in:148
  msgid "No such file or directory"
  msgstr "Nie ma takiego pliku ani katalogu"
  
@@ -2506,12 +2506,28 @@
  msgid "Unknown error"
  msgstr "Nieznany b³±d"
  
-@@ -3080,39 +2754,49 @@
+@@ -3080,39 +2754,65 @@
  msgid "Unknown signal %d"
  msgstr "Nieznany sygna³ %d"
  
 -#: timezone/zdump.c:176
-+#: timezone/zdump.c:240
++#: timezone/zdump.c:212
++msgid "lacks alphabetic at start"
++msgstr "nie zaczyna siê od litery"
++
++#: timezone/zdump.c:214
++msgid "has fewer than 3 alphabetics"
++msgstr "ma mniej ni¿ 3 litery"
++
++#: timezone/zdump.c:216
++msgid "has more than 6 alphabetics"
++msgstr "ma wiêcej ni¿ 6 liter"
++
++#: timezone/zdump.c:224
++msgid "differs from POSIX standard"
++msgstr "ró¿ni siê od standardu POSIX"
++
++#: timezone/zdump.c:280
  #, c-format
 -msgid "%s: usage is %s [ --version ] [ -v ] [ -c cutoff ] zonename ...\n"
 -msgstr "%s: sk³adnia: %s [ --version ] [ -v ] [ -c rok ] nazwa_strefy...\n"
@@ -2519,83 +2535,83 @@
 +msgstr "%s: sk³adnia: %s [ --version ] [ -v ] [ -c [rokpocz,]rokkoñc ] nazwa_strefy...\n"
  
 -#: timezone/zdump.c:269
-+#: timezone/zdump.c:257
++#: timezone/zdump.c:297
 +#, c-format
 +msgid "%s: wild -c argument %s\n"
 +msgstr "%s: niepoprawny argument -c %s\n"
 +
-+#: timezone/zdump.c:347
++#: timezone/zdump.c:388
  msgid "Error writing standard output"
  msgstr "B³±d podczas pisania na standardowe wyj¶cie"
  
 -#: timezone/zic.c:361
-+#: timezone/zdump.c:370
++#: timezone/zdump.c:411
 +#, c-format
 +msgid "%s: use of -v on system with floating time_t other than float or double\n"
 +msgstr "%s: u¿ycie -v na systemie ze zmiennoprzecinkowym time_t innym ni¿ float lub double\n"
 +
-+#: timezone/zic.c:367
++#: timezone/zic.c:371
  #, c-format
  msgid "%s: Memory exhausted: %s\n"
  msgstr "%s: Brak pamiêci: %s\n"
  
 -#: timezone/zic.c:386 misc/error.c:129 misc/error.c:157
-+#: timezone/zic.c:392 misc/error.c:129 misc/error.c:157
++#: timezone/zic.c:396 misc/error.c:132 misc/error.c:160
  msgid "Unknown system error"
  msgstr "Nieznany b³±d systemowy"
  
 -#: timezone/zic.c:420
-+#: timezone/zic.c:426
++#: timezone/zic.c:430
  #, c-format
  msgid "\"%s\", line %d: %s"
  msgstr "\"%s\", linia %d: %s"
  
 -#: timezone/zic.c:423
-+#: timezone/zic.c:429
++#: timezone/zic.c:433
  #, c-format
  msgid " (rule from \"%s\", line %d)"
  msgstr " (regu³a z \"%s\", linia %d)"
  
 -#: timezone/zic.c:435
-+#: timezone/zic.c:441
++#: timezone/zic.c:445
  msgid "warning: "
  msgstr "uwaga: "
  
 -#: timezone/zic.c:445
-+#: timezone/zic.c:451
++#: timezone/zic.c:455
  #, c-format
  msgid ""
  "%s: usage is %s [ --version ] [ -s ] [ -v ] [ -l localtime ] [ -p posixrules ] \\\n"
-@@ -3122,322 +2806,325 @@
+@@ -3122,322 +2822,341 @@
  "\t[ -p regu³y_POSIX ] [ -d katalog ] [ -L sek_przestêpne ] \\\n"
  "\t[ -y yearistype ] [ plik ...]\n"
  
 -#: timezone/zic.c:492
-+#: timezone/zic.c:500
++#: timezone/zic.c:503
  #, c-format
  msgid "%s: More than one -d option specified\n"
  msgstr "%s: Podano wiêcej ni¿ jedn± opcjê -d\n"
  
 -#: timezone/zic.c:502
-+#: timezone/zic.c:510
++#: timezone/zic.c:513
  #, c-format
  msgid "%s: More than one -l option specified\n"
  msgstr "%s: Podano wiêcej ni¿ jedn± opcjê -l\n"
  
 -#: timezone/zic.c:512
-+#: timezone/zic.c:520
++#: timezone/zic.c:523
  #, c-format
  msgid "%s: More than one -p option specified\n"
  msgstr "%s: Podano wiêcej ni¿ jedn± opcjê -p\n"
  
 -#: timezone/zic.c:522
-+#: timezone/zic.c:530
++#: timezone/zic.c:533
  #, c-format
  msgid "%s: More than one -y option specified\n"
  msgstr "%s: Podano wiêcej ni¿ jedn± opcjê -y\n"
  
 -#: timezone/zic.c:532
-+#: timezone/zic.c:540
++#: timezone/zic.c:543
  #, c-format
  msgid "%s: More than one -L option specified\n"
  msgstr "%s: Podano wiêcej ni¿ jedn± opcjê -L\n"
@@ -2604,364 +2620,380 @@
 -#, c-format
 -msgid "%s: Can't unlink  %s: %s\n"
 -msgstr "%s: Nie mo¿na usun±æ %s: %s\n"
-+#: timezone/zic.c:589
++#: timezone/zic.c:592
 +msgid "link to link"
 +msgstr "dowi±zanie do dowi±zania"
  
 -#: timezone/zic.c:646
-+#: timezone/zic.c:654
++#: timezone/zic.c:657
  msgid "hard link failed, symbolic link used"
  msgstr "stworzenie dowi±zania zwyk³ego nie powiod³o siê, u¿yto symbolicznego"
  
 -#: timezone/zic.c:654
-+#: timezone/zic.c:662
++#: timezone/zic.c:665
  #, c-format
  msgid "%s: Can't link from %s to %s: %s\n"
  msgstr "%s: Nie mo¿na dowi±zaæ %s do %s: %s\n"
  
 -#: timezone/zic.c:752 timezone/zic.c:754
-+#: timezone/zic.c:771 timezone/zic.c:773
++#: timezone/zic.c:774 timezone/zic.c:776
  msgid "same rule name in multiple files"
  msgstr "ta sama nazwa nazwa regu³y w ró¿nych plikach"
  
 -#: timezone/zic.c:795
-+#: timezone/zic.c:814
++#: timezone/zic.c:817
  msgid "unruly zone"
  msgstr "strefa bez regu³"
  
 -#: timezone/zic.c:802
-+#: timezone/zic.c:821
++#: timezone/zic.c:824
  #, c-format
  msgid "%s in ruleless zone"
  msgstr "%s w strefie dla której nie zdefiniowano regu³"
  
 -#: timezone/zic.c:823
-+#: timezone/zic.c:842
++#: timezone/zic.c:845
  msgid "standard input"
  msgstr "standardowe wej¶cie"
  
 -#: timezone/zic.c:828
-+#: timezone/zic.c:847
++#: timezone/zic.c:850
  #, c-format
  msgid "%s: Can't open %s: %s\n"
  msgstr "%s: Nie mo¿na otworzyæ %s: %s\n"
  
 -#: timezone/zic.c:839
-+#: timezone/zic.c:858
++#: timezone/zic.c:861
  msgid "line too long"
  msgstr "za d³uga linia"
  
 -#: timezone/zic.c:859
-+#: timezone/zic.c:878
++#: timezone/zic.c:881
  msgid "input line of unknown type"
  msgstr "nieznany typ linii wej¶ciowej"
  
 -#: timezone/zic.c:875
-+#: timezone/zic.c:894
++#: timezone/zic.c:897
  #, c-format
  msgid "%s: Leap line in non leap seconds file %s\n"
  msgstr "%s: linia Leap nie znajduje siê w pliku sekund przestêpnych %s\n"
  
 -#: timezone/zic.c:882 timezone/zic.c:1297 timezone/zic.c:1322
-+#: timezone/zic.c:901 timezone/zic.c:1322 timezone/zic.c:1347
++#: timezone/zic.c:904 timezone/zic.c:1325 timezone/zic.c:1350
  #, c-format
  msgid "%s: panic: Invalid l_value %d\n"
  msgstr "%s: panika: B³êdna l-warto¶æ %d\n"
  
 -#: timezone/zic.c:890
-+#: timezone/zic.c:909
++#: timezone/zic.c:912
  #, c-format
  msgid "%s: Error reading %s\n"
  msgstr "%s: B³±d odczytu %s\n"
  
 -#: timezone/zic.c:897
-+#: timezone/zic.c:916
++#: timezone/zic.c:919
  #, c-format
  msgid "%s: Error closing %s: %s\n"
  msgstr "%s: B³±d podczas zamykania %s: %s\n"
  
 -#: timezone/zic.c:902
-+#: timezone/zic.c:921
++#: timezone/zic.c:924
  msgid "expected continuation line not found"
  msgstr "brak spodziewanej linii kontynuacji"
  
 -#: timezone/zic.c:958
-+#: timezone/zic.c:965
++#: timezone/zic.c:968
 +msgid "24:00 not handled by pre-1998 versions of zic"
 +msgstr "24:00 nie by³a obs³ugiwana przez wersje zic sprzed 1998 roku"
 +
-+#: timezone/zic.c:979
++#: timezone/zic.c:982
  msgid "wrong number of fields on Rule line"
  msgstr "z³a liczba pól w linii Rule"
  
 -#: timezone/zic.c:962
-+#: timezone/zic.c:983
++#: timezone/zic.c:986
  msgid "nameless rule"
  msgstr "bezimienna regu³a"
  
 -#: timezone/zic.c:967
-+#: timezone/zic.c:988
++#: timezone/zic.c:991
  msgid "invalid saved time"
  msgstr "b³êdny czas oszczêdno¶ci"
  
 -#: timezone/zic.c:986
-+#: timezone/zic.c:1007
++#: timezone/zic.c:1010
  msgid "wrong number of fields on Zone line"
  msgstr "z³a liczba pól w linii Zone"
  
 -#: timezone/zic.c:992
-+#: timezone/zic.c:1013
++#: timezone/zic.c:1016
  #, c-format
  msgid "\"Zone %s\" line and -l option are mutually exclusive"
  msgstr "Linia \"Zone %s\" i opcja -l wykluczaj± siê wzajemnie"
  
 -#: timezone/zic.c:1000
-+#: timezone/zic.c:1021
++#: timezone/zic.c:1024
  #, c-format
  msgid "\"Zone %s\" line and -p option are mutually exclusive"
  msgstr "Linia \"Zone %s\" i opcja -p wykluczaj± siê wzajemnie"
  
 -#: timezone/zic.c:1012
-+#: timezone/zic.c:1033
++#: timezone/zic.c:1036
  #, c-format
  msgid "duplicate zone name %s (file \"%s\", line %d)"
  msgstr "powtórzona nazwa strefy %s (plik \"%s\", linia %d)"
  
 -#: timezone/zic.c:1028
-+#: timezone/zic.c:1049
++#: timezone/zic.c:1052
  msgid "wrong number of fields on Zone continuation line"
  msgstr "z³a liczba pól w linii kontynuacji Zone"
  
 -#: timezone/zic.c:1068
-+#: timezone/zic.c:1089
++#: timezone/zic.c:1092
  msgid "invalid UTC offset"
  msgstr "nieprawid³owe przesuniêcie UTC"
  
 -#: timezone/zic.c:1071
-+#: timezone/zic.c:1092
++#: timezone/zic.c:1095
  msgid "invalid abbreviation format"
  msgstr "nieprawid³owy format skrótu"
  
 -#: timezone/zic.c:1097
-+#: timezone/zic.c:1119
++#: timezone/zic.c:1122
  msgid "Zone continuation line end time is not after end time of previous line"
  msgstr "Czas koñcowy linii kontynuacji Zone nie jest po czasie koñcowym poprzedniej linii"
  
 -#: timezone/zic.c:1124
-+#: timezone/zic.c:1147
++#: timezone/zic.c:1150
  msgid "wrong number of fields on Leap line"
  msgstr "z³a liczba pól w linii Leap"
  
 -#: timezone/zic.c:1133
-+#: timezone/zic.c:1156
++#: timezone/zic.c:1159
  msgid "invalid leaping year"
  msgstr "nieprawid³owy rok przestêpny"
  
 -#: timezone/zic.c:1148 timezone/zic.c:1252
-+#: timezone/zic.c:1171 timezone/zic.c:1277
++#: timezone/zic.c:1174 timezone/zic.c:1280
  msgid "invalid month name"
  msgstr "nieprawid³owa nazwa miesi±ca"
  
 -#: timezone/zic.c:1161 timezone/zic.c:1374 timezone/zic.c:1388
-+#: timezone/zic.c:1184 timezone/zic.c:1399 timezone/zic.c:1413
++#: timezone/zic.c:1187 timezone/zic.c:1402 timezone/zic.c:1416
  msgid "invalid day of month"
  msgstr "nieprawid³owy dzieñ miesi±ca"
  
 -#: timezone/zic.c:1166
-+#: timezone/zic.c:1189
++#: timezone/zic.c:1192
  msgid "time before zero"
  msgstr "czas przed zerem"
  
 -#: timezone/zic.c:1170
-+#: timezone/zic.c:1193
++#: timezone/zic.c:1196
  msgid "time too small"
  msgstr "czas zbyt ma³y"
  
 -#: timezone/zic.c:1174
-+#: timezone/zic.c:1197
++#: timezone/zic.c:1200
  msgid "time too large"
  msgstr "czas zbyt du¿y"
  
 -#: timezone/zic.c:1178 timezone/zic.c:1281
-+#: timezone/zic.c:1201 timezone/zic.c:1306
++#: timezone/zic.c:1204 timezone/zic.c:1309
  msgid "invalid time of day"
  msgstr "nieprawid³owa pora dnia"
  
 -#: timezone/zic.c:1197
-+#: timezone/zic.c:1220
++#: timezone/zic.c:1223
  msgid "illegal CORRECTION field on Leap line"
  msgstr "b³êdne pole CORRECTION w linii Leap"
  
 -#: timezone/zic.c:1201
-+#: timezone/zic.c:1225
++#: timezone/zic.c:1228
  msgid "illegal Rolling/Stationary field on Leap line"
  msgstr "b³êdne pole Rolling/Stationary w linii Leap"
  
 -#: timezone/zic.c:1216
-+#: timezone/zic.c:1241
++#: timezone/zic.c:1244
  msgid "wrong number of fields on Link line"
  msgstr "z³a liczba pól w linii Link"
  
 -#: timezone/zic.c:1220
-+#: timezone/zic.c:1245
++#: timezone/zic.c:1248
  msgid "blank FROM field on Link line"
  msgstr "puste pole FROM w linii Link"
  
 -#: timezone/zic.c:1224
-+#: timezone/zic.c:1249
++#: timezone/zic.c:1252
  msgid "blank TO field on Link line"
  msgstr "puste pole TO w linii Link"
  
 -#: timezone/zic.c:1301
-+#: timezone/zic.c:1326
++#: timezone/zic.c:1329
  msgid "invalid starting year"
  msgstr "nieprawid³owy rok pocz±tkowy"
  
 -#: timezone/zic.c:1305
-+#: timezone/zic.c:1330
++#: timezone/zic.c:1333
  msgid "starting year too low to be represented"
  msgstr "rok pocz±tkowy jest zbyt ma³y"
  
 -#: timezone/zic.c:1307
-+#: timezone/zic.c:1332
++#: timezone/zic.c:1335
  msgid "starting year too high to be represented"
  msgstr "rok pocz±tkowy jest zbyt du¿y"
  
 -#: timezone/zic.c:1326
-+#: timezone/zic.c:1351
++#: timezone/zic.c:1354
  msgid "invalid ending year"
  msgstr "nieprawid³owy rok koñcowy"
  
 -#: timezone/zic.c:1330
-+#: timezone/zic.c:1355
++#: timezone/zic.c:1358
  msgid "ending year too low to be represented"
  msgstr "rok koñcowy jest zbyt ma³y"
  
 -#: timezone/zic.c:1332
-+#: timezone/zic.c:1357
++#: timezone/zic.c:1360
  msgid "ending year too high to be represented"
  msgstr "rok koñcowy jest zbyt du¿y"
  
 -#: timezone/zic.c:1335
-+#: timezone/zic.c:1360
++#: timezone/zic.c:1363
  msgid "starting year greater than ending year"
  msgstr "rok pocz±tkowy jest pó¼niejszy ni¿ koñcowy"
  
 -#: timezone/zic.c:1342
-+#: timezone/zic.c:1367
++#: timezone/zic.c:1370
  msgid "typed single year"
  msgstr "podano pojedynczy rok"
  
 -#: timezone/zic.c:1379
-+#: timezone/zic.c:1404
++#: timezone/zic.c:1407
  msgid "invalid weekday name"
  msgstr "nieprawid³owa nazwa dnia tygodnia"
  
 -#: timezone/zic.c:1494
-+#: timezone/zic.c:1518
++#: timezone/zic.c:1521
  #, c-format
  msgid "%s: Can't remove %s: %s\n"
  msgstr "%s: Nie mo¿na usun±æ %s: %s\n"
  
 -#: timezone/zic.c:1504
-+#: timezone/zic.c:1528
++#: timezone/zic.c:1531
  #, c-format
  msgid "%s: Can't create %s: %s\n"
  msgstr "%s: Nie mo¿na utworzyæ %s: %s\n"
  
 -#: timezone/zic.c:1570
-+#: timezone/zic.c:1595
++#: timezone/zic.c:1598
  #, c-format
  msgid "%s: Error writing %s\n"
  msgstr "%s: B³±d podczas zapisu do %s\n"
  
  # jak ladnie przetlumaczyc ten until time? -PK
 -#: timezone/zic.c:1760
-+#: timezone/zic.c:1786
++#: timezone/zic.c:1789
  msgid "can't determine time zone abbreviation to use just after until time"
  msgstr "nie mo¿na okre¶liæ skrótu strefy czasowej po koñcu przedzia³u czasu"
  
 -#: timezone/zic.c:1803
-+#: timezone/zic.c:1829
++#: timezone/zic.c:1832
  msgid "too many transitions?!"
  msgstr "za du¿o konwersji?!"
  
 -#: timezone/zic.c:1822
-+#: timezone/zic.c:1848
++#: timezone/zic.c:1851
  msgid "internal error - addtype called with bad isdst"
  msgstr "b³±d wewnêtrzny - addtype wywo³ane z b³êdnym isdst"
  
 -#: timezone/zic.c:1826
-+#: timezone/zic.c:1852
++#: timezone/zic.c:1855
  msgid "internal error - addtype called with bad ttisstd"
  msgstr "b³±d wewnêtrzny - addtype wywo³ane z b³êdnym ttisstd"
  
 -#: timezone/zic.c:1830
-+#: timezone/zic.c:1856
++#: timezone/zic.c:1859
  msgid "internal error - addtype called with bad ttisgmt"
  msgstr "b³±d wewnêtrzny - addtype wywo³ane z b³êdnym ttisgmt"
  
 -#: timezone/zic.c:1849
-+#: timezone/zic.c:1875
++#: timezone/zic.c:1878
  msgid "too many local time types"
  msgstr "za du¿o lokalnych typów czasu"
  
 -#: timezone/zic.c:1877
-+#: timezone/zic.c:1903
++#: timezone/zic.c:1906
  msgid "too many leap seconds"
  msgstr "za du¿o sekund przestêpnych"
  
 -#: timezone/zic.c:1883
-+#: timezone/zic.c:1909
++#: timezone/zic.c:1912
  msgid "repeated leap second moment"
  msgstr "powtórzona chwila wystêpowania sekund przestêpnych"
  
 -#: timezone/zic.c:1935
-+#: timezone/zic.c:1961
++#: timezone/zic.c:1964
  msgid "Wild result from command execution"
  msgstr "Osobliwy wynik wykonania polecenia"
  
 -#: timezone/zic.c:1936
-+#: timezone/zic.c:1962
++#: timezone/zic.c:1965
  #, c-format
  msgid "%s: command was '%s', result was %d\n"
  msgstr "%s: polecenie `%s' zwróci³o %d\n"
  
 -#: timezone/zic.c:2031
-+#: timezone/zic.c:2058
++#: timezone/zic.c:2061
  msgid "Odd number of quotation marks"
  msgstr "Nieparzysta liczba cudzys³owów"
  
 -#: timezone/zic.c:2051 timezone/zic.c:2070
-+#: timezone/zic.c:2079 timezone/zic.c:2098
++#: timezone/zic.c:2082 timezone/zic.c:2101
  msgid "time overflow"
  msgstr "przepe³nienie czasu"
  
 -#: timezone/zic.c:2117
-+#: timezone/zic.c:2145
++#: timezone/zic.c:2148
  msgid "use of 2/29 in non leap-year"
  msgstr "u¿ycie 2/29 w roku nieprzestêpnym"
  
 -#: timezone/zic.c:2151
 -msgid "no day in month matches rule"
 -msgstr "¿aden z dni miesi±ca nie pasuje do regu³y"
-+#: timezone/zic.c:2180
++#: timezone/zic.c:2183
 +msgid "rule goes past start/end of month--will not work with pre-2004 versions of zic"
 +msgstr "regu³a przekracza pocz±tek/koniec miesi±ca - nie zadzia³a z wersjami zic sprzed 2004 roku"
++
++#: timezone/zic.c:2216
++msgid "time zone abbreviation lacks alphabetic at start"
++msgstr "skrót nazwy strefy czasowej nie zaczyna siê od litery"
++
++#: timezone/zic.c:2218
++msgid "time zone abbreviation has more than 3 alphabetics"
++msgstr "skrót nazwy strefy czasowej ma mniej ni¿ 3 litery"
++
++#: timezone/zic.c:2220
++msgid "time zone abbreviation has too many alphabetics"
++msgstr "skrót nazwy strefy czasowej ma zbyt du¿o liter"
++
++#: timezone/zic.c:2228
++msgid "time zone abbreviation differs from POSIX standard"
++msgstr "skrót nazwy strefy czasowej ró¿ni siê od standardu POSIX"
  
 -#: timezone/zic.c:2175
-+#: timezone/zic.c:2202
++#: timezone/zic.c:2240
  msgid "too many, or too long, time zone abbreviations"
  msgstr "za d³ugie lub za du¿o skrótów stref czasowych"
  
 -#: timezone/zic.c:2216
-+#: timezone/zic.c:2243
++#: timezone/zic.c:2281
  #, c-format
  msgid "%s: Can't create directory %s: %s\n"
  msgstr "%s: Nie mo¿na utworzyæ katalogu %s: %s\n"
  
 -#: timezone/zic.c:2238
-+#: timezone/zic.c:2265
++#: timezone/zic.c:2303
  #, c-format
  msgid "%s: %d did not sign extend correctly\n"
  msgstr "%s: %d niepoprawnie rozszerzy³ znak\n"
@@ -2971,7 +3003,7 @@
  msgid "parameter null or not set"
  msgstr "parametr pusty lub nie ustawiony"
  
-@@ -3505,224 +3192,237 @@
+@@ -3505,224 +3224,237 @@
  msgid "Interrupted by a signal"
  msgstr "Przerwane przez sygna³"
  
@@ -3260,7 +3292,7 @@
  #: resolv/herror.c:68
  msgid "Resolver Error 0 (no error)"
  msgstr "B³±d rozwi±zywania nazw 0 (brak b³êdu)"
-@@ -3751,42 +3451,42 @@
+@@ -3751,42 +3483,42 @@
  msgid "Unknown resolver error"
  msgstr "Nieznany b³±d biblioteki rozwi±zuj±cej nazwy"
  
@@ -3311,7 +3343,7 @@
  #, c-format
  msgid "%s: line %d: ignoring trailing garbage `%s'\n"
  msgstr "%s: linia %d: zignorowano koñcowe ¶mieci `%s'\n"
-@@ -3799,24 +3499,28 @@
+@@ -3799,24 +3531,28 @@
  msgid "Service configuration to be used"
  msgstr "U¿ycie tej konfiguracji us³ugi rozwi±zywania nazw"
  
@@ -3348,7 +3380,7 @@
  #, c-format
  msgid "Unknown database: %s\n"
  msgstr "Nieznana baza `%s'\n"
-@@ -3845,72 +3549,72 @@
+@@ -3845,72 +3581,72 @@
  msgid "invalid pointer size"
  msgstr "nieprawid³owy rozmiar wska¼nika"
  
@@ -3437,7 +3469,7 @@
  msgid "hard linked somewhere"
  msgstr "gdzie¶ twardo dowi±zany"
  
-@@ -3931,11 +3635,11 @@
+@@ -3931,11 +3667,11 @@
  msgid "Unknown .netrc keyword %s"
  msgstr "Nieznane s³owo kluczowe w .netrc: %s"
  
@@ -3451,7 +3483,7 @@
  msgid "auth_none.c - Fatal marshalling problem"
  msgstr "auth_none.c - Krytyczny problem z prze³±czaniem"
  
-@@ -4069,7 +3773,7 @@
+@@ -4069,7 +3805,7 @@
  msgid "clnttcp_create: out of memory\n"
  msgstr "clnttcp_create: brak pamiêci\n"
  
@@ -3460,7 +3492,7 @@
  msgid "clntudp_create: out of memory\n"
  msgstr "clntudp_create: brak pamiêci\n"
  
-@@ -4077,180 +3781,164 @@
+@@ -4077,85 +3813,69 @@
  msgid "clntunix_create: out of memory\n"
  msgstr "clntunix_create: brak pamiêci\n"
  
@@ -3468,7 +3500,8 @@
 -msgid "get_myaddress: ioctl (get interface configuration)"
 -msgstr "get_myaddress: ioctl (odczyt konfiguracji interfejsu)"
 -
- #: sunrpc/pm_getmaps.c:74
+-#: sunrpc/pm_getmaps.c:74
++#: sunrpc/pm_getmaps.c:83
  msgid "pmap_getmaps rpc problem"
  msgstr "problem rpc pmap_getmaps"
  
@@ -3490,27 +3523,27 @@
 -msgstr "rozg³oszenie: ioctl (odczyt flag interjesu)"
 -
 -#: sunrpc/pmap_rmt.c:269
-+#: sunrpc/pmap_rmt.c:247
++#: sunrpc/pmap_rmt.c:248
  msgid "Cannot create socket for broadcast rpc"
  msgstr "Nie mo¿na utworzyæ gniazda dla rozg³aszania rpc"
  
 -#: sunrpc/pmap_rmt.c:276
-+#: sunrpc/pmap_rmt.c:254
++#: sunrpc/pmap_rmt.c:255
  msgid "Cannot set socket option SO_BROADCAST"
  msgstr "Nie mo¿na ustawiæ opcji gniazda SO_BROADCAST"
  
 -#: sunrpc/pmap_rmt.c:328
-+#: sunrpc/pmap_rmt.c:306
++#: sunrpc/pmap_rmt.c:307
  msgid "Cannot send broadcast packet"
  msgstr "Nie mo¿na wys³aæ pakietu rozg³oszeniowego"
  
 -#: sunrpc/pmap_rmt.c:353
-+#: sunrpc/pmap_rmt.c:331
++#: sunrpc/pmap_rmt.c:332
  msgid "Broadcast poll problem"
  msgstr "Problem z nas³uchem przy rozg³aszaniu"
  
 -#: sunrpc/pmap_rmt.c:366
-+#: sunrpc/pmap_rmt.c:344
++#: sunrpc/pmap_rmt.c:345
  msgid "Cannot receive reply to broadcast"
  msgstr "Nie mo¿na otrzymaæ odpowiedzi na rozg³aszanie"
  
@@ -3560,93 +3593,7 @@
  #, c-format
  msgid "illegal nettype :`%s'\n"
  msgstr "b³êdny typ sieci :'%s'\n"
- 
--#: sunrpc/rpc_main.c:1104
-+#: sunrpc/rpc_main.c:1106
- #, c-format
- msgid "rpcgen: too many defines\n"
- msgstr "rpcgen: za du¿o definicji\n"
- 
--#: sunrpc/rpc_main.c:1116
-+#: sunrpc/rpc_main.c:1118
- #, c-format
- msgid "rpcgen: arglist coding error\n"
- msgstr "rpcgen: b³êdne kodowanie arglist\n"
- 
- #. TRANS: the file will not be removed; this is an
- #. TRANS: informative message.
--#: sunrpc/rpc_main.c:1149
-+#: sunrpc/rpc_main.c:1151
- #, c-format
- msgid "file `%s' already exists and may be overwritten\n"
- msgstr "plik `%s' ju¿ istnieje i mo¿e zostaæ nadpisany\n"
- 
--#: sunrpc/rpc_main.c:1194
-+#: sunrpc/rpc_main.c:1196
- #, c-format
- msgid "Cannot specify more than one input file!\n"
- msgstr "Mo¿na podaæ tylko jeden plik wej¶ciowy!\n"
- 
--#: sunrpc/rpc_main.c:1364
-+#: sunrpc/rpc_main.c:1366
- msgid "This implementation doesn't support newstyle or MT-safe code!\n"
- msgstr "Ta implementacja nie obs³uguje kodu w nowym stylu ani bezpiecznego dla w±tków!\n"
- 
--#: sunrpc/rpc_main.c:1373
-+#: sunrpc/rpc_main.c:1375
- #, c-format
- msgid "Cannot use netid flag with inetd flag!\n"
- msgstr "Nie mo¿na u¿ywaæ flagi id_sieci z flag± inetd!\n"
- 
--#: sunrpc/rpc_main.c:1385
-+#: sunrpc/rpc_main.c:1387
- msgid "Cannot use netid flag without TIRPC!\n"
- msgstr "Flagi id_sieci mo¿na u¿ywaæ tylko z TIRPC!\n"
- 
--#: sunrpc/rpc_main.c:1392
-+#: sunrpc/rpc_main.c:1394
- msgid "Cannot use table flags with newstyle!\n"
- msgstr "Nowa sk³adnia opcji nie pozwala na u¿ywanie flagi table!\n"
- 
--#: sunrpc/rpc_main.c:1411
-+#: sunrpc/rpc_main.c:1413
- #, c-format
- msgid "\"infile\" is required for template generation flags.\n"
- msgstr "flagi generowania szablonów wymagaj± podania \"pliku_we\".\n"
- 
--#: sunrpc/rpc_main.c:1416
-+#: sunrpc/rpc_main.c:1418
- #, c-format
- msgid "Cannot have more than one file generation flag!\n"
- msgstr "Nie mo¿na podaæ wiêcej ni¿ jednej flagi generowania pliku!\n"
- 
--#: sunrpc/rpc_main.c:1425
-+#: sunrpc/rpc_main.c:1427
- #, c-format
- msgid "usage: %s infile\n"
- msgstr "sk³adnia: %s plik_we\n"
- 
--#: sunrpc/rpc_main.c:1426
-+#: sunrpc/rpc_main.c:1428
- #, c-format
- msgid "\t%s [-abkCLNTM][-Dname[=value]] [-i size] [-I [-K seconds]] [-Y path] infile\n"
- msgstr "\t%s [-abkCLNTM][-Dnazwa[=warto¶æ]] [-i rozmiar] [-I [-K sekund]] [-Y ¶cie¿ka] plik_we\n"
- 
--#: sunrpc/rpc_main.c:1428
-+#: sunrpc/rpc_main.c:1430
- #, c-format
- msgid "\t%s [-c | -h | -l | -m | -t | -Sc | -Ss | -Sm] [-o outfile] [infile]\n"
- msgstr "\t%s [-c | -h | -l | -m | -t | -Sc | -Ss | -Sm] [-o plik_wy] [plik_we]\n"
- 
--#: sunrpc/rpc_main.c:1430
-+#: sunrpc/rpc_main.c:1432
- #, c-format
- msgid "\t%s [-s nettype]* [-o outfile] [infile]\n"
- msgstr "\t%s [-s typ_sieci]* [-o plik_wy] [plik_we]\n"
- 
--#: sunrpc/rpc_main.c:1431
-+#: sunrpc/rpc_main.c:1433
- #, c-format
+@@ -4234,23 +3954,23 @@
  msgid "\t%s [-n netid]* [-o outfile] [infile]\n"
  msgstr "\t%s [-n id_sieci]* [-o plik_wy] [plik_we]\n"
  
@@ -3675,7 +3622,7 @@
  msgid "preprocessor error"
  msgstr "b³±d preprocesora"
  
-@@ -4343,25 +4031,25 @@
+@@ -4343,25 +4063,25 @@
  msgid "can't reassign procedure number %ld\n"
  msgstr "nie mo¿na ponownie przypisaæ procedury numer %ld\n"
  
@@ -3706,7 +3653,7 @@
  #, c-format
  msgid "never registered prog %d\n"
  msgstr "program %d nie by³ nigdy zarejestrowany\n"
-@@ -4502,6 +4190,10 @@
+@@ -4502,6 +4222,10 @@
  msgid "First/next chain broken"
  msgstr "£añcuch pierwszy/nastêpny jest uszkodzony"
  
@@ -3717,7 +3664,7 @@
  #: nis/nis_error.c:41
  msgid "Name not served by this server"
  msgstr "Nazwa nie jest obs³ugiwana przez ten serwer"
-@@ -4647,7 +4339,7 @@
+@@ -4647,7 +4371,7 @@
  msgid "Master server busy, full dump rescheduled."
  msgstr "Serwer nadrzêdny jest zajêty, pe³ny zrzut danych przesuniêty na pó¼niej."
  
@@ -3726,7 +3673,7 @@
  #, c-format
  msgid "LOCAL entry for UID %d in directory %s not unique\n"
  msgstr "Wpis LOKALNY dla UID %d w katalogu %s nie jest unikalny\n"
-@@ -4692,83 +4384,83 @@
+@@ -4692,83 +4416,83 @@
  msgid "(Unknown object)\n"
  msgstr "(Nieznany obiekt)\n"
  
@@ -3828,7 +3775,7 @@
  msgid ""
  "\n"
  "Group Members :\n"
-@@ -4776,95 +4468,95 @@
+@@ -4776,95 +4500,95 @@
  "\n"
  "Cz³onkowie grupy :\n"
  
@@ -3944,7 +3891,7 @@
  #, c-format
  msgid ""
  "\n"
-@@ -4873,87 +4565,87 @@
+@@ -4873,87 +4597,87 @@
  "\n"
  "Czas ¿ycia    : "
  
@@ -4051,7 +3998,7 @@
  msgid "    No recursive nonmembers\n"
  msgstr "   Brak rekursywnych nie-cz³onków\n"
  
-@@ -4996,323 +4688,440 @@
+@@ -4996,323 +4720,448 @@
  msgid "netname2user: should not have uid 0"
  msgstr "netname2user: UID 0 nie powinien wyst±piæ"
  
@@ -4207,7 +4154,8 @@
 -msgstr "podczas przydzielania bufora: %s"
 +msgid "invalid persistent database file \"%s\": %s"
 +msgstr "nieprawid³owy plik trwa³ej bazy danych \"%s\": %s"
-+
+ 
+-#: nscd/connections.c:197
 +#: nscd/connections.c:257
 +msgid "header size does not match"
 +msgstr "rozmiar nag³ówka siê nie zgadza"
@@ -4215,8 +4163,7 @@
 +#: nscd/connections.c:268
 +msgid "file size does not match"
 +msgstr "rozmiar pliku siê nie zgadza"
- 
--#: nscd/connections.c:197
++
 +#: nscd/connections.c:285
 +#, c-format
 +msgid "suggested size of table for database %s larger than the persistent database's table"
@@ -4274,111 +4221,111 @@
  msgstr "nie mo¿na otworzyæ gniazda do przyjmowania po³±czeñ: %s"
  
 -#: nscd/connections.c:260
-+#: nscd/connections.c:625
++#: nscd/connections.c:633
 +#, c-format
 +msgid "provide access to FD %d, for %s"
 +msgstr "udostêpnianie FD %d dla %s"
 +
-+#: nscd/connections.c:637
++#: nscd/connections.c:645
  #, c-format
  msgid "cannot handle old request version %d; current version is %d"
  msgstr "nie mo¿na obs³u¿yæ ¿±dañ w starej wersji %d; aktualna wersja to %d"
  
 -#: nscd/connections.c:298 nscd/connections.c:324
-+#: nscd/connections.c:686 nscd/connections.c:713
++#: nscd/connections.c:694 nscd/connections.c:721
  #, c-format
  msgid "cannot write result: %s"
  msgstr "nie mo¿na zapisaæ wyniku: %s"
  
 -#: nscd/connections.c:392 nscd/connections.c:514
-+#: nscd/connections.c:789 nscd/connections.c:1099
++#: nscd/connections.c:797 nscd/connections.c:1107
  #, c-format
  msgid "error getting callers id: %s"
  msgstr "b³±d podczas pobierania identyfikatorów wywo³uj±cych: %s"
  
 -#: nscd/connections.c:485
-+#: nscd/connections.c:847 nscd/connections.c:861
++#: nscd/connections.c:855 nscd/connections.c:869
 +#, c-format
 +msgid "cannot open /proc/self/cmdline: %s; disabling paranoia mode"
 +msgstr "nie mo¿na otworzyæ /proc/self/cmdline: %s; wy³±czono tryb paranoiczny"
 +
-+#: nscd/connections.c:901
-+#, c-format
++#: nscd/connections.c:909
+ #, c-format
+-msgid "while accepting connection: %s"
+-msgstr "podczas przyjmowania po³±czenia: %s"
 +msgid "cannot change to old UID: %s; disabling paranoia mode"
 +msgstr "nie mo¿na zmieniæ na stary UID: %s; wy³±czono tryb paranoiczny"
-+
-+#: nscd/connections.c:911
+ 
+-#: nscd/connections.c:498
++#: nscd/connections.c:919
 +#, c-format
 +msgid "cannot change to old GID: %s; disabling paranoia mode"
 +msgstr "nie mo¿na zmieniæ na stary GID: %s; wy³±czono tryb paranoiczny"
 +
-+#: nscd/connections.c:924
- #, c-format
--msgid "while accepting connection: %s"
--msgstr "podczas przyjmowania po³±czenia: %s"
++#: nscd/connections.c:932
++#, c-format
 +msgid "cannot change to old working directory: %s; disabling paranoia mode"
 +msgstr "nie mo¿na przej¶æ do starego katalog roboczego: %s; wy³±czono tryb paranoiczny"
- 
--#: nscd/connections.c:498
-+#: nscd/connections.c:952
++
++#: nscd/connections.c:960
 +#, c-format
 +msgid "re-exec failed: %s; disabling paranoia mode"
 +msgstr "ponowne wywo³anie nie powiod³o siê: %s; wy³±czono tryb paranoiczny"
 +
-+#: nscd/connections.c:1077
++#: nscd/connections.c:1085
  #, c-format
  msgid "short read while reading request: %s"
  msgstr "skrócony odczyt podczas czytania ¿±dania: `%s'"
  
 -#: nscd/connections.c:542
-+#: nscd/connections.c:1127
++#: nscd/connections.c:1135
  #, c-format
  msgid "key length in request too long: %d"
  msgstr "d³ugo¶æ klucza w ¿±daniu zbyt du¿a: %d"
  
 -#: nscd/connections.c:556
-+#: nscd/connections.c:1140
++#: nscd/connections.c:1148
  #, c-format
  msgid "short read while reading request key: %s"
  msgstr "skrócony odczyt podczas czytania klucza ¿±dania: %s"
  
 -#: nscd/connections.c:566
-+#: nscd/connections.c:1149
++#: nscd/connections.c:1157
  #, c-format
  msgid "handle_request: request received (Version = %d) from PID %ld"
  msgstr "handle_request: odebrano ¿±danie (Wersja = %d) od procesu %ld"
  
 -#: nscd/connections.c:571
-+#: nscd/connections.c:1154
++#: nscd/connections.c:1162
  #, c-format
  msgid "handle_request: request received (Version = %d)"
  msgstr "handle_request: odebrano ¿±danie (Wersja = %d)"
  
 -#: nscd/connections.c:635 nscd/connections.c:636 nscd/connections.c:655
 -#: nscd/connections.c:668 nscd/connections.c:674 nscd/connections.c:681
-+#: nscd/connections.c:1512
++#: nscd/connections.c:1519
 +#, c-format
 +msgid "could only start %d threads; terminating"
 +msgstr "mo¿na uruchomiæ tylko %d w±tków; zakoñczenie"
 +
-+#: nscd/connections.c:1560 nscd/connections.c:1561 nscd/connections.c:1578
-+#: nscd/connections.c:1587 nscd/connections.c:1600 nscd/connections.c:1606
-+#: nscd/connections.c:1613
++#: nscd/connections.c:1567 nscd/connections.c:1568 nscd/connections.c:1585
++#: nscd/connections.c:1594 nscd/connections.c:1607 nscd/connections.c:1613
++#: nscd/connections.c:1620
  #, c-format
  msgid "Failed to run nscd as user '%s'"
  msgstr "Uruchomienie nscd jako u¿ytkownik '%s' nie powiod³o siê"
  
 -#: nscd/connections.c:656
-+#: nscd/connections.c:1579
++#: nscd/connections.c:1586
 +msgid "initial getgrouplist failed"
 +msgstr "pocz±tkowe getgrouplist nie powiod³o siê"
 +
-+#: nscd/connections.c:1588
++#: nscd/connections.c:1595
  msgid "getgrouplist failed"
  msgstr "getgrouplist nie powiod³o siê"
  
 -#: nscd/connections.c:669
-+#: nscd/connections.c:1601
++#: nscd/connections.c:1608
  msgid "setgroups failed"
  msgstr "setgroups nie powiod³o"
  
@@ -4562,6 +4509,14 @@
  msgstr "nie mo¿na zapisaæ statystyk: %s"
  
 -#: nscd/nscd_stat.c:128
++#: nscd/nscd_stat.c:146
++msgid "yes"
++msgstr "tak"
++
++#: nscd/nscd_stat.c:147
++msgid "no"
++msgstr "nie"
++
 +#: nscd/nscd_stat.c:158
  #, c-format
  msgid "Only root or %s is allowed to use this option!"
@@ -4587,7 +4542,7 @@
  #, c-format
  msgid ""
  "nscd configuration:\n"
-@@ -5323,96 +5132,167 @@
+@@ -5323,96 +5172,171 @@
  "\n"
  "%15d  poziom komunikatów diagnostycznych\n"
  
@@ -4731,39 +4686,43 @@
  msgstr "Nieprawid³owy liczbowy uid \"%s\"!"
  
 -#: nscd/pwdcache.c:288
-+#: nscd/selinux.c:105
++#: nscd/selinux.c:130
++msgid "Failed opening connection to the audit subsystem"
++msgstr "Nie uda³o siê otworzyæ po³±czenia do podsystemu audytu"
++
++#: nscd/selinux.c:142
 +msgid "Failed to determine if kernel supports SELinux"
 +msgstr "Nie uda³o siê okre¶liæ, czy j±dro obs³uguje SELinuksa"
 +
-+#: nscd/selinux.c:120
++#: nscd/selinux.c:157
 +msgid "Failed to start AVC thread"
 +msgstr "Nie uda³o siê uruchomiæ w±tku AVC"
 +
-+#: nscd/selinux.c:142
++#: nscd/selinux.c:179
 +msgid "Failed to create AVC lock"
 +msgstr "Nie uda³o siê utworzyæ blokady AVC"
 +
-+#: nscd/selinux.c:182
++#: nscd/selinux.c:219
 +msgid "Failed to start AVC"
 +msgstr "Nie uda³o siê uruchomiæ AVC"
 +
-+#: nscd/selinux.c:184
++#: nscd/selinux.c:221
 +msgid "Access Vector Cache (AVC) started"
 +msgstr "Access Vector Cache (AVC) uruchomione"
 +
-+#: nscd/selinux.c:202
++#: nscd/selinux.c:242
 +msgid "Error getting context of socket peer"
 +msgstr "B³±d podczas pobierania kontekstu drugiej strony gniazda"
 +
-+#: nscd/selinux.c:207
++#: nscd/selinux.c:247
 +msgid "Error getting context of nscd"
 +msgstr "B³±d podczas pobierania kontekstu nscd"
 +
-+#: nscd/selinux.c:213
++#: nscd/selinux.c:253
 +msgid "Error getting sid from context"
 +msgstr "B³±d podczas pobierania sid z kontekstu"
 +
-+#: nscd/selinux.c:245
++#: nscd/selinux.c:285
  #, c-format
 -msgid "Haven't found \"%d\" in password cache!"
 -msgstr "Nie znaleziono \"%d\" w buforze hase³!"
@@ -4797,7 +4756,7 @@
  msgid "cannot create capability list"
  msgstr "nie mo¿na utworzyæ listy uprawnieñ"
  
-@@ -5463,7 +5343,7 @@
+@@ -5463,7 +5387,7 @@
  msgid ", OS ABI: %s %d.%d.%d"
  msgstr ", ABI systemu: %s %d.%d.%d"
  
@@ -4806,19 +4765,19 @@
  #, c-format
  msgid "Can't open cache file %s\n"
  msgstr "Nie mo¿na otworzyæ pliku bufora %s\n"
-@@ -5509,23 +5389,23 @@
+@@ -5509,23 +5433,23 @@
  msgid "Renaming of %s to %s failed"
  msgstr "Zmiana nazwy %s na %s nie powiod³a siê"
  
 -#: elf/dl-close.c:128
-+#: elf/dl-close.c:119
++#: elf/dl-close.c:117
  msgid "shared object not open"
  msgstr "obiekt dzielony nie jest otwarty"
  
 -#: elf/dl-close.c:531 elf/dl-open.c:454
 -msgid "TLS generation counter wrapped!  Please send report with the 'glibcbug' script."
 -msgstr "Licznik generacji TLS przekrêci³ siê! Proszê wys³aæ raport skryptem 'glibcbug'."
-+#: elf/dl-close.c:506
++#: elf/dl-close.c:530
 +msgid "TLS generation counter wrapped!  Please report as described in <http://www.gnu.org/software/libc/bugs.html>."
 +msgstr "Licznik generacji TLS przekrêci³ siê! Proszê zg³osiæ wg instrukcji <http://www.gnu.org/software/libc/bugs.html>."
  
@@ -4837,7 +4796,7 @@
  #, c-format
  msgid "cannot load auxiliary `%s' because of empty dynamic string token substitution\n"
  msgstr "nie mo¿na wczytaæ pomocniczego `%s' z powodu pustego dynamicznego podstawienia\n"
-@@ -5550,189 +5430,217 @@
+@@ -5550,189 +5474,217 @@
  msgid "error while loading shared libraries"
  msgstr "b³±d podczas wczytywania bibliotek dzielonych"
  
@@ -5110,7 +5069,7 @@
  msgid "RTLD_NEXT used in code not dynamically loaded"
  msgstr "RTLD_NEXT wyst±pi³o w kodzie nie ³adowanym dynamicznie"
  
-@@ -5740,51 +5648,67 @@
+@@ -5740,51 +5692,67 @@
  msgid "cannot allocate version reference table"
  msgstr "nie mo¿na przydzieliæ tablicy odniesieñ do wersji"
  
@@ -5193,7 +5152,7 @@
  #, c-format
  msgid "Path `%s' given more than once"
  msgstr "¦cie¿ka `%s' podana wiêcej ni¿ raz"
-@@ -5794,114 +5718,123 @@
+@@ -5794,224 +5762,313 @@
  msgid "%s is not a known library type"
  msgstr "%s nie jest znanym rodzajem biblioteki"
  
@@ -5340,7 +5299,67 @@
  #, c-format
  msgid "Can't open cache file directory %s\n"
  msgstr "Nie mo¿na otworzyæ katalogu pliku bufora %s\n"
-@@ -5911,107 +5844,129 @@
+ 
++#: elf/ldd.bash.in:43
++msgid "Written by %s and %s.\n"
++msgstr "Autorami s± %s i %s.\n"
++
++#: elf/ldd.bash.in:48
++msgid ""
++"Usage: ldd [OPTION]... FILE...\n"
++"      --help              print this help and exit\n"
++"      --version           print version information and exit\n"
++"  -d, --data-relocs       process data relocations\n"
++"  -r, --function-relocs   process data and function relocations\n"
++"  -u, --unused            print unused direct dependencies\n"
++"  -v, --verbose           print all information\n"
++"For bug reporting instructions, please see:\n"
++"<http://www.gnu.org/software/libc/bugs.html>."
++msgstr ""
++"Sk³adnia: ldd [OPCJA]... PLIK...\n"
++"      --help              wypisanie tego opisu i zakoñczenie\n"
++"      --version           wypisanie informacji o wersji i zakoñczenie\n"
++"  -d, --data-relocs       przetworzenie relokacji danych\n"
++"  -r, --function-relocs   przetworzenie relokacji danych i funkcji\n"
++"  -u, --unused            wypisanie nieu¿ywanych bezpo¶rednich zale¿no¶ci\n"
++"  -v, --verbose           wypisanie wszystkich informacji\n"
++"Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
++"<http://www.gnu.org/software/libc/bugs.html>."
++
++#: elf/ldd.bash.in:80
++msgid "ldd: option \\`$1' is ambiguous"
++msgstr "ldd: opcja \\`$1' jest niejednoznaczna\n"
++
++#: elf/ldd.bash.in:87
++msgid "unrecognized option"
++msgstr "nieznana opcja"
++
++#: elf/ldd.bash.in:88 elf/ldd.bash.in:126
++msgid "Try \\`ldd --help' for more information."
++msgstr "Polecenie \\`ldd --help' pozwoli uzyskaæ wiêcej informacji.\n"
++
++#: elf/ldd.bash.in:125
++msgid "missing file arguments"
++msgstr "brakuj±ce argumenty plikowe"
++
++#: elf/ldd.bash.in:151
++msgid "warning: you do not have execution permission for"
++msgstr "uwaga: brak uprawnieñ do wykonywania"
++
++#: elf/ldd.bash.in:185
++msgid "\tnot a dynamic executable"
++msgstr "\tnie jest dynamicznym programem wykonywalnym"
++
++#: elf/ldd.bash.in:193
++msgid "exited with unknown exit code"
++msgstr "zakoñczy³ dzia³anie z nieznanym kodem wyj¶cia"
++
++#: elf/ldd.bash.in:198
++msgid "error: you do not have read permission for"
++msgstr "b³±d: brak uprawnieñ do odczytu"
++
+ #: elf/readlib.c:98
+ #, c-format
  msgid "Cannot fstat file %s.\n"
  msgstr "Nie mo¿na wykonaæ fstat na pliku %s.\n"
  
