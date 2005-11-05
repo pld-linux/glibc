@@ -5328,7 +5328,7 @@
 +
 +#: elf/ldd.bash.in:80
 +msgid "ldd: option \\`$1' is ambiguous"
-+msgstr "ldd: opcja \\`$1' jest niejednoznaczna\n"
++msgstr "ldd: opcja \\`$1' jest niejednoznaczna"
 +
 +#: elf/ldd.bash.in:87
 +msgid "unrecognized option"
@@ -5336,7 +5336,7 @@
 +
 +#: elf/ldd.bash.in:88 elf/ldd.bash.in:126
 +msgid "Try \\`ldd --help' for more information."
-+msgstr "Polecenie \\`ldd --help' pozwoli uzyskaæ wiêcej informacji.\n"
++msgstr "Polecenie \\`ldd --help' pozwoli uzyskaæ wiêcej informacji."
 +
 +#: elf/ldd.bash.in:125
 +msgid "missing file arguments"
