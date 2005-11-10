@@ -129,6 +129,7 @@ Patch27:	%{name}-sys-kd.patch
 Patch28:	%{name}-cross-gcc_eh.patch
 Patch29:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
+BuildRequires:	audit-libs-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
