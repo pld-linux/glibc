@@ -76,7 +76,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	1.1
+Release:	2.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -126,6 +126,7 @@ Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-sys-kd.patch
 Patch28:	%{name}-cross-gcc_eh.patch
 Patch29:	%{name}-pax_dl-execstack.patch
+Patch30:	%{name}-large_collate_tables.patch
 URL:		http://www.gnu.org/software/libc/
 BuildRequires:	audit-libs-devel
 BuildRequires:	autoconf
@@ -915,6 +916,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch27 -p1
 %{?with_cross:%patch28 -p1}
 %{?with_pax:%patch29 -p1}
+%patch30 -p1
 
 chmod +x scripts/cpp
 
@@ -1178,7 +1180,6 @@ done
 # as (atk, gail)
 # az_IR (gtk+)
 # dv, kok, ps, sw (iso-codes)
-# fy (kde)
 # my (gaim)
 # tk, ug, yo (used by GNOME)
 #
@@ -1191,7 +1192,7 @@ done
 #   tr,zh_CN,zh_TW
 #
 for i in aa af am ang ar az bg bn br bs byn cy de_AT en en@boldquot en@quot \
-    en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo ga gez gu gv he hi \
+    en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo fy ga gez gu gv he hi \
     hsb hy ia id is it_CH iu ka kk kl kn ku kw ky leet lg li lo lt lv mi mk \
     ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro ru rw sa se sid \
     sl so sq sr sr@Latn sr@ije ss syr ta te tg th ti tig tl tlh tt uk ur uz \
