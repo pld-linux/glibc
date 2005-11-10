@@ -1,6 +1,15 @@
 diff -uNr libc.orig/locale/iso-4217.def libc/locale/iso-4217.def
 --- libc.orig/locale/iso-4217.def	2004-11-14 20:27:08.000000000 +0100
 +++ libc/locale/iso-4217.def	2004-11-14 20:27:08.000000000 +0100
+@@ -98,7 +98,7 @@
+ DEFINE_INT_CURR("LYD")		/* Libyan Arab Jamahiriya Dinar  */
+ DEFINE_INT_CURR("MAD")		/* Moroccan Dirham  */
+ DEFINE_INT_CURR("MDL")		/* Moldova Lei  */
+-DEFINE_INT_CURR("MGF")		/* Madagasy Franc  */
++DEFINE_INT_CURR("MGA")		/* Malgasy Ariary  */
+ DEFINE_INT_CURR("MKD")		/* Macedonia Denar  */
+ DEFINE_INT_CURR("MMK")		/* Myanmar Kyat  */
+ DEFINE_INT_CURR("MNT")		/* Mongolia Tugrik  */
 @@ -148,7 +148,7 @@
  DEFINE_INT_CURR("TMM")		/* Turkmenistan Manet  */
  DEFINE_INT_CURR("TND")		/* Tunisian Dinar  */
@@ -171,10 +180,13 @@ diff -uNr libc.orig/localedata/locales/ar_AE libc/localedata/locales/ar_AE
  END LC_MESSAGES
  
  
-@@ -188,6 +181,11 @@
+@@ -188,6 +181,14 @@
  country_ab2 "<U0041><U0045>"
  country_ab3 "<U0041><U0052><U0045>"
  country_num 784
++country_name "<U0627><U0644><U0625><U0645><U0627><U0631><U0627><U062A>/
++<U0020><U0627><U0644><U0639><U0631><U0628><U064A><U0651><U0629><U0020>/
++<U0627><U0644><U0645><U062A><U062D><U062F><U0651><U0629>"
 +country_isbn "<U0039><U0039><U0034><U0038>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
@@ -202,11 +214,12 @@ diff -uNr libc.orig/localedata/locales/ar_BH libc/localedata/locales/ar_BH
  END LC_MESSAGES
  
  
-@@ -192,7 +185,12 @@
+@@ -192,7 +185,13 @@
  country_ab2 "<U0042><U0048>"
  country_ab3 "<U0042><U0048><U0052>"
  country_num 048
 -
++country_name "<U0627><U0644><U0628><U062D><U0631><U064A><U0646>"
 +country_car "<U0042><U0052><U004E>"
 +country_isbn "<U0039><U0039><U0039><U0030><U0031>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -235,11 +248,12 @@ diff -uNr libc.orig/localedata/locales/ar_DZ libc/localedata/locales/ar_DZ
  END LC_MESSAGES
  
  
-@@ -191,7 +184,12 @@
+@@ -191,7 +184,13 @@
  country_ab2 "<U0044><U005A>"
  country_ab3 "<U0044><U005A><U0041>"
  country_num 012
 -
++country_name "<U0627><U0644><U062C><U0632><U0627><U0626><U0631>"
 +country_car "<U0044><U005A>"
 +country_isbn "9947,9961"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -271,11 +285,12 @@ diff -uNr libc.orig/localedata/locales/ar_EG libc/localedata/locales/ar_EG
  END LC_MESSAGES
  
  
-@@ -191,7 +187,12 @@
+@@ -191,7 +187,13 @@
  country_ab2 "<U0045><U0047>"
  country_ab3 "<U0045><U0047><U0059>"
  country_num 818
 -
++country_name "<U0645><U0635><U0631>"
 +country_car "<U0045><U0055>"
 +country_isbn "<U0039><U0037><U0037>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -321,11 +336,12 @@ diff -uNr libc.orig/localedata/locales/ar_IN libc/localedata/locales/ar_IN
  END LC_MESSAGES
  
  
-@@ -186,7 +162,12 @@
+@@ -186,7 +162,13 @@
  country_ab2 "<U0049><U004E>"
  country_ab3 "<U0049><U004E><U0044>"
  country_num 356
 -
++country_name "<U0627><U0644><U0647><U0646><U062F>"
 +country_car "<U0049><U004E><U0044>"
 +country_isbn "81,93"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -354,11 +370,12 @@ diff -uNr libc.orig/localedata/locales/ar_IQ libc/localedata/locales/ar_IQ
  END LC_MESSAGES
  
  
-@@ -191,7 +184,11 @@
+@@ -191,7 +184,12 @@
  country_ab2 "<U0049><U0051>"
  country_ab3 "<U0049><U0052><U0051>"
  country_num 368
 -
++country_name "<U0627><U0644><U0639><U0631><U0627><U0642>"
 +country_car "<U0049><U0052><U0051>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
@@ -386,11 +403,12 @@ diff -uNr libc.orig/localedata/locales/ar_JO libc/localedata/locales/ar_JO
  END LC_MESSAGES
  
  
-@@ -209,7 +202,12 @@
+@@ -209,7 +202,13 @@
  country_ab2 "<U004A><U004F>"
  country_ab3 "<U004A><U004F><U0052>"
  country_num 400
 -
++country_name "<U0627><U0644><U0623><U0631><U062F><U0646>"
 +country_car "<U0048><U004B><U004A>"
 +country_isbn "<U0039><U0039><U0035><U0037>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -419,11 +437,12 @@ diff -uNr libc.orig/localedata/locales/ar_KW libc/localedata/locales/ar_KW
  END LC_MESSAGES
  
  
-@@ -191,7 +184,12 @@
+@@ -191,7 +184,13 @@
  country_ab2 "<U004B><U0057>"
  country_ab3 "<U004B><U0057><U0054>"
  country_num 414
 -
++country_name "<U0627><U0644><U0643><U0648><U064A><U062A>"
 +country_car "<U004B><U0057><U0054>"
 +country_isbn "<U0039><U0039><U0039><U0030><U0036>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -452,11 +471,12 @@ diff -uNr libc.orig/localedata/locales/ar_LB libc/localedata/locales/ar_LB
  END LC_MESSAGES
  
  
-@@ -208,7 +201,12 @@
+@@ -208,7 +201,13 @@
  country_ab2 "<U004C><U0042>"
  country_ab3 "<U004C><U0042><U004E>"
  country_num 422
 -
++country_name "<U0644><U0628><U0646><U0627><U0646>"
 +country_car "<U0052><U004C>"
 +country_isbn "<U0039><U0039><U0035><U0033>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -485,11 +505,17 @@ diff -uNr libc.orig/localedata/locales/ar_LY libc/localedata/locales/ar_LY
  END LC_MESSAGES
  
  
-@@ -191,7 +184,12 @@
+@@ -191,7 +184,18 @@
  country_ab2 "<U004C><U0059>"
  country_ab3 "<U004C><U0042><U0059>"
  country_num 434
 -
++country_name "<U0627><U0644><U062C><U0645><U0627><U0647><U064A><U0631>/
++<U064A><U0651><U0629><U0020><U0627><U0644><U0639><U0631><U0628><U064A>/
++<U0651><U0629><U0020><U0627><U0644><U0644><U0651><U064A><U0628><U064A>/
++<U0651><U0629><U0020><U0627><U0644><U0634><U0651><U0639><U0628><U064A>/
++<U0651><U0629><U0020><U0627><U0644><U0627><U0634><U062A><U0631><U0627>/
++<U0643><U064A><U0651><U0629>"
 +country_car "<U004C><U0042><U0059>"
 +country_isbn "<U0039><U0039><U0035><U0039>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -518,11 +544,12 @@ diff -uNr libc.orig/localedata/locales/ar_MA libc/localedata/locales/ar_MA
  END LC_MESSAGES
  
  
-@@ -191,7 +184,12 @@
+@@ -191,7 +184,13 @@
  country_ab2 "<U004D><U0041>"
  country_ab3 "<U004D><U0041><U0052>"
  country_num 504
 -
++country_name "<U0627><U0644><U0645><U063A><U0631><U0628>"
 +country_car "<U004D><U0041>"
 +country_isbn "9954,9981"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -551,11 +578,12 @@ diff -uNr libc.orig/localedata/locales/ar_OM libc/localedata/locales/ar_OM
  END LC_MESSAGES
  
  
-@@ -191,7 +184,10 @@
+@@ -191,7 +184,11 @@
  country_ab2 "<U004F><U004D>"
  country_ab3 "<U004F><U004D><U004E>"
  country_num 512
 -
++country_name "<U0639><U0645><U0627><U0646>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
 +lang_term   "<U0061><U0072><U0061>"
@@ -582,11 +610,12 @@ diff -uNr libc.orig/localedata/locales/ar_QA libc/localedata/locales/ar_QA
  END LC_MESSAGES
  
  
-@@ -191,7 +184,12 @@
+@@ -191,7 +184,13 @@
  country_ab2 "<U0051><U0041>"
  country_ab3 "<U0051><U0041><U0054>"
  country_num 634
 -
++country_name "<U0642><U0637><U0631>"
 +country_car "<U0051><U0041>"
 +country_isbn "<U0039><U0039><U0039><U0032><U0031>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
@@ -617,12 +646,13 @@ diff -uNr libc.orig/localedata/locales/ar_SA libc/localedata/locales/ar_SA
  END LC_MESSAGES
  
  LC_PAPER
-@@ -393,4 +385,10 @@
+@@ -393,4 +385,11 @@
  country_ab2 "<U0053><U0041>"
  country_ab3 "<U0053><U0041><U0055>"
  country_num 682
 +country_car "<U0053><U0041>"
 +country_isbn "<U0039><U0039><U0036><U0030>"
++country_name "<U0627><U0644><U0633><U0651><U0639><U0648><U062F>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
 +lang_term   "<U0061><U0072><U0061>"
@@ -647,13 +677,14 @@ diff -uNr libc.orig/localedata/locales/ar_SD libc/localedata/locales/ar_SD
  END LC_MESSAGES
  
  
-@@ -191,7 +184,12 @@
+@@ -191,7 +184,13 @@
  country_ab2 "<U0053><U0044>"
  country_ab3 "<U0053><U0044><U004E>"
  country_num 736
 -
 +country_car "<U0053><U0055><U0044>"
 +country_isbn "<U0039><U0039><U0039><U0034><U0032>"
++country_name "<U0627><U0644><U0633><U0651><U0648><U062F><U0627><U0646>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
 +lang_term   "<U0061><U0072><U0061>"
@@ -713,13 +744,14 @@ diff -uNr libc.orig/localedata/locales/ar_TN libc/localedata/locales/ar_TN
  END LC_MESSAGES
  
  
-@@ -191,7 +184,12 @@
+@@ -191,7 +184,13 @@
  country_ab2 "<U0054><U004E>"
  country_ab3 "<U0054><U0055><U004E>"
  country_num 788
 -
 +country_car "<U0054><U004E>"
 +country_isbn "<U0039><U0039><U0037><U0033>"
++country_name "<U062A><U0648><U0646><U0633>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
 +lang_term   "<U0061><U0072><U0061>"
@@ -746,11 +778,12 @@ diff -uNr libc.orig/localedata/locales/ar_YE libc/localedata/locales/ar_YE
  END LC_MESSAGES
  
  
-@@ -191,7 +184,10 @@
+@@ -191,7 +184,11 @@
  country_ab2 "<U0059><U0045>"
  country_ab3 "<U0059><U0045><U004D>"
  country_num 887
 -
++country_name "<U0627><U0644><U064A><U0645><U0646>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
 +lang_term   "<U0061><U0072><U0061>"
@@ -794,7 +827,16 @@ diff -uNr libc.orig/localedata/locales/be_BY libc/localedata/locales/be_BY
  END LC_MESSAGES
  
  LC_MONETARY
-@@ -173,7 +173,15 @@
+@@ -108,6 +108,8 @@
+         "<U0427><U0446><U0432>";/
+         "<U041F><U044F><U0442>";/
+         "<U0421><U0443><U0431>"
++first_weekday 2
++first_workday 2
+ mon     "<U0421><U0442><U0443><U0434><U0437><U0435><U043D><U044C>";/
+         "<U041B><U044E><U0442><U044B>";/
+         "<U0421><U0430><U043A><U0430><U0432><U0456><U043A>";/
+@@ -173,7 +175,15 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
@@ -805,7 +847,7 @@ diff -uNr libc.orig/localedata/locales/be_BY libc/localedata/locales/be_BY
 +country_car "<U0042><U0059>"
 +country_isbn "<U0039><U0038><U0035>"
 +lang_name   "<U0411><U0435><U043B><U0430><U0440><U0443><U0441><U043A>/
-+<U0430><U044F>"
++<U0430><U044F><U0020><U043C><U043E><U0432><U0430>"
 +lang_ab     "<U0062><U0065>"
 +lang_term   "<U0062><U0065><U006C>"
 +lang_lib    "<U0062><U0065><U006C>"
@@ -2113,12 +2155,14 @@ diff -uNr libc.orig/localedata/locales/fi_FI libc/localedata/locales/fi_FI
 diff -uNr libc.orig/localedata/locales/fo_FO libc/localedata/locales/fo_FO
 --- libc.orig/localedata/locales/fo_FO	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/fo_FO	2004-11-10 02:36:38.000000000 +0100
-@@ -142,4 +142,9 @@
+@@ -142,4 +142,11 @@
  country_ab2 "<U0046><U004F>"
  country_ab3 "<U0046><U0052><U004F>"
  country_num 234
 +country_car "<U0046><U004F>"
 +country_isbn "<U0039><U0039><U0039><U0031><U0038>"
++country_name "<U0046><U00F8><U0072><U006F><U0079><U0061><U0072>"
++lang_name   "<U0066><U00F8><U0072><U006F><U0079><U0073><U006B><U0074>"
 +lang_ab     "<U0066><U006F>"
 +lang_term   "<U0066><U0061><U006F>"
 +lang_lib    "<U0066><U0061><U006F>"
@@ -2365,12 +2409,14 @@ diff -uNr libc.orig/localedata/locales/gl_ES libc/localedata/locales/gl_ES
 diff -uNr libc.orig/localedata/locales/gu_IN libc/localedata/locales/gu_IN
 --- libc.orig/localedata/locales/gu_IN	2004-10-14 21:11:31.000000000 +0200
 +++ libc/localedata/locales/gu_IN	2004-11-10 02:36:38.000000000 +0100
-@@ -194,6 +194,11 @@
+@@ -194,6 +194,13 @@
  country_ab2 "<U0049><U004E>"
  country_ab3 "<U0049><U004E><U0044>"
  country_num 356
++country_name "<U0AAD><U0ABE><U0AB0><U0AA4>"
 +country_car "<U0049><U004E><U0044>"
 +country_isbn "81,93"
++lang_name   "<U0A97><U0AC1><U0A9C><U0AB0><U0ABE><U0AA4><U0AC0>"
 +lang_ab     "<U0067><U0075>"
 +lang_term   "<U0067><U0075><U006A>"
 +lang_lib    "<U0067><U0075><U006A>"
@@ -2380,12 +2426,14 @@ diff -uNr libc.orig/localedata/locales/gu_IN libc/localedata/locales/gu_IN
 diff -uNr libc.orig/localedata/locales/gv_GB libc/localedata/locales/gv_GB
 --- libc.orig/localedata/locales/gv_GB	2004-04-29 00:55:01.000000000 +0200
 +++ libc/localedata/locales/gv_GB	2004-11-10 02:36:38.000000000 +0100
-@@ -166,4 +166,9 @@
+@@ -166,4 +166,11 @@
  country_ab2 "<U0047><U0042>"
  country_ab3 "<U0047><U0042><U0052>"
  country_num 826
 +country_car "<U0047><U0042>"
 +country_isbn "<U0030>"
++country_name "Rywvaneth Unys"
++lang_name   "Gaelg"
 +lang_ab     "<U0067><U0076>"
 +lang_term   "<U0067><U006C><U0076>"
 +lang_lib    "<U0067><U006C><U0076>"
@@ -2411,10 +2459,22 @@ diff -uNr libc.orig/localedata/locales/he_IL libc/localedata/locales/he_IL
 diff -uNr libc.orig/localedata/locales/hi_IN libc/localedata/locales/hi_IN
 --- libc.orig/localedata/locales/hi_IN	2003-12-07 14:00:22.000000000 +0100
 +++ libc/localedata/locales/hi_IN	2004-11-10 02:36:38.000000000 +0100
-@@ -194,6 +194,12 @@
+@@ -33,6 +33,10 @@
+ 
+ LC_CTYPE
+ copy "i18n"
++translit_start
++include "translit_combining";""
++include "translit_devanagari_iscii";""
++translit_end
+ END LC_CTYPE
+ 
+ LC_COLLATE
+@@ -194,6 +198,13 @@
  country_ab2 "<U0049><U004E>"
  country_ab3 "<U0049><U004E><U0044>"
  country_num 356
++country_name "<U0954><U0965><U0930><U0924>"
 +country_car "<U0049><U004E><U0044>"
 +country_isbn "81,93"
 +lang_name   "<U0939><U093F><U0928><U094D><U0926><U0940>"
@@ -3179,7 +3239,18 @@ diff -uNr libc.orig/localedata/locales/ml_IN libc/localedata/locales/ml_IN
 diff -uNr libc.orig/localedata/locales/mn_MN libc/localedata/locales/mn_MN
 --- libc.orig/localedata/locales/mn_MN	2003-04-14 19:28:31.000000000 +0200
 +++ libc/localedata/locales/mn_MN	2004-11-10 02:36:38.000000000 +0100
-@@ -178,7 +178,7 @@
+@@ -218,8 +218,8 @@
+ t_fmt_ampm ""
+ % Full date and time representation
+ % "%Z %Y ony %B %e, %a %H:%M:%S"
+-date_fmt  "<U0025><U005A><U0020><U0025><U0059><U0020><U043E><U043D><U044B><U0020><U0025><U0042><U0020>";/
+-	  "<U0025><U0065><U002C><U0020><U0025><U0061><U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053>"
++date_fmt  "<U0025><U005A><U0020><U0025><U0059><U0020><U043E><U043D><U044B><U0020><U0025><U0042><U0020>/
++<U0025><U0065><U002C><U0020><U0025><U0061><U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053>"
+ END LC_TIME
+ 
+ LC_MESSAGES
+@@ -255,7 +255,7 @@
  country_num   496
  country_car   "<U004D><U0047><U004C>"
  country_isbn  99929
@@ -5396,3 +5467,50 @@ diff -uNr libc.orig/localedata/locales/zu_ZA libc/localedata/locales/zu_ZA
 +
  END LC_ADDRESS
  
+diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata/locales/translit_devanagari_iscii
+--- libc.orig/localedata/locales/translit_devanagari_iscii	2005-11-09 15:29:12.000000000 +0000
++++ libc/localedata/locales/translit_devanagari_iscii	2005-11-09 15:29:12.000000000 +0000
+@@ -0,0 +1,43 @@
++escape_char /
++comment_char %
++
++%
++% Additional rules suggested in ISCII-DEV encoding
++%
++
++LC_CTYPE
++
++translit_start
++
++% DEVANAGARI LETTER VOCALIC L
++<U090C> "<U0907><U093C>"
++% DEVANAGARI SIGN AVAGRAHA
++<U093D> "<U0964><U093C>"
++% DEVANAGARI VOWEL SIGN VOCALIC RR
++<U0944> "<U0943><U093C>"
++% DEVANAGARI OM
++<U0950> "<U0901><U093C>"
++% DEVANAGARI STRESS SIGN UDATTA
++<U0951> ""
++% DEVANAGARI STRESS SIGN ANUDATTA
++<U0952> ""
++% DEVANAGARI GRAVE ACCENT
++<U0953> "<U0060>"
++% DEVANAGARI ACUTE ACCENT
++<U0954> "<U0060>"   % replacing acute with grave
++% DEVANAGARI LETTER VOCALIC RR
++<U0960> "<U090B><U093C>"
++% DEVANAGARI LETTER VOCALIC LL
++<U0961> "<U0908><U093C>"
++% DEVANAGARI VOWEL SIGN VOCALIC L
++<U0962> "<U093F><U093C>"
++% DEVANAGARI VOWEL SIGN VOCALIC LL
++<U0963> "<U0940><U093C>"
++% DEVANAGARI DOUBLE DANDA
++<U0965> "<U0964><U0964>"
++% DEVANAGARI ABBREVIATION SIGN
++<U0970> ""
++
++translit_end
++
++END LC_CTYPE
