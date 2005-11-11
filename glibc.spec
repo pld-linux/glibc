@@ -70,10 +70,10 @@ Patch18:	%{name}-sr_CS.patch
 Patch19:	%{name}-sparc64-dl-machine.patch
 Patch20:	%{name}-tzfile-noassert.patch
 
-#Patch21:	%{name}-morelocales.patch		NEEDS UPDATE
-#Patch22:	%{name}-locale_ZA.patch			NEEDS UPDATE
-#Patch23:	%{name}-locale_fixes.patch		NEEDS UPDATE
-#Patch24:	%{name}-ZA_collate.patch		NEEDS UPDATE
+Patch21:	%{name}-morelocales.patch
+Patch22:	%{name}-locale_ZA.patch
+Patch23:	%{name}-locale_fixes.patch
+Patch24:	%{name}-ZA_collate.patch
 
 Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-cross-gcc_eh.patch
@@ -758,10 +758,10 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
-#patch21 -p1		NEEDS UPDATE
-#patch22 -p1		NEEDS UPDATE
-#patch23 -p1		NEEDS UPDATE
-#patch24 -p1		NEEDS UPDATE
+%patch21 -p1
+%patch22 -p1
+%patch23 -p1
+%patch24 -p1
 
 %patch26 -p1
 %{?with_cross:%patch27 -p1}
@@ -925,7 +925,6 @@ done
 # as (atk, gail)
 # az_IR (gtk+)
 # dv, kok, ps, sw (iso-codes)
-# fy (kde)
 # my (gaim)
 # tk, ug, yo (used by GNOME)
 #
@@ -937,7 +936,7 @@ done
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,
 #   tr,zh_CN,zh_TW
 for i in aa af am ang ar az bg bn br bs byn cy de_AT en en@boldquot en@quot \
-    en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo ga gez gu gv he hi \
+    en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo fy ga gez gu gv he hi \
     hsb hy ia id is it_CH iu ka kk kl kn ku kw ky leet lg li lo lt lv mi mk \
     ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro ru rw sa se sid \
     sl so sq sr sr@Latn sr@ije ss syr ta te tg th ti tig tl tlh tt uk ur uz \
