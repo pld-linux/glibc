@@ -74,7 +74,7 @@ Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_ZA.patch
 Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
-
+Patch25:	%{name}-large_collate_tables.patch
 Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
@@ -762,7 +762,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch22 -p1
 %patch23 -p1
 %patch24 -p1
-
+%patch25 -p1
 %patch26 -p1
 %{?with_cross:%patch27 -p1}
 
