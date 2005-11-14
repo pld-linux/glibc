@@ -400,6 +400,15 @@ Obsoletes:	%{name}-headers(athlon)
 Obsoletes:	%{name}-headers(pentium3)
 Obsoletes:	%{name}-headers(pentium4)
 %endif
+%ifarch ppc64
+Obsoletes:	%{name}-headers(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-headers(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-headers(sparc)
+%endif
 %{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
 
 %description headers
@@ -439,6 +448,15 @@ Obsoletes:	%{name}-devel-utils(athlon)
 Obsoletes:	%{name}-devel-utils(pentium3)
 Obsoletes:	%{name}-devel-utils(pentium4)
 %endif
+%ifarch ppc64
+Obsoletes:	%{name}-devel-utils(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-devel-utils(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-devel-utils(sparc)
+%endif
 
 %description devel-utils
 The glibc-devel-utils package contains utilities necessary for
@@ -475,6 +493,15 @@ Obsoletes:	%{name}-devel-doc(i686)
 Obsoletes:	%{name}-devel-doc(athlon)
 Obsoletes:	%{name}-devel-doc(pentium3)
 Obsoletes:	%{name}-devel-doc(pentium4)
+%endif
+%ifarch ppc64
+Obsoletes:	%{name}-devel-doc(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-devel-doc(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-devel-doc(sparc)
 %endif
 
 %description devel-doc
