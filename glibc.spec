@@ -130,7 +130,7 @@ Patch28:	%{name}-cross-gcc_eh.patch
 Patch29:	%{name}-pax_dl-execstack.patch
 Patch30:	%{name}-large_collate_tables.patch
 URL:		http://www.gnu.org/software/libc/
-BuildRequires:	audit-libs-devel
+%{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -995,9 +995,11 @@ cd ..
 done
 %endif
 
+%if %{without cross}
 # compiling static using diet vs glibc saves 400k
 diet -Os %{__cc} %{SOURCE9} %{rpmcflags} -static -o postshell
 diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -1025,8 +1027,10 @@ install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
+%if %{without cross}
 install postshell					$RPM_BUILD_ROOT/sbin
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
+%endif
 
 %if %{with dual}
 env LANGUAGE=C LC_ALL=C \
@@ -1229,6 +1233,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
+%if %{without cross}
 %ifarch %{x8664} ppc64 s390x sparc64
 %post	-n %{name}64 -p /sbin/postshell
 %else
@@ -1260,6 +1265,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
+%endif
 
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
@@ -1311,8 +1317,10 @@ fi
 %endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
+%if %{without cross}
 %attr(755,root,root) /sbin/postshell
 %attr(755,root,root) /sbin/glibc-postinst
+%endif
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
