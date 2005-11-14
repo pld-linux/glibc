@@ -29,7 +29,7 @@
 +collating-element <D-L> from "<U0044><U004C>"
 +collating-element <D-l> from "<U0044><U006C>"
 +collating-element <d-L> from "<U0064><U004C>"
-+collating-element <d-l> from "<U0064><U005C>"
++collating-element <d-l> from "<U0064><U006C>"
 +
 +collating-symbol  <gc>
 +collating-element <G-C> from "<U0047><U0043>"
@@ -59,7 +59,7 @@
 +collating-element <H-L> from "<U0048><U004C>"
 +collating-element <H-l> from "<U0048><U006C>"
 +collating-element <h-L> from "<U0068><U004C>"
-+collating-element <h-l> from "<U0068><U005C>"
++collating-element <h-l> from "<U0068><U006C>"
 +
 +collating-symbol  <kh>
 +collating-element <K-H> from "<U004B><U0048>"
@@ -71,7 +71,7 @@
 +collating-element <K-L> from "<U004B><U004C>"
 +collating-element <K-l> from "<U004B><U006C>"
 +collating-element <k-L> from "<U006B><U004C>"
-+collating-element <k-l> from "<U006B><U005C>"
++collating-element <k-l> from "<U006B><U006C>"
 +
 +collating-symbol  <nc>
 +collating-element <N-C> from "<U004E><U0043>"
@@ -500,7 +500,7 @@
 +collating-element <D-L> from "<U0044><U004C>"
 +collating-element <D-l> from "<U0044><U006C>"
 +collating-element <d-L> from "<U0064><U004C>"
-+collating-element <d-l> from "<U0064><U005C>"
++collating-element <d-l> from "<U0064><U006C>"
 +
 +collating-symbol  <gc>
 +collating-element <G-C> from "<U0047><U0043>"
@@ -518,7 +518,7 @@
 +collating-element <H-L> from "<U0048><U004C>"
 +collating-element <H-l> from "<U0048><U006C>"
 +collating-element <h-L> from "<U0068><U004C>"
-+collating-element <h-l> from "<U0068><U005C>"
++collating-element <h-l> from "<U0068><U006C>"
 +
 +collating-symbol  <kh>
 +collating-element <K-H> from "<U004B><U0048>"
@@ -530,7 +530,7 @@
 +collating-element <K-L> from "<U004B><U004C>"
 +collating-element <K-l> from "<U004B><U006C>"
 +collating-element <k-L> from "<U006B><U004C>"
-+collating-element <k-l> from "<U006B><U005C>"
++collating-element <k-l> from "<U006B><U006C>"
 +
 +collating-symbol  <ph>
 +collating-element <P-H> from "<U0050><U0048>"
