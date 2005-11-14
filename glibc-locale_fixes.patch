@@ -3147,10 +3147,12 @@ diff -uNr libc.orig/localedata/locales/kw_GB libc/localedata/locales/kw_GB
 diff -uNr libc.orig/localedata/locales/lg_UG libc/localedata/locales/lg_UG
 --- libc.orig/localedata/locales/lg_UG	2004-04-29 00:55:01.000000000 +0200
 +++ libc/localedata/locales/lg_UG	2004-11-10 02:36:38.000000000 +0100
-@@ -326,5 +326,9 @@
+@@ -326,5 +326,11 @@
  %
  country_ab3 "<U0055><U0047><U0041>"
  country_num 800
++% EAU
++country_car "<U0045><U0041><U0055>"
 +country_isbn "<U0039><U0039><U0037><U0030>"
 +lang_ab     "<U006C><U0067>"
 +lang_term   "<U006C><U0075><U0067>"
@@ -4163,11 +4165,14 @@ diff -uNr libc.orig/localedata/locales/so_KE libc/localedata/locales/so_KE
  %
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-@@ -120,7 +120,7 @@
+@@ -119,8 +119,9 @@
+ country_ab2   "<U004B><U0045>"
  country_ab3   "<U004B><U0045><U004E>"
  country_num   404
- % country_car   unknown
+-% country_car   unknown
 -% country_isbn  unknown, Need ISO 2108
++% EAK
++country_car   "<U0045><U0041><U004B>"
 +country_isbn  "<U0039><U0039><U0036><U0036>"
  lang_name     "<U0053><U006F><U006F><U006D><U0061><U0061><U006C><U0069>"
  lang_ab       "<U0073><U006F>"
