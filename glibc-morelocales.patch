@@ -14076,7 +14076,7 @@ diff -uNr libc.old/localedata/locales/sr_CS@ije libc/localedata/locales/sr_CS@ij
 diff -uNr libc.old/localedata/locales/sw_KE libc/localedata/locales/sw_KE
 --- libc.old/localedata/locales/sw_KE	1970-01-01 00:00:00.000000000 +0000
 +++ libc/localedata/locales/sw_KE	2005-11-15 09:34:46.000000000 +0000
-@@ -0,0 +1,351 @@
+@@ -0,0 +1,355 @@
 +comment_char %
 +escape_char  /
 +%
@@ -14343,12 +14343,16 @@ diff -uNr libc.old/localedata/locales/sw_KE libc/localedata/locales/sw_KE
 +END LC_CTYPE
 +
 +LC_MONETARY
-+copy "so_KE"
++copy "om_KE"
 +END LC_MONETARY
 +
 +LC_NUMERIC
-+copy "so_KE"
++copy "om_KE"
 +END LC_NUMERIC
++
++LC_TELEPHONE
++copy "om_KE"
++END LC_TELEPHONE
 +
 +LC_TIME
 +abday   "<U004A><U0070><U0069>";"<U004A><U0074><U0061>";/
@@ -14431,7 +14435,7 @@ diff -uNr libc.old/localedata/locales/sw_KE libc/localedata/locales/sw_KE
 diff -uNr libc.old/localedata/locales/sw_UG libc/localedata/locales/sw_UG
 --- libc.old/localedata/locales/sw_UG	1970-01-01 00:00:00.000000000 +0000
 +++ libc/localedata/locales/sw_UG	2005-11-15 09:34:46.000000000 +0000
-@@ -0,0 +1,107 @@
+@@ -0,0 +1,111 @@
 +comment_char %
 +escape_char  /
 +%
@@ -14495,6 +14499,10 @@ diff -uNr libc.old/localedata/locales/sw_UG libc/localedata/locales/sw_UG
 +LC_NUMERIC
 +copy "lg_UG"
 +END LC_NUMERIC
++
++LC_TELEPHONE
++copy "lg_UG"
++END LC_TELEPHONE
 +
 +LC_TIME
 +copy "sw_KE"
