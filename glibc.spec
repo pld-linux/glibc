@@ -1214,7 +1214,7 @@ done
 # XXX: to be added when become supported by glibc
 # as (atk, gail)
 # az_IR (gtk+)
-# dv, kok, ps, sw (iso-codes)
+# dv, kok, ps (iso-codes)
 # my (gaim)
 # tk, ug, yo (used by GNOME)
 #
@@ -1230,8 +1230,8 @@ for i in aa af am ang ar az bg bn br bs byn cy de_AT en en@boldquot en@quot \
     en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo fy ga gez gu gv he hi \
     hsb hy ia id is it_CH iu ka kk kl kn ku kw ky leet lg li lo lt lv mi mk \
     ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro ru rw sa se sid \
-    sl so sq sr sr@Latn sr@ije ss syr ta te tg th ti tig tl tlh tt uk ur uz \
-    ve vi wa wal xh yi zu ; do
+    sl so sq sr sr@Latn sr@ije ss syr sw ta te tg th ti tig tl tlh tt uk ur \
+    uz ve vi wa wal xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
