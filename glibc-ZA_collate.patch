@@ -1,6 +1,6 @@
 --- libc/localedata/locales/zu_ZA~	Thu Nov 11 23:34:33 2004
 +++ libc/localedata/locales/zu_ZA	Fri Nov 12 10:50:47 2004
-@@ -56,10 +56,373 @@
+@@ -56,10 +56,343 @@
  END LC_CTYPE
  
  LC_COLLATE
@@ -238,84 +238,60 @@
 +reorder-after <U0047>
 +<G-c>		<gc>;<BAS>;<CAP-MIN>;IGNORE
 +<G-C>		<gc>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0067>
-+<g-c>		<gc>;<BAS>;<MIN-MIN>;IGNORE
-+<g-C>		<gc>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0047>
 +<G-q>		<gq>;<BAS>;<CAP-MIN>;IGNORE
 +<G-Q>		<gq>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0067>
-+<g-q>		<gq>;<BAS>;<MIN-MIN>;IGNORE
-+<g-Q>		<gq>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0047>
 +<G-x>		<gx>;<BAS>;<CAP-MIN>;IGNORE
 +<G-X>		<gx>;<BAS>;<CAP-CAP>;IGNORE
 +reorder-after <U0067>
++<g-c>		<gc>;<BAS>;<MIN-MIN>;IGNORE
++<g-C>		<gc>;<BAS>;<MIN-CAP>;IGNORE
++<g-q>		<gq>;<BAS>;<MIN-MIN>;IGNORE
++<g-Q>		<gq>;<BAS>;<MIN-CAP>;IGNORE
 +<g-x>		<gx>;<BAS>;<MIN-MIN>;IGNORE
 +<g-X>		<gx>;<BAS>;<MIN-CAP>;IGNORE
 +
 +reorder-after <U0048>
 +<H-h>		<hh>;<BAS>;<CAP-MIN>;IGNORE
 +<H-H>		<hh>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0068>
-+<h-h>		<hh>;<BAS>;<MIN-MIN>;IGNORE
-+<h-H>		<hh>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0048>
 +<H-l>		<hl>;<BAS>;<CAP-MIN>;IGNORE
 +<H-L>		<hl>;<BAS>;<CAP-CAP>;IGNORE
 +reorder-after <U0068>
++<h-h>		<hh>;<BAS>;<MIN-MIN>;IGNORE
++<h-H>		<hh>;<BAS>;<MIN-CAP>;IGNORE
 +<h-l>		<hl>;<BAS>;<MIN-MIN>;IGNORE
 +<h-L>		<hl>;<BAS>;<MIN-CAP>;IGNORE
 +
 +reorder-after <U004B>
 +<K-h>		<kh>;<BAS>;<CAP-MIN>;IGNORE
 +<K-H>		<kh>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U006B>
-+<k-h>		<kh>;<BAS>;<MIN-MIN>;IGNORE
-+<k-H>		<kh>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U004B>
 +<K-l>		<kl>;<BAS>;<CAP-MIN>;IGNORE
 +<K-L>		<kl>;<BAS>;<CAP-CAP>;IGNORE
 +reorder-after <U006B>
++<k-h>		<kh>;<BAS>;<MIN-MIN>;IGNORE
++<k-H>		<kh>;<BAS>;<MIN-CAP>;IGNORE
 +<k-l>		<kl>;<BAS>;<MIN-MIN>;IGNORE
 +<k-L>		<kl>;<BAS>;<MIN-CAP>;IGNORE
 +
 +reorder-after <U004E>
 +<N-c>		<nc>;<BAS>;<CAP-MIN>;IGNORE
 +<N-C>		<nc>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U006E>
-+<n-c>		<nc>;<BAS>;<MIN-MIN>;IGNORE
-+<n-C>		<nc>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U004E>
 +<N-g>		<ng>;<BAS>;<CAP-MIN>;IGNORE
 +<N-G>		<ng>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U006E>
-+<n-g>		<ng>;<BAS>;<MIN-MIN>;IGNORE
-+<n-G>		<ng>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U004E>
 +<N-q>		<nq>;<BAS>;<CAP-MIN>;IGNORE
 +<N-Q>		<nq>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U006E>
-+<n-q>		<nq>;<BAS>;<MIN-MIN>;IGNORE
-+<n-Q>		<nq>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U004E>
 +<N-x>		<nx>;<BAS>;<CAP-MIN>;IGNORE
 +<N-X>		<nx>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U006E>
-+<n-x>		<nx>;<BAS>;<MIN-MIN>;IGNORE
-+<n-X>		<nx>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U004E>
 +<N-y>		<ny>;<BAS>;<CAP-MIN>;IGNORE
 +<N-Y>		<ny>;<BAS>;<CAP-CAP>;IGNORE
 +reorder-after <U006E>
++<n-c>		<nc>;<BAS>;<MIN-MIN>;IGNORE
++<n-C>		<nc>;<BAS>;<MIN-CAP>;IGNORE
++<n-g>		<ng>;<BAS>;<MIN-MIN>;IGNORE
++<n-G>		<ng>;<BAS>;<MIN-CAP>;IGNORE
++<n-q>		<nq>;<BAS>;<MIN-MIN>;IGNORE
++<n-Q>		<nq>;<BAS>;<MIN-CAP>;IGNORE
++<n-x>		<nx>;<BAS>;<MIN-MIN>;IGNORE
++<n-X>		<nx>;<BAS>;<MIN-CAP>;IGNORE
 +<n-y>		<ny>;<BAS>;<MIN-MIN>;IGNORE
 +<n-Y>		<ny>;<BAS>;<MIN-CAP>;IGNORE
 +
@@ -343,23 +319,17 @@
 +reorder-after <U0054>
 +<T-h>		<th0>;<BAS>;<CAP-MIN>;IGNORE
 +<T-H>		<th0>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0074>
-+<t-h>		<th0>;<BAS>;<MIN-MIN>;IGNORE
-+<t-H>		<th0>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0054>
 +<T-s>		<ts>;<BAS>;<CAP-MIN>;IGNORE
 +<T-S>		<ts>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0074>
-+<t-s>		<ts>;<BAS>;<MIN-MIN>;IGNORE
-+<t-S>		<ts>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0054>
 +<T-s-h>		<tsh>;<BAS>;<CAP-MIN-MIN>;IGNORE
 +<T-s-H>		<tsh>;<BAS>;<CAP-MIN-CAP>;IGNORE
 +<T-S-h>		<tsh>;<BAS>;<CAP-CAP-MIN>;IGNORE
 +<T-S-H>		<tsh>;<BAS>;<CAP-CAP-CAP>;IGNORE
 +reorder-after <U0074>
++<t-h>		<th0>;<BAS>;<MIN-MIN>;IGNORE
++<t-H>		<th0>;<BAS>;<MIN-CAP>;IGNORE
++<t-s>		<ts>;<BAS>;<MIN-MIN>;IGNORE
++<t-S>		<ts>;<BAS>;<MIN-CAP>;IGNORE
 +<t-s-h>		<tsh>;<BAS>;<MIN-MIN-MIN>;IGNORE
 +<t-s-H>		<tsh>;<BAS>;<MIN-MIN-CAP>;IGNORE
 +<t-S-h>		<tsh>;<BAS>;<MIN-CAP-MIN>;IGNORE
@@ -479,7 +449,7 @@
  LC_MONETARY
 --- libc/localedata/locales/xh_ZA.orig	Fri Nov 12 19:26:47 2004
 +++ libc/localedata/locales/xh_ZA	Fri Nov 12 19:26:47 2004
-@@ -52,9 +52,278 @@
+@@ -52,9 +52,263 @@
  END LC_CTYPE
  
  LC_COLLATE
@@ -663,14 +633,11 @@
 +reorder-after <U0047>
 +<G-c>		<gc>;<BAS>;<CAP-MIN>;IGNORE
 +<G-C>		<gc>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0067>
-+<g-c>		<gc>;<BAS>;<MIN-MIN>;IGNORE
-+<g-C>		<gc>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0047>
 +<G-q>		<gq>;<BAS>;<CAP-MIN>;IGNORE
 +<G-Q>		<gq>;<BAS>;<CAP-CAP>;IGNORE
 +reorder-after <U0067>
++<g-c>		<gc>;<BAS>;<MIN-MIN>;IGNORE
++<g-C>		<gc>;<BAS>;<MIN-CAP>;IGNORE
 +<g-q>		<gq>;<BAS>;<MIN-MIN>;IGNORE
 +<g-Q>		<gq>;<BAS>;<MIN-CAP>;IGNORE
 +
@@ -712,46 +679,34 @@
 +reorder-after <U0054>
 +<T-h>		<th0>;<BAS>;<CAP-MIN>;IGNORE
 +<T-H>		<th0>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0074>
-+<t-h>		<th0>;<BAS>;<MIN-MIN>;IGNORE
-+<t-H>		<th0>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0054>
 +<T-s>		<ts>;<BAS>;<CAP-MIN>;IGNORE
 +<T-S>		<ts>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0074>
-+<t-s>		<ts>;<BAS>;<MIN-MIN>;IGNORE
-+<t-S>		<ts>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0054>
 +<T-s-h>		<tsh>;<BAS>;<CAP-MIN-MIN>;IGNORE
 +<T-s-H>		<tsh>;<BAS>;<CAP-MIN-CAP>;IGNORE
 +<T-S-h>		<tsh>;<BAS>;<CAP-CAP-MIN>;IGNORE
 +<T-S-H>		<tsh>;<BAS>;<CAP-CAP-CAP>;IGNORE
++<T-y>		<ty>;<BAS>;<CAP-MIN>;IGNORE
++<T-Y>		<ty>;<BAS>;<CAP-CAP>;IGNORE
 +reorder-after <U0074>
++<t-h>		<th0>;<BAS>;<MIN-MIN>;IGNORE
++<t-H>		<th0>;<BAS>;<MIN-CAP>;IGNORE
++<t-s>		<ts>;<BAS>;<MIN-MIN>;IGNORE
++<t-S>		<ts>;<BAS>;<MIN-CAP>;IGNORE
 +<t-s-h>		<tsh>;<BAS>;<MIN-MIN-MIN>;IGNORE
 +<t-s-H>		<tsh>;<BAS>;<MIN-MIN-CAP>;IGNORE
 +<t-S-h>		<tsh>;<BAS>;<MIN-CAP-MIN>;IGNORE
 +<t-S-H>		<tsh>;<BAS>;<MIN-CAP-CAP>;IGNORE
-+
-+reorder-after <U0054>
-+<T-y>		<ty>;<BAS>;<CAP-MIN>;IGNORE
-+<T-Y>		<ty>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0074>
 +<t-y>		<ty>;<BAS>;<MIN-MIN>;IGNORE
 +<t-Y>		<ty>;<BAS>;<MIN-CAP>;IGNORE
 +
 +reorder-after <U0058>
 +<X-h>		<xh>;<BAS>;<CAP-MIN>;IGNORE
 +<X-H>		<xh>;<BAS>;<CAP-CAP>;IGNORE
-+reorder-after <U0078>
-+<x-h>		<xh>;<BAS>;<MIN-MIN>;IGNORE
-+<x-H>		<xh>;<BAS>;<MIN-CAP>;IGNORE
-+
-+reorder-after <U0058>
 +<X-q>		<xq>;<BAS>;<CAP-MIN>;IGNORE
 +<X-Q>		<xq>;<BAS>;<CAP-CAP>;IGNORE
 +reorder-after <U0078>
++<x-h>		<xh>;<BAS>;<MIN-MIN>;IGNORE
++<x-H>		<xh>;<BAS>;<MIN-CAP>;IGNORE
 +<x-q>		<xq>;<BAS>;<MIN-MIN>;IGNORE
 +<x-Q>		<xq>;<BAS>;<MIN-CAP>;IGNORE
 +
