@@ -128,7 +128,7 @@ Patch28:	%{name}-cross-gcc_eh.patch
 Patch29:	%{name}-pax_dl-execstack.patch
 Patch30:	%{name}-large_collate_tables.patch
 URL:		http://www.gnu.org/software/libc/
-BuildRequires:	audit-libs-devel
+%{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -397,6 +397,15 @@ Obsoletes:	%{name}-headers(athlon)
 Obsoletes:	%{name}-headers(pentium3)
 Obsoletes:	%{name}-headers(pentium4)
 %endif
+%ifarch ppc64
+Obsoletes:	%{name}-headers(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-headers(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-headers(sparc)
+%endif
 %{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
 
 %description headers
@@ -436,6 +445,15 @@ Obsoletes:	%{name}-devel-utils(athlon)
 Obsoletes:	%{name}-devel-utils(pentium3)
 Obsoletes:	%{name}-devel-utils(pentium4)
 %endif
+%ifarch ppc64
+Obsoletes:	%{name}-devel-utils(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-devel-utils(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-devel-utils(sparc)
+%endif
 
 %description devel-utils
 The glibc-devel-utils package contains utilities necessary for
@@ -472,6 +490,15 @@ Obsoletes:	%{name}-devel-doc(i686)
 Obsoletes:	%{name}-devel-doc(athlon)
 Obsoletes:	%{name}-devel-doc(pentium3)
 Obsoletes:	%{name}-devel-doc(pentium4)
+%endif
+%ifarch ppc64
+Obsoletes:	%{name}-devel-doc(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-devel-doc(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-devel-doc(sparc)
 %endif
 
 %description devel-doc
@@ -991,9 +1018,11 @@ cd ..
 done
 %endif
 
+%if %{without cross}
 # compiling static using diet vs glibc saves 400k
 diet -Os %{__cc} %{SOURCE9} %{rpmcflags} -static -o postshell
 diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -1021,8 +1050,10 @@ install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
+%if %{without cross}
 install postshell					$RPM_BUILD_ROOT/sbin
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
+%endif
 
 %if %{with dual}
 env LANGUAGE=C LC_ALL=C \
@@ -1225,6 +1256,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
+%if %{without cross}
 %ifarch %{x8664} ppc64 s390x sparc64
 %post	-n %{name}64 -p /sbin/postshell
 %else
@@ -1256,6 +1288,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
+%endif
 
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
@@ -1307,8 +1340,10 @@ fi
 %endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
+%if %{without cross}
 %attr(755,root,root) /sbin/postshell
 %attr(755,root,root) /sbin/glibc-postinst
+%endif
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
