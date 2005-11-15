@@ -38,7 +38,8 @@
 
 %if %{with tls}
 # sparc temporarily removed (broken)
-%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_tls
 %endif
 %endif
@@ -46,7 +47,8 @@
 %if %{with nptl}
 # on x86 uses cmpxchgl (available since i486)
 # on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x
+# sparc64 sparcv9 ppc ppc64  -- disabled in AC (gcc < 3.4)
 %undefine	with_nptl
 %else
 %if %{without tls}
@@ -76,7 +78,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	2.1
+Release:	2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -128,11 +130,13 @@ Patch28:	%{name}-cross-gcc_eh.patch
 Patch29:	%{name}-pax_dl-execstack.patch
 Patch30:	%{name}-large_collate_tables.patch
 URL:		http://www.gnu.org/software/libc/
-BuildRequires:	audit-libs-devel
+%{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
+%{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gcc >= 5:3.2
+BuildRequires:	gcc < 5:4.1
 %ifarch ppc ppc64 sparc sparcv9 sparc64
 %if %{with nptl} || %{with __thread}
 BuildRequires:	gcc >= 5:3.4
@@ -150,7 +154,6 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-BuildRequires:	dietlibc-static
 AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
@@ -397,6 +400,15 @@ Obsoletes:	%{name}-headers(athlon)
 Obsoletes:	%{name}-headers(pentium3)
 Obsoletes:	%{name}-headers(pentium4)
 %endif
+%ifarch ppc64
+Obsoletes:	%{name}-headers(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-headers(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-headers(sparc)
+%endif
 %{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
 
 %description headers
@@ -436,6 +448,15 @@ Obsoletes:	%{name}-devel-utils(athlon)
 Obsoletes:	%{name}-devel-utils(pentium3)
 Obsoletes:	%{name}-devel-utils(pentium4)
 %endif
+%ifarch ppc64
+Obsoletes:	%{name}-devel-utils(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-devel-utils(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-devel-utils(sparc)
+%endif
 
 %description devel-utils
 The glibc-devel-utils package contains utilities necessary for
@@ -472,6 +493,15 @@ Obsoletes:	%{name}-devel-doc(i686)
 Obsoletes:	%{name}-devel-doc(athlon)
 Obsoletes:	%{name}-devel-doc(pentium3)
 Obsoletes:	%{name}-devel-doc(pentium4)
+%endif
+%ifarch ppc64
+Obsoletes:	%{name}-devel-doc(ppc)
+%endif
+%ifarch s390x
+Obsoletes:	%{name}-devel-doc(s390)
+%endif
+%ifarch sparc64
+Obsoletes:	%{name}-devel-doc(sparc)
 %endif
 
 %description devel-doc
@@ -892,7 +922,8 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-#%patch7 -p1 UPDATE/DROP (which kernels cause problems?)
+# FIXME
+#%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
@@ -991,9 +1022,11 @@ cd ..
 done
 %endif
 
+%if %{without cross}
 # compiling static using diet vs glibc saves 400k
 diet -Os %{__cc} %{SOURCE9} %{rpmcflags} -static -o postshell
 diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -1021,8 +1054,10 @@ install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
+%if %{without cross}
 install postshell					$RPM_BUILD_ROOT/sbin
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
+%endif
 
 %if %{with dual}
 env LANGUAGE=C LC_ALL=C \
@@ -1179,7 +1214,7 @@ done
 # XXX: to be added when become supported by glibc
 # as (atk, gail)
 # az_IR (gtk+)
-# dv, kok, ps, sw (iso-codes)
+# dv, kok, ps (iso-codes)
 # my (gaim)
 # tk, ug, yo (used by GNOME)
 #
@@ -1195,8 +1230,8 @@ for i in aa af am ang ar az bg bn br bs byn cy de_AT en en@boldquot en@quot \
     en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo fy ga gez gu gv he hi \
     hsb hy ia id is it_CH iu ka kk kl kn ku kw ky leet lg li lo lt lv mi mk \
     ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro ru rw sa se sid \
-    sl so sq sr sr@Latn sr@ije ss syr ta te tg th ti tig tl tlh tt uk ur uz \
-    ve vi wa wal xh yi zu ; do
+    sl so sq sr sr@Latn sr@ije ss syr sw ta te tg th ti tig tl tlh tt uk ur \
+    uz ve vi wa wal xh yi zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
@@ -1225,6 +1260,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
+%if %{without cross}
 %ifarch %{x8664} ppc64 s390x sparc64
 %post	-n %{name}64 -p /sbin/postshell
 %else
@@ -1256,6 +1292,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
+%endif
 
 %post	memusage -p /sbin/ldconfig
 %postun memusage -p /sbin/ldconfig
@@ -1307,8 +1344,10 @@ fi
 %endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
+%if %{without cross}
 %attr(755,root,root) /sbin/postshell
 %attr(755,root,root) /sbin/glibc-postinst
+%endif
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
