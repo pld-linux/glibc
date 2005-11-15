@@ -134,6 +134,7 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
+%{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gcc < 5:4.1
 %ifarch ppc ppc64 sparc sparcv9 sparc64
@@ -153,7 +154,6 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-BuildRequires:	dietlibc-static
 AutoReq:	false
 PreReq:		basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
