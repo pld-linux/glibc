@@ -328,7 +328,6 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
-Requires:	%{name}-devel-doc = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
 
