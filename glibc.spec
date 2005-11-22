@@ -304,7 +304,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 %package misc
 Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
-Group:		Development/Libraries
+Group:		Libraries
 AutoReq:	false
 PreReq:		%{name} = %{epoch}:%{version}-%{release}
 
