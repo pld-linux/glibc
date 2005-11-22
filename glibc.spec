@@ -304,7 +304,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 %package misc
 Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
-Group:		Libraries
+Group:		Applications/System
 AutoReq:	false
 PreReq:		%{name} = %{epoch}:%{version}-%{release}
 
@@ -387,7 +387,7 @@ kitaplýklar.
 %package headers
 Summary:	Header files for development using standard C libraries
 Summary(pl):	Pliki nag³ówkowe do tworzenia programów przy u¿yciu standardowych bibliotek C
-Group:		Development/Libraries
+Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
