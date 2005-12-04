@@ -1,7 +1,6 @@
 #
 # Conditional build:
 %bcond_with	omitfp		# build without frame pointer (pass \--enable-omitfp)
-%bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
@@ -14,11 +13,7 @@
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   debug/backtrace-tst(SEGV)  fail on alpha
 
-%ifarch sparc64
-%undefine	with_memusage
-%endif
-
-%define		llh_version	7:2.6.10.0-3
+%define		llh_version	7:2.6.12.0-10
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -31,14 +26,14 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.90
-%define		_snap	20050709T1351UTC
+%define		_snap	20051204T1150UTC
 Release:	0.%{_snap}.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	libc-%{version}_%{_snap}.tar.bz2
-# Source0-md5:	b9946a2f137316b8301eb1af2ea3e8cb
+# Source0-md5:	4479ab933a49c9f1e68f1bc9bc949a3e
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
@@ -84,7 +79,6 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.4
-%{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
@@ -645,23 +639,6 @@ datos NIS+.
 %description -n nss_nisplus -l pl
 Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS+.
 
-%package memusage
-Summary:	A toy
-Summary(es):	Un juguete
-Summary(pl):	Zabawka
-Group:		Applications
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gd
-
-%description memusage
-A toy.
-
-%description memusage -l es
-Un juguete.
-
-%description memusage -l pl
-Zabawka.
-
 %package zoneinfo_right
 Summary:	Non-POSIX (real) time zones
 Summary(es):	Zonas de tiempo reales (no de POSIX)
@@ -738,7 +715,7 @@ Bibliotecas estáticas GNU libc de 64 bits.
 Statyczne 64-bitowe biblioteki GNU libc.
 
 %prep
-%setup -q -n libc-%{version}_%{_snap}
+%setup -q -n libc
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -755,14 +732,14 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch14 -p0
 
 %patch17 -p1
-%patch18 -p1
+#patch18 -p1	NEEDS CHECK
 %patch19 -p1
 %patch20 -p1
-%patch21 -p1
-%patch22 -p1
-%patch23 -p1
-%patch24 -p1
-%patch25 -p1
+#patch21 -p1	NEEDS CHECK
+#patch22 -p1	NEEDS CHECK
+#patch23 -p1	NEEDS CHECK
+#patch24 -p1	NEEDS CHECK
+#patch25 -p1	NEEDS CHECK
 %patch26 -p1
 %{?with_cross:%patch27 -p1}
 
@@ -783,7 +760,6 @@ rm -rf builddir && install -d builddir && cd builddir
 CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 ../%configure \
-	libc_cv_as_needed=no \
 	--enable-kernel="2.6.0" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with-headers=%{_includedir} \
@@ -791,6 +767,7 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 	--with-tls \
         --enable-add-ons=nptl \
 	--enable-stackguard-randomization \
+	--enable-hidden-plt \
 	--enable-profile
 
 %{__make}
@@ -843,7 +820,9 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
 
-%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+# a toy
+rm -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so
+
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
@@ -991,9 +970,6 @@ rm -rf $RPM_BUILD_ROOT
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 %endif
 -/bin/mv %{_sysconfdir}/ld.so.conf.rpmsave %{_sysconfdir}/ld.so.conf
-
-%post	memusage -p /sbin/ldconfig
-%postun memusage -p /sbin/ldconfig
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
@@ -1224,13 +1200,6 @@ fi
 %files -n nss_nisplus
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_nisplus*.so*
-
-%if %{with memusage}
-%files memusage
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/memusage*
-%attr(755,root,root) %{_libdir}/libmemusage.so
-%endif
 
 %files devel
 %defattr(644,root,root,755)
