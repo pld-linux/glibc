@@ -1,0 +1,717 @@
+--- libc/localedata/locales/zu_ZA~	Thu Nov 11 23:34:33 2004
++++ libc/localedata/locales/zu_ZA	Fri Nov 12 10:50:47 2004
+@@ -56,10 +56,343 @@
+ END LC_CTYPE
+ 
+ LC_COLLATE
+-% Copy the template from ISO/IEC 14651 i.e.
+-% use the rules there when making ordered lists of words.
+-%
+ copy "iso14651_t1"
++
++%% a b bh c ch d dl e f g gc gq gx h hh hl i j k kh kl l m
++%% n nc ng nq nx ny o p ph q qh r s sh t th ts tsh u v w x
++%% xh y z
++
++collating-symbol  <bh>
++collating-element <B-H> from "<U0042><U0048>"
++collating-element <B-h> from "<U0042><U0068>"
++collating-element <b-H> from "<U0062><U0048>"
++collating-element <b-h> from "<U0062><U0068>"
++
++collating-symbol  <ch>
++collating-element <C-H> from "<U0043><U0048>"
++collating-element <C-h> from "<U0043><U0068>"
++collating-element <c-H> from "<U0063><U0048>"
++collating-element <c-h> from "<U0063><U0068>"
++
++collating-symbol  <dl>
++collating-element <D-L> from "<U0044><U004C>"
++collating-element <D-l> from "<U0044><U006C>"
++collating-element <d-L> from "<U0064><U004C>"
++collating-element <d-l> from "<U0064><U006C>"
++
++collating-symbol  <gc>
++collating-element <G-C> from "<U0047><U0043>"
++collating-element <G-c> from "<U0047><U0063>"
++collating-element <g-C> from "<U0067><U0043>"
++collating-element <g-c> from "<U0067><U0063>"
++
++collating-symbol  <gq>
++collating-element <G-Q> from "<U0047><U0051>"
++collating-element <G-q> from "<U0047><U0071>"
++collating-element <g-Q> from "<U0067><U0051>"
++collating-element <g-q> from "<U0067><U0071>"
++
++collating-symbol  <gx>
++collating-element <G-X> from "<U0047><U0058>"
++collating-element <G-x> from "<U0047><U0078>"
++collating-element <g-X> from "<U0067><U0058>"
++collating-element <g-x> from "<U0067><U0078>"
++
++collating-symbol  <hh>
++collating-element <H-H> from "<U0048><U0048>"
++collating-element <H-h> from "<U0048><U0068>"
++collating-element <h-H> from "<U0068><U0048>"
++collating-element <h-h> from "<U0068><U0068>"
++
++collating-symbol  <hl>
++collating-element <H-L> from "<U0048><U004C>"
++collating-element <H-l> from "<U0048><U006C>"
++collating-element <h-L> from "<U0068><U004C>"
++collating-element <h-l> from "<U0068><U006C>"
++
++collating-symbol  <kh>
++collating-element <K-H> from "<U004B><U0048>"
++collating-element <K-h> from "<U004B><U0068>"
++collating-element <k-H> from "<U006B><U0048>"
++collating-element <k-h> from "<U006B><U0068>"
++
++collating-symbol  <kl>
++collating-element <K-L> from "<U004B><U004C>"
++collating-element <K-l> from "<U004B><U006C>"
++collating-element <k-L> from "<U006B><U004C>"
++collating-element <k-l> from "<U006B><U006C>"
++
++collating-symbol  <nc>
++collating-element <N-C> from "<U004E><U0043>"
++collating-element <N-c> from "<U004E><U0063>"
++collating-element <n-C> from "<U006E><U0043>"
++collating-element <n-c> from "<U006E><U0063>"
++
++collating-symbol  <ng>
++collating-element <N-G> from "<U004E><U0047>"
++collating-element <N-g> from "<U004E><U0067>"
++collating-element <n-G> from "<U006E><U0047>"
++collating-element <n-g> from "<U006E><U0067>"
++
++collating-symbol  <nq>
++collating-element <N-Q> from "<U004E><U0051>"
++collating-element <N-q> from "<U004E><U0071>"
++collating-element <n-Q> from "<U006E><U0051>"
++collating-element <n-q> from "<U006E><U0071>"
++
++collating-symbol  <nx>
++collating-element <N-X> from "<U004E><U0058>"
++collating-element <N-x> from "<U004E><U0078>"
++collating-element <n-X> from "<U006E><U0058>"
++collating-element <n-x> from "<U006E><U0078>"
++
++collating-symbol  <ny>
++collating-element <N-Y> from "<U004E><U0059>"
++collating-element <N-y> from "<U004E><U0079>"
++collating-element <n-Y> from "<U006E><U0059>"
++collating-element <n-y> from "<U006E><U0079>"
++
++collating-symbol  <ph>
++collating-element <P-H> from "<U0050><U0048>"
++collating-element <P-h> from "<U0050><U0068>"
++collating-element <p-H> from "<U0070><U0048>"
++collating-element <p-h> from "<U0070><U0068>"
++
++collating-symbol  <qh>
++collating-element <Q-H> from "<U0051><U0048>"
++collating-element <Q-h> from "<U0051><U0068>"
++collating-element <q-H> from "<U0071><U0048>"
++collating-element <q-h> from "<U0071><U0068>"
++
++collating-symbol  <sh>
++collating-element <S-H> from "<U0053><U0048>"
++collating-element <S-h> from "<U0053><U0068>"
++collating-element <s-H> from "<U0073><U0048>"
++collating-element <s-h> from "<U0073><U0068>"
++
++% symbol <th> is already used in iso14651_t1 
++collating-symbol  <th0>
++collating-element <T-H> from "<U0054><U0048>"
++collating-element <T-h> from "<U0054><U0068>"
++collating-element <t-H> from "<U0074><U0048>"
++collating-element <t-h> from "<U0074><U0068>"
++
++collating-symbol  <ts>
++collating-element <T-S> from "<U0054><U0053>"
++collating-element <T-s> from "<U0054><U0073>"
++collating-element <t-S> from "<U0074><U0053>"
++collating-element <t-s> from "<U0074><U0073>"
++
++collating-symbol  <tsh>
++collating-element <T-S-H> from "<U0054><U0053><U0048>"
++collating-element <T-S-h> from "<U0054><U0053><U0068>"
++collating-element <T-s-H> from "<U0054><U0073><U0048>"
++collating-element <T-s-h> from "<U0054><U0073><U0068>"
++collating-element <t-S-H> from "<U0074><U0053><U0048>"
++collating-element <t-S-h> from "<U0074><U0053><U0068>"
++collating-element <t-s-H> from "<U0074><U0073><U0048>"
++collating-element <t-s-h> from "<U0074><U0073><U0068>"
++
++collating-symbol  <xh>
++collating-element <X-H> from "<U0058><U0048>"
++collating-element <X-h> from "<U0058><U0068>"
++collating-element <x-H> from "<U0078><U0048>"
++collating-element <x-h> from "<U0078><U0068>"
++
++collating-symbol <CAP-CAP>
++collating-symbol <CAP-MIN>
++collating-symbol <MIN-CAP>
++collating-symbol <MIN-MIN>
++collating-symbol <CAP-CAP-CAP>
++collating-symbol <CAP-CAP-MIN>
++collating-symbol <CAP-MIN-CAP>
++collating-symbol <CAP-MIN-MIN>
++collating-symbol <MIN-CAP-CAP>
++collating-symbol <MIN-CAP-MIN>
++collating-symbol <MIN-MIN-CAP>
++collating-symbol <MIN-MIN-MIN>
++
++reorder-after <MIN>
++<MIN-MIN>
++<MIN-CAP>
++<MIN-MIN-MIN>
++<MIN-MIN-CAP>
++<MIN-CAP-MIN>
++<MIN-CAP-CAP>
++
++reorder-after <CAP>
++<CAP-MIN>
++<CAP-CAP>
++<CAP-MIN-MIN>
++<CAP-MIN-CAP>
++<CAP-CAP-MIN>
++<CAP-CAP-CAP>
++
++reorder-after <b>
++<bh>
++reorder-after <c>
++<ch>
++reorder-after <d>
++<dl>
++reorder-after <g>
++<gc>
++<gq>
++<gx>
++reorder-after <h>
++<hh>
++<hl>
++reorder-after <k>
++<kh>
++<kl>
++reorder-after <n>
++<nc>
++<ng>
++<nq>
++<nx>
++<ny>
++reorder-after <p>
++<ph>
++reorder-after <q>
++<qh>
++reorder-after <s>
++<sh>
++reorder-after <t>
++<th0>
++<ts>
++<tsh>
++reorder-after <x>
++<xh>
++
++reorder-after <U0042>
++<B-h>		<bh>;<BAS>;<CAP-MIN>;IGNORE
++<B-H>		<bh>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0062>
++<b-h>		<bh>;<BAS>;<MIN-MIN>;IGNORE
++<b-H>		<bh>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0043>
++<C-h>		<ch>;<BAS>;<CAP-MIN>;IGNORE
++<C-H>		<ch>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0063>
++<c-h>		<ch>;<BAS>;<MIN-MIN>;IGNORE
++<c-H>		<ch>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0044>
++<D-l>		<dl>;<BAS>;<CAP-MIN>;IGNORE
++<D-L>		<dl>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0064>
++<d-l>		<dl>;<BAS>;<MIN-MIN>;IGNORE
++<d-L>		<dl>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0047>
++<G-c>		<gc>;<BAS>;<CAP-MIN>;IGNORE
++<G-C>		<gc>;<BAS>;<CAP-CAP>;IGNORE
++<G-q>		<gq>;<BAS>;<CAP-MIN>;IGNORE
++<G-Q>		<gq>;<BAS>;<CAP-CAP>;IGNORE
++<G-x>		<gx>;<BAS>;<CAP-MIN>;IGNORE
++<G-X>		<gx>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0067>
++<g-c>		<gc>;<BAS>;<MIN-MIN>;IGNORE
++<g-C>		<gc>;<BAS>;<MIN-CAP>;IGNORE
++<g-q>		<gq>;<BAS>;<MIN-MIN>;IGNORE
++<g-Q>		<gq>;<BAS>;<MIN-CAP>;IGNORE
++<g-x>		<gx>;<BAS>;<MIN-MIN>;IGNORE
++<g-X>		<gx>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0048>
++<H-h>		<hh>;<BAS>;<CAP-MIN>;IGNORE
++<H-H>		<hh>;<BAS>;<CAP-CAP>;IGNORE
++<H-l>		<hl>;<BAS>;<CAP-MIN>;IGNORE
++<H-L>		<hl>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0068>
++<h-h>		<hh>;<BAS>;<MIN-MIN>;IGNORE
++<h-H>		<hh>;<BAS>;<MIN-CAP>;IGNORE
++<h-l>		<hl>;<BAS>;<MIN-MIN>;IGNORE
++<h-L>		<hl>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U004B>
++<K-h>		<kh>;<BAS>;<CAP-MIN>;IGNORE
++<K-H>		<kh>;<BAS>;<CAP-CAP>;IGNORE
++<K-l>		<kl>;<BAS>;<CAP-MIN>;IGNORE
++<K-L>		<kl>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U006B>
++<k-h>		<kh>;<BAS>;<MIN-MIN>;IGNORE
++<k-H>		<kh>;<BAS>;<MIN-CAP>;IGNORE
++<k-l>		<kl>;<BAS>;<MIN-MIN>;IGNORE
++<k-L>		<kl>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U004E>
++<N-c>		<nc>;<BAS>;<CAP-MIN>;IGNORE
++<N-C>		<nc>;<BAS>;<CAP-CAP>;IGNORE
++<N-g>		<ng>;<BAS>;<CAP-MIN>;IGNORE
++<N-G>		<ng>;<BAS>;<CAP-CAP>;IGNORE
++<N-q>		<nq>;<BAS>;<CAP-MIN>;IGNORE
++<N-Q>		<nq>;<BAS>;<CAP-CAP>;IGNORE
++<N-x>		<nx>;<BAS>;<CAP-MIN>;IGNORE
++<N-X>		<nx>;<BAS>;<CAP-CAP>;IGNORE
++<N-y>		<ny>;<BAS>;<CAP-MIN>;IGNORE
++<N-Y>		<ny>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U006E>
++<n-c>		<nc>;<BAS>;<MIN-MIN>;IGNORE
++<n-C>		<nc>;<BAS>;<MIN-CAP>;IGNORE
++<n-g>		<ng>;<BAS>;<MIN-MIN>;IGNORE
++<n-G>		<ng>;<BAS>;<MIN-CAP>;IGNORE
++<n-q>		<nq>;<BAS>;<MIN-MIN>;IGNORE
++<n-Q>		<nq>;<BAS>;<MIN-CAP>;IGNORE
++<n-x>		<nx>;<BAS>;<MIN-MIN>;IGNORE
++<n-X>		<nx>;<BAS>;<MIN-CAP>;IGNORE
++<n-y>		<ny>;<BAS>;<MIN-MIN>;IGNORE
++<n-Y>		<ny>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0050>
++<P-h>		<ph>;<BAS>;<CAP-MIN>;IGNORE
++<P-H>		<ph>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0070>
++<p-h>		<ph>;<BAS>;<MIN-MIN>;IGNORE
++<p-H>		<ph>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0051>
++<Q-h>		<qh>;<BAS>;<CAP-MIN>;IGNORE
++<Q-H>		<qh>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0071>
++<q-h>		<qh>;<BAS>;<MIN-MIN>;IGNORE
++<q-H>		<qh>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0053>
++<S-h>		<sh>;<BAS>;<CAP-MIN>;IGNORE
++<S-H>		<sh>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0073>
++<s-h>		<sh>;<BAS>;<MIN-MIN>;IGNORE
++<s-H>		<sh>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0054>
++<T-h>		<th0>;<BAS>;<CAP-MIN>;IGNORE
++<T-H>		<th0>;<BAS>;<CAP-CAP>;IGNORE
++<T-s>		<ts>;<BAS>;<CAP-MIN>;IGNORE
++<T-S>		<ts>;<BAS>;<CAP-CAP>;IGNORE
++<T-s-h>		<tsh>;<BAS>;<CAP-MIN-MIN>;IGNORE
++<T-s-H>		<tsh>;<BAS>;<CAP-MIN-CAP>;IGNORE
++<T-S-h>		<tsh>;<BAS>;<CAP-CAP-MIN>;IGNORE
++<T-S-H>		<tsh>;<BAS>;<CAP-CAP-CAP>;IGNORE
++reorder-after <U0074>
++<t-h>		<th0>;<BAS>;<MIN-MIN>;IGNORE
++<t-H>		<th0>;<BAS>;<MIN-CAP>;IGNORE
++<t-s>		<ts>;<BAS>;<MIN-MIN>;IGNORE
++<t-S>		<ts>;<BAS>;<MIN-CAP>;IGNORE
++<t-s-h>		<tsh>;<BAS>;<MIN-MIN-MIN>;IGNORE
++<t-s-H>		<tsh>;<BAS>;<MIN-MIN-CAP>;IGNORE
++<t-S-h>		<tsh>;<BAS>;<MIN-CAP-MIN>;IGNORE
++<t-S-H>		<tsh>;<BAS>;<MIN-CAP-CAP>;IGNORE
++
++reorder-after <U0058>
++<X-h>		<xh>;<BAS>;<CAP-MIN>;IGNORE
++<X-H>		<xh>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0078>
++<x-h>		<xh>;<BAS>;<MIN-MIN>;IGNORE
++<x-H>		<xh>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-end
++
+ END LC_COLLATE
+ 
+ LC_MONETARY
+--- libc/localedata/locales/tn_ZA~	2004-11-12 20:51:05.000000000 +0100
++++ libc/localedata/locales/tn_ZA	2004-11-12 20:51:05.000000000 +0100
+@@ -52,8 +52,38 @@
+ 
+ LC_COLLATE
+ % Copy the template from ISO/IEC 14651 i.e.
+-% use the rules there when making ordered lists of words.
+ copy "iso14651_t1"
++
++% a b c d e e^ f g h i j k l m n o o^ p q r s s> t u v w x y z
++
++collating-symbol <e^>
++collating-symbol <o^>
++collating-symbol <s/>>
++
++reorder-after <e>
++<e^>
++reorder-after <o>
++<o^>
++reorder-after <s>
++<s/>>
++
++reorder-after <U0065>
++<U00EA> <e^>;<BAS>;<MIN>;IGNORE
++reorder-after <U0045>
++<U00CA> <e^>;<BAS>;<CAP>;IGNORE
++
++reorder-after <U006F>
++<U00F4> <o^>;<BAS>;<MIN>;IGNORE
++reorder-after <U004F>
++<U00D4> <o^>;<BAS>;<CAP>;IGNORE
++
++reorder-after <U0073>
++<U0161> <s/>>;<BAS>;<MIN>;IGNORE
++reorder-after <U0053>
++<U0160> <s/>>;<BAS>;<CAP>;IGNORE
++
++reorder-end
++
+ END LC_COLLATE
+ 
+ LC_MONETARY
+--- libc/localedata/locales/ve_ZA~	2004-11-12 20:26:49.000000000 +0100
++++ libc/localedata/locales/ve_ZA	2004-11-12 20:44:23.000000000 +0100
+@@ -54,8 +54,54 @@
+ 
+ LC_COLLATE
+ % Copy the template from ISO/IEC 14651 i.e.
+-% use the rules there when making ordered lists of words.
+ copy "iso14651_t1"
++
++% a b c d^ d e f g h i j k l^ l m n^ n n. o p q r s t^ t u v w x y z
++
++collating-symbol <d^>
++collating-symbol <l^>
++collating-symbol <n^>
++collating-symbol <n.>
++collating-symbol <t^>
++
++reorder-after <c>
++<d^>
++reorder-after <k>
++<l^>
++reorder-after <m>
++<n^>
++reorder-after <n>
++<n.>
++reorder-after <s>
++<t^>
++
++reorder-after <U0063>
++<U1E13> <d^>;<BAS>;<MIN>;IGNORE
++reorder-after <U0043>
++<U1E12> <d^>;<BAS>;<CAP>;IGNORE
++
++reorder-after <U006B>
++<U1E3D> <l^>;<BAS>;<MIN>;IGNORE
++reorder-after <U004B>
++<U1E3C> <l^>;<BAS>;<CAP>;IGNORE
++
++reorder-after <U006D>
++<U1E4B> <n^>;<BAS>;<MIN>;IGNORE
++reorder-after <U004D>
++<U1E4A> <n^>;<BAS>;<CAP>;IGNORE
++
++reorder-after <U006E>
++<U1E45> <n.>;<BAS>;<MIN>;IGNORE
++reorder-after <U004E>
++<U1E44> <n.>;<BAS>;<CAP>;IGNORE
++
++reorder-after <U0073>
++<U1E71> <t^>;<BAS>;<MIN>;IGNORE
++reorder-after <U0053>
++<U1E70> <t^>;<BAS>;<CAP>;IGNORE
++
++reorder-end
++
+ END LC_COLLATE
+ 
+ LC_MONETARY
+--- libc/localedata/locales/xh_ZA.orig	Fri Nov 12 19:26:47 2004
++++ libc/localedata/locales/xh_ZA	Fri Nov 12 19:26:47 2004
+@@ -52,9 +52,263 @@
+ END LC_CTYPE
+ 
+ LC_COLLATE
+-% Copy the template from ISO/IEC 14651 i.e.
+-% use the rules there when making ordered lists of words.
+ copy "iso14651_t1"
++
++%% a b c ch d dl e f g gc gq h hl i j k kh l m n o p ph q qh
++%% r rh s t th ts tsh ty u v w x xh xq y z
++
++collating-symbol  <ch>
++collating-element <C-H> from "<U0043><U0048>"
++collating-element <C-h> from "<U0043><U0068>"
++collating-element <c-H> from "<U0063><U0048>"
++collating-element <c-h> from "<U0063><U0068>"
++
++collating-symbol  <dl>
++collating-element <D-L> from "<U0044><U004C>"
++collating-element <D-l> from "<U0044><U006C>"
++collating-element <d-L> from "<U0064><U004C>"
++collating-element <d-l> from "<U0064><U006C>"
++
++collating-symbol  <gc>
++collating-element <G-C> from "<U0047><U0043>"
++collating-element <G-c> from "<U0047><U0063>"
++collating-element <g-C> from "<U0067><U0043>"
++collating-element <g-c> from "<U0067><U0063>"
++
++collating-symbol  <gq>
++collating-element <G-Q> from "<U0047><U0051>"
++collating-element <G-q> from "<U0047><U0071>"
++collating-element <g-Q> from "<U0067><U0051>"
++collating-element <g-q> from "<U0067><U0071>"
++
++collating-symbol  <hl>
++collating-element <H-L> from "<U0048><U004C>"
++collating-element <H-l> from "<U0048><U006C>"
++collating-element <h-L> from "<U0068><U004C>"
++collating-element <h-l> from "<U0068><U006C>"
++
++collating-symbol  <kh>
++collating-element <K-H> from "<U004B><U0048>"
++collating-element <K-h> from "<U004B><U0068>"
++collating-element <k-H> from "<U006B><U0048>"
++collating-element <k-h> from "<U006B><U0068>"
++
++collating-symbol  <kl>
++collating-element <K-L> from "<U004B><U004C>"
++collating-element <K-l> from "<U004B><U006C>"
++collating-element <k-L> from "<U006B><U004C>"
++collating-element <k-l> from "<U006B><U006C>"
++
++collating-symbol  <ph>
++collating-element <P-H> from "<U0050><U0048>"
++collating-element <P-h> from "<U0050><U0068>"
++collating-element <p-H> from "<U0070><U0048>"
++collating-element <p-h> from "<U0070><U0068>"
++
++collating-symbol  <qh>
++collating-element <Q-H> from "<U0051><U0048>"
++collating-element <Q-h> from "<U0051><U0068>"
++collating-element <q-H> from "<U0071><U0048>"
++collating-element <q-h> from "<U0071><U0068>"
++
++collating-symbol  <rh>
++collating-element <R-H> from "<U0052><U0048>"
++collating-element <R-h> from "<U0052><U0068>"
++collating-element <r-H> from "<U0072><U0048>"
++collating-element <r-h> from "<U0072><U0068>"
++
++% symbol <th> is already used in iso14651_t1 
++collating-symbol  <th0>
++collating-element <T-H> from "<U0054><U0048>"
++collating-element <T-h> from "<U0054><U0068>"
++collating-element <t-H> from "<U0074><U0048>"
++collating-element <t-h> from "<U0074><U0068>"
++
++collating-symbol  <ts>
++collating-element <T-S> from "<U0054><U0053>"
++collating-element <T-s> from "<U0054><U0073>"
++collating-element <t-S> from "<U0074><U0053>"
++collating-element <t-s> from "<U0074><U0073>"
++
++collating-symbol  <tsh>
++collating-element <T-S-H> from "<U0054><U0053><U0048>"
++collating-element <T-S-h> from "<U0054><U0053><U0068>"
++collating-element <T-s-H> from "<U0054><U0073><U0048>"
++collating-element <T-s-h> from "<U0054><U0073><U0068>"
++collating-element <t-S-H> from "<U0074><U0053><U0048>"
++collating-element <t-S-h> from "<U0074><U0053><U0068>"
++collating-element <t-s-H> from "<U0074><U0073><U0048>"
++collating-element <t-s-h> from "<U0074><U0073><U0068>"
++
++collating-symbol  <ty>
++collating-element <T-Y> from "<U0054><U0059>"
++collating-element <T-y> from "<U0054><U0079>"
++collating-element <t-Y> from "<U0074><U0059>"
++collating-element <t-y> from "<U0074><U0079>"
++
++collating-symbol  <xh>
++collating-element <X-H> from "<U0058><U0048>"
++collating-element <X-h> from "<U0058><U0068>"
++collating-element <x-H> from "<U0078><U0048>"
++collating-element <x-h> from "<U0078><U0068>"
++
++collating-symbol  <xq>
++collating-element <X-Q> from "<U0058><U0051>"
++collating-element <X-q> from "<U0058><U0071>"
++collating-element <x-Q> from "<U0078><U0051>"
++collating-element <x-q> from "<U0078><U0071>"
++
++collating-symbol <CAP-CAP>
++collating-symbol <CAP-MIN>
++collating-symbol <MIN-CAP>
++collating-symbol <MIN-MIN>
++collating-symbol <CAP-CAP-CAP>
++collating-symbol <CAP-CAP-MIN>
++collating-symbol <CAP-MIN-CAP>
++collating-symbol <CAP-MIN-MIN>
++collating-symbol <MIN-CAP-CAP>
++collating-symbol <MIN-CAP-MIN>
++collating-symbol <MIN-MIN-CAP>
++collating-symbol <MIN-MIN-MIN>
++
++reorder-after <MIN>
++<MIN-MIN>
++<MIN-CAP>
++<MIN-MIN-MIN>
++<MIN-MIN-CAP>
++<MIN-CAP-MIN>
++<MIN-CAP-CAP>
++
++reorder-after <CAP>
++<CAP-MIN>
++<CAP-CAP>
++<CAP-MIN-MIN>
++<CAP-MIN-CAP>
++<CAP-CAP-MIN>
++<CAP-CAP-CAP>
++
++reorder-after <c>
++<ch>
++reorder-after <d>
++<dl>
++reorder-after <g>
++<gc>
++<gq>
++reorder-after <h>
++<hl>
++reorder-after <k>
++<kh>
++reorder-after <p>
++<ph>
++reorder-after <q>
++<qh>
++reorder-after <r>
++<rh>
++reorder-after <t>
++<th0>
++<ts>
++<tsh>
++<ty>
++reorder-after <x>
++<xh>
++<xq>
++
++reorder-after <U0043>
++<C-h>		<ch>;<BAS>;<CAP-MIN>;IGNORE
++<C-H>		<ch>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0063>
++<c-h>		<ch>;<BAS>;<MIN-MIN>;IGNORE
++<c-H>		<ch>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0044>
++<D-l>		<dl>;<BAS>;<CAP-MIN>;IGNORE
++<D-L>		<dl>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0064>
++<d-l>		<dl>;<BAS>;<MIN-MIN>;IGNORE
++<d-L>		<dl>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0047>
++<G-c>		<gc>;<BAS>;<CAP-MIN>;IGNORE
++<G-C>		<gc>;<BAS>;<CAP-CAP>;IGNORE
++<G-q>		<gq>;<BAS>;<CAP-MIN>;IGNORE
++<G-Q>		<gq>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0067>
++<g-c>		<gc>;<BAS>;<MIN-MIN>;IGNORE
++<g-C>		<gc>;<BAS>;<MIN-CAP>;IGNORE
++<g-q>		<gq>;<BAS>;<MIN-MIN>;IGNORE
++<g-Q>		<gq>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0048>
++<H-l>		<hl>;<BAS>;<CAP-MIN>;IGNORE
++<H-L>		<hl>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0068>
++<h-l>		<hl>;<BAS>;<MIN-MIN>;IGNORE
++<h-L>		<hl>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U004B>
++<K-h>		<kh>;<BAS>;<CAP-MIN>;IGNORE
++<K-H>		<kh>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U006B>
++<k-h>		<kh>;<BAS>;<MIN-MIN>;IGNORE
++<k-H>		<kh>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0050>
++<P-h>		<ph>;<BAS>;<CAP-MIN>;IGNORE
++<P-H>		<ph>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0070>
++<p-h>		<ph>;<BAS>;<MIN-MIN>;IGNORE
++<p-H>		<ph>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0051>
++<Q-h>		<qh>;<BAS>;<CAP-MIN>;IGNORE
++<Q-H>		<qh>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0071>
++<q-h>		<qh>;<BAS>;<MIN-MIN>;IGNORE
++<q-H>		<qh>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0052>
++<R-h>		<rh>;<BAS>;<CAP-MIN>;IGNORE
++<R-H>		<rh>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0072>
++<r-h>		<rh>;<BAS>;<MIN-MIN>;IGNORE
++<r-H>		<rh>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0054>
++<T-h>		<th0>;<BAS>;<CAP-MIN>;IGNORE
++<T-H>		<th0>;<BAS>;<CAP-CAP>;IGNORE
++<T-s>		<ts>;<BAS>;<CAP-MIN>;IGNORE
++<T-S>		<ts>;<BAS>;<CAP-CAP>;IGNORE
++<T-s-h>		<tsh>;<BAS>;<CAP-MIN-MIN>;IGNORE
++<T-s-H>		<tsh>;<BAS>;<CAP-MIN-CAP>;IGNORE
++<T-S-h>		<tsh>;<BAS>;<CAP-CAP-MIN>;IGNORE
++<T-S-H>		<tsh>;<BAS>;<CAP-CAP-CAP>;IGNORE
++<T-y>		<ty>;<BAS>;<CAP-MIN>;IGNORE
++<T-Y>		<ty>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0074>
++<t-h>		<th0>;<BAS>;<MIN-MIN>;IGNORE
++<t-H>		<th0>;<BAS>;<MIN-CAP>;IGNORE
++<t-s>		<ts>;<BAS>;<MIN-MIN>;IGNORE
++<t-S>		<ts>;<BAS>;<MIN-CAP>;IGNORE
++<t-s-h>		<tsh>;<BAS>;<MIN-MIN-MIN>;IGNORE
++<t-s-H>		<tsh>;<BAS>;<MIN-MIN-CAP>;IGNORE
++<t-S-h>		<tsh>;<BAS>;<MIN-CAP-MIN>;IGNORE
++<t-S-H>		<tsh>;<BAS>;<MIN-CAP-CAP>;IGNORE
++<t-y>		<ty>;<BAS>;<MIN-MIN>;IGNORE
++<t-Y>		<ty>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-after <U0058>
++<X-h>		<xh>;<BAS>;<CAP-MIN>;IGNORE
++<X-H>		<xh>;<BAS>;<CAP-CAP>;IGNORE
++<X-q>		<xq>;<BAS>;<CAP-MIN>;IGNORE
++<X-Q>		<xq>;<BAS>;<CAP-CAP>;IGNORE
++reorder-after <U0078>
++<x-h>		<xh>;<BAS>;<MIN-MIN>;IGNORE
++<x-H>		<xh>;<BAS>;<MIN-CAP>;IGNORE
++<x-q>		<xq>;<BAS>;<MIN-MIN>;IGNORE
++<x-Q>		<xq>;<BAS>;<MIN-CAP>;IGNORE
++
++reorder-end
++
+ END LC_COLLATE
+ 
+ LC_MONETARY
