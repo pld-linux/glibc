@@ -40,3 +40,15 @@ diff -ur glibc-2.3.6/include/rpc/netdb.h glibc-2.3.6-no-nss_hidden/include/rpc/n
  
  #define DECLARE_NSS_PROTOTYPES(service)					      \
  extern enum nss_status _nss_ ## service ## _setrpcent (int);		      \
+diff -ur glibc-2.3.6/nss/nss_files/files-netgrp.c glibc-2.3.6-no-nss_hidden/nss/nss_files/files-netgrp.c
+--- glibc-2.3.6/nss/nss_files/files-netgrp.c	2004-10-24 11:05:12.000000000 +0200
++++ glibc-2.3.6-no-nss_hidden/nss/nss_files/files-netgrp.c	2005-12-05 19:59:34.097954784 +0100
+@@ -274,7 +274,7 @@
+ 
+   return status;
+ }
+-libnss_files_hidden_def (_nss_netgroup_parseline)
++/*libnss_files_hidden_def (_nss_netgroup_parseline)*/
+ 
+ 
+ enum nss_status
