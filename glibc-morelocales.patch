@@ -166,8 +166,8 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
 +ku_TR/UTF-8 \
  kw_GB.UTF-8/UTF-8 \
  kw_GB/ISO-8859-1 \
-+ky_KG.UTF-8/UTF-8 \
-+ky_KG/KOI8-K \
++ky_KG.KOI8-K/KOI8-K \
++ky_KG/UTF-8 \
  lg_UG.UTF-8/UTF-8 \
  lg_UG/ISO-8859-10 \
 +li_BE.UTF-8/UTF-8 \
@@ -230,8 +230,8 @@ diff -uNr libc.old/localedata/SUPPORTED libc/localedata/SUPPORTED
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
-+rw_RW.UTF-8/UTF-8 \
-+rw_RW/ISO-8859-1 \
++rw_RW.ISO-8859-1/ISO-8859-1 \
++rw_RW/UTF-8 \
 +sa_IN/UTF-8 \
 +sc_IT.UTF-8/UTF-8 \
 +sc_IT/ISO-8859-1 \
