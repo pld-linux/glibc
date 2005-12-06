@@ -69,9 +69,8 @@ Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_ZA.patch
 Patch23:	%{name}-locale_fixes.patch
 Patch24:	%{name}-ZA_collate.patch
-Patch25:	%{name}-large_collate_tables.patch
-Patch26:	%{name}-iconvconfig-nxstack.patch
-Patch27:	%{name}-cross-gcc_eh.patch
+Patch25:	%{name}-iconvconfig-nxstack.patch
+Patch26:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -739,9 +738,8 @@ Statyczne 64-bitowe biblioteki GNU libc.
 #patch22 -p1	NEEDS CHECK
 #patch23 -p1	NEEDS CHECK
 #patch24 -p1	NEEDS CHECK
-#patch25 -p1	NEEDS CHECK
-%patch26 -p1
-%{?with_cross:%patch27 -p1}
+%patch25 -p1
+%{?with_cross:%patch25 -p1}
 
 chmod +x scripts/cpp
 
