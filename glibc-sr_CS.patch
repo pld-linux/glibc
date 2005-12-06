@@ -182,13 +182,13 @@
 +END LC_MEASUREMENT
 --- libc/localedata/SUPPORTED.orig	2004-05-17 20:51:41.000000000 +0200
 +++ libc/localedata/SUPPORTED	2004-05-22 12:20:58.950224432 +0200
-@@ -275,7 +275,9 @@
+@@ -302,7 +302,9 @@
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
  sr_CS.UTF-8/UTF-8 \
 +sr_CS.UTF-8@Latn/UTF-8 \
  sr_CS/ISO-8859-5 \
 +sr_CS@Latn/ISO-8859-2 \
+ ss_ZA/UTF-8 \
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
- sv_FI.UTF-8/UTF-8 \
