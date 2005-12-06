@@ -155,7 +155,7 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 AutoReq:	false
-PreReq:		basesystem
+Requires:	basesystem
 Requires:	glibc-misc = %{epoch}:%{version}-%{release}
 %{?with_tls:Provides:	glibc(tls)}
 Provides:	ldconfig
@@ -306,7 +306,7 @@ Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
 Group:		Applications/System
 AutoReq:	false
-PreReq:		%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description misc
 Utilities and data used by glibc.
@@ -471,8 +471,8 @@ will use the standard C libraries.
 Pakiet glibc-devel-utils zawiera narzêdzia niezbêdne do rozwijania
 programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
 prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
-standardowych bibliotek C, system wymaga dostêpno¶ci tych
-narzêdzi do tworzenia programów wykonywalnych.
+standardowych bibliotek C, system wymaga dostêpno¶ci tych narzêdzi do
+tworzenia programów wykonywalnych.
 
 Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
 korzystaj±ce ze standardowych bibliotek C.
@@ -527,7 +527,7 @@ Summary(pl):	Demon zapamiêtuj±cy odpowiedzi serwisów nazw
 Summary(ru):	ëÜÛÉÒÕÀÝÉÊ ÄÅÍÏÎ ÓÅÒ×ÉÓÏ× ÉÍÅÎ
 Summary(uk):	ëÅÛÕÀÞÉÊ ÄÅÍÏÎ ÓÅ×¦Ó¦× ¦ÍÅÎ
 Group:		Networking/Daemons
-PreReq:		rc-scripts >= 0.2.0
+Requires:	rc-scripts >= 0.2.0
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
@@ -888,7 +888,7 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
-PreReq:		basesystem
+Requires:	basesystem
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Provides:	glibc = %{epoch}:%{version}-%{release}
 %{?with_tls:Provides:	glibc(tls)}
