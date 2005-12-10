@@ -1,39 +1,29 @@
-diff -urN glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c glibc-2.3.5/sysdeps/unix/sysv/linux/dl-execstack.c
---- glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c	2005-09-23 13:07:35.000000000 +0200
-+++ glibc-2.3.5/sysdeps/unix/sysv/linux/dl-execstack.c	2005-09-23 13:31:45.000000000 +0200
-@@ -60,7 +60,10 @@
+diff -urN glibc-2.3.6.orig/sysdeps/unix/sysv/linux/dl-execstack.c glibc-2.3.6/sysdeps/unix/sysv/linux/dl-execstack.c
+--- glibc-2.3.6.orig/sysdeps/unix/sysv/linux/dl-execstack.c	2005-07-18 06:11:19.000000000 +0200
++++ glibc-2.3.6/sysdeps/unix/sysv/linux/dl-execstack.c	2005-12-10 10:14:37.000000000 +0100
+@@ -62,6 +62,7 @@
  	no_growsupdown = true;
        else
  # endif
--	return errno;
-+	if (errno == EACCES) /* PaX */
-+	    return 0;
-+	else
-+	    return errno;
-     }
- #endif
- 
-@@ -86,7 +89,10 @@
++      if (errno != EACCES)	/* PaX */
  	{
- 	  /* Unexpected failure mode.  */
- 	  if (errno != ENOMEM && errno != EFAULT)
--	    return errno;
-+	    if (errno == EACCES) /* PaX */
-+		return 0;
-+	    else
-+	    	return errno;
- 
- 	  if (size == GLRO(dl_pagesize))
- 	    /* We just tried to mprotect the top hole page and failed.
-@@ -110,7 +116,10 @@
+ 	  result = errno;
+ 	  goto out;
+@@ -89,7 +90,7 @@
+ 	page -= size;
+       else
  	{
- 	  /* Unexpected failure mode.  */
- 	  if (errno != ENOMEM && errno != EFAULT)
--	    return errno;
-+	    if (errno == EACCES) /* PaX */
-+		return 0;
-+	    else
-+	    	return errno;
- 
- 	  if (size == GLRO(dl_pagesize))
- 	    /* We just tried to mprotect the lowest hole page and failed.
+-	  if (errno != ENOMEM)	/* Unexpected failure mode.  */
++	  if (errno != ENOMEM && errno != EACCES)	/* Unexpected failure mode.  */	/* PaX */
+ 	    {
+ 	      result = errno;
+ 	      goto out;
+@@ -115,7 +116,7 @@
+ 	page += size;
+       else
+ 	{
+-	  if (errno != ENOMEM)	/* Unexpected failure mode.  */
++	  if (errno != ENOMEM && errno != EACCES)	/* Unexpected failure mode.  */	/* PaX */
+ 	    {
+ 	      result = errno;
+ 	      goto out;
