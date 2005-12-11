@@ -1687,6 +1687,15 @@ diff -uNr libc.orig/localedata/locales/eu_ES libc/localedata/locales/eu_ES
 diff -uNr libc.orig/localedata/locales/fi_FI libc/localedata/locales/fi_FI
 --- libc.orig/localedata/locales/fi_FI	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/fi_FI	2004-11-10 02:36:38.000000000 +0100
+@@ -2188,7 +2188,7 @@
+ t_fmt    "<U0025><U0054>"
+ am_pm    "";""
+ t_fmt_ampm  ""
+-date_fmt       "<U0025><U0061><U0020><U0025><U002D><U0064><U002E><U0025>\
++date_fmt       "<U0025><U0061><U0020><U0025><U002D><U0064><U002E><U0025>/
+ <U002D><U006D><U002E><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U007A>"
+ first_weekday 2 % Monday
+ first_workday 2 % Monday
 @@ -2227,7 +2227,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
