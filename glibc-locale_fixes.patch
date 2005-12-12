@@ -2679,6 +2679,21 @@ diff -uNr libc.orig/localedata/locales/ko_KR libc/localedata/locales/ko_KR
 +lang_term   "<U006B><U006F><U0072>"
 +lang_lib    "<U006B><U006F><U0072>"
  END LC_ADDRESS
+diff -uNr libc.old/localedata/locales/ku_TR libc/localedata/locales/ku_TR
+--- libc.old/localedata/locales/ku_TR	2004-07-16 03:07:27.000000000 +0200
++++ libc/localedata/locales/ku_TR	2004-11-22 18:13:27.000000000 +0100
+@@ -160,9 +160,9 @@
+ yesstr	"<U0065><U0072><U00EA>"
+ nostr	"<U006E><U00E2>"
+ % eEdDyY
+-yesexpr	"<U005E><U005B><U0065><U0045><U0064><U0044><U0079><U0059><U005D><U002E><U002A>"
++yesexpr	"<U005E><U005B><U0065><U0045><U0064><U0044><U0079><U0059><U005D>"
+ % nN
+-noexpr	"<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++noexpr	"<U005E><U005B><U006E><U004E><U005D>"
+ END LC_MESSAGES
+ 
+ LC_PAPER
 diff -uNr libc.orig/localedata/locales/kw_GB libc/localedata/locales/kw_GB
 --- libc.orig/localedata/locales/kw_GB	2004-04-29 00:55:01.000000000 +0200
 +++ libc/localedata/locales/kw_GB	2004-11-10 02:36:38.000000000 +0100
@@ -2702,6 +2717,82 @@ diff -uNr libc.orig/localedata/locales/kw_GB libc/localedata/locales/kw_GB
 +lang_ab     "<U006B><U0077>"
 +lang_term   "<U0063><U006F><U0072>"
 +lang_lib    "<U0063><U006F><U0072>"
+ END LC_ADDRESS
+diff -uNr libc.old/localedata/locales/ky_KG libc/localedata/locales/ky_KG
+--- libc.old/localedata/locales/ky_KG	2004-07-16 03:07:27.000000000 +0200
++++ libc/localedata/locales/ky_KG	2004-11-14 01:24:39.000000000 +0100
+@@ -45,7 +45,7 @@
+ % o-=: <U04E8>, <U04E9>
+ % u'=: <U04AE>, <U04AF>
+ 
+-copy "<U0069><U0073><U006F><U0031><U0034><U0036><U0035><U0031><U005F><U0074><U0031>"
++copy "iso14651_t1"
+ 
+ collating-symbol <o-=>
+ collating-symbol <u'=>
+@@ -85,8 +85,8 @@
+ % FIXED AND CHECKED by Timur 2004/10/14
+ yesstr  "<U041E><U043E><U0431><U0430>"
+ nostr   "<U0416><U043E><U043A>"
+-yesexpr "<U005E><U005B><U041E><U043E><U0059><U0079><U005D><U002E><U002A>"
+-noexpr  "<U005E><U005B><U0416><U0436><U004E><U006E><U005D><U002E><U002A>"
++yesexpr "<U005E><U005B><U041E><U043E><U0059><U0079><U005D>"
++noexpr  "<U005E><U005B><U0416><U0436><U004E><U006E><U005D>"
+ END LC_MESSAGES
+ 
+ LC_MONETARY
+@@ -197,7 +197,11 @@
+ <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+ <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
+ <U004E><U0025><U0063><U0025><U004E>"
+-country_ab2 "<U004B><U0059>"
+-country_ab3 "<U004B><U0059><U0052>"
+-%country_num 643
++country_ab2 "<U004B><U0047>"
++country_ab3 "<U004B><U0047><U005A>"
++country_num 417
++country_car "<U004B><U0053>"
++lang_ab     "<U006B><U0079>"
++lang_term   "<U006B><U0069><U0072>"
++lang_lib    "<U006B><U0069><U0072>"
+ END LC_ADDRESS
+diff -uNr libc.old/localedata/locales/ky_KG libc/localedata/locales/ky_KG
+--- libc.old/localedata/locales/ky_KG	2004-07-16 03:07:27.000000000 +0200
++++ libc/localedata/locales/ky_KG	2004-11-14 01:24:39.000000000 +0100
+@@ -45,7 +45,7 @@
+ % o-=: <U04E8>, <U04E9>
+ % u'=: <U04AE>, <U04AF>
+ 
+-copy "<U0069><U0073><U006F><U0031><U0034><U0036><U0035><U0031><U005F><U0074><U0031>"
++copy "iso14651_t1"
+ 
+ collating-symbol <o-=>
+ collating-symbol <u'=>
+@@ -85,8 +85,8 @@
+ % FIXED AND CHECKED by Timur 2004/10/14
+ yesstr  "<U041E><U043E><U0431><U0430>"
+ nostr   "<U0416><U043E><U043A>"
+-yesexpr "<U005E><U005B><U041E><U043E><U0059><U0079><U005D><U002E><U002A>"
+-noexpr  "<U005E><U005B><U0416><U0436><U004E><U006E><U005D><U002E><U002A>"
++yesexpr "<U005E><U005B><U041E><U043E><U0059><U0079><U005D>"
++noexpr  "<U005E><U005B><U0416><U0436><U004E><U006E><U005D>"
+ END LC_MESSAGES
+ 
+ LC_MONETARY
+@@ -197,7 +197,11 @@
+ <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+ <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
+ <U004E><U0025><U0063><U0025><U004E>"
+-country_ab2 "<U004B><U0059>"
+-country_ab3 "<U004B><U0059><U0052>"
+-%country_num 643
++country_ab2 "<U004B><U0047>"
++country_ab3 "<U004B><U0047><U005A>"
++country_num 417
++country_car "<U004B><U0053>"
++lang_ab     "<U006B><U0079>"
++lang_term   "<U006B><U0069><U0072>"
++lang_lib    "<U006B><U0069><U0072>"
  END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/lg_UG libc/localedata/locales/lg_UG
 --- libc.orig/localedata/locales/lg_UG	2004-04-29 00:55:01.000000000 +0200
