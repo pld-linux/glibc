@@ -16,6 +16,7 @@
 %bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
+%bcond_with	boot64		# bootstrap *64 using cross* (sparc64 currently)
 %bcond_with	pax		# apply PaX hack
 #
 # TODO:
@@ -60,6 +61,12 @@
 %ifarch sparc64
 %undefine	with_memusage
 %endif
+%if %{with boot64}
+%define		with_cross	1
+%ifarch sparc64
+%define		__cc	sparc64-pld-linux-gcc
+%endif
+%endif
 
 %if %{with linuxthreads} && %{with nptl}
 %define		with_dual	1
@@ -78,7 +85,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	3
+Release:	2.9
 Epoch:		6
 License:	LGPL
 Group:		Libraries
