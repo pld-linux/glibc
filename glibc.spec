@@ -151,8 +151,8 @@ BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 BuildRequires:	dietlibc-static
 AutoReq:	false
-PreReq:		basesystem
-Requires:	glibc-misc = %{epoch}:%{version}-%{release}
+Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
+Requires:	basesystem
 %{?with_tls:Provides:	glibc(tls)}
 Provides:	ldconfig
 Provides:	/sbin/ldconfig
@@ -302,7 +302,8 @@ Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
 Group:		Development/Libraries
 AutoReq:	false
-PreReq:		%{name} = %{epoch}:%{version}-%{release}
+Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description misc
 Utilities and data used by glibc.
@@ -524,7 +525,6 @@ Summary(pl):	Demon zapamiêtuj±cy odpowiedzi serwisów nazw
 Summary(ru):	ëÜÛÉÒÕÀÝÉÊ ÄÅÍÏÎ ÓÅÒ×ÉÓÏ× ÉÍÅÎ
 Summary(uk):	ëÅÛÕÀÞÉÊ ÄÅÍÏÎ ÓÅ×¦Ó¦× ¦ÍÅÎ
 Group:		Networking/Daemons
-PreReq:		rc-scripts >= 0.2.0
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
@@ -535,6 +535,7 @@ Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{?with_selinux:Requires:	libselinux >= 1.18}
+Requires:	rc-scripts >= 0.2.0
 Provides:	group(nscd)
 Provides:	user(nscd)
 
@@ -885,8 +886,8 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
 Summary(pl):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
-PreReq:		basesystem
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
+Requires:	basesystem
 Provides:	glibc = %{epoch}:%{version}-%{release}
 %{?with_tls:Provides:	glibc(tls)}
 Provides:	ldconfig
