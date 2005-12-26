@@ -63,6 +63,7 @@
 %endif
 %if %{with boot64}
 %define		with_cross	1
+%undefine	with_selinux
 %ifarch sparc64
 %define		__cc	sparc64-pld-linux-gcc
 %endif
