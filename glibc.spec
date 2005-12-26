@@ -88,14 +88,11 @@ Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 #Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
-Source5:	%{name}-man-pages.tar.bz2
-# Source5-md5:	03bee93e9786b3e7dad2570ccb0cbc5c
-#Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-Source6:	%{name}-non-english-man-pages.tar.bz2
-# Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
-Source7:	%{name}-localedb-gen
-Source8:	%{name}-LD-path.c
-Source9:	postshell.c
+Source5:	http://qboosh.cs.net.pl/man/%{name}-man-pages.tar.bz2
+# Source5-md5:	f464eadf3cf06761f65639e44a179e6b
+Source6:	%{name}-localedb-gen
+Source7:	%{name}-LD-path.c
+Source8:	postshell.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -128,6 +125,7 @@ Patch28:	%{name}-cross-gcc_eh.patch
 Patch29:	%{name}-pax_dl-execstack.patch
 Patch30:	%{name}-large_collate_tables.patch
 Patch31:	%{name}-ctype-compat.patch
+Patch32:	%{name}-sparc-mman.h.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -946,6 +944,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %{?with_pax:%patch29 -p1}
 %patch30 -p1
 %patch31 -p1
+%patch32 -p1
 
 chmod +x scripts/cpp
 
@@ -1022,8 +1021,8 @@ done
 
 %if %{without cross}
 # compiling static using diet vs glibc saves 400k
-diet -Os %{__cc} %{SOURCE9} %{rpmcflags} -static -o postshell
-diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o glibc-postinst
+diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
+diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
 %endif
 
 %install
@@ -1151,7 +1150,6 @@ install nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
 echo 'include ld.so.conf.d/*.conf'> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
@@ -1242,7 +1240,7 @@ ln -s zh_CN zh_HK
 cd -
 
 # localedb-gen infrastructure
-install %{SOURCE7} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+install %{SOURCE6} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
@@ -1428,6 +1426,7 @@ fi
 %lang(cs) %{_mandir}/cs/man7/*
 %lang(de) %{_mandir}/de/man5/tzfile.5*
 %lang(de) %{_mandir}/de/man7/*
+%lang(es) %{_mandir}/es/man1/ldd.1*
 %lang(es) %{_mandir}/es/man5/locale.5*
 %lang(es) %{_mandir}/es/man5/nsswitch.conf.5*
 %lang(es) %{_mandir}/es/man5/tzfile.5*
@@ -1466,6 +1465,7 @@ fi
 %lang(ja) %{_mandir}/ja/man8/tzselect.8*
 %lang(ja) %{_mandir}/ja/man8/zdump.8*
 %lang(ja) %{_mandir}/ja/man8/zic.8*
+%lang(ko) %{_mandir}/ko/man1/ldd.1*
 %lang(ko) %{_mandir}/ko/man5/nsswitch.conf.5*
 %lang(ko) %{_mandir}/ko/man5/tzfile.5*
 %lang(ko) %{_mandir}/ko/man7/*
@@ -1483,12 +1483,22 @@ fi
 %lang(pt) %{_mandir}/pt/man8/tzselect.8*
 %lang(pt) %{_mandir}/pt/man8/zdump.8*
 %lang(pt) %{_mandir}/pt/man8/zic.8*
+%lang(ru) %{_mandir}/ru/man1/getent.1*
+%lang(ru) %{_mandir}/ru/man1/iconv.1*
+%lang(ru) %{_mandir}/ru/man1/ldd.1*
+%lang(ru) %{_mandir}/ru/man1/locale.1*
+%lang(ru) %{_mandir}/ru/man1/rpcgen.1*
+%lang(ru) %{_mandir}/ru/man5/locale.5*
 %lang(ru) %{_mandir}/ru/man5/nsswitch.conf.5*
 %lang(ru) %{_mandir}/ru/man5/tzfile.5*
 %lang(ru) %{_mandir}/ru/man7/*
+%lang(ru) %{_mandir}/ru/man8/ld*.8*
+%lang(ru) %{_mandir}/ru/man8/rpcinfo.8*
 %lang(ru) %{_mandir}/ru/man8/tzselect.8*
 %lang(ru) %{_mandir}/ru/man8/zdump.8*
 %lang(ru) %{_mandir}/ru/man8/zic.8*
+%lang(tr) %{_mandir}/tr/man1/iconv.1*
+%lang(tr) %{_mandir}/tr/man1/ldd.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/iconv.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man5/locale.5*
@@ -1613,7 +1623,9 @@ fi
 %lang(nl) %{_mandir}/nl/man3/*
 %lang(pl) %{_mandir}/pl/man3/*
 %lang(pt) %{_mandir}/pt/man3/*
+%lang(ru) %{_mandir}/ru/man1/sprof.1*
 %lang(ru) %{_mandir}/ru/man3/*
+%lang(tr) %{_mandir}/tr/man3/*
 %lang(uk) %{_mandir}/uk/man3/*
 %lang(zh_CN) %{_mandir}/zh_CN/man3/*
 
@@ -1633,12 +1645,17 @@ fi
 %{_mandir}/man5/nscd.conf.5*
 %{_mandir}/man8/nscd.8*
 %{_mandir}/man8/nscd_nischeck.8*
+%lang(es) %{_mandir}/es/man5/nscd.conf.5*
+%lang(es) %{_mandir}/es/man8/nscd.8*
 %lang(fr) %{_mandir}/fr/man5/nscd.conf.5*
 %lang(fr) %{_mandir}/fr/man8/nscd.8*
 %lang(ja) %{_mandir}/ja/man5/nscd.conf.5*
 %lang(ja) %{_mandir}/ja/man8/nscd.8*
 %lang(pt) %{_mandir}/pt/man5/nscd.conf.5*
 %lang(pt) %{_mandir}/pt/man8/nscd.8*
+%lang(ru) %{_mandir}/ru/man5/nscd.conf.5*
+%lang(ru) %{_mandir}/ru/man8/nscd.8*
+%lang(zh_CN) %{_mandir}/zh_CN/man5/nscd.conf.5*
 
 %files -n localedb-src
 %defattr(644,root,root,755)
@@ -1646,6 +1663,7 @@ fi
 %attr(755,root,root) %{_bindir}/localedb-gen
 %{_datadir}/i18n
 %{_mandir}/man1/localedef.1*
+%lang(ru) %{_mandir}/ru/man1/localedef.1*
 
 %if %{with localedb}
 %files localedb-all
