@@ -131,6 +131,7 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
+%{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gcc >= 5:3.2
 %ifarch ppc ppc64 sparc sparcv9 sparc64
 %if %{with nptl} || %{with __thread}
@@ -149,7 +150,6 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-BuildRequires:	dietlibc-static
 AutoReq:	false
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
@@ -300,7 +300,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 %package misc
 Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
-Group:		Development/Libraries
+Group:		Applications/System
 AutoReq:	false
 Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
@@ -325,7 +325,6 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
-Requires:	%{name}-devel-doc = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
 
@@ -384,7 +383,7 @@ kitaplýklar.
 %package headers
 Summary:	Header files for development using standard C libraries
 Summary(pl):	Pliki nag³ówkowe do tworzenia programów przy u¿yciu standardowych bibliotek C
-Group:		Development/Libraries
+Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
@@ -469,8 +468,8 @@ will use the standard C libraries.
 Pakiet glibc-devel-utils zawiera narzêdzia niezbêdne do rozwijania
 programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
 prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
-standardowych bibliotek C, system wymaga dostêpno¶ci tych
-narzêdzi do tworzenia programów wykonywalnych.
+standardowych bibliotek C, system wymaga dostêpno¶ci tych narzêdzi do
+tworzenia programów wykonywalnych.
 
 Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
 korzystaj±ce ze standardowych bibliotek C.
