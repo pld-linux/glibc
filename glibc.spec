@@ -1210,7 +1210,7 @@ done
 # XXX: to be added when become supported by glibc
 # as (atk, gail)
 # az_IR (gtk+)
-# dv, kok, ps (iso-codes)
+# dv, haw, kok, ps (iso-codes)
 # my (gaim)
 # tk, ug, yo (used by GNOME)
 #
