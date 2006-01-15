@@ -1233,7 +1233,7 @@ done
 #   tr,zh_CN,zh_TW
 #
 for i in aa af am ang ar az bg bn bn_IN br bs byn cy de_AT en en@boldquot \
-    en@quot en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fr_BE fo fy ga \
+    en@quot en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo fr_BE fy ga \
     gez gu gv he hi hsb hy ia id is it_CH iu ka kk kl kn ku kw ky leet lg li \
     lo lt lv mi mk ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro \
     ru rw sa se sid sl so sq sr sr@Latn sr@ije ss syr sw ta te tg th ti tig \
