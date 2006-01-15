@@ -27,7 +27,7 @@ Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.90
 %define		_snap	20051204T1150UTC
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -49,6 +49,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
+Patch4:		%{name}-alpha-ev6-opcodes.patch
 
 Patch6:		%{name}-paths.patch
 Patch7:		%{name}-postshell.patch
@@ -718,6 +719,7 @@ Statyczne 64-bitowe biblioteki GNU libc.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %patch6 -p1
 %patch7 -p1
