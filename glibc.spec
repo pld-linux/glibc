@@ -5,7 +5,6 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
-
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -28,7 +27,7 @@ Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.90
 %define		_snap	20051204T1150UTC
-Release:	0.%{_snap}.3
+Release:	0.%{_snap}.4
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -396,7 +395,7 @@ Summary(pl):	Dokumentacja do tworzenia programów przy u¿yciu standardowych bibli
 Group:		Documentation
 Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
-# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# If both -m32 and -m64 is to be supported on x86_64 package
 # have to be installed, not ix86 one.
 Obsoletes:	%{name}-devel-doc(i386)
 Obsoletes:	%{name}-devel-doc(i486)
@@ -887,31 +886,6 @@ mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
 
-%ifarch %{ix86} ppc s390 sparc sparcv9
-mv $RPM_BUILD_ROOT%{_includedir}/gnu/{stubs.h,stubs-32.h}
-%endif
-
-%ifarch %{x8664} ppc64 s390x sparc64
-mv $RPM_BUILD_ROOT%{_includedir}/gnu/{stubs.h,stubs-64.h}
-%endif
-
-%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
-cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
-/* This file selects the right generated file of '__stub_FUNCTION' macros
-   based on the architecture being compiled for.  */
-
-#include <bits/wordsize.h>
-
-#if __WORDSIZE == 32
-# include <gnu/stubs-32.h>
-#elif __WORDSIZE == 64
-# include <gnu/stubs-64.h>
-#else
-# error "unexpected value for __WORDSIZE macro"
-#endif
-EOF
-%endif
-
 ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
 ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
@@ -935,7 +909,7 @@ bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
-echo 'include ld.so.conf.d/*.conf'> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
+echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
