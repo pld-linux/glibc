@@ -27,7 +27,7 @@ Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.3.90
 %define		_snap	20060211T1753UTC
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1241,7 +1241,9 @@ fi
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
+%ifarch ppc
 %{_libdir}/libnldbl_nonshared.a
+%endif
 %{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
 %ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
