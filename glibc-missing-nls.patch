@@ -78,28 +78,6 @@
       N_("Hang for SECS seconds (default 3600)")},
    {0, 0}
  };
---- libc/MakeTAGS.orig	2003-03-04 11:25:13.000000000 +0100
-+++ libc/MakeTAGS	2004-11-27 03:03:16.819017384 +0100
-@@ -158,7 +158,7 @@
- 	$(extract)
- endif
- 
--all-pot = $P/libc-top.pot $P/subdirs.pot
-+all-pot = $P/libc-top.pot $P/subdirs.pot $P/ldd.pot
- 
- ifndef subdir
- # Collect all the subdir messages, massaging the file names in comments
-@@ -169,6 +169,10 @@
- 	 do sed "/^#:/s% % $$d/%g" $P/$$d.pot; done) > $@.new
- 	mv -f $@.new $@
- 
-+$P/ldd.pot: 
-+	bash --dump-po-strings elf/ldd.bash.in > $@.new
-+	mv -f $@.new $@
-+
- # Combine all the messages into the final sorted template translation file.
- # The following code requires GNU date.
- $P/libc.pot: $(all-pot)
 --- libc/po/pl.po.orig	2004-11-27 02:09:53.487997720 +0100
 +++ libc/po/pl.po	2004-11-27 02:55:18.072797872 +0100
 @@ -1713,7 +1713,8 @@
