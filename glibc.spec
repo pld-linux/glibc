@@ -26,14 +26,14 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.90
-%define		_snap	20051204T1150UTC
-Release:	0.%{_snap}.4
+%define		_snap	20060211T1753UTC
+Release:	0.%{_snap}.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 #Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	libc-%{version}_%{_snap}.tar.bz2
-# Source0-md5:	4479ab933a49c9f1e68f1bc9bc949a3e
+# Source0-md5:	6afa01a33ff3b4256dca422f1f6f3d91
 #Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
 Source2:	nscd.init
 Source3:	nscd.sysconfig
@@ -1241,6 +1241,7 @@ fi
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
+%{_libdir}/libnldbl_nonshared.a
 %{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
 %ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
