@@ -1263,7 +1263,6 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/postshell
 %endif
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
-/sbin/glibc-postinst /%{_lib}/tls
 /sbin/ldconfig
 -/sbin/telinit u
 
