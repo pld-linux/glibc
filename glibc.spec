@@ -147,15 +147,15 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.213
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 AutoReq:	false
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
+Provides:	/sbin/ldconfig
 %{?with_tls:Provides:	glibc(tls)}
 Provides:	ldconfig
-Provides:	/sbin/ldconfig
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
 Obsoletes:	ldconfig
@@ -323,8 +323,8 @@ Summary(tr):	Geliþtirme için gerekli diðer kitaplýklar
 Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ÐÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
+Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
 
@@ -524,14 +524,14 @@ Summary(pl):	Demon zapamiêtuj±cy odpowiedzi serwisów nazw
 Summary(ru):	ëÜÛÉÒÕÀÝÉÊ ÄÅÍÏÎ ÓÅÒ×ÉÓÏ× ÉÍÅÎ
 Summary(uk):	ëÅÛÕÀÞÉÊ ÄÅÍÏÎ ÓÅ×¦Ó¦× ¦ÍÅÎ
 Group:		Networking/Daemons
+Requires(post):	fileutils
+Requires(post,preun):	/sbin/chkconfig
+Requires(postun):	/usr/sbin/groupdel
+Requires(postun):	/usr/sbin/userdel
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
-Requires(post,preun):	/sbin/chkconfig
-Requires(post):	fileutils
-Requires(postun):	/usr/sbin/groupdel
-Requires(postun):	/usr/sbin/userdel
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{?with_selinux:Requires:	libselinux >= 1.18}
 Requires:	rc-scripts >= 0.2.0
@@ -592,8 +592,8 @@ Summary:	locale database for all locales supported by glibc
 Summary(es):	Base de datos de todos los locales soportados por glibc
 Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs³ugiwanych przez glibc
 Group:		Libraries
-Requires:	iconv = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	iconv = %{epoch}:%{version}-%{release}
 
 %description localedb-all
 This package contains locale database for all locales supported by
@@ -896,9 +896,9 @@ Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
+Conflicts:	poldek < 0.18.8-4
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
-Conflicts:	poldek < 0.18.8-4
 
 %description -n %{name}64
 64-bit GNU libc libraries for 64bit architecture.
@@ -1311,17 +1311,11 @@ touch /var/log/nscd
 chmod 000 /var/log/nscd
 chown root:root /var/log/nscd
 chmod 640 /var/log/nscd
-if [ -f /var/lock/subsys/nscd ]; then
-	/etc/rc.d/init.d/nscd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/nscd start\" to start nscd daemon." 1>&2
-fi
+%service nscd restart "nscd daemon"
 
 %preun -n nscd
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/nscd ]; then
-		/etc/rc.d/init.d/nscd stop 1>&2
-	fi
+	%service nscd stop
 	/sbin/chkconfig --del nscd
 fi
 
