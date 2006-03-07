@@ -49,6 +49,8 @@ Source5:	%{name}-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 Source7:	%{name}-localedb-gen
+Source8:	postshell.c
+Source9:	%{name}-LD-path.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -84,6 +86,7 @@ BuildRequires:	gcc >= 5:3.4
 BuildRequires:	gawk
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
+BuildRequires:	klibc-static
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
@@ -875,9 +878,9 @@ done
 %endif
 
 %if %{without cross}
-# compiling static using diet vs glibc saves 400k
-diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
-diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
+# compiling static using klibc vs glibc saves 490k
+klcc %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
+klcc %{__cc} %{SOURCE9} %{rpmcflags} -static -o glibc-postinst
 %endif
 
 %install
@@ -1042,8 +1045,8 @@ rm -rf $RPM_BUILD_ROOT
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 
-%post  memusage -p /sbin/ldconfig
-%postun memusage -p /sbin/ldconfig
+%post	memusage -p /sbin/ldconfig
+%postun	memusage -p /sbin/ldconfig
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
