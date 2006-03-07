@@ -15,7 +15,6 @@
 
 %define		llh_version	7:2.6.12.0-10
 
-%define		_snap	20060211T1753UTC
 Summary:	GNU libc
 Summary(de):	GNU libc
 Summary(es):	GNU libc
@@ -26,22 +25,22 @@ Summary(ru):	GNU libc ×ÅÒÓÉÉ 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
-Version:	2.3.90
-Release:	0.%{_snap}.2
+Version:	2.4
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
-#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	libc-%{version}_%{_snap}.tar.bz2
-# Source0-md5:	6afa01a33ff3b4256dca422f1f6f3d91
-#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+# Source0-md5:	7e9a88dcd41fbc53801dbe5bdacaf245
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
+# Source1-md5:	e2d892b40d654c523ab26a26b7dd86a1
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
-#Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+# Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source5:	%{name}-man-pages.tar.bz2
 # Source5-md5:	03bee93e9786b3e7dad2570ccb0cbc5c
-#Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+# Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Source6:	%{name}-non-english-man-pages.tar.bz2
 # Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
 Source7:	%{name}-localedb-gen
@@ -58,7 +57,6 @@ Patch9:		%{name}-java-libc-wait.patch
 
 Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
-Patch13:	%{name}-soinit-EH_FRAME.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -78,6 +76,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.4
+BuildRequires:	gawk
 BuildRequires:	gettext-devel >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
@@ -779,7 +778,8 @@ Nie potrzebujesz tego. Szczegó³y pod:
 http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %prep
-%setup -q -n libc
+%setup -q -a1
+ln -s glibc-libidn-%{version} libidn
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -793,7 +793,6 @@ http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
 
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
 %patch14 -p0
 
 %patch17 -p1
@@ -818,13 +817,14 @@ cp -f /usr/share/automake/config.sub scripts
 %{__autoconf}
 
 rm -rf builddir && install -d builddir && cd builddir
+AWK="gawk" \
 ../%configure \
 	--enable-kernel="2.6.0" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
-        --enable-add-ons=nptl \
+        --enable-add-ons=nptl,libidn \
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
 	--enable-profile
@@ -880,6 +880,7 @@ install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
 
 # a toy
+rm -f $RPM_BUILD_ROOT%{_bindir}/memusage*
 rm -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so
 
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
