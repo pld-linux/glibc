@@ -5,6 +5,7 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
+%bcond_without	memusage	# don't build memusage utility
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -12,6 +13,10 @@
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   debug/backtrace-tst(SEGV)  fail on alpha
+
+%ifarch sparc64
+%undefine	with_memusage
+%endif
 
 %define		llh_version	7:2.6.12.0-10
 
@@ -77,6 +82,7 @@ BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gcc >= 5:3.4
 BuildRequires:	gawk
+%{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
@@ -215,7 +221,7 @@ dil destei ve zaman dilimi veri taban˝ da bu pakette yer al˝r.
 %package misc
 Summary:	Utilities and data used by glibc
 Summary(pl):	NarzÍdzia i dane uøywane przez glibc
-Group:		Development/Libraries
+Group:		Applications/System
 AutoReq:	false
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -482,7 +488,7 @@ nscd À≈€’§ “≈⁄’Ãÿ‘¡‘… ⁄¡–“œ”¶◊ ƒœ ”≈“◊¶”¶◊ ¶Õ≈Œ; √≈ Õœ÷≈ ”…ÃÿŒœ
 Summary:	locale database source code
 Summary(es):	CÛdigo fuente de la base de datos de los locales
 Summary(pl):	Kod ºrÛd≥owy bazy locale
-Group:		Daemons
+Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gzip
 Requires:	sed
@@ -535,8 +541,8 @@ pakiet localedb-src moøna odinstalowaÊ).
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
 Summary(es):	Convierte entre varias codificaciones de los ficheros dados
-Summary(pl):	Program do konwersji plikÛw tekstowych z jednego kodowania do innego
-Group:		Applications/Text
+Summary(pl):	Modu≥y do konwersji plikÛw tekstowych z jednego kodowania do innego
+Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n iconv
@@ -553,12 +559,12 @@ Generic Character Set Conversion Interface (interfaz genÈrica de
 conversiÛn de juegos de caracteres).
 
 %description -n iconv -l pl
-Program do konwersji plikÛw tekstowych z jednego kodowania do innego.
-Musisz mieÊ zainstalowany ten pakiet jeøeli wykonujesz konwersjÍ
-dokumentÛw z jednego kodowania do innego lub jeøeli masz zainstalowane
-jakie∂ programy, ktÛre korzystaj± z Generic Character Set Conversion
-Interface w glibc, czyli z zestawu funkcji z tej biblioteki, ktÛre
-umoøliwiaj± konwersjÍ kodowania danych z poziomu dowolnego programu.
+Modu≥y do konwersji plikÛw tekstowych z jednego kodowania do innego.
+Trzeba mieÊ zainstalowany ten pakiet, aby wykonywaÊ konwersjÍ
+dokumentÛw z jednego kodowania do innego lub do uøywania programÛw
+korzystaj±cych z Generic Character Set Conversion Interface w glibc,
+czyli z zestawu funkcji z tej biblioteki, ktÛre umoøliwiaj± konwersjÍ
+kodowania danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
@@ -568,6 +574,7 @@ Summary(ru):	Û‘¡‘…ﬁ≈”À…≈ ¬…¬Ã…œ‘≈À… glibc
 Summary(uk):	Û‘¡‘…ﬁŒ¶ ¬¶¬Ã¶œ‘≈À… glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-static
 
 %description static
@@ -758,6 +765,22 @@ datos NIS+.
 %description -n nss_nisplus -l pl
 Modu≥ glibc NSS (Name Service Switch) dostÍpu do baz danych NIS+.
 
+%package memusage
+Summary:	A toy
+Summary(es):	Un juguete
+Summary(pl):	Zabawka
+Group:		Applications
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description memusage
+A toy.
+
+%description memusage -l es
+Un juguete.
+
+%description memusage -l pl
+Zabawka.
+
 %package zoneinfo_right
 Summary:	Non-POSIX (real) time zones
 Summary(es):	Zonas de tiempo reales (no de POSIX)
@@ -851,6 +874,12 @@ cd ..
 done
 %endif
 
+%if %{without cross}
+# compiling static using diet vs glibc saves 400k
+diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
+diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
+%endif
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
@@ -879,10 +908,7 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
 
-# a toy
-rm -f $RPM_BUILD_ROOT%{_bindir}/memusage*
-rm -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so
-
+%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so  $RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
@@ -1015,6 +1041,9 @@ rm -rf $RPM_BUILD_ROOT
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
+
+%post  memusage -p /sbin/ldconfig
+%postun memusage -p /sbin/ldconfig
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
@@ -1220,6 +1249,13 @@ fi
 %files -n nss_nisplus
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_nisplus*.so*
+
+%if %{with memusage}
+%files memusage
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/memusage*
+%attr(755,root,root) %{_libdir}/libmemusage.so
+%endif
 
 %files devel
 %defattr(644,root,root,755)
