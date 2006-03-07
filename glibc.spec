@@ -879,8 +879,8 @@ done
 
 %if %{without cross}
 # compiling static using klibc vs glibc saves 490k
-klcc %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
-klcc %{__cc} %{SOURCE9} %{rpmcflags} -static -o glibc-postinst
+klcc %{SOURCE8} %{rpmcflags} -static -o postshell
+klcc %{SOURCE9} %{rpmcflags} -static -o glibc-postinst
 %endif
 
 %install
@@ -907,9 +907,12 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
-
-install elf/postshell				$RPM_BUILD_ROOT/sbin
 cd ..
+
+%if %{without cross}
+install postshell				$RPM_BUILD_ROOT/sbin
+install glibc-postinst				$RPM_BUILD_ROOT/sbin
+%endif
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so  $RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
@@ -1033,7 +1036,9 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
+%if %{without cross}
 %post	-p /sbin/postshell
+/sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 /sbin/ldconfig
 -/sbin/telinit u
 
@@ -1044,6 +1049,7 @@ rm -rf $RPM_BUILD_ROOT
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
+%endif
 
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
@@ -1083,7 +1089,10 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
+%if %{without cross}
 %attr(755,root,root) /sbin/postshell
+%attr(755,root,root) /sbin/glibc-postinst
+%endif
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
