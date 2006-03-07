@@ -78,19 +78,8 @@
       N_("Hang for SECS seconds (default 3600)")},
    {0, 0}
  };
---- glibc-2.3.6/timezone/zdump.c.orig	2005-10-17 07:14:28.000000000 +0200
-+++ glibc-2.3.6/timezone/zdump.c	2005-11-05 07:33:38.167505808 +0100
-@@ -226,7 +226,7 @@
- 		return;
- 	(void) fflush(stdout);
- 	(void) fprintf(stderr,
--		"%s: warning: zone \"%s\" abbreviation \"%s\" %s\n",
-+		_("%s: warning: zone \"%s\" abbreviation \"%s\" %s\n"),
- 		progname, zone, abbr, wp);
- 	warned = TRUE;
- }
---- glibc-2.3.6/po/pl.po.orig	2004-11-27 02:09:53.487997720 +0100
-+++ glibc-2.3.6/po/pl.po	2004-11-27 02:55:18.072797872 +0100
+--- libc/po/pl.po.orig	2004-11-27 02:09:53.487997720 +0100
++++ libc/po/pl.po	2004-11-27 02:55:18.072797872 +0100
 @@ -1713,7 +1713,8 @@
  msgid "Another string for testing."
  msgstr "Inny ³añcuch do testów."
@@ -101,17 +90,6 @@
  msgid "NAME"
  msgstr "NAZWA"
  
-@@ -2770,6 +2770,10 @@
- msgid "differs from POSIX standard"
- msgstr "ró¿ni siê od standardu POSIX"
- 
-+#: timezone/zdump.c:229
-+msgid "%s: warning: zone \"%s\" abbreviation \"%s\" %s\n"
-+msgstr "%s: uwaga: skrót nazwy strefy czasowej \"%s\" \"%s\" %s\n"
-+
- #: timezone/zdump.c:280
- #, c-format
- msgid "%s: usage is %s [ --version ] [ -v ] [ -c [loyear,]hiyear ] zonename ...\n"
 @@ -3372,9 +3373,13 @@
  msgid "Set the program name"
  msgstr "Okre¶lenie nazwy programu"
@@ -230,3 +208,65 @@
  #: sunrpc/rpc_scan.c:118
  msgid "constant or identifier expected"
  msgstr "spodziewana sta³a lub identyfikator"
+@@ -5940,3 +6040,61 @@
+ #: elf/sprof.c:1027 elf/sprof.c:1085
+ msgid "cannot allocate symbol data"
+ msgstr "nie mo¿na przydzieliæ pamiêci dla symboli"
++
++#: elf/ldd.bash.in:43
++msgid "Written by %s and %s.\n"
++msgstr "Autorami s± %s i %s.\n"
++
++#: elf/ldd.bash.in:48
++msgid ""
++"Usage: ldd [OPTION]... FILE...\n"
++"      --help              print this help and exit\n"
++"      --version           print version information and exit\n"
++"  -d, --data-relocs       process data relocations\n"
++"  -r, --function-relocs   process data and function relocations\n"
++"  -u, --unused            print unused direct dependencies\n"
++"  -v, --verbose           print all information\n"
++"For bug reporting instructions, please see:\n"
++"<http://www.gnu.org/software/libc/bugs.html>."
++msgstr ""
++"Sk³adnia: ldd [OPCJA]... PLIK...\n"
++"      --help              wypisanie tego opisu i zakoñczenie\n"
++"      --version           wypisanie informacji o wersji i zakoñczenie\n"
++"  -d, --data-relocs       przetworzenie relokacji danych\n"
++"  -r, --function-relocs   przetworzenie relokacji danych i funkcji\n"
++"  -u, --unused            wypisanie nieu¿ywanych bezpo¶rednich zale¿no¶ci\n"
++"  -v, --verbose           wypisanie wszystkich informacji\n"
++"Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
++"<http://www.gnu.org/software/libc/bugs.html>."
++
++#: elf/ldd.bash.in:80
++msgid "ldd: option \\`$1' is ambiguous"
++msgstr "ldd: opcja \\`%1' jest niejednoznaczna"
++
++#: elf/ldd.bash.in:87
++msgid "unrecognized option"
++msgstr "nieznana opcja"
++
++#: elf/ldd.bash.in:88 elf/ldd.bash.in:111
++msgid "Try \\`ldd --help' for more information."
++msgstr "Polecenie \\`ldd --help' pozwoli uzyskaæ wiêcej informacji."
++
++#: elf/ldd.bash.in:110
++msgid "missing file arguments"
++msgstr "brakuj±ce argumenty plikowe"
++
++#: elf/ldd.bash.in:136
++msgid "warning: you do not have execution permission for"
++msgstr "uwaga: brak uprawnieñ do wykonywania"
++
++#: elf/ldd.bash.in:161
++msgid "\tnot a dynamic executable"
++msgstr "\tnie jest dynamicznym programem wykonywalnym"
++
++#: elf/ldd.bash.in:172
++msgid "exited with unknown exit code"
++msgstr "zakoñczy³ dzia³anie z nieznanym kodem wyj¶cia"
++
++#: elf/ldd.bash.in:177
++msgid "error: you do not have read permission for"
++msgstr "b³±d: brak uprawnieñ do odczytu"
