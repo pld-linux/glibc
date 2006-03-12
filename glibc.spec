@@ -31,7 +31,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.4
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1284,7 +1284,7 @@ fi
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
-%ifarch ppc
+%ifarch alpha ppc
 %{_libdir}/libnldbl_nonshared.a
 %endif
 %{_libdir}/libpthread_nonshared.a
