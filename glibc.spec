@@ -112,7 +112,7 @@ Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
-ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
@@ -1284,7 +1284,7 @@ fi
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
-%ifarch alpha ppc
+%ifarch alpha ppc sparc
 %{_libdir}/libnldbl_nonshared.a
 %endif
 %{_libdir}/libpthread_nonshared.a
