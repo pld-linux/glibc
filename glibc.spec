@@ -30,7 +30,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.4
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -117,6 +117,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		rpmldflags	%{nil}
 %define 	specflags_sparc64	-m64 -mcpu=ultrasparc -mvis -fcall-used-g6
+
+# Xen-friendly glibc
+%define		specflags_ia32		-mno-tls-direct-seg-refs
+%define		specflags_x86_64	-mno-tls-direct-seg-refs
+%define		specflags_ia32e		-mno-tls-direct-seg-refs
+
 # we don't want perl dependency in glibc-devel
 %define		_noautoreqfiles		%{_bindir}/mtrace
 # hack: don't depend on rpmlib(PartialHardlinkSets) for easier upgrade from Ra
@@ -1408,7 +1414,6 @@ fi
 
 %files profile
 %defattr(644,root,root,755)
-#{?with_dual:%{_libdir}/nptl/lib*_p.a}
 %{_libdir}/lib*_p.a
 
 %files pic
