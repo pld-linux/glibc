@@ -18,11 +18,8 @@
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
 %bcond_with	boot64		# bootstrap *64 using cross* (sparc64 currently)
 %bcond_with	pax		# apply PaX hack
-%bcond_with	no_tls_direct_seg_refs # enable -DNO_TLS_DIRECT_SEG_REFS for Xen
-
 #
 # TODO:
-# - test with no_tls_direct_seg_refs, and enable by default if no problems found
 # - look at locale fixes/updates in bugzilla
 # [OLD]
 # - localedb-gen man pages(?)
@@ -89,7 +86,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	5.1
+Release:	5
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -985,8 +982,7 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 	--with%{!?with_selinux:out}-selinux \
 	--with%{!?with_tls:out}-tls \
         --enable-add-ons=linuxthreads \
-	--enable-profile \
-	%{?with_no_tls_direct_seg_refs:CFLAGS="%{rpmcflags} -DNO_TLS_DIRECT_SEG_REFS"}
+	--enable-profile
 %{__make}
 %endif
 %if %{with nptl}
@@ -1003,8 +999,7 @@ cd builddir-nptl
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
         --enable-add-ons=nptl \
-	--enable-profile \
-	%{?with_no_tls_direct_seg_refs:CFLAGS="%{rpmcflags} -DNO_TLS_DIRECT_SEG_REFS"}
+	--enable-profile
 # simulate cross-compiling so we can perform dual builds on 2.4.x kernel
 %{__make} \
 	%{?with_dual:cross-compiling=yes}
