@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_with	omitfp		# build without frame pointer (pass \--enable-omitfp)
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
@@ -846,7 +845,7 @@ rm -rf builddir && install -d builddir && cd builddir
 AWK="gawk" \
 ../%configure \
 	--enable-kernel="2.6.0" \
-	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
+	--enable-omitfp \
 	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
