@@ -121,6 +121,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
 %define		specflags_x86_64	-mno-tls-direct-seg-refs
+%define		specflags_amd64		-mno-tls-direct-seg-refs
 %define		specflags_ia32e		-mno-tls-direct-seg-refs
 
 # we don't want perl dependency in glibc-devel
