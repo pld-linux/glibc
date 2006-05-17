@@ -86,7 +86,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -201,7 +201,7 @@ upgrades, common system code is kept in one place and shared between
 programs. This package contains the most important sets of shared
 libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
-national language (locale) support and timezone databases.
+national language (locale) support.
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
@@ -314,6 +314,7 @@ Group:		Applications/System
 AutoReq:	false
 Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	tzdata >= 2006g-2
 
 %description misc
 Utilities and data used by glibc.
@@ -871,25 +872,6 @@ Un juguete.
 %description memusage -l pl
 Zabawka.
 
-%package zoneinfo_right
-Summary:	Non-POSIX (real) time zones
-Summary(es):	Zonas de tiempo reales (no de POSIX)
-Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
-Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description zoneinfo_right
-You don't want this. Details at:
-http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
-
-%description zoneinfo_right -l es
-No lo necesita. Encontrará los detalles en:
-http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
-
-%description zoneinfo_right -l pl
-Nie potrzebujesz tego. Szczegó³y pod:
-http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
-
 %package -n %{name}64
 Summary:	GNU libc - 64-bit libraries
 Summary(es):	GNU libc - bibliotecas de 64 bits
@@ -1107,13 +1089,9 @@ mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 install linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
 %endif
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
-
-#cd $RPM_BUILD_ROOT%{_datadir}/zoneinfo
-#for i in [A-Z]*; do
-#	ln -s ../$i posix
-#done
-#cd -
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
+# moved to tzdata package
+rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
 
 %ifarch %{ix86} ppc s390 sparc sparcv9
 mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-32.h
@@ -1140,12 +1118,7 @@ cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
 EOF
 %endif
 
-ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
 ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
-
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 
 # make symlinks across top-level directories absolute
 for l in anl BrokenLocale crypt dl m nsl resolv rt thread_db util ; do
@@ -1407,8 +1380,6 @@ fi
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
-%{_datadir}/zoneinfo
-%exclude %{_datadir}/zoneinfo/right
 
 %{_mandir}/man1/catchsegv.1*
 %{_mandir}/man1/getconf.1*
@@ -1511,10 +1482,6 @@ fi
 %lang(zh_CN) %{_mandir}/zh_CN/man8/tzselect.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
-
-%files zoneinfo_right
-%defattr(644,root,root,755)
-%{_datadir}/zoneinfo/right
 
 %files -n nss_compat
 %defattr(644,root,root,755)
