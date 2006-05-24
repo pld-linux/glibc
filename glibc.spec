@@ -213,8 +213,7 @@ sistema se guarda en un sitio y es compartido entre los programas.
 Este paquete contiene las bibliotecas compartidas más importantes, es
 decir la biblioteca C estándar y la biblioteca estándar de matemática.
 Sin éstas, un sistema Linux no podrá funcionar. También está incluido
-soporte de idiomas nacionales (locale) y bases de datos de zona de
-tiempo.
+soporte de idiomas nacionales (locale).
 
 Puede usarse con: núcleo Linux >= %{min_kernel}.
 
@@ -227,7 +226,7 @@ gemeinsam genutzt. Dieses Paket enthält die wichtigsten Sets der
 shared Libraries, die Standard-C-Library und die
 Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
-(locale) und die Zeitzonen-Datenbank.
+(locale).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
@@ -239,8 +238,7 @@ un endroit et partagé entre les programmes. Ce paquetage contient les
 bibliothèques partagées les plus importantes, la bibliothèque standard
 du C et la bibliothèque mathématique standard. Sans celles-ci, un
 système Linux ne peut fonctionner. Il contient aussi la gestion des
-langues nationales (locales) et les bases de données des zones
-horaires.
+langues nationales (locales).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
@@ -266,7 +264,7 @@ programami. Pakiet ten zawiera bardzo wa¿ny zbiór bibliotek
 standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
 matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
-jêzyków (locale) oraz definicje stref czasowych.
+jêzyków (locale).
 
 Przeznaczony dla j±dra Linux >= %{min_kernel}.
 
@@ -278,8 +276,7 @@ Przeznaczony dla j±dra Linux >= %{min_kernel}.
 ĞÒÏÇÒÁÍÍÁÍÉ. üÔÏÔ ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ÎÁÉÂÏÌÅÅ ×ÁÖÎÙÅ ÉÚ ÒÁÚÄÅÌÑÅÍÙÈ
 ÂÉÂÌÉÏÔÅË - ÓÔÁÎÄÁÒÔÎÕÀ ÂÉÂÌÉÏÔÅËÕ C É ÓÔÁÎÄÁÒÔÎÕÀ ÂÉÂÌÉÏÔÅËÕ
 ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÜÔÉÈ ÂÉÂÌÉÏÔÅË Linux ÆÕÎËÃÉÏÎÉÒÏ×ÁÔØ ÎÅ ÂÕÄÅÔ. ôÁËÖÅ
-ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ĞÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
-×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
+ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ĞÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
@@ -302,8 +299,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 ×ÉËÏÒÉÓÔÏ×Õ¤ÔØÓÑ ×Ó¦ÍÁ ĞÒÏÇÒÁÍÁÍÉ. ãÅÊ ĞÁËÅÔ Í¦ÓÔÉÔØ ÎÁÊÂ¦ÌØÛ ×ÁÖÌÉ×¦
 Ú ÄÉÎÁÍ¦ŞÎÉÈ Â¦ÂÌ¦ÏÔÅË - ÓÔÁÎÄÁÒÔÎÕ Â¦ÂÌ¦ÏÔÅËÕ ó ÔÁ ÓÔÁÎÄÁÒÔÎÕ
 Â¦ÂÌ¦ÏÔÅËÕ ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÃÉÈ Â¦ÂÌ¦ÏÔÅË Linux ÆÕÎËÃ¦ÏÎÕ×ÁÔÉ ÎÅ ÂÕÄÅ.
-ôÁËÏÖ ĞÁËÅÔ Í¦ÓÔÉÔØ Ğ¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
-ŞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
+ôÁËÏÖ ĞÁËÅÔ Í¦ÓÔÉÔØ Ğ¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
