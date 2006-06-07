@@ -1,10 +1,11 @@
 #
 # Conditional build:
+# min_kernel	(default is 2.6.0)
+%bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
-%bcond_without	memusage	# don't build memusage utility
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -12,6 +13,7 @@
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   debug/backtrace-tst(SEGV)  fail on alpha
+%{!?min_kernel:%global          min_kernel      2.6.0}
 
 %ifarch sparc64
 %undefine	with_memusage
@@ -41,15 +43,12 @@ Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.t
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
-# Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
-Source5:	%{name}-man-pages.tar.bz2
-# Source5-md5:	03bee93e9786b3e7dad2570ccb0cbc5c
-# Source6:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-Source6:	%{name}-non-english-man-pages.tar.bz2
-# Source6-md5:	6159f0a9b6426b5f6fc1b0d8d21b9b76
-Source7:	%{name}-localedb-gen
+#Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
+Source5:	http://qboosh.cs.net.pl/man/%{name}-man-pages.tar.bz2
+# Source5-md5:	f464eadf3cf06761f65639e44a179e6b
+Source6:	%{name}-localedb-gen
+Source7:	%{name}-LD-path.c
 Source8:	postshell.c
-Source9:	%{name}-LD-path.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -78,6 +77,7 @@ Patch25:	%{name}-cross-gcc_eh.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
+%{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
@@ -95,8 +95,9 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 AutoReq:	false
+Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
-Requires:	glibc-misc = %{epoch}:%{version}-%{release}
+Requires:	uname(release) >= %{min_kernel}
 Provides:	/sbin/ldconfig
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
@@ -106,9 +107,12 @@ Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
 Obsoletes:	glibc64
 Obsoletes:	ldconfig
-Conflicts:	kernel < 2.6.0
+Conflicts:	kernel < %{min_kernel}
+Conflicts:	kernel24
+Conflicts:	kernel24-smp
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
+Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64
@@ -116,7 +120,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		rpmldflags	%{nil}
-%define 	specflags_sparc64	-m64 -mcpu=ultrasparc -mvis -fcall-used-g6
+%define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
@@ -139,7 +143,9 @@ upgrades, common system code is kept in one place and shared between
 programs. This package contains the most important sets of shared
 libraries, the standard C library and the standard math library.
 Without these, a Linux system will not function. It also contains
-national language (locale) support and timezone databases.
+national language (locale) support.
+
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l es
 Contiene las bibliotecas estándared que son usadas por varios
@@ -149,8 +155,9 @@ sistema se guarda en un sitio y es compartido entre los programas.
 Este paquete contiene las bibliotecas compartidas más importantes, es
 decir la biblioteca C estándar y la biblioteca estándar de matemática.
 Sin éstas, un sistema Linux no podrá funcionar. También está incluido
-soporte de idiomas nacionales (locale) y bases de datos de zona de
-tiempo.
+soporte de idiomas nacionales (locale).
+
+Puede usarse con: núcleo Linux >= %{min_kernel}.
 
 %description -l de
 Enthält die Standard-Libraries, die von verschiedenen Programmen im
@@ -161,7 +168,9 @@ gemeinsam genutzt. Dieses Paket enthält die wichtigsten Sets der
 shared Libraries, die Standard-C-Library und die
 Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
 Ferner enthält es den Support für die verschiedenen Sprachgregionen
-(locale) und die Zeitzonen-Datenbank.
+(locale).
+
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l fr
 Contient les bibliothèques standards utilisées par de nombreux
@@ -171,8 +180,9 @@ un endroit et partagé entre les programmes. Ce paquetage contient les
 bibliothèques partagées les plus importantes, la bibliothèque standard
 du C et la bibliothèque mathématique standard. Sans celles-ci, un
 système Linux ne peut fonctionner. Il contient aussi la gestion des
-langues nationales (locales) et les bases de données des zones
-horaires.
+langues nationales (locales).
+
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l ja
 glibc
@@ -185,6 +195,8 @@ glibc
 ¥Ñ¥Ã¥±¡¼¥¸¤Ï¤Þ¤¿ÃÏ°è¸À¸ì (locale) ¥µ¥Ý¡¼¥È¤È¥¿¥¤¥à¥¾¡¼¥ó¥Ç¡¼¥¿¥Ù¡¼¥¹
 ¥µ¥Ý¡¼¥È¤ò¤Õ¤¯¤ß¤Þ¤¹¡£
 
+Can be used on: Linux kernel >= %{min_kernel}.
+
 %description -l pl
 W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
 programy w Twoim systemie. U¿ywanie przez programy bibliotek z tego
@@ -194,7 +206,9 @@ programami. Pakiet ten zawiera bardzo wa¿ny zbiór bibliotek
 standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
 matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
-jêzyków (locale) oraz definicje stref czasowych.
+jêzyków (locale).
+
+Pakiet jest przeznaczony dla j±dra Linuksa >= %{min_kernel}.
 
 %description -l ru
 óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓÐÏÌØÚÕÅÍÙÅ ÍÎÏÇÏÞÉÓÌÅÎÎÙÍÉ
@@ -204,8 +218,9 @@ jêzyków (locale) oraz definicje stref czasowych.
 ÐÒÏÇÒÁÍÍÁÍÉ. üÔÏÔ ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÎÁÉÂÏÌÅÅ ×ÁÖÎÙÅ ÉÚ ÒÁÚÄÅÌÑÅÍÙÈ
 ÂÉÂÌÉÏÔÅË - ÓÔÁÎÄÁÒÔÎÕÀ ÂÉÂÌÉÏÔÅËÕ C É ÓÔÁÎÄÁÒÔÎÕÀ ÂÉÂÌÉÏÔÅËÕ
 ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÜÔÉÈ ÂÉÂÌÉÏÔÅË Linux ÆÕÎËÃÉÏÎÉÒÏ×ÁÔØ ÎÅ ÂÕÄÅÔ. ôÁËÖÅ
-ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÐÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale) É ÂÁÚÙ ÄÁÎÎÙÈ
-×ÒÅÍÅÎÎÙÈ ÚÏÎ (timezone databases).
+ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÐÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale).
+
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l tr
 Bu paket, birçok programýn kullandýðý standart kitaplýklarý içerir.
@@ -216,6 +231,8 @@ kitaplýklarý, standart C kitaplýðýný ve standart matematik kitaplýðýný
 içerir. Bu kitaplýklar olmadan Linux sistemi çalýþmayacaktýr. Yerel
 dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
 
+Can be used on: Linux kernel >= %{min_kernel}.
+
 %description -l uk
 í¦ÓÔÉÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ, ËÏÔÒ¦ ×ÉËÏÒÉÓÔÏ×ÕÀÔØÓÑ ÞÉÓÌÅÎÎÉÍÉ
 ÐÒÏÇÒÁÍÁÍÉ × ÓÉÓÔÅÍ¦. äÌÑ ÔÏÇÏ, ÝÏÂ ÚÂÅÒÅÇÔÉ ÄÉÓËÏ×ÉÊ ÐÒÏÓÔ¦Ò ÔÁ
@@ -224,15 +241,18 @@ dil desteði ve zaman dilimi veri tabaný da bu pakette yer alýr.
 ×ÉËÏÒÉÓÔÏ×Õ¤ÔØÓÑ ×Ó¦ÍÁ ÐÒÏÇÒÁÍÁÍÉ. ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÎÁÊÂ¦ÌØÛ ×ÁÖÌÉ×¦
 Ú ÄÉÎÁÍ¦ÞÎÉÈ Â¦ÂÌ¦ÏÔÅË - ÓÔÁÎÄÁÒÔÎÕ Â¦ÂÌ¦ÏÔÅËÕ ó ÔÁ ÓÔÁÎÄÁÒÔÎÕ
 Â¦ÂÌ¦ÏÔÅËÕ ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÃÉÈ Â¦ÂÌ¦ÏÔÅË Linux ÆÕÎËÃ¦ÏÎÕ×ÁÔÉ ÎÅ ÂÕÄÅ.
-ôÁËÏÖ ÐÁËÅÔ Í¦ÓÔÉÔØ Ð¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale) ÔÁ ÂÁÚÉ ÄÁÎÎÉÈ
-ÞÁÓÏ×ÉÈ ÚÏÎ (timezone databases).
+ôÁËÏÖ ÐÁËÅÔ Í¦ÓÔÉÔØ Ð¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale).
+
+Can be used on: Linux kernel >= %{min_kernel}.
 
 %package misc
 Summary:	Utilities and data used by glibc
 Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
 Group:		Applications/System
 AutoReq:	false
+Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	tzdata >= 2006g-2
 
 %description misc
 Utilities and data used by glibc.
@@ -315,7 +335,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia programów przy u¿yciu standardowych b
 Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
-# If both -m32 and -m64 is to be supported on x86_64 package
+# If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
 Obsoletes:	%{name}-headers(i386)
 Obsoletes:	%{name}-headers(i486)
@@ -409,7 +429,7 @@ Summary(pl):	Dokumentacja do tworzenia programów przy u¿yciu standardowych bibli
 Group:		Documentation
 Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
-# If both -m32 and -m64 is to be supported on x86_64 package
+# If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
 Obsoletes:	%{name}-devel-doc(i386)
 Obsoletes:	%{name}-devel-doc(i486)
@@ -790,25 +810,6 @@ Un juguete.
 %description memusage -l pl
 Zabawka.
 
-%package zoneinfo_right
-Summary:	Non-POSIX (real) time zones
-Summary(es):	Zonas de tiempo reales (no de POSIX)
-Summary(pl):	Nie-POSIX-owe (prawdziwe) strefy czasowe
-Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description zoneinfo_right
-You don't want this. Details at:
-http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
-
-%description zoneinfo_right -l es
-No lo necesita. Encontrará los detalles en:
-http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
-
-%description zoneinfo_right -l pl
-Nie potrzebujesz tego. Szczegó³y pod:
-http://sources.redhat.com/ml/libc-alpha/2000-12/msg00068.html
-
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
@@ -848,10 +849,15 @@ cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
 
-rm -rf builddir && install -d builddir && cd builddir
+rm -rf builddir
+install -d builddir
+cd builddir
+%ifarch sparc64
+CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
+%endif
 AWK="gawk" \
 ../%configure \
-	--enable-kernel="2.6.0" \
+	--enable-kernel="%{min_kernel}" \
 	--enable-omitfp \
 	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
@@ -886,7 +892,7 @@ done
 %if %{without cross}
 # compiling static using klibc vs glibc saves 490k
 klcc %{SOURCE8} %{rpmcflags} -static -o postshell
-klcc %{SOURCE9} %{rpmcflags} -static -o glibc-postinst
+klcc %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
 %endif
 
 %install
@@ -923,14 +929,11 @@ install glibc-postinst				$RPM_BUILD_ROOT/sbin
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so  $RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo/{localtime,posixtime,posixrules,posix/*}
-
-ln -sf %{_sysconfdir}/localtime	$RPM_BUILD_ROOT%{_datadir}/zoneinfo/localtime
-ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixtime
-ln -sf localtime		$RPM_BUILD_ROOT%{_datadir}/zoneinfo/posixrules
-ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
-
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
+# moved to tzdata package
+rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
+
+ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 # make symlinks across top-level directories absolute
 for l in anl BrokenLocale crypt dl m nsl resolv rt thread_db util ; do
@@ -945,7 +948,6 @@ install nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-bzip2 -dc %{SOURCE6} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
 echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
@@ -956,7 +958,8 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 :> $RPM_BUILD_ROOT/var/lib/nscd/group
 :> $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
-rm -rf documentation && install -d documentation
+rm -rf documentation
+install -d documentation
 
 for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
 	cp -f nptl/$f documentation/$f.nptl
@@ -1022,7 +1025,7 @@ for i in aa af am ang ar az bg bn bn_IN br bs byn cy de_AT dz en en@boldquot \
 done
 
 # localedb-gen infrastructure
-install %{SOURCE7} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+install %{SOURCE6} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
@@ -1102,7 +1105,7 @@ fi
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
 #   ld-linux-ia64.so.2 on ia64
-#   ld-linux-x86-64.so.2 on x86-64
+#   ld-linux-x86-64.so.2 on x86_64
 #   ld-linux.so.2 on other archs
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
@@ -1150,8 +1153,6 @@ fi
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
-%{_datadir}/zoneinfo
-%exclude %{_datadir}/zoneinfo/right
 
 %{_mandir}/man1/catchsegv.1*
 %{_mandir}/man1/getconf.1*
@@ -1173,6 +1174,7 @@ fi
 %lang(cs) %{_mandir}/cs/man7/*
 %lang(de) %{_mandir}/de/man5/tzfile.5*
 %lang(de) %{_mandir}/de/man7/*
+%lang(es) %{_mandir}/es/man1/ldd.1*
 %lang(es) %{_mandir}/es/man5/locale.5*
 %lang(es) %{_mandir}/es/man5/nsswitch.conf.5*
 %lang(es) %{_mandir}/es/man5/tzfile.5*
@@ -1211,6 +1213,7 @@ fi
 %lang(ja) %{_mandir}/ja/man8/tzselect.8*
 %lang(ja) %{_mandir}/ja/man8/zdump.8*
 %lang(ja) %{_mandir}/ja/man8/zic.8*
+%lang(ko) %{_mandir}/ko/man1/ldd.1*
 %lang(ko) %{_mandir}/ko/man5/nsswitch.conf.5*
 %lang(ko) %{_mandir}/ko/man5/tzfile.5*
 %lang(ko) %{_mandir}/ko/man7/*
@@ -1228,12 +1231,22 @@ fi
 %lang(pt) %{_mandir}/pt/man8/tzselect.8*
 %lang(pt) %{_mandir}/pt/man8/zdump.8*
 %lang(pt) %{_mandir}/pt/man8/zic.8*
+%lang(ru) %{_mandir}/ru/man1/getent.1*
+%lang(ru) %{_mandir}/ru/man1/iconv.1*
+%lang(ru) %{_mandir}/ru/man1/ldd.1*
+%lang(ru) %{_mandir}/ru/man1/locale.1*
+%lang(ru) %{_mandir}/ru/man1/rpcgen.1*
+%lang(ru) %{_mandir}/ru/man5/locale.5*
 %lang(ru) %{_mandir}/ru/man5/nsswitch.conf.5*
 %lang(ru) %{_mandir}/ru/man5/tzfile.5*
 %lang(ru) %{_mandir}/ru/man7/*
+%lang(ru) %{_mandir}/ru/man8/ld*.8*
+%lang(ru) %{_mandir}/ru/man8/rpcinfo.8*
 %lang(ru) %{_mandir}/ru/man8/tzselect.8*
 %lang(ru) %{_mandir}/ru/man8/zdump.8*
 %lang(ru) %{_mandir}/ru/man8/zic.8*
+%lang(tr) %{_mandir}/tr/man1/iconv.1*
+%lang(tr) %{_mandir}/tr/man1/ldd.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/iconv.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man5/locale.5*
@@ -1242,10 +1255,6 @@ fi
 %lang(zh_CN) %{_mandir}/zh_CN/man8/tzselect.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
-
-%files zoneinfo_right
-%defattr(644,root,root,755)
-%{_datadir}/zoneinfo/right
 
 %files -n nss_compat
 %defattr(644,root,root,755)
@@ -1347,7 +1356,9 @@ fi
 %lang(nl) %{_mandir}/nl/man3/*
 %lang(pl) %{_mandir}/pl/man3/*
 %lang(pt) %{_mandir}/pt/man3/*
+%lang(ru) %{_mandir}/ru/man1/sprof.1*
 %lang(ru) %{_mandir}/ru/man3/*
+%lang(tr) %{_mandir}/tr/man3/*
 %lang(uk) %{_mandir}/uk/man3/*
 %lang(zh_CN) %{_mandir}/zh_CN/man3/*
 
@@ -1367,12 +1378,17 @@ fi
 %{_mandir}/man5/nscd.conf.5*
 %{_mandir}/man8/nscd.8*
 %{_mandir}/man8/nscd_nischeck.8*
+%lang(es) %{_mandir}/es/man5/nscd.conf.5*
+%lang(es) %{_mandir}/es/man8/nscd.8*
 %lang(fr) %{_mandir}/fr/man5/nscd.conf.5*
 %lang(fr) %{_mandir}/fr/man8/nscd.8*
 %lang(ja) %{_mandir}/ja/man5/nscd.conf.5*
 %lang(ja) %{_mandir}/ja/man8/nscd.8*
 %lang(pt) %{_mandir}/pt/man5/nscd.conf.5*
 %lang(pt) %{_mandir}/pt/man8/nscd.8*
+%lang(ru) %{_mandir}/ru/man5/nscd.conf.5*
+%lang(ru) %{_mandir}/ru/man8/nscd.8*
+%lang(zh_CN) %{_mandir}/zh_CN/man5/nscd.conf.5*
 
 %files -n localedb-src
 %defattr(644,root,root,755)
@@ -1380,6 +1396,7 @@ fi
 %attr(755,root,root) %{_bindir}/localedb-gen
 %{_datadir}/i18n
 %{_mandir}/man1/localedef.1*
+%lang(ru) %{_mandir}/ru/man1/localedef.1*
 
 %if %{with localedb}
 %files localedb-all
