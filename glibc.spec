@@ -13,7 +13,7 @@
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   debug/backtrace-tst(SEGV)  fail on alpha
-%{!?min_kernel:%global          min_kernel      2.6.0}
+%{!?min_kernel:%global          min_kernel      2.6.12}
 
 %ifarch sparc64
 %undefine	with_memusage
