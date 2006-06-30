@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# min_kernel	(default is 2.6.0)
+# min_kernel	(default is 2.6.12)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
