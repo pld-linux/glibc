@@ -78,41 +78,9 @@
       N_("Hang for SECS seconds (default 3600)")},
    {0, 0}
  };
---- glibc-2.3.6/timezone/zdump.c.orig	2005-10-17 07:14:28.000000000 +0200
-+++ glibc-2.3.6/timezone/zdump.c	2005-11-05 07:33:38.167505808 +0100
-@@ -226,7 +226,7 @@
- 		return;
- 	(void) fflush(stdout);
- 	(void) fprintf(stderr,
--		"%s: warning: zone \"%s\" abbreviation \"%s\" %s\n",
-+		_("%s: warning: zone \"%s\" abbreviation \"%s\" %s\n"),
- 		progname, zone, abbr, wp);
- 	warned = TRUE;
- }
---- glibc-2.3.6/po/pl.po.orig	2004-11-27 02:09:53.487997720 +0100
-+++ glibc-2.3.6/po/pl.po	2004-11-27 02:55:18.072797872 +0100
-@@ -1713,7 +1713,8 @@
- msgid "Another string for testing."
- msgstr "Inny ³añcuch do testów."
- 
--#: catgets/gencat.c:111 catgets/gencat.c:115 nscd/nscd.c:99
-+#: catgets/gencat.c:111 catgets/gencat.c:115 argp/argp-parse.c:104
-+#: nscd/nscd.c:99
- msgid "NAME"
- msgstr "NAZWA"
- 
-@@ -2770,6 +2770,10 @@
- msgid "differs from POSIX standard"
- msgstr "ró¿ni siê od standardu POSIX"
- 
-+#: timezone/zdump.c:229
-+msgid "%s: warning: zone \"%s\" abbreviation \"%s\" %s\n"
-+msgstr "%s: uwaga: skrót nazwy strefy czasowej \"%s\" \"%s\" %s\n"
-+
- #: timezone/zdump.c:280
- #, c-format
- msgid "%s: usage is %s [ --version ] [ -v ] [ -c [loyear,]hiyear ] zonename ...\n"
-@@ -3372,9 +3373,13 @@
+--- glibc-2.4/po/pl.po.orig	2006-06-30 23:24:08.618916500 +0200
++++ glibc-2.4/po/pl.po	2006-06-30 23:30:04.281144000 +0200
+@@ -67,9 +67,13 @@
  msgid "Set the program name"
  msgstr "Okre¶lenie nazwy programu"
  
@@ -127,7 +95,16 @@
  
  #: argp/argp-parse.c:167
  msgid "Print program version"
-@@ -3892,6 +3897,102 @@
+@@ -98,7 +102,7 @@
+ msgid "%s%s%s:%u: %s%sAssertion `%s' failed.\n"
+ msgstr "%s%s%s:%u: %s%sWarunek zapewnienia `%s' nie zosta³ spe³niony.\n"
+ 
+-#: catgets/gencat.c:109 catgets/gencat.c:113 nscd/nscd.c:96 nss/makedb.c:61
++#: argp/argp-parse.c:104 catgets/gencat.c:109 catgets/gencat.c:113 nscd/nscd.c:96 nss/makedb.c:61
+ msgid "NAME"
+ msgstr "NAZWA"
+ 
+@@ -4788,6 +4792,102 @@
  msgid "\t%s [-n netid]* [-o outfile] [infile]\n"
  msgstr "\t%s [-n id_sieci]* [-o plik_wy] [plik_we]\n"
  
@@ -227,6 +204,6 @@
 +msgid "-Y path\t\tdirectory name to find C preprocessor (cpp)\n"
 +msgstr "-Y ¶cie¿ka\tnazwa katalogu, w którym znajduje siê preprocesor C (cpp)\n"
 +
- #: sunrpc/rpc_scan.c:118
+ #: sunrpc/rpc_scan.c:114
  msgid "constant or identifier expected"
  msgstr "spodziewana sta³a lub identyfikator"
