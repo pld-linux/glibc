@@ -1,69 +1,25 @@
 #
-# You can define min_kernel macro by "rpm --define 'min_kernel version'"
-# default is 2.4.6 for linuxthreads, 2.6.0 for NPTL
-#
 # Conditional build:
-%bcond_with	omitfp		# build without frame pointer (pass \--enable-omitfp)
+# min_kernel	(default is 2.6.12)
 %bcond_without	memusage	# don't build memusage utility
-%bcond_with	kernelheaders	# use headers from %{_kernelsrcdir} instead of
-				# linux-libc-headers (evil, breakage etc., don't use)
-%bcond_without	linuxthreads	# don't build linuxthreads version (NPTL only)
-%bcond_without	nptl		# don't build NPTL version (linuxthreads only)
-%bcond_without	tls		# don't support TLS at all (implies no NPTL)
-%bcond_with	__thread	# use TLS in linuxthreads
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
-%bcond_with	tests_nptl	# perform NPTL tests on dual build (requires 2.6.x kernel)
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
-%bcond_with	pax		# apply PaX hack
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
 # [OLD]
 # - localedb-gen man pages(?)
-# - fix what trojan broke while upgreading (getaddrinfo-workaround)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
-#   linuxthreads/tst-cancel8, debug/backtrace-tst(SEGV)  fail on alpha
-# - problem compiling with --enable-bounded (must be reported to libc-alpha)
-#   (is this comment still valid???)
-#
-
-%{!?min_kernel:%global          min_kernel      2.4.6}
-%if "%{min_kernel}" < "2.6.0"
-%global		nptl_min_kernel	2.6.0
-%else
-%global		nptl_min_kernel	%{min_kernel}
-%endif
-
-%if %{with tls}
-# sparc temporarily removed (broken)
-%ifnarch %{ix86} %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
-%undefine	with_tls
-%endif
-%endif
-
-%if %{with nptl}
-# on x86 uses cmpxchgl (available since i486)
-# on sparc only sparcv9 is supported
-%ifnarch i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc64 sparcv9 ppc ppc64
-%undefine	with_nptl
-%else
-%if %{without tls}
-%undefine	with_nptl
-%endif
-%endif
-%endif
+#   debug/backtrace-tst(SEGV)  fail on alpha
+%{!?min_kernel:%global          min_kernel      2.6.12}
 
 %ifarch sparc64
 %undefine	with_memusage
 %endif
 
-%if %{with linuxthreads} && %{with nptl}
-%define		with_dual	1
-%endif
-
-%define		llh_version	7:2.6.10.0-3
+%define		llh_version	7:2.6.12.0-10
 
 Summary:	GNU libc
 Summary(de):	GNU libc
@@ -75,15 +31,15 @@ Summary(ru):	GNU libc ×ÅÒÓÉÉ 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
-Version:	2.3.6
-Release:	6.1
+Version:	2.4
+Release:	4
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	bfdce99f82d6dbcb64b7f11c05d6bc96
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-linuxthreads-%{version}.tar.bz2
-# Source1-md5:	d4eeda37472666a15cc1f407e9c987a9
+# Source0-md5:	7e9a88dcd41fbc53801dbe5bdacaf245
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
+# Source1-md5:	e2d892b40d654c523ab26a26b7dd86a1
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -97,53 +53,41 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
-Patch4:		%{name}-linuxthreads-lock.patch
-Patch5:		%{name}-pthread_create-manpage.patch
+Patch4:		%{name}-alpha-ev6-opcodes.patch
+
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-dl-execstack.patch
+Patch7:		%{name}-postshell.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
-Patch10:	%{name}-lthrds_noomit.patch
+
 Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
-Patch13:	%{name}-soinit-EH_FRAME.patch
 Patch14:	%{name}-sparc-errno_fix.patch
-Patch15:	%{name}-csu-quotes.patch
-Patch16:	%{name}-tests-noproc.patch
+
 Patch17:	%{name}-new-charsets.patch
 Patch18:	%{name}-sr_CS.patch
 Patch19:	%{name}-sparc64-dl-machine.patch
 Patch20:	%{name}-tzfile-noassert.patch
+
 Patch21:	%{name}-morelocales.patch
-Patch22:	%{name}-locale_ZA.patch
-Patch23:	%{name}-locale_fixes.patch
-Patch24:	%{name}-ZA_collate.patch
-Patch25:	%{name}-tls_fix.patch
-Patch26:	%{name}-iconvconfig-nxstack.patch
-Patch27:	%{name}-sys-kd.patch
-Patch28:	%{name}-cross-gcc_eh.patch
-Patch29:	%{name}-pax_dl-execstack.patch
-Patch30:	%{name}-large_collate_tables.patch
-Patch31:	%{name}-ctype-compat.patch
-Patch32:	%{name}-sparc-mman.h.patch
+Patch22:	%{name}-locale_fixes.patch
+Patch23:	%{name}-ZA_collate.patch
+Patch24:	%{name}-iconvconfig-nxstack.patch
+Patch25:	%{name}-cross-gcc_eh.patch
+# PaX hack (dropped)
+#Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-%{!?with_cross:BuildRequires:	dietlibc-static}
-BuildRequires:	gcc >= 5:3.2
-%ifarch ppc ppc64 sparc sparcv9 sparc64
-%if %{with nptl} || %{with __thread}
 BuildRequires:	gcc >= 5:3.4
-%endif
-%endif
+BuildRequires:	gawk
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%if %{without kernelheaders}
-BuildRequires:	linux-libc-headers >= %{llh_version}
-%endif
+BuildRequires:	klibc-static
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
+BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
@@ -153,24 +97,37 @@ BuildRequires:	texinfo
 AutoReq:	false
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
+Requires:	uname(release) >= %{min_kernel}
 Provides:	/sbin/ldconfig
-%{?with_tls:Provides:	glibc(tls)}
+Provides:	glibc(nptl)
+Provides:	glibc(tls)
+Provides:	glibc64
 Provides:	ldconfig
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
+Obsoletes:	glibc64
 Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
+Conflicts:	kernel24
+Conflicts:	kernel24-smp
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
 Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		debugcflags	-O1 -g
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		rpmldflags	%{nil}
 %define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
+
+# Xen-friendly glibc
+%define		specflags_ia32		-mno-tls-direct-seg-refs
+%define		specflags_x86_64	-mno-tls-direct-seg-refs
+%define		specflags_amd64		-mno-tls-direct-seg-refs
+%define		specflags_ia32e		-mno-tls-direct-seg-refs
+
 # we don't want perl dependency in glibc-devel
 %define		_noautoreqfiles		%{_bindir}/mtrace
 # hack: don't depend on rpmlib(PartialHardlinkSets) for easier upgrade from Ra
@@ -178,11 +135,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # patched not to crash on partial hardlinks too)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
-%if %{with kernelheaders}
-%define		sysheaders	%{_kernelsrcdir}/include
-%else
-%define		sysheaders	%{_includedir}
-%endif
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -256,7 +208,7 @@ matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
 Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
 jêzyków (locale).
 
-Przeznaczony dla j±dra Linux >= %{min_kernel}.
+Pakiet jest przeznaczony dla j±dra Linuksa >= %{min_kernel}.
 
 %description -l ru
 óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓÐÏÌØÚÕÅÍÙÅ ÍÎÏÇÏÞÉÓÌÅÎÎÙÍÉ
@@ -383,7 +335,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia programów przy u¿yciu standardowych b
 Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
-# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
 Obsoletes:	%{name}-headers(i386)
 Obsoletes:	%{name}-headers(i486)
@@ -402,7 +354,7 @@ Obsoletes:	%{name}-headers(s390)
 %ifarch sparc64
 Obsoletes:	%{name}-headers(sparc)
 %endif
-%{!?with_kernelheaders:Requires:	linux-libc-headers >= %{llh_version}}
+Requires:	linux-libc-headers >= %{llh_version}
 
 %description headers
 The glibc-headers package contains the header files necessary for
@@ -477,7 +429,7 @@ Summary(pl):	Dokumentacja do tworzenia programów przy u¿yciu standardowych bibli
 Group:		Documentation
 Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
-# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
+# If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
 Obsoletes:	%{name}-devel-doc(i386)
 Obsoletes:	%{name}-devel-doc(i486)
@@ -858,55 +810,24 @@ Un juguete.
 %description memusage -l pl
 Zabawka.
 
-%package -n %{name}64
-Summary:	GNU libc - 64-bit libraries
-Summary(es):	GNU libc - bibliotecas de 64 bits
-Summary(pl):	GNU libc - biblioteki 64-bitowe
-Group:		Libraries
-Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
-Requires:	basesystem
-Provides:	glibc = %{epoch}:%{version}-%{release}
-%{?with_tls:Provides:	glibc(tls)}
-Provides:	ldconfig
-Obsoletes:	glibc-common
-Obsoletes:	glibc-debug
-Obsoletes:	ldconfig
-Conflicts:	kernel < %{min_kernel}
-Conflicts:	ld.so < 1.9.9-10
-Conflicts:	man-pages < 1.43
-Conflicts:	poldek < 0.18.8-4
-Conflicts:	rc-scripts < 0.3.1-13
-Conflicts:	rpm < 4.1
-
-%description -n %{name}64
-64-bit GNU libc libraries for 64bit architecture.
-
-%description -n %{name}64 -l es
-Bibliotecas GNU libc de 64 bits para la arquitectura 64bit.
-
-%description -n %{name}64 -l pl
-Biblioteki 64-bitowe GNU libc dla architektury 64bit.
-
 %prep
 %setup -q -a1
+ln -s glibc-libidn-%{version} libidn
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
+
 %patch6 -p1
-#%patch7 -p1 UPDATE/DROP (which kernels cause problems?)
+%patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p1
-# don't know, if it is good idea, for brave ones
-#%patch11 -p1
-%{!?with_kernelheaders:%patch12 -p1}
-%patch13 -p1
+
+%patch11 -p1
+%patch12 -p1
 %patch14 -p0
-%patch15 -p1
-%patch16 -p1
+
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
@@ -915,14 +836,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch22 -p1
 %patch23 -p1
 %patch24 -p1
-%patch25 -p1
-%patch26 -p1
-%patch27 -p1
-%{?with_cross:%patch28 -p1}
-%{?with_pax:%patch29 -p1}
-%patch30 -p1
-%patch31 -p1
-%patch32 -p1
+%{?with_cross:%patch25 -p1}
 
 chmod +x scripts/cpp
 
@@ -931,55 +845,33 @@ cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
 cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 
 %build
-# Build glibc
 cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
+
 rm -rf builddir
 install -d builddir
 cd builddir
 %ifarch sparc64
 CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
-%if %{with linuxthreads}
+AWK="gawk" \
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
-	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
-	--with%{!?with___thread:out}-__thread \
-	--with-headers=%{sysheaders} \
-	--with%{!?with_selinux:out}-selinux \
-	--with%{!?with_tls:out}-tls \
-        --enable-add-ons=linuxthreads \
-	--enable-profile
-%{__make}
-%endif
-%if %{with nptl}
-%if %{with dual}
-cd ..
-rm -rf builddir-nptl
-install -d builddir-nptl
-cd builddir-nptl
-%endif
-../%configure \
-	--enable-kernel="%{nptl_min_kernel}" \
-	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
-	--with-headers=%{sysheaders} \
+	--enable-omitfp \
+	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
-        --enable-add-ons=nptl \
+        --enable-add-ons=nptl,libidn \
+	--enable-stackguard-randomization \
+	--enable-hidden-plt \
 	--enable-profile
-# simulate cross-compiling so we can perform dual builds on 2.4.x kernel
-%{__make} \
-	%{?with_dual:cross-compiling=yes}
-%endif
+
+%{__make}
 cd ..
 
-%if %{with linuxthreads}
-%{__make} -C linuxthreads/man
-%endif
-
 %if %{with tests}
-for d in builddir %{?with_tests_nptl:builddir-nptl} ; do
+for d in builddir; do
 cd $d
 env LANGUAGE=C LC_ALL=C \
 %{__make} tests 2>&1 | awk '
@@ -998,9 +890,9 @@ done
 %endif
 
 %if %{without cross}
-# compiling static using diet vs glibc saves 400k
-diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
-diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
+# compiling static using klibc vs glibc saves 490k
+klcc %{SOURCE8} %{rpmcflags} -static -o postshell
+klcc %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
 %endif
 
 %install
@@ -1030,79 +922,16 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
 %if %{without cross}
-install postshell					$RPM_BUILD_ROOT/sbin
+install postshell				$RPM_BUILD_ROOT/sbin
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
-%if %{with dual}
-env LANGUAGE=C LC_ALL=C \
-%{__make} -C builddir-nptl install \
-	cross-compiling=yes \
-	install_root=$RPM_BUILD_ROOT/nptl
-
-install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl,%{_includedir}/nptl}
-for f in libc libm libpthread libthread_db librt; do
-	mv -f $RPM_BUILD_ROOT/nptl/%{_lib}/${f}[-.]* $RPM_BUILD_ROOT/%{_lib}/tls
-done
-$RPM_BUILD_ROOT/sbin/ldconfig -n $RPM_BUILD_ROOT/%{_lib}/tls
-
-for f in libc.so libpthread.so ; do
-	cat $RPM_BUILD_ROOT/nptl%{_libdir}/$f | sed \
-		-e "s|/libc.so.6|/tls/libc.so.6|g" \
-		-e "s|/libpthread.so.0|/tls/libpthread.so.0|g" \
-		-e "s|/libpthread_nonshared.a|/nptl/libpthread_nonshared.a|g" \
-		> $RPM_BUILD_ROOT%{_libdir}/nptl/$f
-done
-for f in libc.a libpthread.a libpthread_nonshared.a; do
-	mv -f $RPM_BUILD_ROOT/nptl%{_libdir}/$f $RPM_BUILD_ROOT%{_libdir}/nptl
-done
-cd $RPM_BUILD_ROOT/nptl%{_prefix}/include
-	for f in `find . -type f`; do
-		if ! [ -f $RPM_BUILD_ROOT%{_prefix}/include/$f ] \
-		   || ! cmp -s $f $RPM_BUILD_ROOT%{_prefix}/include/$f ; then
-			install -d $RPM_BUILD_ROOT%{_prefix}/include/nptl/`dirname $f`
-			cp -a $f $RPM_BUILD_ROOT%{_prefix}/include/nptl/$f
-		fi
-	done
-cd -
-rm -rf $RPM_BUILD_ROOT/nptl
-%endif
-
-%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
+%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so  $RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
-
-%if %{with linuxthreads}
-install linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
-%endif
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 # moved to tzdata package
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
-
-%ifarch %{ix86} ppc s390 sparc sparcv9
-mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-32.h
-%endif
-
-%ifarch %{x8664} ppc64 s390x sparc64
-mv $RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h $RPM_BUILD_ROOT%{_includedir}/gnu/stubs-64.h
-%endif
-
-%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
-cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
-/* This file selects the right generated file of '__stub_FUNCTION' macros
-   based on the architecture being compiled for.  */
-
-#include <bits/wordsize.h>
-
-#if __WORDSIZE == 32
-# include <gnu/stubs-32.h>
-#elif __WORDSIZE == 64
-# include <gnu/stubs-64.h>
-#else
-# error "unexpected value for __WORDSIZE macro"
-#endif
-EOF
-%endif
 
 ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
@@ -1121,7 +950,7 @@ install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
-echo 'include ld.so.conf.d/*.conf'> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
+echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 :> $RPM_BUILD_ROOT/var/log/nscd
@@ -1132,19 +961,10 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 rm -rf documentation
 install -d documentation
 
-%if %{with linuxthreads}
-for f in ChangeLog Changes README ; do
-	cp -f linuxthreads/$f documentation/${f}.linuxthreads
+for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
+	cp -f nptl/$f documentation/$f.nptl
 done
-%endif
-%if %{with nptl}
-for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing} ;  do
-	cp -f nptl/$f documentation/${f}.nptl
-done
-%endif
-cp -f crypt/README.ufc-crypt documentation
-
-cp -f ChangeLog* documentation
+cp -f crypt/README.ufc-crypt ChangeLog* documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
@@ -1222,41 +1042,22 @@ rm -rf $RPM_BUILD_ROOT
 # when %%postun is run
 
 %if %{without cross}
-%ifarch %{x8664} ppc64 s390x sparc64
-%post	-n %{name}64 -p /sbin/postshell
-%else
 %post	-p /sbin/postshell
-%endif
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch %{x8664} ppc64 s390x sparc64
-%postun	-n %{name}64 -p /sbin/postshell
-%else
 %postun	-p /sbin/postshell
-%endif
 /sbin/ldconfig
 -/sbin/telinit u
 
-%ifarch %{x8664} ppc64 s390x sparc64
-%triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
-%else
-%triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
-%endif
--/bin/mv %{_sysconfdir}/ld.so.conf.rpmsave %{_sysconfdir}/ld.so.conf
-
-%ifarch %{x8664} ppc64 s390x sparc64
-%triggerpostun -n %{name}64 -p /sbin/postshell -- %{name}64 < 6:2.3.5-7.6
-%else
-%triggerpostun -p /sbin/postshell -- %{name} < 6:2.3.5-7.6
-%endif
+%triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.5-7.6
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 %endif
 
 %post	memusage -p /sbin/ldconfig
-%postun memusage -p /sbin/ldconfig
+%postun	memusage -p /sbin/ldconfig
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
@@ -1290,13 +1091,7 @@ if [ "$1" = "0" ]; then
 	%groupremove nscd
 fi
 
-%ifarch %{x8664} ppc64 s390x sparc64
-%files -n %{name}64
-%defattr(644,root,root,755)
-%else
 %files
-%defattr(644,root,root,755)
-%endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %if %{without cross}
@@ -1317,10 +1112,6 @@ fi
 %attr(755,root,root) /%{_lib}/libdl*
 %attr(755,root,root) /%{_lib}/libnsl*
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
-%if %{with dual}
-%dir /%{_lib}/tls
-%attr(755,root,root) /%{_lib}/tls/lib[cmprt]*
-%endif
 %{?with_localedb:%dir %{_libdir}/locale}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
 %dir %{_sysconfdir}/ld.so.conf.d
@@ -1499,23 +1290,16 @@ fi
 # ld scripts
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
-
 %{_libdir}/libbsd-compat.a
 %{_libdir}/libbsd.a
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
+%ifarch alpha ppc sparc
+%{_libdir}/libnldbl_nonshared.a
+%endif
 %{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
-
-%if %{with dual}
-%dir %{_libdir}/nptl
-# ld scripts
-%{_libdir}/nptl/libc.so
-%{_libdir}/nptl/libpthread.so
-%{_libdir}/nptl/libpthread_nonshared.a
-%endif
-
 %ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
 %{_includedir}/gnu/stubs-*.h
 %endif
@@ -1547,10 +1331,6 @@ fi
 %{_includedir}/rpcsvc
 %{_includedir}/scsi
 %{_includedir}/sys
-
-%if %{with dual}
-%{_includedir}/nptl
-%endif
 
 %files devel-utils
 %defattr(644,root,root,755)
@@ -1645,14 +1425,9 @@ fi
 %{_libdir}/libresolv.a
 %{_libdir}/librt.a
 %{_libdir}/libutil.a
-%if %{with dual}
-%{_libdir}/nptl/libc.a
-%{_libdir}/nptl/libpthread.a
-%endif
 
 %files profile
 %defattr(644,root,root,755)
-#{?with_dual:%{_libdir}/nptl/lib*_p.a}
 %{_libdir}/lib*_p.a
 
 %files pic
