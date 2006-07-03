@@ -1,0 +1,36 @@
+--- libc/sysdeps/unix/sysv/linux/alpha/ioperm.c.orig	2001-07-06 04:56:13.000000000 +0000
++++ libc/sysdeps/unix/sysv/linux/alpha/ioperm.c	2006-01-10 10:01:13.000000000 +0000
+@@ -173,13 +173,13 @@
+ static inline void
+ stb_mb(unsigned char val, unsigned long addr)
+ {
+-  __asm__("stb %1,%0; mb" : "=m"(*(vucp)addr) : "r"(val));
++  __asm__(".arch ev6\nstb %1,%0; mb\n.arch ev4" : "=m"(*(vucp)addr) : "r"(val));
+ }
+ 
+ static inline void
+ stw_mb(unsigned short val, unsigned long addr)
+ {
+-  __asm__("stw %1,%0; mb" : "=m"(*(vusp)addr) : "r"(val));
++  __asm__(".arch ev6\nstw %1,%0; mb\n.arch ev4" : "=m"(*(vusp)addr) : "r"(val));
+ }
+ 
+ static inline void
+@@ -351,7 +351,7 @@
+   unsigned long int addr = dense_port_to_cpu_addr (port);
+   unsigned char r;
+ 
+-  __asm__ ("ldbu %0,%1" : "=r"(r) : "m"(*(vucp)addr));
++  __asm__ (".arch ev6\nldbu %0,%1\n.arch ev4" : "=r"(r) : "m"(*(vucp)addr));
+   return r;
+ }
+ 
+@@ -361,7 +361,7 @@
+   unsigned long int addr = dense_port_to_cpu_addr (port);
+   unsigned short r;
+ 
+-  __asm__ ("ldwu %0,%1" : "=r"(r) : "m"(*(vusp)addr));
++  __asm__ (".arch ev6\nldwu %0,%1\n.arch ev4" : "=r"(r) : "m"(*(vusp)addr));
+   return r;
+ }
+ 
