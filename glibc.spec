@@ -9,6 +9,7 @@
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
+# - restore postshell.c updates (see AC-branch or old HEAD)
 # [OLD]
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
@@ -1100,6 +1101,7 @@ fi
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
+# NOTE: postshell is now linked statically with klibc
 # ld-*.so SONAME is:
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
