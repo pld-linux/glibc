@@ -890,7 +890,7 @@ done
 %endif
 
 %if %{without cross}
-# compiling static using diet vs glibc saves 459k (414k stripped)
+# create 5.4k postshell binary (7k unstripped) with diet instead of 412k glibc static binary (467k unstripped)
 diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
 diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
 %endif
