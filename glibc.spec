@@ -9,7 +9,7 @@
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
-# - restore postshell.c updates (see AC-branch or old HEAD)
+# - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
 # [OLD]
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
@@ -57,7 +57,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-alpha-ev6-opcodes.patch
 
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-postshell.patch
+
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 
@@ -820,7 +820,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch4 -p1
 
 %patch6 -p1
-%patch7 -p1
+
 %patch8 -p1
 %patch9 -p1
 
@@ -890,9 +890,9 @@ done
 %endif
 
 %if %{without cross}
-# compiling static using klibc vs glibc saves 490k
-klcc %{SOURCE8} %{rpmcflags} -static -o postshell
-klcc %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
+# compiling static using diet vs glibc saves 400k
+diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
+diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
 %endif
 
 %install
@@ -1101,7 +1101,7 @@ fi
 %attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
-# NOTE: postshell is now linked statically with klibc
+# NOTE: postshell is now linked statically with diet
 # ld-*.so SONAME is:
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
