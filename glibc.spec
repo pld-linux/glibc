@@ -890,7 +890,7 @@ done
 %endif
 
 %if %{without cross}
-# compiling static using diet vs glibc saves 400k
+# compiling static using diet vs glibc saves 459k (414k stripped)
 diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
 diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
 %endif
