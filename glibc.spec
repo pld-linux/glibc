@@ -119,7 +119,7 @@ ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
-%define		rpmldflags	%{nil}
+%define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
 %define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
 # Xen-friendly glibc
