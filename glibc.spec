@@ -85,7 +85,7 @@ BuildRequires:	gcc >= 5:3.4
 BuildRequires:	gawk
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%{?without_cross:BuildRequires:	dietlibc-static}
+%{!?with_cross:BuildRequires:	dietlibc-static}
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
