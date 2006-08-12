@@ -14,7 +14,7 @@
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   debug/backtrace-tst(SEGV)  fail on alpha
-%{!?min_kernel:%global          min_kernel      2.6.12}
+%{!?min_kernel:%global		min_kernel	2.6.12}
 
 %ifarch sparc64
 %undefine	with_memusage
@@ -862,7 +862,7 @@ AWK="gawk" \
 	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
-        --enable-add-ons=nptl,libidn \
+	--enable-add-ons=nptl,libidn \
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
 	--enable-profile
@@ -926,7 +926,7 @@ install postshell				$RPM_BUILD_ROOT/sbin
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
-%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so  $RPM_BUILD_ROOT%{_libdir}}
+%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
