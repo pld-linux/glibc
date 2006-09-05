@@ -49,7 +49,6 @@ Source5:	http://qboosh.cs.net.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
-Source8:	postshell.c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -890,9 +889,7 @@ done
 %endif
 
 %if %{without cross}
-# create 5.4k postshell binary (7k unstripped) with diet instead of 412k glibc static binary (467k unstripped)
-diet -Os %{__cc} %{SOURCE8} %{rpmcflags} -static -o postshell
-diet -Os %{__cc} %{SOURCE7} %{rpmcflags} -static -o glibc-postinst
+diet %{__cc} %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 %endif
 
 %install
@@ -922,7 +919,6 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
 %if %{without cross}
-install postshell				$RPM_BUILD_ROOT/sbin
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
@@ -1095,7 +1091,6 @@ fi
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %if %{without cross}
-%attr(755,root,root) /sbin/postshell
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
 %attr(755,root,root) /sbin/ldconfig
