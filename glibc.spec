@@ -33,7 +33,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.4
-Release:	4
+Release:	4.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
