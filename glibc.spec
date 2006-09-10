@@ -132,9 +132,10 @@ Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-sys-kd.patch
 Patch28:	%{name}-cross-gcc_eh.patch
 Patch29:	%{name}-pax_dl-execstack.patch
-Patch30:	%{name}-large_collate_tables.patch
-Patch31:	%{name}-ctype-compat.patch
-Patch32:	%{name}-sparc-mman.h.patch
+Patch30:	%{name}-pax-build.patch
+Patch31:	%{name}-large_collate_tables.patch
+Patch32:	%{name}-ctype-compat.patch
+Patch33:	%{name}-sparc-mman.h.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -153,6 +154,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
+%{?with_pax:BuildRequires:	paxctl}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
@@ -929,9 +931,10 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch27 -p1
 %{?with_cross:%patch28 -p1}
 %{?with_pax:%patch29 -p1}
-%patch30 -p1
+%{?with_pax:%patch30 -p1}
 %patch31 -p1
 %patch32 -p1
+%patch33 -p1
 
 chmod +x scripts/cpp
 
