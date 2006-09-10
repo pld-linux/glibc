@@ -1,0 +1,24 @@
+diff -urN glibc-2.3.6.orig/elf/Makefile glibc-2.3.6/elf/Makefile
+--- glibc-2.3.6.orig/elf/Makefile	2005-07-18 03:19:48.000000000 +0200
++++ glibc-2.3.6/elf/Makefile	2006-09-10 15:08:28.000000000 +0200
+@@ -291,6 +291,8 @@
+ 		  $(LDFLAGS-rtld) -Wl,-z,defs $(z-now-$(bind-now))	\
+ 		  $(filter-out $(map-file),$^) $(load-map-file)		\
+ 		  -Wl,-soname=$(rtld-installed-name) -T $@.lds
++	cp -a $@ $@-pax
++	paxctl -pemrxs $@-pax
+ 	rm -f $@.lds
+ 
+ # interp.c exists just to get this string into the libraries.
+diff -urN glibc-2.3.6.orig/localedata/Makefile glibc-2.3.6/localedata/Makefile
+--- glibc-2.3.6.orig/localedata/Makefile	2004-08-08 01:38:13.000000000 +0200
++++ glibc-2.3.6/localedata/Makefile	2006-09-10 15:09:04.000000000 +0200
+@@ -206,7 +206,7 @@
+ 
+ # Sometimes the whole collection of locale files should be installed.
+ LOCALEDEF=I18NPATH=. GCONV_PATH=$(common-objpfx)iconvdata LC_ALL=C \
+-$(common-objpfx)elf/ld.so --library-path $(rpath-link) $(common-objpfx)locale/localedef
++$(common-objpfx)elf/ld.so-pax --library-path $(rpath-link) $(common-objpfx)locale/localedef
+ install-locales: $(INSTALL-SUPPORTED-LOCALES)
+ 
+ install-locales-dir:
