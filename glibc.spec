@@ -1,3 +1,18 @@
+# TODO:
+# - update locale patches
+# - files?
+#   /usr/lib64/libBrokenLocale_g.a
+#   /usr/lib64/libanl_g.a
+#   /usr/lib64/libc_g.a
+#   /usr/lib64/libcrypt_g.a
+#   /usr/lib64/libdl_g.a
+#   /usr/lib64/libm_g.a
+#   /usr/lib64/libnsl_g.a
+#   /usr/lib64/libpthread_g.a
+#   /usr/lib64/libresolv_g.a
+#   /usr/lib64/librpcsvc_g.a
+#   /usr/lib64/librt_g.a
+#   /usr/lib64/libutil_g.a
 #
 # Conditional build:
 # min_kernel	(default is 2.6.12)
@@ -32,15 +47,15 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-Version:	2.4
-Release:	5
+Version:	2.5
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	7e9a88dcd41fbc53801dbe5bdacaf245
+# Source0-md5:	1fb29764a6a650a4d5b409dda227ac9f
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	e2d892b40d654c523ab26a26b7dd86a1
+# Source1-md5:	8787868ba8962d9b125997ec2f25ac01
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -813,14 +828,14 @@ Zabawka.
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 
 %patch6 -p1
 
-%patch8 -p1
+#%patch8 -p1
 %patch9 -p1
 
 %patch11 -p1
@@ -831,8 +846,8 @@ ln -s glibc-libidn-%{version} libidn
 %patch18 -p1
 
 %patch20 -p1
-%patch21 -p1
-%patch22 -p1
+#%patch21 -p1
+#%patch22 -p1
 %patch23 -p1
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
