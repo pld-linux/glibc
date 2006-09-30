@@ -955,8 +955,9 @@ done
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install posix/gai.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
@@ -1140,6 +1141,8 @@ fi
 %defattr(644,root,root,755)
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
+
 %config %{_sysconfdir}/rpc
 
 %attr(755,root,root) /sbin/sln
