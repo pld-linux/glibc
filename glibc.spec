@@ -1,5 +1,4 @@
 # TODO:
-# - update locale patches
 # - files?
 #   /usr/lib64/libBrokenLocale_g.a
 #   /usr/lib64/libanl_g.a
