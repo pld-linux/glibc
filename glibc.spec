@@ -1012,7 +1012,6 @@ done
 # az_IR (gtk+)
 # dv, haw, kok, ps (iso-codes)
 # my (gaim)
-# tk, ug, yo (used by GNOME)
 #
 # NOTES:
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
@@ -1027,7 +1026,7 @@ for i in aa af am ang ar as az bg bn bn_IN br bs byn cy de_AT dz en en@boldquot 
     gez gu gv he hi hsb hy ia id is it_CH iu ka kk kl km kn ku kw ky leet lg li \
     lo lt lv mg mi mk ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro \
     ru rw sa se si sid sl so sq sr sr@Latn sr@ije ss syr sw ta te tg th ti tig \
-    tl tlh tt uk ur uz ve vi wa wal xh yi zh_HK zu ; do
+    tk tl tlh tt ug uk ur uz ve vi wa wal xh yi yo zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
