@@ -846,7 +846,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch18 -p1
 
 %patch20 -p1
-#%patch21 -p1
+%patch21 -p1
 #%patch22 -p1
 %patch23 -p1
 %patch24 -p1
@@ -1009,7 +1009,6 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 	fi
 done
 # XXX: to be added when become supported by glibc
-# as (atk, gail)
 # az_IR (gtk+)
 # dv, haw, kok, ps (iso-codes)
 # my (gaim)
@@ -1023,11 +1022,11 @@ done
 #   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,
 #   tr,zh_CN,zh_TW
 #
-for i in aa af am ang ar az bg bn bn_IN br bs byn cy de_AT dz en en@boldquot \
+for i in aa af am ang ar as az bg bn bn_IN br bs byn cy de_AT dz en en@boldquot \
     en@quot en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo fr_BE fy ga \
     gez gu gv he hi hsb hy ia id is it_CH iu ka kk kl km kn ku kw ky leet lg li \
     lo lt lv mg mi mk ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro \
-    ru rw sa se sid sl so sq sr sr@Latn sr@ije ss syr sw ta te tg th ti tig \
+    ru rw sa se si sid sl so sq sr sr@Latn sr@ije ss syr sw ta te tg th ti tig \
     tl tlh tt uk ur uz ve vi wa wal xh yi zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
