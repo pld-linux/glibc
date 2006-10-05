@@ -828,14 +828,14 @@ Zabawka.
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 
 %patch6 -p1
 
-#%patch8 -p1
+%patch8 -p1
 %patch9 -p1
 
 %patch11 -p1
