@@ -611,6 +611,17 @@ diff -uNr libc.orig/localedata/locales/cs_CZ libc/localedata/locales/cs_CZ
  lang_name     "<U010C><U0065><U0161><U0074><U0069><U006E><U0061>"
  lang_ab       "<U0063><U0073>"
  lang_term     "<U0063><U0065><U0073>"
+--- glibc-2.5/localedata/locales/csb_PL.orig	2006-08-03 10:15:06.000000000 +0200
++++ glibc-2.5/localedata/locales/csb_PL	2006-10-05 14:43:11.675971000 +0200
+@@ -207,4 +207,8 @@
+ 
+ LC_ADDRESS
+ copy "pl_PL"
++lang_name     "<U006B><U0061><U0073><U007A><U00EB><U0062><U0073><U0063><U007A><U0069>"
++lang_ab       ""
++lang_term     "<U0063><U0073><U0062>"
++lang_lib      "<U0063><U0073><U0062>"
+ END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/da_DK libc/localedata/locales/da_DK
 --- libc.orig/localedata/locales/da_DK	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/da_DK	2004-11-10 02:36:38.000000000 +0100
@@ -1637,24 +1648,6 @@ diff -uNr libc.orig/localedata/locales/es_VE libc/localedata/locales/es_VE
 +lang_term     "<U0073><U0070><U0061>"
 +lang_lib      "<U0073><U0070><U0061>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/et_EE libc/localedata/locales/et_EE
---- libc.orig/localedata/locales/et_EE	2004-04-29 00:55:01.000000000 +0200
-+++ libc/localedata/locales/et_EE	2004-11-10 02:36:38.000000000 +0100
-@@ -2229,7 +2229,14 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
-+country_name "<U0045><U0065><U0073><U0074><U0069>"
- country_ab2 "<U0045><U0045>"
- country_ab3 "<U0045><U0053><U0054>"
- country_num 233
-+country_car "<U0045><U0053><U0054>"
-+country_isbn "9949,9985"
-+lang_name   "<U0045><U0065><U0073><U0074><U0069>"
-+lang_ab     "<U0065><U0074>"
-+lang_term   "<U0065><U0073><U0074>"
-+lang_lib    "<U0065><U0073><U0074>"
- END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/eu_ES libc/localedata/locales/eu_ES
 --- libc.orig/localedata/locales/eu_ES	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/eu_ES	2004-11-10 02:36:38.000000000 +0100
@@ -1886,14 +1879,13 @@ diff -uNr libc.orig/localedata/locales/ga_IE libc/localedata/locales/ga_IE
 +lang_term   "<U0067><U006C><U0065>"
 +lang_lib    "<U0067><U006C><U0065>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/gez_ER libc/localedata/locales/gez_ER
---- libc.orig/localedata/locales/gez_ER	2003-11-04 05:54:11.000000000 +0100
-+++ libc/localedata/locales/gez_ER	2004-11-10 02:36:38.000000000 +0100
+--- glibc-2.5/localedata/locales/gez_ER.orig	2006-07-31 00:19:44.000000000 +0200
++++ glibc-2.5/localedata/locales/gez_ER	2006-10-05 13:40:18.995971000 +0200
 @@ -110,13 +110,9 @@
  % country_car   unknown
  % country_isbn  unknown, Need ISO 2108
  lang_name     "<U130D><U12D5><U12DD>"
--lang_ab       "<U0067><U0065><U007A>"
+-%lang_ab       "<U0067><U0065><U007A>"
 +lang_ab       ""
  lang_term     "<U0067><U0065><U007A>"
 -%
@@ -1905,9 +1897,8 @@ diff -uNr libc.orig/localedata/locales/gez_ER libc/localedata/locales/gez_ER
  END LC_ADDRESS
  
  
-diff -uNr libc.orig/localedata/locales/gez_ET libc/localedata/locales/gez_ET
---- libc.orig/localedata/locales/gez_ET	2003-11-04 05:55:07.000000000 +0100
-+++ libc/localedata/locales/gez_ET	2004-11-10 02:36:38.000000000 +0100
+--- glibc-2.5/localedata/locales/gez_ET.orig	2006-07-31 00:19:44.000000000 +0200
++++ glibc-2.5/localedata/locales/gez_ET	2006-10-05 13:41:03.145971000 +0200
 @@ -108,15 +108,11 @@
  country_ab3   "<U0045><U0054><U0048>"
  country_num   231   % 210 found in at least one ISO 3166 doc
@@ -1915,7 +1906,7 @@ diff -uNr libc.orig/localedata/locales/gez_ET libc/localedata/locales/gez_ET
 -% country_isbn  unknown, Need ISO 2108
 +country_isbn  "<U0039><U0039><U0039><U0034><U0034>"
  lang_name     "<U130D><U12D5><U12DD>"
--lang_ab       "<U0067><U0065><U007A>"
+-%lang_ab       "<U0067><U0065><U007A>"
 +lang_ab       ""
  lang_term     "<U0067><U0065><U007A>"
 -%
@@ -2006,21 +1997,17 @@ diff -uNr libc.orig/localedata/locales/he_IL libc/localedata/locales/he_IL
 +lang_term   "<U0068><U0065><U0062>"
 +lang_lib    "<U0068><U0065><U0062>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/hi_IN libc/localedata/locales/hi_IN
---- libc.orig/localedata/locales/hi_IN	2003-12-07 14:00:22.000000000 +0100
-+++ libc/localedata/locales/hi_IN	2004-11-10 02:36:38.000000000 +0100
-@@ -33,6 +33,10 @@
+--- glibc-2.5/localedata/locales/hi_IN.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/hi_IN	2006-10-05 13:42:40.485971000 +0200
+@@ -36,6 +36,7 @@
  
- LC_CTYPE
- copy "i18n"
-+translit_start
-+include "translit_combining";""
+ translit_start
+ include "translit_combining";""
 +include "translit_devanagari_iscii";""
-+translit_end
+ translit_end
  END LC_CTYPE
  
- LC_COLLATE
-@@ -194,6 +198,13 @@
+@@ -198,6 +199,13 @@
  country_ab2 "<U0049><U004E>"
  country_ab3 "<U0049><U004E><U0044>"
  country_num 356
@@ -2082,207 +2069,6 @@ diff -uNr libc.orig/localedata/locales/hu_HU libc/localedata/locales/hu_HU
 +lang_term   "<U0068><U0075><U006E>"
 +lang_lib    "<U0068><U0075><U006E>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/hy_AM libc/localedata/locales/hy_AM
---- libc.orig/localedata/locales/hy_AM	2004-04-29 00:55:01.000000000 +0200
-+++ libc/localedata/locales/hy_AM	2004-11-10 02:36:38.000000000 +0100
-@@ -1,16 +1,15 @@
- escape_char /
- comment_char %
--% charset "ARMSCII-8"
- % Distribution and use is free, also for commercial purposes.
- 
- LC_IDENTIFICATION
- title "Armenian language locale for Armenia"
--source "http://moon.yerphi.am/~hovik/ArmSCII/ArmCS-005.html"
-+source "http://www.freenet.am/armscii"
- %	Eugene Sevinian <sevinian@crdlx2.yerphi.am> completed
- %	LC_MONETARY and LC_TIME
- address ""
- contact "Pablo Saratxaga"
--email "srtxg@chanae.alphanet.ch"
-+email "pablo@mandrakesoft.com"
- tel ""
- fax ""
- language "Armenian"
-@@ -67,136 +66,7 @@
- %%%%%%%%%%%%
- 
- LC_COLLATE
--
--% Armenian sorting is not yet on iso14651_t1
--
--script <ARMENIAN>
--
--collating-symbol <ARM-AYB>
--collating-symbol <ARM-BEN>
--collating-symbol <ARM-GIM>
--collating-symbol <ARM-DA>
--collating-symbol <ARM-YECH>
--collating-symbol <ARM-ZA>
--collating-symbol <ARM-E>
--collating-symbol <ARM-AT>
--collating-symbol <ARM-TO>
--collating-symbol <ARM-ZHE>
--collating-symbol <ARM-INI>
--collating-symbol <ARM-LYUN>
--collating-symbol <ARM-KHE>
--collating-symbol <ARM-TSA>
--collating-symbol <ARM-KEN>
--collating-symbol <ARM-HO>
--collating-symbol <ARM-DZA>
--collating-symbol <ARM-GHAT>
--collating-symbol <ARM-TCHE>
--collating-symbol <ARM-MEN>
--collating-symbol <ARM-HI>
--collating-symbol <ARM-NU>
--collating-symbol <ARM-SHA>
--collating-symbol <ARM-VO>
--collating-symbol <ARM-CHA>
--collating-symbol <ARM-PE>
--collating-symbol <ARM-JE>
--collating-symbol <ARM-RA>
--collating-symbol <ARM-SE>
--collating-symbol <ARM-VEV>
--collating-symbol <ARM-TYUN>
--collating-symbol <ARM-RE>
--collating-symbol <ARM-TSO>
--collating-symbol <ARM-VYUN>
--collating-symbol <ARM-PYUR>
--collating-symbol <ARM-KE>
--collating-symbol <ARM-O>
--collating-symbol <ARM-FE>
--
--
- copy "iso14651_t1"
--
--order_start <ARMENIAN>;forward;forward;forward;forward,position
--<U0561> <ARM-AYB>;<BAS>;<MIN>;IGNORE
--<U0562> <ARM-BEN>;<BAS>;<MIN>;IGNORE
--<U0563> <ARM-GIM>;<BAS>;<MIN>;IGNORE
--<U0564> <ARM-DA>;<BAS>;<MIN>;IGNORE
--<U0565> <ARM-YECH>;<BAS>;<MIN>;IGNORE
--<U0566> <ARM-ZA>;<BAS>;<MIN>;IGNORE
--<U0567> <ARM-E>;<BAS>;<MIN>;IGNORE
--<U0568> <ARM-AT>;<BAS>;<MIN>;IGNORE
--<U0569> <ARM-TO>;<BAS>;<MIN>;IGNORE
--<U056A> <ARM-ZHE>;<BAS>;<MIN>;IGNORE
--<U056B> <ARM-INI>;<BAS>;<MIN>;IGNORE
--<U056C> <ARM-LYUN>;<BAS>;<MIN>;IGNORE
--<U056D> <ARM-KHE>;<BAS>;<MIN>;IGNORE
--<U056E> <ARM-TSA>;<BAS>;<MIN>;IGNORE
--<U056F> <ARM-KEN>;<BAS>;<MIN>;IGNORE
--<U0570> <ARM-HO>;<BAS>;<MIN>;IGNORE
--<U0571> <ARM-DZA>;<BAS>;<MIN>;IGNORE
--<U0572> <ARM-GHAT>;<BAS>;<MIN>;IGNORE
--<U0573> <ARM-TCHE>;<BAS>;<MIN>;IGNORE
--<U0574> <ARM-MEN>;<BAS>;<MIN>;IGNORE
--<U0575> <ARM-HI>;<BAS>;<MIN>;IGNORE
--<U0576> <ARM-NU>;<BAS>;<MIN>;IGNORE
--<U0577> <ARM-SHA>;<BAS>;<MIN>;IGNORE
--<U0578> <ARM-VO>;<BAS>;<MIN>;IGNORE
--<U0579> <ARM-CHA>;<BAS>;<MIN>;IGNORE
--<U057A> <ARM-PE>;<BAS>;<MIN>;IGNORE
--<U057B> <ARM-JE>;<BAS>;<MIN>;IGNORE
--<U057C> <ARM-RA>;<BAS>;<MIN>;IGNORE
--<U057D> <ARM-SE>;<BAS>;<MIN>;IGNORE
--<U057E> <ARM-VEV>;<BAS>;<MIN>;IGNORE
--<U057F> <ARM-TYUN>;<BAS>;<MIN>;IGNORE
--<U0580> <ARM-RE>;<BAS>;<MIN>;IGNORE
--<U0581> <ARM-TSO>;<BAS>;<MIN>;IGNORE
--<U0582> <ARM-VYUN>;<BAS>;<MIN>;IGNORE
--<U0583> <ARM-PYUR>;<BAS>;<MIN>;IGNORE
--<U0584> <ARM-KE>;<BAS>;<MIN>;IGNORE
--<U0585> <ARM-O>;<BAS>;<MIN>;IGNORE
--<U0586> <ARM-FE>;<BAS>;<MIN>;IGNORE
--<U0531> <ARM-AYB>;<BAS>;<CAP>;IGNORE
--<U0532> <ARM-BEN>;<BAS>;<CAP>;IGNORE
--<U0533> <ARM-GIM>;<BAS>;<CAP>;IGNORE
--<U0534> <ARM-DA>;<BAS>;<CAP>;IGNORE
--<U0535> <ARM-YECH>;<BAS>;<CAP>;IGNORE
--<U0536> <ARM-ZA>;<BAS>;<CAP>;IGNORE
--<U0537> <ARM-E>;<BAS>;<CAP>;IGNORE
--<U0538> <ARM-AT>;<BAS>;<CAP>;IGNORE
--<U0539> <ARM-TO>;<BAS>;<CAP>;IGNORE
--<U053A> <ARM-ZHE>;<BAS>;<CAP>;IGNORE
--<U053B> <ARM-INI>;<BAS>;<CAP>;IGNORE
--<U053C> <ARM-LYUN>;<BAS>;<CAP>;IGNORE
--<U053D> <ARM-KHE>;<BAS>;<CAP>;IGNORE
--<U053E> <ARM-TSA>;<BAS>;<CAP>;IGNORE
--<U053F> <ARM-KEN>;<BAS>;<CAP>;IGNORE
--<U0540> <ARM-HO>;<BAS>;<CAP>;IGNORE
--<U0541> <ARM-DZA>;<BAS>;<CAP>;IGNORE
--<U0542> <ARM-GHAT>;<BAS>;<CAP>;IGNORE
--<U0543> <ARM-TCHE>;<BAS>;<CAP>;IGNORE
--<U0544> <ARM-MEN>;<BAS>;<CAP>;IGNORE
--<U0545> <ARM-HI>;<BAS>;<CAP>;IGNORE
--<U0546> <ARM-NU>;<BAS>;<CAP>;IGNORE
--<U0547> <ARM-SHA>;<BAS>;<CAP>;IGNORE
--<U0548> <ARM-VO>;<BAS>;<CAP>;IGNORE
--<U0549> <ARM-CHA>;<BAS>;<CAP>;IGNORE
--<U054A> <ARM-PE>;<BAS>;<CAP>;IGNORE
--<U054B> <ARM-JE>;<BAS>;<CAP>;IGNORE
--<U054C> <ARM-RA>;<BAS>;<CAP>;IGNORE
--<U054D> <ARM-SE>;<BAS>;<CAP>;IGNORE
--<U054E> <ARM-VEV>;<BAS>;<CAP>;IGNORE
--<U054F> <ARM-TYUN>;<BAS>;<CAP>;IGNORE
--<U0550> <ARM-RE>;<BAS>;<CAP>;IGNORE
--<U0551> <ARM-TSO>;<BAS>;<CAP>;IGNORE
--<U0552> <ARM-VYUN>;<BAS>;<CAP>;IGNORE
--<U0553> <ARM-PYUR>;<BAS>;<CAP>;IGNORE
--<U0554> <ARM-KE>;<BAS>;<CAP>;IGNORE
--<U0555> <ARM-O>;<BAS>;<CAP>;IGNORE
--<U0556> <ARM-FE>;<BAS>;<CAP>;IGNORE
--order_end
--
--reorder-sections-after <CYRIL>
--<ARMENIAN>
--reorder-sections-end
--
- END LC_COLLATE
- 
- LC_CTYPE
-@@ -277,8 +147,8 @@
- LC_MESSAGES
- yesstr      "<U0561><U0575><U0578>"
- nostr       "<U0578><U0579>"
--yesexpr     "<U005E><U005B><U0079><U0059><U0073><U0053><U0561><U0531><U005D><U002E><U002A>"
--noexpr      "<U005E><U005B><U006E><U004E><U0578><U0548><U005D><U002E><U002A>"
-+yesexpr     "<U005E><U005B><U0079><U0059><U0073><U0053><U0561><U0531><U005D>"
-+noexpr      "<U005E><U005B><U006E><U004E><U0578><U0548><U005D>"
- END LC_MESSAGES
- 
- % Metric Measurement system (ISO 1000)
-@@ -303,20 +173,23 @@
- postal_fmt "<U0025><U0064><U0025><U004E><U0025><U0066><U0025><U004E><U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E>/
- <U0025><U0073><U0020><U0025><U0068><U0020><U0035><U0065><U0020><U0025><U0072><U0025><U004E>/
- <U0025><U0043><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
--% FIXME country_name "Armenia" in Armenian
-+country_name "<U0540><U0561><U0575><U0561><U057D><U057F><U0561><U0576>"
- % FIXME country_post for Armenia?
- country_ab2 "<U0041><U004D>"
- country_ab3 "<U0041><U0052><U004D>"
--country_num 51
--% FIXME country_car  for Armenia ?
--country_isbn "<U0039><U0039><U0039><U0033><U0030>"
--% FIXME lang_name Armenian in Armenian
-+country_num 051
-+country_car "<U0041><U004D>"
-+country_isbn "99930,99941"
-+lang_name "<U0540><U0561><U0575><U0565><U0580><U0565><U0576>"
- lang_ab "<U0068><U0079>"
- lang_term "<U0068><U0079><U0065>"
- lang_lib "<U0061><U0072><U006D>"
- END LC_ADDRESS
- 
- LC_NAME
--% FIXME
--name_fmt "???"
-+name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
-+<U0025><U006D><U0025><U0074><U0025><U0066>"
-+name_miss   "<U0585><U0580><U056B><U0578><U0580><U0564>"
-+name_mr     "<U057A><U0580><U0576>"
-+name_mrs    "<U057F><U056F><U0576>"
- END LC_NAME
 diff -uNr libc.orig/localedata/locales/id_ID libc/localedata/locales/id_ID
 --- libc.orig/localedata/locales/id_ID	2004-04-29 00:55:01.000000000 +0200
 +++ libc/localedata/locales/id_ID	2004-11-10 02:36:38.000000000 +0100
@@ -3033,10 +2819,9 @@ diff -uNr libc.orig/localedata/locales/nl_NL libc/localedata/locales/nl_NL
  lang_ab "<U006E><U006C>"
  lang_term "<U006E><U006C><U0064>"
  lang_lib "<U0064><U0075><U0074>"
-diff -uNr libc.orig/localedata/locales/nn_NO libc/localedata/locales/nn_NO
---- libc.orig/localedata/locales/nn_NO	2004-05-04 22:19:00.000000000 +0200
-+++ libc/localedata/locales/nn_NO	2004-11-10 02:36:38.000000000 +0100
-@@ -145,8 +145,10 @@
+--- glibc-2.5/localedata/locales/nn_NO.orig	2006-08-22 19:05:13.000000000 +0200
++++ glibc-2.5/localedata/locales/nn_NO	2006-10-05 13:59:10.945971000 +0200
+@@ -140,8 +140,10 @@
  
  
  LC_MESSAGES
@@ -3049,43 +2834,35 @@ diff -uNr libc.orig/localedata/locales/nn_NO libc/localedata/locales/nn_NO
  END LC_MESSAGES
  
  
-@@ -168,9 +170,16 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
-+country_name "<U004E><U006F><U0072><U0067><U0065>"
- country_ab2 "<U004E><U004F>"
- country_ab3 "<U004E><U004F><U0052>"
- country_num 578
-+country_car "<U004E>"
-+country_isbn "<U0038><U0032>"
-+lang_name   "<U004E><U006F><U0072><U0073><U006B>"
+@@ -157,6 +159,9 @@
+ 
+ LC_ADDRESS
+ copy "nb_NO"
 +lang_ab     "<U006E><U006E>"
 +lang_term   "<U006E><U006E><U006F>"
 +lang_lib    "<U006E><U006E><U006F>"
  END LC_ADDRESS
  
  
-diff -uNr libc.orig/localedata/locales/nr_ZA libc/localedata/locales/nr_ZA
---- libc.orig/localedata/locales/nr_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/nr_ZA	2004-11-10 02:43:54.000000000 +0100
-@@ -218,9 +218,7 @@
+--- glibc-2.5/localedata/locales/nr_ZA.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/nr_ZA	2006-10-05 14:01:44.105971000 +0200
+@@ -230,9 +230,7 @@
  % "ZA"
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
 -% country_isbn ""
--% country_num 
+-% country_num
 +country_isbn  0
-  
+ 
  % Language name in Southern Ndebele - "IsiNdebele"
  lang_name "<U0049><U0073><U0069><U004E><U0064><U0065><U0062><U0065><U006C><U0065>"
-@@ -230,6 +228,7 @@
+@@ -242,6 +240,7 @@
  % "nr", "nbl"
  lang_ab   "<U006E><U0072>"
  lang_term "<U006E><U0062><U006C>"
 +lang_lib  "<U006E><U0062><U006C>"
-  
+ 
  % Representation of postal addresses (minus the addressee's name) in South
  % Africa. (Ignored for now)
 diff -uNr libc.orig/localedata/locales/nso_ZA libc/localedata/locales/nso_ZA
@@ -3286,242 +3063,9 @@ diff -uNr libc.orig/localedata/locales/pt_PT libc/localedata/locales/pt_PT
 +lang_term   "<U0070><U006F><U0072>"
 +lang_lib    "<U0070><U006F><U0072>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/ro_RO libc/localedata/locales/ro_RO
---- libc.orig/localedata/locales/ro_RO	2003-12-05 01:25:59.000000000 +0100
-+++ libc/localedata/locales/ro_RO	2004-11-10 02:36:38.000000000 +0100
-@@ -2,29 +2,19 @@
- escape_char  /
- %
- % Romanian Language Locale for Romania
--% Source: RAP
--% Address: Sankt Jo//rgens Alle 8
--%    DK-1615 Ko//benhavn V, Danmark
--% Contact: Keld Simonsen
--% Email: Keld.Simonsen@dkuug.dk
--% Tel: +45 - 31226543
--% Fax: +45 - 33256543
- % Language: ro
- % Territory: RO
--% Revision: 4.3
--% Date: 1996-10-15
--% Application: general
--% Users: general
--% Charset: ISO-8859-2
-+% Ionel Mugurel Ciobîcã, © 2001
-+% Charset: ISO-8859-16
- % Distribution and use is free, also
- % for commercial purposes.
- 
- LC_IDENTIFICATION
- title      "Romanian locale for Romania"
- source     "RAP"
--address    "Sankt Jorgens Alle 8, DK-1615 Kobenhavn V, Danmark"
-+address    "TUE, SKA, POBOX 513, 5600MB Eindhoven, The Netherlands"
- contact    ""
--email      "bug-glibc-locales@gnu.org"
-+email      "I.M.Ciobica@TUe.nl"
- tel        ""
- fax        ""
- language   "Romanian"
-@@ -32,17 +22,17 @@
- revision   "1.0"
- date       "2000-06-29"
- %
--category  "ro_RO:2000";LC_IDENTIFICATION
--category  "ro_RO:2000";LC_CTYPE
--category  "ro_RO:2000";LC_COLLATE
--category  "ro_RO:2000";LC_TIME
--category  "ro_RO:2000";LC_NUMERIC
--category  "ro_RO:2000";LC_MONETARY
--category  "ro_RO:2000";LC_MESSAGES
--category  "ro_RO:2000";LC_PAPER
--category  "ro_RO:2000";LC_NAME
--category  "ro_RO:2000";LC_ADDRESS
--category  "ro_RO:2000";LC_TELEPHONE
-+category  "i18n:1997";LC_IDENTIFICATION
-+category  "i18n:1997";LC_CTYPE
-+category  "i18n:1997";LC_COLLATE
-+category  "i18n:1997";LC_TIME
-+category  "i18n:1997";LC_NUMERIC
-+category  "i18n:1997";LC_MONETARY
-+category  "i18n:1997";LC_MESSAGES
-+category  "i18n:1997";LC_PAPER
-+category  "i18n:1997";LC_NAME
-+category  "i18n:1997";LC_ADDRESS
-+category  "i18n:1997";LC_TELEPHONE
- 
- END LC_IDENTIFICATION
- 
-@@ -109,23 +99,19 @@
- translit_start
- include "translit_combining";""
- 
--% if t/scomma is not available, try first t/scedilla
--<U0218> "<U015E>";"<U0053>"
--<U0219> "<U015F>";"<U0073>"
--<U021A> "<U0162>";"<U0054>"
--<U021B> "<U0163>";"<U0074>"
--
--% if t/scedilla is not available, try first t/scomma
--<U015E> "<U0218>";"<U0053>"
--<U015F> "<U0219>";"<U0073>"
--<U0162> "<U021A>";"<U0054>"
--<U0163> "<U021B>";"<U0074>"
-+% if t/scomma is not available, try t/s
-+% if t/scedilla is not available, don't try anything
-+% since scedilla belong to Turkish and tcedilla to noone
-+<U0218> "<U0053>"
-+<U0219> "<U0073>"
-+<U021A> "<U0054>"
-+<U021B> "<U0074>"
- 
- translit_end
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0044><U0064><U0059><U0079><U005D><U002E><U002A>"
-+yesexpr "<U005E><U005B><U0044><U0064><U005D><U002E><U002A>"
- noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
- END LC_MESSAGES
- 
-@@ -133,15 +119,15 @@
- int_curr_symbol           "<U0052><U004F><U004C><U0020>"
- currency_symbol           "<U004C><U0065><U0069>"
- mon_decimal_point         "<U002C>"
--mon_thousands_sep         "<U002E>"
-+mon_thousands_sep         "<U0020>"
- mon_grouping              3;3
- positive_sign             ""
- negative_sign             "<U002D>"
- int_frac_digits           2
- frac_digits               2
--p_cs_precedes             1
-+p_cs_precedes             0
- p_sep_by_space            1
--n_cs_precedes             1
-+n_cs_precedes             0
- n_sep_by_space            1
- p_sign_posn               1
- n_sign_posn               1
-@@ -149,46 +135,46 @@
- 
- LC_NUMERIC
- decimal_point             "<U002C>"
--thousands_sep             ""
-+thousands_sep             "<U0020>"
- grouping                  0;0
- END LC_NUMERIC
- 
- LC_TIME
--abday   "<U0044><U0075>";"<U004C><U0075>";"<U004D><U0061>";"<U004D><U0069>";/
--        "<U004A><U006F>";"<U0056><U0069>";"<U0053><U00EE>"
--day     "<U0044><U0075><U006D><U0069><U006E><U0069><U0063><U0102>";/
--        "<U004C><U0075><U006E><U0069>";/
--        "<U004D><U0061><U0072><U0163><U0069>";/
--        "<U004D><U0069><U0065><U0072><U0063><U0075><U0072><U0069>";/
--        "<U004A><U006F><U0069>";/
--        "<U0056><U0069><U006E><U0065><U0072><U0069>";/
--        "<U0053><U00EE><U006D><U0062><U0102><U0074><U0102>"
-+abday   "<U0020><U0044>";"<U0020><U004C>";"<U004D><U0061>";"<U004D><U0069>";/
-+        "<U0020><U004A>";"<U0020><U0056>";"<U0020><U0053>"
-+day     "<U0064><U0075><U006D><U0069><U006E><U0069><U0063><U0103>";/
-+        "<U006C><U0075><U006E><U0069>";/
-+        "<U006D><U0061><U0072><U021B><U0069>";/
-+        "<U006D><U0069><U0065><U0072><U0063><U0075><U0072><U0069>";/
-+        "<U006A><U006F><U0069>";/
-+        "<U0076><U0069><U006E><U0065><U0072><U0069>";/
-+        "<U0073><U00EE><U006D><U0062><U0103><U0074><U0103>"
- abmon   "<U0069><U0061><U006E>";"<U0066><U0065><U0062>";/
-         "<U006D><U0061><U0072>";"<U0061><U0070><U0072>";/
-         "<U006D><U0061><U0069>";"<U0069><U0075><U006E>";/
-         "<U0069><U0075><U006C>";"<U0061><U0075><U0067>";/
-         "<U0073><U0065><U0070>";"<U006F><U0063><U0074>";/
--        "<U006E><U006F><U0076>";"<U0064><U0065><U0063>"
--mon     "<U0049><U0061><U006E><U0075><U0061><U0072><U0069><U0065>";/
--        "<U0046><U0065><U0062><U0072><U0075><U0061><U0072><U0069><U0065>";/
--        "<U004D><U0061><U0072><U0074><U0069><U0065>";/
--        "<U0041><U0070><U0072><U0069><U006C><U0069><U0065>";/
--        "<U004D><U0061><U0069>";/
--        "<U0049><U0075><U006E><U0069><U0065>";/
--        "<U0049><U0075><U006C><U0069><U0065>";/
--        "<U0041><U0075><U0067><U0075><U0073><U0074>";/
--        "<U0053><U0065><U0070><U0074><U0065><U006D><U0062><U0072><U0069><U0065>";/
--        "<U004F><U0063><U0074><U006F><U006D><U0062><U0072><U0069><U0065>";/
--        "<U004E><U006F><U0069><U0065><U006D><U0062><U0072><U0069><U0065>";/
--        "<U0044><U0065><U0063><U0065><U006D><U0062><U0072><U0069><U0065>"
--d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+        "<U006E><U006F><U0069>";"<U0064><U0065><U0063>"
-+mon     "<U0069><U0061><U006E><U0075><U0061><U0072><U0069><U0065>";/
-+        "<U0066><U0065><U0062><U0072><U0075><U0061><U0072><U0069><U0065>";/
-+        "<U006D><U0061><U0072><U0074><U0069><U0065>";/
-+        "<U0061><U0070><U0072><U0069><U006C><U0069><U0065>";/
-+        "<U006D><U0061><U0069>";/
-+        "<U0069><U0075><U006E><U0069><U0065>";/
-+        "<U0069><U0075><U006C><U0069><U0065>";/
-+        "<U0061><U0075><U0067><U0075><U0073><U0074>";/
-+        "<U0073><U0065><U0070><U0074><U0065><U006D><U0062><U0072><U0069><U0065>";/
-+        "<U006F><U0063><U0074><U006F><U006D><U0062><U0072><U0069><U0065>";/
-+        "<U006E><U006F><U0069><U0065><U006D><U0062><U0072><U0069><U0065>";/
-+        "<U0064><U0065><U0063><U0065><U006D><U0062><U0072><U0069><U0065>"
-+d_t_fmt "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0042><U0020><U0025><U0059><U0020><U0025><U0054>"
- d_fmt   "<U0025><U0059><U002D><U0025><U006D><U002D><U0025><U0064>"
- t_fmt   "<U0025><U0054>"
- am_pm   "";""
- t_fmt_ampm ""
--date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
--<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
--<U0025><U005A><U0020><U0025><U0059>"
-+date_fmt       "<U0025><U0041><U002C><U0020><U0025><U0065><U0020><U0025><U0042><U0020>/
-+<U0025><U0059><U002C><U0020><U0025><U0048><U0068><U0020><U0025><U004D><U0027><U0025><U0053><U0027><U0027>"
-+% <U0025><U0059><U002C><U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053>"
- END LC_TIME
- 
- LC_PAPER
-@@ -210,17 +196,30 @@
- END LC_MEASUREMENT
- 
- LC_NAME
--name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
--<U0025><U006D><U0025><U0074><U0025><U0066>"
-+name_fmt    "<U0025><U0066><U0025><U0067><U0025>"
-+name_miss   "<U0064><U006F><U006D><U006E><U0069><U0219><U006F><U0061><U0072><U0103>"
-+name_mr     "<U0064><U006F><U006D><U006E><U0075><U006C><U0065>"
-+name_mrs    "<U0064><U006F><U0061><U006D><U006E><U0103>"
-+name_ms     "<U0064><U006F><U0061><U006D><U006E><U0103>"
- END LC_NAME
- 
- LC_ADDRESS
--postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
--<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
--<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
--<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
--<U004E><U0025><U0063><U0025><U004E>"
--country_ab2 "<U0052><U004F>"
--country_ab3 "<U0052><U004F><U0055>"
--country_num 642
-+postal_fmt    "<U0025><U0066><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0073><U0025>/
-+<U0068><U0025><U004E><U0025><U0062><U002C><U0025>/
-+<U0065><U002C><U0020><U0025><U0072><U0025><U004E>/
-+<U0025><U0054><U0025><U004E><U0025><U0053><U0025>/
-+<U004E><U0025><U007A><U0025><U004E><U0025><U0043>/
-+<U0025><U004E>"
-+country_name  "<U0052><U006F><U006D><U00E2><U006E><U0069><U0061>"
-+country_post  "<U0052><U004F>"
-+country_ab2   "<U0052><U004F>"
-+country_ab3   "<U0052><U004F><U0055>"
-+country_num   642
-+country_car   "<U0052><U004F>"
-+country_isbn  "<U0039><U0037><U0033>"
-+lang_name     "<U0052><U006F><U006D><U00E2><U006E><U0065><U0219><U0074><U0065>"
-+lang_ab       "<U0072><U006F>"
-+lang_term     "<U0072><U006F><U006E>"
-+lang_lib      "<U0072><U0075><U006D>"
- END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/ru_RU libc/localedata/locales/ru_RU
---- libc.orig/localedata/locales/ru_RU	2003-12-07 14:00:22.000000000 +0100
-+++ libc/localedata/locales/ru_RU	2004-11-10 02:36:38.000000000 +0100
-@@ -69,8 +69,10 @@
+--- glibc-2.5/localedata/locales/ru_RU.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/ru_RU	2006-10-05 13:31:09.085971000 +0200
+@@ -73,8 +73,10 @@
  END LC_CTYPE
  
  LC_MESSAGES
@@ -3534,16 +3078,7 @@ diff -uNr libc.orig/localedata/locales/ru_RU libc/localedata/locales/ru_RU
  END LC_MESSAGES
  
  LC_MONETARY
-@@ -93,7 +95,7 @@
- 
- LC_NUMERIC
- decimal_point             "<U002C>"
--thousands_sep             "<U002E>"
-+thousands_sep             "<U00A0>"
- grouping                  3;3
- END LC_NUMERIC
- 
-@@ -177,7 +179,16 @@
+@@ -181,7 +183,16 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
@@ -3782,10 +3317,9 @@ diff -uNr libc.orig/localedata/locales/sr_CS@Latn libc/localedata/locales/sr_CS@
  country_isbn  "<U0038><U0036>"
  lang_name     "<U0073><U0072><U0070><U0073><U006B><U0069>"
  lang_term     "<U0073><U0072><U0070>"
-diff -uNr libc.orig/localedata/locales/ss_ZA libc/localedata/locales/ss_ZA
---- libc.orig/localedata/locales/ss_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/ss_ZA	2004-11-10 02:44:13.000000000 +0100
-@@ -162,10 +162,12 @@
+--- glibc-2.5/localedata/locales/ss_ZA.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/ss_ZA	2006-10-05 14:29:58.935971000 +0200
+@@ -174,10 +174,12 @@
  % The affirmative response - yebo
  % "^[yY]"
  yesexpr     "<U005E><U005B><U0079><U0059><U005D>"
@@ -3798,34 +3332,33 @@ diff -uNr libc.orig/localedata/locales/ss_ZA libc/localedata/locales/ss_ZA
  END LC_MESSAGES
  
  LC_PAPER
-@@ -223,8 +225,7 @@
+@@ -235,8 +237,7 @@
  % "ZA"
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
 -% country_isbn ""
 +country_isbn  0
-  
+ 
  % Language name in Swati - "SiSwati"
  lang_name "<U0053><U0069><U0053><U0077><U0061><U0074><U0069>"
-@@ -234,6 +235,7 @@
+@@ -246,6 +247,7 @@
  % "ss", ssw"
  lang_ab   "<U0073><U0073>"
  lang_term "<U0073><U0073><U0077>"
 +lang_lib  "<U0073><U0073><U0077>"
-  
+ 
  % Representation of postal addresses (minus the addressee's name) in South
  % Africa. (Ignored for now)
-diff -uNr libc.orig/localedata/locales/st_ZA libc/localedata/locales/st_ZA
---- libc.orig/localedata/locales/st_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/st_ZA	2004-11-10 02:36:38.000000000 +0100
-@@ -216,7 +216,7 @@
+--- glibc-2.5/localedata/locales/st_ZA.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/st_ZA	2006-10-05 14:36:06.815971000 +0200
+@@ -228,7 +228,7 @@
  country_post "<U005A><U0041>"
-  
+ 
  % FIXME define the following correctly
 -% country_isbn ""
 +country_isbn 0
-  
+ 
  % Language name in Sotho - "Sesotho"
  lang_name "<U0053><U0065><U0073><U006F><U0074><U0068><U006F>"
 diff -uNr libc.orig/localedata/locales/sv_FI libc/localedata/locales/sv_FI
@@ -3892,10 +3425,9 @@ diff -uNr libc.orig/localedata/locales/ta_IN libc/localedata/locales/ta_IN
  END LC_ADDRESS
  
  
-diff -uNr libc.orig/localedata/locales/te_IN libc/localedata/locales/te_IN
---- libc.orig/localedata/locales/te_IN	2004-12-17 21:08:56.000000000 +0100
-+++ libc/localedata/locales/te_IN	2005-01-27 12:02:23.000000000 +0100
-@@ -146,12 +146,12 @@
+--- glibc-2.5/localedata/locales/te_IN.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/te_IN	2006-10-05 14:27:32.065971000 +0200
+@@ -150,12 +150,12 @@
  %
  % Syntax on Unicode Regular Expression Guidelines TR#18
  % ^[yY\u0C05].*
@@ -3910,19 +3442,7 @@ diff -uNr libc.orig/localedata/locales/te_IN libc/localedata/locales/te_IN
  
  %
  yesstr      "<U0C05><U0C35><U0C28><U0C41>"
-@@ -186,9 +186,8 @@
- % This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category
- % generated by IBM Basic CountryPack Transformer.
- 
--% postal_fmt    "%n%N%a%N%d%N%f%N%r%t%e%N%h%t%b%N%s%t%l%N%T%t%z%N%S%N%c"
--postal_fmt      "<U0025><U006E><U0025><U004E>/
--<U0025><U0061><U0025><U004E>/
-+% postal_fmt    "%a%N%d%N%f%N%r%t%e%N%h%t%b%N%s%t%l%N%T%t%z%N%S%N%c"
-+postal_fmt      "<U0025><U0061><U0025><U004E>/
- <U0025><U0064><U0025><U004E>/
- <U0025><U0066><U0025><U004E>/
- <U0025><U0072><U0025><U0074><U0025><U0065><U0025><U004E>/
-@@ -201,9 +200,12 @@
+@@ -204,9 +204,12 @@
  country_ab2     "<U0049><U004E>"
  country_ab3     "<U0049><U004E><U0044>"
  country_num     356
@@ -4011,10 +3531,9 @@ diff -uNr libc.orig/localedata/locales/tl_PH libc/localedata/locales/tl_PH
 -copy "en_US"
 +copy "en_PH"
  END LC_TELEPHONE
-diff -uNr libc.orig/localedata/locales/tn_ZA libc/localedata/locales/tn_ZA
---- libc.orig/localedata/locales/tn_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/tn_ZA	2004-11-10 02:44:45.000000000 +0100
-@@ -160,10 +160,12 @@
+--- glibc-2.5/localedata/locales/tn_ZA.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/tn_ZA	2006-10-05 14:37:02.925971000 +0200
+@@ -176,10 +176,12 @@
  % The affirmative response - ee
  % "^[yYeE]"
  yesexpr     "<U005E><U005B><U0079><U0059><U0065><U0045><U005D>"
@@ -4027,26 +3546,24 @@ diff -uNr libc.orig/localedata/locales/tn_ZA libc/localedata/locales/tn_ZA
  END LC_MESSAGES
  
  LC_PAPER
-@@ -222,8 +224,7 @@
+@@ -238,8 +240,7 @@
  % "ZA"
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
 -% country_isbn ""
 +country_isbn  0
-  
+ 
  % Language name in Tswana - "Setswana"
  lang_name "<U0053><U0065><U0074><U0073><U0077><U0061><U006E><U0061>"
-@@ -233,7 +234,8 @@
+@@ -249,6 +250,7 @@
  % "tn", "tsn"
  lang_ab   "<U0074><U006E>"
  lang_term "<U0074><U0073><U006E>"
-- 
 +lang_lib  "<U0074><U0073><U006E>"
-+
+ 
  % Representation of postal addresses (minus the addressee's name) in South
  % Africa. (Ignored for now)
- postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
 diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
 --- libc.orig/localedata/locales/tr_TR	2004-03-20 23:24:04.000000000 +0100
 +++ libc/localedata/locales/tr_TR	2004-11-10 02:36:38.000000000 +0100
@@ -4075,25 +3592,24 @@ diff -uNr libc.orig/localedata/locales/tr_TR libc/localedata/locales/tr_TR
  %tr
  lang_ab		"<U0074><U0072>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/ts_ZA libc/localedata/locales/ts_ZA
---- libc.orig/localedata/locales/ts_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/ts_ZA	2004-11-10 02:45:40.000000000 +0100
-@@ -220,8 +220,7 @@
+--- glibc-2.5/localedata/locales/ts_ZA.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/ts_ZA	2006-10-05 14:37:37.395971000 +0200
+@@ -232,8 +232,7 @@
  % "ZA"
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
 -% country_isbn ""
 +country_isbn  0
-  
+ 
  % Language name in Tsonga - "Xitsonga"
  lang_name "<U0058><U0069><U0074><U0073><U006F><U006E><U0067><U0061>"
-@@ -231,6 +230,7 @@
+@@ -243,6 +242,7 @@
  % "ts", "tso"
  lang_ab   "<U0074><U0073>"
  lang_term "<U0074><U0073><U006F>"
 +lang_lib  "<U0074><U0073><U006F>"
-  
+ 
  % Representation of postal addresses (minus the addressee's name) in South
  % Africa. (Ignored for now)
 diff -uNr libc.orig/localedata/locales/tt_RU libc/localedata/locales/tt_RU
@@ -4220,10 +3736,9 @@ diff -uNr libc.orig/localedata/locales/uz_UZ@cyrillic libc/localedata/locales/uz
  country_car "<U0055><U005A>"
  lang_name   "<U040E><U0437><U0431><U0435><U043A><U0447><U0430>"
  lang_ab     "<U0075><U007A>"
-diff -uNr libc.orig/localedata/locales/ve_ZA libc/localedata/locales/ve_ZA
---- libc.orig/localedata/locales/ve_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/ve_ZA	2004-11-10 02:42:28.000000000 +0100
-@@ -161,10 +161,12 @@
+--- glibc-2.5/localedata/locales/ve_ZA.orig	2006-07-31 00:19:43.000000000 +0200
++++ glibc-2.5/localedata/locales/ve_ZA	2006-10-05 14:38:09.005971000 +0200
+@@ -173,10 +173,12 @@
  % The affirmative response - ee
  % "^[yYeE]"
  yesexpr     "<U005E><U005B><U0079><U0059><U0065><U0045><U005D>"
@@ -4236,17 +3751,17 @@ diff -uNr libc.orig/localedata/locales/ve_ZA libc/localedata/locales/ve_ZA
  END LC_MESSAGES
  
  LC_PAPER
-@@ -223,8 +225,7 @@
+@@ -235,8 +237,7 @@
  % "ZA"
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
 -% country_isbn ""
 +country_isbn  0
-  
+ 
  % Language name in Venda - "Tshivend^a"
  lang_name "<U0054><U0073><U0068><U0069><U0076><U0065><U006E><U1E13><U0061>"
-@@ -234,9 +235,7 @@
+@@ -246,9 +247,7 @@
  % "ve", "ven", :ven"
  lang_ab         "<U0076><U0065>"
  lang_term       "<U0076><U0065><U006E>"
@@ -4254,7 +3769,7 @@ diff -uNr libc.orig/localedata/locales/ve_ZA libc/localedata/locales/ve_ZA
 -% determine what as it works correctly in other locale files
 -% lang_lib        "<U0076><U0065><U006E>"
 +lang_lib        "<U0076><U0065><U006E>"
-  
+ 
  % Representation of postal addresses (minus the addressee's name) in South
  % Africa. (Ignored for now)
 diff -uNr libc.orig/localedata/locales/vi_VN libc/localedata/locales/vi_VN
