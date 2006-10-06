@@ -76,6 +76,7 @@ Patch9:		%{name}-java-libc-wait.patch
 
 Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
+Patch13:	%{name}-ppc-include-mathinline.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -839,6 +840,7 @@ ln -s glibc-libidn-%{version} libidn
 
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
 %patch14 -p0
 
 %patch17 -p1
