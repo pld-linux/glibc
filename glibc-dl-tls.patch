@@ -1,0 +1,52 @@
+===================================================================
+RCS file: /cvs/glibc/libc/sysdeps/generic/Attic/dl-tls.c,v
+retrieving revision 1.42.2.5
+retrieving revision 1.42.2.6
+diff -u -r1.42.2.5 -r1.42.2.6
+--- libc/sysdeps/generic/dl-tls.c	2005/03/03 13:34:19	1.42.2.5
++++ libc/sysdeps/generic/dl-tls.c	2005/03/24 08:19:17	1.42.2.6
+@@ -71,26 +71,24 @@
+ 	 NB: the offset +1 is due to the fact that DTV[0] is used
+ 	 for something else.  */
+       result = GL(dl_tls_static_nelem) + 1;
+-      /* If the following would not be true we mustn't have assumed
+-	 there is a gap.  */
+-      assert (result <= GL(dl_tls_max_dtv_idx));
+-      do
+-	{
+-	  while (result - disp < runp->len)
+-	    {
+-	      if (runp->slotinfo[result - disp].map == NULL)
+-		break;
+-
+-	      ++result;
+-	      assert (result <= GL(dl_tls_max_dtv_idx) + 1);
+-	    }
+-
+-	  if (result - disp < runp->len)
+-	    break;
+-
+-	  disp += runp->len;
+-	}
+-      while ((runp = runp->next) != NULL);
++      if (result <= GL(dl_tls_max_dtv_idx))
++	do
++	  {
++	    while (result - disp < runp->len)
++	      {
++		if (runp->slotinfo[result - disp].map == NULL)
++		  break;
++
++		++result;
++		assert (result <= GL(dl_tls_max_dtv_idx) + 1);
++	      }
++
++	    if (result - disp < runp->len)
++	      break;
++
++	    disp += runp->len;
++	  }
++	while ((runp = runp->next) != NULL);
+ 
+       if (result > GL(dl_tls_max_dtv_idx))
+ 	{
