@@ -17,7 +17,7 @@
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
 %bcond_with	boot64		# bootstrap *64 using cross* (sparc64 currently)
-%bcond_with	pax		# apply PaX hack
+%bcond_with	pax		# build in PaX enabled environment (PaX hack is default BTW)
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -131,6 +131,8 @@ Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-sys-kd.patch
 Patch28:	%{name}-cross-gcc_eh.patch
+# WARNING: do not comment or delete pax_dl-execstack.patch, please. If you think 
+#          that this is a good idea send some info to pld-devel-{pl,en}
 Patch29:	%{name}-pax_dl-execstack.patch
 Patch30:	%{name}-pax-build.patch
 Patch31:	%{name}-large_collate_tables.patch
@@ -931,7 +933,13 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch26 -p1
 %patch27 -p1
 %{?with_cross:%patch28 -p1}
-%{?with_pax:%patch29 -p1}
+#
+# WARNING - disabling the glibc-pax_dl-execstack.patch will screw up PaX enabled machines.
+#
+%patch29
+#
+# ... and remember we will find you ;-)
+#
 %{?with_pax:%patch30 -p1}
 %patch31 -p1
 %patch32 -p1
