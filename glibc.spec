@@ -86,7 +86,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	8
+Release:	9
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -136,6 +136,7 @@ Patch30:	%{name}-pax-build.patch
 Patch31:	%{name}-large_collate_tables.patch
 Patch32:	%{name}-ctype-compat.patch
 Patch33:	%{name}-sparc-mman.h.patch
+Patch34:	%{name}-dl-tls.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -935,6 +936,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch31 -p1
 %patch32 -p1
 %patch33 -p1
+%patch34 -p1
 
 chmod +x scripts/cpp
 
