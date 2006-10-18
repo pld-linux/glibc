@@ -936,7 +936,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 #
 # WARNING - disabling the glibc-pax_dl-execstack.patch will screw up PaX enabled machines.
 #
-%patch29
+%patch29 -p1
 #
 # ... and remember we will find you ;-)
 #
