@@ -1014,6 +1014,9 @@ done
 # my (gaim)
 #
 # NOTES:
+# what about sr@ije? it used to be sr_CS@ije (should be @[i]jekavian?), but
+# now this dialect uses sr_ME locale - rename dir to sr_ME?
+#
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 #   till now
 #
