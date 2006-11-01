@@ -42,6 +42,24 @@ diff -uNr libc.old/intl/locale.alias libc/intl/locale.alias
  DEFINE_COUNTRY_CODE ("SEYCHELLES", SC, SYC, 690)
  DEFINE_COUNTRY_CODE ("SIERRA LEONE", SL, SLE, 694)
  DEFINE_COUNTRY_CODE ("SINGAPORE", SG, SGP, 702)
+--- glibc-2.5/locale/iso-4217.def.orig	2006-04-26 09:14:53.000000000 +0200
++++ glibc-2.5/locale/iso-4217.def	2006-11-01 20:43:00.139988000 +0100
+@@ -40,7 +40,6 @@
+ DEFINE_INT_CURR("CNY")		/* China Yuan Renminbi  */
+ DEFINE_INT_CURR("COP")		/* Colombian Peso  */
+ DEFINE_INT_CURR("CRC")		/* Costa Rican Colon  */
+-DEFINE_INT_CURR("CSD")		/* Serbian Dinar  */
+ DEFINE_INT_CURR("CUP")		/* Cuban Peso  */
+ DEFINE_INT_CURR("CVE")		/* Cape Verde Escudo  */
+ DEFINE_INT_CURR("CYP")		/* Cypriot Pound  */
+@@ -129,6 +128,7 @@
+ DEFINE_INT_CURR("QAR")		/* Qatar Rial  */
+ DEFINE_INT_CURR("ROL")		/* Romanian Leu  */
+ DEFINE_INT_CURR("RON")		/* Romanian New Leu  */
++DEFINE_INT_CURR("RSD")		/* Serbian Dinar  */
+ DEFINE_INT_CURR("RUB")		/* Russian Ruble  */
+ DEFINE_INT_CURR("RWF")		/* Rwanda Franc  */
+ DEFINE_INT_CURR("SAR")		/* Saudi Arabia Riyal  */
 --- glibc-2.5/localedata/SUPPORTED.orig	2006-09-29 20:29:11.000000000 +0200
 +++ glibc-2.5/localedata/SUPPORTED	2006-11-01 17:56:32.211781500 +0100
 @@ -46,10 +46,17 @@
@@ -5072,7 +5090,7 @@ diff -uNr libc.old/localedata/locales/sr_CS@ije libc/localedata/locales/sr_CS@ij
 +END LC_COLLATE
 +
 +LC_MONETARY
-+int_curr_symbol           "<U0043><U0053><U0044><U0020>"
++int_curr_symbol           "<U0052><U0053><U0044><U0020>"
 +currency_symbol           "<U0434><U0438><U043D>"
 +mon_decimal_point         "<U002C>"
 +mon_thousands_sep         "<U002E>"
@@ -5258,7 +5276,7 @@ diff -uNr libc.old/localedata/locales/sr_CS@ije libc/localedata/locales/sr_CS@ij
 +END LC_COLLATE
 +
 +LC_MONETARY
-+int_curr_symbol           "<U0059><U0055><U004D><U0020>"
++int_curr_symbol           "<U0052><U0053><U0044><U0020>"
 +currency_symbol           "<U0064><U0069><U006E>"
 +mon_decimal_point         "<U002C>"
 +mon_thousands_sep         "<U002E>"
