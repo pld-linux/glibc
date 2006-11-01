@@ -80,7 +80,6 @@ Patch13:	%{name}-ppc-include-mathinline.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
-Patch18:	%{name}-sr_CS.patch
 
 Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
@@ -844,7 +843,6 @@ ln -s glibc-libidn-%{version} libidn
 %patch14 -p0
 
 %patch17 -p1
-%patch18 -p1
 
 %patch20 -p1
 %patch21 -p1
