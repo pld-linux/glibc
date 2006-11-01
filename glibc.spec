@@ -1011,7 +1011,7 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 done
 # XXX: to be added when become supported by glibc
 # az_IR (gtk+)
-# gn_PY (gnome-menus)
+# gn (gn_BR in gnome, maybe gn_PY)
 # dv, haw, kok, ps (iso-codes)
 # my (gaim)
 #
