@@ -1,26 +1,34 @@
 --- glibc-2.5/sysdeps/powerpc/fpu/e_sqrt.c~	2006-10-06 18:33:08.000000000 +0200
 +++ glibc-2.5/sysdeps/powerpc/fpu/e_sqrt.c	2006-10-06 18:32:25.000000000 +0200
-@@ -17,6 +17,10 @@
-    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-    02111-1307 USA.  */
+@@ -159,6 +159,14 @@
+ }
  
-+/* make sure bits/mathinline.h is included */
-+#ifndef __USE_EXTERN_INLINES
-+# define __USE_EXTERN_INLINES
+ 
++#ifndef __CPU_HAS_FSQRT
++# if __WORDSIZE == 64 || defined _ARCH_PWR4
++#  define __CPU_HAS_FSQRT 1
++# else
++#  define __CPU_HAS_FSQRT ((GLRO(dl_hwcap) & PPC_FEATURE_64) != 0)
++# endif
 +#endif
- #include <math.h>
- #include <math_private.h>
- #include <fenv_libc.h>
++
+ #ifdef __STDC__
+ double
+ __ieee754_sqrt (double x)
 --- glibc-2.5/sysdeps/powerpc/fpu/e_sqrtf.c~	2006-04-14 07:44:30.000000000 +0200
 +++ glibc-2.5/sysdeps/powerpc/fpu/e_sqrtf.c	2006-10-06 18:32:45.000000000 +0200
-@@ -17,6 +17,10 @@
-    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-    02111-1307 USA.  */
+@@ -135,6 +135,14 @@
+ }
  
-+/* make sure bits/mathinline.h is included */
-+#ifndef __USE_EXTERN_INLINES
-+# define __USE_EXTERN_INLINES
+ 
++#ifndef __CPU_HAS_FSQRT
++# if __WORDSIZE == 64 || defined _ARCH_PWR4
++#  define __CPU_HAS_FSQRT 1
++# else
++#  define __CPU_HAS_FSQRT ((GLRO(dl_hwcap) & PPC_FEATURE_64) != 0)
++# endif
 +#endif
- #include <math.h>
- #include <math_private.h>
- #include <fenv_libc.h>
++
+ #ifdef __STDC__
+ float
+ __ieee754_sqrtf (float x)
