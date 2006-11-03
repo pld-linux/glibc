@@ -1,15 +1,12 @@
 --- glibc-2.5/sysdeps/powerpc/fpu/e_sqrt.c~	2006-10-06 18:33:08.000000000 +0200
 +++ glibc-2.5/sysdeps/powerpc/fpu/e_sqrt.c	2006-10-06 18:32:25.000000000 +0200
-@@ -159,6 +159,14 @@
+@@ -159,6 +159,11 @@
  }
  
  
 +#ifndef __CPU_HAS_FSQRT
-+# if __WORDSIZE == 64 || defined _ARCH_PWR4
-+#  define __CPU_HAS_FSQRT 1
-+# else
-+#  define __CPU_HAS_FSQRT ((GLRO(dl_hwcap) & PPC_FEATURE_64) != 0)
-+# endif
++  /* If __CPU_HAS_FSQRT is not defined means we don't want optimization */
++# define __CPU_HAS_FSQRT 0
 +#endif
 +
  #ifdef __STDC__
@@ -17,16 +14,13 @@
  __ieee754_sqrt (double x)
 --- glibc-2.5/sysdeps/powerpc/fpu/e_sqrtf.c~	2006-04-14 07:44:30.000000000 +0200
 +++ glibc-2.5/sysdeps/powerpc/fpu/e_sqrtf.c	2006-10-06 18:32:45.000000000 +0200
-@@ -135,6 +135,14 @@
+@@ -135,6 +135,11 @@
  }
  
  
 +#ifndef __CPU_HAS_FSQRT
-+# if __WORDSIZE == 64 || defined _ARCH_PWR4
-+#  define __CPU_HAS_FSQRT 1
-+# else
-+#  define __CPU_HAS_FSQRT ((GLRO(dl_hwcap) & PPC_FEATURE_64) != 0)
-+# endif
++  /* If __CPU_HAS_FSQRT is not defined means we don't want optimization */
++# define __CPU_HAS_FSQRT 0
 +#endif
 +
  #ifdef __STDC__
