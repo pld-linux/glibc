@@ -76,11 +76,7 @@ Patch9:		%{name}-java-libc-wait.patch
 
 Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
-# disabled: it was here to unbreak -Os compilation on ppc, but it enforces
-# __USE_EXTERN_INLINES, which shouldn't be used with -Os; proper solution
-# would be to move __CPU_HAS_FSQRT defines from mathinline.h to some more
-# general (but still ppc-specific) file
-Patch13:	%{name}-ppc-include-mathinline.patch
+Patch13:	%{name}-ppc-inline-fsqrt.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -843,7 +839,7 @@ ln -s glibc-libidn-%{version} libidn
 
 %patch11 -p1
 %patch12 -p1
-#%patch13 -p1
+%patch13 -p1
 %patch14 -p0
 
 %patch17 -p1
