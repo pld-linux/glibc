@@ -902,7 +902,7 @@ cd ..
 done
 %endif
 
-%if %{without cross}
+%if !%{with cross}
 diet %{__cc} %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 %endif
 
@@ -932,7 +932,7 @@ install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
-%if %{without cross}
+%if !%{with cross}
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
@@ -1054,7 +1054,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
-%if %{without cross}
+%if !%{with cross}
 %post	-p /sbin/postshell
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 /sbin/ldconfig
@@ -1107,7 +1107,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
-%if %{without cross}
+%if !%{with cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
 %attr(755,root,root) /sbin/ldconfig
