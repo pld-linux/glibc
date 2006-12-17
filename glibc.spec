@@ -1030,6 +1030,7 @@ install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/m
 cd builddir
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
+	%{?with_dual:includedir=/inc-linuxthreads} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
@@ -1059,7 +1060,7 @@ env LANGUAGE=C LC_ALL=C \
 	cross-compiling=yes \
 	install_root=$RPM_BUILD_ROOT/nptl
 
-install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl,%{_includedir}/nptl}
+install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl}
 for f in libc libm libpthread libthread_db librt; do
 	mv -f $RPM_BUILD_ROOT/nptl/%{_lib}/${f}[-.]* $RPM_BUILD_ROOT/%{_lib}/tls
 done
@@ -1075,16 +1076,20 @@ done
 for f in libc.a libpthread.a libpthread_nonshared.a; do
 	mv -f $RPM_BUILD_ROOT/nptl%{_libdir}/$f $RPM_BUILD_ROOT%{_libdir}/nptl
 done
-cd $RPM_BUILD_ROOT/nptl%{_prefix}/include
+cd $RPM_BUILD_ROOT/inc-linuxthreads
 	for f in `find . -type f`; do
-		if ! [ -f $RPM_BUILD_ROOT%{_prefix}/include/$f ] \
-		   || ! cmp -s $f $RPM_BUILD_ROOT%{_prefix}/include/$f ; then
-			install -d $RPM_BUILD_ROOT%{_prefix}/include/nptl/`dirname $f`
-			cp -a $f $RPM_BUILD_ROOT%{_prefix}/include/nptl/$f
+		echo "XXX $f XXX"
+		if ! [ -f $RPM_BUILD_ROOT/nptl/%{_prefix}/include/$f ]; then
+			install -d $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/`dirname $f`
+			cp -a $f $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/$f
+		elif ! cmp -s $f $RPM_BUILD_ROOT/nptl%{_prefix}/include/$f ; then
+			install -d $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/`dirname $f`
+			cp -a $f $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/$f
 		fi
 	done
 cd -
-rm -rf $RPM_BUILD_ROOT/nptl
+mv $RPM_BUILD_ROOT/nptl%{_prefix}/include $RPM_BUILD_ROOT%{_prefix}/include
+rm -rf $RPM_BUILD_ROOT/{nptl,inc-linuxthreads}
 %endif
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
@@ -1567,7 +1572,7 @@ fi
 %{_includedir}/sys
 
 %if %{with dual}
-%{_includedir}/nptl
+%{_includedir}/linuxthreads
 %endif
 
 %files devel-utils
