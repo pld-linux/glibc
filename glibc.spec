@@ -30,6 +30,8 @@
 #   debug/backtrace-tst(SEGV)  fail on alpha
 %{!?min_kernel:%global		min_kernel	2.6.12}
 
+%define	__cc	gcc4
+
 %ifarch sparc64
 %undefine	with_memusage
 %endif
@@ -94,7 +96,7 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-BuildRequires:	gcc >= 5:3.4
+BuildRequires:	gcc4 >= 5:3.4
 BuildRequires:	gawk
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
@@ -102,7 +104,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
-BuildRequires:	rpm-build >= 4.3-0.20030610.28
+BuildRequires:	rpm-build >= 4.2
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.315
 BuildRequires:	sed >= 4.0.5
@@ -118,7 +120,6 @@ Provides:	glibc64
 Provides:	ldconfig
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
-Obsoletes:	glibc64
 Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	kernel24
@@ -823,6 +824,35 @@ Un juguete.
 %description memusage -l pl
 Zabawka.
 
+%package -n %{name}64
+Summary:       GNU libc - 64-bit libraries
+Summary(es):   GNU libc - bibliotecas de 64 bits
+Summary(pl):   GNU libc - biblioteki 64-bitowe
+Group:         Libraries
+Requires:      %{name}-misc = %{epoch}:%{version}-%{release}
+Requires:      basesystem
+Provides:      glibc = %{epoch}:%{version}-%{release}
+Provides:	glibc(tls)
+Provides:      ldconfig
+Obsoletes:     glibc-common
+Obsoletes:     glibc-debug
+Obsoletes:     ldconfig
+Conflicts:     kernel < %{min_kernel}
+Conflicts:     ld.so < 1.9.9-10
+Conflicts:     man-pages < 1.43
+Conflicts:     poldek < 0.18.8-4
+Conflicts:     rc-scripts < 0.3.1-13
+Conflicts:     rpm < 4.1
+
+%description -n %{name}64
+64-bit GNU libc libraries for 64bit architecture.
+
+%description -n %{name}64 -l es
+Bibliotecas GNU libc de 64 bits para la arquitectura 64bit.
+
+%description -n %{name}64 -l pl
+Biblioteki 64-bitowe GNU libc dla architektury 64bit.
+
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
@@ -1055,16 +1085,28 @@ rm -rf $RPM_BUILD_ROOT
 # when %%postun is run
 
 %if !%{with cross}
+%ifarch %{x8664} ppc64 s390x sparc64
+%post  -n %{name}64 -p /sbin/postshell
+%else
 %post	-p /sbin/postshell
+%endif
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 /sbin/ldconfig
 -/sbin/telinit u
 
+%ifarch %{x8664} ppc64 s390x sparc64
+%postun        -n %{name}64 -p /sbin/postshell
+%else
 %postun	-p /sbin/postshell
+%endif
 /sbin/ldconfig
 -/sbin/telinit u
 
+%ifarch %{x8664} ppc64 s390x sparc64
+%triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.5-7.6
+%else
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.5-7.6
+%endif
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 %endif
@@ -1104,7 +1146,11 @@ if [ "$1" = "0" ]; then
 	%groupremove nscd
 fi
 
+%ifarch %{x8664} ppc64 s390x sparc64
+%files -n %{name}64
+%else
 %files
+%endif
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %if !%{with cross}
