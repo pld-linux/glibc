@@ -49,7 +49,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
 Version:	2.5
-Release:	0.2
+Release:	0.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1089,7 +1089,7 @@ rm -rf $RPM_BUILD_ROOT
 %else
 %post	-p /sbin/postshell
 %endif
-/sbin/glibc-postinst /%{_lib}/%{_host_cpu}
+/sbin/glibc-postinst /%{_lib}/%{_host_cpu} /%{_lib}/tls
 /sbin/ldconfig
 -/sbin/telinit u
 
