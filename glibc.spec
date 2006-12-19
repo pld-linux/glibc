@@ -112,7 +112,6 @@ BuildRequires:	texinfo
 AutoReq:	false
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
-Requires:	uname(release) >= %{min_kernel}
 Provides:	/sbin/ldconfig
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
