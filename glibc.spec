@@ -1071,7 +1071,7 @@ install %{SOURCE6} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # too old binutils in ac, doesn't understand AS_NEEDED
-sed -i -e 's# AS_NEEDED ( .*/ld-linux.so.[0-9] )##g' $RPM_BUILD_ROOT%{_libdir}/libc.so
+sed -i -e 's# AS_NEEDED ( .*/ld-linux.*\.so\.[0-9] )##g' $RPM_BUILD_ROOT%{_libdir}/libc.so
 
 # shutup check-files
 rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
