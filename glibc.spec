@@ -851,6 +851,9 @@ ln -s glibc-libidn-%{version} libidn
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
 
+# these would be copied to localedb-src
+rm -f localedata/locales/*.orig
+
 chmod +x scripts/cpp
 
 # i786 (aka pentium4) hack
