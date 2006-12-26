@@ -852,7 +852,7 @@ ln -s glibc-libidn-%{version} libidn
 %{?with_cross:%patch25 -p1}
 
 # these would be copied to localedb-src
-rm -f localedata/locales/*.orig
+rm -f localedata/locales/*{.orig,~}
 
 chmod +x scripts/cpp
 
