@@ -135,6 +135,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
 %define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
+# -m from CFLAGS or even LDFLAGS is not propagated to some *.o linking
+%ifarch sparc sparcv9
+%{expand:%%define	__cc	%{__cc} -m32}
+%endif
+
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
 %define		specflags_x86_64	-mno-tls-direct-seg-refs
