@@ -68,7 +68,7 @@ Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-alpha-ev6-opcodes.patch
-
+Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
 
 Patch8:		%{name}-missing-nls.patch
@@ -831,7 +831,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-
+%patch5 -p1
 %patch6 -p1
 
 %patch8 -p1
