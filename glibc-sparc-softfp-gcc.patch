@@ -13,7 +13,7 @@
 -	    addxcc %r4,%5,%%g2\n\
 -	    addx %r2,%3,%%g1"						\
 +	    addcc %r10,%11,%1\n\
-+	    addxcc %r7,%9,%0\n\
++	    addxcc %r8,%9,%0\n\
 +	    addxcc %r6,%7,%3\n\
 +	    addx %r4,%5,%2"						\
  	   : "=&r" ((USItype)(r1)),					\
