@@ -70,7 +70,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-alpha-ev6-opcodes.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
-
+Patch7:		%{name}-sparc64-fixes.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 
@@ -838,7 +838,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-
+%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 
