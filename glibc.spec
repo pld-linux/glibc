@@ -1,17 +1,18 @@
 # TODO:
 # - files?
-#   /usr/lib64/libBrokenLocale_g.a
-#   /usr/lib64/libanl_g.a
-#   /usr/lib64/libc_g.a
-#   /usr/lib64/libcrypt_g.a
-#   /usr/lib64/libdl_g.a
-#   /usr/lib64/libm_g.a
-#   /usr/lib64/libnsl_g.a
-#   /usr/lib64/libpthread_g.a
-#   /usr/lib64/libresolv_g.a
-#   /usr/lib64/librpcsvc_g.a
-#   /usr/lib64/librt_g.a
-#   /usr/lib64/libutil_g.a
+#   (debuggable libraries built with frame pointers - -debug package?)
+#   %{_libdir}/libBrokenLocale_g.a
+#   %{_libdir}/libanl_g.a
+#   %{_libdir}/libc_g.a
+#   %{_libdir}/libcrypt_g.a
+#   %{_libdir}/libdl_g.a
+#   %{_libdir}/libm_g.a
+#   %{_libdir}/libnsl_g.a
+#   %{_libdir}/libpthread_g.a
+#   %{_libdir}/libresolv_g.a
+#   %{_libdir}/librpcsvc_g.a
+#   %{_libdir}/librt_g.a
+#   %{_libdir}/libutil_g.a
 #
 # Conditional build:
 # min_kernel	(default is 2.6.12)
