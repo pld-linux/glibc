@@ -48,7 +48,7 @@ Summary(ru):	GNU libc версии 2.3
 Summary(tr):	GNU libc
 Summary(uk):	GNU libc верс╕╖ 2.3
 Name:		glibc
-Version:	2.5
+Version:	2.6
 Release:	0.4
 Epoch:		6
 License:	LGPL
@@ -1067,7 +1067,8 @@ for i in aa af am ang ar as az bg bn bn_IN br bs byn cy de_AT dz en en@boldquot 
 done
 
 # localedb-gen infrastructure
-install %{SOURCE6} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+sed -e 's,@localedir@,%{_libdir}/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # too old binutils in ac, doesn't understand AS_NEEDED
