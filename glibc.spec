@@ -48,7 +48,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.5
-Release:	0.2
+Release:	0.3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1047,7 +1047,8 @@ for i in aa af am ang ar as az bg bn bn_IN br bs byn cy de_AT dz en en@boldquot 
 done
 
 # localedb-gen infrastructure
-install %{SOURCE6} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+sed -e 's,@localedir@,%{_libdir}/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
