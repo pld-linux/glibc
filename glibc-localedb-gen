@@ -7,7 +7,7 @@ DESTDIR=
 [ -f /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
 [ -f /etc/sysconfig/localedb ] && . /etc/sysconfig/localedb
 
-LOCDIR=/usr/lib/locale
+LOCDIR=@localedir@
 ARCHIVE=${LOCDIR}/locale-archive
 
 while [ $# -gt 0 ]; do
