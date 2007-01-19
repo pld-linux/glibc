@@ -86,7 +86,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	10
+Release:	11
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1030,7 +1030,6 @@ install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/m
 cd builddir
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
-	%{?with_dual:includedir=/inc-linuxthreads} \
 	install_root=$RPM_BUILD_ROOT \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
@@ -1060,7 +1059,7 @@ env LANGUAGE=C LC_ALL=C \
 	cross-compiling=yes \
 	install_root=$RPM_BUILD_ROOT/nptl
 
-install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl}
+install -d $RPM_BUILD_ROOT{/%{_lib}/tls,%{_libdir}/nptl,%{_includedir}/nptl}
 for f in libc libm libpthread libthread_db librt; do
 	mv -f $RPM_BUILD_ROOT/nptl/%{_lib}/${f}[-.]* $RPM_BUILD_ROOT/%{_lib}/tls
 done
@@ -1076,20 +1075,16 @@ done
 for f in libc.a libpthread.a libpthread_nonshared.a; do
 	mv -f $RPM_BUILD_ROOT/nptl%{_libdir}/$f $RPM_BUILD_ROOT%{_libdir}/nptl
 done
-cd $RPM_BUILD_ROOT/inc-linuxthreads
+cd $RPM_BUILD_ROOT/nptl%{_prefix}/include
 	for f in `find . -type f`; do
-		echo "XXX $f XXX"
-		if ! [ -f $RPM_BUILD_ROOT/nptl/%{_prefix}/include/$f ]; then
-			install -d $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/`dirname $f`
-			cp -a $f $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/$f
-		elif ! cmp -s $f $RPM_BUILD_ROOT/nptl%{_prefix}/include/$f ; then
-			install -d $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/`dirname $f`
-			cp -a $f $RPM_BUILD_ROOT/nptl%{_prefix}/include/linuxthreads/$f
+		if ! [ -f $RPM_BUILD_ROOT%{_prefix}/include/$f ] \
+		   || ! cmp -s $f $RPM_BUILD_ROOT%{_prefix}/include/$f ; then
+			install -d $RPM_BUILD_ROOT%{_prefix}/include/nptl/`dirname $f`
+			cp -a $f $RPM_BUILD_ROOT%{_prefix}/include/nptl/$f
 		fi
 	done
 cd -
-mv $RPM_BUILD_ROOT/nptl%{_prefix}/include $RPM_BUILD_ROOT%{_prefix}/include
-rm -rf $RPM_BUILD_ROOT/{nptl,inc-linuxthreads}
+rm -rf $RPM_BUILD_ROOT/nptl
 %endif
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so	$RPM_BUILD_ROOT%{_libdir}}
@@ -1573,7 +1568,7 @@ fi
 %{_includedir}/sys
 
 %if %{with dual}
-%{_includedir}/linuxthreads
+%{_includedir}/nptl
 %endif
 
 %files devel-utils
