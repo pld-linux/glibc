@@ -1402,7 +1402,9 @@ EOF
 rm -f sysdeps/alpha/alphaev6/memcpy.S
 
 %build
+# glibc has its own way to remove PLT relocations. / H. J. Lu.
 unset LD_SYMBOLIC_FUNCTIONS || :
+
 cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
