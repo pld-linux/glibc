@@ -1402,6 +1402,7 @@ EOF
 rm -f sysdeps/alpha/alphaev6/memcpy.S
 
 %build
+unset LD_SYMBOLIC_FUNCTIONS || :
 cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
