@@ -1604,7 +1604,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %if !%{with cross}
 %post	-p /sbin/postshell
-/sbin/glibc-postinst /%{_lib}/%{_host_cpu}
+/sbin/glibc-postinst /%{_lib}/%{_host_cpu} /%{_lib}/tls
 /sbin/ldconfig
 -/sbin/telinit u
 
