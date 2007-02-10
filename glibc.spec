@@ -64,17 +64,17 @@ Source5:	http://qboosh.cs.net.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
-Patch0:		%{name}-info.patch
+Patch0:		%{name}-cvs20070210.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-alpha-ev6-opcodes.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-sparc64-fixes.patch
+
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
-
+Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_opt_override.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-ppc-inline-fsqrt.patch
@@ -833,16 +833,17 @@ Zabawka.
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
 %patch0 -p1
-%patch1 -p1
+# needs update/drop
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
+
 %patch8 -p1
 %patch9 -p1
-
+%patch10 -p1
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
