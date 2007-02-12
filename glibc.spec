@@ -38,14 +38,14 @@
 %define		llh_version	7:2.6.12.0-10
 
 Summary:	GNU libc
-Summary(de):	GNU libc
-Summary(es):	GNU libc
-Summary(fr):	GNU libc
-Summary(ja):	GNU libc ¥é¥¤¥Ö¥é¥ê
-Summary(pl):	GNU libc
-Summary(ru):	GNU libc ×ÅÒÓÉÉ 2.3
-Summary(tr):	GNU libc
-Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
+Summary(de.UTF-8):   GNU libc
+Summary(es.UTF-8):   GNU libc
+Summary(fr.UTF-8):   GNU libc
+Summary(ja.UTF-8):   GNU libc ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+Summary(pl.UTF-8):   GNU libc
+Summary(ru.UTF-8):   GNU libc Ğ²ĞµÑ€ÑĞ¸Ğ¸ 2.3
+Summary(tr.UTF-8):   GNU libc
+Summary(uk.UTF-8):   GNU libc Ğ²ĞµÑ€ÑÑ–Ñ— 2.3
 Name:		glibc
 Version:	2.5
 Release:	0.5
@@ -166,107 +166,107 @@ national language (locale) support.
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
-%description -l es
-Contiene las bibliotecas estándared que son usadas por varios
+%description -l es.UTF-8
+Contiene las bibliotecas estÃ¡ndared que son usadas por varios
 programas del sistema. Para ahorrar el espacio en el disco y la
-memoria, igual que para facilitar actualizaciones, código común del
+memoria, igual que para facilitar actualizaciones, cÃ³digo comÃºn del
 sistema se guarda en un sitio y es compartido entre los programas.
-Este paquete contiene las bibliotecas compartidas más importantes, es
-decir la biblioteca C estándar y la biblioteca estándar de matemática.
-Sin éstas, un sistema Linux no podrá funcionar. También está incluido
+Este paquete contiene las bibliotecas compartidas mÃ¡s importantes, es
+decir la biblioteca C estÃ¡ndar y la biblioteca estÃ¡ndar de matemÃ¡tica.
+Sin Ã©stas, un sistema Linux no podrÃ¡ funcionar. TambiÃ©n estÃ¡ incluido
 soporte de idiomas nacionales (locale).
 
-Puede usarse con: núcleo Linux >= %{min_kernel}.
+Puede usarse con: nÃºcleo Linux >= %{min_kernel}.
 
-%description -l de
-Enthält die Standard-Libraries, die von verschiedenen Programmen im
+%description -l de.UTF-8
+EnthÃ¤lt die Standard-Libraries, die von verschiedenen Programmen im
 System benutzt werden. Um Festplatten- und Arbeitsspeicher zu sparen
 und zur Vereinfachung von Upgrades ist der gemeinsame Systemcode an
 einer einzigen Stelle gespeichert und wird von den Programmen
-gemeinsam genutzt. Dieses Paket enthält die wichtigsten Sets der
+gemeinsam genutzt. Dieses Paket enthÃ¤lt die wichtigsten Sets der
 shared Libraries, die Standard-C-Library und die
 Standard-Math-Library, ohne die das Linux-System nicht funktioniert.
-Ferner enthält es den Support für die verschiedenen Sprachgregionen
+Ferner enthÃ¤lt es den Support fÃ¼r die verschiedenen Sprachgregionen
 (locale).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
-%description -l fr
-Contient les bibliothèques standards utilisées par de nombreux
-programmes du système. Afin d'économiser l'espace disque et mémoire,
-et de faciliter les mises à jour, le code commun au système est mis à
-un endroit et partagé entre les programmes. Ce paquetage contient les
-bibliothèques partagées les plus importantes, la bibliothèque standard
-du C et la bibliothèque mathématique standard. Sans celles-ci, un
-système Linux ne peut fonctionner. Il contient aussi la gestion des
+%description -l fr.UTF-8
+Contient les bibliothÃ¨ques standards utilisÃ©es par de nombreux
+programmes du systÃ¨me. Afin d'Ã©conomiser l'espace disque et mÃ©moire,
+et de faciliter les mises Ã  jour, le code commun au systÃ¨me est mis Ã 
+un endroit et partagÃ© entre les programmes. Ce paquetage contient les
+bibliothÃ¨ques partagÃ©es les plus importantes, la bibliothÃ¨que standard
+du C et la bibliothÃ¨que mathÃ©matique standard. Sans celles-ci, un
+systÃ¨me Linux ne peut fonctionner. Il contient aussi la gestion des
 langues nationales (locales).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
-%description -l ja
+%description -l ja.UTF-8
 glibc
-¥Ñ¥Ã¥±¡¼¥¸¤Ï¥·¥¹¥Æ¥à¾å¤ÎÊ£¿ô¤Î¥×¥í¥°¥é¥à¤Ç»È¤ï¤ì¤ëÉ¸½à¥é¥¤¥Ö¥é¥ê¤ò
-¤Õ¤¯¤ß¤Ş¤¹¡£¥Ç¥£¥¹¥¯¥¹¥Ú¡¼¥¹¤È¥á¥â¥ê¤òÀáÌó¤·¤¿¤ê¡¢¥¢¥Ã¥×¥°¥ì¡¼¥É¤ò
-ÍÑ°Õ¤Ë¤¹¤ë¤¿¤á¤Ë¡¢¶¦ÄÌ¤Î¥·¥¹¥Æ¥à¥³¡¼¥É¤Ï°ì¤Ä¤Î¾ì½ê¤Ë¤ª¤«¤ì¡¢¥×¥í¥°¥é¥à
-´Ö¤Ç¶¦Í­¤µ¤ì¤Ş¤¹¡£¤³¤ÎÉôÊ¬Åª¤Ê¥Ñ¥Ã¥±¡¼¥¸¤Ï¥·¥§¥¢¥É¥é¥¤¥Ö¥é¥ê¤Î¤«¤Ê¤ê
-½ÅÍ×¤Ê¥»¥Ã¥È¤ò¤Õ¤¯¤ß¤Ş¤¹: É¸½à C ¥é¥¤¥Ö¥é¥ê¤ÈÉ¸½à¿ôÃÍ¥é¥¤¥Ö¥é¥ê¤Ç¤¹¡£
-¤³¤ÎÆó¤Ä¤Î¥é¥¤¥Ö¥é¥êÈ´¤­¤Ç¤Ï¡¢Linux ¥·¥¹¥Æ¥à¤Ïµ¡Ç½¤·¤Ş¤»¤ó¡£ glibc
-¥Ñ¥Ã¥±¡¼¥¸¤Ï¤Ş¤¿ÃÏ°è¸À¸ì (locale) ¥µ¥İ¡¼¥È¤È¥¿¥¤¥à¥¾¡¼¥ó¥Ç¡¼¥¿¥Ù¡¼¥¹
-¥µ¥İ¡¼¥È¤ò¤Õ¤¯¤ß¤Ş¤¹¡£
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã‚·ã‚¹ãƒ†ãƒ ä¸Šã®è¤‡æ•°ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ä½¿ã‚ã‚Œã‚‹æ¨™æº–ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’
+ãµãã¿ã¾ã™ã€‚ãƒ‡ã‚£ã‚¹ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã¨ãƒ¡ãƒ¢ãƒªã‚’ç¯€ç´„ã—ãŸã‚Šã€ã‚¢ãƒƒãƒ—ã‚°ãƒ¬ãƒ¼ãƒ‰ã‚’
+ç”¨æ„ã«ã™ã‚‹ãŸã‚ã«ã€å…±é€šã®ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ‰ã¯ä¸€ã¤ã®å ´æ‰€ã«ãŠã‹ã‚Œã€ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+é–“ã§å…±æœ‰ã•ã‚Œã¾ã™ã€‚ã“ã®éƒ¨åˆ†çš„ãªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã‚·ã‚§ã‚¢ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‹ãªã‚Š
+é‡è¦ãªã‚»ãƒƒãƒˆã‚’ãµãã¿ã¾ã™: æ¨™æº– C ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨æ¨™æº–æ•°å€¤ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã™ã€‚
+ã“ã®äºŒã¤ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæŠœãã§ã¯ã€Linux ã‚·ã‚¹ãƒ†ãƒ ã¯æ©Ÿèƒ½ã—ã¾ã›ã‚“ã€‚ glibc
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã¾ãŸåœ°åŸŸè¨€èª (locale) ã‚µãƒãƒ¼ãƒˆã¨ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
+ã‚µãƒãƒ¼ãƒˆã‚’ãµãã¿ã¾ã™ã€‚
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
-%description -l pl
-W pakiecie znajduj± siê podstawowe biblioteki, u¿ywane przez ró¿ne
-programy w Twoim systemie. U¿ywanie przez programy bibliotek z tego
-pakietu oszczêdza miejsce na dysku i pamiêæ. Wiêkszo¶æ kodu
-systemowego jest usytuowane w jednym miejscu i dzielone miêdzy wieloma
-programami. Pakiet ten zawiera bardzo wa¿ny zbiór bibliotek
-standardowych, wspó³dzielonych (dynamicznych) bibliotek C i
-matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaæ.
-Znajduj± siê tutaj równie¿ definicje ró¿nych informacji dla wielu
-jêzyków (locale).
+%description -l pl.UTF-8
+W pakiecie znajdujÄ… siÄ™ podstawowe biblioteki, uÅ¼ywane przez rÃ³Å¼ne
+programy w Twoim systemie. UÅ¼ywanie przez programy bibliotek z tego
+pakietu oszczÄ™dza miejsce na dysku i pamiÄ™Ä‡. WiÄ™kszoÅ›Ä‡ kodu
+systemowego jest usytuowane w jednym miejscu i dzielone miÄ™dzy wieloma
+programami. Pakiet ten zawiera bardzo waÅ¼ny zbiÃ³r bibliotek
+standardowych, wspÃ³Å‚dzielonych (dynamicznych) bibliotek C i
+matematycznych. Bez glibc system Linux nie jest w stanie funkcjonowaÄ‡.
+ZnajdujÄ… siÄ™ tutaj rÃ³wnieÅ¼ definicje rÃ³Å¼nych informacji dla wielu
+jÄ™zykÃ³w (locale).
 
-Pakiet jest przeznaczony dla j±dra Linuksa >= %{min_kernel}.
+Pakiet jest przeznaczony dla jÄ…dra Linuksa >= %{min_kernel}.
 
-%description -l ru
-óÏÄÅÒÖÉÔ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÉÓĞÏÌØÚÕÅÍÙÅ ÍÎÏÇÏŞÉÓÌÅÎÎÙÍÉ
-ĞÒÏÇÒÁÍÍÁÍÉ × ÓÉÓÔÅÍÅ. äÌÑ ÔÏÇÏ, ŞÔÏÂÙ ÓÏÈÒÁÎÉÔØ ÄÉÓËÏ×ÏÅ ĞÒÏÓÔÒÁÎÓÔ×Ï
-É ĞÁÍÑÔØ, Á ÔÁËÖÅ ÄÌÑ ĞÒÏÓÔÏÔÙ ÏÂÎÏ×ÌÅÎÉÑ, ÓÉÓÔÅÍÎÙÊ ËÏÄ, ÏÂİÉÊ ÄÌÑ
-×ÓÅÈ ĞÒÏÇÒÁÍÍ, ÈÒÁÎÉÔÓÑ × ÏÄÎÏÍ ÍÅÓÔÅ É ËÏÌÌÅËÔÉ×ÎÏ ÉÓĞÏÌØÚÕÅÔÓÑ ×ÓÅÍÉ
-ĞÒÏÇÒÁÍÍÁÍÉ. üÔÏÔ ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ÎÁÉÂÏÌÅÅ ×ÁÖÎÙÅ ÉÚ ÒÁÚÄÅÌÑÅÍÙÈ
-ÂÉÂÌÉÏÔÅË - ÓÔÁÎÄÁÒÔÎÕÀ ÂÉÂÌÉÏÔÅËÕ C É ÓÔÁÎÄÁÒÔÎÕÀ ÂÉÂÌÉÏÔÅËÕ
-ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÜÔÉÈ ÂÉÂÌÉÏÔÅË Linux ÆÕÎËÃÉÏÎÉÒÏ×ÁÔØ ÎÅ ÂÕÄÅÔ. ôÁËÖÅ
-ĞÁËÅÔ ÓÏÄÅÒÖÉÔ ĞÏÄÄÅÒÖËÕ ÎÁÃÉÏÎÁÌØÎÙÈ ÑÚÙËÏ× (locale).
-
-Can be used on: Linux kernel >= %{min_kernel}.
-
-%description -l tr
-Bu paket, birçok programın kullandığı standart kitaplıkları içerir.
-Disk alanı ve bellek kullanımını azaltmak ve aynı zamanda güncelleme
-işlemlerini kolaylaştırmak için ortak sistem kodları tek bir yerde
-tutulup programlar arasında paylaştırılır. Bu paket en önemli ortak
-kitaplıkları, standart C kitaplığını ve standart matematik kitaplığını
-içerir. Bu kitaplıklar olmadan Linux sistemi çalışmayacaktır. Yerel
-dil desteği ve zaman dilimi veri tabanı da bu pakette yer alır.
+%description -l ru.UTF-8
+Ğ¡Ğ¾Ğ´ĞµÑ€Ğ¶Ğ¸Ñ‚ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ğµ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ¸, Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·ÑƒĞµĞ¼Ñ‹Ğµ Ğ¼Ğ½Ğ¾Ğ³Ğ¾Ñ‡Ğ¸ÑĞ»ĞµĞ½Ğ½Ñ‹Ğ¼Ğ¸
+Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ğ°Ğ¼Ğ¸ Ğ² ÑĞ¸ÑÑ‚ĞµĞ¼Ğµ. Ğ”Ğ»Ñ Ñ‚Ğ¾Ğ³Ğ¾, Ñ‡Ñ‚Ğ¾Ğ±Ñ‹ ÑĞ¾Ñ…Ñ€Ğ°Ğ½Ğ¸Ñ‚ÑŒ Ğ´Ğ¸ÑĞºĞ¾Ğ²Ğ¾Ğµ Ğ¿Ñ€Ğ¾ÑÑ‚Ñ€Ğ°Ğ½ÑÑ‚Ğ²Ğ¾
+Ğ¸ Ğ¿Ğ°Ğ¼ÑÑ‚ÑŒ, Ğ° Ñ‚Ğ°ĞºĞ¶Ğµ Ğ´Ğ»Ñ Ğ¿Ñ€Ğ¾ÑÑ‚Ğ¾Ñ‚Ñ‹ Ğ¾Ğ±Ğ½Ğ¾Ğ²Ğ»ĞµĞ½Ğ¸Ñ, ÑĞ¸ÑÑ‚ĞµĞ¼Ğ½Ñ‹Ğ¹ ĞºĞ¾Ğ´, Ğ¾Ğ±Ñ‰Ğ¸Ğ¹ Ğ´Ğ»Ñ
+Ğ²ÑĞµÑ… Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼, Ñ…Ñ€Ğ°Ğ½Ğ¸Ñ‚ÑÑ Ğ² Ğ¾Ğ´Ğ½Ğ¾Ğ¼ Ğ¼ĞµÑÑ‚Ğµ Ğ¸ ĞºĞ¾Ğ»Ğ»ĞµĞºÑ‚Ğ¸Ğ²Ğ½Ğ¾ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·ÑƒĞµÑ‚ÑÑ Ğ²ÑĞµĞ¼Ğ¸
+Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ğ°Ğ¼Ğ¸. Ğ­Ñ‚Ğ¾Ñ‚ Ğ¿Ğ°ĞºĞµÑ‚ ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ¸Ñ‚ Ğ½Ğ°Ğ¸Ğ±Ğ¾Ğ»ĞµĞµ Ğ²Ğ°Ğ¶Ğ½Ñ‹Ğµ Ğ¸Ğ· Ñ€Ğ°Ğ·Ğ´ĞµĞ»ÑĞµĞ¼Ñ‹Ñ…
+Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞº - ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½ÑƒÑ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºÑƒ C Ğ¸ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½ÑƒÑ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºÑƒ
+Ğ¼Ğ°Ñ‚ĞµĞ¼Ğ°Ñ‚Ğ¸ĞºĞ¸. Ğ‘ĞµĞ· ÑÑ‚Ğ¸Ñ… Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞº Linux Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¾Ğ½Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒ Ğ½Ğµ Ğ±ÑƒĞ´ĞµÑ‚. Ğ¢Ğ°ĞºĞ¶Ğµ
+Ğ¿Ğ°ĞºĞµÑ‚ ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ¸Ñ‚ Ğ¿Ğ¾Ğ´Ğ´ĞµÑ€Ğ¶ĞºÑƒ Ğ½Ğ°Ñ†Ğ¸Ğ¾Ğ½Ğ°Ğ»ÑŒĞ½Ñ‹Ñ… ÑĞ·Ñ‹ĞºĞ¾Ğ² (locale).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
-%description -l uk
-í¦ÓÔÉÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ, ËÏÔÒ¦ ×ÉËÏÒÉÓÔÏ×ÕÀÔØÓÑ ŞÉÓÌÅÎÎÉÍÉ
-ĞÒÏÇÒÁÍÁÍÉ × ÓÉÓÔÅÍ¦. äÌÑ ÔÏÇÏ, İÏÂ ÚÂÅÒÅÇÔÉ ÄÉÓËÏ×ÉÊ ĞÒÏÓÔ¦Ò ÔÁ
-ĞÁÍ'ÑÔØ, Á ÔÁËÏÖ ÄÌÑ ĞÒÏÓÔÏÔÉ ĞÏÎÏ×ÌÅÎÎÑ ÓÉÓÔÅÍÉ, ÓÉÓÔÅÍÎÉÊ ËÏÄ,
-ÓĞ¦ÌØÎÉÊ ÄÌÑ ×Ó¦È ĞÒÏÇÒÁÍ, ÚÂÅÒ¦ÇÁ¤ÔØÓÑ × ÏÄÎÏÍÕ Í¦ÓÃ¦ ¦ ËÏÌÅËÔÉ×ÎÏ
-×ÉËÏÒÉÓÔÏ×Õ¤ÔØÓÑ ×Ó¦ÍÁ ĞÒÏÇÒÁÍÁÍÉ. ãÅÊ ĞÁËÅÔ Í¦ÓÔÉÔØ ÎÁÊÂ¦ÌØÛ ×ÁÖÌÉ×¦
-Ú ÄÉÎÁÍ¦ŞÎÉÈ Â¦ÂÌ¦ÏÔÅË - ÓÔÁÎÄÁÒÔÎÕ Â¦ÂÌ¦ÏÔÅËÕ ó ÔÁ ÓÔÁÎÄÁÒÔÎÕ
-Â¦ÂÌ¦ÏÔÅËÕ ÍÁÔÅÍÁÔÉËÉ. âÅÚ ÃÉÈ Â¦ÂÌ¦ÏÔÅË Linux ÆÕÎËÃ¦ÏÎÕ×ÁÔÉ ÎÅ ÂÕÄÅ.
-ôÁËÏÖ ĞÁËÅÔ Í¦ÓÔÉÔØ Ğ¦ÄÔÒÉÍËÕ ÎÁÃ¦ÏÎÁÌØÎÉÈ ÍÏ× (locale).
+%description -l tr.UTF-8
+Bu paket, birÃ§ok programÄ±n kullandÄ±ÄŸÄ± standart kitaplÄ±klarÄ± iÃ§erir.
+Disk alanÄ± ve bellek kullanÄ±mÄ±nÄ± azaltmak ve aynÄ± zamanda gÃ¼ncelleme
+iÅŸlemlerini kolaylaÅŸtÄ±rmak iÃ§in ortak sistem kodlarÄ± tek bir yerde
+tutulup programlar arasÄ±nda paylaÅŸtÄ±rÄ±lÄ±r. Bu paket en Ã¶nemli ortak
+kitaplÄ±klarÄ±, standart C kitaplÄ±ÄŸÄ±nÄ± ve standart matematik kitaplÄ±ÄŸÄ±nÄ±
+iÃ§erir. Bu kitaplÄ±klar olmadan Linux sistemi Ã§alÄ±ÅŸmayacaktÄ±r. Yerel
+dil desteÄŸi ve zaman dilimi veri tabanÄ± da bu pakette yer alÄ±r.
+
+Can be used on: Linux kernel >= %{min_kernel}.
+
+%description -l uk.UTF-8
+ĞœÑ–ÑÑ‚Ğ¸Ñ‚ÑŒ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ– Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºĞ¸, ĞºĞ¾Ñ‚Ñ€Ñ– Ğ²Ğ¸ĞºĞ¾Ñ€Ğ¸ÑÑ‚Ğ¾Ğ²ÑƒÑÑ‚ÑŒÑÑ Ñ‡Ğ¸ÑĞ»ĞµĞ½Ğ½Ğ¸Ğ¼Ğ¸
+Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ°Ğ¼Ğ¸ Ğ² ÑĞ¸ÑÑ‚ĞµĞ¼Ñ–. Ğ”Ğ»Ñ Ñ‚Ğ¾Ğ³Ğ¾, Ñ‰Ğ¾Ğ± Ğ·Ğ±ĞµÑ€ĞµĞ³Ñ‚Ğ¸ Ğ´Ğ¸ÑĞºĞ¾Ğ²Ğ¸Ğ¹ Ğ¿Ñ€Ğ¾ÑÑ‚Ñ–Ñ€ Ñ‚Ğ°
+Ğ¿Ğ°Ğ¼'ÑÑ‚ÑŒ, Ğ° Ñ‚Ğ°ĞºĞ¾Ğ¶ Ğ´Ğ»Ñ Ğ¿Ñ€Ğ¾ÑÑ‚Ğ¾Ñ‚Ğ¸ Ğ¿Ğ¾Ğ½Ğ¾Ğ²Ğ»ĞµĞ½Ğ½Ñ ÑĞ¸ÑÑ‚ĞµĞ¼Ğ¸, ÑĞ¸ÑÑ‚ĞµĞ¼Ğ½Ğ¸Ğ¹ ĞºĞ¾Ğ´,
+ÑĞ¿Ñ–Ğ»ÑŒĞ½Ğ¸Ğ¹ Ğ´Ğ»Ñ Ğ²ÑÑ–Ñ… Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼, Ğ·Ğ±ĞµÑ€Ñ–Ğ³Ğ°Ñ”Ñ‚ÑŒÑÑ Ğ² Ğ¾Ğ´Ğ½Ğ¾Ğ¼Ñƒ Ğ¼Ñ–ÑÑ†Ñ– Ñ– ĞºĞ¾Ğ»ĞµĞºÑ‚Ğ¸Ğ²Ğ½Ğ¾
+Ğ²Ğ¸ĞºĞ¾Ñ€Ğ¸ÑÑ‚Ğ¾Ğ²ÑƒÑ”Ñ‚ÑŒÑÑ Ğ²ÑÑ–Ğ¼Ğ° Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ°Ğ¼Ğ¸. Ğ¦ĞµĞ¹ Ğ¿Ğ°ĞºĞµÑ‚ Ğ¼Ñ–ÑÑ‚Ğ¸Ñ‚ÑŒ Ğ½Ğ°Ğ¹Ğ±Ñ–Ğ»ÑŒÑˆ Ğ²Ğ°Ğ¶Ğ»Ğ¸Ğ²Ñ–
+Ğ· Ğ´Ğ¸Ğ½Ğ°Ğ¼Ñ–Ñ‡Ğ½Ğ¸Ñ… Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞº - ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñƒ Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºÑƒ Ğ¡ Ñ‚Ğ° ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñƒ
+Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºÑƒ Ğ¼Ğ°Ñ‚ĞµĞ¼Ğ°Ñ‚Ğ¸ĞºĞ¸. Ğ‘ĞµĞ· Ñ†Ğ¸Ñ… Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞº Linux Ñ„ÑƒĞ½ĞºÑ†Ñ–Ğ¾Ğ½ÑƒĞ²Ğ°Ñ‚Ğ¸ Ğ½Ğµ Ğ±ÑƒĞ´Ğµ.
+Ğ¢Ğ°ĞºĞ¾Ğ¶ Ğ¿Ğ°ĞºĞµÑ‚ Ğ¼Ñ–ÑÑ‚Ğ¸Ñ‚ÑŒ Ğ¿Ñ–Ğ´Ñ‚Ñ€Ğ¸Ğ¼ĞºÑƒ Ğ½Ğ°Ñ†Ñ–Ğ¾Ğ½Ğ°Ğ»ÑŒĞ½Ğ¸Ñ… Ğ¼Ğ¾Ğ² (locale).
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %package misc
 Summary:	Utilities and data used by glibc
-Summary(pl):	Narzêdzia i dane u¿ywane przez glibc
+Summary(pl.UTF-8):   NarzÄ™dzia i dane uÅ¼ywane przez glibc
 Group:		Applications/System
 AutoReq:	false
 Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
@@ -276,19 +276,19 @@ Requires:	tzdata >= 2006g-2
 %description misc
 Utilities and data used by glibc.
 
-%description misc -l pl
-Narzêdzia i dane u¿ywane przez glibc.
+%description misc -l pl.UTF-8
+NarzÄ™dzia i dane uÅ¼ywane przez glibc.
 
 %package devel
 Summary:	Additional libraries required to compile
-Summary(de):	Weitere Libraries zum Kompilieren
-Summary(es):	Bibliotecas adicionales necesarias para la compilación
-Summary(fr):	Librairies supplémentaires nécessaires à la compilation
-Summary(ja):	É¸½à C ¥é¥¤¥Ö¥é¥ê¤Ç»È¤ï¤ì¤ë¥Ø¥Ã¥À¡¼¤È¥ª¥Ö¥¸¥§¥¯¥È¥Õ¥¡¥¤¥ë
-Summary(pl):	Dodatkowe biblioteki wymagane podczas kompilacji
-Summary(ru):	äÏĞÏÌÎÉÔÅÌØÎÙÅ ÂÉÂÌÉÏÔÅËÉ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍĞÉÌÑÃÉÉ
-Summary(tr):	Geliştirme için gerekli diğer kitaplıklar
-Summary(uk):	äÏÄÁÔËÏ×¦ Â¦ÂÌ¦ÏÔÅËÉ, ĞÏÔÒ¦ÂÎ¦ ÄÌÑ ËÏÍĞ¦ÌÑÃ¦§
+Summary(de.UTF-8):   Weitere Libraries zum Kompilieren
+Summary(es.UTF-8):   Bibliotecas adicionales necesarias para la compilaciÃ³n
+Summary(fr.UTF-8):   Librairies supplÃ©mentaires nÃ©cessaires Ã  la compilation
+Summary(ja.UTF-8):   æ¨™æº– C ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ã‚ã‚Œã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
+Summary(pl.UTF-8):   Dodatkowe biblioteki wymagane podczas kompilacji
+Summary(ru.UTF-8):   Ğ”Ğ¾Ğ¿Ğ¾Ğ»Ğ½Ğ¸Ñ‚ĞµĞ»ÑŒĞ½Ñ‹Ğµ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ¸, Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ñ‹Ğµ Ğ´Ğ»Ñ ĞºĞ¾Ğ¼Ğ¿Ğ¸Ğ»ÑÑ†Ğ¸Ğ¸
+Summary(tr.UTF-8):   GeliÅŸtirme iÃ§in gerekli diÄŸer kitaplÄ±klar
+Summary(uk.UTF-8):   Ğ”Ğ¾Ğ´Ğ°Ñ‚ĞºĞ¾Ğ²Ñ– Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºĞ¸, Ğ¿Ğ¾Ñ‚Ñ€Ñ–Ğ±Ğ½Ñ– Ğ´Ğ»Ñ ĞºĞ¾Ğ¼Ğ¿Ñ–Ğ»ÑÑ†Ñ–Ñ—
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
@@ -301,56 +301,56 @@ To develop programs which use the standard C libraries (which nearly
 all programs do), the system needs to have these standard header files
 and object files available for creating the executables.
 
-%description devel -l de
+%description devel -l de.UTF-8
 Bei der Entwicklung von Programmen, die die Standard-C-Libraries
-verwenden (also fast alle), benötigt das System diese Standard-Header-
-und Objektdateien zum Erstellen der ausführbaren Programme.
+verwenden (also fast alle), benÃ¶tigt das System diese Standard-Header-
+und Objektdateien zum Erstellen der ausfÃ¼hrbaren Programme.
 
-%description devel -l es
-Para desarrollar programas que utilizan las bibliotecas C estándar (lo
-cual hacen prácticamente todos los programas), el sistema necesita
+%description devel -l es.UTF-8
+Para desarrollar programas que utilizan las bibliotecas C estÃ¡ndar (lo
+cual hacen prÃ¡cticamente todos los programas), el sistema necesita
 disponer de estos ficheros de cabecera y de objetos para crear los
 ejecutables.
 
-%description devel -l fr
-Pour développer des programmes utilisant les bibliothèques standard du
-C (ce que presque tous les programmes font), le système doit posséder
-ces fichiers en-têtes et objets standards pour créer les exécutables.
+%description devel -l fr.UTF-8
+Pour dÃ©velopper des programmes utilisant les bibliothÃ¨ques standard du
+C (ce que presque tous les programmes font), le systÃ¨me doit possÃ©der
+ces fichiers en-tÃªtes et objets standards pour crÃ©er les exÃ©cutables.
 
-%description devel -l ja
-glibc-devel ¥Ñ¥Ã¥±¡¼¥¸¤Ï(¤Û¤È¤ó¤É¤¹¤Ù¤Æ¤Î¥×¥í¥°¥é¥à¤Ç»È¤ï¤ì¤ë)É¸½à C
-¥é¥¤¥Ö¥é¥ê¤ò»ÈÍÑ¤·¤¿¥×¥í¥°¥é¥à¤ò³«È¯¤¹¤ë¤¿¤á¤Î¥Ø¥Ã¥À¡¼¤È¥ª¥Ö¥¸¥§¥¯¥È
-¥Õ¥¡¥¤¥ë¤ò´Ş¤ß¤Ş¤¹¡£¤â¤·É¸½à C
-¥é¥¤¥Ö¥é¥ê¤ò»ÈÍÑ¤¹¤ë¥×¥í¥°¥é¥à¤ò³«È¯¤¹¤ë¤Ê¤é
-¼Â¹Ô¥Õ¥¡¥¤¥ë¤òºîÀ®¤¹¤ëÌÜÅª¤Ç¤³¤ì¤é¤ÎÉ¸½à¥Ø¥Ã¥À¤È¥ª¥Ö¥¸¥§¥¯¥È¥Õ¥¡¥¤¥ë
-¤¬»ÈÍÑ¤Ç¤­¤Ş¤¹¡£
+%description devel -l ja.UTF-8
+glibc-devel ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯(ã»ã¨ã‚“ã©ã™ã¹ã¦ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ä½¿ã‚ã‚Œã‚‹)æ¨™æº– C
+ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½¿ç”¨ã—ãŸãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’é–‹ç™ºã™ã‚‹ãŸã‚ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å«ã¿ã¾ã™ã€‚ã‚‚ã—æ¨™æº– C
+ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’é–‹ç™ºã™ã‚‹ãªã‚‰
+å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹ç›®çš„ã§ã“ã‚Œã‚‰ã®æ¨™æº–ãƒ˜ãƒƒãƒ€ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
+ãŒä½¿ç”¨ã§ãã¾ã™ã€‚
 
-%description devel -l pl
-Pakiet ten jest niezbêdny przy tworzeniu w³asnych programów
-korzystaj±cych ze standardowej biblioteki C. Znajduj± siê tutaj pliki
-nag³ówkowe oraz pliki obiektowe, niezbêdne do kompilacji programów
+%description devel -l pl.UTF-8
+Pakiet ten jest niezbÄ™dny przy tworzeniu wÅ‚asnych programÃ³w
+korzystajÄ…cych ze standardowej biblioteki C. ZnajdujÄ… siÄ™ tutaj pliki
+nagÅ‚Ã³wkowe oraz pliki obiektowe, niezbÄ™dne do kompilacji programÃ³w
 wykonywalnych i innych bibliotek.
 
-%description devel -l ru
-äÌÑ ÒÁÚÒÁÂÏÔËÉ ĞÒÏÇÒÁÍÍ, ÉÓĞÏÌØÚÕÀİÉÈ ÓÔÁÎÄÁÒÔÎÙÅ ÂÉÂÌÉÏÔÅËÉ C (Á
-ĞÒÁËÔÉŞÅÓËÉ ×ÓÅ ĞÒÏÇÒÁÍÍÙ ÉÈ ÉÓĞÏÌØÚÕÀÔ), ÓÉÓÔÅÍÅ îåïâèïäéíù ÈÅÄÅÒÙ É
-ÏÂßÅËÔÎÙÅ ÆÁÊÌÙ, ÓÏÄÅÒÖÁİÉÅÓÑ × ÜÔÏÍ ĞÁËÅÔÅ, ŞÔÏÂÙ ÓÏÚÄÁ×ÁÔØ
-ÉÓĞÏÌÎÑÅÍÙÅ ÆÁÊÌÙ.
+%description devel -l ru.UTF-8
+Ğ”Ğ»Ñ Ñ€Ğ°Ğ·Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ¸ Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼, Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·ÑƒÑÑ‰Ğ¸Ñ… ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ğµ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ¸ C (Ğ°
+Ğ¿Ñ€Ğ°ĞºÑ‚Ğ¸Ñ‡ĞµÑĞºĞ¸ Ğ²ÑĞµ Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ñ‹ Ğ¸Ñ… Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·ÑƒÑÑ‚), ÑĞ¸ÑÑ‚ĞµĞ¼Ğµ ĞĞ•ĞĞ‘Ğ¥ĞĞ”Ğ˜ĞœĞ« Ñ…ĞµĞ´ĞµÑ€Ñ‹ Ğ¸
+Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ½Ñ‹Ğµ Ñ„Ğ°Ğ¹Ğ»Ñ‹, ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ°Ñ‰Ğ¸ĞµÑÑ Ğ² ÑÑ‚Ğ¾Ğ¼ Ğ¿Ğ°ĞºĞµÑ‚Ğµ, Ñ‡Ñ‚Ğ¾Ğ±Ñ‹ ÑĞ¾Ğ·Ğ´Ğ°Ğ²Ğ°Ñ‚ÑŒ
+Ğ¸ÑĞ¿Ğ¾Ğ»Ğ½ÑĞµĞ¼Ñ‹Ğµ Ñ„Ğ°Ğ¹Ğ»Ñ‹.
 
-%description devel -l tr
-C kitaplığını kullanan (ki hemen hemen hepsi kullanıyor) programlar
-geliştirmek için gereken standart başlık dosyaları ve statik
-kitaplıklar.
+%description devel -l tr.UTF-8
+C kitaplÄ±ÄŸÄ±nÄ± kullanan (ki hemen hemen hepsi kullanÄ±yor) programlar
+geliÅŸtirmek iÃ§in gereken standart baÅŸlÄ±k dosyalarÄ± ve statik
+kitaplÄ±klar.
 
-%description devel -l uk
-äÌÑ ÒÏÚÒÏÂËÉ ĞÒÏÇÒÁÍ, İÏ ×ÉËÏÒÉÓÔÏ×ÕÀÔØ ÓÔÁÎÄÁÒÔÎ¦ Â¦ÂÌ¦ÏÔÅËÉ C
-(ĞÒÁËÔÉŞÎÏ ×Ó¦ ĞÒÏÇÒÁÍÉ §È ×ÉËÏÒÉÓÔÏ×ÕÀÔØ), ÓÉÓÔÅÍ¦ îåïâè¶äî¶ ÈÅÄÅÒÉ
-ÔÁ ÏÂ'¤ËÔÎ¦ ÆÁÊÌÉ, İÏ Í¦ÓÔÑÔØÓÑ × ÃØÏÍÕ ĞÁËÅÔ¦, ÃÏÂ ÓÔ×ÏÒÀ×ÁÔÉ
-×ÉËÏÎÕ×ÁÎ¦ ÆÁÊÌÉ.
+%description devel -l uk.UTF-8
+Ğ”Ğ»Ñ Ñ€Ğ¾Ğ·Ñ€Ğ¾Ğ±ĞºĞ¸ Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼, Ñ‰Ğ¾ Ğ²Ğ¸ĞºĞ¾Ñ€Ğ¸ÑÑ‚Ğ¾Ğ²ÑƒÑÑ‚ÑŒ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ– Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºĞ¸ C
+(Ğ¿Ñ€Ğ°ĞºÑ‚Ğ¸Ñ‡Ğ½Ğ¾ Ğ²ÑÑ– Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¸ Ñ—Ñ… Ğ²Ğ¸ĞºĞ¾Ñ€Ğ¸ÑÑ‚Ğ¾Ğ²ÑƒÑÑ‚ÑŒ), ÑĞ¸ÑÑ‚ĞµĞ¼Ñ– ĞĞ•ĞĞ‘Ğ¥Ğ†Ğ”ĞĞ† Ñ…ĞµĞ´ĞµÑ€Ğ¸
+Ñ‚Ğ° Ğ¾Ğ±'Ñ”ĞºÑ‚Ğ½Ñ– Ñ„Ğ°Ğ¹Ğ»Ğ¸, Ñ‰Ğ¾ Ğ¼Ñ–ÑÑ‚ÑÑ‚ÑŒÑÑ Ğ² Ñ†ÑŒĞ¾Ğ¼Ñƒ Ğ¿Ğ°ĞºĞµÑ‚Ñ–, Ñ†Ğ¾Ğ± ÑÑ‚Ğ²Ğ¾Ñ€ÑĞ²Ğ°Ñ‚Ğ¸
+Ğ²Ğ¸ĞºĞ¾Ğ½ÑƒĞ²Ğ°Ğ½Ñ– Ñ„Ğ°Ğ¹Ğ»Ğ¸.
 
 %package headers
 Summary:	Header files for development using standard C libraries
-Summary(pl):	Pliki nag³ówkowe do tworzenia programów przy u¿yciu standardowych bibliotek C
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe do tworzenia programÃ³w przy uÅ¼yciu standardowych bibliotek C
 Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -385,20 +385,20 @@ header files available in order to create the executables.
 Install glibc-headers if you are going to develop programs which will
 use the standard C libraries.
 
-%description headers -l pl
-Pakiet glibc-headers zawiera pliki nag³ówkowe niezbêdne do rozwijania
-programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
-prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
-standardowych bibliotek C, system wymaga dostêpno¶ci tych
-standardowych plików nag³ówkowych do tworzenia programów
+%description headers -l pl.UTF-8
+Pakiet glibc-headers zawiera pliki nagÅ‚Ã³wkowe niezbÄ™dne do rozwijania
+programÃ³w uÅ¼ywajÄ…cych standardowych bibliotek C (uÅ¼ywanych przez
+prawie wszystkie programy). JeÅ›li tworzymy programy korzystajÄ…ce ze
+standardowych bibliotek C, system wymaga dostÄ™pnoÅ›ci tych
+standardowych plikÃ³w nagÅ‚Ã³wkowych do tworzenia programÃ³w
 wykonywalnych.
 
-Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
-korzystaj±ce ze standardowych bibliotek C.
+Ten pakiet naleÅ¼y zainstalowaÄ‡ jeÅ›li zamierzamy tworzyÄ‡ programy
+korzystajÄ…ce ze standardowych bibliotek C.
 
 %package devel-utils
 Summary:	Utilities needed for development using standard C libraries
-Summary(pl):	Narzêdzia do tworzenia programów przy u¿yciu standardowych bibliotek C
+Summary(pl.UTF-8):   NarzÄ™dzia do tworzenia programÃ³w przy uÅ¼yciu standardowych bibliotek C
 Group:		Development/Libraries
 Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -432,19 +432,19 @@ available.
 Install glibc-devel-utils if you are going to develop programs which
 will use the standard C libraries.
 
-%description devel-utils -l pl
-Pakiet glibc-devel-utils zawiera narzêdzia niezbêdne do rozwijania
-programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych przez
-prawie wszystkie programy). Je¶li tworzymy programy korzystaj±ce ze
-standardowych bibliotek C, system wymaga dostêpno¶ci tych narzêdzi do
-tworzenia programów wykonywalnych.
+%description devel-utils -l pl.UTF-8
+Pakiet glibc-devel-utils zawiera narzÄ™dzia niezbÄ™dne do rozwijania
+programÃ³w uÅ¼ywajÄ…cych standardowych bibliotek C (uÅ¼ywanych przez
+prawie wszystkie programy). JeÅ›li tworzymy programy korzystajÄ…ce ze
+standardowych bibliotek C, system wymaga dostÄ™pnoÅ›ci tych narzÄ™dzi do
+tworzenia programÃ³w wykonywalnych.
 
-Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
-korzystaj±ce ze standardowych bibliotek C.
+Ten pakiet naleÅ¼y zainstalowaÄ‡ jeÅ›li zamierzamy tworzyÄ‡ programy
+korzystajÄ…ce ze standardowych bibliotek C.
 
 %package devel-doc
 Summary:	Documentation needed for development using standard C libraries
-Summary(pl):	Dokumentacja do tworzenia programów przy u¿yciu standardowych bibliotek C
+Summary(pl.UTF-8):   Dokumentacja do tworzenia programÃ³w przy uÅ¼yciu standardowych bibliotek C
 Group:		Documentation
 Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -476,21 +476,21 @@ used by nearly all programs).
 Install glibc-devel-doc if you are going to develop programs which
 will use the standard C libraries.
 
-%description devel-doc -l pl
+%description devel-doc -l pl.UTF-8
 Pakiet glibc-devel-doc zawiera strony info i manuala przydatne do
-rozwijania programów u¿ywaj±cych standardowych bibliotek C (u¿ywanych
+rozwijania programÃ³w uÅ¼ywajÄ…cych standardowych bibliotek C (uÅ¼ywanych
 przez prawie wszystkie programy).
 
-Ten pakiet nale¿y zainstalowaæ je¶li zamierzamy tworzyæ programy
-korzystaj±ce ze standardowych bibliotek C.
+Ten pakiet naleÅ¼y zainstalowaÄ‡ jeÅ›li zamierzamy tworzyÄ‡ programy
+korzystajÄ…ce ze standardowych bibliotek C.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
-Summary(es):	Demonio de caché del servicio de nombres
-Summary(ja):	¥Í¡¼¥à¥µ¡¼¥Ó¥¹¥­¥ã¥Ã¥·¥ó¥°¥Ç¡¼¥â¥ó (nacd)
-Summary(pl):	Demon zapamiêtuj±cy odpowiedzi serwisów nazw
-Summary(ru):	ëÜÛÉÒÕÀİÉÊ ÄÅÍÏÎ ÓÅÒ×ÉÓÏ× ÉÍÅÎ
-Summary(uk):	ëÅÛÕÀŞÉÊ ÄÅÍÏÎ ÓÅ×¦Ó¦× ¦ÍÅÎ
+Summary(es.UTF-8):   Demonio de cachÃ© del servicio de nombres
+Summary(ja.UTF-8):   ãƒãƒ¼ãƒ ã‚µãƒ¼ãƒ“ã‚¹ã‚­ãƒ£ãƒƒã‚·ãƒ³ã‚°ãƒ‡ãƒ¼ãƒ¢ãƒ³ (nacd)
+Summary(pl.UTF-8):   Demon zapamiÄ™tujÄ…cy odpowiedzi serwisÃ³w nazw
+Summary(ru.UTF-8):   ĞšÑÑˆĞ¸Ñ€ÑƒÑÑ‰Ğ¸Ğ¹ Ğ´ĞµĞ¼Ğ¾Ğ½ ÑĞµÑ€Ğ²Ğ¸ÑĞ¾Ğ² Ğ¸Ğ¼ĞµĞ½
+Summary(uk.UTF-8):   ĞšĞµÑˆÑƒÑÑ‡Ğ¸Ğ¹ Ğ´ĞµĞ¼Ğ¾Ğ½ ÑĞµĞ²Ñ–ÑÑ–Ğ² Ñ–Ğ¼ĞµĞ½
 Group:		Networking/Daemons
 Requires(post):	fileutils
 Requires(post,preun):	/sbin/chkconfig
@@ -510,32 +510,32 @@ Provides:	user(nscd)
 nscd caches name service lookups; it can dramatically improve
 performance with NIS+, and may help with DNS as well.
 
-%description -n nscd -l es
-nscd guarda las peticiones del servicio de nombres en una caché; eso
-puede aumentar drásticamente las prestaciones de NIS+, y también puede
+%description -n nscd -l es.UTF-8
+nscd guarda las peticiones del servicio de nombres en una cachÃ©; eso
+puede aumentar drÃ¡sticamente las prestaciones de NIS+, y tambiÃ©n puede
 ayudar con DNS.
 
-%description -n nscd -l ja
-Nscd ¤Ï¥Í¡¼¥à¥µ¡¼¥Ó¥¹»²¾È¤ò¥­¥ã¥Ã¥·¥å¤·¡¢NIS+ ¤Î¥Ñ¥Õ¥©¡¼¥Ş¥ó¥¹¤ò
-¥É¥é¥Ş¥Æ¥£¥Ã¥¯¤Ë²şÁ±¤¹¤ë¤³¤È¤¬¤Ç¤­¡¢DNS ¤òÆ±ÍÍ¤ËÊä½õ¤·¤Ş¤¹¡£
+%description -n nscd -l ja.UTF-8
+Nscd ã¯ãƒãƒ¼ãƒ ã‚µãƒ¼ãƒ“ã‚¹å‚ç…§ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ã€NIS+ ã®ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚’
+ãƒ‰ãƒ©ãƒãƒ†ã‚£ãƒƒã‚¯ã«æ”¹å–„ã™ã‚‹ã“ã¨ãŒã§ãã€DNS ã‚’åŒæ§˜ã«è£œåŠ©ã—ã¾ã™ã€‚
 
-%description -n nscd -l pl
-nscd zapamiêtuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
-drastycznie poprawiæ szybko¶æ dzia³ania NIS+.
+%description -n nscd -l pl.UTF-8
+nscd zapamiÄ™tuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
+drastycznie poprawiÄ‡ szybkoÅ›Ä‡ dziaÅ‚ania NIS+.
 
-%description -n nscd -l ru
-nscd ËÜÛÉÒÕÅÔ ÒÅÚÕÌØÔÁÔÙ ÚÁĞÒÏÓÏ× Ë ÓÅÒ×ÉÓÁÍ ÉÍÅÎ; ÜÔÏ ÍÏÖÅÔ ÒÅÚËÏ
-Õ×ÅÌÉŞÉÔØ ĞÒÏÉÚ×ÏÄÉÔÅÌØÎÏÓÔØ ÒÁÂÏÔÙ Ó NIS+ É, ÔÁËÖÅ, ÍÏÖÅÔ ĞÏÍÏŞØ Ó
+%description -n nscd -l ru.UTF-8
+nscd ĞºÑÑˆĞ¸Ñ€ÑƒĞµÑ‚ Ñ€ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚Ñ‹ Ğ·Ğ°Ğ¿Ñ€Ğ¾ÑĞ¾Ğ² Ğº ÑĞµÑ€Ğ²Ğ¸ÑĞ°Ğ¼ Ğ¸Ğ¼ĞµĞ½; ÑÑ‚Ğ¾ Ğ¼Ğ¾Ğ¶ĞµÑ‚ Ñ€ĞµĞ·ĞºĞ¾
+ÑƒĞ²ĞµĞ»Ğ¸Ñ‡Ğ¸Ñ‚ÑŒ Ğ¿Ñ€Ğ¾Ğ¸Ğ·Ğ²Ğ¾Ğ´Ğ¸Ñ‚ĞµĞ»ÑŒĞ½Ğ¾ÑÑ‚ÑŒ Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‹ Ñ NIS+ Ğ¸, Ñ‚Ğ°ĞºĞ¶Ğµ, Ğ¼Ğ¾Ğ¶ĞµÑ‚ Ğ¿Ğ¾Ğ¼Ğ¾Ñ‡ÑŒ Ñ
 DNS.
 
-%description -n nscd -l uk
-nscd ËÅÛÕ¤ ÒÅÚÕÌØÔÁÔÉ ÚÁĞÒÏÓ¦× ÄÏ ÓÅÒ×¦Ó¦× ¦ÍÅÎ; ÃÅ ÍÏÖÅ ÓÉÌØÎÏ
-ÚÂ¦ÌØÛÉÔÉ Û×ÉÄË¦ÓÔØ ÒÏÂÏÔÉ Ú NIS+ ¦, ÔÁËÏÖ, ÍÏÖÅ ÄÏĞÏÍÏÇÔÉ Ú DNS.
+%description -n nscd -l uk.UTF-8
+nscd ĞºĞµÑˆÑƒÑ” Ñ€ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚Ğ¸ Ğ·Ğ°Ğ¿Ñ€Ğ¾ÑÑ–Ğ² Ğ´Ğ¾ ÑĞµÑ€Ğ²Ñ–ÑÑ–Ğ² Ñ–Ğ¼ĞµĞ½; Ñ†Ğµ Ğ¼Ğ¾Ğ¶Ğµ ÑĞ¸Ğ»ÑŒĞ½Ğ¾
+Ğ·Ğ±Ñ–Ğ»ÑŒÑˆĞ¸Ñ‚Ğ¸ ÑˆĞ²Ğ¸Ğ´ĞºÑ–ÑÑ‚ÑŒ Ñ€Ğ¾Ğ±Ğ¾Ñ‚Ğ¸ Ğ· NIS+ Ñ–, Ñ‚Ğ°ĞºĞ¾Ğ¶, Ğ¼Ğ¾Ğ¶Ğµ Ğ´Ğ¾Ğ¿Ğ¾Ğ¼Ğ¾Ğ³Ñ‚Ğ¸ Ğ· DNS.
 
 %package -n localedb-src
 Summary:	locale database source code
-Summary(es):	Código fuente de la base de datos de los locales
-Summary(pl):	Kod ¼ród³owy bazy locale
+Summary(es.UTF-8):   CÃ³digo fuente de la base de datos de los locales
+Summary(pl.UTF-8):   Kod ÅºrÃ³dÅ‚owy bazy locale
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gzip
@@ -545,20 +545,20 @@ Requires:	sed
 This add-on package contains the data needed to build the locale data
 files to use the internationalization features of the GNU libc.
 
-%description -n localedb-src -l es
+%description -n localedb-src -l es.UTF-8
 Este paquete adicional contiene los datos necesarios para construir
 los ficheros de locale, imprescindibles para usar las cualidades de
-internacionalización de GNU libc.
+internacionalizaciÃ³n de GNU libc.
 
-%description -n localedb-src -l pl
-Pakiet ten zawiera dane niezbêdne do zbudowania binarnych plików
-lokalizacyjnych, by móc wykorzystaæ mo¿liwo¶ci oferowane przez GNU
+%description -n localedb-src -l pl.UTF-8
+Pakiet ten zawiera dane niezbÄ™dne do zbudowania binarnych plikÃ³w
+lokalizacyjnych, by mÃ³c wykorzystaÄ‡ moÅ¼liwoÅ›ci oferowane przez GNU
 libc.
 
 %package localedb-all
 Summary:	locale database for all locales supported by glibc
-Summary(es):	Base de datos de todos los locales soportados por glibc
-Summary(pl):	Baza danych locale dla wszystkich lokalizacji obs³ugiwanych przez glibc
+Summary(es.UTF-8):   Base de datos de todos los locales soportados por glibc
+Summary(pl.UTF-8):   Baza danych locale dla wszystkich lokalizacji obsÅ‚ugiwanych przez glibc
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	iconv = %{epoch}:%{version}-%{release}
@@ -570,26 +570,26 @@ something smaller with support for chosen locales only, consider
 installing localedb-src and regenerating database using localedb-gen
 script (when database is generated, localedb-src can be uninstalled).
 
-%description localedb-all -l es
+%description localedb-all -l es.UTF-8
 Este paquete contiene una base de datos de todos los locales
-soportados por glibc. En glibc 2.3.x ése es un fichero grande (aprox.
-39 MB) -- si prefiere algo más pequeño, sólo con soporte de unos
-locales elegidos, considérese instalar localedb-src y regenerar la
+soportados por glibc. En glibc 2.3.x Ã©se es un fichero grande (aprox.
+39 MB) -- si prefiere algo mÃ¡s pequeÃ±o, sÃ³lo con soporte de unos
+locales elegidos, considÃ©rese instalar localedb-src y regenerar la
 base de datos usando el escript localedb-gen (una vez que la base de
-datos esté creada, localedb-src se podrá desinstalar).
+datos estÃ© creada, localedb-src se podrÃ¡ desinstalar).
 
-%description localedb-all -l pl
-Ten pakiet zawiera bazê danych locale dla wszystkich lokalizacji
-obs³ugiwanych przez glibc. W glibc 2.3.x jest to jeden du¿y plik
-(oko³o 39MB); aby mieæ co¶ mniejszego, z obs³ug± tylko wybranych
-lokalizacji, nale¿y zainstalowaæ pakiet localedb-src i przegenerowaæ
-bazê danych przy u¿yciu skryptu localedb-gen (po wygenerowaniu bazy
-pakiet localedb-src mo¿na odinstalowaæ).
+%description localedb-all -l pl.UTF-8
+Ten pakiet zawiera bazÄ™ danych locale dla wszystkich lokalizacji
+obsÅ‚ugiwanych przez glibc. W glibc 2.3.x jest to jeden duÅ¼y plik
+(okoÅ‚o 39MB); aby mieÄ‡ coÅ› mniejszego, z obsÅ‚ugÄ… tylko wybranych
+lokalizacji, naleÅ¼y zainstalowaÄ‡ pakiet localedb-src i przegenerowaÄ‡
+bazÄ™ danych przy uÅ¼yciu skryptu localedb-gen (po wygenerowaniu bazy
+pakiet localedb-src moÅ¼na odinstalowaÄ‡).
 
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
-Summary(es):	Convierte entre varias codificaciones de los ficheros dados
-Summary(pl):	Modu³y do konwersji plików tekstowych z jednego kodowania do innego
+Summary(es.UTF-8):   Convierte entre varias codificaciones de los ficheros dados
+Summary(pl.UTF-8):   ModuÅ‚y do konwersji plikÃ³w tekstowych z jednego kodowania do innego
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -599,27 +599,27 @@ this package if you want to convert some document from one encoding to
 another or if you have installed some programs which use Generic
 Character Set Conversion Interface.
 
-%description -n iconv -l es
-Convierte la codificación de dados ficheros. Necesita este paquete si
-quiere convertir un documento entre una codificación (juego de
-caracteres) y otra, o si tiene instalado algún programa que usa el
-Generic Character Set Conversion Interface (interfaz genérica de
-conversión de juegos de caracteres).
+%description -n iconv -l es.UTF-8
+Convierte la codificaciÃ³n de dados ficheros. Necesita este paquete si
+quiere convertir un documento entre una codificaciÃ³n (juego de
+caracteres) y otra, o si tiene instalado algÃºn programa que usa el
+Generic Character Set Conversion Interface (interfaz genÃ©rica de
+conversiÃ³n de juegos de caracteres).
 
-%description -n iconv -l pl
-Modu³y do konwersji plików tekstowych z jednego kodowania do innego.
-Trzeba mieæ zainstalowany ten pakiet, aby wykonywaæ konwersjê
-dokumentów z jednego kodowania do innego lub do u¿ywania programów
-korzystaj±cych z Generic Character Set Conversion Interface w glibc,
-czyli z zestawu funkcji z tej biblioteki, które umo¿liwiaj± konwersjê
+%description -n iconv -l pl.UTF-8
+ModuÅ‚y do konwersji plikÃ³w tekstowych z jednego kodowania do innego.
+Trzeba mieÄ‡ zainstalowany ten pakiet, aby wykonywaÄ‡ konwersjÄ™
+dokumentÃ³w z jednego kodowania do innego lub do uÅ¼ywania programÃ³w
+korzystajÄ…cych z Generic Character Set Conversion Interface w glibc,
+czyli z zestawu funkcji z tej biblioteki, ktÃ³re umoÅ¼liwiajÄ… konwersjÄ™
 kodowania danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
-Summary(es):	Bibliotecas estáticas
-Summary(pl):	Biblioteki statyczne
-Summary(ru):	óÔÁÔÉŞÅÓËÉÅ ÂÉÂÌÉÏÔÅËÉ glibc
-Summary(uk):	óÔÁÔÉŞÎ¦ Â¦ÂÌ¦ÏÔÅËÉ glibc
+Summary(es.UTF-8):   Bibliotecas estÃ¡ticas
+Summary(pl.UTF-8):   Biblioteki statyczne
+Summary(ru.UTF-8):   Ğ¡Ñ‚Ğ°Ñ‚Ğ¸Ñ‡ĞµÑĞºĞ¸Ğµ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ¸ glibc
+Summary(uk.UTF-8):   Ğ¡Ñ‚Ğ°Ñ‚Ğ¸Ñ‡Ğ½Ñ– Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºĞ¸ glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
@@ -628,29 +628,29 @@ Obsoletes:	libiconv-static
 %description static
 GNU libc static libraries.
 
-%description static -l es
-Bibliotecas estáticas de GNU libc.
+%description static -l es.UTF-8
+Bibliotecas estÃ¡ticas de GNU libc.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne GNU libc.
 
-%description static -l ru
-üÔÏ ÏÔÄÅÌØÎÙÊ ĞÁËÅÔ ÓÏ ÓÔÁÔÉŞÅÓËÉÍÉ ÂÉÂÌÉÏÔÅËÁÍÉ, ËÏÔÏÒÙÅ ÂÏÌØÛÅ ÎÅ
-×ÈÏÄÑÔ × glibc-devel.
+%description static -l ru.UTF-8
+Ğ­Ñ‚Ğ¾ Ğ¾Ñ‚Ğ´ĞµĞ»ÑŒĞ½Ñ‹Ğ¹ Ğ¿Ğ°ĞºĞµÑ‚ ÑĞ¾ ÑÑ‚Ğ°Ñ‚Ğ¸Ñ‡ĞµÑĞºĞ¸Ğ¼Ğ¸ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ°Ğ¼Ğ¸, ĞºĞ¾Ñ‚Ğ¾Ñ€Ñ‹Ğµ Ğ±Ğ¾Ğ»ÑŒÑˆĞµ Ğ½Ğµ
+Ğ²Ñ…Ğ¾Ğ´ÑÑ‚ Ğ² glibc-devel.
 
-%description static -l uk
-ãÅ ÏËÒÅÍÉÊ ĞÁËÅÔ Ú¦ ÓÔÁÔÉŞÎÉÍÉ Â¦ÂÌ¦ÏÔÅËÁÍÉ, İÏ Â¦ÌØÛÅ ÎÅ ×ÈÏÄÑÔØ ×
-ÓËÌÁÄ glibc-devel.
+%description static -l uk.UTF-8
+Ğ¦Ğµ Ğ¾ĞºÑ€ĞµĞ¼Ğ¸Ğ¹ Ğ¿Ğ°ĞºĞµÑ‚ Ğ·Ñ– ÑÑ‚Ğ°Ñ‚Ğ¸Ñ‡Ğ½Ğ¸Ğ¼Ğ¸ Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºĞ°Ğ¼Ğ¸, Ñ‰Ğ¾ Ğ±Ñ–Ğ»ÑŒÑˆĞµ Ğ½Ğµ Ğ²Ñ…Ğ¾Ğ´ÑÑ‚ÑŒ Ğ²
+ÑĞºĞ»Ğ°Ğ´ glibc-devel.
 
 %package profile
 Summary:	glibc with profiling support
-Summary(de):	glibc mit Profil-Unterstützung
-Summary(es):	glibc con soporte de perfilamiento
-Summary(fr):	glibc avec support pour profiling
-Summary(pl):	glibc ze wsparciem dla profilowania
-Summary(ru):	GNU libc Ó ĞÏÄÄÅÒÖËÏÊ ĞÒÏÆÁÊÌÅÒÁ
-Summary(tr):	Ölçüm desteği olan glibc
-Summary(uk):	GNU libc Ú Ğ¦ÄÔÒÉÍËÏÀ ĞÒÏÆÁÊÌÅÒÁ
+Summary(de.UTF-8):   glibc mit Profil-UnterstÃ¼tzung
+Summary(es.UTF-8):   glibc con soporte de perfilamiento
+Summary(fr.UTF-8):   glibc avec support pour profiling
+Summary(pl.UTF-8):   glibc ze wsparciem dla profilowania
+Summary(ru.UTF-8):   GNU libc Ñ Ğ¿Ğ¾Ğ´Ğ´ĞµÑ€Ğ¶ĞºĞ¾Ğ¹ Ğ¿Ñ€Ğ¾Ñ„Ğ°Ğ¹Ğ»ĞµÑ€Ğ°
+Summary(tr.UTF-8):   Ã–lÃ§Ã¼m desteÄŸi olan glibc
+Summary(uk.UTF-8):   GNU libc Ğ· Ğ¿Ñ–Ğ´Ñ‚Ñ€Ğ¸Ğ¼ĞºĞ¾Ñ Ğ¿Ñ€Ğ¾Ñ„Ğ°Ğ¹Ğ»ĞµÑ€Ğ°
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	libc-profile
@@ -660,42 +660,42 @@ When programs are being profiled using gprof, they must use these
 libraries instead of the standard C libraries for gprof to be able to
 profile them correctly.
 
-%description profile -l de
-Damit Programmprofile mit gprof richtig erstellt werden, müssen diese
-Libraries anstelle der üblichen C-Libraries verwendet werden.
+%description profile -l de.UTF-8
+Damit Programmprofile mit gprof richtig erstellt werden, mÃ¼ssen diese
+Libraries anstelle der Ã¼blichen C-Libraries verwendet werden.
 
-%description profile -l es
+%description profile -l es.UTF-8
 Cuando programas son perfilidas usando gprof, tienen que usar estas
-biblioteces en vez de las estándares para que gprof pueda perfilarlas
+biblioteces en vez de las estÃ¡ndares para que gprof pueda perfilarlas
 correctamente.
 
-%description profile -l pl
-Programy profilowane za pomoc± gprof musz± u¿ywaæ tych bibliotek
-zamiast standardowych bibliotek C, aby gprof móg³ odpowiednio je
-wyprofilowaæ.
+%description profile -l pl.UTF-8
+Programy profilowane za pomocÄ… gprof muszÄ… uÅ¼ywaÄ‡ tych bibliotek
+zamiast standardowych bibliotek C, aby gprof mÃ³gÅ‚ odpowiednio je
+wyprofilowaÄ‡.
 
-%description profile -l uk
-ëÏÌÉ ĞÒÏÇÒÁÍÉ ÄÏÓÌ¦ÄÖÕÀÔØÓÑ ĞÒÏÆÁÊÌÅÒÏÍ gprof, ×ÏÎÉ ĞÏ×ÉÎÎ¦
-×ÉËÏÒÉÓÔÏ×Õ×ÁÔÉ ÚÁÍ¦ÓÔØ ÓÔÁÎÄÁÒÔÎÉÈ Â¦ÂÌ¦ÏÔÅË Â¦ÂÌ¦ÏÔÅËÉ, İÏ Í¦ÓÔÑÔØÓÑ
-× ÃØÏÍÕ ĞÁËÅÔ¦. ğÒÉ ×ÉËÏÒÉÓÔÁÎÎ¦ ÓÔÁÎÄÁÒÔÎÉÈ Â¦ÂÌ¦ÏÔÅË gprof ÚÁÍ¦ÓÔØ
-ÒÅÁÌØÎÉÈ ÒÅÚÕÌØÔÁÔ¦× ÂÕÄÅ ĞÏËÁÚÕ×ÁÔÉ Ã¦ÎÉ ÎÁ ĞÁĞÁÊÀ × çÏÎÏÌÕÌÕ ×
-ĞÏÚÁÍÉÎÕÌÏÍÕ ÒÏÃ¦...
+%description profile -l uk.UTF-8
+ĞšĞ¾Ğ»Ğ¸ Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¸ Ğ´Ğ¾ÑĞ»Ñ–Ğ´Ğ¶ÑƒÑÑ‚ÑŒÑÑ Ğ¿Ñ€Ğ¾Ñ„Ğ°Ğ¹Ğ»ĞµÑ€Ğ¾Ğ¼ gprof, Ğ²Ğ¾Ğ½Ğ¸ Ğ¿Ğ¾Ğ²Ğ¸Ğ½Ğ½Ñ–
+Ğ²Ğ¸ĞºĞ¾Ñ€Ğ¸ÑÑ‚Ğ¾Ğ²ÑƒĞ²Ğ°Ñ‚Ğ¸ Ğ·Ğ°Ğ¼Ñ–ÑÑ‚ÑŒ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ğ¸Ñ… Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞº Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞºĞ¸, Ñ‰Ğ¾ Ğ¼Ñ–ÑÑ‚ÑÑ‚ÑŒÑÑ
+Ğ² Ñ†ÑŒĞ¾Ğ¼Ñƒ Ğ¿Ğ°ĞºĞµÑ‚Ñ–. ĞŸÑ€Ğ¸ Ğ²Ğ¸ĞºĞ¾Ñ€Ğ¸ÑÑ‚Ğ°Ğ½Ğ½Ñ– ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ğ¸Ñ… Ğ±Ñ–Ğ±Ğ»Ñ–Ğ¾Ñ‚ĞµĞº gprof Ğ·Ğ°Ğ¼Ñ–ÑÑ‚ÑŒ
+Ñ€ĞµĞ°Ğ»ÑŒĞ½Ğ¸Ñ… Ñ€ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚Ñ–Ğ² Ğ±ÑƒĞ´Ğµ Ğ¿Ğ¾ĞºĞ°Ğ·ÑƒĞ²Ğ°Ñ‚Ğ¸ Ñ†Ñ–Ğ½Ğ¸ Ğ½Ğ° Ğ¿Ğ°Ğ¿Ğ°Ğ¹Ñ Ğ² Ğ“Ğ¾Ğ½Ğ¾Ğ»ÑƒĞ»Ñƒ Ğ²
+Ğ¿Ğ¾Ğ·Ğ°Ğ¼Ğ¸Ğ½ÑƒĞ»Ğ¾Ğ¼Ñƒ Ñ€Ğ¾Ñ†Ñ–...
 
-%description profile -l tr
-gprof kullanılarak ölçülen programlar standart C kitaplığı yerine bu
-kitaplığı kullanmak zorundadırlar.
+%description profile -l tr.UTF-8
+gprof kullanÄ±larak Ã¶lÃ§Ã¼len programlar standart C kitaplÄ±ÄŸÄ± yerine bu
+kitaplÄ±ÄŸÄ± kullanmak zorundadÄ±rlar.
 
-%description profile -l ru
-ëÏÇÄÁ ĞÒÏÇÒÁÍÍÙ ÉÓÓÌÅÄÕÀÔÓÑ ĞÒÏÆÁÊÌÅÒÏÍ gprof, ÏÎÉ ÄÏÌÖÎÙ
-ÉÓĞÏÌØÚÏ×ÁÔØ, ×ÍÅÓÔÏ ÓÔÁÎÄÁÒÔÎÙÈ ÂÉÂÌÉÏÔÅË, ÂÉÂÌÉÏÔÅËÉ, ×ËÌÀŞÅÎÎÙÅ ×
-ÜÔÏÔ ĞÁËÅÔ. ğÒÉ ÉÓĞÏÌØÚÏ×ÁÎÉÉ ÓÔÁÎÄÁÒÔÎÙÈ ÂÉÂÌÉÏÔÅË gprof ×ÍÅÓÔÏ
-ÒÅÁÌØÎÙÈ ÒÅÚÕÌØÔÁÔÏ× ÂÕÄÅÔ ĞÏËÁÚÙ×ÁÔØ ÃÅÎÙ ÎÁ ĞÁĞÁÊÀ × çÏÎÏÌÕÌÕ ×
-ĞÏÚÁĞÒÏÛÌÏÍ ÇÏÄÕ...
+%description profile -l ru.UTF-8
+ĞšĞ¾Ğ³Ğ´Ğ° Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ñ‹ Ğ¸ÑÑĞ»ĞµĞ´ÑƒÑÑ‚ÑÑ Ğ¿Ñ€Ğ¾Ñ„Ğ°Ğ¹Ğ»ĞµÑ€Ğ¾Ğ¼ gprof, Ğ¾Ğ½Ğ¸ Ğ´Ğ¾Ğ»Ğ¶Ğ½Ñ‹
+Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ÑŒ, Ğ²Ğ¼ĞµÑÑ‚Ğ¾ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ñ… Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞº, Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ¸, Ğ²ĞºĞ»ÑÑ‡ĞµĞ½Ğ½Ñ‹Ğµ Ğ²
+ÑÑ‚Ğ¾Ñ‚ Ğ¿Ğ°ĞºĞµÑ‚. ĞŸÑ€Ğ¸ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğ¸ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ñ… Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞº gprof Ğ²Ğ¼ĞµÑÑ‚Ğ¾
+Ñ€ĞµĞ°Ğ»ÑŒĞ½Ñ‹Ñ… Ñ€ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚Ğ¾Ğ² Ğ±ÑƒĞ´ĞµÑ‚ Ğ¿Ğ¾ĞºĞ°Ğ·Ñ‹Ğ²Ğ°Ñ‚ÑŒ Ñ†ĞµĞ½Ñ‹ Ğ½Ğ° Ğ¿Ğ°Ğ¿Ğ°Ğ¹Ñ Ğ² Ğ“Ğ¾Ğ½Ğ¾Ğ»ÑƒĞ»Ñƒ Ğ²
+Ğ¿Ğ¾Ğ·Ğ°Ğ¿Ñ€Ğ¾ÑˆĞ»Ğ¾Ğ¼ Ğ³Ğ¾Ğ´Ñƒ...
 
 %package pic
 Summary:	glibc PIC archive
-Summary(es):	Archivo PIC de glibc
-Summary(pl):	Archiwum PIC glibc
+Summary(es.UTF-8):   Archivo PIC de glibc
+Summary(pl.UTF-8):   Archiwum PIC glibc
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -704,129 +704,129 @@ GNU C Library PIC archive contains an archive library (ar file)
 composed of individual shared objects. This is used for creating a
 library which is a smaller subset of the standard libc shared library.
 
-%description pic -l es
+%description pic -l es.UTF-8
 El archivo PIC de la biblioteca glibc contiene una biblioteca
 archivada (un fichero ar) compuesta de individuales objetos
 compartidos. Es usado para crear una biblioteca que sea un subconjunto
-más pequeño de la biblioteca libc compartida estándar.
+mÃ¡s pequeÃ±o de la biblioteca libc compartida estÃ¡ndar.
 
-%description pic -l pl
-Archiwum PIC biblioteki GNU C zawiera archiwaln± bibliotekê (plik ar)
-z³o¿on± z pojedynczych obiektów wspó³dzielonych. U¿ywana jest do
-tworzenia biblioteki bêd±cej mniejszym podzestawem standardowej
-biblioteki wspó³dzielonej libc.
+%description pic -l pl.UTF-8
+Archiwum PIC biblioteki GNU C zawiera archiwalnÄ… bibliotekÄ™ (plik ar)
+zÅ‚oÅ¼onÄ… z pojedynczych obiektÃ³w wspÃ³Å‚dzielonych. UÅ¼ywana jest do
+tworzenia biblioteki bÄ™dÄ…cej mniejszym podzestawem standardowej
+biblioteki wspÃ³Å‚dzielonej libc.
 
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
-Summary(es):	El antiguo módulo NYS NSS de glibc
-Summary(pl):	Stary modu³ NYS NSS glibc
+Summary(es.UTF-8):   El antiguo mÃ³dulo NYS NSS de glibc
+Summary(pl.UTF-8):   Stary moduÅ‚ NYS NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_compat
 Old style NYS NSS glibc module.
 
-%description -n nss_compat -l es
-El antiguo módulo NYS NSS de glibc
+%description -n nss_compat -l es.UTF-8
+El antiguo mÃ³dulo NYS NSS de glibc
 
-%description -n nss_compat -l pl
-Stary modu³ NYS NSS glibc.
+%description -n nss_compat -l pl.UTF-8
+Stary moduÅ‚ NYS NSS glibc.
 
 %package -n nss_dns
 Summary:	BIND NSS glibc module
-Summary(es):	Módulo BIND NSS de glibc
-Summary(pl):	Modu³ BIND NSS glibc
+Summary(es.UTF-8):   MÃ³dulo BIND NSS de glibc
+Summary(pl.UTF-8):   ModuÅ‚ BIND NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_dns
 BIND NSS glibc module.
 
-%description -n nss_dns -l es
-Módulo BIND NSS de glibc.
+%description -n nss_dns -l es.UTF-8
+MÃ³dulo BIND NSS de glibc.
 
-%description -n nss_dns -l pl
-Modu³ BIND NSS glibc.
+%description -n nss_dns -l pl.UTF-8
+ModuÅ‚ BIND NSS glibc.
 
 %package -n nss_files
 Summary:	Traditional files databases NSS glibc module
-Summary(es):	Módulo de tradicionales bases de datos en ficheros para glibc
-Summary(pl):	Modu³ tradycyjnych plikowych baz danych NSS glibc
+Summary(es.UTF-8):   MÃ³dulo de tradicionales bases de datos en ficheros para glibc
+Summary(pl.UTF-8):   ModuÅ‚ tradycyjnych plikowych baz danych NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_files
 Traditional files databases NSS glibc module.
 
-%description -n nss_files -l es
-Módulo de tradicionales bases de datos en ficheros para glibc.
+%description -n nss_files -l es.UTF-8
+MÃ³dulo de tradicionales bases de datos en ficheros para glibc.
 
-%description -n nss_files -l pl
-Modu³ tradycyjnych plikowych baz danych NSS glibc.
+%description -n nss_files -l pl.UTF-8
+ModuÅ‚ tradycyjnych plikowych baz danych NSS glibc.
 
 %package -n nss_hesiod
 Summary:	hesiod NSS glibc module
-Summary(es):	Módulo hesiod NSS de glibc
-Summary(pl):	Modu³ hesiod NSS glibc
+Summary(es.UTF-8):   MÃ³dulo hesiod NSS de glibc
+Summary(pl.UTF-8):   ModuÅ‚ hesiod NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_hesiod
 glibc NSS (Name Service Switch) module for databases access.
 
-%description -n nss_hesiod -l es
-Módulo hesiod NSS de glibc.
+%description -n nss_hesiod -l es.UTF-8
+MÃ³dulo hesiod NSS de glibc.
 
-%description -n nss_hesiod -l pl
-Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych.
+%description -n nss_hesiod -l pl.UTF-8
+ModuÅ‚ glibc NSS (Name Service Switch) dostÄ™pu do baz danych.
 
 %package -n nss_nis
 Summary:	NIS(YP) NSS glibc module
-Summary(es):	Módulo NIS(YP) NSS de glibc
-Summary(pl):	Modu³ NIS(YP) NSS glibc
+Summary(es.UTF-8):   MÃ³dulo NIS(YP) NSS de glibc
+Summary(pl.UTF-8):   ModuÅ‚ NIS(YP) NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_nis
 glibc NSS (Name Service Switch) module for NIS(YP) databases access.
 
-%description -n nss_nis -l es
-Módulo NSS de glibc para acceder las bases de datos NIS(YP).
+%description -n nss_nis -l es.UTF-8
+MÃ³dulo NSS de glibc para acceder las bases de datos NIS(YP).
 
-%description -n nss_nis -l pl
-Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS(YP).
+%description -n nss_nis -l pl.UTF-8
+ModuÅ‚ glibc NSS (Name Service Switch) dostÄ™pu do baz danych NIS(YP).
 
 %package -n nss_nisplus
 Summary:	NIS+ NSS module
-Summary(es):	Módulo NIS+ NSS
-Summary(pl):	Modu³ NIS+ NSS
+Summary(es.UTF-8):   MÃ³dulo NIS+ NSS
+Summary(pl.UTF-8):   ModuÅ‚ NIS+ NSS
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_nisplus
 glibc NSS (Name Service Switch) module for NIS+ databases access.
 
-%description -n nss_nisplus -l es
-Módulo NSS (Name Service Switch) de glibc para acceder las bases de
+%description -n nss_nisplus -l es.UTF-8
+MÃ³dulo NSS (Name Service Switch) de glibc para acceder las bases de
 datos NIS+.
 
-%description -n nss_nisplus -l pl
-Modu³ glibc NSS (Name Service Switch) dostêpu do baz danych NIS+.
+%description -n nss_nisplus -l pl.UTF-8
+ModuÅ‚ glibc NSS (Name Service Switch) dostÄ™pu do baz danych NIS+.
 
 %package memusage
 Summary:	A toy
-Summary(es):	Un juguete
-Summary(pl):	Zabawka
+Summary(es.UTF-8):   Un juguete
+Summary(pl.UTF-8):   Zabawka
 Group:		Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description memusage
 A toy.
 
-%description memusage -l es
+%description memusage -l es.UTF-8
 Un juguete.
 
-%description memusage -l pl
+%description memusage -l pl.UTF-8
 Zabawka.
 
 %prep
