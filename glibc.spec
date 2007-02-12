@@ -48,7 +48,7 @@ Summary(tr.UTF-8):   GNU libc
 Summary(uk.UTF-8):   GNU libc версії 2.3
 Name:		glibc
 Version:	2.5
-Release:	0.5
+Release:	0.6
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -88,6 +88,7 @@ Patch22:	%{name}-locale_fixes.patch
 Patch23:	%{name}-ZA_collate.patch
 Patch24:	%{name}-iconvconfig-nxstack.patch
 Patch25:	%{name}-cross-gcc_eh.patch
+Patch26:	%{name}-with-stroke.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -857,6 +858,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch23 -p1
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
+%patch26 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
