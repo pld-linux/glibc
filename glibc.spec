@@ -38,14 +38,14 @@
 %define		llh_version	7:2.6.12.0-10
 
 Summary:	GNU libc
-Summary(de.UTF-8):   GNU libc
-Summary(es.UTF-8):   GNU libc
-Summary(fr.UTF-8):   GNU libc
-Summary(ja.UTF-8):   GNU libc ライブラリ
-Summary(pl.UTF-8):   GNU libc
-Summary(ru.UTF-8):   GNU libc версии 2.3
-Summary(tr.UTF-8):   GNU libc
-Summary(uk.UTF-8):   GNU libc версії 2.3
+Summary(de.UTF-8):	GNU libc
+Summary(es.UTF-8):	GNU libc
+Summary(fr.UTF-8):	GNU libc
+Summary(ja.UTF-8):	GNU libc ライブラリ
+Summary(pl.UTF-8):	GNU libc
+Summary(ru.UTF-8):	GNU libc версии 2.3
+Summary(tr.UTF-8):	GNU libc
+Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.5
 Release:	0.6
@@ -267,7 +267,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 
 %package misc
 Summary:	Utilities and data used by glibc
-Summary(pl.UTF-8):   Narzędzia i dane używane przez glibc
+Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 AutoReq:	false
 Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
@@ -282,14 +282,14 @@ Narzędzia i dane używane przez glibc.
 
 %package devel
 Summary:	Additional libraries required to compile
-Summary(de.UTF-8):   Weitere Libraries zum Kompilieren
-Summary(es.UTF-8):   Bibliotecas adicionales necesarias para la compilación
-Summary(fr.UTF-8):   Librairies supplémentaires nécessaires à la compilation
-Summary(ja.UTF-8):   標準 C ライブラリで使われるヘッダーとオブジェクトファイル
-Summary(pl.UTF-8):   Dodatkowe biblioteki wymagane podczas kompilacji
-Summary(ru.UTF-8):   Дополнительные библиотеки, необходимые для компиляции
-Summary(tr.UTF-8):   Geliştirme için gerekli diğer kitaplıklar
-Summary(uk.UTF-8):   Додаткові бібліотеки, потрібні для компіляції
+Summary(de.UTF-8):	Weitere Libraries zum Kompilieren
+Summary(es.UTF-8):	Bibliotecas adicionales necesarias para la compilación
+Summary(fr.UTF-8):	Librairies supplémentaires nécessaires à la compilation
+Summary(ja.UTF-8):	標準 C ライブラリで使われるヘッダーとオブジェクトファイル
+Summary(pl.UTF-8):	Dodatkowe biblioteki wymagane podczas kompilacji
+Summary(ru.UTF-8):	Дополнительные библиотеки, необходимые для компиляции
+Summary(tr.UTF-8):	Geliştirme için gerekli diğer kitaplıklar
+Summary(uk.UTF-8):	Додаткові бібліотеки, потрібні для компіляції
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
@@ -351,7 +351,7 @@ kitaplıklar.
 
 %package headers
 Summary:	Header files for development using standard C libraries
-Summary(pl.UTF-8):   Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
+Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -399,7 +399,7 @@ korzystające ze standardowych bibliotek C.
 
 %package devel-utils
 Summary:	Utilities needed for development using standard C libraries
-Summary(pl.UTF-8):   Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
+Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Libraries
 Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -445,7 +445,7 @@ korzystające ze standardowych bibliotek C.
 
 %package devel-doc
 Summary:	Documentation needed for development using standard C libraries
-Summary(pl.UTF-8):   Dokumentacja do tworzenia programów przy użyciu standardowych bibliotek C
+Summary(pl.UTF-8):	Dokumentacja do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Documentation
 Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
@@ -487,11 +487,11 @@ korzystające ze standardowych bibliotek C.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
-Summary(es.UTF-8):   Demonio de caché del servicio de nombres
-Summary(ja.UTF-8):   ネームサービスキャッシングデーモン (nacd)
-Summary(pl.UTF-8):   Demon zapamiętujący odpowiedzi serwisów nazw
-Summary(ru.UTF-8):   Кэширующий демон сервисов имен
-Summary(uk.UTF-8):   Кешуючий демон севісів імен
+Summary(es.UTF-8):	Demonio de caché del servicio de nombres
+Summary(ja.UTF-8):	ネームサービスキャッシングデーモン (nacd)
+Summary(pl.UTF-8):	Demon zapamiętujący odpowiedzi serwisów nazw
+Summary(ru.UTF-8):	Кэширующий демон сервисов имен
+Summary(uk.UTF-8):	Кешуючий демон севісів імен
 Group:		Networking/Daemons
 Requires(post):	fileutils
 Requires(post,preun):	/sbin/chkconfig
@@ -535,8 +535,8 @@ nscd кешує результати запросів до сервісів ім
 
 %package -n localedb-src
 Summary:	locale database source code
-Summary(es.UTF-8):   Código fuente de la base de datos de los locales
-Summary(pl.UTF-8):   Kod źródłowy bazy locale
+Summary(es.UTF-8):	Código fuente de la base de datos de los locales
+Summary(pl.UTF-8):	Kod źródłowy bazy locale
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gzip
@@ -558,8 +558,8 @@ libc.
 
 %package localedb-all
 Summary:	locale database for all locales supported by glibc
-Summary(es.UTF-8):   Base de datos de todos los locales soportados por glibc
-Summary(pl.UTF-8):   Baza danych locale dla wszystkich lokalizacji obsługiwanych przez glibc
+Summary(es.UTF-8):	Base de datos de todos los locales soportados por glibc
+Summary(pl.UTF-8):	Baza danych locale dla wszystkich lokalizacji obsługiwanych przez glibc
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	iconv = %{epoch}:%{version}-%{release}
@@ -589,8 +589,8 @@ pakiet localedb-src można odinstalować).
 
 %package -n iconv
 Summary:	Convert encoding of given files from one encoding to another
-Summary(es.UTF-8):   Convierte entre varias codificaciones de los ficheros dados
-Summary(pl.UTF-8):   Moduły do konwersji plików tekstowych z jednego kodowania do innego
+Summary(es.UTF-8):	Convierte entre varias codificaciones de los ficheros dados
+Summary(pl.UTF-8):	Moduły do konwersji plików tekstowych z jednego kodowania do innego
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -617,10 +617,10 @@ kodowania danych z poziomu dowolnego programu.
 
 %package static
 Summary:	Static libraries
-Summary(es.UTF-8):   Bibliotecas estáticas
-Summary(pl.UTF-8):   Biblioteki statyczne
-Summary(ru.UTF-8):   Статические библиотеки glibc
-Summary(uk.UTF-8):   Статичні бібліотеки glibc
+Summary(es.UTF-8):	Bibliotecas estáticas
+Summary(pl.UTF-8):	Biblioteki statyczne
+Summary(ru.UTF-8):	Статические библиотеки glibc
+Summary(uk.UTF-8):	Статичні бібліотеки glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
@@ -645,13 +645,13 @@ Biblioteki statyczne GNU libc.
 
 %package profile
 Summary:	glibc with profiling support
-Summary(de.UTF-8):   glibc mit Profil-Unterstützung
-Summary(es.UTF-8):   glibc con soporte de perfilamiento
-Summary(fr.UTF-8):   glibc avec support pour profiling
-Summary(pl.UTF-8):   glibc ze wsparciem dla profilowania
-Summary(ru.UTF-8):   GNU libc с поддержкой профайлера
-Summary(tr.UTF-8):   Ölçüm desteği olan glibc
-Summary(uk.UTF-8):   GNU libc з підтримкою профайлера
+Summary(de.UTF-8):	glibc mit Profil-Unterstützung
+Summary(es.UTF-8):	glibc con soporte de perfilamiento
+Summary(fr.UTF-8):	glibc avec support pour profiling
+Summary(pl.UTF-8):	glibc ze wsparciem dla profilowania
+Summary(ru.UTF-8):	GNU libc с поддержкой профайлера
+Summary(tr.UTF-8):	Ölçüm desteği olan glibc
+Summary(uk.UTF-8):	GNU libc з підтримкою профайлера
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	libc-profile
@@ -695,8 +695,8 @@ kitaplığı kullanmak zorundadırlar.
 
 %package pic
 Summary:	glibc PIC archive
-Summary(es.UTF-8):   Archivo PIC de glibc
-Summary(pl.UTF-8):   Archiwum PIC glibc
+Summary(es.UTF-8):	Archivo PIC de glibc
+Summary(pl.UTF-8):	Archiwum PIC glibc
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -719,8 +719,8 @@ biblioteki współdzielonej libc.
 
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
-Summary(es.UTF-8):   El antiguo módulo NYS NSS de glibc
-Summary(pl.UTF-8):   Stary moduł NYS NSS glibc
+Summary(es.UTF-8):	El antiguo módulo NYS NSS de glibc
+Summary(pl.UTF-8):	Stary moduł NYS NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -735,8 +735,8 @@ Stary moduł NYS NSS glibc.
 
 %package -n nss_dns
 Summary:	BIND NSS glibc module
-Summary(es.UTF-8):   Módulo BIND NSS de glibc
-Summary(pl.UTF-8):   Moduł BIND NSS glibc
+Summary(es.UTF-8):	Módulo BIND NSS de glibc
+Summary(pl.UTF-8):	Moduł BIND NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -751,8 +751,8 @@ Moduł BIND NSS glibc.
 
 %package -n nss_files
 Summary:	Traditional files databases NSS glibc module
-Summary(es.UTF-8):   Módulo de tradicionales bases de datos en ficheros para glibc
-Summary(pl.UTF-8):   Moduł tradycyjnych plikowych baz danych NSS glibc
+Summary(es.UTF-8):	Módulo de tradicionales bases de datos en ficheros para glibc
+Summary(pl.UTF-8):	Moduł tradycyjnych plikowych baz danych NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -767,8 +767,8 @@ Moduł tradycyjnych plikowych baz danych NSS glibc.
 
 %package -n nss_hesiod
 Summary:	hesiod NSS glibc module
-Summary(es.UTF-8):   Módulo hesiod NSS de glibc
-Summary(pl.UTF-8):   Moduł hesiod NSS glibc
+Summary(es.UTF-8):	Módulo hesiod NSS de glibc
+Summary(pl.UTF-8):	Moduł hesiod NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -783,8 +783,8 @@ Moduł glibc NSS (Name Service Switch) dostępu do baz danych.
 
 %package -n nss_nis
 Summary:	NIS(YP) NSS glibc module
-Summary(es.UTF-8):   Módulo NIS(YP) NSS de glibc
-Summary(pl.UTF-8):   Moduł NIS(YP) NSS glibc
+Summary(es.UTF-8):	Módulo NIS(YP) NSS de glibc
+Summary(pl.UTF-8):	Moduł NIS(YP) NSS glibc
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -799,8 +799,8 @@ Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS(YP).
 
 %package -n nss_nisplus
 Summary:	NIS+ NSS module
-Summary(es.UTF-8):   Módulo NIS+ NSS
-Summary(pl.UTF-8):   Moduł NIS+ NSS
+Summary(es.UTF-8):	Módulo NIS+ NSS
+Summary(pl.UTF-8):	Moduł NIS+ NSS
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -816,8 +816,8 @@ Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS+.
 
 %package memusage
 Summary:	A toy
-Summary(es.UTF-8):   Un juguete
-Summary(pl.UTF-8):   Zabawka
+Summary(es.UTF-8):	Un juguete
+Summary(pl.UTF-8):	Zabawka
 Group:		Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
