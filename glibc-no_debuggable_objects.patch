@@ -1,0 +1,27 @@
+--- glibc-2.5/Makeconfig.orig	2007-02-14 08:43:34.000000000 +0000
++++ glibc-2.5/Makeconfig	2007-02-14 14:17:07.824692250 +0000
+@@ -693,7 +693,7 @@
+ # The compilation rules use $(CPPFLAGS-${SUFFIX}) and $(CFLAGS-${SUFFIX})
+ # to pass different flags for each flavor.
+ libtypes = $(foreach o,$(object-suffixes-for-libc),$(libtype$o))
+-all-object-suffixes := .o .os .op .og .ob .oS
++all-object-suffixes := .o .os .op .ob .oS
+ object-suffixes :=
+ CPPFLAGS-.o = $(pic-default)
+ CFLAGS-.o = $(filter %frame-pointer,$(+cflags))
+@@ -723,14 +723,9 @@
+ endif
+ ifeq (yes,$(build-omitfp))
+ # Under --enable-omitfp, we build the library optimized without
+-# debugging information using -fomit-frame-pointer, and build an extra
+-# library with debugging information.  The debuggable objects are named foo.og.
+-object-suffixes += .og
+-CPPFLAGS-.og = $(pic-default)
+-CFLAGS-.og = -g
++# debugging information using -fomit-frame-pointer.
+ CFLAGS-.o = $(filter %frame-pointer,$(+cflags)) -fomit-frame-pointer -D__USE_STRING_INLINES
+ CFLAGS-.os += -fomit-frame-pointer -D__USE_STRING_INLINES
+-libtype.og = lib%_g.a
+ endif
+ 
+ bppfx = BP-
