@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.5
-Release:	0.6
+Release:	1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1413,6 +1413,7 @@ AWK="gawk" \
 	--enable-add-ons=nptl,libidn \
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
+	--enable-bind-now \
 	--enable-profile
 
 %{__make} \
