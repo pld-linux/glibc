@@ -1,18 +1,3 @@
-# TODO:
-# - files?
-#   (debuggable libraries built with frame pointers - -debug package?)
-#   %{_libdir}/libBrokenLocale_g.a
-#   %{_libdir}/libanl_g.a
-#   %{_libdir}/libc_g.a
-#   %{_libdir}/libcrypt_g.a
-#   %{_libdir}/libdl_g.a
-#   %{_libdir}/libm_g.a
-#   %{_libdir}/libnsl_g.a
-#   %{_libdir}/libpthread_g.a
-#   %{_libdir}/libresolv_g.a
-#   %{_libdir}/librpcsvc_g.a
-#   %{_libdir}/librt_g.a
-#   %{_libdir}/libutil_g.a
 #
 # Conditional build:
 # min_kernel	(default is 2.6.12)
@@ -71,11 +56,11 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-alpha-ev6-opcodes.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
-
+Patch7:		%{name}-no_opt_override.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
-Patch11:	%{name}-no_opt_override.patch
+Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-ppc-inline-fsqrt.patch
 Patch14:	%{name}-sparc-errno_fix.patch
@@ -841,7 +826,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-
+%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
