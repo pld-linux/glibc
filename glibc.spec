@@ -1430,7 +1430,9 @@ AWK="gawk" \
 	--enable-hidden-plt \
 	--enable-profile
 
-%{__make}
+%{__make} \
+	 sLIBdir=%{_libdir}
+
 cd ..
 
 %if %{with tests}
