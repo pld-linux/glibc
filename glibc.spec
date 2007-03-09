@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.5
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1545,29 +1545,34 @@ for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* 
 		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
-# XXX: to be added when become supported by glibc
-# az_IR (gtk+)
-# gn (gn_BR in gnome, maybe gn_PY)
-# dv, haw, kok, ps (iso-codes)
-# my (gaim)
-#
+
 # NOTES:
-# what about sr@ije? it used to be sr_CS@ije (should be @[i]jekavian?), but
-# now this dialect uses sr_ME locale - rename dir to sr_ME?
+# To be added when they become supported by glibc:
+#   ang (gtk+, gnome)
+#   az_IR (gtk+)
+#   dv, haw, kok, pa_IN, ps, syr, wo (iso-codes)
+#   gn (gn_BR in gnome, maybe gn_PY)
+#   my (gaim)
+#   tlh (bzflag)
+#
+# What about sr@ije? It used to be sr_CS@ije (should be @[i]jekavian?),
+# but now this dialect uses sr_ME locale - rename dir to sr_ME?
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
-#   till now
+# till now.
 #
-# omitted here - already existing (with libc.mo):
-#   be,ca,cs,da,de,el,en_GB,es,fi,fr,gl,hr,hu,it,ja,ko,nb,nl,pl,pt_BR,sk,sv,
-#   tr,zh_CN,zh_TW
+# Omitted here - already existing (with libc.mo):
+#   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
+#   sv tr zh_CN zh_TW
 #
-for i in aa af am ang ar as az bg bn bn_IN br bs byn cy de_AT dz en en@boldquot \
-    en@quot en_AU en_CA en_US eo es_AR es_MX es_NI et eu fa fo fr_BE fy ga \
-    gez gu gv he hi hsb hy ia id is it_CH iu ka kk kl km kn ku kw ky leet lg li \
-    lo lt lv mg mi mk ml mn mr ms mt nds ne nl_BE nn nso oc om or pa pt rm ro \
-    ru rw sa se si sid sl so sq sr sr@Latn sr@ije ss syr sw ta te tg th ti tig \
-    tk tl tlh tt ug uk ur uz ve vi wa wal wo xh yi yo zh_HK zu ; do
+for i in aa aa@saaho af am an ang ar as ast az be@alternative be@latin bg bn \
+    bn_IN br bs byn csb cy de_AT dz en en@boldquot en@quot en_AU en_CA en_US \
+    eo es_AR es_MX es_NI et eu fa fil fo fr_BE fur fy ga gd gez gu gv he hi \
+    hsb hy ia id ik is it_CH iu ka kk kl km kn ku kw ky lg li lo lt lv mai mg \
+    mi mk ml mn mr ms mt nds ne nl_BE nn nr nso oc om or pa pap pt rm ro sa \
+    sc se si sid sl so sq sr sr@Latn sr@ije ss st syr sw ta te tg th ti tig \
+    tk tl tlh tn ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK \
+    zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		lang=`echo $i | sed -e 's/_.*//'`
