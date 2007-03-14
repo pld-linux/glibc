@@ -2,15 +2,22 @@
 
 	* sysdeps/powerpc/fpu/bits/mathinline.h
 	[__LIBC_INTERNAL_MATH_INLINES]: Moved to math_private.h.
-	* sysdeps/powerpc/fpu/math_private.h: New file.
+	* sysdeps/powerpc/powerpc32/fpu/math_private.h: New file.
+	* sysdeps/powerpc/powerpc64/fpu/math_private.h: New file.
+	* sysdeps/powerpc/powerpc64/fpu/e_sqrt.c: Don't include math_private.h.
+	* sysdeps/powerpc/powerpc64/fpu/e_sqrtf.c: Don't include
+	math_private.h.  Change local result to float type.
 
 diff -urN libc25-cvstip-20061018/sysdeps/powerpc/fpu/bits/mathinline.h libc24/sysdeps/powerpc/fpu/bits/mathinline.h
 --- libc25-cvstip-20061018/sysdeps/powerpc/fpu/bits/mathinline.h	2006-04-14 00:43:58.000000000 -0500
-+++ libc24/sysdeps/powerpc/fpu/bits/mathinline.h	2006-11-03 17:45:55.517445184 -0600
-@@ -124,59 +124,6 @@
++++ libc24/sysdeps/powerpc/fpu/bits/mathinline.h	2006-11-04 16:11:46.000000000 -0600
+@@ -121,62 +121,4 @@
  
- /* This code is used internally in the GNU libc.  */
- #ifdef __LIBC_INTERNAL_MATH_INLINES
+ #endif /* __USE_ISOC99 */
+ #endif /* !__NO_MATH_INLINES && __OPTIMIZE__ */
+-
+-/* This code is used internally in the GNU libc.  */
+-#ifdef __LIBC_INTERNAL_MATH_INLINES
 -
 -#include <sysdep.h>
 -#include <ldsodefs.h>
@@ -65,12 +72,11 @@ diff -urN libc25-cvstip-20061018/sysdeps/powerpc/fpu/bits/mathinline.h libc24/sy
 -
 -  return __z;
 -}
-+/* Moved to math_private.h  */
- #endif /* __LIBC_INTERNAL_MATH_INLINES */
+-#endif /* __LIBC_INTERNAL_MATH_INLINES */
  #endif /* __GNUC__ && !_SOFT_FLOAT */
-diff -urN libc25-cvstip-20061018/sysdeps/powerpc/fpu/math_private.h libc24/sysdeps/powerpc/fpu/math_private.h
---- libc25-cvstip-20061018/sysdeps/powerpc/fpu/math_private.h	Wed Dec 31 18:00:00 1969
-+++ libc24/sysdeps/powerpc/fpu/math_private.h	Fri Nov 03 17:54:05 2006
+diff -urN libc25-cvstip-20061018/sysdeps/powerpc/powerpc32/fpu/math_private.h libc24/sysdeps/powerpc/powerpc32/fpu/math_private.h
+--- libc25-cvstip-20061018/sysdeps/powerpc/powerpc32/fpu/math_private.h	Wed Dec 31 18:00:00 1969
++++ libc24/sysdeps/powerpc/powerpc32/fpu/math_private.h	Sat Nov 04 15:44:49 2006
 @@ -0,0 +1,83 @@
 +/* Private inline math functions for powerpc.
 +   Copyright (C) 2006
@@ -105,9 +111,10 @@ diff -urN libc25-cvstip-20061018/sysdeps/powerpc/fpu/math_private.h libc24/sysde
 +#  define __CPU_HAS_FSQRT ((GLRO(dl_hwcap) & PPC_FEATURE_64) != 0)
 +# endif
 +
-+# ifndef __LIBC_INTERNAL_MATH_INLINES
++# ifdef __LIBC_INTERNAL_MATH_INLINES
 +extern double __slow_ieee754_sqrt (double);
-+__inline double
++
++extern __inline double
 +__ieee754_sqrt (double __x)
 +{
 +  double __z;
@@ -130,7 +137,7 @@ diff -urN libc25-cvstip-20061018/sysdeps/powerpc/fpu/math_private.h libc24/sysde
 +
 +extern float __slow_ieee754_sqrtf (float);
 +
-+__inline float
++extern __inline float
 +__ieee754_sqrtf (float __x)
 +{
 +  float __z;
@@ -152,6 +159,90 @@ diff -urN libc25-cvstip-20061018/sysdeps/powerpc/fpu/math_private.h libc24/sysde
 +}
 +#endif /* __LIBC_INTERNAL_MATH_INLINES */
 +
-+# include_next <math_private.h>
++#include_next <math_private.h>
++#endif /* _PPC_MATH_PRIVATE_H_ */
+diff -urN libc25-cvstip-20061018/sysdeps/powerpc/powerpc64/fpu/e_sqrt.c libc24/sysdeps/powerpc/powerpc64/fpu/e_sqrt.c
+--- libc25-cvstip-20061018/sysdeps/powerpc/powerpc64/fpu/e_sqrt.c	2006-01-21 13:40:59.000000000 -0600
++++ libc24/sysdeps/powerpc/powerpc64/fpu/e_sqrt.c	2006-11-04 15:24:23.000000000 -0600
+@@ -18,7 +18,6 @@
+    02111-1307 USA.  */
+ 
+ #include <math.h>
+-#include <math_private.h>
+ 
+ double
+ __ieee754_sqrt (double x)
+diff -urN libc25-cvstip-20061018/sysdeps/powerpc/powerpc64/fpu/e_sqrtf.c libc24/sysdeps/powerpc/powerpc64/fpu/e_sqrtf.c
+--- libc25-cvstip-20061018/sysdeps/powerpc/powerpc64/fpu/e_sqrtf.c	2006-01-21 13:40:59.000000000 -0600
++++ libc24/sysdeps/powerpc/powerpc64/fpu/e_sqrtf.c	2006-11-04 15:23:59.000000000 -0600
+@@ -18,12 +18,11 @@
+    02111-1307 USA.  */
+ 
+ #include <math.h>
+-#include <math_private.h>
+ 
+ float
+ __ieee754_sqrtf (float x)
+ {
+-  double z;
++  float z;
+   __asm ("fsqrts %0,%1" : "=f" (z) : "f" (x));
+   return z;
+ }
+diff -urN libc25-cvstip-20061018/sysdeps/powerpc/powerpc64/fpu/math_private.h libc24/sysdeps/powerpc/powerpc64/fpu/math_private.h
+--- libc25-cvstip-20061018/sysdeps/powerpc/powerpc64/fpu/math_private.h	Wed Dec 31 18:00:00 1969
++++ libc24/sysdeps/powerpc/powerpc64/fpu/math_private.h	Sat Nov 04 15:41:41 2006
+@@ -0,0 +1,53 @@
++/* Private inline math functions for powerpc.
++   Copyright (C) 2006
++   Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
 +
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 51 Franklin St - Fifth Floor, Boston, 
++   MA 02110-1301 USA  */
++
++#ifndef _PPC_MATH_PRIVATE_H_
++#define _PPC_MATH_PRIVATE_H_
++
++#include <sysdep.h>
++#include <ldsodefs.h>
++#include <dl-procinfo.h>
++
++# if __WORDSIZE == 64 || defined _ARCH_PWR4
++#  define __CPU_HAS_FSQRT 1
++# else
++#  define __CPU_HAS_FSQRT ((GLRO(dl_hwcap) & PPC_FEATURE_64) != 0)
++# endif
++
++# ifdef __LIBC_INTERNAL_MATH_INLINES
++extern __inline double
++__ieee754_sqrt (double x)
++{
++  double z;
++  __asm __volatile ("fsqrt %0,%1" : "=f" (z) : "f" (x));
++  return z;
++}
++
++extern __inline float
++__ieee754_sqrtf (float x)
++{
++  float z;
++  __asm ("fsqrts %0,%1" : "=f" (z) : "f" (x));
++  return z;
++}
++#endif /* __LIBC_INTERNAL_MATH_INLINES */
++
++#include_next <math_private.h>
 +#endif /* _PPC_MATH_PRIVATE_H_ */
