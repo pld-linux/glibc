@@ -854,7 +854,7 @@ chmod +x scripts/cpp
 cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
 cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 
-# Hack till glibc-kernheaders get updated, argh
+# Hack till linux-libc-headers get updated, argh
 %define min_kernel_ver	%(echo %{min_kernel} | cut -f 1 -d .)
 %define min_kernel_patc %(echo %{min_kernel} | cut -f 2 -d .)
 %define min_kernel_subl	%(echo %{min_kernel} | cut -f 3 -d .)
