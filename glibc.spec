@@ -45,7 +45,7 @@ Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 #Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
-Source5:	http://qboosh.cs.net.pl/man/%{name}-man-pages.tar.bz2
+Source5:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
