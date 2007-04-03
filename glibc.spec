@@ -20,7 +20,7 @@
 %undefine	with_memusage
 %endif
 
-%define		klh_version	3:2.6.20.4-1
+%define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
 Summary(de.UTF-8):	GNU libc
@@ -87,7 +87,7 @@ BuildRequires:	gawk
 BuildRequires:	gettext-devel >= 0.10.36
 %{!?with_cross:BuildRequires:	dietlibc-static}
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
-BuildRequires:	kernel-libc-headers >= %{klh_version}
+BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
@@ -141,7 +141,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
 
-%define		specflags		-fgnu89-inline
+# rationale needed here; implies BR: gcc >= 4.2.0
+#define		specflags		-fgnu89-inline
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -361,7 +362,7 @@ Obsoletes:	%{name}-headers(s390)
 %ifarch sparc64
 Obsoletes:	%{name}-headers(sparc)
 %endif
-Requires:	kernel-libc-headers >= %{klh_version}
+Requires:	linux-libc-headers >= %{llh_version}
 
 %description headers
 The glibc-headers package contains the header files necessary for
