@@ -822,8 +822,7 @@ Zabawka.
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
 %patch0 -p1
-# needs update/drop
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -880,7 +879,7 @@ AWK="gawk" \
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
 	--enable-omitfp \
-	--with-headers=`cd ..; pwd`/override_headers:%{_includedir} \
+	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
 	--enable-add-ons=nptl,libidn \
