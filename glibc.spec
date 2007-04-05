@@ -81,7 +81,7 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-BuildRequires:	gcc >= 5:3.4
+BuildRequires:	gcc >= 6:4.2.0
 BuildRequires:	gawk
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
@@ -103,6 +103,7 @@ Provides:	glibc(nptl)
 Provides:	glibc(tls)
 Provides:	glibc64
 Provides:	ldconfig
+Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
 Obsoletes:	glibc64
@@ -141,8 +142,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
 
-# rationale needed here; implies BR: gcc >= 4.2.0
-#define		specflags		-fgnu89-inline
+# glibc uses traditional gnu extern-inline semantics but builds
+# with c99 mode enabled ( strictly it's gnu99 mode ).
+# this switch disables unwanted warnings.
+%define		specflags		-fgnu89-inline
 
 %description
 Contains the standard libraries that are used by multiple programs on
