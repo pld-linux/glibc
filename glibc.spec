@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.5
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL
 Group:		Libraries
