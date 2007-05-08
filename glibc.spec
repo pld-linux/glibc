@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.5
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1180,7 +1180,6 @@ fi
 %attr(755,root,root) %{_bindir}/rpcgen
 %attr(755,root,root) %{_bindir}/tzselect
 
-%attr(755,root,root) %{_sbindir}/rpcinfo
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
@@ -1202,7 +1201,6 @@ fi
 %{_mandir}/man5/tzfile.5*
 %{_mandir}/man7/*
 %{_mandir}/man8/ld*.8*
-%{_mandir}/man8/rpcinfo.8*
 %{_mandir}/man8/sln.8*
 %{_mandir}/man8/tzselect.8*
 %{_mandir}/man8/zdump.8*
@@ -1244,7 +1242,6 @@ fi
 %lang(ja) %{_mandir}/ja/man5/tzfile.5*
 %lang(ja) %{_mandir}/ja/man7/*
 %lang(ja) %{_mandir}/ja/man8/ld*.8*
-%lang(ja) %{_mandir}/ja/man8/rpcinfo.8*
 %lang(ja) %{_mandir}/ja/man8/sln.8*
 %lang(ja) %{_mandir}/ja/man8/tzselect.8*
 %lang(ja) %{_mandir}/ja/man8/zdump.8*
@@ -1277,7 +1274,6 @@ fi
 %lang(ru) %{_mandir}/ru/man5/tzfile.5*
 %lang(ru) %{_mandir}/ru/man7/*
 %lang(ru) %{_mandir}/ru/man8/ld*.8*
-%lang(ru) %{_mandir}/ru/man8/rpcinfo.8*
 %lang(ru) %{_mandir}/ru/man8/tzselect.8*
 %lang(ru) %{_mandir}/ru/man8/zdump.8*
 %lang(ru) %{_mandir}/ru/man8/zic.8*
