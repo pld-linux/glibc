@@ -1068,6 +1068,10 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
 rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
+# rpcbind
+rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/rpcinfo.8
+rm -f $RPM_BUILD_ROOT%{_mandir}/man8/rpcinfo.8
+rm -f $RPM_BUILD_ROOT%{_sbindir}/rpcinfo
 
 %clean
 rm -rf $RPM_BUILD_ROOT
