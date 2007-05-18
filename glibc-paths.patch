@@ -19,16 +19,19 @@ diff -Naur glibc-2.2.3/sysdeps/unix/sysv/linux/paths.h glibc-2.2.3-p/sysdeps/uni
  /* Provide trailing slash, since mostly used for building pathnames. */
 --- glibc-2.3.4/nscd/nscd.h.orig	2004-10-15 23:13:19.000000000 +0200
 +++ glibc-2.3.4/nscd/nscd.h	2005-02-20 16:26:37.755491792 +0100
-@@ -87,9 +87,9 @@
+@@ -91,10 +91,10 @@
  
  
  /* Paths of the file for the persistent storage.  */
 -#define _PATH_NSCD_PASSWD_DB	"/var/db/nscd/passwd"
 -#define _PATH_NSCD_GROUP_DB	"/var/db/nscd/group"
 -#define _PATH_NSCD_HOSTS_DB	"/var/db/nscd/hosts"
+-#define _PATH_NSCD_SERVICES_DB	"/var/db/nscd/services"
 +#define _PATH_NSCD_PASSWD_DB	"/var/lib/nscd/passwd"
 +#define _PATH_NSCD_GROUP_DB	"/var/lib/nscd/group"
 +#define _PATH_NSCD_HOSTS_DB	"/var/lib/nscd/hosts"
++#define _PATH_NSCD_SERVICES_DB	"/var/lib/nscd/services"
  
  /* Path used when not using persistent storage.  */
  #define _PATH_NSCD_XYZ_DB_TMP	"/var/run/nscd/dbXXXXXX"
+
