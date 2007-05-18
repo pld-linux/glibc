@@ -32,15 +32,15 @@ Summary(ru.UTF-8):	GNU libc версии 2.3
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
-Version:	2.5
-Release:	6
+Version:	2.6
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	1fb29764a6a650a4d5b409dda227ac9f
+# Source0-md5:	0f471d7cb29dd07786082ad23f787949
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	8787868ba8962d9b125997ec2f25ac01
+# Source1-md5:	ed20ad629986c2746c77cda46fb0602c
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -49,7 +49,6 @@ Source5:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
-Patch0:		%{name}-cvs20070210.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -62,7 +61,6 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
-Patch13:	%{name}-ppc-inline-fsqrt.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -824,7 +822,6 @@ Zabawka.
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -837,14 +834,15 @@ ln -s glibc-libidn-%{version} libidn
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
+
 %patch14 -p0
 
 %patch17 -p1
 
 %patch20 -p1
-%patch21 -p1
-%patch22 -p1
+# needs update
+# %patch21 -p1
+# %patch22 -p1
 %patch23 -p1
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
