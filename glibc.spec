@@ -841,8 +841,8 @@ ln -s glibc-libidn-%{version} libidn
 
 %patch20 -p1
 # needs update
-# %patch21 -p1
-# %patch22 -p1
+%patch21 -p1
+%patch22 -p1
 %patch23 -p1
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
