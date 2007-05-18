@@ -31,63 +31,6 @@ diff -urN glibc-2.6.org/intl/locale.alias glibc-2.6/intl/locale.alias
  swedish         sv_SE.ISO-8859-1
  thai		th_TH.TIS-620
  turkish         tr_TR.ISO-8859-9
-diff -urN glibc-2.6.org/locale/iso-3166.def.rej glibc-2.6/locale/iso-3166.def.rej
---- glibc-2.6.org/locale/iso-3166.def.rej	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/locale/iso-3166.def.rej	2007-05-18 12:14:46.909233506 +0200
-@@ -0,0 +1,17 @@
-+***************
-+*** 200,206 ****
-+  DEFINE_COUNTRY_CODE ("SAO TOME AND PRINCIPE", ST, STP, 678)
-+  DEFINE_COUNTRY_CODE ("SAUDI ARABIA", SA, SAU, 682)
-+  DEFINE_COUNTRY_CODE ("SENEGAL", SN, SEN, 686)
-+- DEFINE_COUNTRY_CODE ("SERBIA AND MONTENEGRO", CS, SCG, 891)
-+  DEFINE_COUNTRY_CODE ("SEYCHELLES", SC, SYC, 690)
-+  DEFINE_COUNTRY_CODE ("SIERRA LEONE", SL, SLE, 694)
-+  DEFINE_COUNTRY_CODE ("SINGAPORE", SG, SGP, 702)
-+--- 200,206 ----
-+  DEFINE_COUNTRY_CODE ("SAO TOME AND PRINCIPE", ST, STP, 678)
-+  DEFINE_COUNTRY_CODE ("SAUDI ARABIA", SA, SAU, 682)
-+  DEFINE_COUNTRY_CODE ("SENEGAL", SN, SEN, 686)
-++ DEFINE_COUNTRY_CODE ("SERBIA", RS, SRB, 688)
-+  DEFINE_COUNTRY_CODE ("SEYCHELLES", SC, SYC, 690)
-+  DEFINE_COUNTRY_CODE ("SIERRA LEONE", SL, SLE, 694)
-+  DEFINE_COUNTRY_CODE ("SINGAPORE", SG, SGP, 702)
-diff -urN glibc-2.6.org/locale/iso-4217.def.rej glibc-2.6/locale/iso-4217.def.rej
---- glibc-2.6.org/locale/iso-4217.def.rej	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/locale/iso-4217.def.rej	2007-05-18 12:14:48.116008800 +0200
-@@ -0,0 +1,32 @@
-+***************
-+*** 40,46 ****
-+  DEFINE_INT_CURR("CNY")		/* China Yuan Renminbi  */
-+  DEFINE_INT_CURR("COP")		/* Colombian Peso  */
-+  DEFINE_INT_CURR("CRC")		/* Costa Rican Colon  */
-+- DEFINE_INT_CURR("CSD")		/* Serbian Dinar  */
-+  DEFINE_INT_CURR("CUP")		/* Cuban Peso  */
-+  DEFINE_INT_CURR("CVE")		/* Cape Verde Escudo  */
-+  DEFINE_INT_CURR("CYP")		/* Cypriot Pound  */
-+--- 40,45 ----
-+  DEFINE_INT_CURR("CNY")		/* China Yuan Renminbi  */
-+  DEFINE_INT_CURR("COP")		/* Colombian Peso  */
-+  DEFINE_INT_CURR("CRC")		/* Costa Rican Colon  */
-+  DEFINE_INT_CURR("CUP")		/* Cuban Peso  */
-+  DEFINE_INT_CURR("CVE")		/* Cape Verde Escudo  */
-+  DEFINE_INT_CURR("CYP")		/* Cypriot Pound  */
-+***************
-+*** 129,134 ****
-+  DEFINE_INT_CURR("QAR")		/* Qatar Rial  */
-+  DEFINE_INT_CURR("ROL")		/* Romanian Leu  */
-+  DEFINE_INT_CURR("RON")		/* Romanian New Leu  */
-+  DEFINE_INT_CURR("RUB")		/* Russian Ruble  */
-+  DEFINE_INT_CURR("RWF")		/* Rwanda Franc  */
-+  DEFINE_INT_CURR("SAR")		/* Saudi Arabia Riyal  */
-+--- 128,134 ----
-+  DEFINE_INT_CURR("QAR")		/* Qatar Rial  */
-+  DEFINE_INT_CURR("ROL")		/* Romanian Leu  */
-+  DEFINE_INT_CURR("RON")		/* Romanian New Leu  */
-++ DEFINE_INT_CURR("RSD")		/* Serbian Dinar  */
-+  DEFINE_INT_CURR("RUB")		/* Russian Ruble  */
-+  DEFINE_INT_CURR("RWF")		/* Rwanda Franc  */
-+  DEFINE_INT_CURR("SAR")		/* Saudi Arabia Riyal  */
 diff -urN glibc-2.6.org/localedata/locales/ast_ES@euro glibc-2.6/localedata/locales/ast_ES@euro
 --- glibc-2.6.org/localedata/locales/ast_ES@euro	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/ast_ES@euro	2007-05-18 12:14:53.723180198 +0200
@@ -6647,7 +6590,7 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
  so_DJ.UTF-8/UTF-8 \
-@@ -321,9 +373,19 @@
+@@ -321,9 +373,18 @@
  so_SO/ISO-8859-1 \
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
@@ -6657,11 +6600,10 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
 +sr_CS@ije/ISO-8859-5 \
 +sr_ME.ISO-8859-5/ISO-8859-5 \
  sr_ME/UTF-8 \
++sr_RS.ISO-8859-5/ISO-8859-5 \
  sr_RS/UTF-8 \
  sr_RS@latin/UTF-8 \
-+sr_RS.ISO-8859-5/ISO-8859-5 \
-+sr_RS/UTF-8 \
-+sr_RS.ISO-8859-5@Latn/ISO-8859-2 \
++sr_RS.ISO-8859-2@Latn/ISO-8859-2 \
 +sr_RS@Latn/UTF-8 \
 +ss_ZA.ISO-8859-1/ISO-8859-1 \
  ss_ZA/UTF-8 \
