@@ -5,7 +5,7 @@
  /* GCC 4.3 and above with -std=c99 or -std=gnu99 implements ISO C99
     inline semantics, unless -fgnu89-inline is used.  */
 -#ifdef __GNUC_STDC_INLINE__
-+#ifdef __GNUC_GNU_INLINE__
++#if defined(__GNUC_STDC_INLINE__) || defined(__GNUC_GNU_INLINE__)
  # define __extern_inline extern __inline __attribute__ ((__gnu_inline__))
  # define __extern_always_inline \
    extern __always_inline __attribute__ ((__gnu_inline__))
