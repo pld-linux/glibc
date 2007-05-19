@@ -1,0 +1,11 @@
+--- glibc-2.6/misc/sys/cdefs.h.orig	2007-03-17 18:02:27.000000000 +0100
++++ glibc-2.6/misc/sys/cdefs.h	2007-05-19 14:14:49.458415181 +0200
+@@ -281,7 +281,7 @@
+ 
+ /* GCC 4.3 and above with -std=c99 or -std=gnu99 implements ISO C99
+    inline semantics, unless -fgnu89-inline is used.  */
+-#ifdef __GNUC_STDC_INLINE__
++#ifdef __GNUC_GNU_INLINE__
+ # define __extern_inline extern __inline __attribute__ ((__gnu_inline__))
+ # define __extern_always_inline \
+   extern __always_inline __attribute__ ((__gnu_inline__))
