@@ -61,6 +61,7 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
+Patch13:	%{name}-gcc42.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -79,7 +80,7 @@ URL:		http://www.gnu.org/software/libc/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.15.90.0.3
-BuildRequires:	gcc >= 6:4.2.0
+BuildRequires:	gcc >= 5:3.4
 BuildRequires:	gawk
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
@@ -139,11 +140,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # patched not to crash on partial hardlinks too)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
-
-# glibc uses traditional gnu extern-inline semantics but builds
-# with c99 mode enabled ( strictly it's gnu99 mode ).
-# this switch disables unwanted warnings.
-%define		specflags		-fgnu89-inline
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -834,7 +830,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-
+%patch13 -p1
 %patch14 -p0
 
 %patch17 -p1
