@@ -3765,3 +3765,31 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
 +translit_end
 +
 +END LC_CTYPE
+--- glibc-2.6/localedata/locales/iso14651_t1.orig	2007-04-28 08:50:05.000000000 +0200
++++ glibc-2.6/localedata/locales/iso14651_t1	2007-05-20 17:28:23.631924611 +0200
+@@ -1,9 +1,9 @@
+ LC_COLLATE
+ 
+-copy "iso14651_t1_common"
+-
+ script <HAN>
+ 
++copy "iso14651_t1_common"
++
+ order_start <HAN>;forward;forward;forward;forward,position
+ <U4E00> <U4E00>;IGNORE;IGNORE;IGNORE
+ .. ..;IGNORE;IGNORE;IGNORE
+--- glibc-2.6/localedata/locales/iso14651_t1_pinyin.orig	2007-04-28 08:49:17.000000000 +0200
++++ glibc-2.6/localedata/locales/iso14651_t1_pinyin	2007-05-20 17:28:31.456370501 +0200
+@@ -1,9 +1,9 @@
+ LC_COLLATE
+ 
+-copy "iso14651_t1_common"
+-
+ script <HAN>
+ 
++copy "iso14651_t1_common"
++
+ order_start <HAN>;forward;forward;forward;forward,position
+ <U5416> <U5416>;IGNORE;IGNORE;IGNORE	#吖104
+ <U814C> <U814C>;IGNORE;IGNORE;IGNORE	#腌185
