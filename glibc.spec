@@ -1019,15 +1019,14 @@ done
 # Languages not supported by glibc locales, but usable via $LANGUAGE:
 #   ang - Old English (gtk+, gnome)
 #   tlh - Klingon (bzflag)
+# and variants:
+#   sr@ije (use LANGUAGE=sr_ME@ije/sr_RS@ije) (gnome)
 #
 # To be added when they become supported by glibc:
 #   az_IR (gtk+)
 #   dv, haw, kok, ps, syr (iso-codes)
 #   gn (gn_BR in gnome, maybe gn_PY)
 #   my (gaim)
-#
-# What about sr@ije? It used to be sr_CS@ije (should be @[i]jekavian?),
-# but now this dialect uses sr_ME locale - rename dir to sr_ME?
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
@@ -1041,7 +1040,7 @@ for i in aa aa@saaho af am an ang ar as ast az be@alternative be@latin bg bn \
     eo es_AR es_MX es_NI es_PR et eu fa fil fo fr_BE fur fy ga gd gez gu gv \
     he hi hsb hy ia id ik is it_CH iu ka kk kl km kn ku kw ky lg li lo lt lv \
     mai mg mi mk ml mn mr ms mt nds ne nl_BE nn nr nso oc om or pa pap pt rm \
-    ro sa sc se si sid sl so sq sr sr@Latn sr@ije ss st sw ta te tg th ti tig \
+    ro sa sc se si sid sl so sq sr sr@Latn sr@ije sr@latin ss st sw ta te tg th ti tig \
     tk tl tlh tn ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK \
     zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
