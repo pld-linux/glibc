@@ -3136,17 +3136,6 @@ diff -uNr libc.orig/localedata/locales/sr_CS libc/localedata/locales/sr_CS
  country_isbn  "<U0038><U0036>"
  lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
  lang_term     "<U0073><U0072><U0070>"
-diff -uNr libc.orig/localedata/locales/sr_CS@Latn libc/localedata/locales/sr_CS@Latn
---- libc.orig/localedata/locales/sr_CS@Latn	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/sr_CS@Latn	2004-11-10 02:36:38.000000000 +0100
-@@ -162,7 +162,6 @@
- <U0020><U0043><U0072><U006E><U0061><U0020><U0047><U006F><U0072><U0061>"
- country_num   891
- country_car   "<U0053><U0043><U0047>"
--% FIXME: ISBN code is what? "86" that preceedes all the numbers?
- country_isbn  "<U0038><U0036>"
- lang_name     "<U0073><U0072><U0070><U0073><U006B><U0069>"
- lang_term     "<U0073><U0072><U0070>"
 --- glibc-2.5/localedata/locales/ss_ZA.orig	2006-07-31 00:19:43.000000000 +0200
 +++ glibc-2.5/localedata/locales/ss_ZA	2006-10-05 14:29:58.935971000 +0200
 @@ -174,10 +174,12 @@
