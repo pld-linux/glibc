@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.6
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -63,6 +63,7 @@ Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-gcc42.patch
 Patch14:	%{name}-sparc-errno_fix.patch
+Patch15:	%{name}-malloc.patch
 
 Patch17:	%{name}-new-charsets.patch
 
@@ -832,6 +833,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch12 -p1
 %patch13 -p1
 %patch14 -p0
+%patch15 -p1
 
 %patch17 -p1
 
