@@ -74,6 +74,7 @@ Patch23:	%{name}-ZA_collate.patch
 Patch24:	%{name}-iconvconfig-nxstack.patch
 Patch25:	%{name}-cross-gcc_eh.patch
 Patch26:	%{name}-with-stroke.patch
+Patch27:	%{name}-sparc64-undefined-registers.patch
 # PaX hack (dropped)
 #Patch30:	%{name}-pax_dl-execstack.patch
 URL:		http://www.gnu.org/software/libc/
@@ -845,6 +846,9 @@ ln -s glibc-libidn-%{version} libidn
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
 %patch26 -p1
+%ifarch sparc64
+%patch27 -p1
+%endif
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
