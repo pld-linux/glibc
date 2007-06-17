@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.6
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -102,13 +102,15 @@ Requires:	uname(release) >= %{min_kernel}
 Provides:	/sbin/ldconfig
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
-Provides:	glibc64
 Provides:	ldconfig
 Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
-Obsoletes:	glibc64
 Obsoletes:	ldconfig
+%ifarch %{x8664}
+Provides:	glibc64
+Obsoletes:	glibc64
+%endif
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	kernel24
 Conflicts:	kernel24-smp
