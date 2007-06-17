@@ -107,7 +107,7 @@ Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
 Obsoletes:	ldconfig
-%ifarch %{x8664}
+%ifarch %{x8664} sparc64 ppc64
 Provides:	glibc64
 Obsoletes:	glibc64
 %endif
