@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.6
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -261,7 +261,6 @@ Group:		Applications/System
 AutoReq:	false
 Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	tzdata >= 2006g-2
 
 %description misc
 Utilities and data used by glibc.
