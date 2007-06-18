@@ -86,7 +86,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	11
+Release:	12
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -314,7 +314,6 @@ Group:		Applications/System
 AutoReq:	false
 Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	tzdata >= 2006g-2
 
 %description misc
 Utilities and data used by glibc.
