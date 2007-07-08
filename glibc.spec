@@ -1031,6 +1031,7 @@ done
 #
 # To be added when they become supported by glibc:
 #   az_IR (gtk+)
+#   co (vlc)
 #   dv, haw, kok, ps, syr (iso-codes)
 #   gn (gn_BR in gnome, maybe gn_PY)
 #   my (gaim)
