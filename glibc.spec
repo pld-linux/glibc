@@ -81,7 +81,11 @@ URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
+%ifarch alpha
+BuildRequires:	binutils >= 2:2.17.50.0.7
+%else
 BuildRequires:	binutils >= 2:2.15.90.0.3
+%endif
 BuildRequires:	gcc >= 5:3.4
 BuildRequires:	gawk
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
