@@ -32,15 +32,15 @@ Summary(ru.UTF-8):	GNU libc версии 2.3
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
-Version:	2.6
-Release:	5
+Version:	2.6.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	0f471d7cb29dd07786082ad23f787949
+# Source0-md5:	11cf6d3fc86dbe0890b8d00372eb6286
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	ed20ad629986c2746c77cda46fb0602c
+# Source1-md5:	503f1315afd808728ebaa75b3d87a7d9
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -63,7 +63,6 @@ Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-gcc42.patch
 Patch14:	%{name}-sparc-errno_fix.patch
-Patch15:	%{name}-malloc.patch
 
 Patch17:	%{name}-new-charsets.patch
 
@@ -839,7 +838,6 @@ ln -s glibc-libidn-%{version} libidn
 %patch12 -p1
 %patch13 -p1
 %patch14 -p0
-%patch15 -p1
 
 %patch17 -p1
 
