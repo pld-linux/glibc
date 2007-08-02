@@ -1,20 +1,15 @@
---- libc/po/pl.po.orig	2006-10-06 22:32:33.000000000 +0200
-+++ libc/po/pl.po	2007-05-20 11:29:02.976861095 +0200
-@@ -1,56 +1,56 @@
- # Polish translation for GNU libc.
- # Copyright (C) 1996, 1997, 1998, 1999, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
- # Pawe³ Krawczyk <kravietz@ceti.pl>, 1996,97,98,99.
--# Jakub Bogusz <qboosh@pld-linux.org>, 2002-2006.
-+# Jakub Bogusz <qboosh@pld-linux.org>, 2002-2007.
+--- glibc-2.6.1/po/pl.po.orig	2006-10-06 22:32:33.000000000 +0200
++++ glibc-2.6.1/po/pl.po	2007-08-02 19:05:30.087369604 +0200
+@@ -5,52 +5,57 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libc 2.5\n"
 -"POT-Creation-Date: 2006-09-29 11:38-0700\n"
 -"PO-Revision-Date: 2006-10-05 20:01+0200\n"
-+"Project-Id-Version: libc 2.6\n"
-+"POT-Creation-Date: 2007-05-20 00:49+0200\n"
-+"PO-Revision-Date: 2007-05-20 01:10+0200\n"
++"Project-Id-Version: libc 2.6.1\n"
++"POT-Creation-Date: 2007-08-02 18:41+0200\n"
++"PO-Revision-Date: 2007-08-02 18:51+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -40,9 +35,15 @@
  msgstr "B³êdne dane w ARGP_HELP_FMT: %s"
  
 -#: argp/argp-help.c:1214
+-msgid "Mandatory or optional arguments to long options are also mandatory or optional for any corresponding short options."
+-msgstr "Argumenty obowi±zkowe lub opcjonalne dla d³ugich opcji s± równie¿ obowi±zkowe lub opcjonalne dla odpowiednich krótkich opcji."
 +#: argp/argp-help.c:1215
- msgid "Mandatory or optional arguments to long options are also mandatory or optional for any corresponding short options."
- msgstr "Argumenty obowi±zkowe lub opcjonalne dla d³ugich opcji s± równie¿ obowi±zkowe lub opcjonalne dla odpowiednich krótkich opcji."
++msgid ""
++"Mandatory or optional arguments to long options are also mandatory or "
++"optional for any corresponding short options."
++msgstr ""
++"Argumenty obowi±zkowe lub opcjonalne dla d³ugich opcji s± równie¿ "
++"obowi±zkowe lub opcjonalne dla odpowiednich krótkich opcji."
  
 -#: argp/argp-help.c:1600
 +#: argp/argp-help.c:1601
@@ -63,32 +64,41 @@
 +#: argp/argp-help.c:1644
  #, c-format
  msgid "Try `%s --help' or `%s --usage' for more information.\n"
- msgstr "Polecenie `%s --help' lub `%s --usage' pozwoli uzyskaæ wiêcej informacji.\n"
+-msgstr "Polecenie `%s --help' lub `%s --usage' pozwoli uzyskaæ wiêcej informacji.\n"
++msgstr ""
++"Polecenie `%s --help' lub `%s --usage' pozwoli uzyskaæ wiêcej informacji.\n"
  
 -#: argp/argp-help.c:1671
 +#: argp/argp-help.c:1672
  #, c-format
  msgid "Report bugs to %s.\n"
  msgstr "Prosimy zg³aszaæ b³êdy na adres %s.\n"
-@@ -77,7 +77,7 @@
+@@ -104,7 +109,8 @@
  
- #: argp/argp-parse.c:183
- msgid "(PROGRAM ERROR) No version known!?"
--msgstr "(B£¡D PROGRAMU) Nieznana wersja?!"
-+msgstr "(B£¡D PROGRAMU) Nieznana wersja!?"
+ #: catgets/gencat.c:110
+ msgid "Create C header file NAME containing symbol definitions"
+-msgstr "Tworzenie pliku nag³ówkowego C o tej NAZWIE zawieraj±cego definicje symboli"
++msgstr ""
++"Tworzenie pliku nag³ówkowego C o tej NAZWIE zawieraj±cego definicje symboli"
  
- #: argp/argp-parse.c:623
- #, c-format
-@@ -86,7 +86,7 @@
+ #: catgets/gencat.c:112
+ msgid "Do not use existing catalog, force new output file"
+@@ -116,10 +122,12 @@
  
- #: argp/argp-parse.c:766
- msgid "(PROGRAM ERROR) Option should have been recognized!?"
--msgstr "(B£¡D PROGRAMU) Opcja powinna zostaæ rozpoznana?!"
-+msgstr "(B£¡D PROGRAMU) Opcja powinna zostaæ rozpoznana!?"
+ #: catgets/gencat.c:118
+ msgid ""
+-"Generate message catalog.If INPUT-FILE is -, input is read from standard input.  If OUTPUT-FILE\n"
++"Generate message catalog.\vIf INPUT-FILE is -, input is read from standard "
++"input.  If OUTPUT-FILE\n"
+ "is -, output is written to standard output.\n"
+ msgstr ""
+-"Generowanie katalogu komunikatów.Je¶li PLIK-WE to -, dane s± czytane ze standardowego wej¶cia. Je¶li PLIK-WY\n"
++"Generowanie katalogu komunikatów.\vJe¶li PLIK-WE to -, dane s± czytane ze "
++"standardowego wej¶cia. Je¶li PLIK-WY\n"
+ "to -, dane s± zapisywane na standardowe wyj¶cie.\n"
  
- #: assert/assert-perr.c:57
- #, c-format
-@@ -140,11 +140,11 @@
+ #: catgets/gencat.c:123
+@@ -140,11 +148,11 @@
  "Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
  "<http://www.gnu.org/software/libc/bugs.html>.\n"
  
@@ -102,7 +112,7 @@
  #: posix/getconf.c:1007
  #, c-format
  msgid ""
-@@ -158,9 +158,9 @@
+@@ -158,9 +166,9 @@
  "SPRZEDA¯Y lub PRZYDATNO¦CI DO KONKRETNYCH ZASTOSOWAÑ.\n"
  
  # w %s wchodzi nazwisko autora danego programu/procedury -PK
@@ -114,7 +124,7 @@
  #: nss/getent.c:88 nss/makedb.c:250 posix/getconf.c:1012
  #, c-format
  msgid "Written by %s.\n"
-@@ -282,13 +282,11 @@
+@@ -282,26 +290,26 @@
  msgstr "Sk³adnia: xtrace [OPCJA]... PROGRAM [OPCJA-PROGRAMU]...\\n"
  
  #: debug/xtrace.sh:33
@@ -130,7 +140,41 @@
  msgstr "xtrace: opcja \\`$1' musi mieæ argument.\\n"
  
  #: debug/xtrace.sh:46
-@@ -323,8 +321,7 @@
+ msgid ""
+ "Trace execution of program by printing currently executed function.\n"
+ "\n"
+-"     --data=FILE          Don't run the program, just print the data from FILE.\n"
++"     --data=FILE          Don't run the program, just print the data from "
++"FILE.\n"
+ "\n"
+ "   -?,--help              Print this help and exit\n"
+ "      --usage             Give a short usage message\n"
+ "   -V,--version           Print version information and exit\n"
+ "\n"
+-"Mandatory arguments to long options are also mandatory for any corresponding\n"
++"Mandatory arguments to long options are also mandatory for any "
++"corresponding\n"
+ "short options.\n"
+ "\n"
+ "For bug reporting instructions, please see:\n"
+@@ -310,21 +318,22 @@
+ "¦ledzenie wykonywania programu poprzez wypisywanie aktualnie wykonywanych\n"
+ "funkcji.\n"
+ "\n"
+-"     --data=PLIK          Wypisanie danych z PLIKU zamiast uruchamiania programu\n"
++"     --data=PLIK          Wypisanie danych z PLIKU zamiast uruchamiania "
++"programu\n"
+ "\n"
+ "   -?,--help              Wypisanie tego opisu i zakoñczenie\n"
+ "      --usage             Podanie krótkiego opisu sk³adni polecenia\n"
+ "   -V,--version           Wypisanie informacji o wersji i zakoñczenie\n"
+ "\n"
+-"Argumenty obowi±zkowe dla d³ugich opcji s± obowi±zkowe równie¿ dla odpowiednich\n"
++"Argumenty obowi±zkowe dla d³ugich opcji s± obowi±zkowe równie¿ dla "
++"odpowiednich\n"
+ "krótkich opcji.\n"
+ "\n"
+ "Informacje na temat zg³aszania b³êdów mo¿na znale¼æ pod adresem:\n"
  "<http://www.gnu.org/software/libc/bugs.html>.\\n"
  
  #: debug/xtrace.sh:125
@@ -140,7 +184,7 @@
  msgstr "xtrace: nieznana opcja \\`$1'\\n"
  
  #: debug/xtrace.sh:138
-@@ -332,20 +329,20 @@
+@@ -332,20 +341,20 @@
  msgstr "Nie podano nazwy programu\\n"
  
  #: debug/xtrace.sh:146
@@ -158,16 +202,16 @@
  msgstr "\\`$program' nie jest wykonywalny\\n"
  
 -#: dlfcn/dlinfo.c:67
-+#: dlfcn/dlinfo.c:65
++#: dlfcn/dlinfo.c:64
  msgid "RTLD_SELF used in code not dynamically loaded"
  msgstr "RTLD_SELF wyst±pi³o w kodzie nie ³adowanym dynamicznie"
  
 -#: dlfcn/dlinfo.c:76
-+#: dlfcn/dlinfo.c:74
++#: dlfcn/dlinfo.c:73
  msgid "unsupported dlinfo request"
  msgstr "nieobs³ugiwane ¿±danie dlinfo"
  
-@@ -374,7 +371,7 @@
+@@ -374,7 +383,7 @@
  msgid ", OS ABI: %s %d.%d.%d"
  msgstr ", ABI systemu: %s %d.%d.%d"
  
@@ -176,7 +220,7 @@
  #, c-format
  msgid "Can't open cache file %s\n"
  msgstr "Nie mo¿na otworzyæ pliku bufora %s\n"
-@@ -404,16 +401,11 @@
+@@ -404,16 +413,11 @@
  msgid "Can't create temporary cache file %s"
  msgstr "Nie mo¿na utworzyæ tymczasowego pliku bufora %s"
  
@@ -194,31 +238,43 @@
  #: elf/cache.c:449
  #, c-format
  msgid "Changing access rights of %s to %#o failed"
-@@ -424,7 +416,11 @@
+@@ -424,7 +428,11 @@
  msgid "Renaming of %s to %s failed"
  msgstr "Zmiana nazwy %s na %s nie powiod³a siê"
  
 -#: elf/dl-close.c:116
-+#: elf/dl-close.c:372 elf/dl-open.c:415
++#: elf/dl-close.c:378 elf/dl-open.c:460
 +msgid "cannot create scope list"
 +msgstr "nie mo¿na utworzyæ listy zakresów"
 +
-+#: elf/dl-close.c:694
++#: elf/dl-close.c:724
  msgid "shared object not open"
  msgstr "obiekt dzielony nie jest otwarty"
  
-@@ -432,8 +428,8 @@
+@@ -432,14 +440,18 @@
  msgid "DST not allowed in SUID/SGID programs"
  msgstr "DST nie dozwolone dla programów SUID/SGID"
  
 -#: elf/dl-deps.c:125
 -msgid "empty dynamics string token substitution"
-+#: elf/dl-deps.c:125 elf/dl-open.c:237
++#: elf/dl-deps.c:125 elf/dl-open.c:282
 +msgid "empty dynamic string token substitution"
  msgstr "puste dynamiczne podstawienie znaku ³añcucha"
  
  #: elf/dl-deps.c:131
-@@ -477,225 +473,217 @@
+ #, c-format
+-msgid "cannot load auxiliary `%s' because of empty dynamic string token substitution\n"
+-msgstr "nie mo¿na wczytaæ pomocniczego `%s' z powodu pustego dynamicznego podstawienia\n"
++msgid ""
++"cannot load auxiliary `%s' because of empty dynamic string token "
++"substitution\n"
++msgstr ""
++"nie mo¿na wczytaæ pomocniczego `%s' z powodu pustego dynamicznego "
++"podstawienia\n"
+ 
+ #: elf/dl-deps.c:472
+ msgid "cannot allocate dependency list"
+@@ -477,151 +489,151 @@
  msgid "cannot allocate name record"
  msgstr "nie mo¿na przydzieliæ pamiêci dla rekordu nazwy"
  
@@ -248,12 +304,12 @@
  msgstr "nie mo¿na otworzyæ urz±dzenia wype³niaj±cego zerami"
  
 -#: elf/dl-load.c:985 elf/dl-load.c:2215
-+#: elf/dl-load.c:978 elf/dl-load.c:2203
++#: elf/dl-load.c:978 elf/dl-load.c:2206
  msgid "cannot create shared object descriptor"
  msgstr "nie mo¿na utworzyæ deskryptora obiektu dzielonego"
  
 -#: elf/dl-load.c:1004 elf/dl-load.c:1663 elf/dl-load.c:1755
-+#: elf/dl-load.c:997 elf/dl-load.c:1652 elf/dl-load.c:1744
++#: elf/dl-load.c:997 elf/dl-load.c:1655 elf/dl-load.c:1747
  msgid "cannot read file data"
  msgstr "nie mo¿na odczytaæ danych z pliku"
  
@@ -288,137 +344,131 @@
  msgstr "odwzorowanie segmentu z obiektu dzielonego nie powiod³o siê"
  
 -#: elf/dl-load.c:1242
-+#: elf/dl-load.c:1233
++#: elf/dl-load.c:1235
  msgid "cannot dynamically load executable"
  msgstr "nie mo¿na dynamicznie wczytaæ pliku wykonywalnego"
  
 -#: elf/dl-load.c:1303
-+#: elf/dl-load.c:1294
++#: elf/dl-load.c:1297
  msgid "cannot change memory protections"
  msgstr "nie mo¿na zmieniæ ochrony pamiêci"
  
 -#: elf/dl-load.c:1322
-+#: elf/dl-load.c:1313
++#: elf/dl-load.c:1316
  msgid "cannot map zero-fill pages"
  msgstr "nie mo¿na odwzorowaæ stron wype³nionych zerami"
  
 -#: elf/dl-load.c:1336
-+#: elf/dl-load.c:1327
++#: elf/dl-load.c:1330
  msgid "object file has no dynamic section"
  msgstr "plik obiektu nie ma sekcji dynamicznej"
  
 -#: elf/dl-load.c:1359
-+#: elf/dl-load.c:1350
++#: elf/dl-load.c:1353
  msgid "shared object cannot be dlopen()ed"
  msgstr "obiekt dzielony nie mo¿e byæ otwarty przez dlopen()"
  
 -#: elf/dl-load.c:1372
-+#: elf/dl-load.c:1363
++#: elf/dl-load.c:1366
  msgid "cannot allocate memory for program header"
  msgstr "nie mo¿na przydzieliæ pamiêci na nag³ówek programu"
  
 -#: elf/dl-load.c:1389 elf/dl-open.c:174
-+#: elf/dl-load.c:1380 elf/dl-open.c:173
++#: elf/dl-load.c:1383 elf/dl-open.c:218
  msgid "invalid caller"
  msgstr "niepoprawny wywo³uj±cy"
  
 -#: elf/dl-load.c:1428
-+#: elf/dl-load.c:1419
++#: elf/dl-load.c:1422
  msgid "cannot enable executable stack as shared object requires"
  msgstr "nie mo¿na w³±czyæ wykonywalnego stosu wymaganego przez obiekt dzielony"
  
 -#: elf/dl-load.c:1443
-+#: elf/dl-load.c:1432
++#: elf/dl-load.c:1435
  msgid "cannot close file descriptor"
  msgstr "nie mo¿na zamkn±æ deskryptora pliku"
  
 -#: elf/dl-load.c:1485
-+#: elf/dl-load.c:1474
++#: elf/dl-load.c:1477
  msgid "cannot create searchlist"
  msgstr "nie mo¿na utworzyæ listy przeszukiwañ"
  
 -#: elf/dl-load.c:1663
-+#: elf/dl-load.c:1652
++#: elf/dl-load.c:1655
  msgid "file too short"
  msgstr "plik za krótki"
  
 -#: elf/dl-load.c:1692
-+#: elf/dl-load.c:1681
++#: elf/dl-load.c:1684
  msgid "invalid ELF header"
  msgstr "nieprawid³owy nag³ówek ELF"
  
 -#: elf/dl-load.c:1704
-+#: elf/dl-load.c:1693
++#: elf/dl-load.c:1696
  msgid "ELF file data encoding not big-endian"
  msgstr "kodowanie danych w pliku ELF nie jest big-endian"
  
 -#: elf/dl-load.c:1706
-+#: elf/dl-load.c:1695
++#: elf/dl-load.c:1698
  msgid "ELF file data encoding not little-endian"
  msgstr "kodowanie danych w pliku ELF nie jest little-endian"
  
 -#: elf/dl-load.c:1710
-+#: elf/dl-load.c:1699
++#: elf/dl-load.c:1702
  msgid "ELF file version ident does not match current one"
  msgstr "identyfikator wersji pliku ELF nie zgadza siê z aktualnym"
  
 -#: elf/dl-load.c:1714
-+#: elf/dl-load.c:1703
++#: elf/dl-load.c:1706
  msgid "ELF file OS ABI invalid"
  msgstr "niepoprawne ABI systemu w pliku ELF"
  
 -#: elf/dl-load.c:1716
-+#: elf/dl-load.c:1705
++#: elf/dl-load.c:1708
  msgid "ELF file ABI version invalid"
  msgstr "niepoprawna wersja ABI w pliku ELF"
  
 -#: elf/dl-load.c:1719
-+#: elf/dl-load.c:1708
++#: elf/dl-load.c:1711
  msgid "internal error"
  msgstr "b³±d wewnêtrzny"
  
 -#: elf/dl-load.c:1726
-+#: elf/dl-load.c:1715
++#: elf/dl-load.c:1718
  msgid "ELF file version does not match current one"
  msgstr "wersja pliku ELF nie zgadza siê z aktualn±"
  
 -#: elf/dl-load.c:1734
-+#: elf/dl-load.c:1723
++#: elf/dl-load.c:1726
  msgid "only ET_DYN and ET_EXEC can be loaded"
  msgstr "tylko ET_DYN i ET_EXEC mog± byæ wczytane"
  
 -#: elf/dl-load.c:1740
-+#: elf/dl-load.c:1729
++#: elf/dl-load.c:1732
  msgid "ELF file's phentsize not the expected size"
  msgstr "phentsize w pliku ELF nie jest oczekiwanym rozmiarem"
  
 -#: elf/dl-load.c:2231
-+#: elf/dl-load.c:2219
++#: elf/dl-load.c:2222
  msgid "wrong ELF class: ELFCLASS64"
  msgstr "niew³a¶ciwa klasa ELF: ELFCLASS64"
  
 -#: elf/dl-load.c:2232
-+#: elf/dl-load.c:2220
++#: elf/dl-load.c:2223
  msgid "wrong ELF class: ELFCLASS32"
  msgstr "niew³a¶ciwa klasa ELF: ELFCLASS32"
  
 -#: elf/dl-load.c:2235
-+#: elf/dl-load.c:2223
++#: elf/dl-load.c:2226
  msgid "cannot open shared object file"
  msgstr "nie mo¿na otworzyæ pliku obiektu dzielonego"
  
--#: elf/dl-lookup.c:261
-+#: elf/dl-lookup.c:276
- msgid "relocation error"
- msgstr "b³±d relokacji"
- 
--#: elf/dl-lookup.c:289
-+#: elf/dl-lookup.c:304
+@@ -633,69 +645,61 @@
  msgid "symbol lookup error"
  msgstr "b³±d poszukiwania symbolu"
  
 -#: elf/dl-open.c:112
-+#: elf/dl-open.c:113
++#: elf/dl-open.c:114
  msgid "cannot extend global scope"
  msgstr "nie mo¿na rozszerzyæ zakresu globalnego"
  
@@ -431,22 +481,22 @@
 -msgstr "nie mo¿na utworzyæ listy zakresów"
 -
 -#: elf/dl-open.c:470
-+#: elf/dl-open.c:474
++#: elf/dl-open.c:512
  msgid "TLS generation counter wrapped!  Please report this."
  msgstr "Licznik generacji TLS przekrêci³ siê! Proszê to zg³osiæ."
  
 -#: elf/dl-open.c:508
-+#: elf/dl-open.c:511
++#: elf/dl-open.c:549
  msgid "invalid mode for dlopen()"
  msgstr "b³êdny typ dla dlopen()"
  
 -#: elf/dl-open.c:525
-+#: elf/dl-open.c:528
++#: elf/dl-open.c:566
  msgid "no more namespaces available for dlmopen()"
  msgstr "nie ma wiêcej dostêpnych przestrzeni nazw dla dlmopen()"
  
 -#: elf/dl-open.c:538
-+#: elf/dl-open.c:541
++#: elf/dl-open.c:579
  msgid "invalid target namespace in dlmopen()"
  msgstr "b³êdna przestrzeñ nazw dla celu w dlmopen()"
  
@@ -483,12 +533,12 @@
  msgstr "nie mo¿na na³o¿yæ dodatkowej ochrony pamiêci po relokacji"
  
 -#: elf/dl-sym.c:98
-+#: elf/dl-sym.c:162
++#: elf/dl-sym.c:161
  msgid "RTLD_NEXT used in code not dynamically loaded"
  msgstr "RTLD_NEXT wyst±pi³o w kodzie nie ³adowanym dynamicznie"
  
 -#: elf/dl-sysdep.c:495
-+#: elf/dl-sysdep.c:474
++#: elf/dl-sysdep.c:474 elf/dl-sysdep.c:486
  msgid "cannot create capability list"
  msgstr "nie mo¿na utworzyæ listy uprawnieñ"
  
@@ -497,7 +547,7 @@
  msgid "cannot create TLS data structures"
  msgstr "nie mo¿na utworzyæ struktur danych TLS"
  
-@@ -703,221 +691,216 @@
+@@ -703,221 +707,220 @@
  msgid "cannot allocate version reference table"
  msgstr "nie mo¿na przydzieliæ tablicy odniesieñ do wersji"
  
@@ -552,11 +602,16 @@
  msgstr "U¿ycie KONF jako pliku konfiguracyjnego"
  
 -#: elf/ldconfig.c:140
-+#: elf/ldconfig.c:141
- msgid "Only process directories specified on the command line.  Don't build cache."
- msgstr "Przetwarzanie wy³±cznie katalogów podanych z linii poleceñ; nie budowanie bufora."
- 
--#: elf/ldconfig.c:141
+-msgid "Only process directories specified on the command line.  Don't build cache."
+-msgstr "Przetwarzanie wy³±cznie katalogów podanych z linii poleceñ; nie budowanie bufora."
+-
+ #: elf/ldconfig.c:141
++msgid ""
++"Only process directories specified on the command line.  Don't build cache."
++msgstr ""
++"Przetwarzanie wy³±cznie katalogów podanych z linii poleceñ; nie budowanie "
++"bufora."
++
 +#: elf/ldconfig.c:142
  msgid "Manually link individual libraries."
  msgstr "Rêczne tworzenie dowi±zañ do pojedynczych bibliotek."
@@ -697,7 +752,9 @@
 -#: elf/ldconfig.c:888
 +#: elf/ldconfig.c:889
  #, c-format
- msgid "libraries %s and %s in directory %s have same soname but different type."
+-msgid "libraries %s and %s in directory %s have same soname but different type."
++msgid ""
++"libraries %s and %s in directory %s have same soname but different type."
  msgstr "biblioteki %s i %s w katalogu %s maj± to samo soname ale inny rodzaj."
  
 -#: elf/ldconfig.c:995
@@ -766,7 +823,7 @@
  #, c-format
  msgid "Can't open cache file directory %s\n"
  msgstr "Nie mo¿na otworzyæ katalogu pliku bufora %s\n"
-@@ -949,8 +932,7 @@
+@@ -949,8 +952,7 @@
  "<http://www.gnu.org/software/libc/bugs.html>."
  
  #: elf/ldd.bash.in:80
@@ -776,7 +833,7 @@
  msgstr "ldd: opcja \\`$1' jest niejednoznaczna"
  
  #: elf/ldd.bash.in:87
-@@ -958,8 +940,7 @@
+@@ -958,8 +960,7 @@
  msgstr "nieznana opcja"
  
  #: elf/ldd.bash.in:88 elf/ldd.bash.in:126
@@ -786,7 +843,98 @@
  msgstr "Polecenie \\`ldd --help' pozwoli uzyskaæ wiêcej informacji."
  
  #: elf/ldd.bash.in:125
-@@ -1532,11 +1513,18 @@
+@@ -1067,10 +1068,12 @@
+ 
+ #: elf/sprof.c:89
+ msgid ""
+-"Read and display shared object profiling data.For bug reporting instructions, please see:\n"
++"Read and display shared object profiling data.\vFor bug reporting "
++"instructions, please see:\n"
+ "<http://www.gnu.org/software/libc/bugs.html>.\n"
+ msgstr ""
+-"Odczyt i wy¶wietlanie danych profiluj±cych dla obiektów wspó³dzielonych.Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
++"Odczyt i wy¶wietlanie danych profiluj±cych dla obiektów wspó³dzielonych."
++"\vInstrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
+ "<http://www.gnu.org/software/libc/bugs.html>.\n"
+ 
+ #: elf/sprof.c:94
+@@ -1120,7 +1123,8 @@
+ #: elf/sprof.c:658
+ #, c-format
+ msgid "*** The file `%s' is stripped: no detailed analysis possible\n"
+-msgstr "*** Symbole z pliku `%s' zosta³y usuniête, dok³adna analiza jest niemo¿liwa\n"
++msgstr ""
++"*** Symbole z pliku `%s' zosta³y usuniête, dok³adna analiza jest niemo¿liwa\n"
+ 
+ #: elf/sprof.c:688
+ #, c-format
+@@ -1305,8 +1309,10 @@
+ "\n"
+ "  "
+ msgstr ""
+-"Poni¿sza lista zawiera wszystkie znane zakodowane zestawy znaków. Nie oznacza\n"
+-"to, ¿e wszystkie kombinacje zestawów mog± byæ u¿ywane jako parametry OD i DO.\n"
++"Poni¿sza lista zawiera wszystkie znane zakodowane zestawy znaków. Nie "
++"oznacza\n"
++"to, ¿e wszystkie kombinacje zestawów mog± byæ u¿ywane jako parametry OD i "
++"DO.\n"
+ "Jeden zestaw znaków mo¿e znajdowaæ siê na li¶cie pod wieloma nazwami\n"
+ "(aliasami).\n"
+ "\n"
+@@ -1314,7 +1320,8 @@
+ 
+ #: iconv/iconvconfig.c:109
+ msgid "Create fastloading iconv module configuration file."
+-msgstr "Tworzenie pliku konfiguracyjnego do szybkiego wczytywania modu³ów iconv."
++msgstr ""
++"Tworzenie pliku konfiguracyjnego do szybkiego wczytywania modu³ów iconv."
+ 
+ #: iconv/iconvconfig.c:113
+ msgid "[DIR...]"
+@@ -1325,17 +1332,24 @@
+ msgstr "Prefiks u¿ywany przy ka¿dym dostêpie do pliku"
+ 
+ #: iconv/iconvconfig.c:127
+-msgid "Put output in FILE instead of installed location (--prefix does not apply to FILE)"
+-msgstr "Umieszczenie wyj¶cia w PLIKU zamiast miejsca instalacji (--prefix nie wp³ywa na PLIK)"
++msgid ""
++"Put output in FILE instead of installed location (--prefix does not apply to "
++"FILE)"
++msgstr ""
++"Umieszczenie wyj¶cia w PLIKU zamiast miejsca instalacji (--prefix nie wp³ywa "
++"na PLIK)"
+ 
+ #: iconv/iconvconfig.c:131
+ msgid "Do not search standard directories, only those on the command line"
+-msgstr "Nie przeszukiwanie standardowych katalogów, a wy³±cznie podanych z linii poleceñ"
++msgstr ""
++"Nie przeszukiwanie standardowych katalogów, a wy³±cznie podanych z linii "
++"poleceñ"
+ 
+ #: iconv/iconvconfig.c:300
+ #, c-format
+ msgid "Directory arguments required when using --nostdlib"
+-msgstr "W przypadku u¿ycia --nostdlib wymagane jest podanie katalogów jako argumentów"
++msgstr ""
++"W przypadku u¿ycia --nostdlib wymagane jest podanie katalogów jako argumentów"
+ 
+ #: iconv/iconvconfig.c:342 locale/programs/localedef.c:290
+ #, c-format
+@@ -1455,8 +1469,11 @@
+ 
+ #: locale/programs/charmap.c:257
+ #, c-format
+-msgid "character map `%s' is not ASCII compatible, locale not ISO C compliant\n"
+-msgstr "tablica znaków `%s' niekompatybilna z ASCII, lokalizacja niekompatybilna z ISO C\n"
++msgid ""
++"character map `%s' is not ASCII compatible, locale not ISO C compliant\n"
++msgstr ""
++"tablica znaków `%s' niekompatybilna z ASCII, lokalizacja niekompatybilna z "
++"ISO C\n"
+ 
+ #: locale/programs/charmap.c:336
+ #, c-format
+@@ -1532,11 +1549,18 @@
  msgid "no symbolic name given for end of range"
  msgstr "brak nazwy symbolicznej dla koñca przedzia³u"
  
@@ -808,7 +956,7 @@
  
  #: locale/programs/charmap.c:642
  msgid "only WIDTH definitions are allowed to follow the CHARMAP definition"
-@@ -1555,8 +1543,8 @@
+@@ -1555,8 +1579,8 @@
  msgstr "%s: b³±d w automacie skoñczonym"
  
  #: locale/programs/charmap.c:849 locale/programs/ld-address.c:615
@@ -819,16 +967,25 @@
  #: locale/programs/ld-identification.c:467
  #: locale/programs/ld-measurement.c:253 locale/programs/ld-messages.c:347
  #: locale/programs/ld-monetary.c:956 locale/programs/ld-name.c:322
-@@ -1577,7 +1565,7 @@
- msgid "number of bytes for byte sequence of beginning and end of range not the same: %d vs %d"
- msgstr "liczba bajtów dla sekwencji bajtów pocz±tku i koñca przedzia³u jest ró¿na: %d i %d"
+@@ -1574,10 +1598,14 @@
+ 
+ #: locale/programs/charmap.c:887
+ #, c-format
+-msgid "number of bytes for byte sequence of beginning and end of range not the same: %d vs %d"
+-msgstr "liczba bajtów dla sekwencji bajtów pocz±tku i koñca przedzia³u jest ró¿na: %d i %d"
++msgid ""
++"number of bytes for byte sequence of beginning and end of range not the "
++"same: %d vs %d"
++msgstr ""
++"liczba bajtów dla sekwencji bajtów pocz±tku i koñca przedzia³u jest ró¿na: %"
++"d i %d"
  
 -#: locale/programs/charmap.c:992 locale/programs/ld-collate.c:2933
 +#: locale/programs/charmap.c:992 locale/programs/ld-collate.c:2934
  #: locale/programs/repertoire.c:419
  msgid "invalid names for character range"
  msgstr "nieprawid³owe nazwy dla przedzia³u znaków"
-@@ -1586,20 +1574,20 @@
+@@ -1586,20 +1614,20 @@
  msgid "hexadecimal range format should use only capital characters"
  msgstr "w szesnastkowym formacie przedzia³u powinny byæ u¿ywane wielkie litery"
  
@@ -845,7 +1002,7 @@
 -msgstr "górna granica przedzia³u nie jest wiêksza ni¿ dolna"
 +#: locale/programs/charmap.c:1028 locale/programs/repertoire.c:456
 +msgid "upper limit in range is smaller than lower limit"
-+msgstr "górna granica przedzia³u jest mniejsza ni¿ dolna"
++msgstr "górna granica przedzia³u nie jest mniejsza ni¿ dolna"
  
  #: locale/programs/charmap.c:1086
  msgid "resulting bytes for range not representable."
@@ -856,7 +1013,7 @@
  #: locale/programs/ld-ctype.c:419 locale/programs/ld-identification.c:132
  #: locale/programs/ld-measurement.c:93 locale/programs/ld-messages.c:96
  #: locale/programs/ld-monetary.c:192 locale/programs/ld-name.c:93
-@@ -1664,7 +1652,7 @@
+@@ -1664,7 +1692,7 @@
  msgstr "%s: liczbowy kod kraju `%d' jest niepoprawny"
  
  #: locale/programs/ld-address.c:507 locale/programs/ld-address.c:544
@@ -865,7 +1022,7 @@
  #: locale/programs/ld-identification.c:363
  #: locale/programs/ld-measurement.c:220 locale/programs/ld-messages.c:300
  #: locale/programs/ld-monetary.c:698 locale/programs/ld-monetary.c:733
-@@ -1686,8 +1674,8 @@
+@@ -1686,8 +1714,8 @@
  msgid "%s: unknown character in field `%s'"
  msgstr "%s: nieznany znak w polu `%s'"
  
@@ -876,7 +1033,7 @@
  #: locale/programs/ld-measurement.c:234 locale/programs/ld-messages.c:329
  #: locale/programs/ld-monetary.c:938 locale/programs/ld-name.c:304
  #: locale/programs/ld-numeric.c:365 locale/programs/ld-paper.c:238
-@@ -1696,23 +1684,12 @@
+@@ -1696,23 +1724,12 @@
  msgid "%s: incomplete `END' line"
  msgstr "%s: niekompletna linia `END'"
  
@@ -904,18 +1061,48 @@
  #: locale/programs/ld-measurement.c:244 locale/programs/ld-messages.c:338
  #: locale/programs/ld-monetary.c:947 locale/programs/ld-name.c:313
  #: locale/programs/ld-numeric.c:374 locale/programs/ld-paper.c:247
-@@ -1796,8 +1773,8 @@
+@@ -1791,175 +1808,189 @@
+ 
+ #: locale/programs/ld-collate.c:1106
+ #, c-format
+-msgid "%s: byte sequences of first and last character must have the same length"
+-msgstr "%s: sekwencje bajtów pierwszego i ostatniego znaku musz± mieæ tê sam± d³ugo¶æ"
++msgid ""
++"%s: byte sequences of first and last character must have the same length"
++msgstr ""
++"%s: sekwencje bajtów pierwszego i ostatniego znaku musz± mieæ tê sam± d³ugo¶æ"
  
  #: locale/programs/ld-collate.c:1148
  #, c-format
 -msgid "%s: byte sequence of first character of sequence is not lower than that of the last character"
 -msgstr "%s: sekwencja bajtów pierwszego znaku sekwencji nie jest mniejsza ni¿ ostatniego znaku"
-+msgid "%s: byte sequence of first character of range is not lower than that of the last character"
-+msgstr "%s: sekwencja bajtów pierwszego znaku zakresu nie jest mniejsza ni¿ ostatniego znaku"
++msgid ""
++"%s: byte sequence of first character of range is not lower than that of the "
++"last character"
++msgstr ""
++"%s: sekwencja bajtów pierwszego znaku zakresu nie jest mniejsza ni¿ sekwencja "
++"ostatniego znaku"
  
  #: locale/programs/ld-collate.c:1273
  #, c-format
-@@ -1814,152 +1791,152 @@
+ msgid "%s: symbolic range ellipsis must not directly follow `order_start'"
+-msgstr "%s: wyrzutnia symbolicznego przedzia³u nie mo¿e byæ bezpo¶rednio po `order_start'"
++msgstr ""
++"%s: wyrzutnia symbolicznego przedzia³u nie mo¿e byæ bezpo¶rednio po "
++"`order_start'"
+ 
+ #: locale/programs/ld-collate.c:1277
+ #, c-format
+-msgid "%s: symbolic range ellipsis must not be directly followed by `order_end'"
+-msgstr "%s: wyrzutnia symbolicznego przedzia³u nie mo¿e byæ bezpo¶rednio przed `order_end'"
++msgid ""
++"%s: symbolic range ellipsis must not be directly followed by `order_end'"
++msgstr ""
++"%s: wyrzutnia symbolicznego przedzia³u nie mo¿e byæ bezpo¶rednio przed "
++"`order_end'"
+ 
+ #: locale/programs/ld-collate.c:1297 locale/programs/ld-ctype.c:1475
+ #, c-format
  msgid "`%s' and `%.*s' are not valid names for symbolic range"
  msgstr "`%s' i `%.*s' nie s± poprawnymi nazwami dla symbolicznego przedzia³u"
  
@@ -934,8 +1121,13 @@
 -#: locale/programs/ld-collate.c:1548
 +#: locale/programs/ld-collate.c:1549
  #, c-format
- msgid "%s: `position' must be used for a specific level in all sections or none"
- msgstr "%s: `position' musi byæ u¿yte dla konkretnego poziomu we wszystkich sekcjach lub ¿adnej"
+-msgid "%s: `position' must be used for a specific level in all sections or none"
+-msgstr "%s: `position' musi byæ u¿yte dla konkretnego poziomu we wszystkich sekcjach lub ¿adnej"
++msgid ""
++"%s: `position' must be used for a specific level in all sections or none"
++msgstr ""
++"%s: `position' musi byæ u¿yte dla konkretnego poziomu we wszystkich sekcjach "
++"lub ¿adnej"
  
 -#: locale/programs/ld-collate.c:1573
 +#: locale/programs/ld-collate.c:1574
@@ -1101,7 +1293,17 @@
  #, c-format
  msgid "%s: missing `reorder-sections-end' keyword"
  msgstr "%s: brak s³owa kluczowego `reorder-sections-end'"
-@@ -2050,13 +2027,13 @@
+@@ -2017,7 +2048,8 @@
+ #: locale/programs/ld-ctype.c:761
+ #, c-format
+ msgid "no input digits defined and none of the standard names in the charmap"
+-msgstr "brak cyfr wej¶ciowych ani ¿adnej ze standardowych nazw w tablicy znaków"
++msgstr ""
++"brak cyfr wej¶ciowych ani ¿adnej ze standardowych nazw w tablicy znaków"
+ 
+ #: locale/programs/ld-ctype.c:826
+ #, c-format
+@@ -2050,138 +2082,143 @@
  msgstr "ograniczenie implementacji: dozwolone maksymalnie %d tablic znaków"
  
  #: locale/programs/ld-ctype.c:1546 locale/programs/ld-ctype.c:1671
@@ -1118,7 +1320,14 @@
  #, c-format
  msgid "to-value <U%0*X> of range is smaller than from-value <U%0*X>"
  msgstr "warto¶æ-do <U%0*X> przedzia³u jest mniejsza ni¿ warto¶æ-od <U%0*X>"
-@@ -2069,119 +2046,110 @@
+ 
+ #: locale/programs/ld-ctype.c:1701
+ msgid "start and end character sequence of range must have the same length"
+-msgstr "pocz±tkowa i koñcowa sekwencja znaków przedzia³u musz± mieæ tê sam± d³ugo¶æ"
++msgstr ""
++"pocz±tkowa i koñcowa sekwencja znaków przedzia³u musz± mieæ tê sam± d³ugo¶æ"
+ 
+ #: locale/programs/ld-ctype.c:1708
  msgid "to-value character sequence is smaller than from-value sequence"
  msgstr "sekwencja znaków warto¶æ-do jest mniejsza ni¿ sekwencja warto¶æ-od"
  
@@ -1149,22 +1358,38 @@
 -#: locale/programs/ld-ctype.c:2488
 +#: locale/programs/ld-ctype.c:2491
  msgid "ellipsis range must be marked by two operands of same type"
- msgstr "przedzia³ wyrzutni musi byæ oznaczony dwoma argumentami tego samego typu"
+-msgstr "przedzia³ wyrzutni musi byæ oznaczony dwoma argumentami tego samego typu"
++msgstr ""
++"przedzia³ wyrzutni musi byæ oznaczony dwoma argumentami tego samego typu"
  
 -#: locale/programs/ld-ctype.c:2497
+-msgid "with symbolic name range values the absolute ellipsis `...' must not be used"
+-msgstr "dla warto¶ci przedzia³u bêd±cych nazwami nie mo¿na u¿yæ bezwzglêdnej wyrzutni `...'"
 +#: locale/programs/ld-ctype.c:2500
- msgid "with symbolic name range values the absolute ellipsis `...' must not be used"
- msgstr "dla warto¶ci przedzia³u bêd±cych nazwami nie mo¿na u¿yæ bezwzglêdnej wyrzutni `...'"
++msgid ""
++"with symbolic name range values the absolute ellipsis `...' must not be used"
++msgstr ""
++"dla warto¶ci przedzia³u bêd±cych nazwami nie mo¿na u¿yæ bezwzglêdnej "
++"wyrzutni `...'"
  
 -#: locale/programs/ld-ctype.c:2512
+-msgid "with UCS range values one must use the hexadecimal symbolic ellipsis `..'"
+-msgstr "dla warto¶ci przedzia³u w kodzie UCS trzeba u¿yæ wyrzutni szesnastkowej `..'"
 +#: locale/programs/ld-ctype.c:2515
- msgid "with UCS range values one must use the hexadecimal symbolic ellipsis `..'"
- msgstr "dla warto¶ci przedzia³u w kodzie UCS trzeba u¿yæ wyrzutni szesnastkowej `..'"
++msgid ""
++"with UCS range values one must use the hexadecimal symbolic ellipsis `..'"
++msgstr ""
++"dla warto¶ci przedzia³u w kodzie UCS trzeba u¿yæ wyrzutni szesnastkowej `..'"
  
 -#: locale/programs/ld-ctype.c:2526
+-msgid "with character code range values one must use the absolute ellipsis `...'"
+-msgstr "dla warto¶ci przedzia³u z kodami znaków trzeba u¿yæ bezwzglêdnej wyrzutni `...'"
 +#: locale/programs/ld-ctype.c:2529
- msgid "with character code range values one must use the absolute ellipsis `...'"
- msgstr "dla warto¶ci przedzia³u z kodami znaków trzeba u¿yæ bezwzglêdnej wyrzutni `...'"
++msgid ""
++"with character code range values one must use the absolute ellipsis `...'"
++msgstr ""
++"dla warto¶ci przedzia³u z kodami znaków trzeba u¿yæ bezwzglêdnej wyrzutni "
++"`...'"
  
 -#: locale/programs/ld-ctype.c:2677
 +#: locale/programs/ld-ctype.c:2680
@@ -1239,14 +1464,21 @@
 -#: locale/programs/ld-ctype.c:3403 locale/programs/ld-ctype.c:3428
 +#: locale/programs/ld-ctype.c:3406 locale/programs/ld-ctype.c:3431
  #, c-format
- msgid "%s: character `%s' needed as default value not representable with one byte"
- msgstr "%s: znak `%s', wymagany jako domy¶lny, nie mo¿e byæ wyra¿ony w jednym bajcie"
+-msgid "%s: character `%s' needed as default value not representable with one byte"
+-msgstr "%s: znak `%s', wymagany jako domy¶lny, nie mo¿e byæ wyra¿ony w jednym bajcie"
++msgid ""
++"%s: character `%s' needed as default value not representable with one byte"
++msgstr ""
++"%s: znak `%s', wymagany jako domy¶lny, nie mo¿e byæ wyra¿ony w jednym bajcie"
  
 -#: locale/programs/ld-ctype.c:3483
 +#: locale/programs/ld-ctype.c:3486
  #, c-format
  msgid "no output digits defined and none of the standard names in the charmap"
- msgstr "brak definicji cyfr wyj¶ciowych ani ¿adnej standardowej nazwy w tablicy znaków"
+-msgstr "brak definicji cyfr wyj¶ciowych ani ¿adnej standardowej nazwy w tablicy znaków"
++msgstr ""
++"brak definicji cyfr wyj¶ciowych ani ¿adnej standardowej nazwy w tablicy "
++"znaków"
  
 -#: locale/programs/ld-ctype.c:3774
 +#: locale/programs/ld-ctype.c:3777
@@ -1271,7 +1503,7 @@
  #, c-format
  msgid "%s: table for width: %lu bytes\n"
  msgstr "%s: tablica dla szeroko¶ci: %lu bajtów\n"
-@@ -2207,6 +2175,7 @@
+@@ -2207,6 +2244,7 @@
  msgstr "%s: pole `%s' nie zdefiniowane"
  
  #: locale/programs/ld-messages.c:120 locale/programs/ld-messages.c:154
@@ -1279,8 +1511,14 @@
  #, c-format
  msgid "%s: value for field `%s' must not be an empty string"
  msgstr "%s: warto¶æ pola `%s' nie mo¿e byæ ³añcuchem pustym"
-@@ -2226,11 +2195,6 @@
- msgid "%s: value of field `int_curr_symbol' does not correspond to a valid name in ISO 4217"
+@@ -2223,14 +2261,11 @@
+ 
+ #: locale/programs/ld-monetary.c:235
+ #, c-format
+-msgid "%s: value of field `int_curr_symbol' does not correspond to a valid name in ISO 4217"
++msgid ""
++"%s: value of field `int_curr_symbol' does not correspond to a valid name in "
++"ISO 4217"
  msgstr "%s: warto¶æ pola `int_curr_symbol' nie jest zgodna z nazwami ISO 4217"
  
 -#: locale/programs/ld-monetary.c:254 locale/programs/ld-numeric.c:117
@@ -1291,7 +1529,21 @@
  #: locale/programs/ld-monetary.c:282 locale/programs/ld-monetary.c:312
  #, c-format
  msgid "%s: value for field `%s' must be in range %d...%d"
-@@ -2327,10 +2291,6 @@
+@@ -2268,8 +2303,11 @@
+ 
+ #: locale/programs/ld-time.c:257
+ #, c-format
+-msgid "%s: direction flag in string %Zd in `era' field is not a single character"
+-msgstr "%s: znacznik kierunku w ³añcuchu %Zd w polu `era' nie jest pojedynczym znakiem"
++msgid ""
++"%s: direction flag in string %Zd in `era' field is not a single character"
++msgstr ""
++"%s: znacznik kierunku w ³añcuchu %Zd w polu `era' nie jest pojedynczym "
++"znakiem"
+ 
+ #: locale/programs/ld-time.c:270
+ #, c-format
+@@ -2327,10 +2365,6 @@
  msgstr "%s: warto¶æ trzeciego argumentu pola `%s' nie mo¿e byæ wiêksza ni¿ %d"
  
  #: locale/programs/ld-time.c:504 locale/programs/ld-time.c:512
@@ -1302,7 +1554,22 @@
  #: locale/programs/ld-time.c:520
  #, c-format
  msgid "%s: values for field `%s' must not be larger than %d"
-@@ -2585,130 +2545,130 @@
+@@ -2418,10 +2452,12 @@
+ 
+ #: locale/programs/locale.c:86
+ msgid ""
+-"Get locale-specific information.For bug reporting instructions, please see:\n"
++"Get locale-specific information.\vFor bug reporting instructions, please "
++"see:\n"
+ "<http://www.gnu.org/software/libc/bugs.html>.\n"
+ msgstr ""
+-"Pobranie informacji dotycz±cych lokalizacji.Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
++"Pobranie informacji dotycz±cych lokalizacji.\vInstrukcje dotycz±ce "
++"zg³aszania b³êdów znajduj± siê pod adresem:\n"
+ "<http://www.gnu.org/software/libc/bugs.html>.\n"
+ 
+ #: locale/programs/locale.c:91
+@@ -2585,130 +2621,130 @@
  msgid "cannot add already read locale `%s' a second time"
  msgstr "nie mo¿na dodaæ po raz drugi ju¿ odczytanej lokalizacji `%s'"
  
@@ -1460,7 +1727,7 @@
  #, c-format
  msgid "locale \"%s\" not in archive"
  msgstr "lokalizacji \"%s\" nie ma w archiwum"
-@@ -2749,6 +2709,11 @@
+@@ -2749,6 +2785,11 @@
  msgid "no other keyword shall be specified when `copy' is used"
  msgstr "¿adne inne s³owo kluczowe nie powinno wystêpowaæ razem z `copy'"
  
@@ -1472,7 +1739,7 @@
  #: locale/programs/repertoire.c:229 locale/programs/repertoire.c:270
  #: locale/programs/repertoire.c:295
  #, c-format
-@@ -2769,15 +2734,6 @@
+@@ -2769,28 +2810,29 @@
  msgid "repertoire map file `%s' not found"
  msgstr "nie znaleziono pliku tablicy repertuaru `%s'"
  
@@ -1487,8 +1754,61 @@
 -
  #: login/programs/pt_chown.c:74
  #, c-format
- msgid "Set the owner, group and access permission of the slave pseudo terminal corresponding to the master pseudo terminal passed on file descriptor `%d'.  This is the helper program for the `grantpt' function.  It is not intended to be run directly from the command line.\n"
-@@ -2825,13 +2781,11 @@
+-msgid "Set the owner, group and access permission of the slave pseudo terminal corresponding to the master pseudo terminal passed on file descriptor `%d'.  This is the helper program for the `grantpt' function.  It is not intended to be run directly from the command line.\n"
+-msgstr "Ustawienie w³a¶ciciela, grupy i praw dostêpu podrzêdnego pseudoterminala odpowiadaj±cego nadrzêdnemu pseudoterminalowi przekazanemu w deskryptorze pliku `%d'. Jest to program pomocniczy dla funkcji `grantpt'. Nie jest przeznaczony do uruchamiania bezpo¶rednio z linii poleceñ.\n"
++msgid ""
++"Set the owner, group and access permission of the slave pseudo terminal "
++"corresponding to the master pseudo terminal passed on file descriptor `%d'.  "
++"This is the helper program for the `grantpt' function.  It is not intended "
++"to be run directly from the command line.\n"
++msgstr ""
++"Ustawienie w³a¶ciciela, grupy i praw dostêpu podrzêdnego pseudoterminala "
++"odpowiadaj±cego nadrzêdnemu pseudoterminalowi przekazanemu w deskryptorze "
++"pliku `%d'. Jest to program pomocniczy dla funkcji `grantpt'. Nie jest "
++"przeznaczony do uruchamiania bezpo¶rednio z linii poleceñ.\n"
+ 
+ #: login/programs/pt_chown.c:84
+ #, c-format
+ msgid ""
+-"The owner is set to the current user, the group is set to `%s', and the access permission is set to `%o'.\n"
++"The owner is set to the current user, the group is set to `%s', and the "
++"access permission is set to `%o'.\n"
+ "\n"
+ "%s"
+ msgstr ""
+-"W³a¶ciciela ustawiono na bie¿±cego u¿ytkownika, grupê na `%s', a prawa dostêpu na `%o'.\n"
++"W³a¶ciciela ustawiono na bie¿±cego u¿ytkownika, grupê na `%s', a prawa "
++"dostêpu na `%o'.\n"
+ "\n"
+ "%s"
+ 
+@@ -2804,34 +2846,32 @@
+ msgid "needs to be installed setuid `root'"
+ msgstr "musi byæ zainstalowany jako setuid `root'"
+ 
+-#: malloc/mcheck.c:324
++#: malloc/mcheck.c:330
+ msgid "memory is consistent, library is buggy\n"
+ msgstr "pamiêæ jest spójna, biblioteka zawiera b³êdy\n"
+ 
+-#: malloc/mcheck.c:327
++#: malloc/mcheck.c:333
+ msgid "memory clobbered before allocated block\n"
+ msgstr "pamiêæ zosta³a uszkodzona przed przydzielonym blokiem\n"
+ 
+-#: malloc/mcheck.c:330
++#: malloc/mcheck.c:336
+ msgid "memory clobbered past end of allocated block\n"
+ msgstr "pamiêæ zosta³a uszkodzona za przydzielonym blokiem\n"
+ 
+-#: malloc/mcheck.c:333
++#: malloc/mcheck.c:339
+ msgid "block freed twice\n"
+ msgstr "blok zwalniany dwa razy\n"
+ 
+-#: malloc/mcheck.c:336
++#: malloc/mcheck.c:342
+ msgid "bogus mcheck_status, library is buggy\n"
  msgstr "b³êdny mcheck_status, biblioteka zawiera b³êdy\n"
  
  #: malloc/memusage.sh:27
@@ -1504,16 +1824,62 @@
  msgstr "memusage: opcja \\`$1' musi mieæ argument"
  
  #: malloc/memusage.sh:39
-@@ -2844,7 +2798,7 @@
+@@ -2844,7 +2884,8 @@
  "   -d,--data=FILE         Generate binary data file and store it in FILE\n"
  "   -u,--unbuffered        Don't buffer output\n"
  "   -b,--buffer=SIZE       Collect SIZE entries before writing them out\n"
 -"      --no-timer          Don't collect additional information though timer\n"
-+"      --no-timer          Don't collect additional information through timer\n"
++"      --no-timer          Don't collect additional information through "
++"timer\n"
  "   -m,--mmap              Also trace mmap & friends\n"
  "\n"
  "   -?,--help              Print this help and exit\n"
-@@ -2890,9 +2844,9 @@
+@@ -2858,7 +2899,8 @@
+ "   -x,--x-size=SIZE       Make graphic SIZE pixels wide\n"
+ "   -y,--y-size=SIZE       Make graphic SIZE pixels high\n"
+ "\n"
+-"Mandatory arguments to long options are also mandatory for any corresponding\n"
++"Mandatory arguments to long options are also mandatory for any "
++"corresponding\n"
+ "short options.\n"
+ "\n"
+ "For bug reporting instructions, please see:\n"
+@@ -2868,11 +2910,14 @@
+ "Profilowanie wykorzystania pamiêci przez PROGRAM.\n"
+ "\n"
+ "   -n,--progname=NAZWA    Nazwa pliku programu do profilowania\n"
+-"   -p,--png=PLIK          Wygenerowanie grafiki PNG i zapisanie jej do PLIKU\n"
+-"   -d,--data=PLIK         Wygenerowanie danych binarnych i zapisanie do PLIKU\n"
++"   -p,--png=PLIK          Wygenerowanie grafiki PNG i zapisanie jej do "
++"PLIKU\n"
++"   -d,--data=PLIK         Wygenerowanie danych binarnych i zapisanie do "
++"PLIKU\n"
+ "   -u,--unbuffered        Nie buforowanie wyj¶cia\n"
+ "   -b,--buffer=ROZMIAR    Zgromadzenie tylu wpisów przed zapisaniem ich\n"
+-"      --no-timer          Nie zbieranie dodatkowych informacji z u¿yciem zegara\n"
++"      --no-timer          Nie zbieranie dodatkowych informacji z u¿yciem "
++"zegara\n"
+ "   -m,--mmap              ¦ledzenie tak¿e mmap i podobnych funkcji\n"
+ "\n"
+ "   -?,--help              Wypisanie tego opisu i zakoñczenie\n"
+@@ -2881,40 +2926,44 @@
+ "\n"
+ " Nastêpuj±ce opcje odnosz± siê tylko do generowania graficznego wyj¶cia:\n"
+ "   -t,--time-based        Utworzenie wykresu liniowego w czasie\n"
+-"   -T,--total             Narysowanie tak¿e wykresu ca³kowitego u¿ycia pamiêci\n"
++"   -T,--total             Narysowanie tak¿e wykresu ca³kowitego u¿ycia "
++"pamiêci\n"
+ "      --title=£AÑCUCH     U¿ycie £AÑCUCHA jako tytu³u wykresu\n"
+-"   -x,--x-size=ROZMIAR    Utworzenie wykresu o podanej szeroko¶ci w pikselach\n"
+-"   -y,--y-size=ROZMIAR    Utworzenie wykresu o podanej wysoko¶ci w pikselach\n"
++"   -x,--x-size=ROZMIAR    Utworzenie wykresu o podanej szeroko¶ci w "
++"pikselach\n"
++"   -y,--y-size=ROZMIAR    Utworzenie wykresu o podanej wysoko¶ci w "
++"pikselach\n"
+ "\n"
+-"Argumenty obowi±zkowe dla d³ugich opcji s± obowi±zkowe równie¿ dla odpowiednich\n"
++"Argumenty obowi±zkowe dla d³ugich opcji s± obowi±zkowe równie¿ dla "
++"odpowiednich\n"
  "krótkich opcji.\n"
  "\n"
  "Informacje na temat zg³aszania b³êdów mo¿na znale¼æ pod adresem:\n"
@@ -1523,9 +1889,17 @@
 -#: malloc/memusage.sh:90
 +#: malloc/memusage.sh:99
  msgid ""
- "Syntax: memusage [--data=FILE] [--progname=NAME] [--png=FILE] [--unbuffered]\n"
+-"Syntax: memusage [--data=FILE] [--progname=NAME] [--png=FILE] [--unbuffered]\n"
++"Syntax: memusage [--data=FILE] [--progname=NAME] [--png=FILE] [--"
++"unbuffered]\n"
  "            [--buffer=SIZE] [--no-timer] [--time-based] [--total]\n"
-@@ -2904,17 +2858,15 @@
+ "            [--title=STRING] [--x-size=SIZE] [--y-size=SIZE]\n"
+ "            PROGRAM [PROGRAMOPTION]..."
+ msgstr ""
+-"Sk³adnia: memusage [--data=PLIK] [--progname=NAZWA] [--png=PLIK] [--unbuffered]\n"
++"Sk³adnia: memusage [--data=PLIK] [--progname=NAZWA] [--png=PLIK] [--"
++"unbuffered]\n"
+ "            [--buffer=ROZMIAR] [--no-timer] [--time-based] [--total]\n"
  "            [--title=£AÑCUCH] [--x-size=ROZMIAR] [--y-size=ROZMIAR]\n"
  "            PROGRAM [OPCJA-PROGRAMU]..."
  
@@ -1548,24 +1922,38 @@
  msgid "No program name given"
  msgstr "Nie podano nazwy programu"
  
-@@ -2935,12 +2887,12 @@
+@@ -2927,20 +2976,24 @@
+ msgstr "£añcuch tytu³owy u¿ywany w wynikowym wykresie"
+ 
+ #: malloc/memusagestat.c:55
+-msgid "Generate output linear to time (default is linear to number of function calls)"
+-msgstr "Generowanie wyj¶cia liniowo po czasie (domy¶lnie: liniowo po liczbie wywo³añ funkcji)"
++msgid ""
++"Generate output linear to time (default is linear to number of function "
++"calls)"
++msgstr ""
++"Generowanie wyj¶cia liniowo po czasie (domy¶lnie: liniowo po liczbie wywo³añ "
++"funkcji)"
+ 
+ #: malloc/memusagestat.c:57
+ msgid "Also draw graph for total memory consumption"
  msgstr "Narysowanie tak¿e wykresu ca³kowitego u¿ycia pamiêci"
  
  #: malloc/memusagestat.c:58
 -msgid "make output graphic VALUE pixel wide"
 -msgstr "stworzenie wykresu szeroko¶ci VALUE pikseli"
 +msgid "Make output graphic VALUE pixels wide"
-+msgstr "Stworzenie wykresu o podanej szeroko¶ci w pikselach"
++msgstr "Stworzenie wykresu szeroko¶ci VALUE pikseli"
  
  #: malloc/memusagestat.c:59
 -msgid "make output graphic VALUE pixel high"
 -msgstr "stworzenie wykresu szeroko¶ci VALUE pikseli"
 +msgid "Make output graphic VALUE pixels high"
-+msgstr "Stworzenie wykresu o podanej wysoko¶ci w pikselach"
++msgstr "Stworzenie wykresu szeroko¶ci VALUE pikseli"
  
  #: malloc/memusagestat.c:64
  msgid "Generate graphic from memory profiling data"
-@@ -2950,7 +2902,7 @@
+@@ -2950,7 +3003,7 @@
  msgid "DATAFILE [OUTFILE]"
  msgstr "PLIK-DANYCH [PLIK-WYJ¦CIOWY]"
  
@@ -1574,7 +1962,27 @@
  msgid "Unknown system error"
  msgstr "Nieznany b³±d systemowy"
  
-@@ -3443,7 +3395,7 @@
+@@ -3115,7 +3168,8 @@
+ 
+ #: nis/nis_error.h:39
+ msgid "Error in accessing NIS+ cold start file.  Is NIS+ installed?"
+-msgstr "B³±d podczas dostêpu do pliku startowego NIS+. Czy NIS+ jest zainstalowany?"
++msgstr ""
++"B³±d podczas dostêpu do pliku startowego NIS+. Czy NIS+ jest zainstalowany?"
+ 
+ #: nis/nis_error.h:40
+ msgid "Full resync required for directory"
+@@ -3151,7 +3205,8 @@
+ 
+ #: nis/nis_error.h:48
+ msgid "Master server busy, full dump rescheduled."
+-msgstr "Serwer nadrzêdny jest zajêty, pe³ny zrzut danych przesuniêty na pó¼niej."
++msgstr ""
++"Serwer nadrzêdny jest zajêty, pe³ny zrzut danych przesuniêty na pó¼niej."
+ 
+ #: nis/nis_local_names.c:122
+ #, c-format
+@@ -3443,7 +3498,7 @@
  msgid "    No recursive members\n"
  msgstr "    Brak rekursywnych cz³onków\n"
  
@@ -1583,7 +1991,7 @@
  msgid "    Explicit nonmembers:\n"
  msgstr "   Nie-cz³onkowie zadeklarowani:\n"
  
-@@ -3459,6 +3411,10 @@
+@@ -3459,6 +3514,10 @@
  msgid "    No implicit nonmembers\n"
  msgstr "    Brak domniemanych nie-cz³onków\n"
  
@@ -1594,7 +2002,7 @@
  #: nis/nis_print_group_entry.c:170
  msgid "    No recursive nonmembers\n"
  msgstr "   Brak rekursywnych nie-cz³onków\n"
-@@ -3471,8 +3427,8 @@
+@@ -3471,8 +3530,8 @@
  
  #: nis/nss_nisplus/nisplus-publickey.c:220
  #, c-format
@@ -1605,7 +2013,7 @@
  
  #: nis/nss_nisplus/nisplus-publickey.c:302
  #: nis/nss_nisplus/nisplus-publickey.c:308
-@@ -3600,218 +3556,227 @@
+@@ -3600,218 +3659,239 @@
  msgid "Reloading \"%s\" in hosts cache!"
  msgstr "Prze³adowywanie \"%s\" w buforze hostów!"
  
@@ -1663,8 +2071,14 @@
 -#: nscd/connections.c:528
 +#: nscd/connections.c:563
  #, c-format
- msgid "suggested size of table for database %s larger than the persistent database's table"
- msgstr "sugerowany rozmiar tablicy dla bazy danych %s wiêkszy od bufora trwa³ej bazy danych"
+-msgid "suggested size of table for database %s larger than the persistent database's table"
+-msgstr "sugerowany rozmiar tablicy dla bazy danych %s wiêkszy od bufora trwa³ej bazy danych"
++msgid ""
++"suggested size of table for database %s larger than the persistent "
++"database's table"
++msgstr ""
++"sugerowany rozmiar tablicy dla bazy danych %s wiêkszy od bufora trwa³ej bazy "
++"danych"
  
 -#: nscd/connections.c:538 nscd/connections.c:619
 +#: nscd/connections.c:573 nscd/connections.c:654
@@ -1675,8 +2089,14 @@
 -#: nscd/connections.c:598
 +#: nscd/connections.c:633
  #, c-format
- msgid "database for %s corrupted or simultaneously used; remove %s manually if necessary and restart"
- msgstr "baza danych dla %s uszkodzona lub jednocze¶nie u¿ywana; w razie potrzeby trzeba rêcznie usun±æ %s i zrestartowaæ"
+-msgid "database for %s corrupted or simultaneously used; remove %s manually if necessary and restart"
+-msgstr "baza danych dla %s uszkodzona lub jednocze¶nie u¿ywana; w razie potrzeby trzeba rêcznie usun±æ %s i zrestartowaæ"
++msgid ""
++"database for %s corrupted or simultaneously used; remove %s manually if "
++"necessary and restart"
++msgstr ""
++"baza danych dla %s uszkodzona lub jednocze¶nie u¿ywana; w razie potrzeby "
++"trzeba rêcznie usun±æ %s i zrestartowaæ"
  
 -#: nscd/connections.c:605
 +#: nscd/connections.c:640
@@ -1700,7 +2120,10 @@
 +#: nscd/connections.c:748
  #, c-format
  msgid "cannot set socket to close on exec: %s; disabling paranoia mode"
- msgstr "nie mo¿na ustawiæ gniazda do zamkniêcia przy exec: %s; wy³±czono tryb paranoiczny"
+-msgstr "nie mo¿na ustawiæ gniazda do zamkniêcia przy exec: %s; wy³±czono tryb paranoiczny"
++msgstr ""
++"nie mo¿na ustawiæ gniazda do zamkniêcia przy exec: %s; wy³±czono tryb "
++"paranoiczny"
  
 -#: nscd/connections.c:763
 +#: nscd/connections.c:798
@@ -1777,7 +2200,10 @@
 +#: nscd/connections.c:1251
  #, c-format
  msgid "cannot change to old working directory: %s; disabling paranoia mode"
- msgstr "nie mo¿na przej¶æ do starego katalog roboczego: %s; wy³±czono tryb paranoiczny"
+-msgstr "nie mo¿na przej¶æ do starego katalog roboczego: %s; wy³±czono tryb paranoiczny"
++msgstr ""
++"nie mo¿na przej¶æ do starego katalog roboczego: %s; wy³±czono tryb "
++"paranoiczny"
  
 -#: nscd/connections.c:1245
 +#: nscd/connections.c:1279
@@ -1880,7 +2306,17 @@
  #, c-format
  msgid "Invalid numeric gid \"%s\"!"
  msgstr "Nieprawid³owy liczbowy gid \"%s\"!"
-@@ -3893,7 +3858,7 @@
+@@ -3832,7 +3912,8 @@
+ 
+ #: nscd/nscd.c:99
+ msgid "Do not fork and display messages on the current tty"
+-msgstr "Nie przechodzenie w t³o i wy¶wietlanie komunikatów na bie¿±cym terminalu"
++msgstr ""
++"Nie przechodzenie w t³o i wy¶wietlanie komunikatów na bie¿±cym terminalu"
+ 
+ #: nscd/nscd.c:100
+ msgid "NUMBER"
+@@ -3893,7 +3974,7 @@
  
  #: nscd/nscd.c:240
  #, c-format
@@ -1889,7 +2325,7 @@
  msgstr "nie mo¿na zmieniæ bie¿±cego katalogu na \"/\""
  
  #: nscd/nscd.c:248
-@@ -3905,67 +3870,67 @@
+@@ -3905,67 +3986,67 @@
  msgid "Only root is allowed to use this option!"
  msgstr "Tylko root mo¿e u¿ywaæ tej opcji!"
  
@@ -1972,7 +2408,7 @@
  #, c-format
  msgid "maximum file size for %s database too small"
  msgstr "maksymalny rozmiar pliku dla bazy danych %s jest zbyt ma³y"
-@@ -4095,97 +4060,93 @@
+@@ -4095,97 +4176,93 @@
  "%15<PRIuMAX>  przydzieleñ pamiêci nie powiod³o siê\n"
  "%15s  sprawdzanie zmian w /etc/%s\n"
  
@@ -2092,7 +2528,7 @@
  #, c-format
  msgid ""
  "\n"
-@@ -4212,6 +4173,16 @@
+@@ -4212,6 +4289,16 @@
  "%15u  prób CAV\n"
  "%15u  CAV nie trafionych\n"
  
@@ -2109,48 +2545,22 @@
  #: nss/getent.c:52
  msgid "database [key ...]"
  msgstr "baza [klucz ...]"
-@@ -4406,7 +4377,7 @@
+@@ -4222,10 +4309,12 @@
  
- #: posix/regcomp.c:144
- msgid "Invalid character class name"
--msgstr "B³êdna nazwa klasy znaku"
-+msgstr "B³êdna nazwa klasy znaków"
+ #: nss/getent.c:62
+ msgid ""
+-"Get entries from administrative database.For bug reporting instructions, please see:\n"
++"Get entries from administrative database.\vFor bug reporting instructions, "
++"please see:\n"
+ "<http://www.gnu.org/software/libc/bugs.html>.\n"
+ msgstr ""
+-"Pobranie wpisów z administracyjnej bazy danych.Instrukcje dotycz±ce zg³aszania b³êdów znajduj± siê pod adresem:\n"
++"Pobranie wpisów z administracyjnej bazy danych.\vInstrukcje dotycz±ce "
++"zg³aszania b³êdów znajduj± siê pod adresem:\n"
+ "<http://www.gnu.org/software/libc/bugs.html>.\n"
  
- #: posix/regcomp.c:147
- msgid "Trailing backslash"
-@@ -4414,7 +4385,7 @@
- 
- #: posix/regcomp.c:150
- msgid "Invalid back reference"
--msgstr "B³êdny odno¶nik wstecz"
-+msgstr "B³êdne odnosienie wstecz"
- 
- #: posix/regcomp.c:153
- msgid "Unmatched [ or [^"
-@@ -4446,11 +4417,11 @@
- 
- #: posix/regcomp.c:174
- msgid "Premature end of regular expression"
--msgstr "Niespodziewany koniec wyra¿enia regularnego"
-+msgstr "Przedwczesny koniec wyra¿enia regularnego"
- 
- #: posix/regcomp.c:177
- msgid "Regular expression too big"
--msgstr "Wyra¿enie regularne jest za du¿e"
-+msgstr "Wyra¿enie regularne zbyt du¿e"
- 
- #: posix/regcomp.c:180
- msgid "Unmatched ) or \\)"
-@@ -4458,7 +4429,7 @@
- 
- #: posix/regcomp.c:660
- msgid "No previous regular expression"
--msgstr "Brak wyra¿enia regularnego"
-+msgstr "Brak poprzedniego wyra¿enia regularnego"
- 
- #: posix/wordexp.c:1798
- msgid "parameter null or not set"
-@@ -4549,8 +4520,8 @@
+ #: nss/getent.c:145 nss/getent.c:394
+@@ -4549,8 +4638,8 @@
  msgstr "authunix_create: brak pamiêci\n"
  
  #: sunrpc/auth_unix.c:350
@@ -2161,7 +2571,7 @@
  
  #: sunrpc/clnt_perr.c:118 sunrpc/clnt_perr.c:139
  #, c-format
-@@ -4675,8 +4646,8 @@
+@@ -4675,8 +4764,8 @@
  msgstr "Nieudane (nieustalony b³±d)"
  
  #: sunrpc/clnt_raw.c:117
@@ -2172,7 +2582,7 @@
  
  #: sunrpc/clnt_tcp.c:131
  msgid "clnttcp_create: out of memory\n"
-@@ -4691,8 +4662,8 @@
+@@ -4691,8 +4780,8 @@
  msgstr "clntunix_create: brak pamiêci\n"
  
  #: sunrpc/pm_getmaps.c:83
@@ -2183,90 +2593,64 @@
  
  #: sunrpc/pmap_clnt.c:129
  msgid "Cannot register service"
-@@ -4754,8 +4725,8 @@
+@@ -4754,8 +4843,8 @@
  
  #: sunrpc/rpc_main.c:460
  #, c-format
 -msgid "illegal nettype :`%s'\n"
 -msgstr "b³êdny typ sieci :'%s'\n"
 +msgid "illegal nettype: `%s'\n"
-+msgstr "b³êdny typ sieci: `%s'\n"
++msgstr "b³êdny typ sieci: '%s'\n"
  
  #: sunrpc/rpc_main.c:1122
  #, c-format
-@@ -4931,9 +4902,13 @@
+@@ -4781,7 +4870,9 @@
+ 
+ #: sunrpc/rpc_main.c:1382
+ msgid "This implementation doesn't support newstyle or MT-safe code!\n"
+-msgstr "Ta implementacja nie obs³uguje kodu w nowym stylu ani bezpiecznego dla w±tków!\n"
++msgstr ""
++"Ta implementacja nie obs³uguje kodu w nowym stylu ani bezpiecznego dla "
++"w±tków!\n"
+ 
+ #: sunrpc/rpc_main.c:1391
+ #, c-format
+@@ -4813,13 +4904,18 @@
+ 
+ #: sunrpc/rpc_main.c:1444
+ #, c-format
+-msgid "\t%s [-abkCLNTM][-Dname[=value]] [-i size] [-I [-K seconds]] [-Y path] infile\n"
+-msgstr "\t%s [-abkCLNTM][-Dnazwa[=warto¶æ]] [-i rozmiar] [-I [-K sekund]] [-Y ¶cie¿ka] plik_we\n"
++msgid ""
++"\t%s [-abkCLNTM][-Dname[=value]] [-i size] [-I [-K seconds]] [-Y path] "
++"infile\n"
++msgstr ""
++"\t%s [-abkCLNTM][-Dnazwa[=warto¶æ]] [-i rozmiar] [-I [-K sekund]] [-Y "
++"¶cie¿ka] plik_we\n"
+ 
+ #: sunrpc/rpc_main.c:1446
+ #, c-format
+ msgid "\t%s [-c | -h | -l | -m | -t | -Sc | -Ss | -Sm] [-o outfile] [infile]\n"
+-msgstr "\t%s [-c | -h | -l | -m | -t | -Sc | -Ss | -Sm] [-o plik_wy] [plik_we]\n"
++msgstr ""
++"\t%s [-c | -h | -l | -m | -t | -Sc | -Ss | -Sm] [-o plik_wy] [plik_we]\n"
+ 
+ #: sunrpc/rpc_main.c:1448
+ #, c-format
+@@ -4931,7 +5027,11 @@
  msgid "rpcinfo: %s is unknown host\n"
  msgstr "rpcinfo: nieznany host %s\n"
  
 -#: sunrpc/svc_run.c:76
 +#: sunrpc/svc_run.c:70
 +msgid "svc_run: - out of memory"
-+msgstr "svc_run: - brak pamiêci"
++msgstr "svc_run - brak pamiêci"
 +
 +#: sunrpc/svc_run.c:90
  msgid "svc_run: - poll failed"
--msgstr "svc_run - poll nie powiod³o siê"
-+msgstr "svc_run: - poll nie powiod³o siê"
+ msgstr "svc_run - poll nie powiod³o siê"
  
- #: sunrpc/svc_simple.c:87
- #, c-format
-@@ -6040,19 +6015,19 @@
- 
- #: sysdeps/posix/gai_strerror-strs.h:1
- msgid "Address family for hostname not supported"
--msgstr "Rodzina adresów dla tej nazwy hosta nie jest obs³ugiwana"
-+msgstr "Rodzina adresów dla podanej nazwy hosta nie jest obs³ugiwana"
- 
- #: sysdeps/posix/gai_strerror-strs.h:2
- msgid "Temporary failure in name resolution"
--msgstr "Odwzorowanie nazwy jest chwilowo niemo¿liwe"
-+msgstr "Tymczasowy b³±d rozwi±zywania nazw"
- 
- #: sysdeps/posix/gai_strerror-strs.h:3
- msgid "Bad value for ai_flags"
--msgstr "B³êdna warto¶æ dla ai_flags"
-+msgstr "B³êdna warto¶æ ai_flags"
- 
- #: sysdeps/posix/gai_strerror-strs.h:4
- msgid "Non-recoverable failure in name resolution"
--msgstr "Wyst±pi³ krytyczny b³±d w odwzorowaniu nazw"
-+msgstr "Nienaprawialny b³±d w rozwi±zywaniu nazw"
- 
- #: sysdeps/posix/gai_strerror-strs.h:5
- msgid "ai_family not supported"
-@@ -6060,7 +6035,7 @@
- 
- #: sysdeps/posix/gai_strerror-strs.h:6
- msgid "Memory allocation failure"
--msgstr "Wyst±pi³ b³±d przydzielania pamiêci"
-+msgstr "B³±d przydzielania pamiêci"
- 
- #: sysdeps/posix/gai_strerror-strs.h:7
- msgid "No address associated with hostname"
-@@ -6068,11 +6043,11 @@
- 
- #: sysdeps/posix/gai_strerror-strs.h:8
- msgid "Name or service not known"
--msgstr "Ta nazwa lub us³uga jest nieznana"
-+msgstr "Nieznana nazwa lub us³uga"
- 
- #: sysdeps/posix/gai_strerror-strs.h:9
- msgid "Servname not supported for ai_socktype"
--msgstr "Nazwa nie obs³ugiwana dla ai_socktype"
-+msgstr "Us³uga nie obs³ugiwana dla danego ai_socktype"
- 
- #: sysdeps/posix/gai_strerror-strs.h:10
- msgid "ai_socktype not supported"
-@@ -6084,7 +6059,7 @@
- 
- #: sysdeps/posix/gai_strerror-strs.h:12
- msgid "Processing request in progress"
--msgstr "¯±danie przetworzenia jest ju¿ wykonywane"
-+msgstr "Przetwarzanie ¿±dania jest w toku"
- 
- #: sysdeps/posix/gai_strerror-strs.h:13
- msgid "Request canceled"
-@@ -6134,405 +6109,396 @@
+@@ -6134,405 +6234,408 @@
  msgid "cannot read header from `%s'"
  msgstr "nie mo¿na przeczytaæ nag³ówka z `%s'"
  
@@ -2299,8 +2683,13 @@
 -#: timezone/zdump.c:284
 +#: timezone/zdump.c:280
  #, c-format
- msgid "%s: usage is %s [ --version ] [ -v ] [ -c [loyear,]hiyear ] zonename ...\n"
- msgstr "%s: sk³adnia: %s [ --version ] [ -v ] [ -c [rokpocz,]rokkoñc ] nazwa_strefy...\n"
+-msgid "%s: usage is %s [ --version ] [ -v ] [ -c [loyear,]hiyear ] zonename ...\n"
+-msgstr "%s: sk³adnia: %s [ --version ] [ -v ] [ -c [rokpocz,]rokkoñc ] nazwa_strefy...\n"
++msgid ""
++"%s: usage is %s [ --version ] [ -v ] [ -c [loyear,]hiyear ] zonename ...\n"
++msgstr ""
++"%s: sk³adnia: %s [ --version ] [ -v ] [ -c [rokpocz,]rokkoñc ] "
++"nazwa_strefy...\n"
  
 -#: timezone/zdump.c:301
 +#: timezone/zdump.c:297
@@ -2316,8 +2705,13 @@
 -#: timezone/zdump.c:415
 +#: timezone/zdump.c:411
  #, c-format
- msgid "%s: use of -v on system with floating time_t other than float or double\n"
- msgstr "%s: u¿ycie -v na systemie ze zmiennoprzecinkowym time_t innym ni¿ float lub double\n"
+-msgid "%s: use of -v on system with floating time_t other than float or double\n"
+-msgstr "%s: u¿ycie -v na systemie ze zmiennoprzecinkowym time_t innym ni¿ float lub double\n"
++msgid ""
++"%s: use of -v on system with floating time_t other than float or double\n"
++msgstr ""
++"%s: u¿ycie -v na systemie ze zmiennoprzecinkowym time_t innym ni¿ float lub "
++"double\n"
  
 -#: timezone/zic.c:371
 +#: timezone/zic.c:392
@@ -2354,7 +2748,7 @@
 -"\t[ -p regu³y_POSIX ] [ -d katalog ] [ -L sek_przestêpne ] \\\n"
 -"\t[ -y yearistype ] [ plik ...]\n"
 +"%s: sk³adnia: %s [ --version ] [ -v ] [ -l czas_lokalny ] [ -p regu³y_POSIX ] \\\n"
-+"\t[ -d katalog ] [ -L sek_przestêpne ] [ -y yearistype ] [ plik ... ]\n"
++"\t[ -d katalog ] [ -L sek_przestêpne ] [ -y yearistype ] [ plik ...]\n"
 +
 +#: timezone/zic.c:511
 +msgid "wild compilation-time specification of zic_t"
@@ -2533,7 +2927,10 @@
 -#: timezone/zic.c:1122
 +#: timezone/zic.c:1114
  msgid "Zone continuation line end time is not after end time of previous line"
- msgstr "Czas koñcowy linii kontynuacji Zone nie jest po czasie koñcowym poprzedniej linii"
+-msgstr "Czas koñcowy linii kontynuacji Zone nie jest po czasie koñcowym poprzedniej linii"
++msgstr ""
++"Czas koñcowy linii kontynuacji Zone nie jest po czasie koñcowym poprzedniej "
++"linii"
  
 -#: timezone/zic.c:1150
 +#: timezone/zic.c:1142
@@ -2731,9 +3128,15 @@
  msgstr "u¿ycie 2/29 w roku nieprzestêpnym"
  
 -#: timezone/zic.c:2184
+-msgid "rule goes past start/end of month--will not work with pre-2004 versions of zic"
+-msgstr "regu³a przekracza pocz±tek/koniec miesi±ca - nie zadzia³a z wersjami zic sprzed 2004 roku"
 +#: timezone/zic.c:2580
- msgid "rule goes past start/end of month--will not work with pre-2004 versions of zic"
- msgstr "regu³a przekracza pocz±tek/koniec miesi±ca - nie zadzia³a z wersjami zic sprzed 2004 roku"
++msgid ""
++"rule goes past start/end of month--will not work with pre-2004 versions of "
++"zic"
++msgstr ""
++"regu³a przekracza pocz±tek/koniec miesi±ca - nie zadzia³a z wersjami zic "
++"sprzed 2004 roku"
  
 -#: timezone/zic.c:2218
 +#: timezone/zic.c:2612
