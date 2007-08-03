@@ -35,7 +35,7 @@ Name:		glibc
 Version:	2.6.1
 Release:	1
 Epoch:		6
-License:	LGPL
+License:	LGPL v2.1+
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 # Source0-md5:	11cf6d3fc86dbe0890b8d00372eb6286
@@ -484,6 +484,7 @@ Summary(pl.UTF-8):	Demon zapamiętujący odpowiedzi serwisów nazw
 Summary(ru.UTF-8):	Кэширующий демон сервисов имен
 Summary(uk.UTF-8):	Кешуючий демон севісів імен
 Group:		Networking/Daemons
+License:	GPL v2
 Requires(post):	fileutils
 Requires(post,preun):	/sbin/chkconfig
 Requires(postun):	/usr/sbin/groupdel
