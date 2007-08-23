@@ -14,6 +14,8 @@
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   debug/backtrace-tst(SEGV)  fail on alpha
+# - separate pkg for ldconfig so can run ldconfig in glibc post and hacks not
+#   needed
 %{!?min_kernel:%global		min_kernel	2.6.12}
 
 %ifarch sparc64
