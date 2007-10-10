@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.6.1
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -97,7 +97,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.315
+BuildRequires:	rpmbuild(macros) >= 1.396
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 AutoReq:	false
