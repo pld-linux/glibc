@@ -1,39 +1,64 @@
-diff -urN glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c glibc-2.3.5/sysdeps/unix/sysv/linux/dl-execstack.c
---- glibc-2.3.5.orig/sysdeps/unix/sysv/linux/dl-execstack.c	2005-09-23 13:07:35.000000000 +0200
-+++ glibc-2.3.5/sysdeps/unix/sysv/linux/dl-execstack.c	2005-09-23 13:31:45.000000000 +0200
-@@ -60,7 +60,10 @@
- 	no_growsupdown = true;
+	With latest versions of glibc, a lot of apps failed on a PaX enabled
+	system with:
+		 cannot enable executable stack as shared object requires: Permission denied
+	
+	This is due to PaX 'exec-protecting' the stack, and ld.so then trying
+	to make the stack executable due to some libraries not containing the
+	PT_GNU_STACK section.  Bug #32960.  <azarah@gentoo.org> (12 Nov 2003).
+
+	Patch also NPTL. Bug #116086. <kevquinn@gentoo.org> (20 Dec 2005).
+
+--- sysdeps/unix/sysv/linux/dl-execstack.c
++++ sysdeps/unix/sysv/linux/dl-execstack.c
+@@ -63,7 +63,10 @@
        else
  # endif
--	return errno;
-+	if (errno == EACCES) /* PaX */
-+	    return 0;
-+	else
-+	    return errno;
+ 	{
+-	  result = errno;
++	  if (errno == EACCES)  /* PAX is enabled */
++	    result = 0;
++	  else
++	    result = errno;
+ 	  goto out;
+ 	}
      }
+@@ -89,7 +92,12 @@
+ 	page -= size;
+       else
+ 	{
+-	  if (errno != ENOMEM)	/* Unexpected failure mode.  */
++	  if (errno == EACCES)		/* PAX is enabled */
++	    {
++	      result = 0;
++	      goto out;
++	    }
++	  else if (errno != ENOMEM)	/* Unexpected failure mode.  */
+ 	    {
+ 	      result = errno;
+ 	      goto out;
+@@ -115,7 +123,12 @@
+ 	page += size;
+       else
+ 	{
+-	  if (errno != ENOMEM)	/* Unexpected failure mode.  */
++	  if (errno == EACCES)		/* PAX is enabled */
++	    {
++	      result = 0;
++	      goto out;
++	    }
++	  else if (errno != ENOMEM)	/* Unexpected failure mode.  */
+ 	    {
+ 	      result = errno;
+ 	      goto out;
+--- nptl/allocatestack.c
++++ nptl/allocatestack.c
+@@ -279,7 +279,8 @@
+   size_t len = pd->stackblock_size - pd->guardsize;
  #endif
+   if (mprotect (stack, len, PROT_READ | PROT_WRITE | PROT_EXEC) != 0)
+-    return errno;
++    if (errno != EACCES) /* PAX is enabled */
++    	return errno;
  
-@@ -86,7 +89,10 @@
- 	{
- 	  /* Unexpected failure mode.  */
- 	  if (errno != ENOMEM && errno != EFAULT)
--	    return errno;
-+	    if (errno == EACCES) /* PaX */
-+		return 0;
-+	    else
-+	    	return errno;
- 
- 	  if (size == GLRO(dl_pagesize))
- 	    /* We just tried to mprotect the top hole page and failed.
-@@ -110,7 +116,10 @@
- 	{
- 	  /* Unexpected failure mode.  */
- 	  if (errno != ENOMEM && errno != EFAULT)
--	    return errno;
-+	    if (errno == EACCES) /* PaX */
-+		return 0;
-+	    else
-+	    	return errno;
- 
- 	  if (size == GLRO(dl_pagesize))
- 	    /* We just tried to mprotect the lowest hole page and failed.
+   return 0;
+ }
