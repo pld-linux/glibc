@@ -6,6 +6,7 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
+%bcond_with	pax		# PaX support
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -35,7 +36,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.6.1
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -76,8 +77,8 @@ Patch24:	%{name}-iconvconfig-nxstack.patch
 Patch25:	%{name}-cross-gcc_eh.patch
 Patch26:	%{name}-with-stroke.patch
 Patch27:	%{name}-sparc64-undefined-registers.patch
-# PaX hack (dropped)
-#Patch30:	%{name}-pax_dl-execstack.patch
+Patch30:	%{name}-pax_dl-execstack.patch
+Patch31:	%{name}-pt_pax.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -855,6 +856,8 @@ ln -s glibc-libidn-%{version} libidn
 %ifarch sparc64
 %patch27 -p1
 %endif
+%{?with_pax:%patch30 -p0}
+%{?with_pax:%patch31 -p0}
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
