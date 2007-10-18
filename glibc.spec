@@ -1,3 +1,5 @@
+# TODO:
+# - see FIXMEs below
 #
 # Conditional build:
 # min_kernel	(default is 2.6.12)
@@ -35,15 +37,15 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.6.1
-Release:	4
+Version:	2.7
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	11cf6d3fc86dbe0890b8d00372eb6286
+# Source0-md5:	065c5952b439deba40083ccd67bcc8f7
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	503f1315afd808728ebaa75b3d87a7d9
+# Source1-md5:	226809992fb1f3dc6ea23e0f26952ea4
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -64,7 +66,7 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
-Patch13:	%{name}-gcc42.patch
+
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -73,7 +75,7 @@ Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_fixes.patch
 Patch23:	%{name}-ZA_collate.patch
-Patch24:	%{name}-iconvconfig-nxstack.patch
+
 Patch25:	%{name}-cross-gcc_eh.patch
 Patch26:	%{name}-with-stroke.patch
 Patch27:	%{name}-sparc64-undefined-registers.patch
@@ -828,7 +830,8 @@ Zabawka.
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
-%patch1 -p1
+# FIXME
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -840,19 +843,23 @@ ln -s glibc-libidn-%{version} libidn
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
+
 %patch14 -p0
 
-%patch17 -p1
+# FIXME
+#%patch17 -p1
 
 %patch20 -p1
 # needs update
-%patch21 -p1
-%patch22 -p1
+# FIXME
+#%patch21 -p1
+# FIXME after fixing above
+#%patch22 -p1
 %patch23 -p1
-%patch24 -p1
+
 %{?with_cross:%patch25 -p1}
-%patch26 -p1
+# FIXME
+#%patch26 -p1
 %ifarch sparc64
 %patch27 -p1
 %endif
