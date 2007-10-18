@@ -1,14 +1,14 @@
 diff -urN glibc-2.1.91.orig/crypt/Makefile glibc-2.1.91/crypt/Makefile
 --- glibc-2.1.91.orig/crypt/Makefile	Wed Jun 14 05:49:02 2000
 +++ glibc-2.1.91/crypt/Makefile	Sat Jul 15 00:58:39 2000
-@@ -28,7 +28,7 @@
- extra-libs := libcrypt
+@@ -27,7 +27,7 @@
  extra-libs-others := $(extra-libs)
  
--libcrypt-routines := crypt-entry md5-crypt md5 crypt crypt_util
-+libcrypt-routines := crypt-entry md5-crypt md5 arc4random bcrypt blowfish crypt crypt_util
+ libcrypt-routines := crypt-entry md5-crypt md5 sha256-crypt sha256 \
+-		     sha512-crypt sha512 crypt crypt_util
++		     sha512-crypt sha512 arc4random bcrypt blowfish crypt crypt_util
  
- tests = cert md5test md5c-test
+ tests := cert md5test md5c-test sha256test sha256c-test sha512test sha512c-test
  
 diff -urN glibc-2.1.91.orig/crypt/arc4random.c glibc-2.1.91/crypt/arc4random.c
 --- glibc-2.1.91.orig/crypt/arc4random.c	Thu Jan  1 01:00:00 1970
@@ -1447,10 +1447,10 @@ diff -urN glibc-2.1.91.orig/crypt/crypt-entry.c glibc-2.1.91/crypt/crypt-entry.c
  
  /* For use by the old, non-reentrant routines (crypt/encrypt/setkey)  */
  extern struct crypt_data _ufc_foobar;
-@@ -84,6 +87,10 @@
-   if (strncmp (md5_salt_prefix, salt, sizeof (md5_salt_prefix) - 1) == 0)
-     return __md5_crypt_r (key, salt, (char *) data,
- 			  sizeof (struct crypt_data));
+@@ -109,6 +109,10 @@
+   if (strncmp (sha512_salt_prefix, salt, sizeof (sha512_salt_prefix) - 1) == 0)
+     return __sha512_crypt_r (key, salt, (char *) data,
+ 			     sizeof (struct crypt_data));
 +
 +  /* Try to find out whether we have to use Blowfish encryption replacement.  */
 +  if (strncmp (blowfish_salt_prefix, salt, sizeof (blowfish_salt_prefix) - 1) == 0)
@@ -1458,12 +1458,14 @@ diff -urN glibc-2.1.91.orig/crypt/crypt-entry.c glibc-2.1.91/crypt/crypt-entry.c
  #endif
  
    /*
-@@ -126,6 +133,8 @@
-   /* Try to find out whether we have to use MD5 encryption replacement.  */
-   if (strncmp (md5_salt_prefix, salt, sizeof (md5_salt_prefix) - 1) == 0)
-     return __md5_crypt (key, salt);
+@@ -159,6 +163,9 @@
+   /* Try to find out whether we have to use SHA512 encryption replacement.  */
+   if (strncmp (sha512_salt_prefix, salt, sizeof (sha512_salt_prefix) - 1) == 0)
+     return __sha512_crypt (key, salt);
++
 +  if (strncmp (blowfish_salt_prefix, salt, sizeof (blowfish_salt_prefix) - 1) == 0)
 +    return bcrypt (key, salt);
  #endif
  
    return __crypt_r (key, salt, &_ufc_foobar);
+

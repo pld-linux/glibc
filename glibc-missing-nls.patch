@@ -95,15 +95,6 @@
  
  #: argp/argp-parse.c:167
  msgid "Print program version"
-@@ -98,7 +102,7 @@
- msgid "%s%s%s:%u: %s%sAssertion `%s' failed.\n"
- msgstr "%s%s%s:%u: %s%sWarunek zapewnienia `%s' nie zosta³ spe³niony.\n"
- 
--#: catgets/gencat.c:109 catgets/gencat.c:113 nscd/nscd.c:96 nss/makedb.c:61
-+#: argp/argp-parse.c:104 catgets/gencat.c:109 catgets/gencat.c:113 nscd/nscd.c:96 nss/makedb.c:61
- msgid "NAME"
- msgstr "NAZWA"
- 
 @@ -4788,6 +4792,102 @@
  msgid "\t%s [-n netid]* [-o outfile] [infile]\n"
  msgstr "\t%s [-n id_sieci]* [-o plik_wy] [plik_we]\n"
