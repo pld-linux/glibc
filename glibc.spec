@@ -66,7 +66,7 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
-
+Patch13:	%{name}-awk.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -843,7 +843,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-
+%patch13 -p0
 %patch14 -p0
 
 # FIXME
