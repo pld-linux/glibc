@@ -3782,3 +3782,262 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  order_start <HAN>;forward;forward;forward;forward,position
  <U5416> <U5416>;IGNORE;IGNORE;IGNORE	#吖104
  <U814C> <U814C>;IGNORE;IGNORE;IGNORE	#腌185
+--- glibc-2.7/localedata/locales/fur_IT.orig	2007-10-22 22:01:37.000000000 +0200
++++ glibc-2.7/localedata/locales/fur_IT	2007-10-22 22:01:37.000000000 +0200
+@@ -128,9 +128,26 @@
+ END LC_MEASUREMENT
+ 
+ LC_NAME
++% FIXME!
+ copy  "it_IT"
+ END LC_NAME
+ 
+ LC_ADDRESS
+-copy  "it_IT"
++postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
++<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
++<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
++<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
++<U004E><U0025><U0063><U0025><U004E>"
++% FIXME! Italy in Friulian
++%country_name  "<U0049><U0074><U0061><U006B><U0069><U0061>"
++country_ab2  "<U0049><U0054>"
++country_ab3  "<U0049><U0054><U0041>"
++country_num  380
++country_car  "<U0049>"
++country_isbn "<U0038><U0038>"
++% FIXME! Friulian in Friulian
++%lang_name    "<U0049><U0074><U0061><U006B><U0069><U0061><U006E><U006F>"
++lang_ab      ""
++lang_term    "<U0066><U0075><U0072>"
++lang_lib     "<U0066><U0075><U0072>"
+ END LC_ADDRESS
+--- glibc-2.7/localedata/locales/fy_DE.orig	2007-10-22 22:25:27.000000000 +0200
++++ glibc-2.7/localedata/locales/fy_DE	2007-10-22 22:25:27.000000000 +0200
+@@ -11,8 +11,8 @@
+ email "kenneth@gnu.org, pablo@mandriva.com"
+ tel ""
+ % Fax
+-language "fy"
+-territory "DE"
++language "Frisian"
++territory "Germany"
+ revision "0.1"
+ date "2003-11-30"
+ 
+@@ -48,11 +48,11 @@
+ country_car   "<U0044>"
+ country_num 276
+ country_isbn "3"
+-% FIXME country_name in Low Saxon ?
++% FIXME country_name/lang_name in Frisian ?
+ lang_name "Frisian"
+ lang_ab "fy"
+-% FIXME lang_term for Low Saxon ?
+-% FIXME lang_lib for Low Saxon ?
++lang_term     "fry"
++lang_lib      "fry"
+ END LC_ADDRESS
+ 
+ LC_COLLATE
+@@ -64,8 +64,8 @@
+ END LC_CTYPE
+ 
+ LC_MESSAGES
+-yesexpr "<U005E><U005B><U006A><U004A><U0079><U0059><U005D><U002E><U002A>"
+-noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++yesexpr "<U005E><U005B><U006A><U004A><U0079><U0059><U005D>"
++noexpr  "<U005E><U005B><U006E><U004E><U005D>"
+ END LC_MESSAGES
+ 
+ LC_MONETARY
+--- glibc-2.7/localedata/locales/ik_CA.orig	2007-10-22 22:32:15.000000000 +0200
++++ glibc-2.7/localedata/locales/ik_CA	2007-10-22 22:32:15.000000000 +0200
+@@ -203,8 +203,8 @@
+ LC_MESSAGES
+ yesstr      "<U0061><U0061>"
+ nostr       "<U0071><U0061><U00F1><U0061><U0061>"
+-yesexpr     "<U005B><U0079><U0059><U0069><U0049><U0061><U0041><U005D><U002E><U002A>"
+-noexpr      "<U005B><U006E><U004E><U0071><U0051><U005D><U002E><U002A>"
++yesexpr     "<U005E><U005B><U0079><U0059><U0061><U0041><U005D>"
++noexpr      "<U005E><U005B><U006E><U004E><U0071><U0051><U005D>"
+ END LC_MESSAGES
+ 
+ % Default paper: A4
+@@ -224,7 +224,21 @@
+ END LC_NAME
+ 
+ LC_ADDRESS
+-% FIXME
+-copy "en_CA"
++postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
++<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
++<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
++<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
++<U004E><U0025><U0063><U0025><U004E>"
++% FIXME Canada in Inupiaq
++country_name "<U0043><U0061><U006E><U0061><U0064><U0061>"
++country_ab2  "<U0043><U0041>"
++country_ab3  "<U0043><U0041><U004E>"
++country_num  124
++country_car  "<U0043><U0044><U004E>"
++country_isbn "<U0030>"
++% FIXME: Inupiaq in Inupiaq
++%lang_name    "<U0045><U006E><U0067><U006C><U0069><U0073><U0068>"
++lang_ab      "<U0069><U006B>"
++lang_term    "<U0069><U0070><U006B>"
++lang_lib     "<U0069><U0070><U006B>"
+ END LC_ADDRESS
+-
+--- glibc-2.7/localedata/locales/iu_CA.orig	2007-10-22 22:41:48.000000000 +0200
++++ glibc-2.7/localedata/locales/iu_CA	2007-10-22 22:41:48.000000000 +0200
+@@ -41,12 +41,12 @@
+ country_ab2 "<U0043><U0041>"
+ country_ab3 "<U0043><U0041><U004E>"
+ country_num 124
+-country_car "<U0043><U0041><U004E>" % FIXME
++country_car "<U0043><U0044><U004E>" % FIXME
+ % FIXME country_isbn for Canada/inuktitut ?
+ lang_name "<U1403><U14C4><U1483><U144E><U1450><U1466>"
+ lang_ab "iu"
+-% FIXME lang_term 
+-% FIXME lang_lib 
++lang_term "iku"
++lang_lib "iku"
+ END LC_ADDRESS
+ 
+ %%%%%%%%%%%%%
+--- glibc-2.7/localedata/locales/li_NL.orig	2007-10-22 22:55:04.000000000 +0200
++++ glibc-2.7/localedata/locales/li_NL	2007-10-22 22:55:04.000000000 +0200
+@@ -10,8 +10,8 @@
+ email "kenneth@gnu.org, pablo@mandriva.com"
+ tel ""
+ % Fax
+-language "li"
+-territory "NL"
++language "Limburgish"
++territory "Netherlands"
+ revision "0.1"
+ date "2003-11-30"
+ 
+--- glibc-2.7/localedata/locales/nds_DE.orig	2007-10-22 23:00:03.000000000 +0200
++++ glibc-2.7/localedata/locales/nds_DE	2007-10-22 23:00:03.000000000 +0200
+@@ -10,8 +10,8 @@
+ email "kenneth@gnu.org, pablo@mandrakesoft.com"
+ tel ""
+ % Fax
+-language "nds"
+-territory "DE"
++language "Low Saxon"
++territory "Germany"
+ revision "0.1"
+ date "2003-11-30"
+ 
+@@ -48,7 +48,7 @@
+ country_num 276
+ country_isbn "3"
+ lang_name "<U004E><U0065><U0064><U0064><U0065><U0072><U0073><U0061><U0073><U0073><U0069><U0073><U0063><U0068>"
+-%lang_ab
++lang_ab ""
+ lang_term "<U006E><U0064><U0073>"
+ lang_lib "<U006E><U0064><U0073>"
+ END LC_ADDRESS
+--- glibc-2.7/localedata/locales/li_NL.orig	2007-10-22 22:55:04.000000000 +0200
++++ glibc-2.7/localedata/locales/li_NL	2007-10-22 22:55:04.000000000 +0200
+@@ -10,8 +10,8 @@
+ email "kenneth@gnu.org, pablo@mandriva.com"
+ tel ""
+ % Fax
+-language "li"
+-territory "NL"
++language "Limburgish"
++territory "Netherlands"
+ revision "0.1"
+ date "2003-11-30"
+ 
+--- glibc-2.7/localedata/locales/pap_AN.orig	2007-10-22 23:07:20.000000000 +0200
++++ glibc-2.7/localedata/locales/pap_AN	2007-10-22 23:07:20.000000000 +0200
+@@ -10,8 +10,8 @@
+ email "pablo@mandrakesoft.com"
+ tel ""
+ fax ""
+-language "pap"
+-territory "AN"
++language "Papiamento"
++territory "Antilles"
+ revision "0.2"
+ date "2000-11-15"
+ 
+@@ -44,7 +44,7 @@
+ country_num 530
+ country_isbn "99904"
+ country_car "<U004E><U0041>"
+-% lang_ab
++lang_ab ""
+ lang_term "<U0070><U0061><U0070>"
+ lang_lib "<U0070><U0061><U0070>"
+ END LC_ADDRESS
+--- glibc-2.7/localedata/locales/sa_IN.orig	2007-10-22 23:16:20.000000000 +0200
++++ glibc-2.7/localedata/locales/sa_IN	2007-10-22 23:16:20.000000000 +0200
+@@ -231,10 +231,15 @@
+ % LC_ADDRESS
+ postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
+ <U0025><U0062><U0025><U0065><U0025><U0072>"
+-
+-country_ab2 "<U0049><U004E>"
+-country_ab3 "<U0049><U004E><U0044>"
+-country_num 356
+++country_name "<U092D><U093E><U0930><U0924><U092E><U094D>"
+++country_ab2  "<U0049><U004E>"
+++country_ab3  "<U0049><U004E><U0044>"
+++country_num  356
+++country_car  "<U0049><U004E><U0044>"
+++lang_name    "<U0938><U0902><U0938><U094D><U0915><U0943><U0924>"
+++lang_ab      "<U0073><U0061>"
+++lang_term    "<U0073><U0061><U006E>"
+++lang_lib     "<U0073><U0061><U006E>"
+ END LC_ADDRESS
+ 
+ 
+--- glibc-2.7/localedata/locales/tk_TM.orig	2007-10-22 23:29:29.000000000 +0200
++++ glibc-2.7/localedata/locales/tk_TM	2007-10-22 23:29:29.000000000 +0200
+@@ -396,7 +396,7 @@
+ yesstr  "<U0068><U0061><U0077><U0061>" % hawa
+ nostr   "<U00FD><U006F><U006B>"        % ýok
+ yesexpr "<U005E><U005B><U0068><U0048>/
+-<U005D><U002E><U002A>"                 % [hH]
++<U0079><U0059><U005D><U002E><U002A>"   % [hHyY]
+ noexpr  "<U005E><U005B><U00FD><U00DD>/
+ <U006E><U004E><U005D><U002E><U002A>"   % [ýÝnN]
+ END LC_MESSAGES
+--- glibc-2.7/localedata/locales/wo_SN.orig	2007-10-22 23:40:41.000000000 +0200
++++ glibc-2.7/localedata/locales/wo_SN	2007-10-22 23:40:41.000000000 +0200
+@@ -62,6 +62,8 @@
+ LC_MESSAGES
+ % Yes=Waaw
+ % No=D�et
++yesstr  "waaw"
++nostr   "d�et"
+ yesexpr "<U005E><U005B><U0077><U0057><U0079><U0059><U005D><U002E><U002A>"
+ noexpr  "<U005E><U005B><U0064><U0044><U006E><U004E><U005D><U002E><U002A>"
+ END LC_MESSAGES
+@@ -173,8 +175,15 @@
+ <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+ <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
+ <U004E><U0025><U0063><U0025><U004E>"
+-country_ab2 "<U004D><U0047>"
+-country_ab3 "<U004D><U0044><U0047>"
+-country_num 450
++% FIXME: Senegal in Wolof
++%country_name ""
++country_ab2 "<U0053><U004E>"
++country_ab3 "<U0053><U0045><U004E>"
++country_num 686
+++country_car "<U0053><U004E>"
++% FIXME: Wolof in Wolof
++%lang_name  ""
++lang_ab     "<U0077><U006F>"
++lang_term   "<U0077><U006F><U006C>"
++lang_lib    "<U0077><U006F><U006C>"
+ END LC_ADDRESS
+-
