@@ -3125,17 +3125,6 @@ diff -uNr libc.orig/localedata/locales/sq_AL libc/localedata/locales/sq_AL
  END LC_ADDRESS
  
  
-diff -uNr libc.orig/localedata/locales/sr_CS libc/localedata/locales/sr_CS
---- libc.orig/localedata/locales/sr_CS	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/sr_CS	2004-11-10 02:36:38.000000000 +0100
-@@ -328,7 +328,6 @@
- <U0020><U0426><U0440><U043D><U0430><U0020><U0413><U043E><U0440><U0430>"
- country_num   891
- country_car   "<U0053><U0043><U0047>"
--% FIXME: ISBN code is what? "86" that preceedes all the numbers?
- country_isbn  "<U0038><U0036>"
- lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
- lang_term     "<U0073><U0072><U0070>"
 --- glibc-2.5/localedata/locales/ss_ZA.orig	2006-07-31 00:19:43.000000000 +0200
 +++ glibc-2.5/localedata/locales/ss_ZA	2006-10-05 14:29:58.935971000 +0200
 @@ -174,10 +174,12 @@
@@ -3942,19 +3931,6 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  lang_term "<U006E><U0064><U0073>"
  lang_lib "<U006E><U0064><U0073>"
  END LC_ADDRESS
---- glibc-2.7/localedata/locales/li_NL.orig	2007-10-22 22:55:04.000000000 +0200
-+++ glibc-2.7/localedata/locales/li_NL	2007-10-22 22:55:04.000000000 +0200
-@@ -10,8 +10,8 @@
- email "kenneth@gnu.org, pablo@mandriva.com"
- tel ""
- % Fax
--language "li"
--territory "NL"
-+language "Limburgish"
-+territory "Netherlands"
- revision "0.1"
- date "2003-11-30"
- 
 --- glibc-2.7/localedata/locales/pap_AN.orig	2007-10-22 23:07:20.000000000 +0200
 +++ glibc-2.7/localedata/locales/pap_AN	2007-10-22 23:07:20.000000000 +0200
 @@ -10,8 +10,8 @@
