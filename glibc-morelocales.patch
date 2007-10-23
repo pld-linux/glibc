@@ -33,100 +33,6 @@ diff -urN glibc-2.6.org/intl/locale.alias glibc-2.6/intl/locale.alias
  swedish         sv_SE.ISO-8859-1
  thai		th_TH.TIS-620
  turkish         tr_TR.ISO-8859-9
-diff -urN glibc-2.6.org/localedata/locales/ast_ES@euro glibc-2.6/localedata/locales/ast_ES@euro
---- glibc-2.6.org/localedata/locales/ast_ES@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/ast_ES@euro	2007-05-18 12:14:53.723180198 +0200
-@@ -0,0 +1,90 @@
-+comment_char %
-+escape_char  /
-+%
-+% Asturian Language Locale for Spain
-+% Source:
-+% Address:
-+% Contact: Jordi Mallach
-+% Email: jordi@gnu.org
-+% Language: ast
-+% Territory: ES
-+% Option: euro
-+% Revision: 1.0
-+% Date: 2005-08-26
-+% Application: general
-+% Users: general
-+% Charset: ISO-8859-15
-+%
-+% This file is under the
-+% GNU General Public License.
-+% Based in the an_ES Locale
-+
-+LC_IDENTIFICATION
-+title      "Asturian locale for Spain"
-+source     ""
-+address    ""
-+contact    "Jordi Mallach"
-+email      "jordi@gnu.org"
-+tel        ""
-+fax        ""
-+language   "Asturian"
-+territory  "Spain"
-+revision   "1.0"
-+date       "2005-08-26"
-+%
-+category  "ast_ES:2000";LC_IDENTIFICATION
-+category  "ast_ES:2000";LC_CTYPE
-+category  "ast_ES:2000";LC_COLLATE
-+category  "ast_ES:2000";LC_TIME
-+category  "ast_ES:2000";LC_NUMERIC
-+category  "ast_ES:2000";LC_MONETARY
-+category  "ast_ES:2000";LC_MESSAGES
-+category  "ast_ES:2000";LC_PAPER
-+category  "ast_ES:2000";LC_NAME
-+category  "ast_ES:2000";LC_ADDRESS
-+category  "ast_ES:2000";LC_TELEPHONE
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "ast_ES"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "ast_ES"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+copy "ast_ES"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "ast_ES"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "ast_ES"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "ast_ES"
-+END LC_TIME
-+
-+LC_PAPER
-+copy "ast_ES"
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+copy "ast_ES"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "ast_ES"
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+copy "ast_ES"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "ast_ES"
-+END LC_ADDRESS
 diff -urN glibc-2.6.org/localedata/locales/be_BY@alternative glibc-2.6/localedata/locales/be_BY@alternative
 --- glibc-2.6.org/localedata/locales/be_BY@alternative	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/be_BY@alternative	2007-05-18 12:14:53.723180198 +0200
@@ -679,184 +585,6 @@ diff -urN glibc-2.6.org/localedata/locales/eu_FR@euro glibc-2.6/localedata/local
 +LC_ADDRESS
 +copy "eu_FR"
 +END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/fur_IT@euro glibc-2.6/localedata/locales/fur_IT@euro
---- glibc-2.6.org/localedata/locales/fur_IT@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/fur_IT@euro	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,88 @@
-+comment_char %
-+escape_char  /
-+%
-+% Friulian Language Locale for Italy
-+% Language: fur
-+% Territory: IT
-+% Option: euro
-+% Revision: 0.3
-+% Date: 2004-04-26
-+% Users: general
-+% Repertoiremap: mnemonic.ds
-+% Charset: ISO-8859-15
-+% Distribution and use is free, also
-+% for commercial purposes.
-+%
-+% This file is under the
-+% GNU General Public License.
-+% Based in the an_ES Locale
-+
-+LC_IDENTIFICATION
-+title      "Friulian locale for Italy"
-+source     ""
-+address    ""
-+contact    "Pablo Saratxaga"
-+email      "pablo@mandrakesoft.com"
-+tel        ""
-+fax        ""
-+language   "Friulian"
-+territory  "Italy"
-+revision   "0.3"
-+date       "2004-04-26"
-+%
-+category  "fur_IT:2000";LC_IDENTIFICATION
-+category  "fur_IT:2000";LC_CTYPE
-+category  "fur_IT:2000";LC_COLLATE
-+category  "fur_IT:2000";LC_TIME
-+category  "fur_IT:2000";LC_NUMERIC
-+category  "fur_IT:2000";LC_MONETARY
-+category  "fur_IT:2000";LC_MESSAGES
-+category  "fur_IT:2000";LC_PAPER
-+category  "fur_IT:2000";LC_NAME
-+category  "fur_IT:2000";LC_ADDRESS
-+category  "fur_IT:2000";LC_TELEPHONE
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "fur_IT"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "fur_IT"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+copy "fur_IT"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "fur_IT"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "fur_IT"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "fur_IT"
-+END LC_TIME
-+
-+LC_PAPER
-+copy "fur_IT"
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+copy "fur_IT"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "fur_IT"
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+copy "fur_IT"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "fur_IT"
-+END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/fy_DE@euro glibc-2.6/localedata/locales/fy_DE@euro
---- glibc-2.6.org/localedata/locales/fy_DE@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/fy_DE@euro	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,82 @@
-+comment_char %
-+escape_char  /
-+% repertoiremap mnemonic.ds
-+% charset "ISO_8859-15"
-+% Distribution and use is
-+
-+LC_IDENTIFICATION 
-+title "Sater Frisian and North Frisian Locale for Germany"
-+source "information from Kenneth Christiansen"
-+address ""
-+contact "Kenneth Christiansen, Pablo Saratxaga"
-+email "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel ""
-+% Fax
-+language "Frisian"
-+territory "Germany"
-+revision "0.1"
-+date "2003-11-30"
-+
-+category "i18n:2000";LC_IDENTIFICATION
-+category "i18n:2000";LC_COLLATE
-+category "i18n:2000";LC_CTYPE
-+category "i18n:2000";LC_MESSAGES
-+category "i18n:2000";LC_MONETARY
-+category "i18n:2000";LC_NUMERIC
-+category "i18n:2000";LC_TIME
-+category "i18n:2000";LC_PAPER
-+category "i18n:2000";LC_NAME
-+category "i18n:2000";LC_MEASUREMENT
-+category "i18n:2000";LC_TELEPHONE
-+category "i18n:2000";LC_ADDRESS
-+
-+% ISO/IEC 14652: Converted comments to LC_IDENTIFICATION
-+%  added LC_PAPER, LC_MEASUREMENT, LC_TELEPHONE, LC_ADDRESS
-+%  copied LC_MONETARY, LC_NUMERIC from de_DE for simplicity
-+% -- mckinstry@computer.org, 2000-07-03
-+
-+END LC_IDENTIFICATION
-+
-+LC_ADDRESS
-+copy "fy_DE"
-+END LC_ADDRESS
-+
-+LC_COLLATE
-+copy "iso14651_t1"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "fy_DE"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+copy "fy_DE"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "fy_DE"
-+END LC_MONETARY
-+
-+LC_PAPER
-+copy "fy_DE"
-+END LC_PAPER
-+
-+LC_NAME
-+copy "fy_DE"
-+END LC_NAME
-+
-+LC_TELEPHONE
-+copy "fy_DE"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "fy_DE"
-+END LC_MEASUREMENT
-+
-+LC_NUMERIC
-+copy "fy_DE"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "fy_DE"
-+END LC_TIME
 diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 --- glibc-2.6.org/localedata/locales/ia	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/ia	2007-05-18 12:14:53.726513832 +0200
@@ -1000,246 +728,6 @@ diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 +<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
 +<U004E><U0025><U0063><U0025><U004E>"
 +END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/li_BE@euro glibc-2.6/localedata/locales/li_BE@euro
---- glibc-2.6.org/localedata/locales/li_BE@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/li_BE@euro	2007-05-18 12:14:53.729847465 +0200
-@@ -0,0 +1,76 @@
-+escape_char /
-+comment_char %
-+
-+LC_IDENTIFICATION
-+title      "Limburgish locale for Belgium with Euro"
-+source     "information from Kenneth Christiansen"
-+address    ""
-+contact    "Kenneth Christiansen, Pablo Saratxaga"
-+email      "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel        ""
-+fax        ""
-+language   "Limburgish"
-+territory  "Belgium"
-+revision   "0.1"
-+date       "2003-11-30"
-+%
-+category  "i18n:2000";LC_IDENTIFICATION
-+category  "i18n:2000";LC_CTYPE
-+category  "i18n:2000";LC_COLLATE
-+category  "i18n:2000";LC_TIME
-+category  "i18n:2000";LC_NUMERIC
-+category  "i18n:2000";LC_MONETARY
-+category  "i18n:2000";LC_MESSAGES
-+category  "i18n:2000";LC_PAPER
-+category  "i18n:2000";LC_NAME
-+category  "i18n:2000";LC_ADDRESS
-+category  "i18n:2000";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_CTYPE
-+copy "li_BE"
-+END LC_CTYPE
-+
-+LC_COLLATE
-+
-+% Copy the template from ISO/IEC 14651
-+copy "iso14651_t1"
-+
-+END LC_COLLATE
-+
-+LC_MONETARY
-+copy "li_BE"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "li_BE"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "li_BE"
-+END LC_TIME
-+
-+LC_MESSAGES
-+copy "li_BE"
-+END LC_MESSAGES
-+
-+LC_PAPER
-+copy "li_BE"
-+END LC_PAPER
-+
-+LC_NAME
-+copy "li_BE"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "li_BE"
-+END LC_ADDRESS
-+
-+LC_TELEPHONE
-+copy "li_BE"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "li_BE"
-+END LC_MEASUREMENT
-diff -urN glibc-2.6.org/localedata/locales/li_NL@euro glibc-2.6/localedata/locales/li_NL@euro
---- glibc-2.6.org/localedata/locales/li_NL@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/li_NL@euro	2007-05-18 12:14:53.729847465 +0200
-@@ -0,0 +1,76 @@
-+escape_char /
-+comment_char %
-+
-+LC_IDENTIFICATION
-+title      "Limburgish locale for Germany with Euro"
-+source     "information from Kenneth Christiansen"
-+address    ""
-+contact    "Kenneth Christiansen, Pablo Saratxaga"
-+email      "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel        ""
-+fax        ""
-+language   "Limburgish"
-+territory  "Netherlands"
-+revision   "0.1"
-+date       "2003-11-30"
-+%
-+category  "i18n:2000";LC_IDENTIFICATION
-+category  "i18n:2000";LC_CTYPE
-+category  "i18n:2000";LC_COLLATE
-+category  "i18n:2000";LC_TIME
-+category  "i18n:2000";LC_NUMERIC
-+category  "i18n:2000";LC_MONETARY
-+category  "i18n:2000";LC_MESSAGES
-+category  "i18n:2000";LC_PAPER
-+category  "i18n:2000";LC_NAME
-+category  "i18n:2000";LC_ADDRESS
-+category  "i18n:2000";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_CTYPE
-+copy "li_NL"
-+END LC_CTYPE
-+
-+LC_COLLATE
-+
-+% Copy the template from ISO/IEC 14651
-+copy "iso14651_t1"
-+
-+END LC_COLLATE
-+
-+LC_MONETARY
-+copy "li_NL"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "li_NL"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "li_NL"
-+END LC_TIME
-+
-+LC_MESSAGES
-+copy "li_NL"
-+END LC_MESSAGES
-+
-+LC_PAPER
-+copy "li_NL"
-+END LC_PAPER
-+
-+LC_NAME
-+copy "li_NL"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "li_NL"
-+END LC_ADDRESS
-+
-+LC_TELEPHONE
-+copy "li_NL"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "li_NL"
-+END LC_MEASUREMENT
-diff -urN glibc-2.6.org/localedata/locales/nds_DE@euro glibc-2.6/localedata/locales/nds_DE@euro
---- glibc-2.6.org/localedata/locales/nds_DE@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/nds_DE@euro	2007-05-18 12:14:53.729847465 +0200
-@@ -0,0 +1,76 @@
-+escape_char /
-+comment_char %
-+
-+LC_IDENTIFICATION
-+title      "Low(lands) Saxon Language Locale for Germany with Euro"
-+source     "information from Kenneth Christiansen"
-+address    ""
-+contact    "Kenneth Christiansen, Pablo Saratxaga"
-+email      "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel        ""
-+fax        ""
-+language   "Low Saxon"
-+territory  "Germany"
-+revision   "0.1"
-+date       "2003-11-30"
-+%
-+category  "i18n:2000";LC_IDENTIFICATION
-+category  "i18n:2000";LC_CTYPE
-+category  "i18n:2000";LC_COLLATE
-+category  "i18n:2000";LC_TIME
-+category  "i18n:2000";LC_NUMERIC
-+category  "i18n:2000";LC_MONETARY
-+category  "i18n:2000";LC_MESSAGES
-+category  "i18n:2000";LC_PAPER
-+category  "i18n:2000";LC_NAME
-+category  "i18n:2000";LC_ADDRESS
-+category  "i18n:2000";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_CTYPE
-+copy "nds_DE"
-+END LC_CTYPE
-+
-+LC_COLLATE
-+
-+% Copy the template from ISO/IEC 14651
-+copy "iso14651_t1"
-+
-+END LC_COLLATE
-+
-+LC_MONETARY
-+copy "nds_DE"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "nds_DE"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "nds_DE"
-+END LC_TIME
-+
-+LC_MESSAGES
-+copy "nds_DE"
-+END LC_MESSAGES
-+
-+LC_PAPER
-+copy "nds_DE"
-+END LC_PAPER
-+
-+LC_NAME
-+copy "nds_DE"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "nds_DE"
-+END LC_ADDRESS
-+
-+LC_TELEPHONE
-+copy "nds_DE"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "nds_DE"
-+END LC_MEASUREMENT
 diff -urN glibc-2.6.org/localedata/locales/nds_DE@traditional glibc-2.6/localedata/locales/nds_DE@traditional
 --- glibc-2.6.org/localedata/locales/nds_DE@traditional	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/nds_DE@traditional	2007-05-18 12:14:53.729847465 +0200
@@ -1643,97 +1131,6 @@ diff -urN glibc-2.6.org/localedata/locales/rm_CH glibc-2.6/localedata/locales/rm
 +lang_ab      "<U0072><U006D>"  % Two-letter code for language (ISO 639).
 +lang_term    "<U0072><U006F><U0068>" % Three-letter code for language (ISO 639-2).
 +lang_lib     "<U0072><U006F><U0068>" % Three-letter code for language (ISO 639-2).
-+END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/sc_IT@euro glibc-2.6/localedata/locales/sc_IT@euro
---- glibc-2.6.org/localedata/locales/sc_IT@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/sc_IT@euro	2007-05-18 12:14:53.733181099 +0200
-@@ -0,0 +1,87 @@
-+comment_char %
-+escape_char  /
-+%
-+% Sardinian Locale for Italy
-+% Language: sc
-+% Territory: IT
-+% Option: euro
-+% Revision: 0.1
-+% Date: 2004-05-26
-+% Users: general
-+% Repertoiremap: mnemonic.ds
-+% Charset: ISO-8859-15
-+% Distribution and use is free, also
-+% for commercial purposes.
-+%
-+% This file is under the
-+% GNU General Public License.
-+
-+LC_IDENTIFICATION
-+title      "Sardinian locale for Italy"
-+source     ""
-+address    ""
-+contact    "Pablo Saratxaga"
-+email      "pablo@mandrakesoft.com"
-+tel        ""
-+fax        ""
-+language   "Sardinian"
-+territory  "Italy"
-+revision   "0.1"
-+date       "2004-05-26"
-+%
-+category  "sc_IT:2000";LC_IDENTIFICATION
-+category  "sc_IT:2000";LC_CTYPE
-+category  "sc_IT:2000";LC_COLLATE
-+category  "sc_IT:2000";LC_TIME
-+category  "sc_IT:2000";LC_NUMERIC
-+category  "sc_IT:2000";LC_MONETARY
-+category  "sc_IT:2000";LC_MESSAGES
-+category  "sc_IT:2000";LC_PAPER
-+category  "sc_IT:2000";LC_NAME
-+category  "sc_IT:2000";LC_ADDRESS
-+category  "sc_IT:2000";LC_TELEPHONE
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "sc_IT"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "sc_IT"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+copy "sc_IT"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "sc_IT"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "sc_IT"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "sc_IT"
-+END LC_TIME
-+
-+LC_PAPER
-+copy "sc_IT"
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+copy "sc_IT"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "sc_IT"
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+copy "sc_IT"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "sc_IT"
 +END LC_ADDRESS
 diff -urN glibc-2.6.org/localedata/locales/sw_KE glibc-2.6/localedata/locales/sw_KE
 --- glibc-2.6.org/localedata/locales/sw_KE	1970-01-01 01:00:00.000000000 +0100
@@ -2209,10 +1606,9 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +LC_NAME
 +copy "sw_KE"
 +END LC_NAME
-diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
---- glibc-2.6.org/localedata/SUPPORTED	2007-05-04 22:52:45.000000000 +0200
-+++ glibc-2.6/localedata/SUPPORTED	2007-05-18 12:20:06.509570344 +0200
-@@ -47,12 +47,16 @@
+--- glibc-2.7/localedata/SUPPORTED.orig	2007-10-02 04:22:09.000000000 +0200
++++ glibc-2.7/localedata/SUPPORTED	2007-10-23 21:51:18.152910970 +0200
+@@ -47,12 +47,15 @@
  ar_YE.UTF-8/UTF-8 \
  ar_YE/ISO-8859-6 \
  az_AZ.UTF-8/UTF-8 \
@@ -2220,24 +1616,15 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  as_IN.UTF-8/UTF-8 \
  ast_ES.UTF-8/UTF-8 \
  ast_ES/ISO-8859-15 \
-+ast_ES@euro/ISO-8859-15 \
  be_BY.UTF-8/UTF-8 \
  be_BY/CP1251 \
  be_BY@latin/UTF-8 \
 +be_BY@alternative.UTF-8/UTF-8 \
 +be_BY@alternative/CP1251 \
+ ber_DZ/UTF-8 \
+ ber_MA/UTF-8 \
  bg_BG.UTF-8/UTF-8 \
- bg_BG/CP1251 \
- bn_BD/UTF-8 \
-@@ -115,6 +119,7 @@
- en_IE/ISO-8859-1 \
- en_IE@euro/ISO-8859-15 \
- en_IN/UTF-8 \
-+en_NG/UTF-8 \
- en_NZ.UTF-8/UTF-8 \
- en_NZ/ISO-8859-1 \
- en_PH.UTF-8/UTF-8 \
-@@ -127,6 +132,8 @@
+@@ -130,6 +133,8 @@
  en_ZA/ISO-8859-1 \
  en_ZW.UTF-8/UTF-8 \
  en_ZW/ISO-8859-1 \
@@ -2246,7 +1633,7 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  es_AR.UTF-8/UTF-8 \
  es_AR/ISO-8859-1 \
  es_BO.UTF-8/UTF-8 \
-@@ -174,10 +181,15 @@
+@@ -177,10 +182,14 @@
  eu_ES.UTF-8/UTF-8 \
  eu_ES/ISO-8859-1 \
  eu_ES@euro/ISO-8859-15 \
@@ -2257,28 +1644,27 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  fi_FI.UTF-8/UTF-8 \
  fi_FI/ISO-8859-1 \
  fi_FI@euro/ISO-8859-15 \
-+fil_PH.UTF-8/UTF-8 \
-+fil_PH/ISO-8859-1 \
++fil_PH.ISO-8859-1/ISO-8859-1 \
+ fil_PH/UTF-8 \
  fo_FO.UTF-8/UTF-8 \
  fo_FO/ISO-8859-1 \
- fr_BE.UTF-8/UTF-8 \
-@@ -193,6 +205,14 @@
+@@ -197,8 +206,14 @@
  fr_LU.UTF-8/UTF-8 \
  fr_LU/ISO-8859-1 \
  fr_LU@euro/ISO-8859-15 \
-+fur_IT.UTF-8/UTF-8 \
-+fur_IT/ISO-8859-1 \
-+fur_IT@euro/ISO-8859-15 \
-+fy_DE.UTF-8/UTF-8 \
-+fy_DE/ISO-8859-1 \
-+fy_DE@euro/ISO-8859-15 \
++fur_IT.ISO-8859-1/ISO-8859-1 \
++fur_IT.ISO-8859-15/ISO-8859-15 \
+ fur_IT/UTF-8 \
 +fy_NL.ISO-8859-1/ISO-8859-1 \
 +fy_NL.ISO-8859-15/ISO-8859-15 \
  fy_NL/UTF-8 \
++fy_DE.ISO-8859-1/ISO-8859-1 \
++fy_DE.ISO-8859-15/ISO-8859-15 \
+ fy_DE/UTF-8 \
  ga_IE.UTF-8/UTF-8 \
  ga_IE/ISO-8859-1 \
-@@ -211,17 +231,21 @@
- gv_GB/ISO-8859-1 \
+@@ -218,15 +233,17 @@
+ ha_NG/UTF-8 \
  he_IL.UTF-8/UTF-8 \
  he_IL/ISO-8859-8 \
 +hi_IN.ISCII-DEV/ISCII-DEV \
@@ -2293,27 +1679,22 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
 -hy_AM/UTF-8 \
  hy_AM.ARMSCII-8/ARMSCII-8 \
 +hy_AM/UTF-8 \
-+ia/UTF-8 \
  id_ID.UTF-8/UTF-8 \
  id_ID/ISO-8859-1 \
-+ik_CA/UTF-8 \
- is_IS.UTF-8/UTF-8 \
- is_IS/ISO-8859-1 \
- it_CH.UTF-8/UTF-8 \
-@@ -229,10 +253,10 @@
- it_IT.UTF-8/UTF-8 \
+ ig_NG/UTF-8 \
+@@ -239,10 +256,9 @@
  it_IT/ISO-8859-1 \
  it_IT@euro/ISO-8859-15 \
+ iu_CA/UTF-8 \
 -iw_IL.UTF-8/UTF-8 \
 -iw_IL/ISO-8859-8 \
-+iu_CA/UTF-8 \
  ja_JP.EUC-JP/EUC-JP \
  ja_JP.UTF-8/UTF-8 \
 +ka_GE.GEORGIAN-ACADEMY/GEORGIAN-ACADEMY \
  ka_GE.UTF-8/UTF-8 \
  ka_GE/GEORGIAN-PS \
  kk_KZ.UTF-8/UTF-8 \
-@@ -247,9 +271,17 @@
+@@ -257,11 +273,17 @@
  ku_TR/ISO-8859-9 \
  kw_GB.UTF-8/UTF-8 \
  kw_GB/ISO-8859-1 \
@@ -2321,28 +1702,29 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  ky_KG/UTF-8 \
  lg_UG.UTF-8/UTF-8 \
  lg_UG/ISO-8859-10 \
-+li_BE.UTF-8/UTF-8 \
-+li_BE/ISO-8859-1 \
-+li_BE@euro/ISO-8859-15 \
-+li_NL.UTF-8/UTF-8 \
-+li_NL/ISO-8859-1 \
-+li_NL@euro/ISO-8859-15 \
++li_BE.ISO-8859-1/ISO-8859-1 \
++li_BE.ISO-8859-15/ISO-8859-15 \
+ li_BE/UTF-8 \
++li_NL.ISO-8859-1/ISO-8859-1 \
++li_NL.ISO-8859-15/ISO-8859-15 \
+ li_NL/UTF-8 \
 +lo_LA.MULELAO-1/MULELAO-1 \
  lo_LA/UTF-8 \
  lt_LT.UTF-8/UTF-8 \
  lt_LT/ISO-8859-13 \
-@@ -271,6 +303,10 @@
+@@ -283,7 +305,11 @@
  mt_MT/ISO-8859-3 \
  nb_NO.UTF-8/UTF-8 \
  nb_NO/ISO-8859-1 \
-+nds_DE.UTF-8/UTF-8 \
-+nds_DE/ISO-8859-1 \
-+nds_DE@euro/ISO-8859-15 \
-+nds_DE@traditional/ISO-8859-1 \
++nds_DE.ISO-8859-1/ISO-8859-1 \
++nds_DE.ISO-8859-15/ISO-8859-15 \
+ nds_DE/UTF-8 \
++nds_DE.ISO-8859-1@traditional/ISO-8859-1 \
++nds_DE@traditional/UTF-8 \
+ nds_NL/UTF-8 \
  ne_NP/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
- nl_BE/ISO-8859-1 \
-@@ -280,16 +316,23 @@
+@@ -294,17 +320,23 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -2359,14 +1741,14 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  or_IN/UTF-8 \
  pa_IN/UTF-8 \
  pa_PK/UTF-8 \
-+pap_AN.UTF-8/UTF-8 \
-+pap_AN/ISO-8859-1 \
-+pap_AN@euro/ISO-8859-15 \
++pap_AN.ISO-8859-1/ISO-8859-1 \
++pap_AN.ISO-8859-15/ISO-8859-15 \
+ pap_AN/UTF-8 \
 +pl_PL.ISO-8859-16/ISO-8859-16 \
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  pt_BR.UTF-8/UTF-8 \
-@@ -297,6 +340,9 @@
+@@ -312,6 +344,9 @@
  pt_PT.UTF-8/UTF-8 \
  pt_PT/ISO-8859-1 \
  pt_PT@euro/ISO-8859-15 \
@@ -2376,18 +1758,18 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -304,12 +350,18 @@
+@@ -319,7 +354,10 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
 +rw_RW.ISO-8859-1/ISO-8859-1 \
  rw_RW/UTF-8 \
-+sa_IN/UTF-8 \
-+sc_IT.UTF-8/UTF-8 \
-+sc_IT/ISO-8859-1 \
-+sc_IT@euro/ISO-8859-15 \
++sc_IT.ISO-8859-1/ISO-8859-1 \
++sc_IT.ISO-8859-15/ISO-8859-15 \
+ sa_IN/UTF-8 \
+ sc_IT/UTF-8 \
  se_NO/UTF-8 \
- si_LK/UTF-8 \
+@@ -327,6 +365,7 @@
  sid_ET/UTF-8 \
  sk_SK.UTF-8/UTF-8 \
  sk_SK/ISO-8859-2 \
@@ -2395,7 +1777,7 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
  so_DJ.UTF-8/UTF-8 \
-@@ -321,9 +373,13 @@
+@@ -338,9 +377,13 @@
  so_SO/ISO-8859-1 \
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
@@ -2409,7 +1791,7 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  ss_ZA/UTF-8 \
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
-@@ -332,28 +394,43 @@
+@@ -349,10 +392,17 @@
  sv_FI@euro/ISO-8859-15 \
  sv_SE.UTF-8/UTF-8 \
  sv_SE/ISO-8859-1 \
@@ -2427,9 +1809,8 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  th_TH.UTF-8/UTF-8 \
  th_TH/TIS-620 \
  ti_ER/UTF-8 \
- ti_ET/UTF-8 \
- tig_ER/UTF-8 \
-+tk_TM/UTF-8 \
+@@ -361,18 +411,24 @@
+ tk_TM/UTF-8 \
  tl_PH.UTF-8/UTF-8 \
  tl_PH/ISO-8859-1 \
 +tn_ZA.ISO-8859-10/ISO-8859-10 \
@@ -2444,7 +1825,7 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  tt_RU.UTF-8/UTF-8 \
  tt_RU@iqtelif.UTF-8/UTF-8 \
 +tt_RU/TATAR-CYR \
-+ug_CN/UTF-8 \
+ ug_CN/UTF-8 \
  uk_UA.UTF-8/UTF-8 \
  uk_UA/KOI8-U \
 +ur_PK.CP1256/CP1256 \
@@ -2453,17 +1834,11 @@ diff -urN glibc-2.6.org/localedata/SUPPORTED glibc-2.6/localedata/SUPPORTED
  uz_UZ/ISO-8859-1 \
  uz_UZ@cyrillic/UTF-8 \
  ve_ZA/UTF-8 \
-@@ -362,10 +439,13 @@
+@@ -381,6 +437,7 @@
  wa_BE/ISO-8859-1 \
  wa_BE@euro/ISO-8859-15 \
  wa_BE.UTF-8/UTF-8 \
 +wal_ET/UTF-8 \
-+wo_SN/UTF-8 \
+ wo_SN/UTF-8 \
  xh_ZA.UTF-8/UTF-8 \
  xh_ZA/ISO-8859-1 \
- yi_US.UTF-8/UTF-8 \
- yi_US/CP1255 \
-+yo_NG/UTF-8 \
- zh_CN.GB18030/GB18030 \
- zh_CN.GBK/GBK \
- zh_CN.UTF-8/UTF-8 \
