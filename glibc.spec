@@ -66,7 +66,7 @@ Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-includes.patch
 Patch13:	%{name}-awk.patch
 Patch14:	%{name}-sparc-errno_fix.patch
-
+Patch15:	%{name}-memmove.patch
 Patch17:	%{name}-new-charsets.patch
 
 Patch20:	%{name}-tzfile-noassert.patch
@@ -842,6 +842,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch12 -p1
 %patch13 -p0
 %patch14 -p0
+%patch15 -p1
 %patch17 -p1
 %patch20 -p1
 %patch21 -p1
