@@ -830,8 +830,7 @@ Zabawka.
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
-# FIXME
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -845,21 +844,13 @@ ln -s glibc-libidn-%{version} libidn
 %patch12 -p1
 %patch13 -p0
 %patch14 -p0
-
-# FIXME
-#%patch17 -p1
-
+%patch17 -p1
 %patch20 -p1
-# needs update
-# FIXME
-#%patch21 -p1
-# FIXME after fixing above
-#%patch22 -p1
+%patch21 -p1
+%patch22 -p1
 %patch23 -p1
-
 %{?with_cross:%patch25 -p1}
-# FIXME
-#%patch26 -p1
+%patch26 -p1
 %ifarch sparc64
 %patch27 -p1
 %endif
