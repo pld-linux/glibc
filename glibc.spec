@@ -76,7 +76,6 @@ Patch23:	%{name}-ZA_collate.patch
 
 Patch25:	%{name}-cross-gcc_eh.patch
 Patch26:	%{name}-with-stroke.patch
-Patch27:	%{name}-sparc64-undefined-registers.patch
 Patch30:	%{name}-pax_dl-execstack.patch
 Patch31:	%{name}-pt_pax.patch
 Patch32:	%{name}-tzfile_read.patch
@@ -851,9 +850,6 @@ ln -s glibc-libidn-%{version} libidn
 %patch23 -p1
 %{?with_cross:%patch25 -p1}
 %patch26 -p1
-%ifarch sparc64
-%patch27 -p1
-%endif
 %{?with_pax:%patch30 -p0}
 %{?with_pax:%patch31 -p0}
 %patch32 -p1
