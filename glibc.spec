@@ -36,7 +36,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -79,6 +79,7 @@ Patch26:	%{name}-with-stroke.patch
 Patch27:	%{name}-sparc64-undefined-registers.patch
 Patch30:	%{name}-pax_dl-execstack.patch
 Patch31:	%{name}-pt_pax.patch
+Patch32:	%{name}-tzfile_read.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -855,6 +856,7 @@ ln -s glibc-libidn-%{version} libidn
 %endif
 %{?with_pax:%patch30 -p0}
 %{?with_pax:%patch31 -p0}
+%patch32 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
