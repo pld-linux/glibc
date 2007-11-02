@@ -6,7 +6,7 @@
  	 In this case there should be only one single type.  */
 -      assert (num_types == 1);
 +      if(__builtin_expect((num_types != 1), 0))
-+	return;
++	goto ret_free_transitions;
 +      /* assert (num_types == 1);  -- disabled, don't crash */
        __tzname[0] = __tzstring (zone_names);
      }
