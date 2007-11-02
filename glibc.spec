@@ -36,7 +36,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -68,6 +68,7 @@ Patch13:	%{name}-awk.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-memmove.patch
 Patch17:	%{name}-new-charsets.patch
+Patch18:	%{name}-i586-build-fix.patch
 
 Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
@@ -844,6 +845,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch14 -p0
 %patch15 -p1
 %patch17 -p1
+%patch18 -p1
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
