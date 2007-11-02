@@ -63,7 +63,7 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
-Patch12:	%{name}-includes.patch
+
 Patch13:	%{name}-awk.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-memmove.patch
@@ -840,7 +840,6 @@ ln -s glibc-libidn-%{version} libidn
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
 %patch13 -p0
 %patch14 -p0
 %patch15 -p1
