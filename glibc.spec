@@ -36,7 +36,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1174,6 +1174,9 @@ fi
 
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
+# not catched by find_lang due to being symlink
+%lang(sr@latin) %{_datadir}/locale/sr@Latn
+
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
