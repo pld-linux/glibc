@@ -36,7 +36,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1102,6 +1102,12 @@ rm -rf $RPM_BUILD_ROOT
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 %endif
+
+%pretrans misc
+if [ ! -L %{_datadir}/locale/sr@Latn -a -d %{_datadir}/locale/sr@latin ]; then
+	mv %{_datadir}/locale/sr@Latn/* %{_datadir}/locale/sr@latin/ > /dev/null 2>&1
+	rmdir %{_datadir}/locale/sr@Latn 2>/dev/null || mv -v %{_datadir}/locale/sr@Latn{,.rpmsave}
+fi
 
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
