@@ -79,6 +79,7 @@ Patch26:	%{name}-with-stroke.patch
 Patch30:	%{name}-pax_dl-execstack.patch
 Patch31:	%{name}-pt_pax.patch
 Patch32:	%{name}-tzfile_read.patch
+Patch33:	%{name}-sparc-lowlevellock.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -853,6 +854,7 @@ ln -s glibc-libidn-%{version} libidn
 %{?with_pax:%patch30 -p0}
 %{?with_pax:%patch31 -p0}
 %patch32 -p1
+%patch33 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
