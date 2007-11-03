@@ -1054,7 +1054,7 @@ for i in aa aa@saaho af am an ang ar as ast az be@alternative be@latin bg bn \
     eo es_AR es_CO es_MX es_NI es_PR et eu fa fil fo fr_BE fur fy ga gd gez \
     gu gv he hi hsb hy ia id ik is it_CH iu ka kk kl km kn ku kw ky lg li lo \
     lt lv mai mg mi mk ml mn mr ms mt nds ne nl_BE nn nr nso oc om or pa pap \
-    pt rm ro sa sc se si sid sl so sq sr sr@ije sr@latin ss st sw ta \
+    pt rm ro sa sc se si sid sl so sq sr sr@Latn sr@ije sr@latin ss st sw ta \
     te tg th ti tig tk tl tlh tn ts tt ug uk ur uz uz@cyrillic ve vi wa wal \
     wo xh yi yo zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
@@ -1063,9 +1063,6 @@ for i in aa aa@saaho af am an ang ar as ast az be@alternative be@latin bg bn \
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
 done
-
-# will it work ?
-ln -s sr@latin $RPM_BUILD_ROOT%{_datadir}/locale/sr@Latn
 
 # localedb-gen infrastructure
 sed -e 's,@localedir@,%{_libdir}/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
@@ -1103,12 +1100,6 @@ rm -rf $RPM_BUILD_ROOT
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 %endif
-
-%pretrans misc
-if [ ! -L %{_datadir}/locale/sr@Latn -a -d %{_datadir}/locale/sr@latin ]; then
-	mv %{_datadir}/locale/sr@Latn/* %{_datadir}/locale/sr@latin/ > /dev/null 2>&1
-	rmdir %{_datadir}/locale/sr@Latn 2>/dev/null || mv -v %{_datadir}/locale/sr@Latn{,.rpmsave}
-fi
 
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
@@ -1181,9 +1172,6 @@ fi
 
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
-# not catched by find_lang due to being symlink
-%lang(sr@latin) %{_datadir}/locale/sr@Latn
-
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
