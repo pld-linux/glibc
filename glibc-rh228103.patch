@@ -1,0 +1,17 @@
+2007-02-09  Jakub Jelinek  <jakub@redhat.com>
+
+	* sysdeps/unix/sysv/linux/x86_64/lowlevellock.S
+	(__lll_mutex_timedlock_wait): Use correct pointer when we don't
+	call into the kernel to delay.
+
+--- libc/nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S	17 Jan 2007 09:33:20 -0000	1.16
++++ libc/nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S	10 Feb 2007 00:04:24 -0000	1.17
+@@ -164,7 +164,7 @@ __lll_mutex_timedlock_wait:
+ 8:				/* NB: %edx == 2 */
+ 	xorl	%eax, %eax
+ 	LOCK
+-	cmpxchgl %edx, (%rdi)
++	cmpxchgl %edx, (%r12)
+ 	jnz	7f
+ 
+ 6:	addq	$16, %rsp

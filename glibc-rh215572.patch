@@ -1,0 +1,18 @@
+2006-11-14  Jakub Jelinek  <jakub@redhat.com>
+
+	* nss/nss_files/files-alias.c (get_next_alias): Set line back
+	to first_unused after parsing :include: file.
+
+--- libc/nss/nss_files/files-alias.c	1 Sep 2002 12:38:05 -0000	1.15
++++ libc/nss/nss_files/files-alias.c	15 Nov 2006 22:23:20 -0000	1.16
+@@ -298,8 +298,8 @@ get_next_alias (const char *match, struc
+ 			  first_unused[room_left - 1] = '\0';
+ 			  strncpy (first_unused, old_line, room_left);
+ 
+-			  if (old_line != NULL)
+-			    free (old_line);
++			  free (old_line);
++			  line = first_unused;
+ 
+ 			  if (first_unused[room_left - 1] != '\0')
+ 			    goto no_more_room;

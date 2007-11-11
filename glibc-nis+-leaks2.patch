@@ -1,0 +1,15 @@
+2006-05-17  Jakub Jelinek  <jakub@redhat.com>
+
+	* sunrpc/key_call.c (getkeyserv_handle): Call auth_destroy if
+	pid changed.
+
+--- libc/sunrpc/key_call.c	4 May 2006 18:22:38 -0000	1.20
++++ libc/sunrpc/key_call.c	17 May 2006 15:10:44 -0000	1.21
+@@ -400,6 +400,7 @@ getkeyserv_handle (int vers)
+   /* if pid has changed, destroy client and rebuild */
+   if (kcp->client != NULL && kcp->pid != __getpid ())
+     {
++      auth_destroy (kcp->client->cl_auth);
+       clnt_destroy (kcp->client);
+       kcp->client = NULL;
+     }
