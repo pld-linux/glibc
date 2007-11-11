@@ -86,7 +86,7 @@ Summary(tr):	GNU libc
 Summary(uk):	GNU libc ×ÅÒÓ¦§ 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	12
+Release:	13
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -139,6 +139,15 @@ Patch31:	%{name}-large_collate_tables.patch
 Patch32:	%{name}-ctype-compat.patch
 Patch33:	%{name}-sparc-mman.h.patch
 Patch34:	%{name}-dl-tls.patch
+Patch35:	%{name}-bindresvport2.patch
+Patch36:	%{name}-nis+-leaks2.patch
+Patch37:	%{name}-nis+-batch2.patch
+Patch38:	%{name}-bz2226.patch
+Patch39:	%{name}-rh197790.patch
+Patch40:	%{name}-rh215572.patch
+Patch41:	%{name}-nis+-getenv.patch
+Patch42:	%{name}-rh228103.patch
+Patch43:	%{name}-rh219145.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -944,6 +953,15 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch32 -p1
 %patch33 -p1
 %patch34 -p1
+%patch35 -p1
+%patch36 -p1
+%patch37 -p1
+%patch38 -p1
+%patch39 -p1
+%patch40 -p1
+%patch41 -p1
+%patch42 -p1
+%patch43 -p1
 
 chmod +x scripts/cpp
 
