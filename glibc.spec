@@ -1038,7 +1038,8 @@ done
 %endif
 
 %if %{without cross}
-diet %{__cc} %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
+CC="%{__cc}"
+diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 %endif
 
 %install
