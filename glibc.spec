@@ -1143,15 +1143,13 @@ fi
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
 %attr(755,root,root) /sbin/ldconfig
-# ld* and libc.so.6 SONAME symlinks must be in package because of
-# chicken-egg problem (postshell is dynamically linked with libc);
-# NOTE: postshell is now linked statically with diet
 # ld-*.so SONAME is:
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
 #   ld-linux-ia64.so.2 on ia64
 #   ld-linux-x86-64.so.2 on x86_64
 #   ld-linux.so.2 on other archs
+# TODO: package ldconfig symlinks as %ghost
 %attr(755,root,root) /%{_lib}/ld*
 %attr(755,root,root) /%{_lib}/libanl*
 %attr(755,root,root) /%{_lib}/libdl*
