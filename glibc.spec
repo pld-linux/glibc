@@ -982,13 +982,16 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 %if %{with linuxthreads}
 ../%configure \
+%if "%{!?configure_cache:0}%{?configure_cache}" == "1"
+	--cache-file=../config.cache \
+%endif
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with%{!?with___thread:out}-__thread \
 	--with-headers=%{sysheaders} \
 	--with%{!?with_selinux:out}-selinux \
 	--with%{!?with_tls:out}-tls \
-        --enable-add-ons=linuxthreads \
+	--enable-add-ons=linuxthreads \
 	--enable-profile
 %{__make}
 %endif
@@ -1000,12 +1003,15 @@ install -d builddir-nptl
 cd builddir-nptl
 %endif
 ../%configure \
+%if "%{!?configure_cache:0}%{?configure_cache}" == "1"
+	--cache-file=../config.cache-nptl \
+%endif
 	--enable-kernel="%{nptl_min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with-headers=%{sysheaders} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
-        --enable-add-ons=nptl \
+	--enable-add-ons=nptl \
 	--enable-profile
 # simulate cross-compiling so we can perform dual builds on 2.4.x kernel
 %{__make} \
