@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	13.1
+Release:	13.2
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -180,6 +180,7 @@ Requires:	basesystem
 %{?with_tls:Provides:	glibc(tls)}
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
+Conflicts:	SysVinit < 2.86-11
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
@@ -930,6 +931,7 @@ Provides:	glibc = %{epoch}:%{version}-%{release}
 %{?with_tls:Provides:	glibc(tls)}
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
+Conflicts:	SysVinit < 2.86-11
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
@@ -1313,7 +1315,6 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
 %endif
 /sbin/ldconfig
--/sbin/telinit u
 
 %ifarch %{x8664} ppc64 s390x sparc64
 %postun	-n %{name}64 -p /sbin/postshell
@@ -1321,7 +1322,6 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-p /sbin/postshell
 %endif
 /sbin/ldconfig
--/sbin/telinit u
 
 %ifarch %{x8664} ppc64 s390x sparc64
 %triggerpostun -n %{name}64 -p /sbin/postshell -- glibc-misc < 6:2.3.4-0.20040505.1
