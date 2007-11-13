@@ -982,9 +982,6 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 %if %{with linuxthreads}
 ../%configure \
-%if "%{!?configure_cache:0}%{?configure_cache}" == "1"
-	--cache-file=../config.cache \
-%endif
 	--enable-kernel="%{min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with%{!?with___thread:out}-__thread \
@@ -1003,9 +1000,7 @@ install -d builddir-nptl
 cd builddir-nptl
 %endif
 ../%configure \
-%if "%{!?configure_cache:0}%{?configure_cache}" == "1"
-	--cache-file=../config.cache-nptl \
-%endif
+	%{?configure_cache:--cache-file=%{configure_cache_file:-%{buildroot}.configure.cache}-nptl.cache} \
 	--enable-kernel="%{nptl_min_kernel}" \
 	--%{?with_omitfp:en}%{!?with_omitfp:dis}able-omitfp \
 	--with-headers=%{sysheaders} \
