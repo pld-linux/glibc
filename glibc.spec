@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	13
+Release:	13.1
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -131,7 +131,7 @@ Patch25:	%{name}-tls_fix.patch
 Patch26:	%{name}-iconvconfig-nxstack.patch
 Patch27:	%{name}-sys-kd.patch
 Patch28:	%{name}-cross-gcc_eh.patch
-# WARNING: do not comment or delete pax_dl-execstack.patch, please. If you think 
+# WARNING: do not comment or delete pax_dl-execstack.patch, please. If you think
 #          that this is a good idea send some info to pld-devel-{pl,en}
 Patch29:	%{name}-pax_dl-execstack.patch
 Patch30:	%{name}-pax-build.patch
@@ -165,6 +165,7 @@ BuildRequires:	gettext-devel >= 0.10.36
 %if %{without kernelheaders}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
+AutoReq:	false
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 %{?with_pax:BuildRequires:	paxctl}
 BuildRequires:	perl-base
@@ -173,15 +174,12 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-AutoReq:	false
+Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
-Provides:	/sbin/ldconfig
 %{?with_tls:Provides:	glibc(tls)}
-Provides:	ldconfig
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
-Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
@@ -321,7 +319,6 @@ Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 AutoReq:	false
-Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description misc
@@ -329,6 +326,47 @@ Utilities and data used by glibc.
 
 %description misc -l pl.UTF-8
 Narzędzia i dane używane przez glibc.
+
+%package -n ldconfig
+Summary:	Creates shared library cache and maintains symlinks
+Summary(de.UTF-8):	Erstellt ein shared library cache und verwaltet symlinks
+Summary(fr.UTF-8):	Crée un cache de bibliothčque partagée et gčre *.so
+Summary(pl.UTF-8):	Tworzy cache bibliotek dynamicznych i ich symlinki
+Summary(tr.UTF-8):	Ortak kitaplýk önbelleđi yaratýr ve bađlantýlarý kurar
+Group:		Applications/System
+# This is needed because previous package (glibc) had autoreq false and had
+# provided this manually. Probably poldek bug that have to have it here.
+Provides:	/sbin/ldconfig
+
+%description -n ldconfig
+ldconfig scans a running system and sets up the symbolic links that
+are used to load shared libraries properly. It also creates
+/etc/ld.so.cache which speeds the loading programs which use shared
+libraries.
+
+%description -n ldconfig -l pl.UTF-8
+Ldconfig testuje uruchominy system i tworzy symboliczne linki, które
+są następnie używane do poprawnego ładowania bibliotek dynamicznych.
+Program ten tworzy plik /etc/ld.so.cache, który przyśpiesza wywołanie
+dowolnego programu korzystającego z bibliotek dynamicznych.
+
+%description -n ldconfig -l de.UTF-8
+ldconfig scannt ein laufendes System und richtet die symbolischen
+Verknüpfungen zum Laden der gemeinsam genutzten Libraries ein.
+Außerdem erstellt es /etc/ld.so.cache, was das Laden von Programmen
+mit gemeinsam genutzten Libraries beschleunigt.
+
+%description -n ldconfig -l fr.UTF-8
+ldconfig analyse un systčme et configure les liens symboliques
+utilisés pour charger correctement les bibliothčques partagées. Il
+crée aussi /etc/ld.so.cache qui accélčre le chargement des programmes
+utilisant les bibliothčques partagées.
+
+%description -n ldconfig -l tr.UTF-8
+ldconfig, çalýţmakta olan sistemi araţtýrýr ve ortak kitaplýklarýn
+düzgün bir ţekilde yüklenmesi için gereken simgesel bađlantýlarý
+kurar. Ayrýca ortak kitaplýklarý kullanan programlarýn yüklenmesini
+hýzlandýran /etc/ld.so.cache dosyasýný yaratýr.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -885,14 +923,13 @@ Summary:	GNU libc - 64-bit libraries
 Summary(es.UTF-8):	GNU libc - bibliotecas de 64 bits
 Summary(pl.UTF-8):	GNU libc - biblioteki 64-bitowe
 Group:		Libraries
+Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
 Provides:	glibc = %{epoch}:%{version}-%{release}
 %{?with_tls:Provides:	glibc(tls)}
-Provides:	ldconfig
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
-Obsoletes:	ldconfig
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 1.43
@@ -1069,7 +1106,11 @@ install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
 %if %{without cross}
-install glibc-postinst				$RPM_BUILD_ROOT/sbin
+%ifarch %{x8664} ppc64 s390x sparc64
+install glibc-postinst				$RPM_BUILD_ROOT/sbin/glibc-postinst64
+%else
+install glibc-postinst				$RPM_BUILD_ROOT/sbin/glibc-postinst
+%endif
 %endif
 
 %if %{with dual}
@@ -1266,7 +1307,11 @@ rm -rf $RPM_BUILD_ROOT
 %else
 %post	-p /sbin/postshell
 %endif
+%ifarch %{x8664} ppc64 s390x sparc64
+/sbin/glibc-postinst64 /%{_lib}/%{_host_cpu}
+%else
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
+%endif
 /sbin/ldconfig
 -/sbin/telinit u
 
@@ -1339,9 +1384,8 @@ fi
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %if %{without cross}
-%attr(755,root,root) /sbin/glibc-postinst
+%attr(755,root,root) /sbin/glibc-postinst*
 %endif
-%attr(755,root,root) /sbin/ldconfig
 # ld* and libc.so.6 SONAME symlinks must be in package because of
 # chicken-egg problem (postshell is dynamically linked with libc);
 # ld-*.so SONAME is:
@@ -1360,9 +1404,6 @@ fi
 %attr(755,root,root) /%{_lib}/tls/lib[cmprt]*
 %endif
 %{?with_localedb:%dir %{_libdir}/locale}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
-%dir %{_sysconfdir}/ld.so.conf.d
-%ghost %{_sysconfdir}/ld.so.cache
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
@@ -1371,6 +1412,13 @@ fi
 #%files -n nss_files
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_files*.so*
+
+%files -n ldconfig
+%defattr(644,root,root,755)
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
+%dir %{_sysconfdir}/ld.so.conf.d
+%ghost %{_sysconfdir}/ld.so.cache
+%attr(755,root,root) /sbin/ldconfig
 
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
