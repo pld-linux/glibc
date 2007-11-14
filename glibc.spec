@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	13.2
+Release:	14
 Epoch:		6
 License:	LGPL
 Group:		Libraries
