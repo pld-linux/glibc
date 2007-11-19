@@ -90,11 +90,11 @@ BuildRequires:	binutils >= 2:2.17.50.0.7
 %else
 BuildRequires:	binutils >= 2:2.15.90.0.3
 %endif
-BuildRequires:	gcc >= 5:3.4
+%{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
+BuildRequires:	gcc >= 5:3.4
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
-%{!?with_cross:BuildRequires:	dietlibc-static}
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
@@ -489,8 +489,8 @@ Summary(ja.UTF-8):	ネームサービスキャッシングデーモン (nacd)
 Summary(pl.UTF-8):	Demon zapamiętujący odpowiedzi serwisów nazw
 Summary(ru.UTF-8):	Кэширующий демон сервисов имен
 Summary(uk.UTF-8):	Кешуючий демон севісів імен
-Group:		Networking/Daemons
 License:	GPL v2
+Group:		Networking/Daemons
 Requires(post):	fileutils
 Requires(post,preun):	/sbin/chkconfig
 Requires(postun):	/usr/sbin/groupdel
