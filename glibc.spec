@@ -119,6 +119,7 @@ Obsoletes:	ldconfig
 Provides:	glibc64
 Obsoletes:	glibc64
 %endif
+Conflicts:	SysVinit < 2.86-11
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	kernel24
 Conflicts:	kernel24-smp
@@ -1090,11 +1091,9 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/postshell
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu} /%{_lib}/tls
 /sbin/ldconfig
--/sbin/telinit u
 
 %postun	-p /sbin/postshell
 /sbin/ldconfig
--/sbin/telinit u
 
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.5-7.6
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
