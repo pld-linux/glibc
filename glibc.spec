@@ -36,7 +36,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	8
+Release:	8.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -90,6 +90,7 @@ BuildRequires:	binutils >= 2:2.17.50.0.7
 %else
 BuildRequires:	binutils >= 2:2.15.90.0.3
 %endif
+AutoReq:	false
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
 BuildRequires:	gcc >= 5:3.4
@@ -103,18 +104,15 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.396
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-AutoReq:	false
+Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	basesystem
 Requires:	uname(release) >= %{min_kernel}
-Provides:	/sbin/ldconfig
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
-Provides:	ldconfig
 Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
-Obsoletes:	ldconfig
 %ifarch %{x8664} sparc64 ppc64
 Provides:	glibc64
 Obsoletes:	glibc64
@@ -268,7 +266,6 @@ Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 AutoReq:	false
-Requires(pre):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description misc
@@ -276,6 +273,47 @@ Utilities and data used by glibc.
 
 %description misc -l pl.UTF-8
 Narzędzia i dane używane przez glibc.
+
+%package -n ldconfig
+Summary:	Creates shared library cache and maintains symlinks
+Summary(de.UTF-8):	Erstellt ein shared library cache und verwaltet symlinks
+Summary(fr.UTF-8):	Crée un cache de bibliothčque partagée et gčre *.so
+Summary(pl.UTF-8):	Tworzy cache bibliotek dynamicznych i ich symlinki
+Summary(tr.UTF-8):	Ortak kitaplýk önbelleđi yaratýr ve bađlantýlarý kurar
+Group:		Applications/System
+# This is needed because previous package (glibc) had autoreq false and had
+# provided this manually. Probably poldek bug that have to have it here.
+Provides:	/sbin/ldconfig
+
+%description -n ldconfig
+ldconfig scans a running system and sets up the symbolic links that
+are used to load shared libraries properly. It also creates
+/etc/ld.so.cache which speeds the loading programs which use shared
+libraries.
+
+%description -n ldconfig -l pl.UTF-8
+Ldconfig testuje uruchominy system i tworzy symboliczne linki, które
+są następnie używane do poprawnego ładowania bibliotek dynamicznych.
+Program ten tworzy plik /etc/ld.so.cache, który przyśpiesza wywołanie
+dowolnego programu korzystającego z bibliotek dynamicznych.
+
+%description -n ldconfig -l de.UTF-8
+ldconfig scannt ein laufendes System und richtet die symbolischen
+Verknüpfungen zum Laden der gemeinsam genutzten Libraries ein.
+Außerdem erstellt es /etc/ld.so.cache, was das Laden von Programmen
+mit gemeinsam genutzten Libraries beschleunigt.
+
+%description -n ldconfig -l fr.UTF-8
+ldconfig analyse un systčme et configure les liens symboliques
+utilisés pour charger correctement les bibliothčques partagées. Il
+crée aussi /etc/ld.so.cache qui accélčre le chargement des programmes
+utilisant les bibliothčques partagées.
+
+%description -n ldconfig -l tr.UTF-8
+ldconfig, çalýţmakta olan sistemi araţtýrýr ve ortak kitaplýklarýn
+düzgün bir ţekilde yüklenmesi için gereken simgesel bađlantýlarý
+kurar. Ayrýca ortak kitaplýklarý kullanan programlarýn yüklenmesini
+hýzlandýran /etc/ld.so.cache dosyasýný yaratýr.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -923,8 +961,9 @@ cd ..
 done
 %endif
 
-%if !%{with cross}
-diet %{__cc} %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
+%if %{without cross}
+CC="%{__cc}"
+diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 %endif
 
 %install
@@ -953,7 +992,7 @@ install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
-%if !%{with cross}
+%if %{without cross}
 install glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
@@ -1087,7 +1126,7 @@ rm -rf $RPM_BUILD_ROOT
 # don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
 # when %%postun is run
 
-%if !%{with cross}
+%if %{without cross}
 %post	-p /sbin/postshell
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu} /%{_lib}/tls
 /sbin/ldconfig
@@ -1141,7 +1180,6 @@ fi
 %if !%{with cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
-%attr(755,root,root) /sbin/ldconfig
 # ld-*.so SONAME is:
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
@@ -1155,9 +1193,6 @@ fi
 %attr(755,root,root) /%{_lib}/libnsl*
 %attr(755,root,root) /%{_lib}/lib[BScmprtu]*
 %{?with_localedb:%dir %{_libdir}/locale}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
-%dir %{_sysconfdir}/ld.so.conf.d
-%ghost %{_sysconfdir}/ld.so.cache
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
@@ -1166,6 +1201,13 @@ fi
 #%files -n nss_files
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_files*.so*
+
+%files -n ldconfig
+%defattr(644,root,root,755)
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
+%dir %{_sysconfdir}/ld.so.conf.d
+%ghost %{_sysconfdir}/ld.so.cache
+%attr(755,root,root) /sbin/ldconfig
 
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
