@@ -101,7 +101,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.396
+BuildRequires:	rpmbuild(macros) >= 1.411
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
@@ -132,6 +132,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
 %define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
+
+# ld.so needs not to be stripped to work
+# gdb needs unstripped libpthread for some threading support
+# ...but we can strip at least debuginfo from them
+%define		_autostripdebug		.*/ld-[0-9.]*so\|.*/libpthread-[0-9.]*so
 
 # -m from CFLAGS or even LDFLAGS is not propagated to some *.o linking
 %ifarch sparc sparcv9
@@ -1000,17 +1005,21 @@ install glibc-postinst				$RPM_BUILD_ROOT/sbin
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 # moved to tzdata package
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
 
 ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 # make symlinks across top-level directories absolute
 for l in anl BrokenLocale crypt dl m nsl resolv rt thread_db util ; do
+	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
-	ln -sf /%{_lib}/`cd $RPM_BUILD_ROOT/%{_lib} ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 done
+
+# linking nss modules directly is not supported
+rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
@@ -1037,11 +1046,6 @@ for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kerne
 	cp -f nptl/$f documentation/$f.nptl
 done
 cp -f crypt/README.ufc-crypt ChangeLog* documentation
-
-rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
-
-# strip ld.so with --strip-debug only (other ELFs are stripped by rpm):
-%{!?debug:strip -g -R .comment -R .note $RPM_BUILD_ROOT/%{_lib}/ld-*.so}
 
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
