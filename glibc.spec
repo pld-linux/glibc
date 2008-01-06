@@ -15,8 +15,6 @@
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
 #   debug/backtrace-tst(SEGV)  fail on alpha
-# - separate pkg for ldconfig so can run ldconfig in glibc post and hacks not
-#   needed
 %{!?min_kernel:%global		min_kernel	2.6.12}
 
 %ifarch sparc64
@@ -1131,8 +1129,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu} /%{_lib}/tls
 /sbin/ldconfig
 
-%postun	-p /sbin/postshell
-/sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.5-7.6
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
@@ -1180,27 +1177,93 @@ fi
 %if !%{with cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
-# ld*.so SONAME is:
-#   ld.so.1 on ppc
-#   ld64.so.1 on ppc64,s390x
-#   ld-linux-ia64.so.2 on ia64
-#   ld-linux-x86-64.so.2 on x86_64
-#   ld-linux.so.2 on other archs
 # TODO: package ldconfig symlinks as %ghost
-%attr(755,root,root) /%{_lib}/ld*
-%attr(755,root,root) /%{_lib}/libanl*
-%attr(755,root,root) /%{_lib}/libdl*
-%attr(755,root,root) /%{_lib}/libnsl*
-%attr(755,root,root) /%{_lib}/lib[BScmprtu]*
+%attr(755,root,root) /%{_lib}/ld-%{version}.so
+# wildly arch-dependent ld.so SONAME symlink
+%ifarch %{ix86} sparc sparcv9 sparc64 alpha sh 
+%attr(755,root,root) /%{_lib}/ld-linux.so.2
+%endif
+%ifarch ia64
+%attr(755,root,root) /%{_lib}/ld-linux-ia64.so.2
+%endif
+%ifarch %{x8664}
+%attr(755,root,root) /%{_lib}/ld-linux-x86-64.so.2
+%endif
+%ifarch ppc64 s390x
+%attr(755,root,root) /%{_lib}/ld64.so.1
+%endif
+%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} ppc64 s390x
+%attr(755,root,root) /%{_lib}/ld.so.1
+%endif
+%attr(755,root,root) /%{_lib}/libBrokenlocale-%{version}.so
+%ifarch alpha
+%attr(755,root,root) /%{_lib}/libBrokenlocale.so.1.1
+%else
+%attr(755,root,root) /%{_lib}/libBrokenlocale.so.1
+%endif
+%attr(755,root,root) /%{_lib}/libSegFault.so
+%attr(755,root,root) /%{_lib}/libanl-%{version}.so
+%attr(755,root,root) /%{_lib}/libanl.so.1
+%attr(755,root,root) /%{_lib}/libc-%{version}.so
+%ifarch alpha ia64
+%attr(755,root,root) /%{_lib}/libc.so.6.1
+%else
+%attr(755,root,root) /%{_lib}/libc.so.6
+%endif
+%attr(755,root,root) /%{_lib}/libcidn-%{version}.so
+%attr(755,root,root) /%{_lib}/libcidn.so.1
+%attr(755,root,root) /%{_lib}/libcrypt-%{version}.so
+%ifarch alpha
+%attr(755,root,root) /%{_lib}/libcrypt.so.1.1
+%else
+%attr(755,root,root) /%{_lib}/libcrypt.so.1
+%endif
+%attr(755,root,root) /%{_lib}/libdl-%{version}.so
+%ifarch alpha
+%attr(755,root,root) /%{_lib}/libdl.so.2.1
+%else
+%attr(755,root,root) /%{_lib}/libdl.so.2
+%endif
+%attr(755,root,root) /%{_lib}/libm-%{version}.so
+%ifarch alpha ia64
+%attr(755,root,root) /%{_lib}/libm.so.6.1
+%else
+%attr(755,root,root) /%{_lib}/libm.so.6
+%endif
+%ifarch alpha
+%attr(755,root,root) /%{_lib}/libnsl.so.1.1
+%else
+%attr(755,root,root) /%{_lib}/libnsl.so.1
+%endif
+%attr(755,root,root) /%{_lib}/libpthread-%{version}.so
+%attr(755,root,root) /%{_lib}/libpthread.so.0
+%attr(755,root,root) /%{_lib}/libresolv-%{version}.so
+%ifarch alpha
+%attr(755,root,root) /%{_lib}/libresolv.so.2.1
+%else
+%attr(755,root,root) /%{_lib}/libresolv.so.2
+%endif
+%attr(755,root,root) /%{_lib}/librt-%{version}.so
+%attr(755,root,root) /%{_lib}/librt.so.1
+%attr(755,root,root) /%{_lib}/libthread_db-1.0.so
+%attr(755,root,root) /%{_lib}/libthread_db.so.1
+%attr(755,root,root) /%{_lib}/libutil-%{version}.so
+%ifarch alpha
+%attr(755,root,root) /%{_lib}/libutil.so.1.1
+%else
+%attr(755,root,root) /%{_lib}/libutil.so.1
+%endif
 %{?with_localedb:%dir %{_libdir}/locale}
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_dns*.so*
+%attr(755,root,root) /%{_lib}/libnss_dns-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_dns.so.2
 
 #%files -n nss_files
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_files*.so*
+%attr(755,root,root) /%{_lib}/libnss_files-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_files.so.2
 
 %files -n ldconfig
 %defattr(644,root,root,755)
@@ -1275,7 +1338,7 @@ fi
 %lang(es) %{_mandir}/es/man7/*
 %lang(es) %{_mandir}/es/man8/ld-linux.8*
 %lang(es) %{_mandir}/es/man8/ld-linux.so.8*
-%lang(es) %{_mandir}/es/man8/ld.do.8*
+%lang(es) %{_mandir}/es/man8/ld.so.8*
 %lang(es) %{_mandir}/es/man8/tzselect.8*
 %lang(es) %{_mandir}/es/man8/zdump.8*
 %lang(es) %{_mandir}/es/man8/zic.8*
@@ -1360,20 +1423,23 @@ fi
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_compat*.so*
+%attr(755,root,root) /%{_lib}/libnss_compat-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_compat.so.2
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_hesiod*.so*
+%attr(755,root,root) /%{_lib}/libnss_hesiod-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_hesiod.so.2
 
 %files -n nss_nis
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_nis.so.*
-%attr(755,root,root) /%{_lib}/libnss_nis-*.so
+%attr(755,root,root) /%{_lib}/libnss_nis-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_nis.so.2
 
 %files -n nss_nisplus
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_nisplus*.so*
+%attr(755,root,root) /%{_lib}/libnss_nisplus-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_nisplus.so.2
 
 %if %{with memusage}
 %files memusage
@@ -1384,14 +1450,23 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib[!cmp]*.so
+%attr(755,root,root) %{_libdir}/libBrokenLocale.so
+%attr(755,root,root) %{_libdir}/libanl.so
 %attr(755,root,root) %{_libdir}/libcrypt.so
+%attr(755,root,root) %{_libdir}/libdl.so
 %attr(755,root,root) %{_libdir}/libm.so
+%attr(755,root,root) %{_libdir}/libnsl.so
 %attr(755,root,root) %{_libdir}/libpcprofile.so
-%attr(755,root,root) %{_libdir}/*crt*.o
+%attr(755,root,root) %{_libdir}/libresolv.so
+%attr(755,root,root) %{_libdir}/librt.so
+%attr(755,root,root) %{_libdir}/libthread_db.so
+%attr(755,root,root) %{_libdir}/libutil.so
+%attr(755,root,root) %{_libdir}/crt[1in].o
+%attr(755,root,root) %{_libdir}/[MSg]crt1.o
 # ld scripts
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
+# static-only libs
 %{_libdir}/libbsd-compat.a
 %{_libdir}/libbsd.a
 %{_libdir}/libc_nonshared.a
@@ -1403,6 +1478,7 @@ fi
 %{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
 %ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
+# ABI-dependent headers
 %{_includedir}/gnu/stubs-*.h
 %endif
 
