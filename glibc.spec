@@ -1010,7 +1010,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
 ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 # make symlinks across top-level directories absolute
-for l in anl BrokenLocale crypt dl m nsl resolv rt thread_db util ; do
+for l in BrokenLocale anl cidn crypt dl m nsl resolv rt thread_db util ; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
@@ -1230,6 +1230,7 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
 %endif
+%attr(755,root,root) /%{_lib}/libnsl-%{version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libnsl.so.1.1
 %else
@@ -1453,6 +1454,7 @@ fi
 %attr(755,root,root) %{_libdir}/libBrokenLocale.so
 %attr(755,root,root) %{_libdir}/libanl.so
 %attr(755,root,root) %{_libdir}/libcrypt.so
+%attr(755,root,root) %{_libdir}/libcidn.so
 %attr(755,root,root) %{_libdir}/libdl.so
 %attr(755,root,root) %{_libdir}/libm.so
 %attr(755,root,root) %{_libdir}/libnsl.so
