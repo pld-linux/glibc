@@ -1046,25 +1046,10 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
 echo '%defattr(644,root,root,755)' > glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* $RPM_BUILD_ROOT%{_libdir}/locale/* ; do
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
 	if [ -d $i ]; then
-		lang=`echo $i | sed -e 's/.*locale\///' -e 's/\/.*//'`
-		twochar=1
-		# list of long %%lang values we do support
-		for j in de_AT de_BE de_CH de_LU es_AR es_MX pt_BR \
-			 zh_CN zh_CN.gbk zh_HK zh_TW ; do
-			if [ $j = "$lang" ]; then
-				twochar=
-			fi
-		done
-		if [ -n "$twochar" ]; then
-			if [ `echo $lang | sed "s,_.*,,"` = "zh" ]; then
-				lang=`echo $lang | sed "s,\..*,,"`
-			else
-				lang=`echo $lang | sed "s,_.*,,"`
-			fi
-		fi
-		dir=`echo $i | sed "s#$RPM_BUILD_ROOT##"`
+		lang=$(basename $i)
+		dir="${i#$RPM_BUILD_ROOT}"
 		echo "%lang($lang) $dir" >> glibc.lang
 	fi
 done
@@ -1100,7 +1085,8 @@ for i in aa aa@saaho af am an ang ar as ast az be@alternative be@latin bg bn \
     wo xh yi yo zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
-		lang=`echo $i | sed -e 's/_.*//'`
+		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
+		lang=`echo $i | sed -e 's/@quot\>\|@boldquot\>//'`
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
 done
@@ -1190,7 +1176,7 @@ fi
 %if !%{with cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
-# ld-*.so SONAME is:
+# ld*.so SONAME is:
 #   ld.so.1 on ppc
 #   ld64.so.1 on ppc64,s390x
 #   ld-linux-ia64.so.2 on ia64
