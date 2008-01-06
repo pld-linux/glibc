@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	8.2
+Release:	8.3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -99,7 +99,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.412
+BuildRequires:	rpmbuild(macros) >= 1.413
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
@@ -134,7 +134,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # ld.so needs not to be stripped to work
 # gdb needs unstripped libpthread for some threading support
 # ...but we can strip at least debuginfo from them
-%define		_autostripdebug		.*/ld-[0-9.]*so\|.*/libpthread-[0-9.]*so
+%define		_autostripdebug		.*/ld-[0-9.]*so\\|.*/libpthread-[0-9.]*so
 
 # -m from CFLAGS or even LDFLAGS is not propagated to some *.o linking
 %ifarch sparc sparcv9
