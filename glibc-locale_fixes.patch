@@ -3963,15 +3963,15 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
 -country_ab2 "<U0049><U004E>"
 -country_ab3 "<U0049><U004E><U0044>"
 -country_num 356
-++country_name "<U092D><U093E><U0930><U0924><U092E><U094D>"
-++country_ab2  "<U0049><U004E>"
-++country_ab3  "<U0049><U004E><U0044>"
-++country_num  356
-++country_car  "<U0049><U004E><U0044>"
-++lang_name    "<U0938><U0902><U0938><U094D><U0915><U0943><U0924>"
-++lang_ab      "<U0073><U0061>"
-++lang_term    "<U0073><U0061><U006E>"
-++lang_lib     "<U0073><U0061><U006E>"
++country_name "<U092D><U093E><U0930><U0924><U092E><U094D>"
++country_ab2  "<U0049><U004E>"
++country_ab3  "<U0049><U004E><U0044>"
++country_num  356
++country_car  "<U0049><U004E><U0044>"
++lang_name    "<U0938><U0902><U0938><U094D><U0915><U0943><U0924>"
++lang_ab      "<U0073><U0061>"
++lang_term    "<U0073><U0061><U006E>"
++lang_lib     "<U0073><U0061><U006E>"
  END LC_ADDRESS
  
  
@@ -4009,7 +4009,7 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
 +country_ab2 "<U0053><U004E>"
 +country_ab3 "<U0053><U0045><U004E>"
 +country_num 686
-++country_car "<U0053><U004E>"
++country_car "<U0053><U004E>"
 +% FIXME: Wolof in Wolof
 +%lang_name  ""
 +lang_ab     "<U0077><U006F>"
