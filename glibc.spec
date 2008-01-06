@@ -36,7 +36,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	8.1
+Release:	8.2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -275,10 +275,10 @@ Utilities and data used by glibc.
 Narzędzia i dane używane przez glibc.
 
 %package -n ldconfig
-Summary:	Creates shared library cache and maintains symlinks
+Summary:	Create shared library cache and maintains symlinks
 Summary(de.UTF-8):	Erstellt ein shared library cache und verwaltet symlinks
 Summary(fr.UTF-8):	Crée un cache de bibliothčque partagée et gčre *.so
-Summary(pl.UTF-8):	Tworzy cache bibliotek dynamicznych i ich symlinki
+Summary(pl.UTF-8):	Tworzenie cache'u bibliotek dynamicznych i ich dowiązań symbolicznych
 Summary(tr.UTF-8):	Ortak kitaplýk önbelleđi yaratýr ve bađlantýlarý kurar
 Group:		Applications/System
 # This is needed because previous package (glibc) had autoreq false and had
@@ -291,12 +291,6 @@ are used to load shared libraries properly. It also creates
 /etc/ld.so.cache which speeds the loading programs which use shared
 libraries.
 
-%description -n ldconfig -l pl.UTF-8
-Ldconfig testuje uruchominy system i tworzy symboliczne linki, które
-są następnie używane do poprawnego ładowania bibliotek dynamicznych.
-Program ten tworzy plik /etc/ld.so.cache, który przyśpiesza wywołanie
-dowolnego programu korzystającego z bibliotek dynamicznych.
-
 %description -n ldconfig -l de.UTF-8
 ldconfig scannt ein laufendes System und richtet die symbolischen
 Verknüpfungen zum Laden der gemeinsam genutzten Libraries ein.
@@ -308,6 +302,13 @@ ldconfig analyse un systčme et configure les liens symboliques
 utilisés pour charger correctement les bibliothčques partagées. Il
 crée aussi /etc/ld.so.cache qui accélčre le chargement des programmes
 utilisant les bibliothčques partagées.
+
+%description -n ldconfig -l pl.UTF-8
+ldconfig testuje uruchominy system i tworzy dowiązania symboliczne,
+które są następnie używane do poprawnego ładowania bibliotek
+dynamicznych. Program ten tworzy plik /etc/ld.so.cache, który
+przyśpiesza ładowanie programów korzystających z bibliotek
+dynamicznych.
 
 %description -n ldconfig -l tr.UTF-8
 ldconfig, çalýţmakta olan sistemi araţtýrýr ve ortak kitaplýklarýn
@@ -1104,6 +1105,15 @@ for i in aa aa@saaho af am an ang ar as ast az be@alternative be@latin bg bn \
 	fi
 done
 
+# LC_TIME category, used for localized date formats (at least by coreutils)
+for i in af be bg ca cs da de el es et eu fi fr ga gl hu it ja ko ms nb nl pl \
+    pt pt_BR ru rw sk sl sv tr zh_CN zh_TW ; do
+	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i ]; then
+		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
+	fi
+	install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_TIME
+done
+
 # localedb-gen infrastructure
 sed -e 's,@localedir@,%{_libdir}/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
@@ -1208,6 +1218,14 @@ fi
 %dir %{_sysconfdir}/ld.so.conf.d
 %ghost %{_sysconfdir}/ld.so.cache
 %attr(755,root,root) /sbin/ldconfig
+%{_mandir}/man8/ldconfig.8*
+%lang(es) %{_mandir}/es/man8/ldconfig.8*
+%lang(fr) %{_mandir}/fr/man8/ldconfig.8*
+%lang(hu) %{_mandir}/hu/man8/ldconfig.8*
+%lang(ja) %{_mandir}/ja/man8/ldconfig.8*
+%lang(pl) %{_mandir}/pl/man8/ldconfig.8*
+%lang(pt) %{_mandir}/pt/man8/ldconfig.8*
+%lang(ru) %{_mandir}/ru/man8/ldconfig.8*
 
 %files misc -f %{name}.lang
 %defattr(644,root,root,755)
@@ -1250,7 +1268,9 @@ fi
 %{_mandir}/man5/nsswitch.conf.5*
 %{_mandir}/man5/tzfile.5*
 %{_mandir}/man7/*
-%{_mandir}/man8/ld*.8*
+%{_mandir}/man8/ld-linux.8*
+%{_mandir}/man8/ld-linux.so.8*
+%{_mandir}/man8/ld.so.8*
 %{_mandir}/man8/sln.8*
 %{_mandir}/man8/tzselect.8*
 %{_mandir}/man8/zdump.8*
@@ -1263,7 +1283,9 @@ fi
 %lang(es) %{_mandir}/es/man5/nsswitch.conf.5*
 %lang(es) %{_mandir}/es/man5/tzfile.5*
 %lang(es) %{_mandir}/es/man7/*
-%lang(es) %{_mandir}/es/man8/ld*.8*
+%lang(es) %{_mandir}/es/man8/ld-linux.8*
+%lang(es) %{_mandir}/es/man8/ld-linux.so.8*
+%lang(es) %{_mandir}/es/man8/ld.do.8*
 %lang(es) %{_mandir}/es/man8/tzselect.8*
 %lang(es) %{_mandir}/es/man8/zdump.8*
 %lang(es) %{_mandir}/es/man8/zic.8*
@@ -1273,13 +1295,17 @@ fi
 %lang(fr) %{_mandir}/fr/man5/nsswitch.conf.5*
 %lang(fr) %{_mandir}/fr/man5/tzfile.5*
 %lang(fr) %{_mandir}/fr/man7/*
-%lang(fr) %{_mandir}/fr/man8/ld*.8*
+%lang(fr) %{_mandir}/fr/man8/ld-linux.8*
+%lang(fr) %{_mandir}/fr/man8/ld-linux.so.8*
+%lang(fr) %{_mandir}/fr/man8/ld.so.8*
 %lang(fr) %{_mandir}/fr/man8/tzselect.8*
 %lang(fr) %{_mandir}/fr/man8/zdump.8*
 %lang(fr) %{_mandir}/fr/man8/zic.8*
 %lang(hu) %{_mandir}/hu/man1/ldd.1*
 %lang(hu) %{_mandir}/hu/man7/*
-%lang(hu) %{_mandir}/hu/man8/ld*.8*
+%lang(hu) %{_mandir}/hu/man8/ld-linux.8*
+%lang(hu) %{_mandir}/hu/man8/ld-linux.so.8*
+%lang(hu) %{_mandir}/hu/man8/ld.so.8*
 %lang(hu) %{_mandir}/hu/man8/zdump.8*
 %lang(it) %{_mandir}/it/man5/locale.5*
 %lang(it) %{_mandir}/it/man7/*
@@ -1291,7 +1317,9 @@ fi
 %lang(ja) %{_mandir}/ja/man5/nsswitch.conf.5*
 %lang(ja) %{_mandir}/ja/man5/tzfile.5*
 %lang(ja) %{_mandir}/ja/man7/*
-%lang(ja) %{_mandir}/ja/man8/ld*.8*
+%lang(ja) %{_mandir}/ja/man8/ld-linux.8*
+%lang(ja) %{_mandir}/ja/man8/ld-linux.so.8*
+%lang(ja) %{_mandir}/ja/man8/ld.so.8*
 %lang(ja) %{_mandir}/ja/man8/sln.8*
 %lang(ja) %{_mandir}/ja/man8/tzselect.8*
 %lang(ja) %{_mandir}/ja/man8/zdump.8*
@@ -1305,12 +1333,13 @@ fi
 %lang(pl) %{_mandir}/pl/man1/ldd.1*
 %lang(pl) %{_mandir}/pl/man5/locale.5*
 %lang(pl) %{_mandir}/pl/man7/*
-%lang(pl) %{_mandir}/pl/man8/ld*.8*
+%lang(pl) %{_mandir}/pl/man8/ld-linux.8*
+%lang(pl) %{_mandir}/pl/man8/ld-linux.so.8*
+%lang(pl) %{_mandir}/pl/man8/ld.so.8*
 %lang(pt) %{_mandir}/pt/man5/locale.5*
 %lang(pt) %{_mandir}/pt/man5/nsswitch.conf.5*
 %lang(pt) %{_mandir}/pt/man5/tzfile.5*
 %lang(pt) %{_mandir}/pt/man7/*
-%lang(pt) %{_mandir}/pt/man8/ld*.8*
 %lang(pt) %{_mandir}/pt/man8/tzselect.8*
 %lang(pt) %{_mandir}/pt/man8/zdump.8*
 %lang(pt) %{_mandir}/pt/man8/zic.8*
@@ -1323,7 +1352,8 @@ fi
 %lang(ru) %{_mandir}/ru/man5/nsswitch.conf.5*
 %lang(ru) %{_mandir}/ru/man5/tzfile.5*
 %lang(ru) %{_mandir}/ru/man7/*
-%lang(ru) %{_mandir}/ru/man8/ld*.8*
+%lang(ru) %{_mandir}/ru/man8/ld-linux.so.8*
+%lang(ru) %{_mandir}/ru/man8/ld.so.8*
 %lang(ru) %{_mandir}/ru/man8/tzselect.8*
 %lang(ru) %{_mandir}/ru/man8/zdump.8*
 %lang(ru) %{_mandir}/ru/man8/zic.8*
