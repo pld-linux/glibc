@@ -1195,11 +1195,11 @@ fi
 %ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} ppc64 s390x
 %attr(755,root,root) /%{_lib}/ld.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libBrokenlocale-%{version}.so
+%attr(755,root,root) /%{_lib}/libBrokenLocale-%{version}.so
 %ifarch alpha
-%attr(755,root,root) /%{_lib}/libBrokenlocale.so.1.1
+%attr(755,root,root) /%{_lib}/libBrokenLocale.so.1.1
 %else
-%attr(755,root,root) /%{_lib}/libBrokenlocale.so.1
+%attr(755,root,root) /%{_lib}/libBrokenLocale.so.1
 %endif
 %attr(755,root,root) /%{_lib}/libSegFault.so
 %attr(755,root,root) /%{_lib}/libanl-%{version}.so
