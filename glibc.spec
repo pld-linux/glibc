@@ -101,7 +101,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.411
+BuildRequires:	rpmbuild(macros) >= 1.412
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
