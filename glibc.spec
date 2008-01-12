@@ -1079,7 +1079,7 @@ done
 #
 for i in aa aa@saaho af am an ang ar as ast az be@alternative be@latin bg bn \
     bn_IN br bs byn csb cy de_AT dz en en@boldquot en@quot en_AU en_CA en_US \
-    eo es_AR es_CO es_MX es_NI es_PR et eu fa fil fo fr_BE fur fy ga gd gez \
+    eo es_AR es_CO es_MX es_NI es_PR et eu fa fil fo fr_BE fr_CA fur fy ga gd gez \
     gu gv he hi hsb hy ia id ik is it_CH iu ka kk kl km kn ku kw ky lg li lo \
     lt lv mai mg mi mk ml mn mr ms mt nds ne nl_BE nn nr nso oc om or pa pap \
     pt rm ro sa sc se si sid sl so sq sr sr@Latn sr@ije sr@latin ss st sw ta \
