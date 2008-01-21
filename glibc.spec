@@ -10,6 +10,7 @@
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
+# - add LC_SCRIPTS for kde4
 # - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
 # [OLD]
 # - localedb-gen man pages(?)
