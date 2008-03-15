@@ -1,0 +1,15 @@
+diff --git a/sysdeps/unix/sysv/linux/powerpc/sys/user.h b/sysdeps/unix/sysv/linux/powerpc/sys/user.h
+index e8a8aaa..c738220 100644
+--- a/sysdeps/unix/sysv/linux/powerpc/sys/user.h
++++ b/sysdeps/unix/sysv/linux/powerpc/sys/user.h
+@@ -37,4 +37,10 @@ struct user {
+ 	char		u_comm[32];		/* user command name */
+ };
+ 
++#define NBPG			PAGE_SIZE
++#define UPAGES			1
++#define HOST_TEXT_START_ADDR	(u.start_code)
++#define HOST_DATA_START_ADDR	(u.start_data)
++#define HOST_STACK_END_ADDR	(u.start_stack + u.u_ssize * NBPG)
++
+ #endif  /* sys/user.h */
