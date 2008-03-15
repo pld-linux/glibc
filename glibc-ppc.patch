@@ -1,8 +1,16 @@
 diff --git a/sysdeps/unix/sysv/linux/powerpc/sys/user.h b/sysdeps/unix/sysv/linux/powerpc/sys/user.h
-index e8a8aaa..c738220 100644
+index e8a8aaa..1beafeb 100644
 --- a/sysdeps/unix/sysv/linux/powerpc/sys/user.h
 +++ b/sysdeps/unix/sysv/linux/powerpc/sys/user.h
-@@ -37,4 +37,10 @@ struct user {
+@@ -21,6 +21,7 @@
+ #define _SYS_USER_H	1
+ #include <features.h>
+ 
++#include <asm/page.h>
+ #include <asm/ptrace.h>
+ 
+ struct user {
+@@ -37,4 +38,10 @@ struct user {
  	char		u_comm[32];		/* user command name */
  };
  
