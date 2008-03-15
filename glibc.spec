@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.7
-Release:	12
+Release:	13
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -72,7 +72,7 @@ Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_fixes.patch
 Patch23:	%{name}-ZA_collate.patch
-
+Patch24:	%{name}-ppc.patch
 Patch25:	%{name}-cross-gcc_eh.patch
 Patch26:	%{name}-with-stroke.patch
 Patch30:	%{name}-pax_dl-execstack.patch
@@ -895,6 +895,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
+%patch24 -p1
 %{?with_cross:%patch25 -p1}
 %patch26 -p1
 %{?with_pax:%patch30 -p0}
