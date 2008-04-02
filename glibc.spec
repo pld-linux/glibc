@@ -6,7 +6,6 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
-%bcond_with	pax		# PaX support
 #
 # TODO:
 # - look at locale fixes/updates in bugzilla
@@ -75,7 +74,7 @@ Patch23:	%{name}-ZA_collate.patch
 Patch24:	%{name}-ppc.patch
 Patch25:	%{name}-cross-gcc_eh.patch
 Patch26:	%{name}-with-stroke.patch
-Patch30:	%{name}-pax_dl-execstack.patch
+
 Patch31:	%{name}-pt_pax.patch
 Patch32:	%{name}-tzfile_read.patch
 Patch33:	%{name}-sparc-lowlevellock.patch
@@ -898,8 +897,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
 %patch26 -p1
-%{?with_pax:%patch30 -p0}
-%{?with_pax:%patch31 -p0}
+%patch31 -p0
 %patch32 -p1
 %patch33 -p1
 
