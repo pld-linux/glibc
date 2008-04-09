@@ -1073,6 +1073,7 @@ done
 #   my (gaim)
 #   sco (gnomad2)
 #   ilo (kudzu)
+#   man (ccsm; incorrectly named md)
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
