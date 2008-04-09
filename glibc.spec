@@ -1071,6 +1071,7 @@ done
 #   dv, haw, kok, ps, syr (iso-codes)
 #   gn (gn_BR in gnome, maybe gn_PY)
 #   my (gaim)
+#   sco (gnomad2)
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
