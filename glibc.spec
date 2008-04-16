@@ -32,15 +32,17 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.7
-Release:	16
+Version:	2.8
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	065c5952b439deba40083ccd67bcc8f7
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	226809992fb1f3dc6ea23e0f26952ea4
+# Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	2dbe2a6589edc944e999fe09bd0f8567
+# Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
+Source1:	%{name}-libidn-%{version}.tar.bz2
+# Source1-md5:	f548d753ea47e79c95d992379c5e7a2c
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -49,7 +51,6 @@ Source5:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
-Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-alpha-ev6-opcodes.patch
@@ -61,12 +62,11 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-2.7-alpha_PTR_MANGLE_move-1.patch
-Patch13:	%{name}-awk.patch
+
 Patch14:	%{name}-sparc-errno_fix.patch
-Patch15:	%{name}-memmove.patch
+
 Patch17:	%{name}-new-charsets.patch
-Patch18:	%{name}-i586-build-fix.patch
-Patch19:	%{name}-fnstsw.patch
+
 Patch20:	%{name}-tzfile-noassert.patch
 Patch21:	%{name}-morelocales.patch
 Patch22:	%{name}-locale_fixes.patch
@@ -76,8 +76,6 @@ Patch25:	%{name}-cross-gcc_eh.patch
 Patch26:	%{name}-with-stroke.patch
 
 Patch31:	%{name}-pt_pax.patch
-Patch32:	%{name}-tzfile_read.patch
-Patch33:	%{name}-sparc-lowlevellock.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -872,7 +870,6 @@ Zabawka.
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
-%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -884,22 +881,17 @@ ln -s glibc-libidn-%{version} libidn
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p0
 %patch14 -p0
-%patch15 -p1
 %patch17 -p1
-%patch18 -p1
-%patch19 -p0
 %patch20 -p1
 %patch21 -p1
-%patch22 -p1
+# FIXME
+#%patch22 -p1
 %patch23 -p1
 %patch24 -p1
 %{?with_cross:%patch25 -p1}
 %patch26 -p1
 %patch31 -p0
-%patch32 -p1
-%patch33 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
