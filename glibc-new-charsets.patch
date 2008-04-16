@@ -20,12 +20,12 @@
  	      inis-cyrillic.c iso-2022-jp.c iso-2022-kr.c iso646.c	    \
  	      iso8859-1.c iso8859-2.c iso8859-3.c iso8859-4.c iso8859-5.c   \
  	      iso8859-6.c iso8859-7.c iso8859-8.c iso8859-9.c iso8859-10.c  \
-@@ -223,7 +229,7 @@
- 		    ebcdic-is-friss ebcdic-it ebcdic-pt ebcdic-uk ebcdic-us \
+@@ -228,7 +228,7 @@
+ 		    ebcdic-dk-no-a ebcdic-es-s ebcdic-fi-se ebcdic-fi-se-a  \
+ 		    ebcdic-fr ebcdic-it ebcdic-pt ebcdic-us \
  		    ibm037 ibm038 ibm274 ibm275 ibm423 ibm500 ibm870 ibm871 \
- 		    ibm891 ibm903 ibm904 ibm905 ibm1047 iso8859-16 viscii   \
--		    iso8859-9e
-+		    iso8859-9e koi8-c
+-		    ibm891 ibm903 ibm904 ibm905 ibm1047   \
++		    ibm891 ibm903 ibm904 ibm905 ibm1047 koi8-c
  
  gen-8bit-gap-modules := koi8-r latin-greek latin-greek-1 ibm256 ibm273	   \
  			ibm277 ibm278 ibm280 ibm281 ibm284 ibm285 ibm290   \
