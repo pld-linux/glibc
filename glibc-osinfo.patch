@@ -1,0 +1,16 @@
+Index: sysdeps/unix/sysv/linux/dl-osinfo.h
+===================================================================
+RCS file: /cvs/glibc/libc/sysdeps/unix/sysv/linux/dl-osinfo.h,v
+retrieving revision 1.27
+retrieving revision 1.28
+diff -u -u -r1.27 -r1.28
+--- sysdeps/unix/sysv/linux/dl-osinfo.h	8 Mar 2008 07:33:46 -0000	1.27
++++ sysdeps/unix/sysv/linux/dl-osinfo.h	17 Apr 2008 08:32:24 -0000	1.28
+@@ -19,6 +19,7 @@
+ 
+ #include <kernel-features.h>
+ #include <dl-sysdep.h>
++#include <fcntl.h>
+ #include <stdint.h>
+ 
+ #ifndef MIN
