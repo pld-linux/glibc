@@ -62,7 +62,7 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-2.7-alpha_PTR_MANGLE_move-1.patch
-
+Patch13:	%{name}-osinfo.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 
 Patch17:	%{name}-new-charsets.patch
@@ -881,6 +881,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p0
 %patch14 -p0
 %patch17 -p1
 %patch20 -p1
@@ -935,6 +936,7 @@ AWK="gawk" \
 	--enable-profile
 
 %{__make} \
+	 AWK="gawk" \
 	 sLIBdir=%{_libdir}
 
 cd ..
@@ -1498,6 +1500,7 @@ fi
 %{_includedir}/netatalk
 %{_includedir}/netax25
 %{_includedir}/neteconet
+%{_includedir}/netiucv
 %{_includedir}/netinet
 %{_includedir}/netipx
 %{_includedir}/netpacket
