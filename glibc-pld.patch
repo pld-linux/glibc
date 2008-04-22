@@ -1,17 +1,17 @@
---- libc.org/nscd/nscd.conf.org	2004-10-14 21:31:13.029342088 +0200
-+++ libc/nscd/nscd.conf	2004-10-14 21:31:47.911869325 +0200
-@@ -28,11 +28,11 @@
+--- glibc-2.8/nscd/nscd.conf.org	2008-04-16 21:11:39.024545404 +0200
++++ glibc-2.8/nscd/nscd.conf	2008-04-16 21:12:10.936070956 +0200
+@@ -30,11 +30,11 @@
  #
  
  
 -#	logfile			/var/log/nscd.log
--#	threads			6
--#	max-threads		128
+-#	threads			4
+-#	max-threads		32
 -#	server-user		nobody
 -#	stat-user		somebody
 +	logfile			/var/log/nscd
-+	threads			6
-+	max-threads		128
++	threads			4
++	max-threads		32
 +	server-user		nscd
 +	stat-user		root
  	debug-level		0
