@@ -51,6 +51,7 @@ Source5:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
+Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-alpha-ev6-opcodes.patch
@@ -64,18 +65,16 @@ Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-2.7-alpha_PTR_MANGLE_move-1.patch
 Patch13:	%{name}-osinfo.patch
 Patch14:	%{name}-sparc-errno_fix.patch
-
-Patch17:	%{name}-new-charsets.patch
-
-Patch20:	%{name}-tzfile-noassert.patch
-Patch21:	%{name}-morelocales.patch
-Patch22:	%{name}-locale_fixes.patch
-Patch23:	%{name}-ZA_collate.patch
-Patch24:	%{name}-ppc.patch
-Patch25:	%{name}-cross-gcc_eh.patch
-Patch26:	%{name}-with-stroke.patch
-
-Patch31:	%{name}-pt_pax.patch
+Patch15:	%{name}-new-charsets.patch
+Patch16:	%{name}-tzfile-noassert.patch
+Patch17:	%{name}-morelocales.patch
+Patch18:	%{name}-locale_fixes.patch
+Patch19:	%{name}-ZA_collate.patch
+Patch20:	%{name}-ppc.patch
+Patch21:	%{name}-cross-gcc_eh.patch
+Patch22:	%{name}-with-stroke.patch
+Patch23:	%{name}-pt_pax.patch
+Patch24:	%{name}-sparc-lowlevellock.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -870,6 +869,7 @@ Zabawka.
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -883,16 +883,16 @@ ln -s glibc-libidn-%{version} libidn
 %patch12 -p1
 %patch13 -p0
 %patch14 -p0
+%patch15 -p1
+%patch16 -p1
 %patch17 -p1
+%patch18 -p1
+%patch19 -p1
 %patch20 -p1
-%patch21 -p1
-# FIXME
-#%patch22 -p1
-%patch23 -p1
+%{?with_cross:%patch21 -p1}
+%patch22 -p1
+%patch23 -p0
 %patch24 -p1
-%{?with_cross:%patch25 -p1}
-%patch26 -p1
-%patch31 -p0
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
@@ -906,7 +906,7 @@ cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
 # A lot of programs still misuse memcpy when they have to use
 # memmove. The memcpy implementation below is not tolerant at
 # all.
-rm -f sysdeps/alpha/alphaev6/memcpy.S
+rm sysdeps/alpha/alphaev6/memcpy.S
 
 %build
 # glibc has its own way to remove PLT relocations. / H. J. Lu.
