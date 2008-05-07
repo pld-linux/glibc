@@ -852,10 +852,9 @@ diff -uNr libc.orig/localedata/locales/en_BW libc/localedata/locales/en_BW
 +lang_term   "<U0065><U006E><U0067>"
 +lang_lib    "<U0065><U006E><U0067>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/en_CA libc/localedata/locales/en_CA
---- libc.orig/localedata/locales/en_CA	2003-12-07 14:00:21.000000000 +0100
-+++ libc/localedata/locales/en_CA	2004-11-10 02:36:38.000000000 +0100
-@@ -2214,7 +2214,14 @@
+--- glibc-2.8/localedata/locales/en_CA.orig	2008-04-16 20:55:50.000000000 +0200
++++ glibc-2.8/localedata/locales/en_CA	2008-05-07 19:19:15.668432508 +0200
+@@ -167,9 +167,12 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
@@ -865,11 +864,9 @@ diff -uNr libc.orig/localedata/locales/en_CA libc/localedata/locales/en_CA
  country_num 124
 +country_car "<U0043><U0044><U004E>"
 +country_isbn "<U0030>"
-+lang_name   "<U0045><U006E><U0067><U006C><U0069><U0073><U0068>"
-+lang_ab     "<U0065><U006E>"
-+lang_term   "<U0065><U006E><U0067>"
-+lang_lib    "<U0065><U006E><U0067>"
- END LC_ADDRESS
+ lang_name     "<U0045><U006E><U0067><U006C><U0069><U0073><U0068>"
+ lang_ab       "<U0065><U006E>"
+ lang_term     "<U0065><U006E><U0067>"
 diff -uNr libc.orig/localedata/locales/en_DK libc/localedata/locales/en_DK
 --- libc.orig/localedata/locales/en_DK	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/en_DK	2004-11-10 02:36:38.000000000 +0100
@@ -1755,9 +1752,8 @@ diff -uNr libc.orig/localedata/locales/fr_BE libc/localedata/locales/fr_BE
 +lang_term   "<U0066><U0072><U0061>"
 +lang_lib    "<U0066><U0072><U0065>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/fr_CA libc/localedata/locales/fr_CA
---- libc.orig/localedata/locales/fr_CA	2003-12-07 14:00:22.000000000 +0100
-+++ libc/localedata/locales/fr_CA	2004-11-10 02:36:38.000000000 +0100
+--- glibc-2.8/localedata/locales/fr_CA.orig	2008-04-16 20:55:50.000000000 +0200
++++ glibc-2.8/localedata/locales/fr_CA	2008-05-07 19:19:51.730487567 +0200
 @@ -55,8 +55,7 @@
  END LC_COLLATE
  
@@ -1768,7 +1764,7 @@ diff -uNr libc.orig/localedata/locales/fr_CA libc/localedata/locales/fr_CA
  END LC_MESSAGES
  
  LC_MONETARY
-@@ -146,7 +145,14 @@
+@@ -146,9 +145,12 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
@@ -1778,11 +1774,9 @@ diff -uNr libc.orig/localedata/locales/fr_CA libc/localedata/locales/fr_CA
  country_num 124
 +country_car "<U0043><U0044><U004E>"
 +country_isbn "<U0032>"
-+lang_name   "<U0065><U0072><U0061><U006E><U00E7><U0061><U0069><U0073>"
-+lang_ab     "<U0066><U0072>"
-+lang_term   "<U0066><U0072><U0061>"
-+lang_lib    "<U0066><U0072><U0065>"
- END LC_ADDRESS
+ lang_name "<U0046><U0072><U0061><U006E><U00E7><U0061><U0069><U0073>"
+ lang_ab   "<U0066><U0072>"
+ lang_term "<U0066><U0072><U0061>"
 diff -uNr libc.orig/localedata/locales/fr_CH libc/localedata/locales/fr_CH
 --- libc.orig/localedata/locales/fr_CH	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/fr_CH	2004-11-10 02:36:38.000000000 +0100
@@ -3840,8 +3834,8 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  END LC_MESSAGES
  
  LC_MONETARY
---- glibc-2.7/localedata/locales/ik_CA.orig	2007-10-22 22:32:15.000000000 +0200
-+++ glibc-2.7/localedata/locales/ik_CA	2007-10-22 22:32:15.000000000 +0200
+--- glibc-2.8/localedata/locales/ik_CA.orig	2008-03-04 18:45:50.000000000 +0100
++++ glibc-2.8/localedata/locales/ik_CA	2008-05-07 19:21:10.266964782 +0200
 @@ -203,8 +203,8 @@
  LC_MESSAGES
  yesstr      "<U0061><U0061>"
@@ -3853,22 +3847,15 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  END LC_MESSAGES
  
  % Default paper: A4
-@@ -224,7 +224,21 @@
- END LC_NAME
- 
- LC_ADDRESS
--% FIXME
--copy "en_CA"
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
+@@ -230,8 +230,17 @@
+ <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+ <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
+ <U004E><U0025><U0063><U0025><U004E>"
 +% FIXME Canada in Inupiaq
 +country_name "<U0043><U0061><U006E><U0061><U0064><U0061>"
-+country_ab2  "<U0043><U0041>"
-+country_ab3  "<U0043><U0041><U004E>"
-+country_num  124
+ country_ab2 "<U0043><U0041>"
+ country_ab3 "<U0043><U0041><U004E>"
+ country_num 124
 +country_car  "<U0043><U0044><U004E>"
 +country_isbn "<U0030>"
 +% FIXME: Inupiaq in Inupiaq
@@ -3877,25 +3864,18 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
 +lang_term    "<U0069><U0070><U006B>"
 +lang_lib     "<U0069><U0070><U006B>"
  END LC_ADDRESS
--
---- glibc-2.7/localedata/locales/iu_CA.orig	2007-10-22 22:41:48.000000000 +0200
-+++ glibc-2.7/localedata/locales/iu_CA	2007-10-22 22:41:48.000000000 +0200
-@@ -41,12 +41,12 @@
+ 
+--- glibc-2.8/localedata/locales/iu_CA.orig	2008-03-04 18:45:50.000000000 +0100
++++ glibc-2.8/localedata/locales/iu_CA	2008-05-07 19:22:36.283864930 +0200
+@@ -41,7 +41,7 @@
  country_ab2 "<U0043><U0041>"
  country_ab3 "<U0043><U0041><U004E>"
  country_num 124
 -country_car "<U0043><U0041><U004E>" % FIXME
-+country_car "<U0043><U0044><U004E>" % FIXME
++country_car "<U0043><U0044><U004E>"
  % FIXME country_isbn for Canada/inuktitut ?
  lang_name "<U1403><U14C4><U1483><U144E><U1450><U1466>"
- lang_ab "iu"
--% FIXME lang_term 
--% FIXME lang_lib 
-+lang_term "iku"
-+lang_lib "iku"
- END LC_ADDRESS
- 
- %%%%%%%%%%%%%
+ lang_ab "<U0069><U0075>"
 --- glibc-2.7/localedata/locales/li_NL.orig	2007-10-22 22:55:04.000000000 +0200
 +++ glibc-2.7/localedata/locales/li_NL	2007-10-22 22:55:04.000000000 +0200
 @@ -10,8 +10,8 @@
