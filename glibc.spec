@@ -1149,7 +1149,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre -n nscd
 %groupadd -P nscd -g 144 -r nscd
-%useradd -P nscd -u 144 -r -d /tmp -s /bin/false -c "nscd" -g nscd nscd
+%useradd -P nscd -u 144 -r -d /tmp -s /bin/false -c "Name Service Cache Daemon" -g nscd nscd
 
 %post -n nscd
 /sbin/chkconfig --add nscd
