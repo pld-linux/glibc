@@ -6,7 +6,7 @@ index e8a8aaa..1beafeb 100644
  #define _SYS_USER_H	1
  #include <features.h>
  
-+#include <asm/page.h>
++#include <unistd.h>
  #include <asm/ptrace.h>
  
  struct user {
@@ -14,7 +14,7 @@ index e8a8aaa..1beafeb 100644
  	char		u_comm[32];		/* user command name */
  };
  
-+#define NBPG			PAGE_SIZE
++#define NBPG			getpagesize()
 +#define UPAGES			1
 +#define HOST_TEXT_START_ADDR	(u.start_code)
 +#define HOST_DATA_START_ADDR	(u.start_data)
