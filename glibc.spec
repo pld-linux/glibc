@@ -1463,8 +1463,8 @@ fi
 %attr(755,root,root) %{_libdir}/librt.so
 %attr(755,root,root) %{_libdir}/libthread_db.so
 %attr(755,root,root) %{_libdir}/libutil.so
-%attr(755,root,root) %{_libdir}/crt[1in].o
-%attr(755,root,root) %{_libdir}/[MSg]crt1.o
+%{_libdir}/crt[1in].o
+%{_libdir}/[MSg]crt1.o
 # ld scripts
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
