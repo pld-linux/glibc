@@ -1065,12 +1065,18 @@ done
 #   az_IR (gtk+)
 #   ca_ES@valencia (FileZilla; locale exists in Debian)
 #   co (vlc)
-#   dv, haw, kok, ps, syr (iso-codes)
+#   dv (iso-codes)
 #   gn (gn_BR in gnome, maybe gn_PY)
 #   my (gaim)
-#   sco (gnomad2)
+#   ps (iso-codes)
+#   bal (newt)
+#   haw (iso-codes)
 #   ilo (kudzu)
+#   kok (iso-codes)
 #   man (ccsm; incorrectly named md)
+#   mus (bluez-gnome)
+#   sco (gnomad2)
+#   syr (iso-codes)
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
