@@ -1063,7 +1063,7 @@ done
 #
 # To be added when they become supported by glibc:
 #   az_IR (gtk+)
-#   ca_ES@valencia (FileZilla; locale exists in Debian)
+#   ca@valencia (gtk+2; as ca_ES@valencia in FileZilla; locale exists in Debian)
 #   co (vlc)
 #   dv (iso-codes)
 #   gn (gn_BR in gnome, maybe gn_PY)
