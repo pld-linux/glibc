@@ -2419,7 +2419,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NUMERIC
 +
 +LC_MONETARY
-+        int_curr_symbol "<U0041><U0046><U0041><U0020>"
++        int_curr_symbol "<U0041><U0046><U004E><U0020>"
 +        currency_symbol "<U0627><U0641><U063A><U0627><U0646><U06CD>"
 +        mon_decimal_point       "<U066B>"
 +        mon_thousands_sep       "<U066C>"
