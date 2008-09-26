@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.8
-Release:	8
+Release:	9
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1086,14 +1086,14 @@ done
 #   sv tr zh_CN zh_TW
 #
 for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
-    bg bn bn_IN br bs byn csb cy de_AT de_CH dz en en@boldquot en@quot en_AU \
-    en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX \
-    es_NI es_PA es_PE es_PR es_SV es_UY es_VE et eu fa fil fo fr_BE fr_CA fr_CH \
-    fur fy ga gd gez gu gv he hi hsb hy ia id ik is it_CH iu ka kk kl km kn ku \
-    kw ky lg li lo lt lv mai mg mi mk ml mn mr ms mt nds ne nl_BE nn nr nso oc \
-    om or pa pap ps pt rm ro sa sc se si sid sl so sq sr sr@Latn sr@ije \
-    sr@latin ss st sw ta te tg th ti tig tk tl tlh tn ts tt ug uk ur uz \
-    uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu ; do
+    bg bn bn_IN br bs byn crh csb cy de_AT de_CH dz en en@boldquot en@quot \
+    en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR es_DO es_EC es_GT \
+    es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE et eu fa fil fo \
+    fr_BE fr_CA fr_CH fur fy ga gd gez gu gv he hi hsb hy ia id ik is it_CH \
+    iu ka kk kl km kn ku kw ky lg li lo lt lv mai mg mi mk ml mn mr ms mt \
+    nds ne nl_BE nn nr nso oc om or pa pap ps pt rm ro sa sc se si sid sl so \
+    sq sr sr@Latn sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn \
+    ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu ; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
