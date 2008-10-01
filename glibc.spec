@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.8
-Release:	9
+Release:	10
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -75,6 +75,7 @@ Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch24:	%{name}-sparc-lowlevellock.patch
+Patch25:	%{name}-powerpc-abi_fix.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -896,6 +897,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch22 -p1
 %patch23 -p0
 %patch24 -p1
+%patch25 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
