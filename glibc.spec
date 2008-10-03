@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.8
-Release:	10
+Release:	11
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1092,7 +1092,7 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
     en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR es_DO es_EC es_GT \
     es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE et eu fa fil fo \
     fr_BE fr_CA fr_CH fur fy ga gd gez gu gv he hi hsb hy ia id ik is it_CH \
-    iu ka kk kl km kn ku kw ky lg li lo lt lv mai mg mi mk ml mn mr ms mt \
+    iu ka kk kl km kn ks ku kw ky lg li lo lt lv mai mg mi mk ml mn mr ms mt \
     nds ne nl_BE nn nr nso oc om or pa pap ps pt rm ro sa sc se si sid sl so \
     sq sr sr@Latn sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn \
     ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu ; do
