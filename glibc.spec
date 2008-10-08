@@ -1079,6 +1079,7 @@ done
 #   mus (bluez-gnome)
 #   sco (gnomad2)
 #   syr (iso-codes)
+#   ven (kalarm)
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
