@@ -1628,17 +1628,17 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +revision   "0.1"
 +date       "2008-08-26"
 +%
-+category  "ks_IN:2008";LC_IDENTIFICATION
-+category  "ks_IN:2008";LC_CTYPE
-+category  "ks_IN:2008";LC_COLLATE
-+category  "ks_IN:2008";LC_TIME
-+category  "ks_IN:2008";LC_NUMERIC
-+category  "ks_IN:2008";LC_MONETARY
-+category  "ks_IN:2008";LC_MESSAGES
-+category  "ks_IN:2008";LC_PAPER
-+category  "ks_IN:2008";LC_NAME
-+category  "ks_IN:2008";LC_ADDRESS
-+category  "ks_IN:2008";LC_TELEPHONE
++category  "ks_IN@devanagari:2008";LC_IDENTIFICATION
++category  "ks_IN@devanagari:2008";LC_CTYPE
++category  "ks_IN@devanagari:2008";LC_COLLATE
++category  "ks_IN@devanagari:2008";LC_TIME
++category  "ks_IN@devanagari:2008";LC_NUMERIC
++category  "ks_IN@devanagari:2008";LC_MONETARY
++category  "ks_IN@devanagari:2008";LC_MESSAGES
++category  "ks_IN@devanagari:2008";LC_PAPER
++category  "ks_IN@devanagari:2008";LC_NAME
++category  "ks_IN@devanagari:2008";LC_ADDRESS
++category  "ks_IN@devanagari:2008";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -1835,17 +1835,17 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +revision   "1.0"
 +date       "2008-08-26"
 +%
-+category  "sd_IN:2008";LC_IDENTIFICATION
-+category  "sd_IN:2008";LC_CTYPE
-+category  "sd_IN:2008";LC_COLLATE
-+category  "sd_IN:2008";LC_TIME
-+category  "sd_IN:2008";LC_NUMERIC
-+category  "sd_IN:2008";LC_MONETARY
-+category  "sd_IN:2008";LC_MESSAGES
-+category  "sd_IN:2008";LC_PAPER
-+category  "sd_IN:2008";LC_NAME
-+category  "sd_IN:2008";LC_ADDRESS
-+category  "sd_IN:2008";LC_TELEPHONE
++category  "sd_IN@devanagari:2008";LC_IDENTIFICATION
++category  "sd_IN@devanagari:2008";LC_CTYPE
++category  "sd_IN@devanagari:2008";LC_COLLATE
++category  "sd_IN@devanagari:2008";LC_TIME
++category  "sd_IN@devanagari:2008";LC_NUMERIC
++category  "sd_IN@devanagari:2008";LC_MONETARY
++category  "sd_IN@devanagari:2008";LC_MESSAGES
++category  "sd_IN@devanagari:2008";LC_PAPER
++category  "sd_IN@devanagari:2008";LC_NAME
++category  "sd_IN@devanagari:2008";LC_ADDRESS
++category  "sd_IN@devanagari:2008";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
