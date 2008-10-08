@@ -3091,7 +3091,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +copy "hi_IN"
 +END LC_MEASUREMENT
 --- glibc-2.8/localedata/SUPPORTED.orig	2008-04-16 20:55:48.000000000 +0200
-+++ glibc-2.8/localedata/SUPPORTED	2008-09-08 23:19:53.048979766 +0200
++++ glibc-2.8/localedata/SUPPORTED	2008-10-08 19:06:05.514417473 +0200
 @@ -47,12 +47,15 @@
  ar_YE.UTF-8/UTF-8 \
  ar_YE/ISO-8859-6 \
@@ -3108,7 +3108,15 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  ber_DZ/UTF-8 \
  ber_MA/UTF-8 \
  bg_BG.UTF-8/UTF-8 \
-@@ -132,6 +135,8 @@
+@@ -103,6 +106,7 @@
+ el_GR/ISO-8859-7 \
+ el_CY.UTF-8/UTF-8 \
+ el_CY/ISO-8859-7 \
++en_AG/UTF-8 \
+ en_AU.UTF-8/UTF-8 \
+ en_AU/ISO-8859-1 \
+ en_BW.UTF-8/UTF-8 \
+@@ -132,6 +136,8 @@
  en_ZA/ISO-8859-1 \
  en_ZW.UTF-8/UTF-8 \
  en_ZW/ISO-8859-1 \
@@ -3117,7 +3125,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  es_AR.UTF-8/UTF-8 \
  es_AR/ISO-8859-1 \
  es_BO.UTF-8/UTF-8 \
-@@ -179,10 +184,14 @@
+@@ -179,10 +185,14 @@
  eu_ES.UTF-8/UTF-8 \
  eu_ES/ISO-8859-1 \
  eu_ES@euro/ISO-8859-15 \
@@ -3132,7 +3140,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  fil_PH/UTF-8 \
  fo_FO.UTF-8/UTF-8 \
  fo_FO/ISO-8859-1 \
-@@ -199,8 +208,14 @@
+@@ -199,8 +209,14 @@
  fr_LU.UTF-8/UTF-8 \
  fr_LU/ISO-8859-1 \
  fr_LU@euro/ISO-8859-15 \
@@ -3147,7 +3155,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  fy_DE/UTF-8 \
  ga_IE.UTF-8/UTF-8 \
  ga_IE/ISO-8859-1 \
-@@ -220,15 +235,18 @@
+@@ -220,15 +236,18 @@
  ha_NG/UTF-8 \
  he_IL.UTF-8/UTF-8 \
  he_IL/ISO-8859-8 \
@@ -3167,7 +3175,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  id_ID.UTF-8/UTF-8 \
  id_ID/ISO-8859-1 \
  ig_NG/UTF-8 \
-@@ -241,10 +259,9 @@
+@@ -241,10 +260,9 @@
  it_IT/ISO-8859-1 \
  it_IT@euro/ISO-8859-15 \
  iu_CA/UTF-8 \
@@ -3179,7 +3187,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  ka_GE.UTF-8/UTF-8 \
  ka_GE/GEORGIAN-PS \
  kk_KZ.UTF-8/UTF-8 \
-@@ -255,15 +272,22 @@
+@@ -255,15 +273,22 @@
  kn_IN/UTF-8 \
  ko_KR.EUC-KR/EUC-KR \
  ko_KR.UTF-8/UTF-8 \
@@ -3202,7 +3210,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  lo_LA/UTF-8 \
  lt_LT.UTF-8/UTF-8 \
  lt_LT/ISO-8859-13 \
-@@ -285,7 +309,11 @@
+@@ -285,9 +310,14 @@
  mt_MT/ISO-8859-3 \
  nb_NO.UTF-8/UTF-8 \
  nb_NO/ISO-8859-1 \
@@ -3213,8 +3221,11 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +nds_DE@traditional/UTF-8 \
  nds_NL/UTF-8 \
  ne_NP/UTF-8 \
++nl_AW/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
-@@ -296,24 +324,34 @@
+ nl_BE/ISO-8859-1 \
+ nl_BE@euro/ISO-8859-15 \
+@@ -296,24 +326,34 @@
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -3249,7 +3260,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -321,15 +359,21 @@
+@@ -321,15 +361,21 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -3271,7 +3282,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
  so_DJ.UTF-8/UTF-8 \
-@@ -341,9 +385,13 @@
+@@ -341,9 +387,13 @@
  so_SO/ISO-8859-1 \
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
@@ -3285,7 +3296,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  ss_ZA/UTF-8 \
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
-@@ -352,10 +400,17 @@
+@@ -352,10 +402,17 @@
  sv_FI@euro/ISO-8859-15 \
  sv_SE.UTF-8/UTF-8 \
  sv_SE/ISO-8859-1 \
@@ -3303,7 +3314,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  th_TH.UTF-8/UTF-8 \
  th_TH/TIS-620 \
  ti_ER/UTF-8 \
-@@ -364,18 +419,24 @@
+@@ -364,18 +421,24 @@
  tk_TM/UTF-8 \
  tl_PH.UTF-8/UTF-8 \
  tl_PH/ISO-8859-1 \
@@ -3328,7 +3339,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  uz_UZ/ISO-8859-1 \
  uz_UZ@cyrillic/UTF-8 \
  ve_ZA/UTF-8 \
-@@ -384,6 +445,7 @@
+@@ -384,6 +447,7 @@
  wa_BE/ISO-8859-1 \
  wa_BE@euro/ISO-8859-15 \
  wa_BE.UTF-8/UTF-8 \
