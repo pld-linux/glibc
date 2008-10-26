@@ -271,6 +271,7 @@ Group:		Applications/System
 AutoReq:	false
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Suggests:	%{name}-localedb-all
+Suggests:	tzdata
 
 %description misc
 Utilities and data used by glibc.
