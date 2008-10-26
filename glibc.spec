@@ -129,7 +129,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # avoid -D_FORTIFY_SOURCE=X
 %define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
 
-%define 	specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
+%define		specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
 # ld.so needs not to be stripped to work
 # gdb needs unstripped libpthread for some threading support
@@ -270,6 +270,7 @@ Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 AutoReq:	false
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Suggests:	%{name}-localedb-all
 
 %description misc
 Utilities and data used by glibc.
@@ -941,8 +942,8 @@ AWK="gawk" \
 	--enable-profile
 
 %{__make} \
-	 AWK="gawk" \
-	 sLIBdir=%{_libdir}
+	AWK="gawk" \
+	sLIBdir=%{_libdir}
 
 cd ..
 
@@ -1192,7 +1193,7 @@ fi
 # TODO: package ldconfig symlinks as %ghost
 %attr(755,root,root) /%{_lib}/ld-%{version}.so
 # wildly arch-dependent ld.so SONAME symlink
-%ifarch %{ix86} sparc sparcv9 sparc64 alpha sh 
+%ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
 %attr(755,root,root) /%{_lib}/ld-linux.so.2
 %endif
 %ifarch ia64
