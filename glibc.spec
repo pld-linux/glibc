@@ -138,6 +138,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %{expand:%%define	__cc	%{__cc} -m32}
 %endif
 
+%define		specflags		-fasynchronous-unwind-tables
+
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
 %define		specflags_x86_64	-mno-tls-direct-seg-refs
@@ -151,6 +153,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # patched not to crash on partial hardlinks too)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
+# private symbols
+%define		_noautoprov		.*\(GLIBC_PRIVATE\)
+%define		_noautoreq		.*\(GLIBC_PRIVATE\)
 
 %description
 Contains the standard libraries that are used by multiple programs on
@@ -925,7 +930,6 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 AWK="gawk" \
 ../%configure \
-	CFLAGS="%{rpmcflags} -fasynchronous-unwind-tables" \
 	--enable-kernel="%{min_kernel}" \
 	--enable-omitfp \
 	--with-headers=%{_includedir} \
