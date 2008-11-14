@@ -78,9 +78,9 @@
  alias	ISO_8859-14//		ISO-8859-14//
  alias	ISO-CELTIC//		ISO-8859-14//
 @@ -395,6 +401,8 @@
- alias	ISO-IR-203//		ISO-8859-15//
  alias	ISO_8859-15//		ISO-8859-15//
  alias	LATIN-9//		ISO-8859-15//
+ alias	LATIN9//		ISO-8859-15//
 +alias	L9//			ISO-8859-15//
 +alias	8859-15//		ISO-8859-15//
  alias	ISO_8859-15:1998//	ISO-8859-15//

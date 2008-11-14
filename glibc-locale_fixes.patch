@@ -404,17 +404,6 @@ diff -uNr libc.orig/localedata/locales/az_AZ libc/localedata/locales/az_AZ
 diff -uNr libc.orig/localedata/locales/be_BY libc/localedata/locales/be_BY
 --- libc.orig/localedata/locales/be_BY	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/be_BY	2004-11-10 02:36:38.000000000 +0100
-@@ -65,8 +65,8 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0414><U0434><U0059><U0079><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U041D><U043D><U004E><U006E><U005D><U002E><U002A>"
-+yesexpr "<U005E><U005B><U0414><U0434><U0059><U0079><U005D>"
-+noexpr  "<U005E><U005B><U041D><U043D><U004E><U006E><U005D>"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -108,6 +108,8 @@
          "<U0427><U0446><U0432>";/
          "<U041F><U044F><U0442>";/
