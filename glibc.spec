@@ -32,17 +32,17 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.8
-Release:	11
+Version:	2.9
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 # Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	2dbe2a6589edc944e999fe09bd0f8567
+# Source0-md5:	0c99247cbfd085f0b2e408e1f32ad30d
 # Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
 Source1:	%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	f548d753ea47e79c95d992379c5e7a2c
+# Source1-md5:	9b69076a39117df1ff22fa209bb4768c
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -63,7 +63,6 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
 Patch12:	%{name}-2.7-alpha_PTR_MANGLE_move-1.patch
-Patch13:	%{name}-osinfo.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
@@ -74,8 +73,6 @@ Patch20:	%{name}-thread_start.patch
 Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
-Patch24:	%{name}-sparc-lowlevellock.patch
-Patch25:	%{name}-powerpc-abi_fix.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -887,7 +884,6 @@ ln -s glibc-libidn-%{version} libidn
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p0
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
@@ -898,8 +894,6 @@ ln -s glibc-libidn-%{version} libidn
 %{?with_cross:%patch21 -p1}
 %patch22 -p1
 %patch23 -p0
-%patch24 -p1
-%patch25 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
@@ -931,6 +925,7 @@ CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 AWK="gawk" \
 ../%configure \
+	CFLAGS="%{rpmcflags} -fasynchronous-unwind-tables" \
 	--enable-kernel="%{min_kernel}" \
 	--enable-omitfp \
 	--with-headers=%{_includedir} \
