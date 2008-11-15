@@ -138,8 +138,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %{expand:%%define	__cc	%{__cc} -m32}
 %endif
 
-%define		specflags		-fasynchronous-unwind-tables
-
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
 %define		specflags_x86_64	-mno-tls-direct-seg-refs
