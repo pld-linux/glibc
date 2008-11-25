@@ -271,7 +271,7 @@ Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 AutoReq:	false
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Suggests:	%{name}-localedb-all
+Suggests:	localedb
 Suggests:	tzdata
 
 %description misc
@@ -584,6 +584,7 @@ Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gzip
 Requires:	sed
+Provides:	localedb
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
@@ -606,6 +607,7 @@ Summary(pl.UTF-8):	Baza danych locale dla wszystkich lokalizacji obsługiwanych 
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	iconv = %{epoch}:%{version}-%{release}
+Provides:	localedb
 
 %description localedb-all
 This package contains locale database for all locales supported by
