@@ -74,6 +74,7 @@ Patch20:	%{name}-thread_start.patch
 Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
+Patch24:	%{name}-fixes.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -901,6 +902,7 @@ ln -s glibc-libidn-%{version} libidn
 %{?with_cross:%patch21 -p1}
 %patch22 -p1
 %patch23 -p0
+%patch24 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
