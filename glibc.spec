@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.9
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -75,6 +75,7 @@ Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch24:	%{name}-fixes.patch
+Patch25:	%{name}-cv_gnu89_inline.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -903,6 +904,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch22 -p1
 %patch23 -p0
 %patch24 -p1
+%patch25 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
@@ -999,6 +1001,9 @@ PICFILES="libc_pic.a libc.map
 install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
 install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
+
+# Include %{_libdir}/gconv/gconv-modules.cache
+./iconv/iconvconfig --nostdlib $RPM_BUILD_ROOT%{_libdir}/gconv -o $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
 cd ..
 
 %if %{without cross}
@@ -1015,7 +1020,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
 ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl cidn crypt dl m nsl resolv rt thread_db util ; do
+for l in BrokenLocale anl cidn crypt dl m nsl resolv rt thread_db util; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
@@ -1053,7 +1058,7 @@ cp -f crypt/README.ufc-crypt ChangeLog* documentation
 # Collect locale files and mark them with %%lang()
 rm -f glibc.lang
 echo '%defattr(644,root,root,755)' > glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
+for i in $RPM_BUILD_ROOT%{_datadir}/locale/*; do
 	if [ -d $i ]; then
 		lang=$(basename $i)
 		dir="${i#$RPM_BUILD_ROOT}"
@@ -1094,14 +1099,14 @@ done
 #   sv tr zh_CN zh_TW
 #
 for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
-    bg bn bn_IN br bs byn crh csb cy de_AT de_CH dz en en@boldquot en@quot \
-    en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR es_DO es_EC es_GT \
-    es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE et eu fa fil fo \
-    fr_BE fr_CA fr_CH fur fy ga gd gez gu gv he hi hsb hy ia id ik is it_CH \
-    iu ka kk kl km kn ks ku kw ky lg li lo lt lv mai mg mi mk ml mn mr ms mt \
-    nds ne nl_BE nn nr nso oc om or pa pap ps pt rm ro sa sc se si sid sl so \
-    sq sr sr@Latn sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn \
-    ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu ; do
+	bg bn bn_IN br bs byn crh csb cy de_AT de_CH dz en en@boldquot en@quot \
+	en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR es_DO es_EC es_GT \
+	es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE et eu fa fil fo \
+	fr_BE fr_CA fr_CH fur fy ga gd gez gu gv he hi hsb hy ia id ik is it_CH \
+	iu ka kk kl km kn ks ku kw ky lg li lo lt lv mai mg mi mk ml mn mr ms mt \
+	nds ne nl_BE nn nr nso oc om or pa pap ps pt rm ro sa sc se si sid sl so \
+	sq sr sr@Latn sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn \
+	ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
@@ -1112,7 +1117,7 @@ done
 
 # LC_TIME category, used for localized date formats (at least by coreutils)
 for i in af be bg ca cs da de el es et eu fi fr ga gl hu it ja ko lt ms nb nl pl \
-    pt pt_BR ru rw sk sl sv tr uk vi zh_CN zh_TW ; do
+	pt pt_BR ru rw sk sl sv tr uk vi zh_CN zh_TW; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i ]; then
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
@@ -1137,9 +1142,6 @@ rm -f $RPM_BUILD_ROOT%{_sbindir}/rpcinfo
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-# don't run iconvconfig in %%postun -n iconv because iconvconfig doesn't exist
-# when %%postun is run
 
 %if %{without cross}
 %post	-p /sbin/postshell
@@ -1607,6 +1609,7 @@ fi
 %attr(755,root,root) %{_sbindir}/iconvconfig
 %dir %{_libdir}/gconv
 %{_libdir}/gconv/gconv-modules
+%verify(not md5 mtime size) %{_libdir}/gconv/gconv-modules.cache
 %attr(755,root,root) %{_libdir}/gconv/*.so
 
 %files static
