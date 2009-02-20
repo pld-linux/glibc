@@ -76,6 +76,7 @@ Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch24:	%{name}-fixes.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
+Patch26:	%{name}-sed.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -905,6 +906,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch23 -p0
 %patch24 -p1
 %patch25 -p1
+%patch26 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
