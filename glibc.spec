@@ -37,12 +37,10 @@ Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-# Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	0c99247cbfd085f0b2e408e1f32ad30d
-# Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-Source1:	%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	9b69076a39117df1ff22fa209bb4768c
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+# Source0-md5:	fc62e989cf31d015f31628609fc3757a
+Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
+# Source1-md5:	99536b508af988e7cc6275944d12b491
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
