@@ -639,6 +639,7 @@ Summary(es.UTF-8):	Convierte entre varias codificaciones de los ficheros dados
 Summary(pl.UTF-8):	Moduły do konwersji plików tekstowych z jednego kodowania do innego
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	iconv(%{_target_base_arch})
 
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need
@@ -1193,7 +1194,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
-%if !%{with cross}
+%if %{without cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
 # TODO: package ldconfig symlinks as %ghost
