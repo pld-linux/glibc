@@ -84,7 +84,6 @@ BuildRequires:	binutils >= 2:2.17.50.0.7
 %else
 BuildRequires:	binutils >= 2:2.15.90.0.3
 %endif
-AutoReq:	false
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
 BuildRequires:	gcc >= 5:3.4
@@ -107,6 +106,7 @@ Provides:	glibc(tls)
 Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
+AutoReq:	false
 %ifarch %{x8664} sparc64 ppc64
 Provides:	glibc64
 Obsoletes:	glibc64
@@ -270,10 +270,10 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
-AutoReq:	false
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Suggests:	localedb
 Suggests:	tzdata
+AutoReq:	false
 
 %description misc
 Utilities and data used by glibc.
@@ -400,22 +400,22 @@ Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	%{name}-headers(i386)
-Obsoletes:	%{name}-headers(i486)
-Obsoletes:	%{name}-headers(i586)
-Obsoletes:	%{name}-headers(i686)
-Obsoletes:	%{name}-headers(athlon)
-Obsoletes:	%{name}-headers(pentium3)
-Obsoletes:	%{name}-headers(pentium4)
+Obsoletes:	glibc-headers(athlon)
+Obsoletes:	glibc-headers(i386)
+Obsoletes:	glibc-headers(i486)
+Obsoletes:	glibc-headers(i586)
+Obsoletes:	glibc-headers(i686)
+Obsoletes:	glibc-headers(pentium3)
+Obsoletes:	glibc-headers(pentium4)
 %endif
 %ifarch ppc64
-Obsoletes:	%{name}-headers(ppc)
+Obsoletes:	glibc-headers(ppc)
 %endif
 %ifarch s390x
-Obsoletes:	%{name}-headers(s390)
+Obsoletes:	glibc-headers(s390)
 %endif
 %ifarch sparc64
-Obsoletes:	%{name}-headers(sparc)
+Obsoletes:	glibc-headers(sparc)
 %endif
 Requires:	linux-libc-headers >= %{llh_version}
 
@@ -448,22 +448,22 @@ Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	%{name}-devel-utils(i386)
-Obsoletes:	%{name}-devel-utils(i486)
-Obsoletes:	%{name}-devel-utils(i586)
-Obsoletes:	%{name}-devel-utils(i686)
-Obsoletes:	%{name}-devel-utils(athlon)
-Obsoletes:	%{name}-devel-utils(pentium3)
-Obsoletes:	%{name}-devel-utils(pentium4)
+Obsoletes:	glibc-devel-utils(athlon)
+Obsoletes:	glibc-devel-utils(i386)
+Obsoletes:	glibc-devel-utils(i486)
+Obsoletes:	glibc-devel-utils(i586)
+Obsoletes:	glibc-devel-utils(i686)
+Obsoletes:	glibc-devel-utils(pentium3)
+Obsoletes:	glibc-devel-utils(pentium4)
 %endif
 %ifarch ppc64
-Obsoletes:	%{name}-devel-utils(ppc)
+Obsoletes:	glibc-devel-utils(ppc)
 %endif
 %ifarch s390x
-Obsoletes:	%{name}-devel-utils(s390)
+Obsoletes:	glibc-devel-utils(s390)
 %endif
 %ifarch sparc64
-Obsoletes:	%{name}-devel-utils(sparc)
+Obsoletes:	glibc-devel-utils(sparc)
 %endif
 
 %description devel-utils
@@ -494,22 +494,22 @@ Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	%{name}-devel-doc(i386)
-Obsoletes:	%{name}-devel-doc(i486)
-Obsoletes:	%{name}-devel-doc(i586)
-Obsoletes:	%{name}-devel-doc(i686)
-Obsoletes:	%{name}-devel-doc(athlon)
-Obsoletes:	%{name}-devel-doc(pentium3)
-Obsoletes:	%{name}-devel-doc(pentium4)
+Obsoletes:	glibc-devel-doc(athlon)
+Obsoletes:	glibc-devel-doc(i386)
+Obsoletes:	glibc-devel-doc(i486)
+Obsoletes:	glibc-devel-doc(i586)
+Obsoletes:	glibc-devel-doc(i686)
+Obsoletes:	glibc-devel-doc(pentium3)
+Obsoletes:	glibc-devel-doc(pentium4)
 %endif
 %ifarch ppc64
-Obsoletes:	%{name}-devel-doc(ppc)
+Obsoletes:	glibc-devel-doc(ppc)
 %endif
 %ifarch s390x
-Obsoletes:	%{name}-devel-doc(s390)
+Obsoletes:	glibc-devel-doc(s390)
 %endif
 %ifarch sparc64
-Obsoletes:	%{name}-devel-doc(sparc)
+Obsoletes:	glibc-devel-doc(sparc)
 %endif
 
 %description devel-doc
