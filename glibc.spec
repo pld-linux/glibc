@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.9
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1159,8 +1159,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
-
-%post -n iconv -p %{_sbindir}/iconvconfig
 
 %post devel	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
