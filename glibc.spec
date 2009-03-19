@@ -270,6 +270,7 @@ Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	bash
 Suggests:	localedb
 Suggests:	tzdata
 AutoReq:	false
