@@ -10,6 +10,7 @@
 # TODO:
 # - look at locale fixes/updates in bugzilla
 # - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
+# - unbash /usr/bin/ldd (and other scripts?)
 # [OLD]
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
@@ -270,7 +271,6 @@ Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	bash
 Suggests:	localedb
 Suggests:	tzdata
 AutoReq:	false
