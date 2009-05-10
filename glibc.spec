@@ -87,6 +87,7 @@ BuildRequires:	gcc >= 5:3.4
 BuildRequires:	gettext-devel >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
+BuildRequires:	nss-devel >= 3.12.3
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
@@ -928,6 +929,7 @@ AWK="gawk" \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
 	--enable-add-ons=nptl,libidn \
+	--enable-nss-crypt \
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
 	--enable-bind-now \
@@ -965,7 +967,7 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
+install -d $RPM_BUILD_ROOT{/etc/{default,logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1021,6 +1023,7 @@ install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 sed -e 's#\([ \t]\)db\([ \t]\)#\1#g' nss/nsswitch.conf > $RPM_BUILD_ROOT%{_sysconfdir}/nsswitch.conf
 install posix/gai.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+install nis/nss $RPM_BUILD_ROOT/etc/default/nss
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
@@ -1290,6 +1293,7 @@ fi
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/default/nss
 
 %config %{_sysconfdir}/rpc
 
