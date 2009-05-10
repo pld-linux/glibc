@@ -1,15 +1,15 @@
 diff -urN glibc-2.1.91.orig/crypt/Makefile glibc-2.1.91/crypt/Makefile
 --- glibc-2.1.91.orig/crypt/Makefile	Wed Jun 14 05:49:02 2000
 +++ glibc-2.1.91/crypt/Makefile	Sat Jul 15 00:58:39 2000
-@@ -27,7 +27,7 @@
+@@ -26,7 +26,7 @@
+ extra-libs := libcrypt
  extra-libs-others := $(extra-libs)
  
- libcrypt-routines := crypt-entry md5-crypt md5 sha256-crypt sha256 \
--		     sha512-crypt sha512 crypt crypt_util
-+		     sha512-crypt sha512 arc4random bcrypt blowfish crypt crypt_util
+-libcrypt-routines := crypt-entry md5-crypt sha256-crypt sha512-crypt crypt \
++libcrypt-routines := crypt-entry md5-crypt sha256-crypt sha512-crypt arc4random bcrypt blowfish crypt \
+ 		     crypt_util
  
- tests := cert md5test md5c-test sha256test sha256c-test sha512test sha512c-test
- 
+ tests := cert md5c-test sha256c-test sha512c-test
 diff -urN glibc-2.1.91.orig/crypt/arc4random.c glibc-2.1.91/crypt/arc4random.c
 --- glibc-2.1.91.orig/crypt/arc4random.c	Thu Jan  1 01:00:00 1970
 +++ glibc-2.1.91/crypt/arc4random.c	Sat Jul 15 00:56:30 2000

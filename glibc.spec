@@ -33,15 +33,15 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.9
-Release:	7
+Version:	2.10
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	fc62e989cf31d015f31628609fc3757a
+# Source0-md5:	9c2e406dfa10f9064affe8f6ed6eb5df
 Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	99536b508af988e7cc6275944d12b491
+# Source1-md5:	b8933fecc41e4f21896e6cdcb203ca64
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -53,7 +53,6 @@ Source7:	%{name}-LD-path.c
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
-Patch4:		%{name}-alpha-ev6-opcodes.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
 Patch7:		%{name}-no_opt_override.patch
@@ -61,8 +60,6 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
-Patch12:	%{name}-2.7-alpha_PTR_MANGLE_move-1.patch
-Patch13:	%{name}-load-reg.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
@@ -73,9 +70,7 @@ Patch20:	%{name}-thread_start.patch
 Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
-Patch24:	%{name}-fixes.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
-Patch26:	%{name}-sed.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -880,10 +875,9 @@ Zabawka.
 %prep
 %setup -q -a1
 ln -s glibc-libidn-%{version} libidn
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
@@ -891,8 +885,6 @@ ln -s glibc-libidn-%{version} libidn
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
-%patch13 -p1
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
@@ -903,9 +895,7 @@ ln -s glibc-libidn-%{version} libidn
 %{?with_cross:%patch21 -p1}
 %patch22 -p1
 %patch23 -p0
-%patch24 -p1
 %patch25 -p1
-%patch26 -p1
 
 # these would be copied to localedb-src
 rm -f localedata/locales/*{.orig,~}
@@ -915,11 +905,6 @@ chmod +x scripts/cpp
 # i786 (aka pentium4) hack
 cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
 cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
-
-# A lot of programs still misuse memcpy when they have to use
-# memmove. The memcpy implementation below is not tolerant at
-# all.
-rm sysdeps/alpha/alphaev6/memcpy.S
 
 %build
 # glibc has its own way to remove PLT relocations. / H. J. Lu.

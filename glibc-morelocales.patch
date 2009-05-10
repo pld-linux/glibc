@@ -2136,12 +2136,13 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  fy_DE/UTF-8 \
  ga_IE.UTF-8/UTF-8 \
  ga_IE/ISO-8859-1 \
-@@ -236,16 +236,18 @@
+@@ -236,17 +236,19 @@
  ha_NG/UTF-8 \
  he_IL.UTF-8/UTF-8 \
  he_IL/ISO-8859-8 \
 +hi_IN.ISCII-DEV/ISCII-DEV \
  hi_IN/UTF-8 \
+ hne_IN/UTF-8 \
  hr_HR.UTF-8/UTF-8 \
  hr_HR/ISO-8859-2 \
  hsb_DE/ISO-8859-2 \
@@ -2233,7 +2234,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -361,17 +361,23 @@
+@@ -361,17 +361,21 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -2245,8 +2246,6 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  sc_IT/UTF-8 \
  sd_IN/UTF-8 \
  sd_IN@devanagari/UTF-8 \
-+sd_IN/UTF-8 \
-+sd_IN@devanagari/UTF-8 \
  se_NO/UTF-8 \
  shs_CA/UTF-8 \
  si_LK/UTF-8 \
