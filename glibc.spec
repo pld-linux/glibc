@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -96,6 +96,7 @@ BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
+Requires:	nss-softokn-freebl
 Requires:	uname(release) >= %{min_kernel}
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
