@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	2
+Release:	2.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -96,14 +96,12 @@ BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
-Requires:	nss-softokn-freebl
 Requires:	uname(release) >= %{min_kernel}
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
 Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
-AutoReq:	false
 %ifarch %{x8664} sparc64 ppc64
 Provides:	glibc64
 Obsoletes:	glibc64
@@ -270,7 +268,6 @@ Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Suggests:	localedb
 Suggests:	tzdata
-AutoReq:	false
 
 %description misc
 Utilities and data used by glibc.
