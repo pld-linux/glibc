@@ -268,6 +268,7 @@ Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Suggests:	localedb
 Suggests:	tzdata
+AutoReq:	false
 
 %description misc
 Utilities and data used by glibc.
