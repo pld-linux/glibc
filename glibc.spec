@@ -108,7 +108,7 @@ Obsoletes:	glibc64
 Suggests:	localedb
 Suggests:	tzdata
 Conflicts:	SysVinit < 2.86-11
-Conflicts:	glibc-misc < 6:2.10.1-3.1
+Conflicts:	%{name}-misc < %{epoch}:%{version}-%{release}
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	kernel24
 Conflicts:	kernel24-smp
