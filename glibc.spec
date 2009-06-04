@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -95,7 +95,6 @@ BuildRequires:	rpmbuild(macros) >= 1.413
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
-Requires:	%{name}-misc = %{epoch}:%{version}-%{release}
 Requires:	uname(release) >= %{min_kernel}
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
@@ -106,7 +105,10 @@ Obsoletes:	glibc-debug
 Provides:	glibc64
 Obsoletes:	glibc64
 %endif
+Suggests:	localedb
+Suggests:	tzdata
 Conflicts:	SysVinit < 2.86-11
+Conflicts:	glibc-misc < 6:2.10.1-3.1
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	kernel24
 Conflicts:	kernel24-smp
@@ -266,15 +268,20 @@ Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Suggests:	localedb
-Suggests:	tzdata
-AutoReq:	false
 
 %description misc
 Utilities and data used by glibc.
 
 %description misc -l pl.UTF-8
 Narzędzia i dane używane przez glibc.
+
+%package libcrypt
+Summary:	glibc library for crypt(3)
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description libcrypt
+glibc library for crypt(3).
 
 %package -n ldconfig
 Summary:	Create shared library cache and maintains symlinks
@@ -286,6 +293,8 @@ Group:		Applications/System
 # This is needed because previous package (glibc) had autoreq false and had
 # provided this manually. Probably poldek bug that have to have it here.
 Provides:	/sbin/ldconfig
+# we want FHS being installed before ldconfig, altho they are both unrelated to each-other.
+Requires:	FHS
 
 %description -n ldconfig
 ldconfig scans a running system and sets up the symbolic links that
@@ -1144,6 +1153,9 @@ rm -rf $RPM_BUILD_ROOT
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 %endif
 
+%post	libcrypt -p /sbin/ldconfig
+%postun	libcrypt -p /sbin/ldconfig
+
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
 
@@ -1177,7 +1189,7 @@ if [ "$1" = "0" ]; then
 	%groupremove nscd
 fi
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README NEWS FAQ BUGS
 %if %{without cross}
@@ -1218,12 +1230,6 @@ fi
 %endif
 %attr(755,root,root) /%{_lib}/libcidn-%{version}.so
 %attr(755,root,root) /%{_lib}/libcidn.so.1
-%attr(755,root,root) /%{_lib}/libcrypt-%{version}.so
-%ifarch alpha
-%attr(755,root,root) /%{_lib}/libcrypt.so.1.1
-%else
-%attr(755,root,root) /%{_lib}/libcrypt.so.1
-%endif
 %attr(755,root,root) /%{_lib}/libdl-%{version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libdl.so.2.1
@@ -1272,6 +1278,159 @@ fi
 %attr(755,root,root) /%{_lib}/libnss_files-%{version}.so
 %attr(755,root,root) /%{_lib}/libnss_files.so.2
 
+%defattr(644,root,root,755)
+
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/default/nss
+
+%config %{_sysconfdir}/rpc
+
+%attr(755,root,root) /sbin/sln
+%attr(755,root,root) %{_bindir}/getconf
+%attr(755,root,root) %{_bindir}/getent
+%attr(755,root,root) %{_bindir}/iconv
+%ifarch %{ix86} m68k sparc sparcv9
+%attr(755,root,root) %{_bindir}/lddlibc4
+%endif
+%attr(755,root,root) %{_bindir}/locale
+%attr(755,root,root) %{_bindir}/rpcgen
+
+%attr(755,root,root) %{_sbindir}/zdump
+%attr(755,root,root) %{_sbindir}/zic
+
+%dir %{_libexecdir}/getconf
+%attr(755,root,root) %{_libexecdir}/getconf/*
+
+%dir %{_datadir}/locale
+%{_datadir}/locale/locale.alias
+
+%{_mandir}/man1/getconf.1*
+%{_mandir}/man1/getent.1*
+%{_mandir}/man1/iconv.1*
+%{_mandir}/man1/locale.1*
+%{_mandir}/man1/rpcgen.1*
+%{_mandir}/man5/locale.5*
+%{_mandir}/man5/nsswitch.conf.5*
+%{_mandir}/man5/tzfile.5*
+%{_mandir}/man7/*
+%{_mandir}/man8/ld-linux.8*
+%{_mandir}/man8/ld-linux.so.8*
+%{_mandir}/man8/ld.so.8*
+%{_mandir}/man8/sln.8*
+%{_mandir}/man8/zdump.8*
+%{_mandir}/man8/zic.8*
+%lang(cs) %{_mandir}/cs/man7/*
+%lang(de) %{_mandir}/de/man5/tzfile.5*
+%lang(de) %{_mandir}/de/man7/*
+%lang(es) %{_mandir}/es/man5/locale.5*
+%lang(es) %{_mandir}/es/man5/nsswitch.conf.5*
+%lang(es) %{_mandir}/es/man5/tzfile.5*
+%lang(es) %{_mandir}/es/man7/*
+%lang(es) %{_mandir}/es/man8/ld-linux.8*
+%lang(es) %{_mandir}/es/man8/ld-linux.so.8*
+%lang(es) %{_mandir}/es/man8/ld.so.8*
+%lang(es) %{_mandir}/es/man8/zdump.8*
+%lang(es) %{_mandir}/es/man8/zic.8*
+%lang(fr) %{_mandir}/fr/man5/locale.5*
+%lang(fr) %{_mandir}/fr/man5/nsswitch.conf.5*
+%lang(fr) %{_mandir}/fr/man5/tzfile.5*
+%lang(fr) %{_mandir}/fr/man7/*
+%lang(fr) %{_mandir}/fr/man8/ld-linux.8*
+%lang(fr) %{_mandir}/fr/man8/ld-linux.so.8*
+%lang(fr) %{_mandir}/fr/man8/ld.so.8*
+%lang(fr) %{_mandir}/fr/man8/zdump.8*
+%lang(fr) %{_mandir}/fr/man8/zic.8*
+%lang(hu) %{_mandir}/hu/man7/*
+%lang(hu) %{_mandir}/hu/man8/ld-linux.8*
+%lang(hu) %{_mandir}/hu/man8/ld-linux.so.8*
+%lang(hu) %{_mandir}/hu/man8/ld.so.8*
+%lang(hu) %{_mandir}/hu/man8/zdump.8*
+%lang(it) %{_mandir}/it/man5/locale.5*
+%lang(it) %{_mandir}/it/man7/*
+%lang(it) %{_mandir}/it/man8/zdump.8*
+%lang(ja) %{_mandir}/ja/man1/rpcgen.1*
+%lang(ja) %{_mandir}/ja/man5/locale.5*
+%lang(ja) %{_mandir}/ja/man5/nsswitch.conf.5*
+%lang(ja) %{_mandir}/ja/man5/tzfile.5*
+%lang(ja) %{_mandir}/ja/man7/*
+%lang(ja) %{_mandir}/ja/man8/ld-linux.8*
+%lang(ja) %{_mandir}/ja/man8/ld-linux.so.8*
+%lang(ja) %{_mandir}/ja/man8/ld.so.8*
+%lang(ja) %{_mandir}/ja/man8/sln.8*
+%lang(ja) %{_mandir}/ja/man8/zdump.8*
+%lang(ja) %{_mandir}/ja/man8/zic.8*
+%lang(ko) %{_mandir}/ko/man5/nsswitch.conf.5*
+%lang(ko) %{_mandir}/ko/man5/tzfile.5*
+%lang(ko) %{_mandir}/ko/man7/*
+%lang(ko) %{_mandir}/ko/man8/zdump.8*
+%lang(pl) %{_mandir}/pl/man5/locale.5*
+%lang(pl) %{_mandir}/pl/man7/*
+%lang(pl) %{_mandir}/pl/man8/ld-linux.8*
+%lang(pl) %{_mandir}/pl/man8/ld-linux.so.8*
+%lang(pl) %{_mandir}/pl/man8/ld.so.8*
+%lang(pt) %{_mandir}/pt/man5/locale.5*
+%lang(pt) %{_mandir}/pt/man5/nsswitch.conf.5*
+%lang(pt) %{_mandir}/pt/man5/tzfile.5*
+%lang(pt) %{_mandir}/pt/man7/*
+%lang(pt) %{_mandir}/pt/man8/zdump.8*
+%lang(pt) %{_mandir}/pt/man8/zic.8*
+%lang(ru) %{_mandir}/ru/man1/getent.1*
+%lang(ru) %{_mandir}/ru/man1/iconv.1*
+%lang(ru) %{_mandir}/ru/man1/locale.1*
+%lang(ru) %{_mandir}/ru/man1/rpcgen.1*
+%lang(ru) %{_mandir}/ru/man5/locale.5*
+%lang(ru) %{_mandir}/ru/man5/nsswitch.conf.5*
+%lang(ru) %{_mandir}/ru/man5/tzfile.5*
+%lang(ru) %{_mandir}/ru/man7/*
+%lang(ru) %{_mandir}/ru/man8/ld-linux.so.8*
+%lang(ru) %{_mandir}/ru/man8/ld.so.8*
+%lang(ru) %{_mandir}/ru/man8/zdump.8*
+%lang(ru) %{_mandir}/ru/man8/zic.8*
+%lang(tr) %{_mandir}/tr/man1/iconv.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/iconv.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man5/locale.5*
+%lang(zh_CN) %{_mandir}/zh_CN/man5/tzfile.5*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/*
+%lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
+%lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
+
+%files misc -f %{name}.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/catchsegv
+%attr(755,root,root) %{_bindir}/ldd
+%attr(755,root,root) %{_bindir}/tzselect
+%{_mandir}/man1/catchsegv.1*
+%{_mandir}/man1/ldd.1*
+%{_mandir}/man8/tzselect.8*
+%lang(es) %{_mandir}/es/man1/ldd.1*
+%lang(es) %{_mandir}/es/man8/tzselect.8*
+%lang(fi) %{_mandir}/fi/man1/ldd.1*
+%lang(fr) %{_mandir}/fr/man1/ldd.1*
+%lang(fr) %{_mandir}/fr/man8/tzselect.8*
+%lang(hu) %{_mandir}/hu/man1/ldd.1*
+%lang(it) %{_mandir}/it/man8/tzselect.8*
+%lang(ja) %{_mandir}/ja/man1/ldd.1*
+%lang(ja) %{_mandir}/ja/man8/tzselect.8*
+%lang(ko) %{_mandir}/ko/man1/ldd.1*
+%lang(ko) %{_mandir}/ko/man8/tzselect.8*
+%lang(pl) %{_mandir}/pl/man1/ldd.1*
+%lang(pt) %{_mandir}/pt/man8/tzselect.8*
+%lang(ru) %{_mandir}/ru/man1/ldd.1*
+%lang(ru) %{_mandir}/ru/man8/tzselect.8*
+%lang(tr) %{_mandir}/tr/man1/ldd.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man8/tzselect.8*
+
+%files libcrypt
+%defattr(644,root,root,755)
+%attr(755,root,root) /%{_lib}/libcrypt-%{version}.so
+%ifarch alpha
+%ghost %attr(755,root,root) /%{_lib}/libcrypt.so.1.1
+%else
+%ghost %attr(755,root,root) /%{_lib}/libcrypt.so.1
+%endif
+
 %files -n ldconfig
 %defattr(644,root,root,755)
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
@@ -1286,148 +1445,6 @@ fi
 %lang(pl) %{_mandir}/pl/man8/ldconfig.8*
 %lang(pt) %{_mandir}/pt/man8/ldconfig.8*
 %lang(ru) %{_mandir}/ru/man8/ldconfig.8*
-
-%files misc -f %{name}.lang
-%defattr(644,root,root,755)
-
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/default/nss
-
-%config %{_sysconfdir}/rpc
-
-%attr(755,root,root) /sbin/sln
-%attr(755,root,root) %{_bindir}/catchsegv
-%attr(755,root,root) %{_bindir}/getconf
-%attr(755,root,root) %{_bindir}/getent
-%attr(755,root,root) %{_bindir}/iconv
-%attr(755,root,root) %{_bindir}/ldd
-%ifarch %{ix86} m68k sparc sparcv9
-%attr(755,root,root) %{_bindir}/lddlibc4
-%endif
-%attr(755,root,root) %{_bindir}/locale
-%attr(755,root,root) %{_bindir}/rpcgen
-%attr(755,root,root) %{_bindir}/tzselect
-
-%attr(755,root,root) %{_sbindir}/zdump
-%attr(755,root,root) %{_sbindir}/zic
-
-%dir %{_libexecdir}/getconf
-%attr(755,root,root) %{_libexecdir}/getconf/*
-
-%dir %{_datadir}/locale
-%{_datadir}/locale/locale.alias
-
-%{_mandir}/man1/catchsegv.1*
-%{_mandir}/man1/getconf.1*
-%{_mandir}/man1/getent.1*
-%{_mandir}/man1/iconv.1*
-%{_mandir}/man1/ldd.1*
-%{_mandir}/man1/locale.1*
-%{_mandir}/man1/rpcgen.1*
-%{_mandir}/man5/locale.5*
-%{_mandir}/man5/nsswitch.conf.5*
-%{_mandir}/man5/tzfile.5*
-%{_mandir}/man7/*
-%{_mandir}/man8/ld-linux.8*
-%{_mandir}/man8/ld-linux.so.8*
-%{_mandir}/man8/ld.so.8*
-%{_mandir}/man8/sln.8*
-%{_mandir}/man8/tzselect.8*
-%{_mandir}/man8/zdump.8*
-%{_mandir}/man8/zic.8*
-%lang(cs) %{_mandir}/cs/man7/*
-%lang(de) %{_mandir}/de/man5/tzfile.5*
-%lang(de) %{_mandir}/de/man7/*
-%lang(es) %{_mandir}/es/man1/ldd.1*
-%lang(es) %{_mandir}/es/man5/locale.5*
-%lang(es) %{_mandir}/es/man5/nsswitch.conf.5*
-%lang(es) %{_mandir}/es/man5/tzfile.5*
-%lang(es) %{_mandir}/es/man7/*
-%lang(es) %{_mandir}/es/man8/ld-linux.8*
-%lang(es) %{_mandir}/es/man8/ld-linux.so.8*
-%lang(es) %{_mandir}/es/man8/ld.so.8*
-%lang(es) %{_mandir}/es/man8/tzselect.8*
-%lang(es) %{_mandir}/es/man8/zdump.8*
-%lang(es) %{_mandir}/es/man8/zic.8*
-%lang(fi) %{_mandir}/fi/man1/ldd.1*
-%lang(fr) %{_mandir}/fr/man1/ldd.1*
-%lang(fr) %{_mandir}/fr/man5/locale.5*
-%lang(fr) %{_mandir}/fr/man5/nsswitch.conf.5*
-%lang(fr) %{_mandir}/fr/man5/tzfile.5*
-%lang(fr) %{_mandir}/fr/man7/*
-%lang(fr) %{_mandir}/fr/man8/ld-linux.8*
-%lang(fr) %{_mandir}/fr/man8/ld-linux.so.8*
-%lang(fr) %{_mandir}/fr/man8/ld.so.8*
-%lang(fr) %{_mandir}/fr/man8/tzselect.8*
-%lang(fr) %{_mandir}/fr/man8/zdump.8*
-%lang(fr) %{_mandir}/fr/man8/zic.8*
-%lang(hu) %{_mandir}/hu/man1/ldd.1*
-%lang(hu) %{_mandir}/hu/man7/*
-%lang(hu) %{_mandir}/hu/man8/ld-linux.8*
-%lang(hu) %{_mandir}/hu/man8/ld-linux.so.8*
-%lang(hu) %{_mandir}/hu/man8/ld.so.8*
-%lang(hu) %{_mandir}/hu/man8/zdump.8*
-%lang(it) %{_mandir}/it/man5/locale.5*
-%lang(it) %{_mandir}/it/man7/*
-%lang(it) %{_mandir}/it/man8/tzselect.8*
-%lang(it) %{_mandir}/it/man8/zdump.8*
-%lang(ja) %{_mandir}/ja/man1/ldd.1*
-%lang(ja) %{_mandir}/ja/man1/rpcgen.1*
-%lang(ja) %{_mandir}/ja/man5/locale.5*
-%lang(ja) %{_mandir}/ja/man5/nsswitch.conf.5*
-%lang(ja) %{_mandir}/ja/man5/tzfile.5*
-%lang(ja) %{_mandir}/ja/man7/*
-%lang(ja) %{_mandir}/ja/man8/ld-linux.8*
-%lang(ja) %{_mandir}/ja/man8/ld-linux.so.8*
-%lang(ja) %{_mandir}/ja/man8/ld.so.8*
-%lang(ja) %{_mandir}/ja/man8/sln.8*
-%lang(ja) %{_mandir}/ja/man8/tzselect.8*
-%lang(ja) %{_mandir}/ja/man8/zdump.8*
-%lang(ja) %{_mandir}/ja/man8/zic.8*
-%lang(ko) %{_mandir}/ko/man1/ldd.1*
-%lang(ko) %{_mandir}/ko/man5/nsswitch.conf.5*
-%lang(ko) %{_mandir}/ko/man5/tzfile.5*
-%lang(ko) %{_mandir}/ko/man7/*
-%lang(ko) %{_mandir}/ko/man8/tzselect.8*
-%lang(ko) %{_mandir}/ko/man8/zdump.8*
-%lang(pl) %{_mandir}/pl/man1/ldd.1*
-%lang(pl) %{_mandir}/pl/man5/locale.5*
-%lang(pl) %{_mandir}/pl/man7/*
-%lang(pl) %{_mandir}/pl/man8/ld-linux.8*
-%lang(pl) %{_mandir}/pl/man8/ld-linux.so.8*
-%lang(pl) %{_mandir}/pl/man8/ld.so.8*
-%lang(pt) %{_mandir}/pt/man5/locale.5*
-%lang(pt) %{_mandir}/pt/man5/nsswitch.conf.5*
-%lang(pt) %{_mandir}/pt/man5/tzfile.5*
-%lang(pt) %{_mandir}/pt/man7/*
-%lang(pt) %{_mandir}/pt/man8/tzselect.8*
-%lang(pt) %{_mandir}/pt/man8/zdump.8*
-%lang(pt) %{_mandir}/pt/man8/zic.8*
-%lang(ru) %{_mandir}/ru/man1/getent.1*
-%lang(ru) %{_mandir}/ru/man1/iconv.1*
-%lang(ru) %{_mandir}/ru/man1/ldd.1*
-%lang(ru) %{_mandir}/ru/man1/locale.1*
-%lang(ru) %{_mandir}/ru/man1/rpcgen.1*
-%lang(ru) %{_mandir}/ru/man5/locale.5*
-%lang(ru) %{_mandir}/ru/man5/nsswitch.conf.5*
-%lang(ru) %{_mandir}/ru/man5/tzfile.5*
-%lang(ru) %{_mandir}/ru/man7/*
-%lang(ru) %{_mandir}/ru/man8/ld-linux.so.8*
-%lang(ru) %{_mandir}/ru/man8/ld.so.8*
-%lang(ru) %{_mandir}/ru/man8/tzselect.8*
-%lang(ru) %{_mandir}/ru/man8/zdump.8*
-%lang(ru) %{_mandir}/ru/man8/zic.8*
-%lang(tr) %{_mandir}/tr/man1/iconv.1*
-%lang(tr) %{_mandir}/tr/man1/ldd.1*
-%lang(zh_CN) %{_mandir}/zh_CN/man1/iconv.1*
-%lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
-%lang(zh_CN) %{_mandir}/zh_CN/man5/locale.5*
-%lang(zh_CN) %{_mandir}/zh_CN/man5/tzfile.5*
-%lang(zh_CN) %{_mandir}/zh_CN/man7/*
-%lang(zh_CN) %{_mandir}/zh_CN/man8/tzselect.8*
-%lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
-%lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
 
 %files -n nss_compat
 %defattr(644,root,root,755)
