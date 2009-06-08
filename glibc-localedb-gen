@@ -1,0 +1,91 @@
+#!/bin/sh
+
+SUPPORTED_LOCALES=x
+OLD_STYLE="no"
+DESTDIR=
+
+[ -f /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
+[ -f /etc/sysconfig/localedb ] && . /etc/sysconfig/localedb
+
+LOCDIR=@localedir@
+ARCHIVE=${LOCDIR}/locale-archive
+
+while [ $# -gt 0 ]; do
+	case $1 in
+	  -l=* | --locales=*)
+		SUPPORTED_LOCALES="`echo $1 | sed -e 's/^[^=]*=//'`"
+		;;
+	  -l | --locales)
+		SUPPORTED_LOCALES="$2"
+		shift
+		;;
+	  -o | --old-style)
+		OLD_STYLE="yes"
+		;;
+	  -d=* | --destdir=*)
+		DESTDIR="`echo $1 | sed -e 's/^[^]]*=//'`"
+		;;
+	  -d | --destdir)
+		DESTDIR="$2"
+		shift
+		;;
+	  -h | --help | --usage)
+		cat <<EOF
+Usage: localedb-gen [-l|--locales <locales>] [-o|--old-style]
+                    [-d|--destdir <DESTDIR>]
+       localedb-gen [-h|--help|--usage]
+EOF
+		exit
+		;;
+	  *)
+		echo "Unrecognized option: $1"
+		exit 1
+		;;
+	esac
+	shift
+done
+
+if [ "${SUPPORTED_LOCALES}" = "x" ]; then
+	echo "SUPPORTED_LOCALES not set"
+	echo "You can set it in /etc/sysconfig/i18n file"
+	exit 1
+fi
+
+if [ "${DESTDIR}" = "" ] && rpm -qf ${ARCHIVE} >/dev/null 2>&1 ; then
+	echo "${ARCHIVE} belongs to `rpm -qf ${ARCHIVE}` package - uninstall it first!"
+	exit 1
+fi
+
+rm -rf ${DESTDIR}${LOCDIR}
+install -d ${DESTDIR}${LOCDIR}
+cd ${DESTDIR}${LOCDIR}
+
+if [ "${DESTDIR}" = "" ]; then
+	DESTDIROPT=
+else
+	DESTDIROPT="--prefix ${DESTDIR}"
+fi
+
+for loc in ${SUPPORTED_LOCALES} ; do
+	if echo ${loc} | grep -q / ; then
+		chset="`echo ${loc} | sed -e 's@^.*/@@'`"
+		loc="`echo ${loc} | sed -e 's@/.*$@@'`"
+	elif echo ${loc} | grep -q '\.' ; then
+		chset="`echo ${loc} | sed -e 's@^.*\.@@'`"
+	elif grep -qs "^${loc}/[^ ]* .*$" /usr/share/i18n/SUPPORTED ; then
+		chset="`grep \"^${loc}/.* .*$\" /usr/share/i18n/SUPPORTED | sed -e 's@^.*/\([^ ]*\) .*$@\1@'`"
+	else
+		echo "Charset not known for locale ${loc} - skipping..."
+		continue
+	fi
+	iloc="`echo ${loc} | sed -e 's/\.[^@]*//'`"
+	echo -n "Generating ${loc} using charset ${chset}... "
+	if [ "${OLD_STYLE}" = "yes" ]; then
+		localedef -f ${chset} -i ${iloc} ${DESTDIR}${LOCDIR}${loc}
+	else
+		localedef -f ${chset} -i ${iloc} ${loc} ${DESTDIROPT}
+	fi
+	echo
+done
+
+echo "DONE."
