@@ -1344,15 +1344,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
-%post devel	-p	/sbin/postshell
--/usr/sbin/fix-info-dir -c %{_infodir}
+%post devel
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%postun devel	-p	/sbin/postshell
--/usr/sbin/fix-info-dir -c %{_infodir}
+%postun devel
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %pre -n nscd
 %groupadd -P nscd -g 144 -r nscd
-%useradd -P nscd -u 144 -r -d /tmp -s /bin/false -c "Name Service Cache Daemon" -g nscd nscd
+%useradd -P nscd -u 144 -r -d /tmp -s /bin/false -c "nscd" -g nscd nscd
 
 %post -n nscd
 /sbin/chkconfig --add nscd
