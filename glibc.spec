@@ -10,7 +10,6 @@
 # TODO:
 # - look at locale fixes/updates in bugzilla
 # - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
-# - unbash /usr/bin/ldd (and other scripts?)
 # [OLD]
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
@@ -1040,6 +1039,12 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
 echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
+# doesn't fit with out tzdata concept and configure.in is stupid assuming bash
+# is first posix compatible shell making this script depend on bash.
+rm -f $RPM_BUILD_ROOT%{_bindir}/tzselect
+rm -f $RPM_BUILD_ROOT%{_mandir}/man8/tzselect.8*
+rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/tzselect.8*
+
 :> $RPM_BUILD_ROOT/var/log/nscd
 :> $RPM_BUILD_ROOT/var/lib/nscd/passwd
 :> $RPM_BUILD_ROOT/var/lib/nscd/group
@@ -1399,28 +1404,18 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/ldd
-%attr(755,root,root) %{_bindir}/tzselect
 %{_mandir}/man1/catchsegv.1*
 %{_mandir}/man1/ldd.1*
-%{_mandir}/man8/tzselect.8*
 %lang(es) %{_mandir}/es/man1/ldd.1*
-%lang(es) %{_mandir}/es/man8/tzselect.8*
 %lang(fi) %{_mandir}/fi/man1/ldd.1*
 %lang(fr) %{_mandir}/fr/man1/ldd.1*
-%lang(fr) %{_mandir}/fr/man8/tzselect.8*
 %lang(hu) %{_mandir}/hu/man1/ldd.1*
-%lang(it) %{_mandir}/it/man8/tzselect.8*
 %lang(ja) %{_mandir}/ja/man1/ldd.1*
-%lang(ja) %{_mandir}/ja/man8/tzselect.8*
 %lang(ko) %{_mandir}/ko/man1/ldd.1*
-%lang(ko) %{_mandir}/ko/man8/tzselect.8*
 %lang(pl) %{_mandir}/pl/man1/ldd.1*
-%lang(pt) %{_mandir}/pt/man8/tzselect.8*
 %lang(ru) %{_mandir}/ru/man1/ldd.1*
-%lang(ru) %{_mandir}/ru/man8/tzselect.8*
 %lang(tr) %{_mandir}/tr/man1/ldd.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
-%lang(zh_CN) %{_mandir}/zh_CN/man8/tzselect.8*
 
 %files libcrypt
 %defattr(644,root,root,755)
