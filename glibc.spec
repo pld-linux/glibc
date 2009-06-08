@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -71,6 +71,7 @@ Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
+Patch26:	%{name}-posix-sh.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -905,9 +906,10 @@ ln -s glibc-libidn-%{version} libidn
 %patch22 -p1
 %patch23 -p0
 %patch25 -p1
+%patch26 -p1
 
-# these would be copied to localedb-src
-rm -f localedata/locales/*{.orig,~}
+# cleanup backups after patching
+find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 
 chmod +x scripts/cpp
 
@@ -950,8 +952,7 @@ AWK="gawk" \
 cd ..
 
 %if %{with tests}
-for d in builddir; do
-cd $d
+cd builddir
 env LANGUAGE=C LC_ALL=C \
 %{__make} tests 2>&1 | awk '
 BEGIN { file = "" }
@@ -1053,7 +1054,6 @@ done
 cp -f crypt/README.ufc-crypt ChangeLog* documentation
 
 # Collect locale files and mark them with %%lang()
-rm -f glibc.lang
 echo '%defattr(644,root,root,755)' > glibc.lang
 for i in $RPM_BUILD_ROOT%{_datadir}/locale/*; do
 	if [ -d $i ]; then
@@ -1395,7 +1395,7 @@ fi
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
 
-%files misc -f %{name}.lang
+%files misc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/ldd
