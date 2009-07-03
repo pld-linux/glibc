@@ -938,7 +938,9 @@ AWK="gawk" \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
 	--enable-add-ons=nptl,libidn \
+%if "%{pld_release}" != "ti"
 	--enable-nss-crypt \
+%endif
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
 	--enable-bind-now \
