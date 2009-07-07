@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	7
+Release:	8
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -125,7 +125,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # avoid -D_FORTIFY_SOURCE=X
 %define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
 
-%define		specflags		-fasynchronous-unwind-tables
+# should be for all arches but for us works only on x86_64
+%define		specflags_x86_64	-fasynchronous-unwind-tables
 
 %define		specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
