@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -124,6 +124,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
 # avoid -D_FORTIFY_SOURCE=X
 %define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
+
+%define		specflags		-fasynchronous-unwind-tables
 
 %define		specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
@@ -941,6 +943,7 @@ AWK="gawk" \
 %if "%{pld_release}" != "ti"
 	--enable-nss-crypt \
 %endif
+	--enable-experimental-malloc \
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
 	--enable-bind-now \
