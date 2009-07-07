@@ -125,9 +125,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # avoid -D_FORTIFY_SOURCE=X
 %define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
 
-# should be for all arches but for us works only on x86_64
-%define		specflags_x86_64	-fasynchronous-unwind-tables
-
 %define		specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
 # ld.so needs not to be stripped to work
@@ -142,8 +139,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
-%define		specflags_x86_64	-mno-tls-direct-seg-refs
-%define		specflags_amd64		-mno-tls-direct-seg-refs
+%define		specflags_x86_64	-mno-tls-direct-seg-refs -fasynchronous-unwind-tables
+%define		specflags_amd64		-mno-tls-direct-seg-refs -fasynchronous-unwind-tables
 %define		specflags_ia32e		-mno-tls-direct-seg-refs
 
 # we don't want perl dependency in glibc-devel
