@@ -941,7 +941,6 @@ AWK="gawk" \
 %if "%{pld_release}" != "ti"
 	--enable-nss-crypt \
 %endif
-	--enable-experimental-malloc \
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
 	--enable-bind-now \
