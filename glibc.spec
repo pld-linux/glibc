@@ -125,6 +125,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # avoid -D_FORTIFY_SOURCE=X
 %define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
 
+%define		specflags_sparcv9	-mcpu=ultrasparc -mvis -fcall-used-g6
 %define		specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
 
 # ld.so needs not to be stripped to work
