@@ -3374,23 +3374,6 @@ index 54b7af5..6082aa7 100644
  	ret
  END (memchr)
  
-commit e1207f13c85b9f38abb871b302e08cb5d296f1d5
-Author: Petr Baudis <pasky@suse.cz>
-Date:   Thu Jul 16 17:01:35 2009 +0200
-
-    RELEASE pb-stable, VERSION 2.10.1-pb1
-
-diff --git a/version.h b/version.h
-index f169c6a..5ccc1da 100644
---- a/version.h
-+++ b/version.h
-@@ -1,4 +1,4 @@
- /* This file just defines the current version number of libc.  */
- 
--#define RELEASE "stable"
--#define VERSION "2.10.1"
-+#define RELEASE "pb-stable"
-+#define VERSION "2.10.1-pb1"
 commit 137028b4d7e50f71906c1656c27079eac5a1d085
 Author: Petr Baudis <pasky@suse.cz>
 Date:   Thu Jul 16 10:10:10 2009 -0700
