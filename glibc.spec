@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	8
+Release:	9
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -52,6 +52,7 @@ Source7:	%{name}-LD-path.c
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
+Patch4:		%{name}-git.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
 Patch7:		%{name}-no_opt_override.patch
@@ -888,6 +889,7 @@ ln -s glibc-libidn-%{version} libidn
 #%patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
