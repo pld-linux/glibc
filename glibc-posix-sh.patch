@@ -1,12 +1,12 @@
---- glibc-2.10.1/elf/ldd.bash.in	2009-06-08 23:02:27.663745478 +0300
-+++ glibc-2.10.1/elf/ldd.bash.in	2009-06-08 23:04:15.706861781 +0300
+--- glibc-2.3.6/elf/ldd.bash.in	2005-02-16 12:29:34.000000000 +0200
++++ glibc-2.3.6/elf/ldd.bash.in	2009-08-18 14:30:10.000000000 +0300
 @@ -1,4 +1,4 @@
 -#! @BASH@
 +#! /bin/sh
- # Copyright (C) 1996-2008, 2009 Free Software Foundation, Inc.
+ # Copyright (C) 1996-2004, 2005 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
-@@ -36,16 +36,16 @@
+@@ -36,24 +36,26 @@
    case "$1" in
    --vers | --versi | --versio | --version)
      echo 'ldd (GNU libc) @VERSION@'
@@ -14,7 +14,7 @@
 +    printf "Copyright (C) %s Free Software Foundation, Inc.
  This is free software; see the source for copying conditions.  There is NO
  warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- " "2009"
+ " "2005"
 -    printf $"Written by %s and %s.
 +    printf "Written by %s and %s.
  " "Roland McGrath" "Ulrich Drepper"
@@ -26,16 +26,19 @@
        --help              print this help and exit
        --version           print version information and exit
    -d, --data-relocs       process data relocations
-@@ -53,7 +53,7 @@
+   -r, --function-relocs   process data and function relocations
    -u, --unused            print unused direct dependencies
    -v, --verbose           print all information
- "
--    echo $"For bug reporting instructions, please see:
+-For bug reporting instructions, please see:
+-<http://www.gnu.org/software/libc/bugs.html>."
++"
 +    echo "For bug reporting instructions, please see:
- <http://www.gnu.org/software/libc/bugs.html>.
- "
++<http://www.gnu.org/software/libc/bugs.html>.
++"
      exit 0
-@@ -79,15 +79,15 @@
+     ;;
+   -d | --d | --da | --dat | --data | --data- | --data-r | --data-re | \
+@@ -77,15 +79,15 @@
      shift
      ;;
    --v | --ve | --ver)
@@ -54,7 +57,7 @@
      exit 1
      ;;
    *)
-@@ -112,20 +112,14 @@
+@@ -110,20 +112,14 @@
  # environments where the executed program might not have permissions
  # to write to the console/tty.  But only bash 3.x supports the pipefail
  # option, and we don't bother to handle the case for older bash versions.
@@ -80,15 +83,16 @@
    exit 1
    ;;
  1)
-@@ -147,13 +141,13 @@
+@@ -144,13 +140,17 @@
+   *) file=./$file
       ;;
    esac
-   if test ! -e "$file"; then
+-  if test ! -f "$file"; then
 -    echo "ldd: ${file}:" $"No such file or directory" >&2
++  if test ! -e "$file"; then
 +    echo "ldd: ${file}:" "No such file or directory" >&2
-     result=1
-   elif test ! -f "$file"; then
--    echo "ldd: ${file}:" $"not regular file" >&2
++    result=1
++  elif test ! -f "$file"; then
 +    echo "ldd: ${file}:" "not regular file" >&2
      result=1
    elif test -r "$file"; then
@@ -96,7 +100,23 @@
 +    test -x "$file" || echo 'ldd:' "\
  warning: you do not have execution permission for" "\`$file'" >&2
      RTLD=
-     ret=1
++    ret=1
+     for rtld in ${RTLDLIST}; do
+       if test -x $rtld; then
+ 	verify_out=`${rtld} --verify "$file"`
+@@ -160,12 +160,6 @@
+ 	esac
+       fi
+     done
+-    if test -z "${RTLD}"; then
+-      set ${RTLDLIST}
+-      RTLD=$1
+-      verify_out=`${RTLD} --verify "$file"`
+-      ret=$?
+-    fi
+     case $ret in
+     0)
+       # If the program exits with exit code 5, it means the process has been
 @@ -182,7 +176,7 @@
      1)
        # This can be a non-ELF binary or no binary at all.
