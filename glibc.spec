@@ -88,7 +88,7 @@ BuildRequires:	gcc >= 5:3.4
 BuildRequires:	gettext-devel >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
-BuildRequires:	nss-devel >= 3.12.3
+BuildRequires:	nss-devel >= 1:3.12.3
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpm-perlprov
