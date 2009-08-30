@@ -279,11 +279,15 @@ Narzędzia i dane używane przez glibc.
 
 %package libcrypt
 Summary:	glibc library for crypt(3)
+Summary(pl.UTF-8):	Biblioteka glibc z funkcją crypt(3)
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description libcrypt
 glibc library for crypt(3).
+
+%description libcrypt -l pl.UTF-8
+Biblioteka glibc z funkcją crypt(3).
 
 %package -n ldconfig
 Summary:	Create shared library cache and maintains symlinks
