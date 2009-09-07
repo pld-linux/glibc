@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.10.1
-Release:	12
+Release:	13
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -282,6 +282,7 @@ Summary:	glibc library for crypt(3)
 Summary(pl.UTF-8):	Biblioteka glibc z funkcją crypt(3)
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	crypt(blowfish)
 
 %description libcrypt
 glibc library for crypt(3).
