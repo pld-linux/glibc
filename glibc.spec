@@ -72,6 +72,7 @@ Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
+Patch27:	%{name}-binutils-ver.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -81,6 +82,8 @@ BuildRequires:	binutils >= 2:2.17.50.0.7
 %else
 BuildRequires:	binutils >= 2:2.15.90.0.3
 %endif
+# FIXME: better binutils-ver patch needed
+BuildRequires:	binutils >= 2:2.20.0.0.0
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
 BuildRequires:	gcc >= 5:3.4
@@ -914,6 +917,7 @@ ln -s glibc-libidn-%{version} libidn
 %patch23 -p0
 %patch25 -p1
 %patch26 -p1
+%patch27 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
