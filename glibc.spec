@@ -925,8 +925,8 @@ find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 chmod +x scripts/cpp
 
 # i786 (aka pentium4) hack
-cd nptl/sysdeps/i386 && ln -s i686 i786 && cd -
-cd nptl/sysdeps/unix/sysv/linux/i386 && ln -s i686 i786 && cd -
+ln -s i686 nptl/sysdeps/i386/i786
+ln -s i686 nptl/sysdeps/unix/sysv/linux/i386/i786
 
 %build
 # glibc has its own way to remove PLT relocations. / H. J. Lu.
