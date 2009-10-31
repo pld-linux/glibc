@@ -32,15 +32,18 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.10.1
-Release:	14
+Version:	2.11
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	ee71dedf724dc775e4efec9b823ed3be
-Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
-# Source1-md5:	8ef88560ec608d5923ee05eb5f0e15ea
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	f37a8aebb18ea7d73e590c277f4ce1f3
+
+#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+## Source0-md5:	ee71dedf724dc775e4efec9b823ed3be
+#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
+## Source1-md5:	8ef88560ec608d5923ee05eb5f0e15ea
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -52,7 +55,6 @@ Source7:	%{name}-LD-path.c
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
-Patch4:		%{name}-git.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
 Patch7:		%{name}-no_opt_override.patch
@@ -72,7 +74,6 @@ Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
-Patch27:	%{name}-binutils-ver.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -892,12 +893,12 @@ Un juguete.
 Zabawka.
 
 %prep
-%setup -q -a1
-ln -s glibc-libidn-%{version} libidn
+%setup -q 
+# -a1
+#ln -s glibc-libidn-%{version} libidn
 #%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
@@ -917,7 +918,6 @@ ln -s glibc-libidn-%{version} libidn
 %patch23 -p0
 %patch25 -p1
 %patch26 -p1
-%patch27 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
