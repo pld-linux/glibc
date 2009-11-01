@@ -1005,16 +1005,16 @@ PICFILES="libc_pic.a libc.map
 	math/libm_pic.a libm.map
 	resolv/libresolv_pic.a"
 
-install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
-install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
-install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
+install -p $PICFILES				$RPM_BUILD_ROOT%{_libdir}
+install -p elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
+install -p elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 # Include %{_libdir}/gconv/gconv-modules.cache
 ./iconv/iconvconfig --nostdlib --prefix=$RPM_BUILD_ROOT %{_libdir}/gconv -o $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
 cd ..
 
 %if %{without cross}
-install glibc-postinst				$RPM_BUILD_ROOT/sbin
+install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}}
@@ -1036,13 +1036,13 @@ done
 # linking nss modules directly is not supported
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
-install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
-install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+install -p %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+cp -a %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
+cp -a %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
+cp -a nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+cp -a posix/gai.conf		$RPM_BUILD_ROOT%{_sysconfdir}
+cp -a nis/nss $RPM_BUILD_ROOT/etc/default/nss
 sed -e 's#\([ \t]\)db\([ \t]\)#\1#g' nss/nsswitch.conf > $RPM_BUILD_ROOT%{_sysconfdir}/nsswitch.conf
-install posix/gai.conf		$RPM_BUILD_ROOT%{_sysconfdir}
-install nis/nss $RPM_BUILD_ROOT/etc/default/nss
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
@@ -1065,9 +1065,9 @@ rm -rf documentation
 install -d documentation
 
 for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
-	cp -f nptl/$f documentation/$f.nptl
+	cp -af nptl/$f documentation/$f.nptl
 done
-cp -f crypt/README.ufc-crypt ChangeLog* documentation
+cp -af crypt/README.ufc-crypt ChangeLog* documentation
 
 # Collect locale files and mark them with %%lang()
 echo '%defattr(644,root,root,755)' > glibc.lang
@@ -1124,7 +1124,7 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
-		lang=`echo $i | sed -e 's/@quot\>\|@boldquot\>//'`
+		lang=$(echo $i | sed -e 's/@quot\>\|@boldquot\>//')
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
 done
@@ -1186,12 +1186,14 @@ rm -rf $RPM_BUILD_ROOT
 %useradd -P nscd -u 144 -r -d /tmp -s /bin/false -c "Name Service Cache Daemon" -g nscd nscd
 
 %post -n nscd
+if [ ! -f /var/log/nscd ]; then
+	umask 027
+	touch /var/log/nscd
+	chown root:root /var/log/nscd
+	chmod 640 /var/log/nscd
+fi
 /sbin/chkconfig --add nscd
-touch /var/log/nscd
-chmod 000 /var/log/nscd
-chown root:root /var/log/nscd
-chmod 640 /var/log/nscd
-%service nscd restart "nscd daemon"
+%service nscd restart "Name Service Cache Daemon"
 
 %preun -n nscd
 if [ "$1" = "0" ]; then
