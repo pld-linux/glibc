@@ -1,0 +1,2 @@
+- breaking rpm dep loop: removed R: basesystem because no pkg should depend on
+  metapackage and reason added in r1.149 is no longer valid/needed; rel 6
