@@ -1,0 +1,2 @@
+- rel 3
+  [require macros 1.396 not to strip libpthread]
