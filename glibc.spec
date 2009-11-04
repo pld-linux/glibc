@@ -33,14 +33,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.11
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	f37a8aebb18ea7d73e590c277f4ce1f3
-#Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-#Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-libidn-%{version}.tar.bz2
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+# Source0-md5:	2c990f97e9ff9fb1c3c85fe826e991b9
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -891,8 +889,6 @@ Zabawka.
 
 %prep
 %setup -q 
-# -a1
-#ln -s glibc-libidn-%{version} libidn
 #%patch1 -p1
 %patch2 -p1
 %patch3 -p1
