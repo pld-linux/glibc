@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	15
+Release:	16
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -167,7 +167,6 @@ BuildRequires:	gettext-devel >= 0.10.36
 %if %{without kernelheaders}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %endif
-AutoReq:	false
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 %{?with_pax:BuildRequires:	paxctl}
 BuildRequires:	perl-base
@@ -190,6 +189,7 @@ Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+AutoReq:	false
 
 %define		debugcflags	-O1 -g
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
@@ -321,8 +321,10 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
-AutoReq:	false
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Suggests:	localedb
+Suggests:	tzdata
+AutoReq:	false
 
 %description misc
 Utilities and data used by glibc.
@@ -632,6 +634,7 @@ Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gzip
 Requires:	sed
+Provides:	localedb
 
 %description -n localedb-src
 This add-on package contains the data needed to build the locale data
@@ -654,6 +657,7 @@ Summary(pl.UTF-8):	Baza danych locale dla wszystkich lokalizacji obsługiwanych 
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	iconv = %{epoch}:%{version}-%{release}
+Provides:	localedb
 
 %description localedb-all
 This package contains locale database for all locales supported by
