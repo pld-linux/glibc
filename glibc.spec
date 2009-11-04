@@ -78,11 +78,9 @@ BuildRequires:	binutils >= 2:2.17.50.0.7
 %else
 BuildRequires:	binutils >= 2:2.15.90.0.3
 %endif
-# FIXME: better binutils-ver patch needed
-BuildRequires:	binutils >= 2:2.20.0.0.0
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
-BuildRequires:	gcc >= 5:3.4
+BuildRequires:	gcc >= 6:4.3
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-devel >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
