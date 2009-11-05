@@ -1169,6 +1169,8 @@ rm -rf $RPM_BUILD_ROOT
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
 
+%post	localedb-src -p /usr/bin/localedb-gen
+
 %post devel	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
