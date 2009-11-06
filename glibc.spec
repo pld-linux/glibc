@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	17
+Release:	18
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1352,7 +1352,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
-%post -n localedb-src -p /usr/bin/localedb-gen
+%post -n localedb-src
+SUPPORTED_LOCALES=
+[ -f /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
+[ -f /etc/sysconfig/localedb ] && . /etc/sysconfig/localedb
+if [ "$SUPPORTED_LOCALES" ]; then
+	localedb-gen || :
+fi
 
 %post devel	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
