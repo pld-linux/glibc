@@ -1352,7 +1352,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post -n iconv -p %{_sbindir}/iconvconfig
 
-%post	localedb-src -p /usr/bin/localedb-gen
+%post -n localedb-src -p /usr/bin/localedb-gen
 
 %post devel	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
