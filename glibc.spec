@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	16
+Release:	17
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -1351,6 +1351,8 @@ rm -rf $RPM_BUILD_ROOT
 %postun memusage -p /sbin/ldconfig
 
 %post -n iconv -p %{_sbindir}/iconvconfig
+
+%post	localedb-src -p /usr/bin/localedb-gen
 
 %post devel	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
