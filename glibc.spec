@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.11
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1169,7 +1169,8 @@ rm -rf $RPM_BUILD_ROOT
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
 
-%post -n localedb-src -p /usr/bin/localedb-gen
+%post -n localedb-src
+/usr/bin/localedb-gen || :
 
 %post devel	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
