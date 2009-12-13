@@ -1039,9 +1039,11 @@ cp -a nis/nss $RPM_BUILD_ROOT/etc/default/nss
 sed -e 's#\([ \t]\)db\([ \t]\)#\1#g' nss/nsswitch.conf > $RPM_BUILD_ROOT%{_sysconfdir}/nsswitch.conf
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-> $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
+: > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
 echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
+: > $RPM_BUILD_ROOT/var/cache/ldconfig/aux-cache
+
 rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
 
 # doesn't fit with out tzdata concept and configure.in is stupid assuming bash
@@ -1050,10 +1052,10 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/tzselect
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/tzselect.8*
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/tzselect.8*
 
-:> $RPM_BUILD_ROOT/var/log/nscd
-:> $RPM_BUILD_ROOT/var/lib/nscd/passwd
-:> $RPM_BUILD_ROOT/var/lib/nscd/group
-:> $RPM_BUILD_ROOT/var/lib/nscd/hosts
+: > $RPM_BUILD_ROOT/var/log/nscd
+: > $RPM_BUILD_ROOT/var/lib/nscd/passwd
+: > $RPM_BUILD_ROOT/var/lib/nscd/group
+: > $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
 rm -rf documentation
 install -d documentation
@@ -1124,8 +1126,8 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
 done
 
 # LC_TIME category, used for localized date formats (at least by coreutils)
-for i in af be bg ca cs da de el en es et eu fi fr ga gl hu id it ja ko lg lt ms nb nl pl \
-	pt pt_BR ru rw sk sl sv tr uk vi zh_CN zh_TW; do
+for i in af be bg ca cs da de el en es et eu fi fr ga gl hu id it ja ko lg lt \
+	ms nb nl pl pt pt_BR ru rw sk sl sv tr uk vi zh_CN zh_TW; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i ]; then
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
 	fi
