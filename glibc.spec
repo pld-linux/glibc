@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.11
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -980,7 +980,7 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{default,logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd}
+install -d $RPM_BUILD_ROOT{/etc/{default,logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd,/var/cache/ldconfig}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1450,6 +1450,8 @@ fi
 %lang(pl) %{_mandir}/pl/man8/ldconfig.8*
 %lang(pt) %{_mandir}/pt/man8/ldconfig.8*
 %lang(ru) %{_mandir}/ru/man8/ldconfig.8*
+%dir %attr(700,root,root) /var/cache/ldconfig
+%ghost %attr(600,root,root) /var/cache/ldconfig/aux-cache
 
 %files -n nss_compat
 %defattr(644,root,root,755)
