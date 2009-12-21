@@ -1,3 +1,10 @@
+# TODO:
+# - look at locale fixes/updates in bugzilla
+# - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
+# [OLD]
+# - localedb-gen man pages(?)
+# - math/{test-fenv,test-tgmath,test-float,test-ifloat},
+#   debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
 # min_kernel	(default is 2.6.12)
@@ -7,13 +14,6 @@
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
 #
-# TODO:
-# - look at locale fixes/updates in bugzilla
-# - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
-# [OLD]
-# - localedb-gen man pages(?)
-# - math/{test-fenv,test-tgmath,test-float,test-ifloat},
-#   debug/backtrace-tst(SEGV)  fail on alpha
 %{!?min_kernel:%global		min_kernel	2.6.12}
 
 %ifarch sparc64
