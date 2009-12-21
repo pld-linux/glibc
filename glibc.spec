@@ -1173,7 +1173,12 @@ rm -rf $RPM_BUILD_ROOT
 %postun	memusage -p /sbin/ldconfig
 
 %post -n localedb-src
-/usr/bin/localedb-gen || :
+SUPPORTED_LOCALES=
+[ -f /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
+[ -f /etc/sysconfig/localedb ] && . /etc/sysconfig/localedb
+if [ "$SUPPORTED_LOCALES" ]; then
+	localedb-gen || :
+fi
 
 %post devel	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
