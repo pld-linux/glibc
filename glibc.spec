@@ -37,8 +37,7 @@ Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-# Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 # Source0-md5:	6856d5d8b1239556687f0d1217f3f266
 Source2:	nscd.init
 Source3:	nscd.sysconfig
