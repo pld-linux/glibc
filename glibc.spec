@@ -1096,9 +1096,8 @@ done
 #   kok (iso-codes)
 #   man (ccsm; incorrectly named md)
 #   mus (bluez-gnome)
-#   sco (gnomad2)
+#   sco (gnomad2, picard)
 #   syr (iso-codes)
-#   ven (kalarm)
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
