@@ -88,7 +88,6 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	nss-devel >= 1:3.12.3
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
-BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.413
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
@@ -105,8 +104,8 @@ Obsoletes:	glibc64
 %endif
 Suggests:	localedb
 Suggests:	tzdata
-Conflicts:	SysVinit < 2.86-11
 Conflicts:	%{name}-misc < %{epoch}:%{version}-%{release}
+Conflicts:	SysVinit < 2.86-11
 Conflicts:	kernel < %{min_kernel}
 Conflicts:	kernel24
 Conflicts:	kernel24-smp
@@ -886,7 +885,7 @@ Un juguete.
 Zabawka.
 
 %prep
-%setup -q 
+%setup -q
 #%patch1 -p1
 %patch2 -p1
 %patch3 -p1
