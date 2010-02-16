@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.11.1
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1085,10 +1085,10 @@ done
 #
 # To be added when they become supported by glibc:
 #   az_IR (gtk+)
+#   bal (newt,pessulus)
+#   ckb [or ku_IQ/ku_IR] (vlc)
 #   co (vlc)
-#   dv (iso-codes)
 #   gn (gn_BR in gnome, maybe gn_PY)
-#   la (deluge, gnome, others; patch needed, won't be officially supported)
 #   bal (newt)
 #   haw (iso-codes)
 #   ilo (kudzu)
@@ -1096,7 +1096,9 @@ done
 #   man (ccsm; incorrectly named md)
 #   mus (bluez-gnome)
 #   sco (gnomad2, picard)
+#   swg (sim)
 #   syr (iso-codes)
+#   tet (vlc)
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
@@ -1106,7 +1108,7 @@ done
 #   sv tr zh_CN zh_TW
 #
 for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
-	bg bn bn_IN br bs byn ca@valencia crh csb cy de_AT de_CH dz en \
+	bg bn bn_IN br bs byn ca@valencia crh csb cy de_AT de_CH dv dz en \
 	en@boldquot en@quot en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
 	es_VE et eu fa fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
