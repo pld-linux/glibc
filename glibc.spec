@@ -1441,9 +1441,9 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libcrypt-%{version}.so
 %ifarch alpha
-%ghost %attr(755,root,root) /%{_lib}/libcrypt.so.1.1
+%attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1.1
 %else
-%ghost %attr(755,root,root) /%{_lib}/libcrypt.so.1
+%attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1
 %endif
 
 %files -n ldconfig
@@ -1461,7 +1461,7 @@ fi
 %lang(pt) %{_mandir}/pt/man8/ldconfig.8*
 %lang(ru) %{_mandir}/ru/man8/ldconfig.8*
 %dir %attr(700,root,root) /var/cache/ldconfig
-%ghost %attr(600,root,root) /var/cache/ldconfig/aux-cache
+%attr(600,root,root) %ghost /var/cache/ldconfig/aux-cache
 
 %files -n nss_compat
 %defattr(644,root,root,755)
