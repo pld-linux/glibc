@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.11.1
-Release:	4
+Release:	4.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -69,6 +69,7 @@ Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
+Patch27:	%{name}-i686.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -908,6 +909,7 @@ Zabawka.
 %patch23 -p0
 %patch25 -p1
 %patch26 -p1
+%patch27 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
