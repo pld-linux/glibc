@@ -1,40 +1,72 @@
---- glibc-2.11.1/sysdeps/i386/sysdep.h~	2009-12-08 21:10:20.000000000 +0100
-+++ glibc-2.11.1/sysdeps/i386/sysdep.h	2010-04-24 23:17:12.477558192 +0200
-@@ -133,6 +133,8 @@
+--- glibc-2.11.1/sysdeps/i386/sysdep.h.org	2010-04-24 23:40:14.583055795 +0200
++++ glibc-2.11.1/sysdeps/i386/sysdep.h	2010-04-24 23:42:32.203043803 +0200
+@@ -133,6 +133,10 @@
      cfi_adjust_cfa_offset (-4);						      \
      addl $_GLOBAL_OFFSET_TABLE+[.-0b], %ebx;
  
++#ifdef __i686
 +# define __old__i686 __i686
 +# undef __i686
++#endif
  # define SETUP_PIC_REG(reg) \
    .ifndef __i686.get_pc_thunk.reg;					      \
    .section .gnu.linkonce.t.__i686.get_pc_thunk.reg,"ax",@progbits;	      \
-@@ -146,6 +148,8 @@
+@@ -146,6 +150,10 @@
    .previous;								      \
    .endif;								      \
    call __i686.get_pc_thunk.reg
++#ifdef __old__i686
 +# define __i686 __old__i686
 +# undef __old__i686
++#endif
  
  # define LOAD_PIC_REG(reg) \
    SETUP_PIC_REG(reg); addl $_GLOBAL_OFFSET_TABLE_, %e##reg
---- glibc-2.11.1/sysdeps/i386/i686/memcmp.S.org	2010-04-24 23:25:03.876469117 +0200
-+++ glibc-2.11.1/sysdeps/i386/i686/memcmp.S	2010-04-24 23:26:58.336457933 +0200
-@@ -34,6 +34,8 @@
+--- glibc-2.11.1/sysdeps/i386/i686/memcmp.S.org	2010-04-24 23:43:55.326564190 +0200
++++ glibc-2.11.1/sysdeps/i386/i686/memcmp.S	2010-04-24 23:44:24.826561120 +0200
+@@ -34,6 +34,10 @@
  /* Load an entry in a jump table into EBX.  TABLE is a jump table
     with relative offsets.  INDEX is a register contains the index
     into the jump table.  */
++#ifdef __i686
 +# define __old__i686 __i686
 +# undef __i686
++#endif
  #define LOAD_JUMP_TABLE_ENTRY(TABLE, INDEX) \
    /* We first load PC into EBX.  */					      \
    call	__i686.get_pc_thunk.bx;						      \
-@@ -42,6 +44,8 @@
+@@ -42,6 +46,10 @@
    /* Get the entry and convert the relative offset to the		      \
       absolute address.  */						      \
    addl	(%ebx,INDEX,4), %ebx
++#ifdef __old__i686
 +# define __i686 __old__i686
 +# undef __old__i686
++#endif
  
  	.section	.gnu.linkonce.t.__i686.get_pc_thunk.bx,"ax",@progbits
  	.globl	__i686.get_pc_thunk.bx
+--- glibc-2.11.1/sysdeps/unix/sysv/linux/i386/sysdep.h.org	2010-04-24 23:45:37.399887418 +0200
++++ glibc-2.11.1/sysdeps/unix/sysv/linux/i386/sysdep.h	2010-04-24 23:46:12.546342525 +0200
+@@ -537,6 +537,10 @@
+ 
+ /* Consistency check for position-independent code.  */
+ #ifdef __PIC__
++#ifdef __i686
++# define __old__i686 __i686
++# undef __i686
++#endif
+ # define check_consistency()						      \
+   ({ int __res;								      \
+      __asm__ __volatile__						      \
+@@ -556,6 +560,10 @@
+ 	".previous"							      \
+ 	: "=c" (__res));						      \
+      __res; })
++#ifdef __old__i686
++# define __i686 __old__i686
++# undef __old__i686
++#endif
+ #endif
+ 
+ #endif	/* __ASSEMBLER__ */
