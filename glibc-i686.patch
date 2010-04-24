@@ -18,3 +18,23 @@
  
  # define LOAD_PIC_REG(reg) \
    SETUP_PIC_REG(reg); addl $_GLOBAL_OFFSET_TABLE_, %e##reg
+--- glibc-2.11.1/sysdeps/i386/i686/memcmp.S.org	2010-04-24 23:25:03.876469117 +0200
++++ glibc-2.11.1/sysdeps/i386/i686/memcmp.S	2010-04-24 23:26:58.336457933 +0200
+@@ -34,6 +34,8 @@
+ /* Load an entry in a jump table into EBX.  TABLE is a jump table
+    with relative offsets.  INDEX is a register contains the index
+    into the jump table.  */
++# define __old__i686 __i686
++# undef __i686
+ #define LOAD_JUMP_TABLE_ENTRY(TABLE, INDEX) \
+   /* We first load PC into EBX.  */					      \
+   call	__i686.get_pc_thunk.bx;						      \
+@@ -42,6 +44,8 @@
+   /* Get the entry and convert the relative offset to the		      \
+      absolute address.  */						      \
+   addl	(%ebx,INDEX,4), %ebx
++# define __i686 __old__i686
++# undef __old__i686
+ 
+ 	.section	.gnu.linkonce.t.__i686.get_pc_thunk.bx,"ax",@progbits
+ 	.globl	__i686.get_pc_thunk.bx
