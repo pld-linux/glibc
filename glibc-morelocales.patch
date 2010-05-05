@@ -1783,9 +1783,9 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  sl_SI/ISO-8859-2 \
  so_DJ.UTF-8/UTF-8 \
 @@ -341,9 +387,13 @@
- so_SO/ISO-8859-1 \
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
+ sq_MK/UTF-8 \
 +sr_ME.ISO-8859-5/ISO-8859-5 \
  sr_ME/UTF-8 \
 +sr_RS.ISO-8859-5/ISO-8859-5 \

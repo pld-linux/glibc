@@ -32,13 +32,14 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.11.1
-Release:	5
+Version:	2.12
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	6856d5d8b1239556687f0d1217f3f266
+# Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	37526f1337474dffcf9cda5292957c24
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate

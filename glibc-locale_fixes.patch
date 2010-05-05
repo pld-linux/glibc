@@ -1195,22 +1195,6 @@ diff -uNr libc.orig/localedata/locales/es_CR libc/localedata/locales/es_CR
  END LC_MESSAGES
  
  LC_MONETARY
-@@ -145,7 +144,15 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
-+country_name  "<U0043><U006F><U0073><U0074><U0061><U0020>/
-+<U0052><U0069><U0063><U0061>"
- country_ab2   "<U0043><U0052>"
- country_ab3   "<U0043><U0052><U0049>"
- country_num   188
-+country_car   "<U0043><U0052>"
-+country_isbn  "9968,9977"
-+lang_name     "<U0045><U0073><U0070><U0061><U00D1><U006F><U006C>"
-+lang_ab       "<U0065><U0073>"
-+lang_term     "<U0073><U0070><U0061>"
-+lang_lib      "<U0073><U0070><U0061>"
- END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/es_DO libc/localedata/locales/es_DO
 --- libc.orig/localedata/locales/es_DO	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_DO	2004-11-10 02:36:38.000000000 +0100
