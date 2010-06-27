@@ -40,6 +40,9 @@ Group:		Libraries
 # Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	37526f1337474dffcf9cda5292957c24
+# Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-ports-%{version}.tar.bz2
+Source1:	%{name}-ports-%{version}.tar.bz2
+# Source1-md5:	edbf6b9a5b9aa2c441d78343fe282c64
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -72,6 +75,7 @@ Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
 Patch28:	%{name}-dl.patch
+Patch29:	%{name}-arm-alignment-fix.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -91,7 +95,7 @@ BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	nss-devel >= 1:3.12.3
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
-BuildRequires:	rpmbuild(macros) >= 1.413
+BuildRequires:	rpmbuild(macros) >= 1.567
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
@@ -117,7 +121,7 @@ Conflicts:	man-pages < 1.43
 Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
-ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
@@ -137,6 +141,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %ifarch sparc sparcv9
 %{expand:%%define	__cc	%{__cc} -m32}
 %endif
+
+# Architectures supported in glibc-ports
+%define		ports_arch		%{arm}
 
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
@@ -888,7 +895,8 @@ Un juguete.
 Zabawka.
 
 %prep
-%setup -q
+%setup -q -a1
+mv %{name}-ports-%{version} ports
 #%patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -913,6 +921,7 @@ Zabawka.
 %patch26 -p1
 %patch27 -p1
 %patch28 -p1
+%patch29 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
@@ -937,6 +946,12 @@ cd builddir
 %ifarch sparc64
 CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
+
+AddOns=nptl,libidn
+%ifarch %{ports_arch}
+AddOns=$AddOns,ports
+%endif
+
 AWK="gawk" \
 ../%configure \
 	--enable-kernel="%{min_kernel}" \
@@ -944,7 +959,7 @@ AWK="gawk" \
 	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
-	--enable-add-ons=nptl,libidn \
+	--enable-add-ons=$AddOns \
 %if "%{pld_release}" != "ti"
 	--enable-nss-crypt \
 %endif
@@ -1240,7 +1255,7 @@ fi
 %ifarch ppc64 s390x
 %attr(755,root,root) /%{_lib}/ld64.so.1
 %endif
-%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} ppc64 s390x
+%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} ppc64 s390x %{arm}
 %attr(755,root,root) /%{_lib}/ld.so.1
 %endif
 %attr(755,root,root) /%{_lib}/libBrokenLocale-%{version}.so
