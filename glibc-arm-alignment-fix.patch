@@ -1,0 +1,28 @@
+diff -dur glibc-2.11.backup/ports/sysdeps/arm/dl-machine.h glibc-2.11/ports/sysdeps/arm/dl-machine.h
+--- glibc-2.11.backup/ports/sysdeps/arm/dl-machine.h	2009-11-10 08:12:18.000000000 +0100
++++ glibc-2.11/ports/sysdeps/arm/dl-machine.h	2009-11-11 10:07:48.030872826 +0100
+@@ -585,13 +585,22 @@
+ }
+ # endif
+ 
++union arm_unaligned_data {
++  Elf32_Addr l_addr;
++} __attribute__ ((packed));
++
+ auto inline void
+ __attribute__ ((always_inline))
+ elf_machine_rel_relative (Elf32_Addr l_addr, const Elf32_Rel *reloc,
+ 			  void *const reloc_addr_arg)
+ {
+-  Elf32_Addr *const reloc_addr = reloc_addr_arg;
+-  *reloc_addr += l_addr;
++  if (((long)reloc_addr_arg) & 0x3) {
++    union arm_unaligned_data *const lpdata = reloc_addr_arg;
++    lpdata->l_addr += l_addr;
++  } else {
++    Elf32_Addr *const reloc_addr = reloc_addr_arg;
++    *reloc_addr += l_addr;
++  }
+ }
+ 
+ # ifndef RTLD_BOOTSTRAP
