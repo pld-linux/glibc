@@ -143,7 +143,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %endif
 
 # Architectures supported in glibc-ports
-%define		ports_arch		%{arm}
+%define		ports_arch		alpha %{arm}
 
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
