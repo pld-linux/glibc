@@ -1828,7 +1828,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  ts_ZA/UTF-8 \
 +tt_RU.KOI8-K/KOI8-K \
  tt_RU.UTF-8/UTF-8 \
- tt_RU@iqtelif.UTF-8/UTF-8 \
+ tt_RU.UTF-8@iqtelif/UTF-8 \
 +tt_RU/TATAR-CYR \
  ug_CN/UTF-8 \
  uk_UA.UTF-8/UTF-8 \

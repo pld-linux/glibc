@@ -20,6 +20,7 @@
 %undefine	with_memusage
 %endif
 
+%define		ports_version	2.12
 %define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
@@ -32,16 +33,15 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.12
-Release:	4
+Version:	2.12.1
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-# Source0:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	37526f1337474dffcf9cda5292957c24
+Source0:	http://ftp.gnu.org/pub/gnu/glibc/%{name}-%{version}.tar.xz
+# Source0-md5:	4802b783766b5b487c601a19b5ce35f1
 # Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-ports-%{version}.tar.bz2
-Source1:	%{name}-ports-%{version}.tar.bz2
+Source1:	%{name}-ports-%{ports_version}.tar.bz2
 # Source1-md5:	edbf6b9a5b9aa2c441d78343fe282c64
 Source2:	nscd.init
 Source3:	nscd.sysconfig
@@ -74,7 +74,6 @@ Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
-Patch28:	%{name}-dl.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
@@ -896,7 +895,7 @@ Zabawka.
 
 %prep
 %setup -q -a1
-mv %{name}-ports-%{version} ports
+mv %{name}-ports-%{ports_version} ports
 #%patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -920,7 +919,6 @@ mv %{name}-ports-%{version} ports
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
-%patch28 -p1
 %patch29 -p1
 
 # cleanup backups after patching
