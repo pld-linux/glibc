@@ -1,0 +1,54 @@
+Date: Wed, 18 Aug 2010 01:31:18 -0400
+Subject: Re: vi and glibc 2.12: Assertion `_rtld_global_ro._dl_pagesize != 0
+From: Mike Frysinger <vapier at gentoo dot org>
+To: Allan McRae <allan at archlinux dot org>
+Cc: =?ISO-8859-2?Q?Pawe=B3_Sikora?= <pluto at agmk dot net>, 
+	libc-alpha at sourceware dot org
+
+On Tue, Aug 17, 2010 at 10:36 PM, Mike Frysinger wrote:
+> i'm certainly not familiar with glibc's ldso implementation due to
+> it's crazy large & complicated code base, but i imagine this could be
+> resolved best by having the ldso declare an initializer that calls the
+> same functions as the ldso does when bootstrapping a normal
+> application (_dl_sysdep_start/etc...). =A0this is because the nss libs
+> are dlopened like any other ELF, and it tails into libc.so which tails
+> into the ldso. =A0there is no special code that i can see that goes
+> "this is the ldso, do xxx specially" which makes perfect sense. =A0only
+> outstanding issue there would be whether the ldso will process its own
+> initializers when bootstrapping a standard application.
+>
+> we could back out the assert in __getpagesize(), but that would only
+> "fix" things until the next time someone adds code which relies on
+> initialized GLRO() state.
+
+after some experimenting, i guess the init method isnt feasible.  as
+the GLRO() name indicates, the struct is backed by read-only mappings,
+and the ELF processing has already set up all the mappings with proper
+permissions per the program headers by the time it calls any
+initializers for that ELF.  temporarily remapping itself isnt feasible
+as some kernels prevent re-enabling write access to a read/execute
+only mapping.
+
+the ldso doesnt have any problems with this since it initializes its
+internal state before setting its own mappings to read-only.
+
+which leaves us with the __getpagesize() function and simply reverting
+commit 8f4a5048eea6536ee85c0f2670adbb97d71e427d.  unless anyone else
+has an alternative, that's what i'm going to roll with in Gentoo.
+there should be no need to recompile any static apps, just glibc
+itself, since the issue is coming from libc.so/ldso itself being
+dlopened.
+
+--- a/sysdeps/unix/sysv/linux/getpagesize.c
++++ b/sysdeps/unix/sysv/linux/getpagesize.c
+@@ -28,7 +28,7 @@
+ int
+ __getpagesize ()
+ {
+-#ifdef __ASSUME_AT_PAGESIZE
++#if 0
+   assert (GLRO(dl_pagesize) != 0);
+   return GLRO(dl_pagesize);
+ #else
+-mike
+
