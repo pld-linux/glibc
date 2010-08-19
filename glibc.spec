@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.12.1
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -75,7 +75,7 @@ Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
 Patch29:	%{name}-arm-alignment-fix.patch
-Patch30:	%{name}-getpagesize-revert.patch
+Patch30:	%{name}-static-glro-init.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
