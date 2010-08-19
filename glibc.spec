@@ -76,6 +76,7 @@ Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	%{name}-static-glro-init.patch
+Patch31:	%{name}-newmake.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -922,6 +923,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch27 -p1
 %patch29 -p1
 %patch30 -p1
+%patch31 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
