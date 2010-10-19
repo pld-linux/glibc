@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.12.1
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -77,6 +77,7 @@ Patch27:	%{name}-i686.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	%{name}-static-glro-init.patch
 Patch31:	%{name}-newmake.patch
+Patch32:	%{name}-origin.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -924,6 +925,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch29 -p1
 %patch30 -p1
 %patch31 -p1
+%patch32 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
