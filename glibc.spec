@@ -33,13 +33,13 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.12.1
-Release:	8
+Version:	2.12.2
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/pub/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	4802b783766b5b487c601a19b5ce35f1
+# Source0-md5:	e0043f4f8e1aa61acc62fdf0f4d6133d
 # Source1:	ftp://sources.redhat.com/pub/glibc/releases/%{name}-ports-%{version}.tar.bz2
 Source1:	%{name}-ports-%{ports_version}.tar.bz2
 # Source1-md5:	edbf6b9a5b9aa2c441d78343fe282c64
@@ -76,9 +76,7 @@ Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	%{name}-static-glro-init.patch
-Patch31:	%{name}-newmake.patch
-Patch32:	%{name}-origin.patch
-Patch33:	%{name}-suid-audit-libs.patch
+Patch31:	%{name}-origin.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -926,8 +924,6 @@ mv %{name}-ports-%{ports_version} ports
 %patch29 -p1
 %patch30 -p1
 %patch31 -p1
-%patch32 -p1
-%patch33 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f

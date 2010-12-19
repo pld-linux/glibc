@@ -1,11 +1,11 @@
---- glibc-2.9/configure.in~	2008-11-14 21:25:46.000000000 +0200
-+++ glibc-2.9/configure.in	2009-01-05 18:03:46.169335285 +0200
-@@ -1664,7 +1664,7 @@
+--- glibc-2.12.2/configure.in~	2010-12-13 11:47:26.000000000 +0100
++++ glibc-2.12.2/configure.in	2010-12-19 11:04:54.011123038 +0100
+@@ -1786,7 +1786,7 @@
    libc_cv_gnu89_inline=no
  fi
  rm -f conftest*])
 -if test $libc_cv_gnu89_inline = yes; then
 +if test "$libc_cv_gnu89_inline" != no; then
-   libc_cv_gnu89_inline=-fgnu89-inline
+   gnu89_inline=-fgnu89-inline
  else
-   libc_cv_gnu89_inline=
+   gnu89_inline=
