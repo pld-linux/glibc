@@ -1152,7 +1152,7 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
 done
 
 # LC_TIME category, used for localized date formats (at least by coreutils)
-for i in af be bg ca cs da de el en es et eu fi fr ga gl hu id it ja ko lg lt \
+for i in af be bg ca cs da de el en es et eu fi fr ga gl hu id it ja kk ko lg lt \
 	ms nb nl pl pt pt_BR ro ru rw sk sl sv tr uk vi zh_CN zh_TW; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i ]; then
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
