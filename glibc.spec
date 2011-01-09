@@ -1138,7 +1138,7 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
 	es_VE et eu fa fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
-	hi hne hsb hy ia id ig ik is it_CH iu jv ka kk kl km kn ks ku kw ky la \
+	hi hne hsb hy ia id ig ik is it_CH iu ka kk kl km kn ks ku kw ky la \
 	lg li lo lt lv mai mg mi mk ml mn mr ms mt my nds ne nl_BE nn nr nso \
 	oc om or pa pap ps pt ps rm ro sa sc se si sid sl so sq sr sr@Latn \
 	sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn ts tt ug uk \
