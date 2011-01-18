@@ -33,13 +33,14 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.12.2
+Version:	2.13
 Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	e0043f4f8e1aa61acc62fdf0f4d6133d
+#Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	290b14e5ea57bafe19a637037519027c
 Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.bz2
 # Source1-md5:	cb01ab976180e98287cef5079e35359e
 Source2:	nscd.init
@@ -76,7 +77,6 @@ Patch27:	%{name}-i686.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	%{name}-static-glro-init.patch
 Patch31:	%{name}-origin.patch
-Patch32:	%{name}-bug-12343.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -924,7 +924,6 @@ mv %{name}-ports-%{ports_version} ports
 %patch29 -p1
 %patch30 -p1
 %patch31 -p1
-%patch32 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
