@@ -1,0 +1,62 @@
+From 5d480f5343de00e54b8602c6787640f9831f46b7 Mon Sep 17 00:00:00 2001
+From: Mike Frysinger <vapier@gentoo.org>
+Date: Sun, 6 Feb 2011 12:39:08 -0500
+Subject: [PATCH] memcpy-ssse3: enable chk symbols in static builds
+
+Building static apps on x86_64 systems which use memmove such as:
+	#include <string.h>
+	char buf[8192];
+	main(int argc, char **argv) { memmove(buf, buf + argc, argc % 4); }
+
+Result in linking errors along the lines of:
+	.../libc.a(memmove_chk.o): In function `__memmove_chk':
+	(.text+0x1b4): undefined reference to `__memmove_chk_ssse3_back'
+	.../libc.a(memmove_chk.o): In function `__memmove_chk':
+	(.text+0x1b9): undefined reference to `__memmove_chk_ssse3'
+	collect2: ld returned 1 exit status
+
+This is due to the new ssse3 funcs only enabling their chk symbols when
+being compiled into shared code.
+
+URL: https://bugs.gentoo.org/353816
+Signed-off-by: Mike Frysinger <vapier@gentoo.org>
+
+2011-02-06  Mike Frysinger  <vapier@gentoo.org>
+
+	* sysdeps/x86_64/multiarch/memcpy-ssse3.S: Delete SHARED ifdef check
+	around MEMCPY_CHK symbol.
+	* sysdeps/x86_64/multiarch/memcpy-ssse3-back.S: Likewise.
+---
+ sysdeps/x86_64/multiarch/memcpy-ssse3-back.S |    2 +-
+ sysdeps/x86_64/multiarch/memcpy-ssse3.S      |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sysdeps/x86_64/multiarch/memcpy-ssse3-back.S b/sysdeps/x86_64/multiarch/memcpy-ssse3-back.S
+index 48c974e..a6a01a8 100644
+--- a/sysdeps/x86_64/multiarch/memcpy-ssse3-back.S
++++ b/sysdeps/x86_64/multiarch/memcpy-ssse3-back.S
+@@ -49,7 +49,7 @@
+   ud2
+ 
+ 	.section .text.ssse3,"ax",@progbits
+-#if defined SHARED && !defined NOT_IN_libc
++#if !defined NOT_IN_libc
+ ENTRY (MEMCPY_CHK)
+ 	cmpq	%rdx, %rcx
+ 	jb	HIDDEN_JUMPTARGET (__chk_fail)
+diff --git a/sysdeps/x86_64/multiarch/memcpy-ssse3.S b/sysdeps/x86_64/multiarch/memcpy-ssse3.S
+index 9a878d3..ce84e3f 100644
+--- a/sysdeps/x86_64/multiarch/memcpy-ssse3.S
++++ b/sysdeps/x86_64/multiarch/memcpy-ssse3.S
+@@ -49,7 +49,7 @@
+   ud2
+ 
+ 	.section .text.ssse3,"ax",@progbits
+-#if defined SHARED && !defined NOT_IN_libc
++#if !defined NOT_IN_libc
+ ENTRY (MEMCPY_CHK)
+ 	cmpq	%rdx, %rcx
+ 	jb	HIDDEN_JUMPTARGET (__chk_fail)
+-- 
+1.7.4.rc2
+
