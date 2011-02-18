@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.13
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1193,6 +1193,12 @@ rm -rf $RPM_BUILD_ROOT
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 %endif
+
+%triggerin -- cronie,vixie-cron,hc-cron,fcron,mcron
+# restart crond if glibc is upgraded, LP#721338
+if [ "$1" != 1 ]; then
+	%service -q crond restart
+fi
 
 %post	libcrypt -p /sbin/ldconfig
 %postun	libcrypt -p /sbin/ldconfig
