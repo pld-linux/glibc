@@ -683,9 +683,9 @@ czyli z zestawu funkcji z tej biblioteki, które umożliwiają konwersję
 kodowania danych z poziomu dowolnego programu.
 
 %package static
-Summary:	Static libraries
+Summary:	Static GNU libc libraries
 Summary(es.UTF-8):	Bibliotecas estáticas
-Summary(pl.UTF-8):	Biblioteki statyczne
+Summary(pl.UTF-8):	Biblioteki statyczne GNU libc
 Summary(ru.UTF-8):	Статические библиотеки glibc
 Summary(uk.UTF-8):	Статичні бібліотеки glibc
 Group:		Development/Libraries
@@ -1104,6 +1104,7 @@ done
 # Languages not supported by glibc locales, but usable via $LANGUAGE:
 #   ang - Old English (gtk+, gnome)
 #   ca@valencia (gtk+, gnome; as ca_ES@valencia in FileZilla; locale exists in Debian)
+#   en@shaw - English with Shavian alphabet (gnome)
 #   tlh - Klingon (bzflag)
 # and variants:
 #   sr@ije (use LANGUAGE=sr_ME@ije/sr_RS@ije) (gnome)
@@ -1120,6 +1121,7 @@ done
 #   ilo (kudzu)
 #   io  (gtk+2, gnome, alacarte)
 #   jv  (gmpc)
+#   kg  (gtk+3)
 #   kok (iso-codes)
 #   lb  (geany,miro)
 #   man (ccsm; incorrectly named md)
@@ -1143,7 +1145,7 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
 	es_VE et eu fa fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
 	hi hne hsb hy ia id ig ik is it_CH iu ka kk kl km kn ks ku kw ky la \
 	lg li lo lt lv mai mg mi mk ml mn mr ms mt my nds ne nl_BE nn nr nso \
-	oc om or pa pap ps pt ps rm ro sa sc se si sid sl so sq sr sr@Latn \
+	oc om or pa pap ps pt ps rm ro sa sc se si sid sl so sq sr sr@Latn tl \
 	sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn ts tt ug uk \
 	ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
