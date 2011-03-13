@@ -1131,6 +1131,10 @@ done
 #   syr (iso-codes)
 #   tet (vlc)
 #
+# TODO: unify sr@Latn/sr@latin, drop one of them
+#       similarly sr@ije/sr@ijekavian
+#       add sr@ijekavianlatin?
+#
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
 #
