@@ -331,7 +331,7 @@ crée aussi /etc/ld.so.cache qui accélčre le chargement des programmes
 utilisant les bibliothčques partagées.
 
 %description -n ldconfig -l pl.UTF-8
-ldconfig testuje uruchominy system i tworzy dowiązania symboliczne,
+ldconfig testuje uruchomiony system i tworzy dowiązania symboliczne,
 które są następnie używane do poprawnego ładowania bibliotek
 dynamicznych. Program ten tworzy plik /etc/ld.so.cache, który
 przyśpiesza ładowanie programów korzystających z bibliotek
