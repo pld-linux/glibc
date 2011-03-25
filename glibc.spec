@@ -1107,6 +1107,7 @@ done
 #   ang - Old English (gtk+, gnome)
 #   ca@valencia (gtk+, gnome; as ca_ES@valencia in FileZilla; locale exists in Debian)
 #   en@shaw - English with Shavian alphabet (gnome)
+#   la - Latin
 #   tlh - Klingon (bzflag)
 # and variants:
 #   sr@ije (use LANGUAGE=sr_ME@ije/sr_RS@ije) (gnome)
@@ -1117,18 +1118,22 @@ done
 #   bem (alacarte)
 #   ckb [or ku_IQ/ku_IR] (vlc,miro)
 #   co  (vlc)
+#   fil (stellarium)
+#   frp (xfce)
 #   gn  (gn_BR in gnome, maybe gn_PY)
-#   bal (newt)
-#   haw (iso-codes)
+#   haw (iso-codes, stellarium)
+#   hrx (stellarium)
 #   ilo (kudzu)
 #   io  (gtk+2, gnome, alacarte)
-#   jv  (gmpc)
-#   kg  (gtk+3)
+#   jv  (gmpc, avant-window-navigator, kdesudo)
+#   kg  (gtk+3, gnome)
 #   kok (iso-codes)
 #   lb  (geany,miro)
 #   man (ccsm; incorrectly named md)
+#   mhr (pidgin)
 #   mus (bluez-gnome)
-#   sco (gnomad2, picard)
+#   pms (deluge)
+#   sco (gnomad2, picard, stellarium)
 #   swg (sim)
 #   syr (iso-codes)
 #   tet (vlc)
@@ -1137,8 +1142,9 @@ done
 #   sr@Latn (use sr@latin instead)
 #
 # To be clarified:
-#   sr@ije or sr@ijekavian? (currently sr@ije is supported; the latter exists somewhere)
-#   sr@ijelatin or sr@ijekavianlatin? (currently not supported; the latter exists somewhere)
+#   sr@ije or sr@ijekavian? (currently sr@ije is supported)
+#   sr@ijelatin or sr@ijekavianlatin? (currently not supported)
+#   sr@ijekavian and sr@ijekavianlatin exist in: akonadi-googledata, amarok, k3b, konversation, ktorrent, wesnoth
 #
 # bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
 # till now.
