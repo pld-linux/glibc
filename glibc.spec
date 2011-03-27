@@ -292,6 +292,7 @@ Summary:	glibc library for crypt(3)
 Summary(pl.UTF-8):	Biblioteka glibc z funkcją crypt(3)
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Provides:	crypt(blowfish)
 
 %description libcrypt
@@ -356,6 +357,7 @@ Summary(tr.UTF-8):	Geliştirme için gerekli diğer kitaplıklar
 Summary(uk.UTF-8):	Додаткові бібліотеки, потрібні для компіляції
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
