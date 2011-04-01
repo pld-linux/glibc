@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.13
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -905,7 +905,7 @@ Zabawka.
 mv %{name}-ports-%{ports_version} ports
 #%patch1 -p1
 %patch2 -p1
-%patch3 -p1
+%patch3 -p0
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
