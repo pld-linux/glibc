@@ -1,3 +1,46 @@
+http://thread.gmane.org/gmane.comp.lib.glibc.user/579
+http://sources.redhat.com/bugzilla/show_bug.cgi?id=11929
+http://bugs.gentoo.org/332927
+
+a simple statically linked app fails with glibc-2.12:
+	$ cat test.c
+	main(){getpwnam("root");}
+	$ gcc -static test.c
+	$ ./a.out
+	a.out: ../sysdeps/unix/sysv/linux/getpagesize.c:32: __getpagesize:
+		Assertion `_rtld_global_ro._dl_pagesize != 0' failed.
+	Aborted (core dumped)
+
+the crux of the matter seems to be the fact that static apps with
+glibc will dynamically load nss shared libraries when necessary.  the
+static code will initialize GLRO(dl_pagesize) just fine from the
+kernel auxv, but this being the static code paths, GLRO(dl_pagesize)
+expands into _dl_pagesize.  when the nss shared libraries are loaded
+up, the ldso is also mapped in, but it doesnt process the kernel auxv
+(_dl_sysdep_start() is not called).  so the shared library
+GLRO(dl_pagesize) expands into _rtld_global_ro._dl_pagesize and that
+field stays at 0.
+
+then when the nss shared libs process the request and gets to the
+standard "passwd" database, it calls the shared lib versions of
+malloc/stdio which rely on the __getpagesize() function.  but this
+being in the shared library, it reads the shared GLRO(dl_pagesize)
+which is 0, and the assert() is triggered.
+
+i think running nscd makes things work because its nss module that
+talks to the nscd daemon doesnt call any routines that implicitly rely
+on __getpagesize().
+
+this all started happening after this commit:
+From 8f4a5048eea6536ee85c0f2670adbb97d71e427d Mon Sep 17 00:00:00 2001
+From: Ulrich Drepper <drepper@redhat.com>
+Date: Sat, 27 Mar 2010 06:19:50 -0700
+Subject: [PATCH] Optimize __getpagesize a bit.
+
+if we look at the ia64 port, we see that it has had similar logic for
+its __getpagesize function forever.  so take its DL_STATIC_INIT code
+and move it up to the common linux tree.
+
 2010-08-18  Mike Frysinger  <vapier@gentoo.org>
 
 	* sysdeps/unix/sysv/linux/ia64/Makefile: Move dl-static addition to

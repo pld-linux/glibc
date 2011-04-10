@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.13
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -75,11 +75,16 @@ Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
 Patch29:	%{name}-arm-alignment-fix.patch
-Patch30:	%{name}-static-glro-init.patch
+Patch30:	%{name}-bug-12492.patch
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
-Patch33:	%{name}-2.13-static-memmove-ssse3.patch
-Patch34:	%{name}-bug-12492.patch
+Patch33:	0020_all_glibc-tweak-rfc1918-lookup.patch
+Patch34:	0050_all_glibc-2.13-ldso-prelink-segv.patch
+Patch35:	0055_all_glibc-2.12-static-shared-getpagesize.patch
+Patch36:	0060_all_glibc-2.13-static-memmove-ssse3.patch
+Patch37:	0061_all_glibc-2.13-static-memset.patch
+Patch38:	1055_all_glibc-resolv-dynamic.patch
+Patch39:	1070_all_glibc-fadvise64_64.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -927,11 +932,16 @@ mv %{name}-ports-%{ports_version} ports
 %patch26 -p1
 %patch27 -p1
 %patch29 -p1
-%patch30 -p1
+%patch30 -p0
 %patch31 -p1
 %patch32 -p1
 %patch33 -p1
-%patch34 -p0
+%patch34 -p1
+%patch35 -p1
+%patch36 -p1
+%patch37 -p1
+%patch38 -p1
+%patch39 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
