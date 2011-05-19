@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.13
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -85,6 +85,7 @@ Patch36:	0060_all_glibc-2.13-static-memmove-ssse3.patch
 Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch39:	1070_all_glibc-fadvise64_64.patch
+Patch40:	%{name}-pr12775.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -942,6 +943,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch37 -p1
 %patch38 -p1
 %patch39 -p1
+%patch40 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
