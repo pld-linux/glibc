@@ -1048,7 +1048,7 @@ install -p elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install -p elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 # Include %{_libdir}/gconv/gconv-modules.cache
-./iconv/iconvconfig --nostdlib --prefix=$RPM_BUILD_ROOT %{_libdir}/gconv -o $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
+LD_PRELOAD=$(pwd)/libc.so.6 ./iconv/iconvconfig --nostdlib --prefix=$RPM_BUILD_ROOT %{_libdir}/gconv -o $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
 cd ..
 
 %if %{without cross}
