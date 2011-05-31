@@ -1,6 +1,7 @@
 # TODO:
 # - look at locale fixes/updates in bugzilla
 # - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
+# - package libdir/audit/sotruss-lib.so (subpackage?)
 # [OLD]
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat},
@@ -34,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -71,6 +72,7 @@ Patch20:	%{name}-thread_start.patch
 Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
+Patch24:	%{name}-typos.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
@@ -925,6 +927,7 @@ mv %{name}-ports-%{ports_version} ports
 %{?with_cross:%patch21 -p1}
 %patch22 -p1
 %patch23 -p0
+%patch24 -p1
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
@@ -1383,7 +1386,7 @@ fi
 %endif
 %attr(755,root,root) %{_bindir}/locale
 %attr(755,root,root) %{_bindir}/rpcgen
-
+%attr(755,root,root) %{_bindir}/sotruss
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
