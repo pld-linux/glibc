@@ -33,14 +33,14 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.13
-Release:	6
+Version:	2.14
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	290b14e5ea57bafe19a637037519027c
+# Source0-md5:	fab30e34209f6ea65adf173597887a7a
 Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.bz2
 # Source1-md5:	cb01ab976180e98287cef5079e35359e
 Source2:	nscd.init
@@ -79,13 +79,9 @@ Patch30:	%{name}-bug-12492.patch
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
 Patch33:	0020_all_glibc-tweak-rfc1918-lookup.patch
-Patch34:	0050_all_glibc-2.13-ldso-prelink-segv.patch
 Patch35:	0055_all_glibc-2.12-static-shared-getpagesize.patch
-Patch36:	0060_all_glibc-2.13-static-memmove-ssse3.patch
 Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
-Patch39:	1070_all_glibc-fadvise64_64.patch
-Patch40:	%{name}-pr12775.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -937,13 +933,11 @@ mv %{name}-ports-%{ports_version} ports
 %patch31 -p1
 %patch32 -p1
 %patch33 -p1
-%patch34 -p1
+
 %patch35 -p1
-%patch36 -p1
+
 %patch37 -p1
 %patch38 -p1
-%patch39 -p1
-%patch40 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
@@ -974,8 +968,14 @@ AddOns=nptl,libidn
 AddOns=$AddOns,ports
 %endif
 
+# force ld bfd (instead of gold)
+install -d alt-tools
+ln -sf %{_bindir}/ld.bfd alt-tools/ld
+PATH=$(pwd)/alt-tools:$PATH; export PATH
+
 AWK="gawk" \
 ../%configure \
+	--with-binutils=$(pwd)/alt-tools \
 	--enable-kernel="%{min_kernel}" \
 	--enable-omitfp \
 	--with-headers=%{_includedir} \

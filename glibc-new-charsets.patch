@@ -24,7 +24,7 @@
  		    ebcdic-dk-no-a ebcdic-es-s ebcdic-fi-se ebcdic-fi-se-a  \
  		    ebcdic-fr ebcdic-it ebcdic-pt ebcdic-us \
  		    ibm037 ibm038 ibm274 ibm275 ibm423 ibm500 ibm870 ibm871 \
--		    ibm891 ibm903 ibm904 ibm905 ibm1047   \
+-		    ibm891 ibm903 ibm904 ibm905 ibm1047
 +		    ibm891 ibm903 ibm904 ibm905 ibm1047 koi8-c
  
  gen-8bit-gap-modules := koi8-r latin-greek latin-greek-1 ibm256 ibm273	   \
