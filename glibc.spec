@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -71,7 +71,6 @@ Patch20:	%{name}-thread_start.patch
 Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
-Patch24:	%{name}-typos.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-i686.patch
@@ -83,6 +82,7 @@ Patch33:	0020_all_glibc-tweak-rfc1918-lookup.patch
 Patch35:	0055_all_glibc-2.12-static-shared-getpagesize.patch
 Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
+Patch39:	%{name}-git.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -926,7 +926,7 @@ mv %{name}-ports-%{ports_version} ports
 %{?with_cross:%patch21 -p1}
 %patch22 -p1
 %patch23 -p0
-%patch24 -p1
+
 %patch25 -p1
 %patch26 -p1
 %patch27 -p1
@@ -940,6 +940,7 @@ mv %{name}-ports-%{ports_version} ports
 
 %patch37 -p1
 %patch38 -p1
+%patch39 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
