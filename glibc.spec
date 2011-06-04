@@ -83,7 +83,12 @@ Patch35:	0055_all_glibc-2.12-static-shared-getpagesize.patch
 Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch39:	%{name}-git.patch
+
+# revert regression introduced in:
+# commit 4bff6e0175ed195871f4e01cc4c4c33274b8f6e3
+# Fix memory leak in dlopen with RTLD_NOLOAD.
 Patch40:	%{name}-bad-fix.patch
+
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
