@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -362,8 +362,12 @@ Summary(uk.UTF-8):	Додаткові бібліотеки, потрібні д�
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-Requires:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
+%if "%{_lib}" = "lib64"
+Requires:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
+%else
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
+%endif
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
 
@@ -424,6 +428,9 @@ Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%if "%{_lib}" = "lib64"
+Provides:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
+%endif
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
@@ -491,16 +498,6 @@ Obsoletes:	glibc-devel-utils(s390)
 %endif
 %ifarch sparc64
 Obsoletes:	glibc-devel-utils(sparc)
-%endif
-# To protect x86_64 system from glibc-headers(32bit) installation
-%ifarch %{x8664}
-Conflicts:	glibc-headers(athlon)
-Conflicts:	glibc-headers(i386)
-Conflicts:	glibc-headers(i486)
-Conflicts:	glibc-headers(i586)
-Conflicts:	glibc-headers(i686)
-Conflicts:	glibc-headers(pentium3)
-Conflicts:	glibc-headers(pentium4)
 %endif
 
 %description devel-utils
