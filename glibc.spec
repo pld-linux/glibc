@@ -363,7 +363,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
-%if "%{_lib}" = "lib64"
+%if "%{_lib}" == "lib64"
 Requires:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
 %else
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
@@ -428,7 +428,7 @@ Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%if "%{_lib}" = "lib64"
+%if "%{_lib}" == "lib64"
 Provides:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
 %endif
 %ifarch %{x8664}
