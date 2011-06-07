@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -362,7 +362,7 @@ Summary(uk.UTF-8):	Додаткові бібліотеки, потрібні д�
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Obsoletes:	libiconv-devel
@@ -491,6 +491,16 @@ Obsoletes:	glibc-devel-utils(s390)
 %endif
 %ifarch sparc64
 Obsoletes:	glibc-devel-utils(sparc)
+%endif
+# To protect x86_64 system from glibc-headers(32bit) installation
+%ifarch %{x8664}
+Conflicts:	glibc-headers(athlon)
+Conflicts:	glibc-headers(i386)
+Conflicts:	glibc-headers(i486)
+Conflicts:	glibc-headers(i586)
+Conflicts:	glibc-headers(i686)
+Conflicts:	glibc-headers(pentium3)
+Conflicts:	glibc-headers(pentium4)
 %endif
 
 %description devel-utils
