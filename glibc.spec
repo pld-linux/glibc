@@ -1,11 +1,9 @@
 # TODO:
 # - look at locale fixes/updates in bugzilla
 # - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
-# - package libdir/audit/sotruss-lib.so (subpackage?)
 # [OLD]
 # - localedb-gen man pages(?)
-# - math/{test-fenv,test-tgmath,test-float,test-ifloat},
-#   debug/backtrace-tst(SEGV)  fail on alpha
+# - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
 # min_kernel	(default is 2.6.12)
@@ -54,6 +52,7 @@ Source7:	%{name}-LD-path.c
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
+Patch4:		%{name}-sotruss-sh.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
 Patch7:		%{name}-no_opt_override.patch
@@ -915,9 +914,10 @@ Zabawka.
 %prep
 %setup -q -a1
 mv %{name}-ports-%{ports_version} ports
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p0
+%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
@@ -1405,6 +1405,9 @@ fi
 %dir %{_libexecdir}/getconf
 %attr(755,root,root) %{_libexecdir}/getconf/*
 
+%dir %{_libdir}/audit
+%attr(755,root,root) %{_libdir}/audit/sotruss-lib.so
+
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
 
@@ -1416,7 +1419,17 @@ fi
 %{_mandir}/man5/locale.5*
 %{_mandir}/man5/nsswitch.conf.5*
 %{_mandir}/man5/tzfile.5*
-%{_mandir}/man7/*
+%{_mandir}/man7/ascii.7*
+%{_mandir}/man7/charsets.7*
+%{_mandir}/man7/iso-8859-*.7*
+%{_mandir}/man7/iso_8859-*.7*
+%{_mandir}/man7/iso_8859_*.7*
+%{_mandir}/man7/koi8-r.7*
+%{_mandir}/man7/latin*.7*
+%{_mandir}/man7/locale.7*
+%{_mandir}/man7/unicode.7*
+%{_mandir}/man7/utf-8.7*
+%{_mandir}/man7/utf8.7*
 %{_mandir}/man8/ld-linux.8*
 %{_mandir}/man8/ld-linux.so.8*
 %{_mandir}/man8/ld.so.8*
