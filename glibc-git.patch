@@ -97,3 +97,21 @@ index eb7fedc..28fce4f 100644
  	    return ret.num;
  	}
  # endif
+;2011-06-10  Andreas Schwab  <schwab@redhat.com>
+;
+;	* sysdeps/posix/getaddrinfo.c (gaih_inet): Fix logic allocating
+;	tmpbuf.
+;
+diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
+index 1e017b2..469abe2 100644
+--- a/sysdeps/posix/getaddrinfo.c
++++ b/sysdeps/posix/getaddrinfo.c
+@@ -821,7 +821,7 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 	  size_t tmpbuflen = 1024;
+ 	  malloc_tmpbuf = !__libc_use_alloca (alloca_used + tmpbuflen);
+ 	  assert (tmpbuf == NULL);
+-	  if (malloc_tmpbuf)
++	  if (!malloc_tmpbuf)
+ 	    tmpbuf = alloca_account (tmpbuflen, alloca_used);
+ 	  else
+ 	    {
