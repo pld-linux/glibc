@@ -559,7 +559,7 @@ Index: crypt/crypt_blowfish.c
 +		tmp = 0;
 +		for (j = 0; j < 4; j++) {
 +			tmp <<= 8;
-+			tmp |= *ptr;
++			tmp |= (unsigned char)*ptr;
 +
 +			if (!*ptr) ptr = key; else ptr++;
 +		}
