@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14
-Release:	9
+Release:	9.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -49,6 +49,7 @@ Source5:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
+Patch0:		%{name}-restore-rpc+nis.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -896,24 +897,21 @@ datos NIS+.
 Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS+.
 
 %package memusage
-Summary:	A toy
-Summary(es.UTF-8):	Un juguete
-Summary(pl.UTF-8):	Zabawka
-Group:		Applications
+Summary:	Memory usage profiler
+Summary(pl.UTF-8):	Narzędzie do profilowania zużycia pamięci
+Group:		Development/Tools
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description memusage
-A toy.
-
-%description memusage -l es.UTF-8
-Un juguete.
+Memory usage profiler.
 
 %description memusage -l pl.UTF-8
-Zabawka.
+Narzędzie do profilowania zużycia pamięci.
 
 %prep
 %setup -q -a1
 mv %{name}-ports-%{ports_version} ports
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p0
