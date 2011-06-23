@@ -4,19 +4,6 @@ Date:   Tue May 31 08:45:44 2011 -0400
 
     Don't free non-malloced memory and fix memory leak
 
-diff --git a/ChangeLog b/ChangeLog
-index 3a6abda..eee3d1b 100644
---- a/ChangeLog
-+++ b/ChangeLog
-@@ -1,3 +1,8 @@
-+2011-05-31  Andreas Schwab  <schwab@redhat.com>
-+
-+	* nscd/nscd_getserv_r.c (nscd_getserv_r): Don't free non-malloced
-+	memory.  Use alloca_account.  Fix memory leak when retrying.
-+
- 2011-05-31  Ulrich Drepper  <drepper@gmail.com>
- 
- 	* version.h (RELEASE): Bump for 2.14 release.
 diff --git a/nscd/nscd_getserv_r.c b/nscd/nscd_getserv_r.c
 index de96a57..f9ef056 100644
 --- a/nscd/nscd_getserv_r.c
@@ -71,19 +58,6 @@ Date:   Tue May 31 14:23:01 2011 -0400
 
     Fix typo in  stack guard setup code for old kernels
 
-diff --git a/ChangeLog b/ChangeLog
-index eee3d1b..2aca74a 100644
---- a/ChangeLog
-+++ b/ChangeLog
-@@ -1,3 +1,8 @@
-+2011-05-31  Ulrich Drepper  <drepper@gmail.com>
-+
-+	* sysdeps/unix/sysv/linux/dl-osinfo.h (_dl_setup_stack_chk_guard): Fix
-+	typo.
-+
- 2011-05-31  Andreas Schwab  <schwab@redhat.com>
- 
- 	* nscd/nscd_getserv_r.c (nscd_getserv_r): Don't free non-malloced
 diff --git a/sysdeps/unix/sysv/linux/dl-osinfo.h b/sysdeps/unix/sysv/linux/dl-osinfo.h
 index eb7fedc..28fce4f 100644
 --- a/sysdeps/unix/sysv/linux/dl-osinfo.h
@@ -115,3 +89,432 @@ index 1e017b2..469abe2 100644
  	    tmpbuf = alloca_account (tmpbuflen, alloca_used);
  	  else
  	    {
+commit 3d29045b5e8329d97693eda8d98f1d1e60b99c8f
+Author: H.J. Lu <hongjiu.lu@intel.com>
+Date:   Fri Jun 3 07:01:25 2011 -0400
+
+    Assume Intel Core i3/i5/i7 processor if AVX is available
+
+diff --git a/sysdeps/x86_64/multiarch/init-arch.c b/sysdeps/x86_64/multiarch/init-arch.c
+index 34ec2df..809d105 100644
+--- a/sysdeps/x86_64/multiarch/init-arch.c
++++ b/sysdeps/x86_64/multiarch/init-arch.c
+@@ -74,6 +74,7 @@ __init_cpu_features (void)
+ 	}
+       else if (family == 0x06)
+ 	{
++	  ecx = __cpu_features.cpuid[COMMON_CPUID_INDEX_1].ecx;
+ 	  model += extended_model;
+ 	  switch (model)
+ 	    {
+@@ -83,6 +84,12 @@ __init_cpu_features (void)
+ 	      __cpu_features.feature[index_Slow_BSF] |= bit_Slow_BSF;
+ 	      break;
+ 
++	    default:
++	      /* Unknown family 0x06 processors.  Assuming this is one
++	         of Core i3/i5/i7 processors if AVX is available.  */
++	      if ((ecx & bit_AVX) == 0)
++		break;
++
+ 	    case 0x1a:
+ 	    case 0x1e:
+ 	    case 0x1f:
+commit c71ca1f89c6e89d8c4145e4c2fdcce2fc78812bd
+Author: Andreas Jaeger <aj@suse.de>
+Date:   Tue Jun 14 13:11:39 2011 -0700
+
+    Quash two memset undeclared warnings.
+
+diff --git a/nptl/pthread_rwlock_init.c b/nptl/pthread_rwlock_init.c
+index c0aa194..9ecd48c 100644
+--- a/nptl/pthread_rwlock_init.c
++++ b/nptl/pthread_rwlock_init.c
+@@ -1,4 +1,4 @@
+-/* Copyright (C) 2002, 2007, 2009 Free Software Foundation, Inc.
++/* Copyright (C) 2002,2007,2009,2011 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+    Contributed by Ulrich Drepper <drepper@redhat.com>, 2002.
+ 
+@@ -18,6 +18,7 @@
+    02111-1307 USA.  */
+ 
+ #include "pthreadP.h"
++#include <string.h>
+ #include <kernel-features.h>
+ 
+ 
+diff --git a/sysdeps/unix/sysv/linux/check_native.c b/sysdeps/unix/sysv/linux/check_native.c
+index 6e6624a..dedce34 100644
+--- a/sysdeps/unix/sysv/linux/check_native.c
++++ b/sysdeps/unix/sysv/linux/check_native.c
+@@ -1,5 +1,5 @@
+ /* Determine whether interfaces use native transport.  Linux version.
+-   Copyright (C) 2007 Free Software Foundation, Inc.
++   Copyright (C) 2007,2011 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+    The GNU C Library is free software; you can redistribute it and/or
+@@ -23,6 +23,7 @@
+ #include <stddef.h>
+ #include <stdint.h>
+ #include <stdlib.h>
++#include <string.h>
+ #include <time.h>
+ #include <unistd.h>
+ #include <net/if.h>
+commit c5e3c2ae59cc8c5d3ad5e1adfd099c726baad862
+Author: Ulrich Drepper <drepper@gmail.com>
+Date:   Tue Jun 21 13:06:42 2011 -0400
+
+    Minor optimization of getaddrinfo after recent patch
+
+diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
+index 469abe2..d68ac83 100644
+--- a/sysdeps/posix/getaddrinfo.c
++++ b/sysdeps/posix/getaddrinfo.c
+@@ -565,7 +565,6 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 	     IPv6 scope ids. */
+ 	  if (req->ai_family == AF_INET)
+ 	    {
+-	      int family = req->ai_family;
+ 	      size_t tmpbuflen = 512;
+ 	      assert (tmpbuf == NULL);
+ 	      tmpbuf = alloca_account (tmpbuflen, alloca_used);
+@@ -576,7 +575,7 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 
+ 	      while (1)
+ 		{
+-		  rc = __gethostbyname2_r (name, family, &th, tmpbuf,
++		  rc = __gethostbyname2_r (name, AF_INET, &th, tmpbuf,
+ 					   tmpbuflen, &h, &herrno);
+ 		  if (rc != ERANGE || herrno != NETDB_INTERNAL)
+ 		    break;
+@@ -638,18 +637,9 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 			      (*pat)->scopeid = 0;
+ 			    }
+ 			  (*pat)->next = NULL;
+-			  (*pat)->family = req->ai_family;
+-			  if (family == req->ai_family)
+-			    memcpy ((*pat)->addr, h->h_addr_list[i],
+-				    h->h_length);
+-			  else
+-			    {
+-			      uint32_t *addr = (uint32_t *) (*pat)->addr;
+-			      addr[3] = *(uint32_t *) h->h_addr_list[i];
+-			      addr[2] = htonl (0xffff);
+-			      addr[1] = 0;
+-			      addr[0] = 0;
+-			    }
++			  (*pat)->family = AF_INET;
++			  memcpy ((*pat)->addr, h->h_addr_list[i],
++				  h->h_length);
+ 			  pat = &((*pat)->next);
+ 			}
+ 		    }
+commit c0244a9dedce43a4b950d91451b16a7cf5408476
+Author: Ulrich Drepper <drepper@gmail.com>
+Date:   Tue Jun 21 17:03:38 2011 -0400
+
+    Fix IPv6-only lookups through getaddrinfo
+    
+    A recent patch introduced a problem where IPv6 lookups happily returned
+    IPv4 addresses.
+
+diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
+index d68ac83..3a2737e 100644
+--- a/sysdeps/posix/getaddrinfo.c
++++ b/sysdeps/posix/getaddrinfo.c
+@@ -871,16 +871,44 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 			}
+ 		    }
+ 
+-		  no_inet6_data = no_data;
+-
+ 		  if (status == NSS_STATUS_SUCCESS)
+ 		    {
++		      assert (!no_data);
++		      no_data = 1;
++
+ 		      if ((req->ai_flags & AI_CANONNAME) != 0 && canon == NULL)
+ 			canon = (*pat)->name;
+ 
+ 		      while (*pat != NULL)
+-			pat = &((*pat)->next);
++			{
++			  if ((*pat)->family == AF_INET
++			      && req->ai_family == AF_INET6
++			      && (req->ai_flags & AI_V4MAPPED) != 0)
++			    {
++			      uint32_t *pataddr = (*pat)->addr;
++			      (*pat)->family = AF_INET6;
++			      pataddr[3] = pataddr[0];
++			      pataddr[2] = htonl (0xffff);
++			      pataddr[1] = 0;
++			      pataddr[0] = 0;
++			      pat = &((*pat)->next);
++			      no_data = 0;
++			    }
++			  else if ((*pat)->family == AF_UNSPEC
++				   || (*pat)->family == req->ai_family)
++			    {
++			      pat = &((*pat)->next);
++
++			      no_data = 0;
++			      if (req->ai_family == AF_INET6)
++				got_ipv6 = true;
++			    }
++			  else
++			    *pat = ((*pat)->next);
++			}
+ 		    }
++
++		  no_inet6_data = no_data;
+ 		}
+ 	      else
+ 		{
+commit 6e502e19455c6110dd4487d91b7b7d6d8121f9ba
+Author: Ulrich Drepper <drepper@gmail.com>
+Date:   Wed Jun 22 08:32:55 2011 -0400
+
+    Clean up after kernel sigcontext header mess
+
+diff --git a/sysdeps/unix/sysv/linux/bits/sigcontext.h b/sysdeps/unix/sysv/linux/bits/sigcontext.h
+index 67dcf94..0f5b607 100644
+--- a/sysdeps/unix/sysv/linux/bits/sigcontext.h
++++ b/sysdeps/unix/sysv/linux/bits/sigcontext.h
+@@ -1,4 +1,4 @@
+-/* Copyright (C) 1996, 1997, 1998 Free Software Foundation, Inc.
++/* Copyright (C) 1996, 1997, 1998, 2011 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+    The GNU C Library is free software; you can redistribute it and/or
+@@ -26,4 +26,8 @@
+ # define sigcontext_struct sigcontext
+ 
+ # include <asm/sigcontext.h>
++
++/* The Linux kernel headers redefine NULL wrongly, so cleanup afterwards.  */
++# define __need_NULL
++# include <stddef.h>
+ #endif
+commit 852eb34d5c56bc75bdd82327fcf310d98655f6b0
+Author: Ulrich Drepper <drepper@gmail.com>
+Date:   Wed Jun 22 09:50:39 2011 -0400
+
+    Rate limit expensive _SC_NPROCESSORS_ONLN computation
+
+diff --git a/sysdeps/unix/sysv/linux/getsysstats.c b/sysdeps/unix/sysv/linux/getsysstats.c
+index af454b6..a13b6e3 100644
+--- a/sysdeps/unix/sysv/linux/getsysstats.c
++++ b/sysdeps/unix/sysv/linux/getsysstats.c
+@@ -1,5 +1,5 @@
+ /* Determine various system internal values, Linux version.
+-   Copyright (C) 1996-2003,2006,2007,2009,2010 Free Software Foundation, Inc.
++   Copyright (C) 1996-2003,2006,2007,2009,2010,2011 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+    Contributed by Ulrich Drepper <drepper@cygnus.com>, 1996.
+ 
+@@ -35,6 +35,16 @@
+ 
+ #include <atomic.h>
+ #include <not-cancel.h>
++#include <kernel-features.h>
++
++#ifndef HAVE_CLOCK_GETTIME_VSYSCALL
++# undef INTERNAL_VSYSCALL
++# define INTERNAL_VSYSCALL INTERNAL_SYSCALL
++# undef INLINE_VSYSCALL
++# define INLINE_VSYSCALL INLINE_SYSCALL
++#else
++# include <bits/libc-vdso.h>
++#endif
+ 
+ 
+ /* How we can determine the number of available processors depends on
+@@ -128,6 +138,22 @@ next_line (int fd, char *const buffer, char **cp, char **re,
+ int
+ __get_nprocs ()
+ {
++  static int cached_result;
++  static time_t timestamp;
++
++#ifdef __ASSUME_POSIX_TIMERS
++  struct timespec ts;
++  INTERNAL_SYSCALL_DECL (err);
++  INTERNAL_VSYSCALL (clock_gettime, err, 2, CLOCK_REALTIME, &ts);
++#else
++  struct timeval ts;
++  gettimeofday (&ts, NULL);
++#endif
++  time_t prev = timestamp;
++  atomic_read_barrier ();
++  if (ts.tv_sec == prev)
++    return cached_result;
++
+   /* XXX Here will come a test for the new system call.  */
+ 
+   const size_t buffer_size = __libc_use_alloca (8192) ? 8192 : 512;
+@@ -169,6 +195,10 @@ __get_nprocs ()
+ 	}
+     }
+ 
++  cached_result = result;
++  atomic_write_barrier ();
++  timestamp = ts.tv_sec;
++
+   return result;
+ }
+ weak_alias (__get_nprocs, get_nprocs)
+commit 84e2a551a72c79b020694bb327e33b6d71b09b63
+Author: Ulrich Drepper <drepper@gmail.com>
+Date:   Wed Jun 22 10:32:07 2011 -0400
+
+    Use a /sys/devices/system/cpu/online for _SC_NPROCESSORS_ONLN implementation
+
+diff --git a/sysdeps/unix/sysv/linux/getsysstats.c b/sysdeps/unix/sysv/linux/getsysstats.c
+index a13b6e3..b74774f 100644
+--- a/sysdeps/unix/sysv/linux/getsysstats.c
++++ b/sysdeps/unix/sysv/linux/getsysstats.c
+@@ -161,20 +161,65 @@ __get_nprocs ()
+   char *buffer_end = buffer + buffer_size;
+   char *cp = buffer_end;
+   char *re = buffer_end;
+-  int result = 1;
+ 
+ #ifdef O_CLOEXEC
+   const int flags = O_RDONLY | O_CLOEXEC;
+ #else
+   const int flags = O_RDONLY;
+ #endif
++  int fd = open_not_cancel_2 ("/sys/devices/system/cpu/online", flags);
++  char *l;
++  int result = 0;
++  if (fd != -1)
++    {
++      l = next_line (fd, buffer, &cp, &re, buffer_end);
++      if (l != NULL)
++	do
++	  {
++	    char *endp;
++	    unsigned long int n = strtoul (l, &endp, 10);
++	    if (l == endp)
++	      {
++		result = 0;
++		break;
++	      }
++
++	    unsigned long int m = n;
++	    if (*endp == '-')
++	      {
++		l = endp + 1;
++		m = strtoul (l, &endp, 10);
++		if (l == endp)
++		  {
++		    result = 0;
++		    break;
++		  }
++	      }
++
++	    result += m - n + 1;
++
++	    l = endp;
++	    while (l < re && isspace (*l))
++	      ++l;
++	  }
++	while (l < re);
++
++      close_not_cancel_no_status (fd);
++
++      if (result > 0)
++	goto out;
++    }
++
++  cp = buffer_end;
++  re = buffer_end;
++  result = 1;
++
+   /* The /proc/stat format is more uniform, use it by default.  */
+-  int fd = open_not_cancel_2 ("/proc/stat", flags);
++  fd = open_not_cancel_2 ("/proc/stat", flags);
+   if (fd != -1)
+     {
+       result = 0;
+ 
+-      char *l;
+       while ((l = next_line (fd, buffer, &cp, &re, buffer_end)) != NULL)
+ 	/* The current format of /proc/stat has all the cpu* entries
+ 	   at the front.  We assume here that stays this way.  */
+@@ -195,6 +240,7 @@ __get_nprocs ()
+ 	}
+     }
+ 
++ out:
+   cached_result = result;
+   atomic_write_barrier ();
+   timestamp = ts.tv_sec;
+commit e12df166d37522c2ed434c2d70a1b04640d2d7c6
+Author: Andreas Schwab <schwab@redhat.com>
+Date:   Wed Jun 22 14:35:49 2011 -0400
+
+    Fix Ipv4&IPv6 lookup in getaddrinfo
+    
+    Problem introduced in the last patch.
+
+diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
+index 3a2737e..14e9270 100644
+--- a/sysdeps/posix/getaddrinfo.c
++++ b/sysdeps/posix/getaddrinfo.c
+@@ -894,7 +894,7 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 			      pat = &((*pat)->next);
+ 			      no_data = 0;
+ 			    }
+-			  else if ((*pat)->family == AF_UNSPEC
++			  else if (req->ai_family == AF_UNSPEC
+ 				   || (*pat)->family == req->ai_family)
+ 			    {
+ 			      pat = &((*pat)->next);
+commit fa3fc0fe5f452d0aa7e435d8f32e992958683819
+Author: Ulrich Drepper <drepper@gmail.com>
+Date:   Wed Jun 22 15:00:54 2011 -0400
+
+    Avoid __check_pf calls in getaddrinfo unless really needed
+
+diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
+index 14e9270..05c883d 100644
+--- a/sysdeps/posix/getaddrinfo.c
++++ b/sysdeps/posix/getaddrinfo.c
+@@ -2352,14 +2352,17 @@ getaddrinfo (const char *name, const char *service,
+   size_t in6ailen = 0;
+   bool seen_ipv4 = false;
+   bool seen_ipv6 = false;
+-  /* We might need information about what interfaces are available.
+-     Also determine whether we have IPv4 or IPv6 interfaces or both.  We
+-     cannot cache the results since new interfaces could be added at
+-     any time.  */
+-  __check_pf (&seen_ipv4, &seen_ipv6, &in6ai, &in6ailen);
++  bool check_pf_called = false;
+ 
+   if (hints->ai_flags & AI_ADDRCONFIG)
+     {
++      /* We might need information about what interfaces are available.
++	 Also determine whether we have IPv4 or IPv6 interfaces or both.  We
++	 cannot cache the results since new interfaces could be added at
++	 any time.  */
++      __check_pf (&seen_ipv4, &seen_ipv6, &in6ai, &in6ailen);
++      check_pf_called = true;
++
+       /* Now make a decision on what we return, if anything.  */
+       if (hints->ai_family == PF_UNSPEC && (seen_ipv4 || seen_ipv6))
+ 	{
+@@ -2441,6 +2444,10 @@ getaddrinfo (const char *name, const char *service,
+       struct addrinfo *last = NULL;
+       char *canonname = NULL;
+ 
++      /* Now we definitely need the interface information.  */
++      if (! check_pf_called)
++	__check_pf (&seen_ipv4, &seen_ipv6, &in6ai, &in6ailen);
++
+       /* If we have information about deprecated and temporary addresses
+ 	 sort the array now.  */
+       if (in6ai != NULL)
