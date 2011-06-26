@@ -1143,7 +1143,6 @@ done
 #   az_IR (gtk+2)
 #   bal (newt,pessulus)
 #   bem (alacarte)
-#   ckb [or ku_IQ/ku_IR] (vlc,miro)
 #   co  (vlc)
 #   fil (stellarium)
 #   frp (xfce)
@@ -1153,7 +1152,6 @@ done
 #   ilo (kudzu)
 #   io  (gtk+2, gnome, alacarte)
 #   jv  (gmpc, avant-window-navigator, kdesudo)
-#   kg  (gtk+3, gnome)
 #   kok (iso-codes)
 #   lb  (geany,miro)
 #   man (ccsm; incorrectly named md)
@@ -1180,12 +1178,12 @@ done
 #   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
 #   sv tr zh_CN zh_TW
 #
-for i in aa aa@saaho af am an ang ar ar_TN as ast az be@alternative be@latin \
-	bg bn bn_IN br bs byn ca@valencia crh csb cy de_AT de_CH dv dz en \
+for i in aa aa@saaho af am an ang ar ar_TN as ast az be@latin be@tarask \
+	bg bn bn_IN br bs byn ca@valencia ckb crh csb cy de_AT de_CH dv dz en \
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
 	es_VE et eu fa fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
-	hi hne hsb hy ia id ig ik is it_CH iu ka kk kl km kn ks ku kw ky la \
+	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn ks ku kw ky la \
 	lg li lo lt lv mai mg mi mk ml mn mr ms mt my nds ne nl_BE nn nr nso \
 	oc om or pa pap ps pt ps rm ro sa sc se si sid sl so sq sr sr@Latn tl \
 	sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn ts tt ug uk \
@@ -1213,15 +1211,12 @@ chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
-rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
-rm -f $RPM_BUILD_ROOT%{_mandir}/diff.*
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/README.*
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # we don't support kernel without ptys support
-rm -f $RPM_BUILD_ROOT%{_libdir}/pt_chown
-# rpcbind
-rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/rpcinfo.8
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/rpcinfo.8
-rm -f $RPM_BUILD_ROOT%{_sbindir}/rpcinfo
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/pt_chown
+# rpcinfo dropped from glibc, provided by rpcbind now
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/{,*/}man8/rpcinfo.8
 
 %clean
 rm -rf $RPM_BUILD_ROOT
