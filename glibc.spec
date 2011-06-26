@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14
-Release:	9.1
+Release:	10
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
