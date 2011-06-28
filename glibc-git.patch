@@ -518,3 +518,24 @@ index 14e9270..05c883d 100644
        /* If we have information about deprecated and temporary addresses
  	 sort the array now.  */
        if (in6ai != NULL)
+commit 034807a9cbddfa9e7d35df4cdb2ecce569a00851
+Author: Ulrich Drepper <drepper@gmail.com>
+Date:   Mon Jun 27 13:10:44 2011 -0400
+
+    Fix handling of RES_USE_INET6 big in nscd
+    
+    This fixes BZ #12350 also for nscd.
+
+diff --git a/nscd/aicache.c b/nscd/aicache.c
+index 3190a13..6c8d83a 100644
+--- a/nscd/aicache.c
++++ b/nscd/aicache.c
+@@ -534,7 +534,7 @@ next_nip:
+    }
+ 
+  out:
+-  _res.options = old_res_options;
++  _res.options |= old_res_options & RES_USE_INET6;
+ 
+   if (dataset != NULL && !alloca_used)
+     {
