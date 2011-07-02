@@ -539,3 +539,38 @@ index 3190a13..6c8d83a 100644
  
    if (dataset != NULL && !alloca_used)
      {
+commit 89f654c57b3b9a6aee480e25e37f88f06c898901
+Author: Andreas Schwab <schwab@redhat.com>
+Date:   Thu Jun 30 06:33:32 2011 -0400
+
+    Make sure RES_USE_INET6 is always restored
+
+diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
+index 05c883d..6d574c5 100644
+--- a/sysdeps/posix/getaddrinfo.c
++++ b/sysdeps/posix/getaddrinfo.c
+@@ -818,6 +818,7 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 	      tmpbuf = malloc (tmpbuflen);
+ 	      if (tmpbuf == NULL)
+ 		{
++		  _res.options |= old_res_options & RES_USE_INET6;
+ 		  result = -EAI_MEMORY;
+ 		  goto free_and_return;
+ 		}
+@@ -862,6 +863,7 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 						2 * tmpbuflen);
+ 			  if (newp == NULL)
+ 			    {
++			      _res.options |= old_res_options & RES_USE_INET6;
+ 			      result = -EAI_MEMORY;
+ 			      goto free_and_return;
+ 			    }
+@@ -981,6 +983,8 @@ gaih_inet (const char *name, const struct gaih_service *service,
+ 				      canonbuf = malloc (max_fqdn_len);
+ 				      if (canonbuf == NULL)
+ 					{
++					  _res.options
++					    |= old_res_options & RES_USE_INET6;
+ 					  result = -EAI_MEMORY;
+ 					  goto free_and_return;
+ 					}
