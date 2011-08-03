@@ -574,3 +574,292 @@ index 05c883d..6d574c5 100644
  					  result = -EAI_MEMORY;
  					  goto free_and_return;
  					}
+commit 5e9b6af4a9bb2aad0e1929e88b52009d14cb6831
+Author: Roland McGrath <roland@hack.frob.com>
+Date:   Sat Jul 2 16:59:14 2011 -0700
+
+    Fail if format.lds comes out empty.
+
+diff --git a/Makerules b/Makerules
+index 3234fc2..d70a196 100644
+--- a/Makerules
++++ b/Makerules
+@@ -993,6 +993,7 @@ $(common-objpfx)format.lds: $(..)scripts/output-format.sed \
+ 	$(LINK.o) -shared $(sysdep-LDFLAGS) $(config-LDFLAGS) $(LDFLAGS.so) \
+ 		  -x c /dev/null -o $@.so -Wl,--verbose -v 2>&1 \
+ 	| sed -n -f $< > $@.new
++	test -s $@.new
+ 	rm -f $@.so
+ 	mv -f $@.new $@
+ common-generated += format.lds
+commit 2d4fa81e11abc464b5b1f6417525285e84ff787c
+Author: Roland McGrath <roland@hack.frob.com>
+Date:   Sat Jun 11 03:41:23 2011 -0700
+
+    Consolidate shlib.lds references in new variables.
+
+diff --git a/Makerules b/Makerules
+index 6b4b0e1..d3cb4cc 100644
+--- a/Makerules
++++ b/Makerules
+@@ -514,8 +514,11 @@ $(common-objpfx)shlib.lds: $(common-objpfx)config.make $(..)Makerules
+ 	mv -f $@T $@
+ common-generated += shlib.lds
+ 
++shlib-lds = $(common-objpfx)shlib.lds
++shlib-lds-flags = -T $(shlib-lds)
++
+ define build-shlib
+-$(build-shlib-helper) -o $@ -T $(common-objpfx)shlib.lds \
++$(build-shlib-helper) -o $@ $(shlib-lds-flags) \
+ 	  $(csu-objpfx)abi-note.o $(build-shlib-objlist)
+ endef
+ else
+@@ -557,11 +560,11 @@ ifeq (yes,$(elf))
+ # binutils only position loadable notes into the first page for binaries,
+ # not for shared objects
+ define build-module
+-$(build-module-helper) -o $@ -T $(common-objpfx)shlib.lds \
++$(build-module-helper) -o $@ $(shlib-lds-flags) \
+ 	  $(csu-objpfx)abi-note.o $(build-module-objlist)
+ endef
+ define build-module-asneeded
+-$(build-module-helper) -o $@ -T $(common-objpfx)shlib.lds \
++$(build-module-helper) -o $@ $(shlib-lds-flags) \
+ 	  $(csu-objpfx)abi-note.o \
+ 	  -Wl,--as-needed $(build-module-objlist) -Wl,--no-as-needed
+ endef
+@@ -618,7 +621,7 @@ $(common-objpfx)libc.so: $(elfobjdir)/soinit.os \
+ 			 $(common-objpfx)libc_pic.os \
+ 			 $(elfobjdir)/sofini.os \
+ 			 $(elfobjdir)/interp.os $(elfobjdir)/ld.so \
+-			 $(common-objpfx)shlib.lds
++			 $(shlib-lds)
+ 	$(build-shlib)
+ ifeq ($(versioning),yes)
+ $(common-objpfx)libc.so: $(common-objpfx)libc.map
+@@ -689,7 +692,7 @@ include $(patsubst %,$(..)extra-modules.mk,$(modules-names))
+ 
+ extra-modules-build := $(filter-out $(modules-names-nobuild),$(modules-names))
+ $(extra-modules-build:%=$(objpfx)%.so): $(objpfx)%.so: \
+-		$(objpfx)%.os $(common-objpfx)shlib.lds \
++		$(objpfx)%.os $(shlib-lds) \
+ 		$(common-objpfx)libc.so $(common-objpfx)libc_nonshared.a
+ 	$(build-module)
+ endif
+diff --git a/iconvdata/extra-module.mk b/iconvdata/extra-module.mk
+index 163074f..43f4e12 100644
+--- a/iconvdata/extra-module.mk
++++ b/iconvdata/extra-module.mk
+@@ -4,7 +4,7 @@ extra-modules-left := $(strip $(filter-out $(mod),$(extra-modules-left)))
+ extra-objs := $(extra-objs) $(patsubst %,%.os,$($(mod)-routines))
+ 
+ $(objpfx)$(mod).so: $(addprefix $(objpfx),$(addsuffix .os,$($(mod)-routines)))\
+-		    $(common-objpfx)shlib.lds
++		    $(shlib-lds)
+ 	$(build-module-asneeded)
+ 
+ # Depend on libc.so so a DT_NEEDED is generated in the shared objects.
+commit f781ef4015504e8a1da649c266584976238aa079
+Author: Roland McGrath <roland@hack.frob.com>
+Date:   Sat Jun 11 04:16:49 2011 -0700
+
+    Add --with-default-link configure option.
+
+diff --git a/Makerules b/Makerules
+index d3cb4cc..23d9f1c 100644
+--- a/Makerules
++++ b/Makerules
+@@ -479,6 +479,11 @@ endif
+ endif
+ 
+ ifeq (yes,$(elf))
++ifeq (yes,$(use-default-link))
++# If the linker is good enough, we can let it use its default linker script.
++shlib-lds =
++shlib-lds-flags =
++else
+ # binutils only position loadable notes into the first page for binaries,
+ # not for shared objects
+ $(common-objpfx)shlib.lds: $(common-objpfx)config.make $(..)Makerules
+@@ -516,6 +521,7 @@ common-generated += shlib.lds
+ 
+ shlib-lds = $(common-objpfx)shlib.lds
+ shlib-lds-flags = -T $(shlib-lds)
++endif
+ 
+ define build-shlib
+ $(build-shlib-helper) -o $@ $(shlib-lds-flags) \
+diff --git a/config.make.in b/config.make.in
+index 0656b1b..34842bf 100644
+--- a/config.make.in
++++ b/config.make.in
+@@ -69,6 +69,7 @@ have-cc-with-libunwind = @libc_cv_cc_with_libunwind@
+ fno-unit-at-a-time = @fno_unit_at_a_time@
+ bind-now = @bindnow@
+ have-hash-style = @libc_cv_hashstyle@
++use-default-link = @use_default_link@
+ 
+ static-libgcc = @libc_cv_gcc_static_libgcc@
+ 
+diff --git a/configure b/configure
+index 20e7340..e8ad775 100755
+--- a/configure
++++ b/configure
+@@ -696,6 +696,7 @@ force_install
+ bindnow
+ oldest_abi
+ enable_check_abi
++use_default_link
+ with_cvs
+ with_fp
+ ac_ct_CXX
+@@ -770,6 +771,7 @@ with_selinux
+ with_xcoff
+ with_cvs
+ with_headers
++with_default_link
+ enable_sanity_checks
+ enable_check_abi
+ enable_shared
+@@ -1464,6 +1466,7 @@ Optional Packages:
+   --without-cvs           if CVS should not be used
+   --with-headers=PATH     location of system headers to use (for example
+                           /usr/src/linux/include) [default=compiler default]
++  --with-default-link     do not use explicit linker scripts [default=no]
+   --with-tls              enable support for TLS
+   --without-__thread      do not use TLS features even when supporting them
+   --with-cpu=CPU          select code for CPU variant
+@@ -3581,6 +3584,16 @@ else
+ fi
+ 
+ 
++
++
++# Check whether --with-default-link was given.
++if test "${with_default_link+set}" = set; then :
++  withval=$with_default_link; use_default_link=$withval
++else
++  use_default_link=no
++fi
++
++
+ # Check whether --enable-sanity-checks was given.
+ if test "${enable_sanity_checks+set}" = set; then :
+   enableval=$enable_sanity_checks; enable_sanity=$enableval
+diff --git a/configure.in b/configure.in
+index f2b3921..f34aab3 100644
+--- a/configure.in
++++ b/configure.in
+@@ -114,6 +114,14 @@ AC_ARG_WITH([headers],
+ 	    [sysheaders=$withval],
+ 	    [sysheaders=''])
+ 
++AC_SUBST(use_default_link)
++AC_ARG_WITH([default-link],
++	    AC_HELP_STRING([--with-default-link],
++			   [do not use explicit linker scripts
++			    @<:@default=no@:>@]),
++	    [use_default_link=$withval],
++	    [use_default_link=no])
++
+ AC_ARG_ENABLE([sanity-checks],
+ 	      AC_HELP_STRING([--disable-sanity-checks],
+ 			     [really do not use threads (should not be used except in special situations) @<:@default=yes@:>@]),
+commit 5c55070081c27168d27145afdf6a92cd56c9abb3
+Author: Roland McGrath <roland@hack.frob.com>
+Date:   Sat Jun 11 00:45:12 2011 -0700
+
+    Use linker --print-output-format option if available.
+
+diff --git a/Makerules b/Makerules
+index d70a196..a8b575c 100644
+--- a/Makerules
++++ b/Makerules
+@@ -990,11 +990,15 @@ install: $(inst_slibdir)/libc.so$(libc.so-version)
+ $(common-objpfx)format.lds: $(..)scripts/output-format.sed \
+ 			    $(common-objpfx)config.make \
+ 			    $(common-objpfx)config.h $(..)Makerules
++ifneq (unknown,$(output-format))
++	echo > $@.new 'OUTPUT_FORMAT($(output-format))'
++else
+ 	$(LINK.o) -shared $(sysdep-LDFLAGS) $(config-LDFLAGS) $(LDFLAGS.so) \
+ 		  -x c /dev/null -o $@.so -Wl,--verbose -v 2>&1 \
+ 	| sed -n -f $< > $@.new
+ 	test -s $@.new
+ 	rm -f $@.so
++endif
+ 	mv -f $@.new $@
+ common-generated += format.lds
+ 
+diff --git a/config.make.in b/config.make.in
+index b73b21e..407ebc1 100644
+--- a/config.make.in
++++ b/config.make.in
+@@ -70,6 +70,7 @@ fno-unit-at-a-time = @fno_unit_at_a_time@
+ bind-now = @bindnow@
+ have-hash-style = @libc_cv_hashstyle@
+ use-default-link = @use_default_link@
++output-format = @libc_cv_output_format@
+ 
+ static-libgcc = @libc_cv_gcc_static_libgcc@
+ 
+diff --git a/configure b/configure
+index 2568345..55a4b30 100755
+--- a/configure
++++ b/configure
+@@ -647,6 +647,7 @@ libc_cv_have_initfini
+ gnu89_inline
+ libc_cv_ssp
+ fno_unit_at_a_time
++libc_cv_output_format
+ libc_cv_hashstyle
+ libc_cv_fpie
+ libc_cv_z_execstack
+@@ -6703,6 +6704,24 @@ $as_echo "$libc_cv_hashstyle" >&6; }
+ 
+ fi
+ 
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking linker output format" >&5
++$as_echo_n "checking linker output format... " >&6; }
++if ${libc_cv_output_format+:} false; then :
++  $as_echo_n "(cached) " >&6
++else
++  if libc_cv_output_format=`
++${CC-cc} -nostartfiles -nostdlib -Wl,--print-output-format 2>&5`
++then
++  :
++else
++  libc_cv_output_format=
++fi
++test -n "$libc_cv_output_format" || libc_cv_output_format=unknown
++fi
++{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $libc_cv_output_format" >&5
++$as_echo "$libc_cv_output_format" >&6; }
++
++
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for -fno-toplevel-reorder -fno-section-anchors" >&5
+ $as_echo_n "checking for -fno-toplevel-reorder -fno-section-anchors... " >&6; }
+ if ${libc_cv_fno_toplevel_reorder+:} false; then :
+diff --git a/configure.in b/configure.in
+index 55e5649..a28cd70 100644
+--- a/configure.in
++++ b/configure.in
+@@ -1803,6 +1803,17 @@ EOF
+   AC_SUBST(libc_cv_hashstyle)
+ fi
+ 
++AC_CACHE_CHECK(linker output format, libc_cv_output_format, [dnl
++if libc_cv_output_format=`
++${CC-cc} -nostartfiles -nostdlib -Wl,--print-output-format 2>&AS_MESSAGE_LOG_FD`
++then
++  :
++else
++  libc_cv_output_format=
++fi
++test -n "$libc_cv_output_format" || libc_cv_output_format=unknown])
++AC_SUBST(libc_cv_output_format)
++
+ AC_CACHE_CHECK(for -fno-toplevel-reorder -fno-section-anchors, libc_cv_fno_toplevel_reorder, [dnl
+ cat > conftest.c <<EOF
+ int foo;
