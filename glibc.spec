@@ -85,6 +85,7 @@ Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch39:	%{name}-git.patch
 Patch40:	%{name}-bad-fix.patch
 Patch41:	%{name}-bug-12684.patch
+Patch42:	%{name}-revert-dso-breakout.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -951,6 +952,8 @@ mv %{name}-ports-%{ports_version} ports
 %patch40 -p1
 # revert broken fix
 %patch41 -p1 -R
+# revert broken fix
+%patch42 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f

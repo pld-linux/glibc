@@ -1,0 +1,379 @@
+diff -uNrp glibc-2.14/elf.orig/dl-deps.c glibc-2.14/elf/dl-deps.c
+--- glibc-2.14/elf.orig/dl-deps.c	2011-08-10 22:15:04.000000000 +0200
++++ glibc-2.14/elf/dl-deps.c	2011-08-10 22:16:12.107990316 +0200
+@@ -1,5 +1,5 @@
+ /* Load the dependencies of a mapped object.
+-   Copyright (C) 1996-2003, 2004, 2005, 2006, 2007, 2010, 2011
++   Copyright (C) 1996-2003, 2004, 2005, 2006, 2007, 2010
+    Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+@@ -596,7 +596,7 @@ Filters not supported with LD_TRACE_PREL
+ 	    /* Need to allocate new array of relocation dependencies.  */
+ 	    struct link_map_reldeps *l_reldeps;
+ 	    l_reldeps = malloc (sizeof (*l_reldeps)
+-				+ map->l_reldepsmax
++	    			+ map->l_reldepsmax
+ 				  * sizeof (struct link_map *));
+ 	    if (l_reldeps == NULL)
+ 	      /* Bad luck, keep the reldeps duplicated between
+@@ -618,66 +618,51 @@ Filters not supported with LD_TRACE_PREL
+ 	map->l_searchlist.r_list[i]->l_reserved = 0;
+     }
+ 
+-  /* Sort the initializer list to take dependencies into account.  The binary
+-     itself will always be initialize last.  */
++  /* Now determine the order in which the initialization has to happen.  */
+   memcpy (l_initfini, map->l_searchlist.r_list,
+ 	  nlist * sizeof (struct link_map *));
+-  if (__builtin_expect (nlist > 1, 1))
++  /* We can skip looking for the binary itself which is at the front
++     of the search list.  Look through the list backward so that circular
++     dependencies are not changing the order.  */
++  for (i = 1; i < nlist; ++i)
+     {
+-      /* We can skip looking for the binary itself which is at the front
+-	 of the search list.  */
+-      i = 1;
+-      bool seen[nlist];
+-      memset (seen, false, nlist * sizeof (seen[0]));
+-      while (1)
++      struct link_map *l = map->l_searchlist.r_list[i];
++      unsigned int j;
++      unsigned int k;
++
++      /* Find the place in the initfini list where the map is currently
++	 located.  */
++      for (j = 1; l_initfini[j] != l; ++j)
++	;
++
++      /* Find all object for which the current one is a dependency and
++	 move the found object (if necessary) in front.  */
++      for (k = j + 1; k < nlist; ++k)
+ 	{
+-	  /* Keep track of which object we looked at this round.  */
+-	  seen[i] = true;
+-	  struct link_map *thisp = l_initfini[i];
+-
+-	  /* Find the last object in the list for which the current one is
+-	     a dependency and move the current object behind the object
+-	     with the dependency.  */
+-	  unsigned int k = nlist - 1;
+-	  while (k > i)
++	  struct link_map **runp;
++
++	  runp = l_initfini[k]->l_initfini;
++	  if (runp != NULL)
+ 	    {
+-	      struct link_map **runp = l_initfini[k]->l_initfini;
+-	      if (runp != NULL)
+-		/* Look through the dependencies of the object.  */
+-		while (*runp != NULL)
+-		  if (__builtin_expect (*runp++ == thisp, 0))
+-		    {
+-		      /* Move the current object to the back past the last
+-			 object with it as the dependency.  */
+-		      memmove (&l_initfini[i], &l_initfini[i + 1],
+-			       (k - i) * sizeof (l_initfini[0]));
+-		      l_initfini[k] = thisp;
+-
+-		      if (seen[i + 1])
+-			{
+-			  ++i;
+-			  goto next_clear;
+-			}
+-
+-		      memmove (&seen[i], &seen[i + 1],
+-			       (k - i) * sizeof (seen[0]));
+-		      seen[k] = true;
++	      while (*runp != NULL)
++		if (__builtin_expect (*runp++ == l, 0))
++		  {
++		    struct link_map *here = l_initfini[k];
+ 
+-		      goto next;
+-		    }
++		    /* Move it now.  */
++		    memmove (&l_initfini[j] + 1, &l_initfini[j],
++			     (k - j) * sizeof (struct link_map *));
++		    l_initfini[j] = here;
++
++		    /* Don't insert further matches before the last
++		       entry moved to the front.  */
++		    ++j;
+ 
+-	      --k;
++		    break;
++		  }
+ 	    }
+-
+-	  if (++i == nlist)
+-	    break;
+-	next_clear:
+-	  memset (&seen[i], false, (nlist - i) * sizeof (seen[0]));
+-
+-	next:;
+ 	}
+     }
+-
+   /* Terminate the list of dependencies.  */
+   l_initfini[nlist] = NULL;
+   atomic_write_barrier ();
+diff -uNrp glibc-2.14/elf.orig/dl-fini.c glibc-2.14/elf/dl-fini.c
+--- glibc-2.14/elf.orig/dl-fini.c	2011-05-31 06:12:33.000000000 +0200
++++ glibc-2.14/elf/dl-fini.c	2011-08-10 22:16:13.564724137 +0200
+@@ -1,6 +1,5 @@
+ /* Call the termination functions of loaded shared objects.
+-   Copyright (C) 1995,96,1998-2002,2004-2005,2009,2011
+-   Free Software Foundation, Inc.
++   Copyright (C) 1995,96,1998-2002,2004-2005,2009 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+    The GNU C Library is free software; you can redistribute it and/or
+@@ -33,87 +32,86 @@ internal_function
+ _dl_sort_fini (struct link_map *l, struct link_map **maps, size_t nmaps,
+ 	       char *used, Lmid_t ns)
+ {
+-  /* A list of one element need not be sorted.  */
+-  if (nmaps == 1)
+-    return;
+-
+-  /* We can skip looking for the binary itself which is at the front
+-     of the search list for the main namespace.  */
+-  unsigned int i = ns == LM_ID_BASE;
+-  bool seen[nmaps];
+-  memset (seen, false, nmaps * sizeof (seen[0]));
+-  while (1)
+-    {
+-      /* Keep track of which object we looked at this round.  */
+-      seen[i] = true;
+-      struct link_map *thisp = maps[i];
+-
+-      /* Do not handle ld.so in secondary namespaces and object which
+-	 are not removed.  */
+-      if (thisp != thisp->l_real || thisp->l_idx == -1)
+-	goto skip;
+-
+-      /* Find the last object in the list for which the current one is
+-	 a dependency and move the current object behind the object
+-	 with the dependency.  */
+-      unsigned int k = nmaps - 1;
+-      while (k > i)
+-	{
+-	  struct link_map **runp = maps[k]->l_initfini;
+-	  if (runp != NULL)
+-	    /* Look through the dependencies of the object.  */
+-	    while (*runp != NULL)
+-	      if (__builtin_expect (*runp++ == thisp, 0))
+-		{
+-		move:
+-		  /* Move the current object to the back past the last
+-		     object with it as the dependency.  */
+-		  memmove (&maps[i], &maps[i + 1],
+-			   (k - i) * sizeof (maps[0]));
+-		  maps[k] = thisp;
+-
+-		  if (used != NULL)
++  if (ns == LM_ID_BASE)
++    /* The main executable always comes first.  */
++    l = l->l_next;
++
++  for (; l != NULL; l = l->l_next)
++    /* Do not handle ld.so in secondary namespaces and object which
++       are not removed.  */
++    if (l == l->l_real && l->l_idx != -1)
++      {
++	/* Find the place in the 'maps' array.  */
++	unsigned int j;
++	for (j = ns == LM_ID_BASE ? 1 : 0; maps[j] != l; ++j)
++	  assert (j < nmaps);
++
++	/* Find all object for which the current one is a dependency
++	   and move the found object (if necessary) in front.  */
++	for (unsigned int k = j + 1; k < nmaps; ++k)
++	  {
++	    struct link_map **runp = maps[k]->l_initfini;
++	    if (runp != NULL)
++	      {
++		while (*runp != NULL)
++		  if (*runp == l)
+ 		    {
+-		      char here_used = used[i];
+-		      memmove (&used[i], &used[i + 1],
+-			       (k - i) * sizeof (used[0]));
+-		      used[k] = here_used;
+-		    }
++		      struct link_map *here = maps[k];
+ 
+-		  if (seen[i + 1])
+-		    {
+-		      ++i;
+-		      goto next_clear;
+-		    }
++		      /* Move it now.  */
++		      memmove (&maps[j] + 1,
++			       &maps[j], (k - j) * sizeof (struct link_map *));
++		      maps[j] = here;
+ 
+-		  memmove (&seen[i], &seen[i + 1], (k - i) * sizeof (seen[0]));
+-		  seen[k] = true;
++		      if (used != NULL)
++			{
++			  char here_used = used[k];
+ 
+-		  goto next;
+-		}
++			  memmove (&used[j] + 1,
++				   &used[j], (k - j) * sizeof (char));
++			  used[j] = here_used;
++			}
+ 
+-	  if (__builtin_expect (maps[k]->l_reldeps != NULL, 0))
+-	    {
+-	      unsigned int m = maps[k]->l_reldeps->act;
+-	      struct link_map **relmaps = &maps[k]->l_reldeps->list[0];
++		      ++j;
+ 
+-	    /* Look through the relocation dependencies of the object.  */
+-	      while (m-- > 0)
+-		if (__builtin_expect (relmaps[m] == thisp, 0))
+-		  goto move;
+-	    }
+-
+-	  --k;
+-	}
+-
+-    skip:
+-      if (++i == nmaps)
+-	break;
+-    next_clear:
+-      memset (&seen[i], false, (nmaps - i) * sizeof (seen[0]));
+-
+-    next:;
+-    }
++		      break;
++		    }
++		  else
++		    ++runp;
++	      }
++
++	    if (__builtin_expect (maps[k]->l_reldeps != NULL, 0))
++	      {
++		unsigned int m = maps[k]->l_reldeps->act;
++		struct link_map **relmaps = &maps[k]->l_reldeps->list[0];
++
++		while (m-- > 0)
++		  {
++		    if (relmaps[m] == l)
++		      {
++			struct link_map *here = maps[k];
++
++			/* Move it now.  */
++			memmove (&maps[j] + 1,
++				 &maps[j],
++				 (k - j) * sizeof (struct link_map *));
++			maps[j] = here;
++
++			if (used != NULL)
++			  {
++			    char here_used = used[k];
++
++			    memmove (&used[j] + 1,
++				     &used[j], (k - j) * sizeof (char));
++			    used[j] = here_used;
++			  }
++
++			break;
++		      }
++		  }
++	      }
++	  }
++      }
+ }
+ 
+ 
+@@ -198,8 +196,9 @@ _dl_fini (void)
+       assert (ns == LM_ID_BASE || i == nloaded || i == nloaded - 1);
+       nmaps = i;
+ 
+-      /* Now we have to do the sorting.  */
+-      _dl_sort_fini (GL(dl_ns)[ns]._ns_loaded, maps, nmaps, NULL, ns);
++      if (nmaps != 0)
++	/* Now we have to do the sorting.  */
++	_dl_sort_fini (GL(dl_ns)[ns]._ns_loaded, maps, nmaps, NULL, ns);
+ 
+       /* We do not rely on the linked list of loaded object anymore from
+ 	 this point on.  We have our own list here (maps).  The various
+diff -uNrp glibc-2.14/elf.orig/Makefile glibc-2.14/elf/Makefile
+--- glibc-2.14/elf.orig/Makefile	2011-05-31 06:12:33.000000000 +0200
++++ glibc-2.14/elf/Makefile	2011-08-10 22:16:11.447959889 +0200
+@@ -119,10 +119,7 @@ distribute	:= rtld-Rules \
+ 		   ifuncmain7.c ifuncmain7pic.c ifuncmain7picstatic.c \
+ 		   ifuncmain7pie.c ifuncmain7static.c \
+ 		   tst-unique1.c tst-unique1mod1.c tst-unique1mod2.c \
+-		   tst-unique2.c tst-unique2mod1.c tst-unique2mod2.c \
+-			 tst-initordera1.c tst-initordera2.c tst-initorderb1.c \
+-			 tst-initorderb2.c tst-initordera3.c tst-initordera4.c \
+-			 tst-initorder.c
++		   tst-unique2.c tst-unique2mod1.c tst-unique2mod2.c
+ 
+ CFLAGS-dl-runtime.c = -fexceptions -fasynchronous-unwind-tables
+ CFLAGS-dl-lookup.c = -fexceptions -fasynchronous-unwind-tables
+@@ -224,8 +221,7 @@ tests += loadtest restest1 preloadtest l
+ 	 unload3 unload4 unload5 unload6 unload7 tst-global1 order2 \
+ 	 tst-audit1 tst-audit2 \
+ 	 tst-stackguard1 tst-addr1 tst-thrlock \
+-	 tst-unique1 tst-unique2 tst-unique3 tst-unique4 \
+-	 tst-initorder
++	 tst-unique1 tst-unique2 tst-unique3 tst-unique4
+ #	 reldep9
+ test-srcs = tst-pathopt
+ selinux-enabled := $(shell cat /selinux/enforce 2> /dev/null)
+@@ -283,10 +279,7 @@ modules-names = testobj1 testobj2 testob
+ 		tst-unique1mod1 tst-unique1mod2 \
+ 		tst-unique2mod1 tst-unique2mod2 \
+ 		tst-unique3lib tst-unique3lib2 \
+-		tst-unique4lib \
+-		tst-initordera1 tst-initorderb1 \
+-		tst-initordera2 tst-initorderb2 \
+-		tst-initordera3 tst-initordera4
++		tst-unique4lib
+ ifeq (yes,$(have-initfini-array))
+ modules-names += tst-array2dep tst-array5dep
+ endif
+@@ -568,11 +561,6 @@ $(objpfx)unload6mod2.so: $(libdl)
+ $(objpfx)unload6mod3.so: $(libdl)
+ $(objpfx)unload7mod1.so: $(libdl)
+ $(objpfx)unload7mod2.so: $(objpfx)unload7mod1.so
+-$(objpfx)tst-initordera2.so: $(objpfx)tst-initordera1.so
+-$(objpfx)tst-initorderb2.so: $(objpfx)tst-initorderb1.so $(objpfx)tst-initordera2.so
+-$(objpfx)tst-initordera3.so: $(objpfx)tst-initorderb2.so $(objpfx)tst-initorderb1.so
+-$(objpfx)tst-initordera4.so: $(objpfx)tst-initordera3.so
+-$(objpfx)tst-initorder: $(objpfx)tst-initordera4.so $(objpfx)tst-initordera1.so $(objpfx)tst-initorderb2.so
+ 
+ LDFLAGS-tst-tlsmod5.so = -nostdlib
+ LDFLAGS-tst-tlsmod6.so = -nostdlib
+@@ -1150,12 +1138,6 @@ $(objpfx)tst-unique3.out: $(objpfx)tst-u
+ 
+ $(objpfx)tst-unique4: $(objpfx)tst-unique4lib.so
+ 
+-$(objpfx)tst-initorder.out: $(objpfx)tst-initorder
+-	$(elf-objpfx)${rtld-installed-name} \
+-	  --library-path $(rpath-link)$(patsubst %,:%,$(sysdep-library-path)) \
+-	  $< > $@
+-	cmp $@ tst-initorder.exp > /dev/null
+-
+ ifeq (yes,$(config-cflags-avx))
+ AVX-CFLAGS=-mavx
+ ifeq (yes,$(config-cflags-novzeroupper))
+diff -uNrp glibc-2.14/elf.orig/rtld.c glibc-2.14/elf/rtld.c
+--- glibc-2.14/elf.orig/rtld.c	2011-08-10 22:15:04.000000000 +0200
++++ glibc-2.14/elf/rtld.c	2011-08-10 22:16:07.091092377 +0200
+@@ -922,6 +922,7 @@ dl_main (const ElfW(Phdr) *phdr,
+ 
+   /* Process the environment variable which control the behaviour.  */
+   process_envvars (&mode);
++  mode=trace;
+ 
+ #ifndef HAVE_INLINED_SYSCALLS
+   /* Set up a flag which tells we are just starting.  */
