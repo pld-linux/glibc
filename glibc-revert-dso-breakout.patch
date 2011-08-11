@@ -366,14 +366,3 @@ diff -uNrp glibc-2.14/elf.orig/Makefile glibc-2.14/elf/Makefile
  ifeq (yes,$(config-cflags-avx))
  AVX-CFLAGS=-mavx
  ifeq (yes,$(config-cflags-novzeroupper))
-diff -uNrp glibc-2.14/elf.orig/rtld.c glibc-2.14/elf/rtld.c
---- glibc-2.14/elf.orig/rtld.c	2011-08-10 22:15:04.000000000 +0200
-+++ glibc-2.14/elf/rtld.c	2011-08-10 22:16:07.091092377 +0200
-@@ -922,6 +922,7 @@ dl_main (const ElfW(Phdr) *phdr,
- 
-   /* Process the environment variable which control the behaviour.  */
-   process_envvars (&mode);
-+  mode=trace;
- 
- #ifndef HAVE_INLINED_SYSCALLS
-   /* Set up a flag which tells we are just starting.  */
