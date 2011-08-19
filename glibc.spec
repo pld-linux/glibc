@@ -1149,7 +1149,7 @@ done
 #   bem (alacarte)
 #   co  (vlc)
 #   fil (stellarium)
-#   frp (xfce)
+#   frp (xfce, lxlauncher)
 #   gn  (gn_BR in gnome, maybe gn_PY)
 #   haw (iso-codes, stellarium)
 #   hrx (stellarium)
