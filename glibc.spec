@@ -49,6 +49,7 @@ Source5:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
+Source8:	nscd.upstart
 Patch0:		%{name}-restore-rpc+nis.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -363,8 +364,8 @@ Summary(tr.UTF-8):	Geliştirme için gerekli diğer kitaplıklar
 Summary(uk.UTF-8):	Додаткові бібліотеки, потрібні для компіляції
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %if "%{_lib}" == "lib64"
 Requires:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
 %else
@@ -583,7 +584,7 @@ Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{?with_selinux:Requires:	libselinux >= 1.18}
-Requires:	rc-scripts >= 0.2.0
+Requires:	rc-scripts >= 0.4.3.0
 Provides:	group(nscd)
 Provides:	user(nscd)
 
@@ -1038,7 +1039,7 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{default,logrotate.d,rc.d/init.d,sysconfig},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd,/var/cache/ldconfig}
+install -d $RPM_BUILD_ROOT{/etc/{default,logrotate.d,rc.d/init.d,sysconfig,init},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd,/var/cache/ldconfig}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1089,6 +1090,7 @@ done
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 install -p %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+cp -p %{SOURCE8}		$RPM_BUILD_ROOT/etc/init/nscd.conf
 cp -a %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 cp -a %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 cp -a nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
@@ -1677,6 +1679,7 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
+%config(noreplace) %verify(not md5 mtime size) /etc/init/nscd.conf
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
