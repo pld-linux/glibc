@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	18
+Release:	19
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -102,6 +102,7 @@ Source5:	http://qboosh.cs.net.pl/man/%{name}-man-pages.tar.bz2
 # Source5-md5:	f464eadf3cf06761f65639e44a179e6b
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
+Source8:	inotify.h
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -1110,16 +1111,16 @@ PICFILES="libc_pic.a libc.map
 	math/libm_pic.a libm.map
 	resolv/libresolv_pic.a"
 
-install $PICFILES				$RPM_BUILD_ROOT%{_libdir}
-install elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
-install elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
+cp -p $PICFILES				$RPM_BUILD_ROOT%{_libdir}
+cp -p elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
+cp -p elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 cd ..
 
 %if %{without cross}
 %ifarch %{x8664} ppc64 s390x sparc64
-install glibc-postinst				$RPM_BUILD_ROOT/sbin/glibc-postinst64
+install -p glibc-postinst				$RPM_BUILD_ROOT/sbin/glibc-postinst64
 %else
-install glibc-postinst				$RPM_BUILD_ROOT/sbin/glibc-postinst
+install -p glibc-postinst				$RPM_BUILD_ROOT/sbin/glibc-postinst
 %endif
 %endif
 
@@ -1135,7 +1136,7 @@ for f in libc libm libpthread libthread_db librt; do
 done
 $RPM_BUILD_ROOT/sbin/ldconfig -n $RPM_BUILD_ROOT/%{_lib}/tls
 
-for f in libc.so libpthread.so ; do
+for f in libc.so libpthread.so; do
 	cat $RPM_BUILD_ROOT/nptl%{_libdir}/$f | sed \
 		-e "s|/libc.so.6|/tls/libc.so.6|g" \
 		-e "s|/libpthread.so.0|/tls/libpthread.so.0|g" \
@@ -1161,7 +1162,7 @@ rm -rf $RPM_BUILD_ROOT/nptl
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 %if %{with linuxthreads}
-install linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
+cp -p linuxthreads/man/*.3thr		$RPM_BUILD_ROOT%{_mandir}/man3
 %endif
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
@@ -1193,6 +1194,8 @@ cat <<EOF >$RPM_BUILD_ROOT%{_includedir}/gnu/stubs.h
 EOF
 %endif
 
+cp -p %{SOURCE8} $RPM_BUILD_ROOT%{_includedir}/sys/inotify.h
+
 ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 # make symlinks across top-level directories absolute
@@ -1201,11 +1204,11 @@ for l in anl BrokenLocale crypt dl m nsl resolv rt thread_db util ; do
 	ln -sf /%{_lib}/`cd $RPM_BUILD_ROOT/%{_lib} ; echo lib${l}.so.*` $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 done
 
-install %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-install %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
-install %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
-install nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
-install nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install -p %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
+cp -p %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
+cp -p %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
+cp -p nscd/nscd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+cp -p nss/nsswitch.conf	$RPM_BUILD_ROOT%{_sysconfdir}
 
 bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
@@ -1223,17 +1226,17 @@ install -d documentation
 
 %if %{with linuxthreads}
 for f in ChangeLog Changes README ; do
-	cp -f linuxthreads/$f documentation/${f}.linuxthreads
+	cp -pf linuxthreads/$f documentation/${f}.linuxthreads
 done
 %endif
 %if %{with nptl}
 for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing} ;  do
-	cp -f nptl/$f documentation/${f}.nptl
+	cp -pf nptl/$f documentation/${f}.nptl
 done
 %endif
-cp -f crypt/README.ufc-crypt documentation
+cp -pf crypt/README.ufc-crypt documentation
 
-cp -f ChangeLog* documentation
+cp -pf ChangeLog* documentation
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
@@ -1296,7 +1299,7 @@ done
 # localedb-gen infrastructure
 sed -e 's,@localedir@,%{_libdir}/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
-install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
+cp -p localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
 rm -f $RPM_BUILD_ROOT%{_mandir}/README.*
