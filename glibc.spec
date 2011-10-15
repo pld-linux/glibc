@@ -1159,7 +1159,7 @@ done
 #   io  (gtk+2, gnome, alacarte)
 #   jv  (gmpc, avant-window-navigator, kdesudo)
 #   kok (iso-codes)
-#   lb  (geany,miro)
+#   lb  (geany,miro,deluge)
 #   man (ccsm; incorrectly named md)
 #   mhr (pidgin)
 #   mus (bluez-gnome)
