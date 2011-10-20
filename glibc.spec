@@ -32,13 +32,13 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.14
-Release:	16
+Version:	2.14.1
+Release:	1.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	8f5f6b09f98d17c630819b4845e31e65
+# Source0-md5:	55501b8d037a4f1d330312b30fd6d4bc
 Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.bz2
 # Source1-md5:	483f37cfdd619e81d8ca9e9d713944b5
 Source2:	nscd.init
@@ -85,8 +85,7 @@ Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch39:	%{name}-git.patch
 Patch40:	%{name}-bad-fix.patch
-Patch41:	%{name}-bug-12684.patch
-Patch42:	%{name}-revert-dso-breakout.patch
+Patch41:	%{name}-revert-dso-breakout.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -952,9 +951,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch39 -p1
 %patch40 -p1
 # revert broken fix
-%patch41 -p1 -R
-# revert broken fix
-%patch42 -p1
+%patch41 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
