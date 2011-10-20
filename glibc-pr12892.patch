@@ -1,0 +1,27 @@
+From d45c60c2feb38d95e7ad95af6edb39a6d5afba81 Mon Sep 17 00:00:00 2001
+From: Andreas Schwab <schwab@redhat.com>
+Date: Wed, 19 Oct 2011 17:13:56 +0200
+Subject: [PATCH] Preserve link time dependencies over relocation dependencies
+
+--- a/elf/dl-fini.c
++++ b/elf/dl-fini.c
+@@ -100,7 +100,17 @@ _dl_sort_fini (struct link_map **maps, size_t nmaps, char *used, Lmid_t ns)
+ 	      /* Look through the relocation dependencies of the object.  */
+ 	      while (m-- > 0)
+ 		if (__builtin_expect (relmaps[m] == thisp, 0))
+-		  goto move;
++		  {
++		    /* If a cycle exists with a link time dependency,
++		       preserve the latter.  */
++		    struct link_map **runp = thisp->l_initfini;
++		    if (runp != NULL)
++		      while (*runp != NULL)
++			if (__builtin_expect (*runp++ == maps[k], 0))
++			  goto ignore;
++		    goto move;
++		  }
++	    ignore:;
+ 	    }
+ 
+ 	  --k;
+

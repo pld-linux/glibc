@@ -85,7 +85,7 @@ Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch39:	%{name}-git.patch
 Patch40:	%{name}-bad-fix.patch
-Patch41:	%{name}-revert-dso-breakout.patch
+Patch41:	%{name}-pr12892.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
