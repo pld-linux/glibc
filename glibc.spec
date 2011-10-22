@@ -1181,7 +1181,7 @@ done
 # ca=ca_ES
 # ckb=ckb_IQ
 # de=de_DE
-# en=common?
+# en=common? (en_AU, en_CA, en_GB, en_NZ, en_US are used for particular variants)
 # eo=common
 # es=es_ES
 # eu=eu_ES
