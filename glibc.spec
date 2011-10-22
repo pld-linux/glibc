@@ -1174,8 +1174,36 @@ done
 #   sr@ijelatin or sr@ijekavianlatin? (currently not supported)
 #   sr@ijekavian and sr@ijekavianlatin exist in: akonadi-googledata, amarok, k3b, konversation, ktorrent, wesnoth
 #
-# bn is used for bn_BD or bn_IN? Assume bn_IN as nothing for bn_BD appeared
-# till now.
+# Short forms (omitted country code, used instead of long form) for ambiguous or unclear cases:
+# aa=aa_ER
+# ar=common? (AE, BH, DZ, EG, IQ, JO, KW, LB, LY, MA, OM, QA, SA, SD, SY, TN, YE)
+# bn=bn_BD
+# ca=ca_ES
+# ckb=ckb_IQ
+# de=de_DE
+# en=common?
+# eo=common
+# es=es_ES
+# eu=eu_ES
+# fr=fr_FR
+# fy=fy_NL
+# gez=gez_ET (?)
+# it=it_IT
+# li=li_NL
+# nds=nds_DE
+# nl=nl_NL
+# om=om_ET
+# pa=pa_IN
+# pt=pt_PT
+# ru=ru_RU
+# so=so_SO
+# sr=sr_RS [cyrillic]
+# sv=sv_SE
+# sw=sw_TZ (or common for KE, TZ, UG?)
+# ti=ti_ER (?)
+# tr=tr_TR
+# ur=ur_PK (?)
+# zh: no short code used (use zh_CN, zh_HK, zh_SG[not included yet], zh_TW)
 #
 # Omitted here - already existing (with libc.mo):
 #   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
