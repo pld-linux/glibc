@@ -19,7 +19,7 @@
 %undefine	with_memusage
 %endif
 
-%define		ports_version	2.13
+%define		ports_version	2.14.1
 %define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
@@ -39,8 +39,8 @@ License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
 # Source0-md5:	55501b8d037a4f1d330312b30fd6d4bc
-Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.bz2
-# Source1-md5:	483f37cfdd619e81d8ca9e9d713944b5
+Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.xz
+# Source1-md5:	3b3afcb6b99fea9e3a2474cc4778ec88
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
