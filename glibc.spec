@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14.1
-Release:	2
+Release:	2.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -86,6 +86,7 @@ Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch39:	%{name}-git.patch
 Patch40:	%{name}-bad-fix.patch
 Patch41:	%{name}-pr12892.patch
+Patch42:	%{name}-pr13013.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -952,6 +953,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch40 -p1
 # revert broken fix
 %patch41 -p1
+%patch42 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
