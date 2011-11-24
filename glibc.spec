@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14.1
-Release:	2.1
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -951,7 +951,6 @@ mv %{name}-ports-%{ports_version} ports
 %patch38 -p1
 %patch39 -p1
 %patch40 -p1
-# revert broken fix
 %patch41 -p1
 %patch42 -p1
 
