@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.14.1
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1423,15 +1423,11 @@ fi
 %endif
 %attr(755,root,root) %{_bindir}/locale
 %attr(755,root,root) %{_bindir}/rpcgen
-%attr(755,root,root) %{_bindir}/sotruss
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
 %dir %{_libexecdir}/getconf
 %attr(755,root,root) %{_libexecdir}/getconf/*
-
-%dir %{_libdir}/audit
-%attr(755,root,root) %{_libdir}/audit/sotruss-lib.so
 
 %dir %{_datadir}/locale
 %{_datadir}/locale/locale.alias
@@ -1540,6 +1536,10 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/ldd
+%attr(755,root,root) %{_bindir}/sotruss
+%dir %{_libdir}/audit
+%attr(755,root,root) %{_libdir}/audit/sotruss-lib.so
+
 %{_mandir}/man1/catchsegv.1*
 %{_mandir}/man1/ldd.1*
 %lang(es) %{_mandir}/es/man1/ldd.1*
