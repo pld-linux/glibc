@@ -3,7 +3,7 @@ Despite ksh shebang, sotruss is apparently bash script (function keyword, $"" NL
 +++ glibc-2.14/elf/sotruss.ksh	2011-06-11 09:42:22.467864393 +0200
 @@ -1,4 +1,4 @@
 -#! @KSH@
-+#! @BASH@
++#! /bin/bash
  # Copyright (C) 2011 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
