@@ -32,13 +32,14 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.14.1
-Release:	4
+Version:	2.15
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	55501b8d037a4f1d330312b30fd6d4bc
+# Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	25e3a1f3722fbb7ac0d9dccfe4bdfefa
 Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.xz
 # Source1-md5:	3b3afcb6b99fea9e3a2474cc4778ec88
 Source2:	nscd.init
@@ -83,9 +84,7 @@ Patch33:	0020_all_glibc-tweak-rfc1918-lookup.patch
 Patch35:	0055_all_glibc-2.12-static-shared-getpagesize.patch
 Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
-Patch39:	%{name}-git.patch
 Patch40:	%{name}-bad-fix.patch
-Patch41:	%{name}-pr12892.patch
 Patch42:	%{name}-pr13013.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
@@ -949,9 +948,9 @@ mv %{name}-ports-%{ports_version} ports
 
 %patch37 -p1
 %patch38 -p1
-%patch39 -p1
+
 %patch40 -p1
-%patch41 -p1
+
 %patch42 -p1
 
 # cleanup backups after patching
