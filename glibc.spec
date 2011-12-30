@@ -52,6 +52,7 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Patch0:		%{name}-restore-rpc+nis.patch
+# how this patch is generated?
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -67,6 +68,7 @@ Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
 Patch17:	%{name}-morelocales.patch
+# how this patch is generated?
 Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
 Patch20:	%{name}-thread_start.patch
@@ -1395,6 +1397,14 @@ fi
 %endif
 %{?with_localedb:%dir %{_libdir}/locale}
 
+#%files -n nss_db
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/makedb
+%attr(755,root,root) /%{_lib}/libnss_db-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_db.so.2
+%dir %{_var}/db
+%{_var}/db/Makefile
+
 #%files -n nss_dns
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_dns-%{version}.so
@@ -1535,6 +1545,7 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/ldd
+%attr(755,root,root) %{_bindir}/pldd
 %attr(755,root,root) %{_bindir}/sotruss
 %dir %{_libdir}/audit
 %attr(755,root,root) %{_libdir}/audit/sotruss-lib.so
