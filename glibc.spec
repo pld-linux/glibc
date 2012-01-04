@@ -52,7 +52,7 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Patch0:		%{name}-restore-rpc+nis.patch
-# how this patch is generated?
+# against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
@@ -69,7 +69,6 @@ Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
 Patch17:	%{name}-morelocales.patch
-# how this patch is generated?
 Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
 Patch20:	%{name}-thread_start.patch
