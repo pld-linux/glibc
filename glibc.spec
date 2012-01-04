@@ -64,6 +64,7 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-no_debuggable_objects.patch
+Patch12:	%{name}-rh-bug-769421.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
@@ -926,6 +927,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
