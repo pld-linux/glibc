@@ -1101,16 +1101,6 @@ diff -uNr libc.orig/localedata/locales/es_AR libc/localedata/locales/es_AR
 diff -uNr libc.orig/localedata/locales/es_BO libc/localedata/locales/es_BO
 --- libc.orig/localedata/locales/es_BO	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_BO	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -154,7 +153,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1129,16 +1119,6 @@ diff -uNr libc.orig/localedata/locales/es_BO libc/localedata/locales/es_BO
 diff -uNr libc.orig/localedata/locales/es_CL libc/localedata/locales/es_CL
 --- libc.orig/localedata/locales/es_CL	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_CL	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -154,7 +153,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1157,16 +1137,6 @@ diff -uNr libc.orig/localedata/locales/es_CL libc/localedata/locales/es_CL
 diff -uNr libc.orig/localedata/locales/es_CO libc/localedata/locales/es_CO
 --- libc.orig/localedata/locales/es_CO	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_CO	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -154,7 +153,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1182,32 +1152,9 @@ diff -uNr libc.orig/localedata/locales/es_CO libc/localedata/locales/es_CO
 +lang_term     "<U0073><U0070><U0061>"
 +lang_lib      "<U0073><U0070><U0061>"
  END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/es_CR libc/localedata/locales/es_CR
---- libc.orig/localedata/locales/es_CR	2003-12-07 14:00:21.000000000 +0100
-+++ libc/localedata/locales/es_CR	2004-11-10 02:36:38.000000000 +0100
-@@ -47,8 +47,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 diff -uNr libc.orig/localedata/locales/es_DO libc/localedata/locales/es_DO
 --- libc.orig/localedata/locales/es_DO	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_DO	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -134,7 +133,7 @@
  LC_TELEPHONE
  tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
@@ -1236,16 +1183,6 @@ diff -uNr libc.orig/localedata/locales/es_DO libc/localedata/locales/es_DO
 diff -uNr libc.orig/localedata/locales/es_EC libc/localedata/locales/es_EC
 --- libc.orig/localedata/locales/es_EC	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_EC	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -154,7 +153,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1295,16 +1232,6 @@ diff -uNr libc.orig/localedata/locales/es_ES libc/localedata/locales/es_ES
 diff -uNr libc.orig/localedata/locales/es_GT libc/localedata/locales/es_GT
 --- libc.orig/localedata/locales/es_GT	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_GT	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -154,7 +153,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1323,16 +1250,6 @@ diff -uNr libc.orig/localedata/locales/es_GT libc/localedata/locales/es_GT
 diff -uNr libc.orig/localedata/locales/es_HN libc/localedata/locales/es_HN
 --- libc.orig/localedata/locales/es_HN	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_HN	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -154,7 +153,13 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1350,16 +1267,6 @@ diff -uNr libc.orig/localedata/locales/es_HN libc/localedata/locales/es_HN
 diff -uNr libc.orig/localedata/locales/es_MX libc/localedata/locales/es_MX
 --- libc.orig/localedata/locales/es_MX	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_MX	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -153,7 +152,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1378,16 +1285,6 @@ diff -uNr libc.orig/localedata/locales/es_MX libc/localedata/locales/es_MX
 diff -uNr libc.orig/localedata/locales/es_NI libc/localedata/locales/es_NI
 --- libc.orig/localedata/locales/es_NI	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_NI	2004-11-10 02:36:38.000000000 +0100
-@@ -47,8 +47,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -144,7 +143,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1406,16 +1303,6 @@ diff -uNr libc.orig/localedata/locales/es_NI libc/localedata/locales/es_NI
 diff -uNr libc.orig/localedata/locales/es_PA libc/localedata/locales/es_PA
 --- libc.orig/localedata/locales/es_PA	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_PA	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -134,7 +133,7 @@
  LC_TELEPHONE
  tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
@@ -1443,16 +1330,6 @@ diff -uNr libc.orig/localedata/locales/es_PA libc/localedata/locales/es_PA
 diff -uNr libc.orig/localedata/locales/es_PE libc/localedata/locales/es_PE
 --- libc.orig/localedata/locales/es_PE	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_PE	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -153,7 +152,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1471,16 +1348,6 @@ diff -uNr libc.orig/localedata/locales/es_PE libc/localedata/locales/es_PE
 diff -uNr libc.orig/localedata/locales/es_PR libc/localedata/locales/es_PR
 --- libc.orig/localedata/locales/es_PR	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_PR	2004-11-10 02:36:38.000000000 +0100
-@@ -47,8 +47,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -141,7 +140,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1499,16 +1366,6 @@ diff -uNr libc.orig/localedata/locales/es_PR libc/localedata/locales/es_PR
 diff -uNr libc.orig/localedata/locales/es_PY libc/localedata/locales/es_PY
 --- libc.orig/localedata/locales/es_PY	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_PY	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -153,7 +152,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1527,16 +1384,6 @@ diff -uNr libc.orig/localedata/locales/es_PY libc/localedata/locales/es_PY
 diff -uNr libc.orig/localedata/locales/es_SV libc/localedata/locales/es_SV
 --- libc.orig/localedata/locales/es_SV	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_SV	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -154,7 +153,15 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1578,16 +1425,6 @@ diff -uNr libc.orig/localedata/locales/es_US libc/localedata/locales/es_US
 diff -uNr libc.orig/localedata/locales/es_UY libc/localedata/locales/es_UY
 --- libc.orig/localedata/locales/es_UY	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_UY	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -153,7 +152,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1606,16 +1443,6 @@ diff -uNr libc.orig/localedata/locales/es_UY libc/localedata/locales/es_UY
 diff -uNr libc.orig/localedata/locales/es_VE libc/localedata/locales/es_VE
 --- libc.orig/localedata/locales/es_VE	2003-12-05 01:25:57.000000000 +0100
 +++ libc/localedata/locales/es_VE	2004-11-10 02:36:38.000000000 +0100
-@@ -56,8 +56,7 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "es_ES"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -153,7 +152,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -1659,24 +1486,6 @@ diff -uNr libc.orig/localedata/locales/eu_ES libc/localedata/locales/eu_ES
 +lang_ab     "<U0065><U0075>"
 +lang_term   "<U0065><U0075><U0073>"
 +lang_lib    "<U0062><U0061><U0071>"
- END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/fi_FI libc/localedata/locales/fi_FI
---- libc.orig/localedata/locales/fi_FI	2003-12-07 14:00:21.000000000 +0100
-+++ libc/localedata/locales/fi_FI	2004-11-10 02:36:38.000000000 +0100
-@@ -2227,7 +2227,14 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
-+country_name "<U0053><U0075><U006F><U006D><U0069>"
- country_ab2 "<U0046><U0049>"
- country_ab3 "<U0046><U0049><U004E>"
- country_num 246
-+country_car "<U0046><U0049><U004E>"
-+country_isbn "951,952"
-+lang_name   "<U0053><U0075><U006F><U006D><U0069>"
-+lang_ab     "<U0066><U0069>"
-+lang_term   "<U0066><U0069><U006E>"
-+lang_lib    "<U0066><U0069><U006E>"
  END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/fo_FO libc/localedata/locales/fo_FO
 --- libc.orig/localedata/locales/fo_FO	2003-12-05 01:25:57.000000000 +0100
@@ -1727,16 +1536,6 @@ diff -uNr libc.orig/localedata/locales/fr_BE libc/localedata/locales/fr_BE
  END LC_ADDRESS
 --- glibc-2.8/localedata/locales/fr_CA.orig	2008-04-16 20:55:50.000000000 +0200
 +++ glibc-2.8/localedata/locales/fr_CA	2008-05-07 19:19:51.730487567 +0200
-@@ -55,8 +55,7 @@
- END LC_COLLATE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U006F><U004F><U0079><U0059><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+copy "fr_FR"
- END LC_MESSAGES
- 
- LC_MONETARY
 @@ -146,9 +145,12 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
@@ -3552,25 +3351,17 @@ diff -uNr libc.orig/localedata/locales/wa_BE libc/localedata/locales/wa_BE
  country_isbn "2"
  country_car "B"
  lang_name "<U0057><U0061><U006C><U006F><U006E>"
-diff -uNr libc.orig/localedata/locales/wal_ET libc/localedata/locales/wal_ET
---- libc.orig/localedata/locales/wal_ET	2004-05-03 22:49:23.000000000 +0200
-+++ libc/localedata/locales/wal_ET	2004-11-10 02:36:38.000000000 +0100
-@@ -108,13 +108,11 @@
+--- glibc-2.15/localedata/locales/wal_ET.orig	2011-12-23 20:03:55.000000000 +0100
++++ glibc-2.15/localedata/locales/wal_ET	2012-01-04 18:36:24.002145964 +0100
+@@ -108,7 +108,7 @@
  country_ab3   "<U0045><U0054><U0048>"
  country_num   231   % 210 found in at least one ISO 3166 doc
  % country_car   unknown
 -% country_isbn  unknown, Need ISO 2108
 +country_isbn  "<U0039><U0039><U0039><U0034><U0034>"
  lang_name     "<U12C8><U120B><U12ED><U1273><U1271>"
--lang_ab       "<U0077><U0061><U006C>"
-+lang_ab       ""
  lang_term     "<U0077><U0061><U006C>"
  lang_lib      "<U0077><U0061><U006C>"
--
--
- %
- END LC_ADDRESS
- 
 diff -uNr libc.orig/localedata/locales/xh_ZA libc/localedata/locales/xh_ZA
 --- libc.orig/localedata/locales/xh_ZA	2004-11-10 01:45:57.000000000 +0100
 +++ libc/localedata/locales/xh_ZA	2004-11-10 02:36:38.000000000 +0100

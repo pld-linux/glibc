@@ -4376,9 +4376,9 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +country_ab3 "<U004C><U0054><U0055>"
 +country_num 440
 +END LC_ADDRESS
---- glibc-2.14.1/localedata/locales/myv_RU.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.14.1/localedata/locales/myv_RU	2011-10-21 21:13:20.668419873 +0200
-@@ -0,0 +1,206 @@
+--- glibc-2.15/localedata/locales/myv_RU.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.15/localedata/locales/myv_RU	2012-01-04 18:11:29.748762600 +0100
+@@ -0,0 +1,195 @@
 +comment_char %
 +escape_char /
 +% Charset: UTF-8
@@ -4386,8 +4386,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +title      "Erzya locale for RUSSIAN FEDERATION"
 +language  "Erzyan"
 +territory "RUSSIAN FEDERATION"
-+revision  "1.0"
-+date      "2011-08-23"
++revision  "1.1"
++date      "2011-12-24"
 +%
 +category  "myv_RU:2000";LC_IDENTIFICATION
 +category  "myv_RU:2000";LC_CTYPE
@@ -4415,15 +4415,20 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +define UPPERCASE_FIRST
 +copy "iso14651_t1"
 +% copy from ee_ET
++collating-symbol <ccaron>
 +collating-symbol <scaron>
++collating-symbol <zcaron>
 +collating-symbol <otilde>
 +collating-symbol <adiaeresis>
 +collating-symbol <odiaeresis>
 +collating-symbol <udiaeresis>
 +
++reorder-after <c>
++<ccaron>
 +reorder-after <s>
 +<scaron>
-+<z>
++reorder-after <z>
++<zcaron>
 +
 +reorder-after <v>
 +<otilde>
@@ -4431,6 +4436,10 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +<odiaeresis>
 +<udiaeresis>
 +
++reorder-after <U0063>
++<U010D> <ccaron>;<BAS>;<MIN>;IGNORE
++reorder-after <U0043>
++<U010C> <ccaron>;<BAS>;<CAP>;IGNORE
 +reorder-after <U015E>
 +<U0160> <scaron>;<BAS>;<CAP>;IGNORE
 +<U005A> <z>;<BAS>;<CAP>;IGNORE
@@ -4473,68 +4482,49 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +     "<U0041><U0441><U0061><U006D><U006B><U006F><U0076>"
 +% jak., dav., eiz., cha., pan., ast., med., uma., tas., oz., sun., ac.
 +abmon         "<U006A><U0061><U006B><U002E>";/
-+       "<U0064><U0061><U0076><U002E>";/
-+       "<U0065><U0069><U007A><U002E>";/
-+       "<U0063><U0068><U0061><U002E>";/
-+       "<U0070><U0061><U006E><U002E>";/
-+       "<U0061><U0161><U0074><U002E>";/
-+       "<U006D><U0065><U0064><U002E>";/
-+       "<U0075><U006D><U0061><U002E>";/
-+       "<U0074><U0061><U0161><U002E>";/
-+       "<U006F><U017E><U002E>";/
-+       "<U0073><U0075><U006E><U002E>";/
-+       "<U0061><U0063><U002E>"
++   "<U0064><U0061><U0076><U002E>";/
++   "<U0065><U0069><U007A><U002E>";/
++   "<U0063><U0068><U0061><U002E>";/
++   "<U0070><U0061><U006E><U002E>";/
++   "<U0061><U0161><U0074><U002E>";/
++   "<U006D><U0065><U0064><U002E>";/
++   "<U0075><U006D><U0061><U002E>";/
++   "<U0074><U0061><U0161><U002E>";/
++   "<U006F><U017E><U002E>";/
++   "<U0073><U0075><U006E><U002E>";/
++   "<U0061><U0063><U002E>"
 +% nedljachi, atanchi, vastanchi, kunkskachi, kalonchi, sukanchi, slamochi 
 +day           "<U006E><U0065><U0064><U006C><U006A><U0061><U0063><U0068><U0069>";/
-+     "<U0061><U0074><U00E4><U006E><U0063><U0068><U0069>";/
-+     "<U0076><U0061><U0073><U0074><U0061><U006E><U0063><U0068><U0069>";/
-+     "<U006B><U0075><U006E><U006B><U0161><U006B><U0061><U0063><U0068><U0069>";/
-+     "<U006B><U0061><U006C><U006F><U006E><U0063><U0068><U0069>";/
-+     "<U0073><U00FC><U006B><U0061><U006E><U0063><U0068><U0069>";/
-+     "<U0161><U006C><U00E4><U006D><U006F><U0063><U0068><U0069><U0020>"
++    "<U0061><U0074><U00E4><U006E><U0063><U0068><U0069>";/
++    "<U0076><U0061><U0073><U0074><U0061><U006E><U0063><U0068><U0069>";/
++    "<U006B><U0075><U006E><U006B><U0161><U006B><U0061><U0063><U0068><U0069>";/
++    "<U006B><U0061><U006C><U006F><U006E><U0063><U0068><U0069>";/
++    "<U0073><U00FC><U006B><U0061><U006E><U0063><U0068><U0069>";/
++    "<U0161><U006C><U00E4><U006D><U006F><U0063><U0068><U0069><U0020>"
 +% ned., ata., vas., kun., kal., suk, sla.
 +abday         "<U006E><U0065><U0064><U002E>";/
-+       "<U0061><U0074><U00E4><U002E>";/
-+       "<U0076><U0061><U0073><U002E>";/
-+       "<U006B><U0075><U006E><U002E>";/
-+       "<U006B><U0061><U006C><U002E>";/
-+       "<U0073><U00FC><U006B>";/
-+       "<U0161><U006C><U00E4><U002E>"
++    "<U0061><U0074><U00E4><U002E>";/
++    "<U0076><U0061><U0073><U002E>";/
++    "<U006B><U0075><U006E><U002E>";/
++    "<U006B><U0061><U006C><U002E>";/
++    "<U0073><U00FC><U006B>";/
++    "<U0161><U006C><U00E4><U002E>"
 +% %a %d %b %Y %T %Z
 +d_t_fmt       "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
 +% %d.%m.%Y
 +d_fmt         "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059>"
 +% %T
 +t_fmt         "<U0025><U0054>"
-+am_pm         "";""
++%am-pm none
++am_pm  "";""
 +END LC_TIME
 +
 +LC_NUMERIC
-+% ,
-+decimal_point "<U002C>"
-+%  
-+thousands_sep "<U0020>"
-+grouping      3;3
++copy "ru_RU"
 +END LC_NUMERIC
 +
 +LC_MONETARY
-+% RUB
-+int_curr_symbol    "<U0052><U0055><U0042><U0020>"
-+currency_symbol    "<U0072><U0075><U0062>"
-+% .
-+mon_decimal_point  "<U002E>"
-+mon_thousands_sep  "<U00A0>"
-+mon_grouping       3;3
-+positive_sign      ""
-+negative_sign      "<U002D>"
-+frac_digits        2
-+int_frac_digits    2
-+p_cs_precedes      0
-+p_sep_by_space     1
-+n_cs_precedes      0
-+n_sep_by_space     1
-+p_sign_posn        1
-+n_sign_posn        1
++copy "ru_RU"
 +END LC_MONETARY
 +
 +LC_PAPER
@@ -4554,8 +4544,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MESSAGES
 +
 +LC_NAME
-+name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
-+<U0025><U006D><U0025><U0074><U0025><U0066>"
++copy "ru_RU"
 +END LC_NAME
 +
 +LC_ADDRESS
@@ -4578,16 +4567,16 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
-+tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
-+<U006C>"
++% +7 555 5555555 +%c contry code %a area code %l local number 
++tel_int_fmt "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025><U006C>"
 +% 0~10
 +int_select  "<U0030><U007E><U0031><U0030>"
 +% 7
 +int_prefix  "<U0037>"
 +END LC_TELEPHONE
---- glibc-2.14.1/localedata/locales/myv_RU@cyrillic.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.14.1/localedata/locales/myv_RU@cyrillic	2011-10-21 21:13:20.668419873 +0200
-@@ -0,0 +1,164 @@
+--- glibc-2.15/localedata/locales/myv_RU@cyrillic.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.15/localedata/locales/myv_RU@cyrillic	2012-01-04 18:13:38.398766907 +0100
+@@ -0,0 +1,138 @@
 +comment_char %
 +escape_char /
 +% Charset: Cyrillic
@@ -4595,8 +4584,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +title      "Erzya locale with cyrillic script for RUSSIAN FEDERATION"
 +language  "Erzyan"
 +territory "RUSSIAN FEDERATION"
-+revision  "1.0"
-+date      "2011-08-23"
++revision  "1.1"
++date      "2011-12-24"
 +%
 +category  "myv_RU@cyrillic:2000";LC_IDENTIFICATION
 +category  "myv_RU@cyrillic:2000";LC_CTYPE
@@ -4673,35 +4662,15 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +d_fmt         "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059>"
 +% %T
 +t_fmt         "<U0025><U0054>"
-+am_pm         "";""
++am_pm		"";""
 +END LC_TIME
 +
 +LC_NUMERIC
-+% ,
-+decimal_point "<U002C>"
-+%  
-+thousands_sep "<U0020>"
-+grouping      3;3
++copy "ru_RU"
 +END LC_NUMERIC
 +
 +LC_MONETARY
-+% RUB
-+int_curr_symbol    "<U0052><U0055><U0042><U0020>"
-+currency_symbol           "<U0440><U0443><U0431>"
-+% .
-+mon_decimal_point  "<U002E>"
-+mon_thousands_sep  "<U00A0>"
-+mon_grouping       3;3
-+positive_sign      ""
-+negative_sign      "<U002D>"
-+frac_digits        2
-+int_frac_digits    2
-+p_cs_precedes      0
-+p_sep_by_space     1
-+n_cs_precedes      0
-+n_sep_by_space     1
-+p_sign_posn        1
-+n_sign_posn        1
++copy "ru_RU"
 +END LC_MONETARY
 +
 +LC_PAPER
@@ -4721,8 +4690,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MESSAGES
 +
 +LC_NAME
-+name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
-+<U0025><U006D><U0025><U0074><U0025><U0066>"
++copy "ru_RU"
 +END LC_NAME
 +
 +LC_ADDRESS
@@ -4745,12 +4713,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
-+tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
-+<U006C>"
-+% 0~10
-+int_select  "<U0030><U007E><U0031><U0030>"
-+% 7
-+int_prefix  "<U0037>"
++copy "ru_RU"
 +END LC_TELEPHONE
 --- glibc-2.14/localedata/SUPPORTED.orig	2011-05-31 06:12:33.000000000 +0200
 +++ glibc-2.14/localedata/SUPPORTED	2011-06-26 09:39:56.204587669 +0200
