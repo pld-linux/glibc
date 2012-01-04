@@ -53,7 +53,7 @@ Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Patch0:		%{name}-restore-rpc+nis.patch
 # how this patch is generated?
-Patch1:		%{name}-pl.po-update.patch
+#Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-sotruss-sh.patch
@@ -915,7 +915,7 @@ Narzędzie do profilowania zużycia pamięci.
 %setup -q -a1
 mv %{name}-ports-%{ports_version} ports
 %patch0 -p1
-%patch1 -p1
+
 %patch2 -p1
 %patch3 -p0
 %patch4 -p1

@@ -27,7 +27,7 @@
 +++ glibc-2.4/po/pl.po	2006-06-30 23:30:04.281144000 +0200
 @@ -67,9 +67,13 @@
  msgid "Set the program name"
- msgstr "Okre∂lenie nazwy programu"
+ msgstr "Okre≈õlenie nazwy programu"
  
 +#: argp/argp-parse.c:105
 +msgid "SECS"
@@ -35,8 +35,8 @@
 +
  #: argp/argp-parse.c:106
  msgid "Hang for SECS seconds (default 3600)"
--msgstr "Zatrzymanie na SECS sekund (domy∂lnie 3600)"
-+msgstr "Zatrzymanie na SEK sekund (domy∂lnie 3600)"
+-msgstr "Zatrzymanie na SECS sekund (domy≈õlnie 3600)"
++msgstr "Zatrzymanie na SEK sekund (domy≈õlnie 3600)"
  
  #: argp/argp-parse.c:167
  msgid "Print program version"
