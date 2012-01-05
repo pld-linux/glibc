@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.15
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -88,6 +88,8 @@ Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch40:	%{name}-bad-fix.patch
 Patch42:	%{name}-pr13013.patch
+# from archlinux
+Patch43:	glibc-2.15-math64crash.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -955,6 +957,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch40 -p1
 
 %patch42 -p1
+%patch43 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
