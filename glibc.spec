@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.15
-Release:	2.1
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -87,6 +87,7 @@ Patch35:	0055_all_glibc-2.12-static-shared-getpagesize.patch
 Patch37:	0061_all_glibc-2.13-static-memset.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 Patch40:	%{name}-bad-fix.patch
+Patch41:	glibc-bug-13618.patch
 Patch42:	%{name}-pr13013.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
@@ -953,7 +954,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch38 -p1
 
 %patch40 -p1
-
+%patch41 -p1
 %patch42 -p1
 
 # cleanup backups after patching
