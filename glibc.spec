@@ -51,6 +51,7 @@ Source5:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
+Source9:	nscd.tmpfiles
 Patch0:		%{name}-restore-rpc+nis.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
@@ -1040,7 +1041,9 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{default,logrotate.d,rc.d/init.d,sysconfig,init},%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd,/var/cache/ldconfig}
+install -d $RPM_BUILD_ROOT/etc/{default,logrotate.d,rc.d/init.d,sysconfig,init} \
+	$RPM_BUILD_ROOT{%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd} \
+	$RPM_BUILD_ROOT{/var/cache/ldconfig,/usr/lib/tmpfiles.d}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1117,6 +1120,8 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/tzselect.8*
 : > $RPM_BUILD_ROOT/var/lib/nscd/passwd
 : > $RPM_BUILD_ROOT/var/lib/nscd/group
 : > $RPM_BUILD_ROOT/var/lib/nscd/hosts
+
+install %{SOURCE9} $RPM_BUILD_ROOT/usr/lib/tmpfiles.d/nscd.conf
 
 rm -rf documentation
 install -d documentation
@@ -1721,6 +1726,7 @@ fi
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
+/usr/lib/tmpfiles.d/nscd.conf
 %dir /var/run/nscd
 %dir /var/lib/nscd
 %attr(600,root,root) %ghost /var/lib/nscd/passwd
