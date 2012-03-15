@@ -33,7 +33,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.15
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1409,7 +1409,6 @@ fi
 %attr(755,root,root) %{_bindir}/makedb
 %attr(755,root,root) /%{_lib}/libnss_db-%{version}.so
 %attr(755,root,root) /%{_lib}/libnss_db.so.2
-%dir %{_var}/db
 %{_var}/db/Makefile
 
 #%files -n nss_dns
