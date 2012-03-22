@@ -19,7 +19,7 @@
 %undefine	with_memusage
 %endif
 
-%define		ports_version	2.14.1
+%define		ports_version	2.15
 %define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
@@ -33,15 +33,14 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	2.15
-Release:	8
+Release:	9
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-# Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	25e3a1f3722fbb7ac0d9dccfe4bdfefa
+Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
+# Source0-md5:	4f9f3b0e780a8c7179a372d34e9452bc
 Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.xz
-# Source1-md5:	3b3afcb6b99fea9e3a2474cc4778ec88
+# Source1-md5:	fef73c8b7885b02ec5f7ce8fa00ba30c
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate

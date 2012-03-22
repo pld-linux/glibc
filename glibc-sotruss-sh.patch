@@ -4,6 +4,6 @@ Despite ksh shebang, sotruss is apparently bash script (function keyword, $"" NL
 @@ -1,4 +1,4 @@
 -#! @KSH@
 +#! /bin/bash
- # Copyright (C) 2011 Free Software Foundation, Inc.
+ # Copyright (C) 2011, 2012 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
