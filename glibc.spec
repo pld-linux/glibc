@@ -1208,6 +1208,8 @@ done
 # sr=sr_RS [cyrillic]
 # sv=sv_SE
 # sw=sw_TZ (or common for KE, TZ, UG?)
+# ta=ta_IN
+# te=te_IN
 # ti=ti_ER (?)
 # tr=tr_TR
 # ur=ur_PK (?)
