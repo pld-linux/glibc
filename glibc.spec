@@ -32,13 +32,13 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.15
-Release:	10
+Version:	2.16.0
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	4f9f3b0e780a8c7179a372d34e9452bc
+# Source0-md5:	80b181b02ab249524ec92822c0174cf7
 Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.xz
 # Source1-md5:	fef73c8b7885b02ec5f7ce8fa00ba30c
 Source2:	nscd.init
@@ -51,7 +51,6 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Source9:	nscd.tmpfiles
-Patch0:		%{name}-restore-rpc+nis.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -915,21 +914,25 @@ Narzędzie do profilowania zużycia pamięci.
 %prep
 %setup -q -a1
 mv %{name}-ports-%{ports_version} ports
-%patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch8 -p1
+# OBSOLETE?
+#%patch7 -p1
+# NEEDS MISSING INCLUDES
+#%patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
-%patch12 -p1
+# CHECK, POSSIBLY UPDATE
+#%patch11 -p1
+# CHECK, LIKELY OBSOLETE
+#%patch12 -p1
 %patch14 -p0
-%patch15 -p1
+# UPDATE ME
+#%patch15 -p1
 %patch16 -p1
 %patch17 -p1
 %patch18 -p1
@@ -941,20 +944,25 @@ mv %{name}-ports-%{ports_version} ports
 
 %patch25 -p1
 %patch26 -p1
-%patch27 -p1
+# SHOULD BE OBSOLETE
+#%patch27 -p1
 %patch29 -p1
 %patch30 -p0
 %patch31 -p1
 %patch32 -p1
 %patch33 -p1
 
-%patch35 -p1
+# SHOULD BE OBSOLETE
+#%patch35 -p1
 
-%patch37 -p1
+# SHOULD BE OBSOLETE
+#%patch37 -p1
 %patch38 -p1
 
-%patch40 -p1
-%patch41 -p1
+# SHOULD BE OBSOLETE
+#%patch40 -p1
+# SHOULD BE OBSOLETE
+#%patch41 -p1
 %patch42 -p1
 
 # cleanup backups after patching
@@ -999,6 +1007,7 @@ AWK="gawk" \
 	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
+	--enable-obsolete-rpc \
 	--enable-add-ons=$AddOns \
 %if "%{pld_release}" != "ti"
 	--enable-nss-crypt \

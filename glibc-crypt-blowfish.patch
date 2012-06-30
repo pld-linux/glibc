@@ -763,15 +763,15 @@ Index: crypt/crypt-entry.c
 ===================================================================
 --- crypt/crypt-entry.c.orig
 +++ crypt/crypt-entry.c
-@@ -61,6 +61,8 @@ extern char *__sha256_crypt (const char
+@@ -59,6 +59,8 @@ extern char *__sha256_crypt (const char
  extern char *__sha512_crypt_r (const char *key, const char *salt,
  			       char *buffer, int buflen);
  extern char *__sha512_crypt (const char *key, const char *salt);
 +extern char *_crypt_blowfish_rn (const char *key, const char *setting,
-+				 char *output, int size);
- #endif
++				char *output, int size);
  
  /* Define our magic string to mark salt for MD5 encryption
+    replacement.  This is meant to be the same as for other MD5 based
 @@ -74,6 +76,9 @@ static const char sha256_salt_prefix[] =
  /* Magic string for SHA512 encryption.  */
  static const char sha512_salt_prefix[] = "$6$";
