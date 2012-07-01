@@ -59,11 +59,11 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-sotruss-sh.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-no_opt_override.patch
+
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
-Patch11:	%{name}-no_debuggable_objects.patch
+
 Patch12:	%{name}-rh-bug-769421.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
@@ -920,13 +920,11 @@ mv %{name}-ports-%{ports_version} ports
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-# OBSOLETE?
-#%patch7 -p1
+
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-# CHECK, POSSIBLY UPDATE
-#%patch11 -p1
+
 # CHECK, LIKELY OBSOLETE
 #%patch12 -p1
 %patch14 -p0
@@ -996,7 +994,6 @@ AWK="gawk" \
 ../%configure \
 	--with-binutils=$(pwd)/alt-tools \
 	--enable-kernel="%{min_kernel}" \
-	--enable-omitfp \
 	--with-headers=%{_includedir} \
 	--with%{!?with_selinux:out}-selinux \
 	--with-tls \
