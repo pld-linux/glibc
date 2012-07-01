@@ -10,16 +10,6 @@
  	   IBM1132 IBM1133 IBM1160 IBM1161 IBM1162 IBM1163 IBM1164	 \
  	   IBM918 IBM1004 IBM1026 CP1125 CP1250 CP1251 CP1252 CP1253	 \
  	   CP1254 CP1255 CP1256 CP1257 ISO-2022-JP MACINTOSH IEC_P27-1	 \
-@@ -163,6 +166,9 @@
- 	      ibm922.c ibm922.h ibm1124.c ibm1124.h ibm1129.c ibm1129.h     \
- 	      ibm1132.c ibm1132.h ibm1133.c ibm1133.h ibm1162.c ibm1162.h   \
- 	      ibm1026.c ibm1047.c iec_p27-1.c inis.c inis-8.c viscii.c	    \
-+	      iscii-dev.c khmer-ns.c \
-+	      mulelao-1.c tatar-cyr.c iso8859-7-euro.c \
-+	      koi8-k.c koi8-c.c koi8-ru.c \
- 	      inis-cyrillic.c iso-2022-jp.c iso-2022-kr.c iso646.c	    \
- 	      iso8859-1.c iso8859-2.c iso8859-3.c iso8859-4.c iso8859-5.c   \
- 	      iso8859-6.c iso8859-7.c iso8859-8.c iso8859-9.c iso8859-10.c  \
 @@ -228,7 +228,7 @@
  		    ebcdic-dk-no-a ebcdic-es-s ebcdic-fi-se ebcdic-fi-se-a  \
  		    ebcdic-fr ebcdic-it ebcdic-pt ebcdic-us \
@@ -34,7 +24,7 @@
  			ibm1026 cp1125 cp1250 cp1251 cp1252 cp1253 cp1254  \
  			cp1256 cp1257 ibm866 iso8859-5 iso8859-7 iso8859-8 \
 +			iscii-dev khmer-ns mulelao-1 tatar-cyr \
-+			koi8-k iso8859-7-euro \
++			koi8-k koi8-ru iso8859-7-euro \
  			iso8859-10 macintosh iec_p27-1 asmo_449		   \
  			csn_369103 cwi dec-mcs ecma-cyrillic gost_19768-74 \
  			greek-ccitt greek7 greek7-old inis inis-8	   \

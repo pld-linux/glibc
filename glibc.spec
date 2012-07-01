@@ -923,8 +923,7 @@ mv %{name}-ports-%{ports_version} ports
 %patch6 -p1
 # OBSOLETE?
 #%patch7 -p1
-# NEEDS MISSING INCLUDES
-#%patch8 -p1
+%patch8 -p1
 %patch9 -p1
 %patch10 -p1
 # CHECK, POSSIBLY UPDATE
@@ -932,8 +931,7 @@ mv %{name}-ports-%{ports_version} ports
 # CHECK, LIKELY OBSOLETE
 #%patch12 -p1
 %patch14 -p0
-# UPDATE ME
-#%patch15 -p1
+%patch15 -p1
 %patch16 -p1
 %patch17 -p1
 %patch18 -p1
@@ -1706,7 +1704,7 @@ fi
 
 %files devel-doc
 %defattr(644,root,root,755)
-%doc documentation/* NOTES PROJECTS
+%doc documentation/* PROJECTS
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
