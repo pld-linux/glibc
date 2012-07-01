@@ -19,7 +19,8 @@
 %undefine	with_memusage
 %endif
 
-%define		ports_version	2.15
+%define		core_version	2.16
+%define		ports_version	2.16.0
 %define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
@@ -32,7 +33,7 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	2.16.0
+Version:	%{core_version}.0
 Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
@@ -40,7 +41,7 @@ Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
 # Source0-md5:	80b181b02ab249524ec92822c0174cf7
 Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.xz
-# Source1-md5:	fef73c8b7885b02ec5f7ce8fa00ba30c
+# Source1-md5:	9a2439641be7ca8b01a3175324013031
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -1338,12 +1339,12 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README NEWS FAQ BUGS
+%doc README NEWS BUGS CONFORMANCE
 %if %{without cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
 # TODO: package ldconfig symlinks as %ghost
-%attr(755,root,root) /%{_lib}/ld-%{version}.so
+%attr(755,root,root) /%{_lib}/ld-%{core_version}.so
 # wildly arch-dependent ld.so SONAME symlink
 %ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
 %attr(755,root,root) /%{_lib}/ld-linux.so.2
@@ -1360,54 +1361,54 @@ fi
 %ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} ppc64 s390x %{arm}
 %attr(755,root,root) /%{_lib}/ld.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libBrokenLocale-%{version}.so
+%attr(755,root,root) /%{_lib}/libBrokenLocale-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libBrokenLocale.so.1.1
 %else
 %attr(755,root,root) /%{_lib}/libBrokenLocale.so.1
 %endif
 %attr(755,root,root) /%{_lib}/libSegFault.so
-%attr(755,root,root) /%{_lib}/libanl-%{version}.so
+%attr(755,root,root) /%{_lib}/libanl-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libanl.so.1
-%attr(755,root,root) /%{_lib}/libc-%{version}.so
+%attr(755,root,root) /%{_lib}/libc-%{core_version}.so
 %ifarch alpha ia64
 %attr(755,root,root) /%{_lib}/libc.so.6.1
 %else
 %attr(755,root,root) /%{_lib}/libc.so.6
 %endif
-%attr(755,root,root) /%{_lib}/libcidn-%{version}.so
+%attr(755,root,root) /%{_lib}/libcidn-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libcidn.so.1
-%attr(755,root,root) /%{_lib}/libdl-%{version}.so
+%attr(755,root,root) /%{_lib}/libdl-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libdl.so.2.1
 %else
 %attr(755,root,root) /%{_lib}/libdl.so.2
 %endif
-%attr(755,root,root) /%{_lib}/libm-%{version}.so
+%attr(755,root,root) /%{_lib}/libm-%{core_version}.so
 %ifarch alpha ia64
 %attr(755,root,root) /%{_lib}/libm.so.6.1
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
 %endif
-%attr(755,root,root) /%{_lib}/libnsl-%{version}.so
+%attr(755,root,root) /%{_lib}/libnsl-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libnsl.so.1.1
 %else
 %attr(755,root,root) /%{_lib}/libnsl.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libpthread-%{version}.so
+%attr(755,root,root) /%{_lib}/libpthread-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libpthread.so.0
-%attr(755,root,root) /%{_lib}/libresolv-%{version}.so
+%attr(755,root,root) /%{_lib}/libresolv-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libresolv.so.2.1
 %else
 %attr(755,root,root) /%{_lib}/libresolv.so.2
 %endif
-%attr(755,root,root) /%{_lib}/librt-%{version}.so
+%attr(755,root,root) /%{_lib}/librt-%{core_version}.so
 %attr(755,root,root) /%{_lib}/librt.so.1
 %attr(755,root,root) /%{_lib}/libthread_db-1.0.so
 %attr(755,root,root) /%{_lib}/libthread_db.so.1
-%attr(755,root,root) /%{_lib}/libutil-%{version}.so
+%attr(755,root,root) /%{_lib}/libutil-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libutil.so.1.1
 %else
@@ -1418,18 +1419,18 @@ fi
 #%files -n nss_db
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/makedb
-%attr(755,root,root) /%{_lib}/libnss_db-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_db-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_db.so.2
 %{_var}/db/Makefile
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_dns-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_dns-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_dns.so.2
 
 #%files -n nss_files
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_files-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_files-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_files.so.2
 
 %defattr(644,root,root,755)
@@ -1582,7 +1583,7 @@ fi
 
 %files libcrypt
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libcrypt-%{version}.so
+%attr(755,root,root) /%{_lib}/libcrypt-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1.1
 %else
@@ -1608,22 +1609,22 @@ fi
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_compat-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_compat-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_compat.so.2
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_hesiod-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_hesiod-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_hesiod.so.2
 
 %files -n nss_nis
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_nis-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_nis-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_nis.so.2
 
 %files -n nss_nisplus
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_nisplus-%{version}.so
+%attr(755,root,root) /%{_lib}/libnss_nisplus-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_nisplus.so.2
 
 %if %{with memusage}
