@@ -1,7 +1,31 @@
-diff --git b/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S a/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S
+http://sourceware.org/ml/libc-alpha/2012-01/msg00002.html
+
+The following patch:
+Has been reported as causing numerous problems in Fedora & Debian.  I
+don't think anyone has done any serious analysis of the issue, but the
+patch has been pulled from both distributions because of the
+instability it's introduced.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=769421
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=651899
+
+
+commit c5a0802a682dba23f92d47f0f99775aebfbe2539
+Author: Andreas Schwab <schwab@redhat.com>
+Date:   Mon Nov 28 13:38:19 2011 +0100
+
+    Handle EAGAIN from FUTEX_WAIT_REQUEUE_PI
+
+2011-11-28  Andreas Schwab  <schwab@redhat.com>
+
+	* sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S: Handle
+	EAGAIN from FUTEX_WAIT_REQUEUE_PI.
+	* sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S: Likewise.
+
+diff --git a/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S b/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S
 index 54590b7..53970d7 100644
---- b/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S
-+++ a/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S
+--- a/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S
++++ b/nptl/sysdeps/unix/sysv/linux/i386/i486/pthread_cond_wait.S
 @@ -134,7 +134,6 @@ __pthread_cond_wait:
  	cmpl	$PI_BIT, %eax
  	jne	18f
@@ -110,18 +134,18 @@ index 54590b7..53970d7 100644
  	.long	.LcallUR-.LSTARTCODE
  	.long	.LENDCODE-.LcallUR
  	.long	0
-diff --git b/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S a/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S
+diff --git a/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S b/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S
 index d837d15..7535baa 100644
---- b/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S
-+++ a/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S
+--- a/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S
++++ b/nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S
 @@ -23,7 +23,6 @@
  #include <lowlevelcond.h>
  #include <tcb-offsets.h>
  #include <pthread-pi-defines.h>
 -#include <pthread-errnos.h>
+ #include <stap-probe.h>
  
  #include <kernel-features.h>
- 
 @@ -134,14 +133,11 @@ __pthread_cond_wait:
  	cmpl	$PI_BIT, %eax
  	jne	61f
@@ -162,7 +186,7 @@ index d837d15..7535baa 100644
 -#if cond_lock != 0
 -	addq	$cond_lock, %rdi
 -#endif
--	cmpq	$-1, dep_mutex-cond_lock(%rdi)
+-	LP_OP(cmp) $-1, dep_mutex-cond_lock(%rdi)
 -	movl	$LLL_PRIVATE, %eax
 -	movl	$LLL_SHARED, %esi
 -	cmovne	%eax, %esi
@@ -188,7 +212,7 @@ index d837d15..7535baa 100644
 -#if cond_lock != 0
 -	addq	$cond_lock, %rdi
 -#endif
--	cmpq	$-1, dep_mutex-cond_lock(%rdi)
+-	LP_OP(cmp) $-1, dep_mutex-cond_lock(%rdi)
 -	movl	$LLL_PRIVATE, %eax
 -	movl	$LLL_SHARED, %esi
 -	cmovne	%eax, %esi
@@ -200,7 +224,7 @@ index d837d15..7535baa 100644
 -93:
 -	/* Set the rest of SYS_futex args for FUTEX_WAIT_REQUEUE_PI. */
 -	xorq	%r10, %r10
--	movq	dep_mutex(%rdi), %r8
+-	mov	dep_mutex(%rdi), %R8_LP
 -	leaq	cond_futex(%rdi), %rdi
 -	jmp	90b
 -.LcleanupEND2:

@@ -1,3 +1,14 @@
+https://bugs.gentoo.org/391673
+http://sourceware.org/bugzilla/show_bug.cgi?id=13013
+
+2011-07-21  Aurelien Jarno  <aurel32@debian.org>
+
+	* resolv/res_query.c(__libc_res_nquery): Assign hp and hp2 
+	depending n and resplen2 to catch cases where answer 
+	equals answerp2.
+
+diff --git a/resolv/res_query.c b/resolv/res_query.c
+index 2f7cfaa..405fa68 100644
 --- a/resolv/res_query.c
 +++ b/resolv/res_query.c
 @@ -122,6 +122,7 @@ __libc_res_nquery(res_state statp,

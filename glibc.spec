@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}.0
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -60,7 +60,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-sotruss-sh.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
-
+Patch7:		1070_all_glibc-fadvise64_64.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
@@ -84,7 +84,6 @@ Patch30:	%{name}-bug-12492.patch
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
 Patch33:	0020_all_glibc-tweak-rfc1918-lookup.patch
-Patch35:	0055_all_glibc-2.12-static-shared-getpagesize.patch
 
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 
@@ -921,13 +920,12 @@ mv %{name}-ports-%{ports_version} ports
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-
+%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
 
-# CHECK, LIKELY OBSOLETE
-#%patch12 -p1
+%patch12 -p1
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
@@ -948,14 +946,9 @@ mv %{name}-ports-%{ports_version} ports
 %patch32 -p1
 %patch33 -p1
 
-# SHOULD BE OBSOLETE
-#%patch35 -p1
-
 %patch38 -p1
 
-# THIS APPLIES BUT MAKE SURE ITS NEEDED
-# most likely was fixed by 8fdceb2efda8cf724cfc4444af86b5f135ad3172
-# %%patch42 -p1
+%patch42 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
