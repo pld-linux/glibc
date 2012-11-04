@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}.0
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1144,9 +1144,11 @@ done
 #   sr@ije (use LANGUAGE=sr_ME@ije/sr_RS@ije) (gnome)
 #
 # To be added when they become supported by glibc:
+#   ach (vlc)
 #   az_IR (gtk+2)
 #   bal (newt,pessulus)
 #   bem (alacarte)
+#   cgg (vlc)
 #   co  (vlc)
 #   fil (stellarium)
 #   frp (xfce, lxlauncher)
@@ -1156,6 +1158,7 @@ done
 #   ilo (kudzu)
 #   io  (gtk+2, gnome, alacarte)
 #   jv  (gmpc, avant-window-navigator, kdesudo)
+#   kmr (vlc)
 #   kok (iso-codes)
 #   lb  (geany,miro,deluge)
 #   man (ccsm; incorrectly named md)
@@ -1187,6 +1190,7 @@ done
 # eo=common
 # es=es_ES
 # eu=eu_ES
+# ff=ff_SN
 # fr=fr_FR
 # fy=fy_NL
 # gez=gez_ET (?)
@@ -1217,7 +1221,7 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@latin be@tarask \
 	bg bn bn_IN bo br bs byn ca@valencia ckb crh csb cy de_AT de_CH dv dz en \
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
-	es_VE et eu fa fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
+	es_VE et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
 	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn ks ku kw ky la \
 	lg li lo lt lv mai mg mi mk ml mn mr ms mt my nds ne nl_BE nn nr nso \
 	oc om or pa pap ps pt ps rm ro sa sc se si sid sl so sq sr sr@Latn tl \
