@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}.0
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -138,9 +138,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
-# avoid -D_FORTIFY_SOURCE=X
-%define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
-%define		filterout_c		(-Wp,)?-D_FORTIFY_SOURCE=[0-9]+ -fstack-protector(-all)?
+# disable -D_FORTIFY_SOURCE=X and -fstack-protector
+%define		_fortify_cflags		%{nil}
+%define		_ssp_cflags		%{nil}
 
 %define		specflags_sparcv9	-mcpu=ultrasparc -mvis -fcall-used-g6
 %define		specflags_sparc64	-mcpu=ultrasparc -mvis -fcall-used-g6
@@ -302,6 +302,9 @@ Summary(pl.UTF-8):	Biblioteka glibc z funkcją crypt(3)
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}-libcrypt(ix86) = %{epoch}:%{version}-%{release}
+%endif
 Provides:	crypt(blowfish)
 
 %description libcrypt
@@ -374,6 +377,9 @@ Requires:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 %endif
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
+%endif
 Obsoletes:	libiconv-devel
 
 %description devel
@@ -433,6 +439,9 @@ Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
 Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}-headers(ix86) = %{epoch}:%{version}-%{release}
+%endif
 %if "%{_lib}" == "lib64"
 Provides:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
 %endif
@@ -484,6 +493,9 @@ Summary:	Utilities needed for development using standard C libraries
 Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Libraries
 Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}-devel-utils(ix86) = %{epoch}:%{version}-%{release}
+%endif
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
 # have to be installed, not ix86 one.
@@ -530,6 +542,9 @@ Summary:	Documentation needed for development using standard C libraries
 Summary(pl.UTF-8):	Dokumentacja do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Documentation
 Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}-devel-doc(ix86) = %{epoch}:%{version}-%{release}
+%endif
 %ifarch %{x8664}
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
@@ -710,6 +725,9 @@ Summary(uk.UTF-8):	Статичні бібліотеки glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}-static(ix86) = %{epoch}:%{version}-%{release}
+%endif
 Obsoletes:	libiconv-static
 
 %description static
