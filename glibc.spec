@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}.0
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1255,7 +1255,7 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@latin be@tarask \
 done
 
 # LC_TIME category, used for localized date formats (at least by coreutils)
-for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hu id it ja kk ko lg lt \
+for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu id it ja kk ko lg lt \
 	ms nb nl pl pt pt_BR ro ru rw sk sl sv tr uk vi zh_CN zh_TW; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i ]; then
 		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
