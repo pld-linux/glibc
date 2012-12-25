@@ -7,21 +7,20 @@
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
-# min_kernel	(default is 2.6.12)
+# min_kernel	(default is 2.6.16)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
 #
-%{!?min_kernel:%global		min_kernel	2.6.12}
+%{!?min_kernel:%global		min_kernel	2.6.16}
 
 %ifarch sparc64
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.16
-%define		ports_version	2.16.0
+%define		core_version	2.17
 %define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
@@ -34,15 +33,13 @@ Summary(ru.UTF-8):	GNU libc версии
 Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
-Version:	%{core_version}.0
-Release:	4
+Version:	%{core_version}
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
 # Source0-md5:	80b181b02ab249524ec92822c0174cf7
-Source1:	http://ftp.gnu.org/gnu/glibc/%{name}-ports-%{ports_version}.tar.xz
-# Source1-md5:	9a2439641be7ca8b01a3175324013031
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -64,8 +61,8 @@ Patch7:		1070_all_glibc-fadvise64_64.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
-Patch11:	%{name}-format.patch
-Patch12:	%{name}-rh-bug-769421.patch
+Patch11:	%{name}-autoconf.patch
+
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
@@ -83,11 +80,8 @@ Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	%{name}-bug-12492.patch
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
-Patch33:	0020_all_glibc-tweak-rfc1918-lookup.patch
 
 Patch38:	1055_all_glibc-resolv-dynamic.patch
-
-Patch42:	%{name}-pr13013.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -931,8 +925,12 @@ Memory usage profiler.
 Narzędzie do profilowania zużycia pamięci.
 
 %prep
-%setup -q -a1
-mv %{name}-ports-%{ports_version} ports
+%setup -q
+
+%if "%{min_kernel}" < "2.6.16"
+echo "Minimal supported kernel is 2.6.16" >&2
+exit 1
+%endif
 
 %patch2 -p1
 %patch3 -p0
@@ -944,11 +942,12 @@ mv %{name}-ports-%{ports_version} ports
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
+
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
-%patch17 -p1
+# CHECK ME
+#%patch17 -p1
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
@@ -963,11 +962,8 @@ mv %{name}-ports-%{ports_version} ports
 %patch30 -p0
 %patch31 -p1
 %patch32 -p1
-%patch33 -p1
 
 %patch38 -p1
-
-%patch42 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
@@ -1005,6 +1001,8 @@ PATH=$(pwd)/alt-tools:$PATH; export PATH
 
 AWK="gawk" \
 ../%configure \
+	--with-bugurl=http://bugs.pld-linux.org/ \
+	--with-pkgversion=%{name}-%{epoch}:%{version}-%{release} \
 	--with-binutils=$(pwd)/alt-tools \
 	--enable-kernel="%{min_kernel}" \
 	--with-headers=%{_includedir} \

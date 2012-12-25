@@ -1,7 +1,7 @@
 diff -Naur glibc-2.2.3/sysdeps/unix/sysv/linux/paths.h glibc-2.2.3-p/sysdeps/unix/sysv/linux/paths.h
 --- glibc-2.2.3/sysdeps/unix/sysv/linux/paths.h	Thu Nov 16 20:12:05 2000
 +++ glibc-2.2.3-p/sysdeps/unix/sysv/linux/paths.h	Tue Jul  3 15:00:49 2001
-@@ -55,13 +55,13 @@
+@@ -56,13 +56,13 @@
  #define	_PATH_NOLOGIN	"/etc/nologin"
  #define	_PATH_PRESERVE	"/var/lib"
  #define	_PATH_RWHODIR	"/var/spool/rwho"
@@ -11,10 +11,10 @@ diff -Naur glibc-2.2.3/sysdeps/unix/sysv/linux/paths.h glibc-2.2.3-p/sysdeps/uni
  #define	_PATH_SHELLS	"/etc/shells"
  #define	_PATH_TTY	"/dev/tty"
  #define	_PATH_UNIX	"/boot/vmlinux"
- #define _PATH_UTMP	"/var/run/utmp"
+ #define	_PATH_UTMP	"/var/run/utmp"
 -#define	_PATH_VI	"/usr/bin/vi"
 +#define	_PATH_VI	"/bin/vi"
- #define _PATH_WTMP	"/var/log/wtmp"
+ #define	_PATH_WTMP	"/var/log/wtmp"
  
  /* Provide trailing slash, since mostly used for building pathnames. */
 --- glibc-2.3.4/nscd/nscd.h.orig	2004-10-15 23:13:19.000000000 +0200

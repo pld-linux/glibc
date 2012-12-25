@@ -6,10 +6,10 @@
  # Copyright (C) 1996-2011, 2012 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
-@@ -36,16 +36,16 @@
+@@ -35,16 +35,16 @@
    case "$1" in
    --vers | --versi | --versio | --version)
-     echo 'ldd (GNU libc) @VERSION@'
+     echo 'ldd @PKGVERSION@@VERSION@'
 -    printf $"Copyright (C) %s Free Software Foundation, Inc.
 +    printf "Copyright (C) %s Free Software Foundation, Inc.
  This is free software; see the source for copying conditions.  There is NO
@@ -26,15 +26,15 @@
        --help              print this help and exit
        --version           print version information and exit
    -d, --data-relocs       process data relocations
-@@ -53,7 +53,7 @@
+@@ -52,7 +52,7 @@
    -u, --unused            print unused direct dependencies
    -v, --verbose           print all information
  "
--    echo $"For bug reporting instructions, please see:
-+    echo "For bug reporting instructions, please see:
- <http://www.gnu.org/software/libc/bugs.html>.
- "
+-    printf $"For bug reporting instructions, please see:\\n%s.\\n" \
++    printf "For bug reporting instructions, please see:\\n%s.\\n" \
+       "@REPORT_BUGS_TO@"
      exit 0
+     ;;
 @@ -79,15 +79,15 @@
      shift
      ;;

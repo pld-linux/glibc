@@ -41,11 +41,11 @@
 +msgid "SECS"
 +msgstr "SEK"
 +
- #: argp/argp-parse.c:106
+ #: argp/argp-parse.c:105
  msgid "Hang for SECS seconds (default 3600)"
 -msgstr "Zatrzymanie na SECS sekund (domyślnie 3600)"
 +msgstr "Zatrzymanie na SEK sekund (domyślnie 3600)"
  
- #: argp/argp-parse.c:167
+ #: argp/argp-parse.c:166
  msgid "Print program version"
 
