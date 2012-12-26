@@ -39,7 +39,7 @@ Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	80b181b02ab249524ec92822c0174cf7
+# Source0-md5:	87bf675c8ee523ebda4803e8e1cec638
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
