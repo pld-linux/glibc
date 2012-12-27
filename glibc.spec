@@ -1001,7 +1001,7 @@ PATH=$(pwd)/alt-tools:$PATH; export PATH
 AWK="gawk" \
 ../%configure \
 	--with-bugurl=http://bugs.pld-linux.org/ \
-	--with-pkgversion=%{name}-%{epoch}:%{version}-%{release} \
+	--with-pkgversion="%{name}-%{epoch}:%{version}-%{release}.%{_target_cpu}" \
 	--with-binutils=$(pwd)/alt-tools \
 	--enable-kernel="%{min_kernel}" \
 	--with-headers=%{_includedir} \
