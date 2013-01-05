@@ -34,7 +34,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1188,11 +1188,7 @@ done
 #
 # To be removed (after fixing packages still using it):
 #   sr@Latn (use sr@latin instead)
-#
-# To be clarified:
-#   sr@ije or sr@ijekavian? (currently sr@ije is supported)
-#   sr@ijelatin or sr@ijekavianlatin? (currently not supported)
-#   sr@ijekavian and sr@ijekavianlatin exist in: akonadi-googledata, amarok, k3b, konversation, ktorrent, wesnoth
+#   sr@ije (use sr@ijekavian instead)
 #
 # Short forms (omitted country code, used instead of long form) for ambiguous or unclear cases:
 # aa=aa_ER
@@ -1220,6 +1216,9 @@ done
 # ru=ru_RU
 # so=so_SO
 # sr=sr_RS [cyrillic]
+# sr@latin=sr_RS@latin
+# sr@ijekavian=sr_BA@ijekavian
+# sr@ijekavianlatin=sr_BA@ijekavianlatin
 # sv=sv_SE
 # sw=sw_TZ (or common for KE, TZ, UG?)
 # ta=ta_IN
@@ -1241,8 +1240,9 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@latin be@tarask \
 	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn ks ku kw ky la \
 	lg li lo lt lv mai mg mi mk ml mn mr ms mt my nds ne nl_BE nn nr nso \
 	oc om or pa pap ps pt ps rm ro sa sc se si sid sl so sq sr sr@Latn tl \
-	sr@ije sr@latin ss st sw ta te tg th ti tig tk tl tlh tn ts tt ug uk \
-	ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu; do
+	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
+	tig tk tl tlh tn ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo \
+	zh_HK zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)

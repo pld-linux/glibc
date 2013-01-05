@@ -5295,3 +5295,917 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +lang_term   "<U006D><U0079><U0061>"
 +lang_lib    "<U006D><U0079><U0061>"
 +END LC_ADDRESS
+--- glibc-2.17/localedata/locales/sr_ME@latin.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.17/localedata/locales/sr_ME@latin	2013-01-04 15:59:23.574814992 +0100
+@@ -0,0 +1,151 @@
++comment_char %
++escape_char  /
++%
++% Serbian Language locale for Montenegro
++% Source: sr_YU, sr_CS locale
++% Address:
++%
++% Contact: Danilo Segan
++% Email: danilo@gnome.org
++% Tel: +381 63 323456
++% Fax: none
++% Language: sr
++% Territory: ME
++% Revision: 1.2
++% Date: 2006-10-11
++% Application: general
++% Users: general
++% Charset: UTF-8, ISO-8859-16
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Serbian Latin locale for Montenegro"
++source     "sr_YU, sr_CS locale"
++address    ""
++contact    "Danilo Segan"
++email      "bug-glibc@gnu.org"
++tel        ""
++fax        ""
++language   "Serbian"
++territory  "Montenegro"
++revision   "1.2"
++date       "2006-10-11"
++audience   "general"
++application   "GNU locale"
++abbreviation  ""
++%
++category  i18n:1997;LC_IDENTIFICATION
++category  i18n:1997;LC_CTYPE
++category  i18n:1997;LC_COLLATE
++category  i18n:1997;LC_MONETARY
++category  i18n:1997;LC_NUMERIC
++category  i18n:1997;LC_TIME
++category  i18n:1997;LC_MESSAGES
++category  i18n:1997;LC_PAPER
++category  i18n:1997;LC_NAME
++category  i18n:1997;LC_ADDRESS
++category  i18n:1997;LC_TELEPHONE
++category  i18n:1997;LC_MEASUREMENT
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sr_ME"
++END LC_COLLATE
++
++LC_MONETARY
++copy "sr_ME"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "sr_ME"
++END LC_NUMERIC
++
++LC_TIME
++abday   "<U006E><U0065><U0064>";"<U0070><U006F><U006E>";/
++        "<U0075><U0074><U006F>";"<U0073><U0072><U0069>";/
++        "<U010D><U0065><U0074>";"<U0070><U0065><U0074>";/
++        "<U0073><U0075><U0062>"
++day     "<U006E><U0065><U0064><U006A><U0065><U006C><U006A><U0061>";/
++        "<U0070><U006F><U006E><U0065><U0064><U0065><U006C><U006A><U0061><U006B>";/
++        "<U0075><U0074><U006F><U0072><U0061><U006B>";/
++	"<U0073><U0072><U0069><U006A><U0065><U0064><U0061>";/
++        "<U010D><U0065><U0074><U0076><U0072><U0074><U0061><U006B>";/
++        "<U0070><U0065><U0074><U0061><U006B>";/
++        "<U0073><U0075><U0062><U006F><U0074><U0061>"
++abmon   "<U006A><U0061><U006E>";"<U0066><U0065><U0062>";/
++        "<U006D><U0061><U0072>";"<U0061><U0070><U0072>";/
++        "<U006D><U0061><U006A>";"<U006A><U0075><U006E>";/
++        "<U006A><U0075><U006C>";"<U0061><U0076><U0067>";/
++        "<U0073><U0065><U0070>";"<U006F><U006B><U0074>";/
++        "<U006E><U006F><U0076>";"<U0064><U0065><U0063>"
++mon     "<U006A><U0061><U006E><U0075><U0061><U0072>";/
++        "<U0066><U0065><U0062><U0072><U0075><U0061><U0072>";/
++        "<U006D><U0061><U0072><U0074>";/
++        "<U0061><U0070><U0072><U0069><U006C>";/
++        "<U006D><U0061><U006A>";/
++        "<U006A><U0075><U006E>";/
++        "<U006A><U0075><U006C>";/
++        "<U0061><U0076><U0067><U0075><U0073><U0074>";/
++        "<U0073><U0065><U0070><U0074><U0065><U006D><U0062><U0061><U0072>";/
++        "<U006F><U006B><U0074><U006F><U0062><U0061><U0072>";/
++        "<U006E><U006F><U0076><U0065><U006D><U0062><U0061><U0072>";/
++        "<U0064><U0065><U0063><U0065><U006D><U0062><U0061><U0072>"
++
++d_t_fmt "<U0025><U0041><U002C><U0020><U0025><U0064><U002E><U0020>/
++<U0025><U0042><U0020><U0025><U0059><U002E><U0020><U0025><U0054>/
++<U0020><U0025><U005A>"
++d_fmt   "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059><U002E>"
++t_fmt   "<U0025><U0054>"
++am_pm   "";""
++t_fmt_ampm "<U0025><U0054>"
++date_fmt  "<U0025><U0061><U002C><U0020><U0025><U0065><U002E><U0020>/
++<U0025><U0062><U0020><U0025><U0059><U002E><U0020><U0020><U0025><U0048>/
++<U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U005A><U000A>"
++week    7;19971130;4
++first_weekday 2
++first_workday 2
++END LC_TIME
++
++LC_MESSAGES
++copy "sr_RS@latin"
++END LC_MESSAGES
++
++LC_PAPER
++copy "sr_ME"
++END LC_PAPER
++
++LC_NAME
++copy "sr_RS@latin"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
++<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
++<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
++<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
++<U004E><U0025><U0063><U0025><U004E>"
++country_ab2   "<U004D><U0045>"
++country_ab3   "<U004D><U004E><U0045>"
++country_post  "<U004D><U004E><U0045>"
++country_name  "<U0043><U0072><U006E><U0061><U0020><U0047><U006F><U0072><U0061>"
++country_num   499
++country_car   "<U004D><U004E><U0045>"
++country_isbn  "<U0039><U0039><U0034><U0030>"
++lang_name     "<U0073><U0072><U0070><U0073><U006B><U0069>"
++lang_term     "<U0073><U0072><U0070>"
++lang_lib      "<U0073><U0063><U0063>"
++lang_ab	      "<U0073><U0072>"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "sr_ME"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "sr_ME"
++END LC_MEASUREMENT
+--- glibc-2.17/localedata/locales/sr_BA@ijekavian.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.17/localedata/locales/sr_BA@ijekavian	2013-01-04 16:00:04.688147468 +0100
+@@ -0,0 +1,132 @@
++comment_char %
++escape_char  /
++% Serbian Language locale for Ijekavian Serbian in Bosnia and herzegovina
++% Source: sr_ME, sr_YU, sr_CS locale
++% Address:
++%
++% Contact: Debian Serbian l10n team
++% Email: debian-l10n-serbian@lists.debian.org
++% Language: sr@ijekavian
++% Territory: BA
++% Revision: 0.01
++% Date: 2011-08-15
++% Application: general
++% Users: general
++% Charset: UTF-8, ISO-8859-5
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Serbian, ijekavian, locale for Bosnia and Herzegovina"
++source     "sr_ME, sr_YU, sr_CS locales"
++address    ""
++contact    "Debian Serbian l10n team"
++email      "debian-l10n-serbian@lists.debian.org"
++tel        ""
++fax        ""
++language   "Serbian ijekavian"
++territory  "Bosnia and Herzegovina"
++revision   "0.01"
++date       "2011-08-15"
++audience   "general"
++application   "GNU locale"
++abbreviation  ""
++%
++category  i18n:1997;LC_IDENTIFICATION
++category  i18n:1997;LC_CTYPE
++category  i18n:1997;LC_COLLATE
++category  i18n:1997;LC_MONETARY
++category  i18n:1997;LC_NUMERIC
++category  i18n:1997;LC_TIME
++category  i18n:1997;LC_MESSAGES
++category  i18n:1997;LC_PAPER
++category  i18n:1997;LC_NAME
++category  i18n:1997;LC_ADDRESS
++category  i18n:1997;LC_TELEPHONE
++category  i18n:1997;LC_MEASUREMENT
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sr_RS"
++END LC_COLLATE
++
++LC_MONETARY
++int_curr_symbol           "<U0042><U0041><U004D><U0020>"
++currency_symbol           "<U041A><U041C>"
++mon_decimal_point         "<U002C>"
++mon_thousands_sep         "<U002E>"
++mon_grouping              3;3
++positive_sign             ""
++negative_sign             "<U002D>"
++int_frac_digits           2
++frac_digits               2
++p_cs_precedes             0
++p_sep_by_space            1
++n_cs_precedes             0
++n_sep_by_space            1
++p_sign_posn               1
++n_sign_posn               1
++END LC_MONETARY
++
++LC_NUMERIC
++copy "bs_BA"
++END LC_NUMERIC
++
++LC_TIME
++abday   "<U043D><U0435><U0434>";"<U043F><U043E><U043D>";"<U0443><U0442><U043E>";"<U0441><U0440><U0438>";"<U0447><U0435><U0442>";"<U043F><U0435><U0442>";"<U0441><U0443><U0431>"
++day     "<U043D><U0435><U0434><U0458><U0435><U0459><U0430>";"<U043F><U043E><U043D><U0435><U0434><U0435><U0459><U0430><U043A>";"<U0443><U0442><U043E><U0440><U0430><U043A>";"<U0441><U0440><U0438><U0458><U0435><U0434><U0430>";"<U0447><U0435><U0442><U0432><U0440><U0442><U0430><U043A>";"<U043F><U0435><U0442><U0430><U043A>";"<U0441><U0443><U0431><U043E><U0442><U0430>"
++abmon   "<U0458><U0430><U043D>";"<U0444><U0435><U0431>";"<U043C><U0430><U0440>";"<U0430><U043F><U0440>";"<U043C><U0430><U0458>";"<U0458><U0443><U043D>";"<U0458><U0443><U043B>";"<U0430><U0432><U0433>";"<U0441><U0435><U043F>";"<U043E><U043A><U0442>";"<U043D><U043E><U0432>";"<U0434><U0435><U0446>"
++mon     "<U0458><U0430><U043D><U0443><U0430><U0440>";"<U0444><U0435><U0431><U0440><U0443><U0430><U0440>";"<U043C><U0430><U0440><U0442>";"<U0430><U043F><U0440><U0438><U043B>";"<U043C><U0430><U0458>";"<U0458><U0443><U043D>";"<U0458><U0443><U043B>";"<U0430><U0432><U0433><U0443><U0441><U0442>";"<U0441><U0435><U043F><U0442><U0435><U043C><U0431><U0430><U0440>";"<U043E><U043A><U0442><U043E><U0431><U0430><U0440>";"<U043D><U043E><U0432><U0435><U043C><U0431><U0430><U0440>";"<U0434><U0435><U0446><U0435><U043C><U0431><U0430><U0440>"
++
++d_t_fmt "<U0025><U0041><U002C><U0020><U0025><U0064><U002E><U0020><U0025><U0042><U0020><U0025><U0059><U002E><U0020><U0025><U0054><U0020><U0025><U005A>"
++d_fmt   "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059><U002E>"
++t_fmt   "<U0025><U0054>"
++am_pm   "";""
++t_fmt_ampm "<U0025><U0054>"
++date_fmt  "%a, %e. %b %Y.  %H:%M:%S %Z"
++week    7;19971130;4
++first_weekday 2
++first_workday 2
++END LC_TIME
++
++LC_MESSAGES
++copy "sr_RS"
++END LC_MESSAGES
++
++LC_PAPER
++copy "bs_BA"
++END LC_PAPER
++
++LC_NAME
++copy "sr_RS"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E><U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073><U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025><U004E><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
++country_ab2   "<U0042><U0041>"
++country_ab3   "<U0042><U0049><U0048>"
++country_post  "<U0042><U0049><U0048>"
++country_name  "<U0411><U043E><U0441><U043D><U0430><U0020><U0438><U0020><U0425><U0435><U0440><U0446><U0435><U0433><U043E><U0432><U0438><U043D><U0430>"
++country_num   070
++country_car   "<U0042><U0049><U0048>"
++country_isbn  "<U0039><U0039><U0035><U0038>"
++lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
++lang_term     "<U0073><U0072><U0070>"
++lang_lib      "<U0073><U0063><U0063>"
++lang_ab	      "<U0073><U0072>"
++END LC_ADDRESS
++
++LC_TELEPHONE
++tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025><U006C>"
++tel_dom_fmt    "<U0025><U0041><U0020><U0025><U006C>"
++int_prefix     "<U0033><U0038><U0037>"
++int_select     "<U0030><U0030>"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "bs_BA"
++END LC_MEASUREMENT
+--- glibc-2.17/localedata/locales/sr_BA@ijekavianlatin.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.17/localedata/locales/sr_BA@ijekavianlatin	2013-01-04 16:00:03.734814154 +0100
+@@ -0,0 +1,129 @@
++comment_char %
++escape_char  /
++% Serbian Language locale for Ijekavian Serbian in Bosnia and herzegovina
++% Source: sr_ME, sr_YU, sr_CS locale
++% Address:
++%
++% Contact: Debian Serbian l10n team
++% Email: debian-l10n-serbian@lists.debian.org
++% Language: sr@ijekavianlatin
++% Territory: BA
++% Revision: 0.01
++% Date: 2011-08-15
++% Application: general
++% Users: general
++% Charset: UTF-8, ISO-8859-2
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Serbian Latin, ijekavian, locale for Bosnia and Herzegovina"
++source     "sr_ME, sr_YU, sr_CS locales"
++address    ""
++contact    "Debian Serbian l10n team"
++email      "debian-l10n-serbian@lists.debian.org"
++tel        ""
++fax        ""
++language   "Serbian ijekavian"
++territory  "Bosnia and Herzegovina"
++revision   "0.01"
++date       "2011-08-15"
++audience   "general"
++application   "GNU locale"
++abbreviation  ""
++%
++category  i18n:1997;LC_IDENTIFICATION
++category  i18n:1997;LC_CTYPE
++category  i18n:1997;LC_COLLATE
++category  i18n:1997;LC_MONETARY
++category  i18n:1997;LC_NUMERIC
++category  i18n:1997;LC_TIME
++category  i18n:1997;LC_MESSAGES
++category  i18n:1997;LC_PAPER
++category  i18n:1997;LC_NAME
++category  i18n:1997;LC_ADDRESS
++category  i18n:1997;LC_TELEPHONE
++category  i18n:1997;LC_MEASUREMENT
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sr_BA@ijekavian"
++END LC_COLLATE
++
++LC_MONETARY
++int_curr_symbol           "<U0042><U0041><U004D><U0020>"
++currency_symbol           "<U004B><U004D>"
++mon_decimal_point         "<U002C>"
++mon_thousands_sep         "<U002E>"
++mon_grouping              3;3
++positive_sign             ""
++negative_sign             "<U002D>"
++int_frac_digits           2
++frac_digits               2
++p_cs_precedes             0
++p_sep_by_space            1
++n_cs_precedes             0
++n_sep_by_space            1
++p_sign_posn               1
++n_sign_posn               1
++END LC_MONETARY
++
++LC_NUMERIC
++copy "bs_BA"
++END LC_NUMERIC
++
++LC_TIME
++abday   "<U006E><U0065><U0064>";"<U0070><U006F><U006E>";"<U0075><U0074><U006F>";"<U0073><U0072><U0069>";"<U010D><U0065><U0074>";"<U0070><U0065><U0074>";"<U0073><U0075><U0062>"
++day     "<U006E><U0065><U0064><U006A><U0065><U006C><U006A><U0061>";"<U0070><U006F><U006E><U0065><U0064><U0065><U006C><U006A><U0061><U006B>";"<U0075><U0074><U006F><U0072><U0061><U006B>";"<U0073><U0072><U0069><U006A><U0065><U0064><U0061>";"<U010D><U0065><U0074><U0076><U0072><U0074><U0061><U006B>";"<U0070><U0065><U0074><U0061><U006B>";"<U0073><U0075><U0062><U006F><U0074><U0061>"
++abmon   "<U006A><U0061><U006E>";"<U0066><U0065><U0062>";"<U006D><U0061><U0072>";"<U0061><U0070><U0072>";"<U006D><U0061><U006A>";"<U006A><U0075><U006E>";"<U006A><U0075><U006C>";"<U0061><U0076><U0067>";"<U0073><U0065><U0070>";"<U006F><U006B><U0074>";"<U006E><U006F><U0076>";"<U0064><U0065><U0063>"
++mon     "<U006A><U0061><U006E><U0075><U0061><U0072>";"<U0066><U0065><U0062><U0072><U0075><U0061><U0072>";"<U006D><U0061><U0072><U0074>";"<U0061><U0070><U0072><U0069><U006C>";"<U006D><U0061><U006A>";"<U006A><U0075><U006E>";"<U006A><U0075><U006C>";"<U0061><U0076><U0067><U0075><U0073><U0074>";"<U0073><U0065><U0070><U0074><U0065><U006D><U0062><U0061><U0072>";"<U006F><U006B><U0074><U006F><U0062><U0061><U0072>";"<U006E><U006F><U0076><U0065><U006D><U0062><U0061><U0072>";"<U0064><U0065><U0063><U0065><U006D><U0062><U0061><U0072>"
++
++d_t_fmt "<U0025><U0041><U002C><U0020><U0025><U0064><U002E><U0020><U0025><U0042><U0020><U0025><U0059><U002E><U0020><U0025><U0054><U0020><U0025><U005A>"
++d_fmt   "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059><U002E>"
++t_fmt   "<U0025><U0054>"
++am_pm   "";""
++t_fmt_ampm "<U0025><U0054>"
++date_fmt  "%a, %e. %b %Y.  %H:%M:%S %Z"
++week    7;19971130;4
++first_weekday 2
++first_workday 2
++END LC_TIME
++
++LC_MESSAGES
++copy "sr_RS@latin"
++END LC_MESSAGES
++
++LC_PAPER
++copy "bs_BA"
++END LC_PAPER
++
++LC_NAME
++copy "sr_RS@latin"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E><U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073><U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025><U004E><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
++country_ab2   "<U0042><U0041>"
++country_ab3   "<U0042><U0049><U0048>"
++country_post  "<U0042><U0049><U0048>"
++country_name  "<U0042><U006F><U0073><U006E><U0061><U0020><U0069><U0020><U0048><U0065><U0072><U0063><U0065><U0067><U006F><U0076><U0069><U006E><U0061>"
++country_num   070
++country_car   "<U0042><U0049><U0048>"
++country_isbn  "<U0039><U0039><U0035><U0038>"
++lang_name     "<U0073><U0072><U0070><U0073><U006B><U0069>"
++lang_term     "<U0073><U0072><U0070>"
++lang_lib      "<U0073><U0063><U0063>"
++lang_ab	      "<U0073><U0072>"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "sr_BA@ijekavian"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "bs_BA"
++END LC_MEASUREMENT
+--- glibc-2.17/localedata/locales/ak_GH.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.17/localedata/locales/ak_GH	2013-01-04 19:53:47.557855183 +0100
+@@ -0,0 +1,100 @@
++comment_char %
++escape_char /
++% NOT READY: some fields missing
++% Charset: UTF-8
++% WARNING: This file has been autogenerated by the Locale Helper application
++%          Check it carefully before using it in production.
++LC_IDENTIFICATION
++title      "Akan locale for GHANA"
++source       "kasahorow"
++address      "TUPM 17 TUC, Accra"
++contact      "kasahorow"
++email        "kasahorow@suuch.com"
++tel          "233262766490"
++fax          ""
++language  "ak"
++territory "GHANA"
++revision  "1.0"
++date      "2013-01-04"
++%
++category  "ak_GH:2000";LC_IDENTIFICATION
++category  "ak_GH:2000";LC_CTYPE
++category  "ak_GH:2000";LC_COLLATE
++category  "ak_GH:2000";LC_TIME
++category  "ak_GH:2000";LC_NUMERIC
++category  "ak_GH:2000";LC_MONETARY
++category  "ak_GH:2000";LC_PAPER
++category  "ak_GH:2000";LC_MEASUREMENT
++category  "ak_GH:2000";LC_MESSAGES
++category  "ak_GH:2000";LC_NAME
++category  "ak_GH:2000";LC_ADDRESS
++category  "ak_GH:2000";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++
++translit_start
++include "translit_combining";""
++translit_end
++END LC_CTYPE
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_TIME
++END LC_TIME
++
++LC_NUMERIC
++END LC_NUMERIC
++
++LC_MONETARY
++currency_symbol    "<U0047><U0048><U20B5>"
++int_curr_symbol    "<U0047><U0048><U0053><U0020>"
++% FIXME
++mon_decimal_point  "<U002C>"
++mon_thousands_sep  "<U002E>"
++mon_grouping       3;3
++frac_digits        2
++int_frac_digits    2
++END LC_MONETARY
++
++LC_PAPER
++END LC_PAPER
++
++LC_MEASUREMENT
++measurement 1
++END LC_MEASUREMENT
++
++LC_MESSAGES
++% ^[yY].*
++yesexpr "<U005E><U005B><U0079><U0059><U005D><U002E><U002A>"
++% ^[dD].*
++noexpr  "<U005E><U005B><U0064><U0044><U005D><U002E><U002A>"
++END LC_MESSAGES
++
++LC_NAME
++END LC_NAME
++
++LC_ADDRESS
++% GH
++country_ab2  "<U0047><U0048>"
++% GHA
++country_ab3  "<U0047><U0048><U0041>"
++country_num  288
++country_car  "<U0047><U0048>"
++country_isbn "<U0039><U0039><U0036><U0034>"
++lang_ab      "<U0061><U006B>"
++lang_term    "<U0061><U006B><U0061>"
++lang_lib     "<U0061><U006B><U0061>"
++END LC_ADDRESS
++
++LC_TELEPHONE
++% FIXME: +%c %a %l
++tel_int_fmt "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025><U006C>"
++% FIXME: %A %l
++tel_dom_fmt "<U0025><U0041><U0020><U0025><U006C>"
++int_select  "<U0030><U0030>"
++int_prefix  "<U0032><U0033><U0033>"
++END LC_TELEPHONE
+--- glibc-2.17/localedata/locales/ay_PE.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.17/localedata/locales/ay_PE	2013-01-04 19:55:56.207852505 +0100
+@@ -0,0 +1,96 @@
++comment_char %
++escape_char /
++% Charset: UTF-8
++% WARNING: This file has been autogenerated by the Locale Helper application
++%          Check it carefully before using it in production.
++LC_IDENTIFICATION
++title      "Aymara locale for PERU"
++source       "runasimipi.org"
++language  "ay"
++territory "PERU"
++revision  "1.0"
++date      "2013-01-04"
++%
++category  "ay_PE:2000";LC_IDENTIFICATION
++category  "ay_PE:2000";LC_CTYPE
++category  "ay_PE:2000";LC_COLLATE
++category  "ay_PE:2000";LC_TIME
++category  "ay_PE:2000";LC_NUMERIC
++category  "ay_PE:2000";LC_MONETARY
++category  "ay_PE:2000";LC_PAPER
++category  "ay_PE:2000";LC_MEASUREMENT
++category  "ay_PE:2000";LC_MESSAGES
++category  "ay_PE:2000";LC_NAME
++category  "ay_PE:2000";LC_ADDRESS
++category  "ay_PE:2000";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++
++translit_start
++include "translit_combining";""
++translit_end
++END LC_CTYPE
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_TIME
++% inïru;phiwriru;marsu;awrila;mayu;junyu;julyu;awustu;sitimri;uktuwri;nuwimri;risimri
++mon           "<U0069><U006E><U00EF><U0072><U0075>";"<U0070><U0068><U0069><U0077><U0072><U0069><U0072><U0075>";"<U006D><U0061><U0072><U0073><U0075>";"<U0061><U0077><U0072><U0069><U006C><U0061>";"<U006D><U0061><U0079><U0075>";"<U006A><U0075><U006E><U0079><U0075>";"<U006A><U0075><U006C><U0079><U0075>";"<U0061><U0077><U0075><U0073><U0074><U0075>";"<U0073><U0069><U0074><U0069><U006D><U0072><U0069>";"<U0075><U006B><U0074><U0075><U0077><U0072><U0069>";"<U006E><U0075><U0077><U0069><U006D><U0072><U0069>";"<U0072><U0069><U0073><U0069><U006D><U0072><U0069>"
++% ini;phi;mar;awr;may;jun;jul;awu;sit;ukt;nuw;ris
++abmon         "<U0069><U006E><U0069>";"<U0070><U0068><U0069>";"<U006D><U0061><U0072>";"<U0061><U0077><U0072>";"<U006D><U0061><U0079>";"<U006A><U0075><U006E>";"<U006A><U0075><U006C>";"<U0061><U0077><U0075>";"<U0073><U0069><U0074>";"<U0075><U006B><U0074>";"<U006E><U0075><U0077>";"<U0072><U0069><U0073>"
++% tuminku;lunisa;martisa;mirkulisa;juywisa;wirnisa;sawäru
++day           "<U0074><U0075><U006D><U0069><U006E><U006B><U0075>";"<U006C><U0075><U006E><U0069><U0073><U0061>";"<U006D><U0061><U0072><U0074><U0069><U0073><U0061>";"<U006D><U0069><U0072><U006B><U0075><U006C><U0069><U0073><U0061>";"<U006A><U0075><U0079><U0077><U0069><U0073><U0061>";"<U0077><U0069><U0072><U006E><U0069><U0073><U0061>";"<U0073><U0061><U0077><U00E4><U0072><U0075>"
++% tum;lun;mar;mir;juy;wir;saw
++abday         "<U0074><U0075><U006D>";"<U006C><U0075><U006E>";"<U006D><U0061><U0072>";"<U006D><U0069><U0072>";"<U006A><U0075><U0079>";"<U0077><U0069><U0072>";"<U0073><U0061><U0077>"
++% FIXME if wrong
++am_pm         "";""
++% "%a %d %b %Y %T %Z"
++d_t_fmt       "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
++% "%d/%m/%Y"
++d_fmt         "<U0025><U0064><U002F><U0025><U006D><U002F><U0025><U0079>"
++% "%T"
++t_fmt       "<U0025><U0054>"
++END LC_TIME
++
++LC_NUMERIC
++copy "es_PE"
++END LC_NUMERIC
++
++LC_MONETARY
++copy "es_PE"
++END LC_MONETARY
++
++LC_PAPER
++copy "es_PE"
++END LC_PAPER
++
++LC_MEASUREMENT
++measurement 1
++END LC_MEASUREMENT
++
++LC_MESSAGES
++% ^[uUsSyY].*
++yesexpr "<U005E><U005B><U0075><U0055><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
++% ^[jJnN].*
++noexpr  "<U005E><U005B><U006A><U004A><U006E><U004E><U005D><U002E><U002A>"
++% Ukhamawa
++yesstr  "<U0055><U006B><U0068><U0061><U006D><U0061><U0077><U0061>"
++% Janiwa
++nostr   "<U004A><U0061><U006E><U0069><U0077><U0061>"
++END LC_MESSAGES
++
++LC_NAME
++copy "es_PE"
++END LC_NAME
++
++LC_ADDRESS
++copy "es_PE"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "es_PE"
++END LC_TELEPHONE
+--- glibc-2.17/localedata/locales/quz_PE.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.17/localedata/locales/quz_PE	2013-01-04 19:56:41.361184896 +0100
+@@ -0,0 +1,121 @@
++comment_char %
++escape_char /
++% Charset: UTF-8
++% WARNING: This file has been autogenerated by the Locale Helper application
++%          Check it carefully before using it in production.
++LC_IDENTIFICATION
++title      "Cusco Quechua locale for PERU"
++language  "quz"
++territory "PERU"
++revision  "1.0"
++date      "2013-01-04"
++%
++category  "quz_PE:2000";LC_IDENTIFICATION
++category  "quz_PE:2000";LC_CTYPE
++category  "quz_PE:2000";LC_COLLATE
++category  "quz_PE:2000";LC_TIME
++category  "quz_PE:2000";LC_NUMERIC
++category  "quz_PE:2000";LC_MONETARY
++category  "quz_PE:2000";LC_PAPER
++category  "quz_PE:2000";LC_MEASUREMENT
++category  "quz_PE:2000";LC_MESSAGES
++category  "quz_PE:2000";LC_NAME
++category  "quz_PE:2000";LC_ADDRESS
++category  "quz_PE:2000";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++
++translit_start
++include "translit_combining";""
++translit_end
++END LC_CTYPE
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_TIME
++% iniru, phiwriru, marsu, awril, mayu, huniyu, huliyu, agustu, siptiyimri, uktuwri, nuwiyimri, tisiyimri
++mon           "<U0069><U006E><U0069><U0072><U0075>";/
++     "<U0070><U0068><U0069><U0077><U0072><U0069><U0072><U0075>";/
++     "<U006D><U0061><U0072><U0073><U0075>";/
++     "<U0061><U0077><U0072><U0069><U006C>";/
++     "<U006D><U0061><U0079><U0075>";/
++     "<U0068><U0075><U006E><U0069><U0079><U0075>";/
++     "<U0068><U0075><U006C><U0069><U0079><U0075>";/
++     "<U0061><U0067><U0075><U0073><U0074><U0075>";/
++     "<U0073><U0069><U0070><U0074><U0069><U0079><U0069><U006D><U0072><U0069>";/
++     "<U0075><U006B><U0074><U0075><U0077><U0072><U0069>";/
++     "<U006E><U0075><U0077><U0069><U0079><U0069><U006D><U0072><U0069>";/
++     "<U0074><U0069><U0073><U0069><U0079><U0069><U006D><U0072><U0069>"
++% ini, phi, mar, awr, may, hun, hul, agu, sip, ukt, nuw, tis
++abmon         "<U0069><U006E><U0069>";/
++       "<U0070><U0068><U0069>";/
++       "<U006D><U0061><U0072>";/
++       "<U0061><U0077><U0072>";/
++       "<U006D><U0061><U0079>";/
++       "<U0068><U0075><U006E>";/
++       "<U0068><U0075><U006C>";/
++       "<U0061><U0067><U0075>";/
++       "<U0073><U0069><U0070>";/
++       "<U0075><U006B><U0074>";/
++       "<U006E><U0075><U0077>";/
++       "<U0074><U0069><U0073>"
++% tuminku, lunis, martis, miyirkulis, juywis, wiyirnis, sawatu
++day           "<U0074><U0075><U006D><U0069><U006E><U006B><U0075>";/
++     "<U006C><U0075><U006E><U0069><U0073>";/
++     "<U006D><U0061><U0072><U0074><U0069><U0073>";/
++     "<U006D><U0069><U0079><U0069><U0072><U006B><U0075><U006C><U0069><U0073>";/
++     "<U006A><U0075><U0079><U0077><U0069><U0073>";/
++     "<U0077><U0069><U0079><U0069><U0072><U006E><U0069><U0073>";/
++     "<U0073><U0061><U0077><U0061><U0074><U0075>"
++% tum, lun, mar, miy, juy, wiy, saw
++abday         "<U0074><U0075><U006D>";/
++       "<U006C><U0075><U006E>";/
++       "<U006D><U0061><U0072>";/
++       "<U006D><U0069><U0079>";/
++       "<U006A><U0075><U0079>";/
++       "<U0077><U0069><U0079>";/
++       "<U0073><U0061><U0077>"
++am_pm  "";""
++% %a %d %b %Y %T %Z
++d_t_fmt       "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
++% %d/%m/%y
++d_fmt         "<U0025><U0064><U002F><U0025><U006D><U002F><U0025><U0079>"
++% %I:%M:%S %p
++t_fmt         "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070>"
++END LC_TIME
++
++LC_NUMERIC
++copy "es_PE"
++END LC_NUMERIC
++
++LC_MONETARY
++copy "es_PE"
++END LC_MONETARY
++
++LC_PAPER
++copy "es_PE"
++END LC_PAPER
++
++LC_MEASUREMENT
++copy "es_PE"
++END LC_MEASUREMENT
++
++LC_MESSAGES
++copy "es_PE"
++END LC_MESSAGES
++
++LC_NAME
++copy "es_PE"
++END LC_NAME
++
++LC_ADDRESS
++copy "es_PE"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "es_PE"
++END LC_TELEPHONE
+--- glibc-2.17/localedata/locales/sq_KV.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.17/localedata/locales/sq_KV	2013-01-04 19:58:07.801183096 +0100
+@@ -0,0 +1,123 @@
++% not ready to use, KV is not in ISO-3166 yet
++comment_char %
++escape_char /
++% Charset: UTF-8
++% WARNING: This file has been autogenerated by the Locale Helper application
++%          Check it carefully before using it in production.
++LC_IDENTIFICATION
++title        "Albanian language locale for Kosovo"
++source       "Albanian Language Team"
++address      "465 4th St. 2nd Floor, Palisades Park, NJ 07650, U.S.A."
++contact      "Agron Selimaj"
++email        "as9902613@gmail.com"
++tel          15513339780
++fax          ""
++language     "Albanian"
++territory    "Kosovo"
++revision     "0.01"
++date         "2010-04-08"
++%
++category  "sq_KV:2000";LC_IDENTIFICATION
++category  "sq_KV:2000";LC_CTYPE
++category  "sq_KV:2000";LC_COLLATE
++category  "sq_KV:2000";LC_TIME
++category  "sq_KV:2000";LC_NUMERIC
++category  "sq_KV:2000";LC_MONETARY
++category  "sq_KV:2000";LC_PAPER
++category  "sq_KV:2000";LC_MEASUREMENT
++category  "sq_KV:2000";LC_MESSAGES
++category  "sq_KV:2000";LC_NAME
++category  "sq_KV:2000";LC_ADDRESS
++category  "sq_KV:2000";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "sq_AL"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sq_AL"
++END LC_COLLATE
++
++LC_TIME
++copy "sq_AL"
++END LC_TIME
++
++LC_NUMERIC
++copy "sq_AL"
++END LC_NUMERIC
++
++LC_MONETARY
++% €
++currency_symbol    "<U20AC>"
++% EUR 
++int_curr_symbol    "<U0045><U0055><U0052><U0020>"
++% ,
++mon_decimal_point  "<U002C>"
++% .
++mon_thousands_sep  "<U002E>"
++mon_grouping       "3;3"
++positive_sign      ""
++% -
++negative_sign      "<U002D>"
++frac_digits        2
++int_frac_digits    2
++p_cs_precedes      0
++p_sep_by_space     1
++n_cs_precedes      0
++n_sep_by_space     1
++p_sign_posn        1
++n_sign_posn        1
++END LC_MONETARY
++
++LC_PAPER
++copy "sq_AL"
++END LC_PAPER
++
++LC_MEASUREMENT
++measurement 1
++END LC_MEASUREMENT
++
++LC_MESSAGES
++copy "sq_AL"
++END LC_MESSAGES
++
++LC_NAME
++copy "sq_AL"
++END LC_NAME
++
++LC_ADDRESS
++% %f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N
++postal_fmt   "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E><U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073><U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025><U004E><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
++% Kosovo
++country_name "<U004B><U006F><U0073><U006F><U0076><U006F>"
++% RKS
++country_post "<U0052><U004B><U0053>"
++% KV
++country_ab2  "<U004B><U0056>"
++% RKS
++country_ab3  "<U0052><U004B><U0053>"
++country_num  0
++% RKS
++country_car  "<U0052><U004B><U0053>"
++country_isbn 9951
++% Shqip
++lang_name    "<U0053><U0068><U0071><U0069><U0070>"
++% sq
++lang_ab      "<U0073><U0071>"
++% sqi
++lang_term    "<U0073><U0071><U0069>"
++% sqi
++lang_lib     "<U0073><U0071><U0069>"
++END LC_ADDRESS
++
++LC_TELEPHONE
++% +%c %a %l
++tel_int_fmt "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025><U006C>"
++% %A %l
++tel_dom_fmt "<U0025><U0041><U0020><U0025><U006C>"
++% 99
++int_select  "<U0039><U0039>"
++% 381
++int_prefix  "<U0033><U0038><U0031>"
++END LC_TELEPHONE
+--- glibc-2.17/localedata/SUPPORTED.orig	2013-01-02 18:57:37.301527124 +0100
++++ glibc-2.17/localedata/SUPPORTED	2013-01-04 20:05:11.367840933 +0100
+@@ -48,6 +48,7 @@
+ ar_YE/ISO-8859-6 \
+ ary_MA@latin/UTF-8 \
+ ayc_PE/UTF-8 \
++ay_PE/UTF-8 \
+ az_AZ/UTF-8 \
+ as_IN/UTF-8 \
+ ast_ES.UTF-8/UTF-8 \
+@@ -260,6 +261,7 @@
+ hy_AM/UTF-8 \
+ hy_AM.ARMSCII-8/ARMSCII-8 \
+ ia_FR/UTF-8 \
++ia/UTF-8 \
+ id_ID.UTF-8/UTF-8 \
+ id_ID/ISO-8859-1 \
+ ig_NG/UTF-8 \
+@@ -379,6 +381,7 @@
+ pt_PT.UTF-8/UTF-8 \
+ pt_PT/ISO-8859-1 \
+ pt_PT@euro/ISO-8859-15 \
++quz_PE/UTF-8 \
+ rm_CH.UTF-8/UTF-8 \
+ rm_CH/ISO-8859-1 \
+ ro_RO.ISO-8859-16/ISO-8859-16 \
+@@ -419,8 +422,14 @@
+ sq_AL.UTF-8/UTF-8 \
+ sq_AL/ISO-8859-1 \
+ sq_MK/UTF-8 \
++sr_BA@ijekavian.ISO-8859-5/ISO-8859-5 \
++sr_BA@ijekavian/UTF-8 \
++sr_BA@ijekavianlatin.ISO-8859-2/ISO-8859-2 \
++sr_BA@ijekavianlatin/UTF-8 \
+ sr_ME.ISO-8859-5/ISO-8859-5 \
+ sr_ME/UTF-8 \
++sr_ME@latin.ISO-8859-16/ISO-8859-16 \
++sr_ME@latin/UTF-8 \
+ sr_RS.ISO-8859-5/ISO-8859-5 \
+ sr_RS/UTF-8 \
+ sr_RS.ISO-8859-2@latin/ISO-8859-2 \

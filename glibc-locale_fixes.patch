@@ -3761,3 +3761,49 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
 +lang_lib    "<U0077><U006F><U006C>"
  END LC_ADDRESS
 -
+--- glibc-2.17/localedata/locales/sr_ME.orig	2012-12-25 04:02:13.000000000 +0100
++++ glibc-2.17/localedata/locales/sr_ME	2013-01-04 15:59:24.058148312 +0100
+@@ -149,7 +149,7 @@
+ country_name  "<U0426><U0440><U043D><U0430><U0020><U0413><U043E><U0440><U0430>"
+ country_num   499
+ country_car   "<U004D><U004E><U0045>"
+-country_isbn  "<U0038><U0036>"
++country_isbn  "<U0039><U0039><U0034><U0030>"
+ lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
+ lang_term     "<U0073><U0072><U0070>"
+ lang_lib      "<U0073><U0063><U0063>"
+@@ -157,7 +157,11 @@
+ END LC_ADDRESS
+ 
+ LC_TELEPHONE
+-copy "sr_RS"
++tel_int_fmt   "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
++<U006C>"
++tel_dom_fmt   "<U0025><U0041><U0020><U0025><U006C>"
++int_prefix    "<U0033><U0038><U0032>"
++int_select    "<U0030><U0030>"
+ END LC_TELEPHONE
+ 
+ LC_MEASUREMENT
+--- glibc-2.17/localedata/locales/bo_CN.orig	2012-12-25 04:02:13.000000000 +0100
++++ glibc-2.17/localedata/locales/bo_CN	2013-01-05 07:58:03.573616094 +0100
+@@ -145,7 +145,7 @@
+ LC_NAME
+ % FIXME
+ 
+-name_fmt  ""
++name_fmt  "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
+ % name_gen	"FIXME"
+ % name_miss	"FIXME"
+ % name_mr	"FIXME"
+--- glibc-2.17/localedata/locales/bo_IN.orig	2012-12-25 04:02:13.000000000 +0100
++++ glibc-2.17/localedata/locales/bo_IN	2013-01-05 07:59:33.026947563 +0100
+@@ -70,7 +70,7 @@
+ 
+ LC_NAME
+ % FIXME
+-name_fmt	""
++name_fmt	"<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
+ % name_gen	"FIXME"
+ % name_miss	"FIXME"
+ % name_mr	"FIXME"
