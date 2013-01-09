@@ -62,6 +62,7 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
+Patch12:	%{name}-format.patch
 
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
@@ -942,6 +943,7 @@ exit 1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 %patch14 -p0
 %patch15 -p1
@@ -1027,7 +1029,7 @@ cd ..
 %if %{with tests}
 cd builddir
 env LANGUAGE=C LC_ALL=C \
-%{__make} tests 2>&1 | awk '
+%{__make} -j1 tests 2>&1 | awk '
 BEGIN { file = "" }
 {
 	if (($0 ~ /\*\*\* \[.*\.out\] Error/) && ($0 !~ /annexc/) && (file == "")) {
