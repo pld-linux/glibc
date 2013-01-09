@@ -1,0 +1,48 @@
+--- glibc-2.17/stdio-common/test-vfprintf.c~	2012-12-25 04:02:13.000000000 +0100
++++ glibc-2.17/stdio-common/test-vfprintf.c	2013-01-09 22:34:39.763896649 +0100
+@@ -92,7 +92,7 @@
+       fprintf (fp, "%s", large);
+       fprintf (fp, "%.*s", 30000, large);
+       large[20000] = '\0';
+-      fprintf (fp, large);
++      fprintf (fp, "%s", large);
+       fprintf (fp, "%-1.300000000s", "hello");
+ 
+       if (fflush (fp) != 0 || ferror (fp) != 0 || fclose (fp) != 0)
+--- glibc-2.17/posix/regexbug1.c~	2012-12-25 04:02:13.000000000 +0100
++++ glibc-2.17/posix/regexbug1.c	2013-01-09 22:36:56.763888226 +0100
+@@ -18,7 +18,7 @@
+     {
+       char buf[100];
+       regerror (reerr, &re, buf, sizeof buf);
+-      error (EXIT_FAILURE, 0, buf);
++      error (EXIT_FAILURE, 0, "%s", buf);
+     }
+ 
+   if (regexec (&re, "002", 2, ma, 0) != 0)
+@@ -35,7 +35,7 @@
+     {
+       char buf[100];
+       regerror (reerr, &re, buf, sizeof buf);
+-      error (EXIT_FAILURE, 0, buf);
++      error (EXIT_FAILURE, 0, "%s", buf);
+     }
+ 
+   if (regexec (&re, "002", 2, ma, 0) != 0)
+--- glibc-2.17/misc/tst-error1.c~	2012-12-25 04:02:13.000000000 +0100
++++ glibc-2.17/misc/tst-error1.c	2013-01-09 22:38:17.262508638 +0100
+@@ -15,10 +15,10 @@
+   static const char str[] = "hello world! ";
+   for (int i = 0; i < 1000; ++i)
+     memcpy (&buf[i * (sizeof (str) - 1)], str, sizeof (str));
+-  error (0, 0, str);
+-  error (0, 0, buf);
+-  error (0, 0, buf);
+-  error (0, 0, str);
++  error (0, 0, "%s", str);
++  error (0, 0, "%s", buf);
++  error (0, 0, "%s", buf);
++  error (0, 0, "%s", str);
+   return 0;
+ }
+ 
