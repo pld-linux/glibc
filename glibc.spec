@@ -1,4 +1,5 @@
 # TODO:
+# - restore --with-pkgversion when tcl upstream fixes the #3599098 (broken platform::identify).
 # - --enable-systemtap
 # - look at locale fixes/updates in bugzilla
 # - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
@@ -34,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1003,7 +1004,6 @@ PATH=$(pwd)/alt-tools:$PATH; export PATH
 AWK="gawk" \
 ../%configure \
 	--with-bugurl=http://bugs.pld-linux.org/ \
-	--with-pkgversion="%{name}-%{epoch}:%{version}-%{release}.%{_target_cpu}" \
 	--with-binutils=$(pwd)/alt-tools \
 	--enable-kernel="%{min_kernel}" \
 	--with-headers=%{_includedir} \
