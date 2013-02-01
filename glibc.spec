@@ -129,6 +129,7 @@ Conflicts:	man-pages < 1.43
 Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
+Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
 ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
