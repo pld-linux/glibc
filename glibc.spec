@@ -1276,6 +1276,18 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # rpcinfo dropped from glibc, provided by rpcbind now
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/{,*/}man8/rpcinfo.8
 
+# stub for man page from man-pages package to make rpm consistency check happy
+# don't package them here
+:>$RPM_BUILD_ROOT%{_mandir}/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/ru/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/es/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/fr/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/ja/man2/syslog.2
+
+# remove links to non existant translations
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/pl/man3/{alphasort,cfgetispeed,cfgetospeed,cfmakeraw,cfsetispeed,cfsetospeed,closelog,dn_comp,dn_expand,fscanf}.3
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/it/man7/latin2.7
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
