@@ -1278,6 +1278,7 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 # stub for man page from man-pages package to make rpm consistency check happy
 # don't package them here
+install -d $RPM_BUILD_ROOT%{_mandir}{/,/ru,/es,/fr,/ja}/man2
 :>$RPM_BUILD_ROOT%{_mandir}/man2/syslog.2
 :>$RPM_BUILD_ROOT%{_mandir}/ru/man2/syslog.2
 :>$RPM_BUILD_ROOT%{_mandir}/es/man2/syslog.2
