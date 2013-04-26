@@ -1577,6 +1577,9 @@ fi
 %lang(zh_CN) %{_mandir}/zh_CN/man7/*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
+# exclude unpackaged stubs
+%exclude %{_mandir}/man2/syslog.2*
+%exclude %{_mandir}/*/man2/syslog.2*
 
 %files misc
 %defattr(644,root,root,755)
