@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -107,6 +107,7 @@ BuildRequires:	rpmbuild(macros) >= 1.567
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
+Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
@@ -1052,9 +1053,9 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{default,logrotate.d,rc.d/init.d,sysconfig,init} \
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,default,logrotate.d,init} \
 	$RPM_BUILD_ROOT{%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd} \
-	$RPM_BUILD_ROOT{/var/cache/ldconfig,/usr/lib/tmpfiles.d}
+	$RPM_BUILD_ROOT{/var/cache/ldconfig,%{systemdtmpfilesdir}}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1132,7 +1133,7 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/tzselect.8*
 : > $RPM_BUILD_ROOT/var/lib/nscd/group
 : > $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
-install %{SOURCE9} $RPM_BUILD_ROOT/usr/lib/tmpfiles.d/nscd.conf
+install %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 
 rm -rf documentation
 install -d documentation
@@ -1144,7 +1145,7 @@ cp -af crypt/README.ufc-crypt ChangeLog* documentation
 
 # Collect locale files and mark them with %%lang()
 echo '%defattr(644,root,root,755)' > glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/*; do
+for i in $RPM_BUILD_ROOT%{_localedir}/*; do
 	if [ -d $i ]; then
 		lang=$(basename $i)
 		dir="${i#$RPM_BUILD_ROOT}"
@@ -1246,21 +1247,21 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@latin be@tarask \
 	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
 	tig tk tl tlh tn ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo \
 	zh_HK zu; do
-	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
-		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
+	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES ]; then
+		install -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
 		lang=$(echo $i | sed -e 's/@quot\>\|@boldquot\>//')
-		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
+		echo "%lang($lang) %{_localedir}/$i" >> glibc.lang
 	fi
 done
 
 # LC_TIME category, used for localized date formats (at least by coreutils)
 for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu ia id it ja kk ko lg lt \
 	ms nb nl pl pt pt_BR ro ru rw sk sl sv tr uk vi zh_CN zh_TW; do
-	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i ]; then
-		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
+	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i ]; then
+		echo "%lang($lang) %{_localedir}/$i" >> glibc.lang
 	fi
-	install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_TIME
+	install -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_TIME
 done
 
 # localedb-gen infrastructure
@@ -1475,8 +1476,8 @@ fi
 %dir %{_libexecdir}/getconf
 %attr(755,root,root) %{_libexecdir}/getconf/*
 
-%dir %{_datadir}/locale
-%{_datadir}/locale/locale.alias
+%dir %{_localedir}
+%{_localedir}/locale.alias
 
 %{_mandir}/man1/getconf.1*
 %{_mandir}/man1/getent.1*
@@ -1756,7 +1757,7 @@ fi
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
-/usr/lib/tmpfiles.d/nscd.conf
+%{systemdtmpfilesdir}/nscd.conf
 %dir /var/run/nscd
 %dir /var/lib/nscd
 %attr(600,root,root) %ghost /var/lib/nscd/passwd
