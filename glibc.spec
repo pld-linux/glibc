@@ -1206,6 +1206,7 @@ done
 # eo=common
 # es=es_ES
 # eu=eu_ES
+# fa=fa_IR
 # ff=ff_SN
 # fr=fr_FR
 # fy=fy_NL
