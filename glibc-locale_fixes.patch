@@ -224,18 +224,13 @@ diff -uNr libc.orig/localedata/locales/ar_LB libc/localedata/locales/ar_LB
 diff -uNr libc.orig/localedata/locales/ar_LY libc/localedata/locales/ar_LY
 --- libc.orig/localedata/locales/ar_LY	2003-12-05 01:25:56.000000000 +0100
 +++ libc/localedata/locales/ar_LY	2004-11-10 02:36:38.000000000 +0100
-@@ -184,7 +184,18 @@
+@@ -184,7 +184,13 @@
  country_ab2 "<U004C><U0059>"
  country_ab3 "<U004C><U0042><U0059>"
  country_num 434
 -
-+country_name "<U0627><U0644><U062C><U0645><U0627><U0647><U064A><U0631>/
-+<U064A><U0651><U0629><U0020><U0627><U0644><U0639><U0631><U0628><U064A>/
-+<U0651><U0629><U0020><U0627><U0644><U0644><U0651><U064A><U0628><U064A>/
-+<U0651><U0629><U0020><U0627><U0644><U0634><U0651><U0639><U0628><U064A>/
-+<U0651><U0629><U0020><U0627><U0644><U0627><U0634><U062A><U0631><U0627>/
-+<U0643><U064A><U0651><U0629>"
-+country_car "<U004C><U0042><U0059>"
++country_name "<U0644><U064A><U0628><U064A><U0627>"
++country_car "<U004C><U0041><U0052>"
 +country_isbn "<U0039><U0039><U0035><U0039>"
 +lang_name   "<U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
