@@ -29,7 +29,7 @@ diff -uNr libc.orig/localedata/locales/am_ET libc/localedata/locales/am_ET
 diff -uNr libc.orig/localedata/locales/an_ES libc/localedata/locales/an_ES
 --- libc.orig/localedata/locales/an_ES	2003-08-25 10:27:32.000000000 +0200
 +++ libc/localedata/locales/an_ES	2004-11-10 02:36:38.000000000 +0100
-@@ -122,5 +122,17 @@
+@@ -122,5 +122,19 @@
  END LC_NAME
  
  LC_ADDRESS
@@ -42,8 +42,10 @@ diff -uNr libc.orig/localedata/locales/an_ES libc/localedata/locales/an_ES
 +country_ab2   "<U0045><U0053>"
 +country_ab3   "<U0045><U0053><U0050>"
 +country_num   724
++country_name  "<U0045><U0063><U0070><U0061><U006E><U0077><U0061>"
 +country_car   "<U0045>"
 +country_isbn  "<U0038><U0034>"
++lang_name     "<U0041><U0072><U0061><U0067><U006F><U006E><U00E9><U0073>"
 +lang_ab       "<U0061><U006E>"
 +lang_term     "<U0061><U0072><U0067>"
 +lang_lib      "<U0061><U0072><U0067>"
