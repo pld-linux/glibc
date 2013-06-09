@@ -1,4 +1,5 @@
 # TODO:
+# - restore --with-pkgversion when tcl upstream fixes the #3599098 (broken platform::identify).
 # - --enable-systemtap
 # - look at locale fixes/updates in bugzilla
 # - no more chicken-egg problem (postshell is no more dynamically linked with libc), remove SONAME symlinks? see files section.
@@ -34,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -62,7 +63,8 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
-
+Patch12:	%{name}-format.patch
+Patch13:	%{name}-git.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
@@ -105,6 +107,7 @@ BuildRequires:	rpmbuild(macros) >= 1.567
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
+Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
@@ -127,6 +130,7 @@ Conflicts:	man-pages < 1.43
 Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
+Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
 ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -942,7 +946,8 @@ exit 1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-
+%patch12 -p1
+%patch13 -p1
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
@@ -1001,7 +1006,6 @@ PATH=$(pwd)/alt-tools:$PATH; export PATH
 AWK="gawk" \
 ../%configure \
 	--with-bugurl=http://bugs.pld-linux.org/ \
-	--with-pkgversion="%{name}-%{epoch}:%{version}-%{release}.%{_target_cpu}" \
 	--with-binutils=$(pwd)/alt-tools \
 	--enable-kernel="%{min_kernel}" \
 	--with-headers=%{_includedir} \
@@ -1027,7 +1031,7 @@ cd ..
 %if %{with tests}
 cd builddir
 env LANGUAGE=C LC_ALL=C \
-%{__make} tests 2>&1 | awk '
+%{__make} -j1 tests 2>&1 | awk '
 BEGIN { file = "" }
 {
 	if (($0 ~ /\*\*\* \[.*\.out\] Error/) && ($0 !~ /annexc/) && (file == "")) {
@@ -1049,9 +1053,9 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{default,logrotate.d,rc.d/init.d,sysconfig,init} \
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,default,logrotate.d,init} \
 	$RPM_BUILD_ROOT{%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd} \
-	$RPM_BUILD_ROOT{/var/cache/ldconfig,/usr/lib/tmpfiles.d}
+	$RPM_BUILD_ROOT{/var/cache/ldconfig,%{systemdtmpfilesdir}}
 
 cd builddir
 env LANGUAGE=C LC_ALL=C \
@@ -1129,7 +1133,7 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/tzselect.8*
 : > $RPM_BUILD_ROOT/var/lib/nscd/group
 : > $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
-install %{SOURCE9} $RPM_BUILD_ROOT/usr/lib/tmpfiles.d/nscd.conf
+install %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 
 rm -rf documentation
 install -d documentation
@@ -1141,7 +1145,7 @@ cp -af crypt/README.ufc-crypt ChangeLog* documentation
 
 # Collect locale files and mark them with %%lang()
 echo '%defattr(644,root,root,755)' > glibc.lang
-for i in $RPM_BUILD_ROOT%{_datadir}/locale/*; do
+for i in $RPM_BUILD_ROOT%{_localedir}/*; do
 	if [ -d $i ]; then
 		lang=$(basename $i)
 		dir="${i#$RPM_BUILD_ROOT}"
@@ -1243,21 +1247,21 @@ for i in aa aa@saaho af am an ang ar ar_TN as ast az be@latin be@tarask \
 	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
 	tig tk tl tlh tn ts tt ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo \
 	zh_HK zu; do
-	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES ]; then
-		install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_MESSAGES
+	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES ]; then
+		install -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
 		lang=$(echo $i | sed -e 's/@quot\>\|@boldquot\>//')
-		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
+		echo "%lang($lang) %{_localedir}/$i" >> glibc.lang
 	fi
 done
 
 # LC_TIME category, used for localized date formats (at least by coreutils)
-for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu id it ja kk ko lg lt \
+for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu ia id it ja kk ko lg lt \
 	ms nb nl pl pt pt_BR ro ru rw sk sl sv tr uk vi zh_CN zh_TW; do
-	if [ ! -d $RPM_BUILD_ROOT%{_datadir}/locale/$i ]; then
-		echo "%lang($lang) %{_datadir}/locale/$i" >> glibc.lang
+	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i ]; then
+		echo "%lang($lang) %{_localedir}/$i" >> glibc.lang
 	fi
-	install -d $RPM_BUILD_ROOT%{_datadir}/locale/$i/LC_TIME
+	install -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_TIME
 done
 
 # localedb-gen infrastructure
@@ -1272,6 +1276,19 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/pt_chown
 # rpcinfo dropped from glibc, provided by rpcbind now
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/{,*/}man8/rpcinfo.8
+
+# stub for man page from man-pages package to make rpm consistency check happy
+# don't package them here
+install -d $RPM_BUILD_ROOT%{_mandir}{/,/ru,/es,/fr,/ja}/man2
+:>$RPM_BUILD_ROOT%{_mandir}/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/ru/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/es/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/fr/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/ja/man2/syslog.2
+
+# remove links to non existant translations
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/pl/man3/{alphasort,cfgetispeed,cfgetospeed,cfmakeraw,cfsetispeed,cfsetospeed,closelog,dn_comp,dn_expand,fscanf}.3
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/it/man7/latin2.7
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -1459,8 +1476,8 @@ fi
 %dir %{_libexecdir}/getconf
 %attr(755,root,root) %{_libexecdir}/getconf/*
 
-%dir %{_datadir}/locale
-%{_datadir}/locale/locale.alias
+%dir %{_localedir}
+%{_localedir}/locale.alias
 
 %{_mandir}/man1/getconf.1*
 %{_mandir}/man1/getent.1*
@@ -1740,7 +1757,7 @@ fi
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
-/usr/lib/tmpfiles.d/nscd.conf
+%{systemdtmpfilesdir}/nscd.conf
 %dir /var/run/nscd
 %dir /var/lib/nscd
 %attr(600,root,root) %ghost /var/lib/nscd/passwd
