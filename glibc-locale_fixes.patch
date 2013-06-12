@@ -125,7 +125,7 @@ diff -uNr libc.orig/localedata/locales/ar_EG libc/localedata/locales/ar_EG
  country_num 818
 -
 +country_name "<U0645><U0635><U0631>"
-+country_car "<U0045><U0055>"
++country_car "<U0045><U0054>"
 +country_isbn "<U0039><U0037><U0037>"
 +lang_name   "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
