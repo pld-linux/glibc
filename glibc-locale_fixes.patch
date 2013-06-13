@@ -286,7 +286,7 @@ diff -uNr libc.orig/localedata/locales/ar_QA libc/localedata/locales/ar_QA
  country_num 634
 -
 +country_name "<U0642><U0637><U0631>"
-+country_car "<U0051><U0041>"
++country_car "<U0051>"
 +country_isbn "<U0039><U0039><U0039><U0032><U0031>"
 +lang_name   "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
 +lang_ab     "<U0061><U0072>"
