@@ -778,7 +778,7 @@ diff -uNr libc.orig/localedata/locales/de_LU libc/localedata/locales/de_LU
  country_ab3 "<U004C><U0055><U0058>"
  country_num 442
 +country_car "<U004C>"
-+country_isbn "<U0032>"
++country_isbn "<U0039><U0039><U0039><U0035><U0039>"
 +lang_name   "<U0044><U0065><U0075><U0074><U0073><U0063><U0068>"
 +lang_ab     "<U0064><U0065>"
 +lang_term   "<U0064><U0065><U0075>"
