@@ -500,7 +500,7 @@ diff -uNr libc.orig/localedata/locales/bn_IN libc/localedata/locales/bn_IN
 diff -uNr libc.orig/localedata/locales/br_FR libc/localedata/locales/br_FR
 --- libc.orig/localedata/locales/br_FR	2004-04-29 00:55:01.000000000 +0200
 +++ libc/localedata/locales/br_FR	2004-11-10 02:36:38.000000000 +0100
-@@ -157,8 +157,19 @@
+@@ -157,8 +157,20 @@
  END LC_NAME
  
  LC_ADDRESS
@@ -516,6 +516,7 @@ diff -uNr libc.orig/localedata/locales/br_FR libc/localedata/locales/br_FR
 +country_num 250
 +country_car "<U0046>"
 +country_isbn "<U0032>"
++lang_name   "<U0042><U0072><U0065><U007A><U0068><U006F><U006E><U0065><U0067>"
 +lang_ab     "<U0062><U0072>"
 +lang_term   "<U0062><U0072><U0065>"
 +lang_lib    "<U0062><U0072><U0065>"
