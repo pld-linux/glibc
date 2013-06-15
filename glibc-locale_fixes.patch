@@ -831,7 +831,7 @@ diff -uNr libc.orig/localedata/locales/en_BW libc/localedata/locales/en_BW
  country_ab2 "<U0042><U0057>"
  country_ab3 "<U0042><U0057><U0041>"
  country_num 072
-+country_isbn "<U0039><U0039><U0039><U0031><U0032>"
++country_isbn "99912,99968"
 +lang_name   "<U0045><U006E><U0067><U006C><U0069><U0073><U0068>"
 +lang_ab     "<U0065><U006E>"
 +lang_term   "<U0065><U006E><U0067>"
