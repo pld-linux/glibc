@@ -823,7 +823,7 @@ diff -uNr libc.orig/localedata/locales/en_AU libc/localedata/locales/en_AU
 diff -uNr libc.orig/localedata/locales/en_BW libc/localedata/locales/en_BW
 --- libc.orig/localedata/locales/en_BW	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/en_BW	2004-11-10 02:36:38.000000000 +0100
-@@ -111,7 +111,13 @@
+@@ -111,7 +111,14 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
@@ -831,6 +831,7 @@ diff -uNr libc.orig/localedata/locales/en_BW libc/localedata/locales/en_BW
  country_ab2 "<U0042><U0057>"
  country_ab3 "<U0042><U0057><U0041>"
  country_num 072
++country_car "<U0052><U0042>"
 +country_isbn "99912,99968"
 +lang_name   "<U0045><U006E><U0067><U006C><U0069><U0073><U0068>"
 +lang_ab     "<U0065><U006E>"
