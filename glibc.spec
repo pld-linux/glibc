@@ -1216,6 +1216,7 @@ done
 # nds=nds_DE
 # nl=nl_NL
 # om=om_ET
+# or=or_IN
 # pa=pa_IN
 # pt=pt_PT
 # ru=ru_RU
