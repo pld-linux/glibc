@@ -18,34 +18,4 @@
    (void) memset ((char *) &cmd, 0, sizeof (struct commandline));
    clear_args ();
    if (!parseargs (argc, argv, &cmd))
---- glibc-2.3.1/argp/argp-parse.c.orig	Mon Apr  8 10:19:12 2002
-+++ glibc-2.3.1/argp/argp-parse.c	Mon Nov 11 14:09:28 2002
-@@ -99,8 +99,8 @@
- {
-   {"help",	  '?',    	0, 0,  N_("Give this help list"), -1},
-   {"usage",	  OPT_USAGE,	0, 0,  N_("Give a short usage message")},
--  {"program-name",OPT_PROGNAME,"NAME", OPTION_HIDDEN, N_("Set the program name")},
--  {"HANG",	  OPT_HANG,    "SECS", OPTION_ARG_OPTIONAL | OPTION_HIDDEN,
-+  {"program-name",OPT_PROGNAME,N_("NAME"), OPTION_HIDDEN, N_("Set the program name")},
-+  {"HANG",	  OPT_HANG,    N_("SECS"), OPTION_ARG_OPTIONAL | OPTION_HIDDEN,
-      N_("Hang for SECS seconds (default 3600)")},
-   {0, 0}
- };
---- glibc-2.4/po/pl.po.orig	2006-06-30 23:24:08.618916500 +0200
-+++ glibc-2.4/po/pl.po	2006-06-30 23:30:04.281144000 +0200
-@@ -67,9 +67,13 @@
- msgid "Set the program name"
- msgstr "Określenie nazwy programu"
- 
-+#: argp/argp-parse.c:105
-+msgid "SECS"
-+msgstr "SEK"
-+
- #: argp/argp-parse.c:105
- msgid "Hang for SECS seconds (default 3600)"
--msgstr "Zatrzymanie na SECS sekund (domyślnie 3600)"
-+msgstr "Zatrzymanie na SEK sekund (domyślnie 3600)"
- 
- #: argp/argp-parse.c:166
- msgid "Print program version"
 

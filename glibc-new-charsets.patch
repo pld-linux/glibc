@@ -733,15 +733,14 @@ diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/
  % source: Iranian standard ISIRI 3342 (1993)
  % author: Pablo Saratxaga, and Roozbeh Pournader
  % email: pablo@mandrakesoft.com, roozbeh@sina.sharif.ac.ir
-- 
-+
+ 
 +% Changes from 0.2 to 0.3:
 +%
-+%	Changed the mnemonic for 0xA6 from <.+> to <.a>
++%      Changed the mnemonic for 0xA6 from <.+> to <.a>
 +%
-+%	Exchanged the Unicode equilavents for 0xE6 and 0xE7, to reflect
-+%	the change in the mirroring behaviour of U+00AB and U+00BB
-+%	between versions 2.1.5 and 2.1.8 of the Unicode Standard.
++%      Exchanged the Unicode equilavents for 0xE6 and 0xE7, to reflect
++%      the change in the mirroring behaviour of U+00AB and U+00BB
++%      between versions 2.1.5 and 2.1.8 of the Unicode Standard.
 +
  % I think the mnemonic for upper space (0xA0) should be different from
  % lower space (0x20). Because the semantics are different, although they

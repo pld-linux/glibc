@@ -21,7 +21,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.17
+%define		core_version	2.18
 %define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
@@ -35,12 +35,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	87bf675c8ee523ebda4803e8e1cec638
+# Source0-md5:	88fbbceafee809e82efd52efa1e3c58f
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -64,7 +64,7 @@ Patch9:		%{name}-java-libc-wait.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
 Patch12:	%{name}-format.patch
-Patch13:	%{name}-git.patch
+
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
@@ -79,7 +79,7 @@ Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
 
 Patch29:	%{name}-arm-alignment-fix.patch
-Patch30:	%{name}-bug-12492.patch
+
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
 
@@ -947,12 +947,13 @@ exit 1
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
+
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
-%patch18 -p1
+# FIXME
+#%patch18 -p1
 %patch19 -p1
 %patch20 -p1
 %{?with_cross:%patch21 -p1}
@@ -963,7 +964,7 @@ exit 1
 %patch26 -p1
 
 %patch29 -p1
-%patch30 -p0
+
 %patch31 -p1
 %patch32 -p1
 
