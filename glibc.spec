@@ -100,7 +100,7 @@ BuildRequires:	gcc >= 6:4.3
 BuildRequires:	gettext-devel >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
-BuildRequires:	nss-devel >= 1:3.12.3
+BuildRequires:	nss-devel >= 1:3.15.1-2
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpmbuild(macros) >= 1.567
@@ -1080,7 +1080,7 @@ install -p elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install -p elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 # Include %{_libdir}/gconv/gconv-modules.cache
-LD_PRELOAD=$(pwd)/elf/ld.so:$(pwd)/libc.so.6 ./iconv/iconvconfig --nostdlib --prefix=$RPM_BUILD_ROOT %{_libdir}/gconv -o $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
+$(pwd)/elf/ld.so --library-path $(pwd) ./iconv/iconvconfig --nostdlib --prefix=$RPM_BUILD_ROOT %{_libdir}/gconv -o $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
 cd ..
 
 %if %{without cross}
@@ -1275,8 +1275,6 @@ install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 # shutup check-files
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/README.*
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
-# we don't support kernel without ptys support
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/pt_chown
 # rpcinfo dropped from glibc, provided by rpcbind now
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/{,*/}man8/rpcinfo.8
 
