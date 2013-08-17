@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -952,8 +952,7 @@ exit 1
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
-# FIXME
-#%patch18 -p1
+%patch18 -p1
 %patch19 -p1
 %patch20 -p1
 %{?with_cross:%patch21 -p1}
