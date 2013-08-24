@@ -1142,21 +1142,12 @@ diff -uNr libc.orig/localedata/locales/es_CO libc/localedata/locales/es_CO
 diff -uNr libc.orig/localedata/locales/es_DO libc/localedata/locales/es_DO
 --- libc.orig/localedata/locales/es_DO	2003-12-07 14:00:21.000000000 +0100
 +++ libc/localedata/locales/es_DO	2004-11-10 02:36:38.000000000 +0100
-@@ -134,7 +133,7 @@
- LC_TELEPHONE
- tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
- <U006C>"
--int_prefix     "<U0031><U0038><U0030><U0039>"
-+int_prefix     "<U0038><U0030><U0039>"
- int_select     "<U0030><U0031><U0031>"
- END LC_TELEPHONE
- 
 @@ -154,7 +153,15 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
-+country_name  "<U0044><U006F><U006D><U0069><U006E><U0069><U0063><U0061>/
-+<U006E><U0061>"
++country_name  "<U0052><U0065><U0070><U00FA><U0062><U006C><U0069><U0063>/
++<U0061><U0020><U0044><U006F><U006D><U0069><U006E><U0069><U0063><U0061><U006E><U0061>"
  country_ab2   "<U0044><U004F>"
  country_ab3   "<U0044><U004F><U004D>"
  country_num   214
