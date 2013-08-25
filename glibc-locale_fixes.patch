@@ -1778,7 +1778,7 @@ diff -uNr libc.orig/localedata/locales/he_IL libc/localedata/locales/he_IL
  country_ab2 "<U0049><U004E>"
  country_ab3 "<U0049><U004E><U0044>"
  country_num 356
-+country_name "<U0954><U0965><U0930><U0924>"
++country_name "<U092D><U093E><U0930><U0924>"
 +country_car "<U0049><U004E><U0044>"
 +country_isbn "81,93"
 +lang_name   "<U0939><U093F><U0928><U094D><U0926><U0940>"
