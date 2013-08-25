@@ -1641,9 +1641,14 @@ diff -uNr libc.orig/localedata/locales/ga_IE libc/localedata/locales/ga_IE
  END LC_ADDRESS
 --- glibc-2.5/localedata/locales/gez_ER.orig	2006-07-31 00:19:44.000000000 +0200
 +++ glibc-2.5/localedata/locales/gez_ER	2006-10-05 13:40:18.995971000 +0200
-@@ -110,13 +110,9 @@
- % country_car   unknown
- % country_isbn  unknown, Need ISO 2108
+@@ -107,16 +107,12 @@
+ country_ab2   "<U0045><U0052>"
+ country_ab3   "<U0045><U0052><U0049>"
+ country_num   232
+-% country_car   unknown
+-% country_isbn  unknown, Need ISO 2108
++country_car   "<U0045><U0052>"
++country_isbn  "<U0039><U0039><U0039><U0034><U0038>"
  lang_name     "<U130D><U12D5><U12DD>"
 -%lang_ab       "<U0067><U0065><U007A>"
 +lang_ab       ""
@@ -1659,11 +1664,13 @@ diff -uNr libc.orig/localedata/locales/ga_IE libc/localedata/locales/ga_IE
  
 --- glibc-2.5/localedata/locales/gez_ET.orig	2006-07-31 00:19:44.000000000 +0200
 +++ glibc-2.5/localedata/locales/gez_ET	2006-10-05 13:41:03.145971000 +0200
-@@ -108,15 +108,11 @@
+@@ -107,16 +107,12 @@
+ country_ab2   "<U0045><U0054>"
  country_ab3   "<U0045><U0054><U0048>"
  country_num   231   % 210 found in at least one ISO 3166 doc
- % country_car   unknown
+-% country_car   unknown
 -% country_isbn  unknown, Need ISO 2108
++country_car   "<U0045><U0054><U0048>"
 +country_isbn  "<U0039><U0039><U0039><U0034><U0034>"
  lang_name     "<U130D><U12D5><U12DD>"
 -%lang_ab       "<U0067><U0065><U007A>"
