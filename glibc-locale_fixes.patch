@@ -1804,7 +1804,7 @@ diff -uNr libc.orig/localedata/locales/hr_HR libc/localedata/locales/hr_HR
 +lang_name   "<U0048><U0072><U0076><U0061><U0074><U0073><U006B><U0069>"
 +lang_ab     "<U0068><U0072>"
 +lang_term   "<U0068><U0072><U0076>"
-+lang_lib    "<U0073><U0063><U0072>"
++lang_lib    "<U0068><U0072><U0076>"
  END LC_ADDRESS
 diff -uNr libc.orig/localedata/locales/hu_HU libc/localedata/locales/hu_HU
 --- libc.orig/localedata/locales/hu_HU	2003-12-07 14:00:22.000000000 +0100
