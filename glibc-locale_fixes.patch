@@ -2004,11 +2004,13 @@ diff -uNr libc.orig/localedata/locales/kk_KZ libc/localedata/locales/kk_KZ
 diff -uNr libc.orig/localedata/locales/kl_GL libc/localedata/locales/kl_GL
 --- libc.orig/localedata/locales/kl_GL	2003-12-05 01:25:58.000000000 +0100
 +++ libc/localedata/locales/kl_GL	2004-11-10 02:36:38.000000000 +0100
-@@ -143,4 +143,8 @@
+@@ -143,4 +143,10 @@
  country_ab2 "<U0047><U004C>"
  country_ab3 "<U0047><U0052><U004C>"
  country_num 304
++country_name "<U004B><U0061><U006C><U0061><U0061><U006C><U006C><U0069><U0074><U0020><U004E><U0075><U0061><U0061><U0074>"
 +country_isbn "<U0038><U0037>"
++lang_name   "<U004B><U0061><U006C><U0061><U0061><U006C><U006C><U0069><U0073><U0075><U0074>"
 +lang_ab     "<U006B><U006C>"
 +lang_term   "<U006B><U0061><U006C>"
 +lang_lib    "<U006B><U0061><U006C>"
