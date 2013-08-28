@@ -2383,12 +2383,14 @@ diff -uNr libc.orig/localedata/locales/nb_NO libc/localedata/locales/nb_NO
 diff -uNr libc.orig/localedata/locales/ne_NP libc/localedata/locales/ne_NP
 --- libc.orig/localedata/locales/ne_NP	2003-12-05 01:25:58.000000000 +0100
 +++ libc/localedata/locales/ne_NP	2004-11-10 02:36:38.000000000 +0100
-@@ -191,15 +191,18 @@
+@@ -191,15 +191,20 @@
  country_ab2 "<U004E><U0050>"
  country_ab3 "<U004E><U0050><U004C>"
  country_num 524
 +country_car "<U004E><U0045><U0050>"
-+country_isbn "99933,99946"
++country_isbn "9937,99933,99946"
++country_name "<U0928><U0947><092A><U093E><U0932>"
++lang_name   "<U0928><U0947><092A><U093E><U0932><U0940>"
 +lang_ab     "<U006E><U0065>"
 +lang_term   "<U006E><U0065><U0070>"
 +lang_lib    "<U006E><U0065><U0070>"
