@@ -2586,12 +2586,14 @@ diff -uNr libc.orig/localedata/locales/om_KE libc/localedata/locales/om_KE
 diff -uNr libc.orig/localedata/locales/pa_IN libc/localedata/locales/pa_IN
 --- libc.orig/localedata/locales/pa_IN	2003-12-07 14:00:22.000000000 +0100
 +++ libc/localedata/locales/pa_IN	2004-11-10 02:36:38.000000000 +0100
-@@ -187,6 +187,11 @@
+@@ -187,6 +187,13 @@
  country_ab2 "<U0049><U004E>"
  country_ab3 "<U0049><U004E><U0044>"
  country_num 356
 +country_car "<U0049><U004E><U0044>"
 +country_isbn "81,93"
++country_name "<U0A2D><U0A3E><U0A30><U0A24>"
++lang_name   "<U0A2A><U0A70><U0A1C><U0A3E><U0A2C><U0A40>"
 +lang_ab     "<U0070><U0061>"
 +lang_term   "<U0070><U0061><U006E>"
 +lang_lib    "<U0070><U0061><U006E>"
