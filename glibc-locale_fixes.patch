@@ -3026,12 +3026,13 @@ diff -uNr libc.orig/localedata/locales/ta_IN libc/localedata/locales/ta_IN
  
  % \u0b86\u0bae\u0bcd
  yesstr      "<U0B86><U0BAE><U0BCD>"
-@@ -276,6 +275,12 @@
+@@ -276,6 +275,13 @@
  country_ab2 "<U0049><U004E>"
  country_ab3 "<U0049><U004E><U0044>"
  country_num 356
 +country_car "<U0049><U004E><U0044>"
 +country_isbn "81,93"
++country_name "<U0B87><U0BA8><U0BCD><U0BA4><U0BBF><U0BAF><U0BBE>"
 +lang_name   "<U0BA4><U0BAE><U0BBF><U0BB4><U0BCD>"
 +lang_ab     "<U0074><U0061>"
 +lang_term   "<U0074><U0061><U006D>"
