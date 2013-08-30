@@ -3107,7 +3107,7 @@ diff -uNr libc.orig/localedata/locales/th_TH libc/localedata/locales/th_TH
 -%country_isbn  ""
 +country_num   764
 +country_car   "<U0054>"
-+country_isbn  "<U0039><U0037><U0034>"
++country_isbn  "611,616,974"
  lang_name     "<U0E44><U0E17><U0E22>"
  lang_ab       "<U0074><U0068>"
  lang_term     "<U0074><U0068><U0061>"
