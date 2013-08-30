@@ -3073,12 +3073,13 @@ diff -uNr libc.orig/localedata/locales/ta_IN libc/localedata/locales/ta_IN
 diff -uNr libc.orig/localedata/locales/tg_TJ libc/localedata/locales/tg_TJ
 --- libc.orig/localedata/locales/tg_TJ	2003-12-05 01:26:00.000000000 +0100
 +++ libc/localedata/locales/tg_TJ	2004-11-10 02:36:38.000000000 +0100
-@@ -221,9 +221,17 @@
+@@ -221,9 +221,18 @@
  country_ab2 "<U0054><U004A>"
  country_ab3 "<U0054><U004A><U004B>"
  country_num 762
 +country_car "<U0054><U004A>"
-+country_isbn "<U0035>"
++country_isbn "99947"
++country_name "<U0422><U043E><U04B7><U0438><U043A><U0438><U0441><U0442><U043E><U043D>"
 +lang_name   "<U0422><U043E><U04B7><U0438><U043A><U04E3>"
 +lang_ab     "<U0074><U0067>"
 +lang_term   "<U0074><U0067><U006B>"
