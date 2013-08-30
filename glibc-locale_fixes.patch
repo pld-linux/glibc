@@ -2844,7 +2844,7 @@ diff -uNr libc.orig/localedata/locales/sl_SI libc/localedata/locales/sl_SI
  country_num 705
 +country_car "<U0053><U004C><U004F>"
 +country_isbn "<U0039><U0036><U0031>"
-+lang_name   "<U0073><U006C><U006F><U0076><U0065><U006E><U0073><U006B><U006F>"
++lang_name   "<U0073><U006C><U006F><U0076><U0065><U006E><U0161><U010D><U0069><U006E><U0061>"
 +lang_ab     "<U0073><U006C>"
 +lang_term   "<U0073><U006C><U0076>"
 +lang_lib    "<U0073><U006C><U0076>"
