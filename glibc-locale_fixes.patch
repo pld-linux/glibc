@@ -3131,12 +3131,14 @@ diff -uNr libc.orig/localedata/locales/ti_ET libc/localedata/locales/ti_ET
 diff -uNr libc.orig/localedata/locales/tl_PH libc/localedata/locales/tl_PH
 --- libc.orig/localedata/locales/tl_PH	2003-12-05 01:26:00.000000000 +0100
 +++ libc/localedata/locales/tl_PH	2004-11-10 02:36:38.000000000 +0100
-@@ -168,9 +168,13 @@
+@@ -168,9 +168,15 @@
  country_ab2 "<U0050><U0048>"
  country_ab3 "<U0050><U0048><U004C>"
  country_num 608
 +country_car "<U0052><U0050>"
-+country_isbn "<U0039><U0037><U0031>"
++country_isbn "621,971"
++country_name "<U0050><U0069><U006C><U0069><U0070><U0069><U006E><U0061><U0073>"
++lang_name   "<U0054><U0061><U0067><U0061><U006C><U006F><U0067>"
 +lang_ab     "<U0074><U006C>"
 +lang_term   "<U0074><U0067><U006C>"
 +lang_lib    "<U0074><U0067><U006C>"
