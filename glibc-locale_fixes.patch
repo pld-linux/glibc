@@ -3449,11 +3449,13 @@ diff -uNr libc.orig/localedata/locales/zh_CN libc/localedata/locales/zh_CN
 diff -uNr libc.orig/localedata/locales/zh_HK libc/localedata/locales/zh_HK
 --- libc.orig/localedata/locales/zh_HK	2003-12-07 14:00:22.000000000 +0100
 +++ libc/localedata/locales/zh_HK	2004-11-10 02:36:38.000000000 +0100
-@@ -184,6 +184,10 @@
+@@ -184,6 +184,12 @@
  country_ab2 "<U0048><U004B>"
  country_ab3 "<U0048><U004B><U0047>"
  country_num 344
 +country_isbn "962,988"
++country_name "<U9999><U6E2F>"
++lang_name   "<U6F22><U8A9E>"
 +lang_ab     "<U007A><U0068>"
 +lang_term   "<U007A><U0068><U006F>"
 +lang_lib    "<U0063><U0068><U0069>"
