@@ -3404,11 +3404,13 @@ diff -uNr libc.orig/localedata/locales/wa_BE libc/localedata/locales/wa_BE
  lang_name "<U0057><U0061><U006C><U006F><U006E>"
 --- glibc-2.15/localedata/locales/wal_ET.orig	2011-12-23 20:03:55.000000000 +0100
 +++ glibc-2.15/localedata/locales/wal_ET	2012-01-04 18:36:24.002145964 +0100
-@@ -108,7 +108,7 @@
+@@ -107,8 +107,8 @@
+ country_ab2   "<U0045><U0054>"
  country_ab3   "<U0045><U0054><U0048>"
  country_num   231   % 210 found in at least one ISO 3166 doc
- % country_car   unknown
+-% country_car   unknown
 -% country_isbn  unknown, Need ISO 2108
++country_car   "<U0045><U0054><U0048>"
 +country_isbn  "<U0039><U0039><U0039><U0034><U0034>"
  lang_name     "<U12C8><U120B><U12ED><U1273><U1271>"
  lang_term     "<U0077><U0061><U006C>"
