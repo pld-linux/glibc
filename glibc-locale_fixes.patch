@@ -3298,7 +3298,7 @@ diff -uNr libc.orig/localedata/locales/uz_UZ libc/localedata/locales/uz_UZ
  country_num  860
 -% FIXME: ISBN number?
 -%country_isbn ""
-+country_isbn "<U0035>"
++country_isbn "9943"
  country_car "UZ"
  lang_name   "<U004F><U0027><U007A><U0062><U0065><U006B>"
  lang_ab     "uz"
@@ -3322,7 +3322,7 @@ diff -uNr libc.orig/localedata/locales/uz_UZ@cyrillic libc/localedata/locales/uz
  country_num  860
 -% FIXME: ISBN number?
 -%country_isbn ""
-+country_isbn "<U0035>"
++country_isbn "9943"
  country_car "<U0055><U005A>"
  lang_name   "<U040E><U0437><U0431><U0435><U043A><U0447><U0430>"
  lang_ab     "<U0075><U007A>"
