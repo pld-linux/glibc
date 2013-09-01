@@ -3632,8 +3632,9 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  country_num 276
  country_isbn "3"
 -% FIXME country_name in Low Saxon ?
-+% FIXME country_name/lang_name in Frisian ?
- lang_name "Frisian"
+-lang_name "Frisian"
++country_name "<U0044><U00FA><U0074><U0073><U006C><U00E2><U006E>"
++lang_name "<U0046><U0072><U0079><U0073><U006B>"
  lang_ab "fy"
 -% FIXME lang_term for Low Saxon ?
 -% FIXME lang_lib for Low Saxon ?
