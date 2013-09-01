@@ -3667,19 +3667,17 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  END LC_MESSAGES
  
  % Default paper: A4
-@@ -230,8 +230,17 @@
+@@ -230,8 +230,15 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
-+% FIXME Canada in Inupiaq
-+country_name "<U0043><U0061><U006E><U0061><U0064><U0061>"
++country_name "<U004B><U0061><U006E><U0061><U0064><U0061>"
  country_ab2 "<U0043><U0041>"
  country_ab3 "<U0043><U0041><U004E>"
  country_num 124
 +country_car  "<U0043><U0044><U004E>"
 +country_isbn "<U0030>"
-+% FIXME: Inupiaq in Inupiaq
-+%lang_name    "<U0045><U006E><U0067><U006C><U0069><U0073><U0068>"
++lang_name    "<U0049><U00F1><U0075><U0070><U0069><U0061><U006B>"
 +lang_ab      "<U0069><U006B>"
 +lang_term    "<U0069><U0070><U006B>"
 +lang_lib     "<U0069><U0070><U006B>"
