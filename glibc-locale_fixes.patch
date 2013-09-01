@@ -3715,6 +3715,22 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  revision "0.1"
  date "2003-11-30"
  
+@@ -41,13 +41,13 @@
+ <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+ <U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
+ <U004E><U0025><U0063><U0025><U004E>"
+-%FIXME country_name "Nederland"
++country_name "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064>"
+ country_post  "<U004E><U004C>"
+ country_ab2   "<U004E><U004C>"
+ country_ab3   "<U004E><U004C><U0044>"
+ country_car   "<U004E><U004C>"
+ country_num 528
+-%FIXME country_isbn "2"
++country_isbn "90,94"
+ lang_name "<U004C><U0069><U006D><U0062><U0075><U0072><U0067><U0073>"
+ lang_ab "<U006C><U0069>"
+ lang_term "<U006C><U0069><U006D>"
 --- glibc-2.7/localedata/locales/nds_DE.orig	2007-10-22 23:00:03.000000000 +0200
 +++ glibc-2.7/localedata/locales/nds_DE	2007-10-22 23:00:03.000000000 +0200
 @@ -10,8 +10,8 @@
