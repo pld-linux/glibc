@@ -3744,9 +3744,11 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  revision "0.1"
  date "2003-11-30"
  
-@@ -48,7 +48,7 @@
+@@ -47,8 +47,9 @@
+ country_car   "<U0044>"
  country_num 276
  country_isbn "3"
++country_name "<U0044><U0075><U0075><U0074><U0073><U006C><U0061><U0061><U006E><U0064>"
  lang_name "<U004E><U0065><U0064><U0064><U0065><U0072><U0073><U0061><U0073><U0073><U0069><U0073><U0063><U0068>"
 -%lang_ab
 +lang_ab ""
