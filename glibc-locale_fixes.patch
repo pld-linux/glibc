@@ -3685,15 +3685,23 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  
 --- glibc-2.8/localedata/locales/iu_CA.orig	2008-03-04 18:45:50.000000000 +0100
 +++ glibc-2.8/localedata/locales/iu_CA	2008-05-07 19:22:36.283864930 +0200
-@@ -41,7 +41,7 @@
+@@ -36,13 +36,13 @@
+ <U0020><U0025><U0073><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+ <U004E><U0025><U0054><U0020><U0025><U007A><U0025>/
+ <U004E><U0025><U0063><U0025><U004E>"
+-% FIXME country_name "Canada" in inuktitut ?
++country_name "<U1472><U14C7><U1455>"
+ % FIXME country_post "CA" for Canada ?
  country_ab2 "<U0043><U0041>"
  country_ab3 "<U0043><U0041><U004E>"
  country_num 124
 -country_car "<U0043><U0041><U004E>" % FIXME
+-% FIXME country_isbn for Canada/inuktitut ?
 +country_car "<U0043><U0044><U004E>"
- % FIXME country_isbn for Canada/inuktitut ?
++country_isbn "0"
  lang_name "<U1403><U14C4><U1483><U144E><U1450><U1466>"
  lang_ab "<U0069><U0075>"
+ lang_term "<U0069><U006B><U0075>"
 --- glibc-2.7/localedata/locales/li_NL.orig	2007-10-22 22:55:04.000000000 +0200
 +++ glibc-2.7/localedata/locales/li_NL	2007-10-22 22:55:04.000000000 +0200
 @@ -10,8 +10,8 @@
