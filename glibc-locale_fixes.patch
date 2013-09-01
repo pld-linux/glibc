@@ -3831,21 +3831,19 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  yesexpr "<U005E><U005B><U0077><U0057><U0079><U0059><U005D><U002E><U002A>"
  noexpr  "<U005E><U005B><U0064><U0044><U006E><U004E><U005D><U002E><U002A>"
  END LC_MESSAGES
-@@ -173,8 +175,15 @@
+@@ -173,8 +175,13 @@
  <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
  <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
 -country_ab2 "<U004D><U0047>"
 -country_ab3 "<U004D><U0044><U0047>"
 -country_num 450
-+% FIXME: Senegal in Wolof
-+%country_name ""
++country_name "<U0053><U0065><U006E><U0065><U0067><U0061><U0061><U006C>"
 +country_ab2 "<U0053><U004E>"
 +country_ab3 "<U0053><U0045><U004E>"
 +country_num 686
 +country_car "<U0053><U004E>"
-+% FIXME: Wolof in Wolof
-+%lang_name  ""
++lang_name  "<U0057><U006F><U006C><U006F><U0066>"
 +lang_ab     "<U0077><U006F>"
 +lang_term   "<U0077><U006F><U006C>"
 +lang_lib    "<U0077><U006F><U006C>"
