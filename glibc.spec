@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -82,6 +82,7 @@ Patch29:	%{name}-arm-alignment-fix.patch
 
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
+Patch33:	%{name}-hack-strstr.patch
 
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
@@ -966,6 +967,7 @@ exit 1
 
 %patch31 -p1
 %patch32 -p1
+%patch33 -p1
 
 %patch38 -p1
 
