@@ -1165,7 +1165,7 @@ done
 #
 # To be added when they become supported by glibc:
 #   ach (vlc)
-#   az_IR (gtk+2)
+#   ak (gtkspell3)
 #   bal (newt,pessulus)
 #   cgg (vlc)
 #   co  (vlc)
@@ -1182,6 +1182,7 @@ done
 #   mus (bluez-gnome)
 #   pms (deluge)
 #   sco (gnomad2, picard, stellarium)
+#   son (gtkspell3)
 #   swg (sim)
 #   syr (iso-codes)
 #   tet (vlc)
