@@ -83,6 +83,7 @@ Patch29:	%{name}-arm-alignment-fix.patch
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
 Patch33:	%{name}-hack-strstr.patch
+Patch34:	%{name}-make-ver.patch
 
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
@@ -968,6 +969,7 @@ exit 1
 %patch31 -p1
 %patch32 -p1
 %patch33 -p1
+%patch34 -p1
 
 %patch38 -p1
 
