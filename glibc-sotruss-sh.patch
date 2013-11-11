@@ -1,9 +1,10 @@
 Despite ksh shebang, sotruss is apparently bash script (function keyword, $"" NLS)
+However mksh also accepts this syntax leaving strings untranslated.
 --- glibc-2.14/elf/sotruss.ksh.orig	2011-05-31 06:12:33.000000000 +0200
 +++ glibc-2.14/elf/sotruss.ksh	2011-06-11 09:42:22.467864393 +0200
 @@ -1,4 +1,4 @@
 -#! @KSH@
-+#! /bin/bash
++#! /bin/mksh
  # Copyright (C) 2011-2013 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
