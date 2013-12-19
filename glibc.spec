@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -77,7 +77,9 @@ Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
 Patch26:	%{name}-posix-sh.patch
-
+Patch27:	%{name}-locale-C.patch.xz
+# Patch27-md5:	34ebe52a2afb923e33af0fb7c541f540
+Patch28:	%{name}-locale-C-pld.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 
 Patch31:	%{name}-origin.patch
@@ -963,7 +965,8 @@ exit 1
 
 %patch25 -p1
 %patch26 -p1
-
+%patch27 -p1
+%patch28 -p1
 %patch29 -p1
 
 %patch31 -p1
