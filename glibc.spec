@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1190,6 +1190,7 @@ done
 #   swg (sim)
 #   syr (iso-codes)
 #   tet (vlc)
+#   vec (mate-applet-indicator)
 #
 # To be removed (after fixing packages still using it):
 #   sr@Latn (use sr@latin instead)
@@ -1203,6 +1204,7 @@ done
 # bo=bo_CN? (or common for CN, IN?)
 # ca=ca_ES
 # ckb=ckb_IQ
+# cv=cv_RU
 # de=de_DE
 # en=common? (en_AU, en_CA, en_GB, en_NZ, en_US are used for particular variants)
 # eo=common
@@ -1222,6 +1224,7 @@ done
 # pa=pa_IN
 # pt=pt_PT
 # ru=ru_RU
+# sd=sd_IN
 # so=so_SO
 # sr=sr_RS [cyrillic]
 # sr@latin=sr_RS@latin
@@ -1241,13 +1244,13 @@ done
 #   sv tr zh_CN zh_TW
 #
 for i in aa aa@saaho af am an ang ar ar_TN as ast az az_IR be@latin be@tarask bem \
-	bg bn bn_IN bo br bs byn ca@valencia ckb crh csb cy de_AT de_CH dv dz en \
+	bg bn bn_IN bo br bs byn ca@valencia ckb crh csb cv cy de_AT de_CH dv dz en \
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
 	es_VE et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
 	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn kok ks ku kw ky la lb \
 	lg li lo lt lv mai mg mhr mi mk ml mn mr ms mt my nds ne nl_BE nn nr nso \
-	oc om or pa pap ps pt ps rm ro sa sc se si sid sl so sq sr sr@Latn tl \
+	oc om or pa pap ps pt ps rm ro sa sc sd se si sid sl so sq sr sr@Latn tl \
 	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
 	tig tk tl tlh tn ts tt tt@iqtelif ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo \
 	zh_HK zu; do
