@@ -21,7 +21,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.18
+%define		core_version	2.19
 %define		llh_version	7:2.6.20.4-1
 
 Summary:	GNU libc
@@ -35,12 +35,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	88fbbceafee809e82efd52efa1e3c58f
+# Source0-md5:	e26b8cc666b162f999404b03970f14e4
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -84,8 +84,6 @@ Patch29:	%{name}-arm-alignment-fix.patch
 
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
-Patch33:	%{name}-hack-strstr.patch
-Patch34:	%{name}-make-ver.patch
 
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
@@ -955,8 +953,9 @@ exit 1
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
-%patch17 -p1
-%patch18 -p1
+# DROP THESE TWO PATCHES OR MERGE UPSTREAM
+#%patch17 -p1
+#%patch18 -p1
 %patch19 -p1
 %patch20 -p1
 %{?with_cross:%patch21 -p1}
@@ -971,8 +970,6 @@ exit 1
 
 %patch31 -p1
 %patch32 -p1
-%patch33 -p1
-%patch34 -p1
 
 %patch38 -p1
 
@@ -1099,8 +1096,6 @@ mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 # moved to tzdata package
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
 rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
-
-ln -sf libbsd-compat.a		$RPM_BUILD_ROOT%{_libdir}/libbsd.a
 
 # make symlinks across top-level directories absolute
 for l in BrokenLocale anl cidn crypt dl m nsl resolv rt thread_db util; do
@@ -1679,8 +1674,6 @@ fi
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
 # static-only libs
-%{_libdir}/libbsd-compat.a
-%{_libdir}/libbsd.a
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a

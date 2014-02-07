@@ -5,6 +5,6 @@ However mksh also accepts this syntax leaving strings untranslated.
 @@ -1,4 +1,4 @@
 -#! @KSH@
 +#! /bin/mksh
- # Copyright (C) 2011-2013 Free Software Foundation, Inc.
+ # Copyright (C) 2011-2014 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
