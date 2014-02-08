@@ -954,7 +954,8 @@ exit 1
 %patch15 -p1
 %patch16 -p1
 # DROP THESE TWO PATCHES OR MERGE UPSTREAM
-#%patch17 -p1
+%patch17 -p1
+# patch successively merged upstream
 #%patch18 -p1
 %patch19 -p1
 %patch20 -p1
