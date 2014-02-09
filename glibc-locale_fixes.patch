@@ -2806,10 +2806,32 @@
  END LC_ADDRESS
  
  LC_TELEPHONE
-diff -uNr libc.orig/localedata/locales/nb_NO libc/localedata/locales/nb_NO
---- libc.orig/localedata/locales/nb_NO	2004-10-14 21:11:31.000000000 +0200
-+++ libc/localedata/locales/nb_NO	2004-11-10 02:36:38.000000000 +0100
-@@ -2193,8 +2193,10 @@
+--- glibc-2.19/localedata/locales/nan_TW.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/nan_TW	2014-02-09 20:15:00.199328719 +0100
+@@ -200,6 +200,8 @@
+ % TWN
+ country_ab3  "<U0054><U0057><U004E>"
+ country_num  158
++% RC
++country_car  "<U0052><U0043>"
+ country_isbn 957
+ % 漢語閩南語
+ lang_name    "<U6F22><U8A9E><U95A9><U5357><U8A9E>"
+--- glibc-2.19/localedata/locales/nan_TW@latin.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/nan_TW@latin	2014-02-09 20:15:30.079327465 +0100
+@@ -193,7 +193,8 @@
+ country_ab2	"<U0054><U0057>"
+ country_ab3	"<U0054><U0057><U004E>"
+ country_num	158
+-%country_car    "FIXME"
++% RC
++country_car     "<U0052><U0043>"
+ country_isbn	"<U0039><U0035><U0037>"
+ %lang_name "Bân-lâm-gú, Hō-ló-oē"
+ lang_name "<U0042><U00E2><U006E><U002D><U006C><U00E2><U006D><U002D><U0067><U00FA><U002C><U0020><U0048><U014D><U002D><U006C><U00F3><U002D><U006F><U0113>"
+--- glibc-2.19/localedata/locales/nb_NO.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/nb_NO	2014-02-09 20:16:30.989324909 +0100
+@@ -207,8 +207,10 @@
  END LC_TIME
  
  LC_MESSAGES
@@ -2822,41 +2844,35 @@ diff -uNr libc.orig/localedata/locales/nb_NO libc/localedata/locales/nb_NO
  END LC_MESSAGES
  
  LC_PAPER
-@@ -2224,7 +2226,14 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
-+country_name "<U004E><U006F><U0072><U0067><U0065>"
+@@ -242,8 +244,12 @@
  country_ab2 "<U004E><U004F>"
  country_ab3 "<U004E><U004F><U0052>"
  country_num 578
-+country_car "<U004E>"
++% Norge
++country_name "<U004E><U006F><U0072><U0067><U0065>"
+ % N
+ country_car    "<U004E>"
++% 82
 +country_isbn "<U0038><U0032>"
-+lang_name   "<U004E><U006F><U0072><U0073><U006B>"
-+lang_ab     "<U006E><U0062>"
-+lang_term   "<U006E><U006F><U0062>"
-+lang_lib    "<U006E><U006F><U0062>"
- END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/ne_NP libc/localedata/locales/ne_NP
---- libc.orig/localedata/locales/ne_NP	2003-12-05 01:25:58.000000000 +0100
-+++ libc/localedata/locales/ne_NP	2004-11-10 02:36:38.000000000 +0100
-@@ -191,15 +191,20 @@
+ % Bokmål
+ lang_name    "<U0042><U006F><U006B><U006D><U00E5><U006C>"
+ % nb
+--- glibc-2.19/localedata/locales/ne_NP.orig	2014-02-09 19:52:36.206051789 +0100
++++ glibc-2.19/localedata/locales/ne_NP	2014-02-09 21:19:58.335831797 +0100
+@@ -195,8 +195,11 @@
  country_ab2 "<U004E><U0050>"
  country_ab3 "<U004E><U0050><U004C>"
  country_num 524
-+country_car "<U004E><U0045><U0050>"
-+country_isbn "9937,99933,99946"
 +country_name "<U0928><U0947><U092A><U093E><U0932>"
-+lang_name   "<U0928><U0947><U092A><U093E><U0932><U0940>"
-+lang_ab     "<U006E><U0065>"
-+lang_term   "<U006E><U0065><U0070>"
-+lang_lib    "<U006E><U0065><U0070>"
- END LC_ADDRESS
- 
- 
- LC_TELEPHONE
--% This is the ISO_IEC TR14652 Locale definition for the
--%
+ % NEP
+ country_car    "<U004E><U0045><U0050>"
++% 9937,99933,99946
++country_isbn "<U0039><U0039><U0033><U0037><U002C><U0039><U0039><U0039><U0033><U0033><U002C><U0039><U0039><U0039><U0034><U0036>"
+ % नेपाली
+ lang_name    "<U0928><U0947><U092A><U093E><U0932><U0940>"
+ % ne
+@@ -213,7 +216,7 @@
+ %
  tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020>/
  <U003B><U0025><U006C>"
 -int_prefix     "<U0039><U0031>"
@@ -2864,29 +2880,65 @@ diff -uNr libc.orig/localedata/locales/ne_NP libc/localedata/locales/ne_NP
  
  END LC_TELEPHONE
  
-diff -uNr libc.orig/localedata/locales/nl_BE libc/localedata/locales/nl_BE
---- libc.orig/localedata/locales/nl_BE	2003-12-07 14:00:22.000000000 +0100
-+++ libc/localedata/locales/nl_BE	2004-11-10 02:36:38.000000000 +0100
-@@ -129,7 +129,15 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
-+country_name "<U0042><U0065><U006C><U0067><U0069><U00EB>"
-+country_post "<U0042>"
+--- glibc-2.19/localedata/locales/nhn_MX.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/nhn_MX	2014-02-09 20:59:35.739216438 +0100
+@@ -151,6 +151,8 @@
+ country_num   484
+ % MEX
+ country_car    "<U004D><U0045><U0058>"
++% 607,968,970
++country_isbn  "<U0036><U0030><U0037><U002C><U0039><U0036><U0038><U002C><U0039><U0037><U0030>"
+ % Tlaxcala-Puebla Nahuatl
+ lang_name    "<U0054><U006C><U0061><U0078><U0063><U0061><U006C><U0061><U002D><U0050><U0075><U0065><U0062><U006C><U0061><U0020><U004E><U0061><U0068><U0075><U0061><U0074><U006C>"
+ % nhn
+--- glibc-2.19/localedata/locales/niu_NZ.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/niu_NZ	2014-02-09 21:01:08.095879228 +0100
+@@ -184,6 +184,8 @@
+ country_num  554
+ % NZ
+ country_car    "<U004E><U005A>"
++% 0
++country_isbn "<U0030>"
+ % niu
+ lang_term    "<U006E><U0069><U0075>"
+ % niu
+--- glibc-2.19/localedata/locales/nl_AW.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/nl_AW	2014-02-09 21:08:27.525860787 +0100
+@@ -85,6 +85,10 @@
+ country_ab2   "<U0041><U0057>"
+ country_ab3   "<U0041><U0042><U0057>"
+ country_num   533
++% Aruba
++country_name  "<U0041><U0072><U0075><U0062><U0061>"
++% 99904
++country_isbn  "<U0039><U0039><U0039><U0030><U0034>"
+ % Nederlands
+ lang_name    "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064><U0073>"
+ lang_ab "<U006E><U006C>"
+--- glibc-2.19/localedata/locales/nl_BE.orig	2014-02-09 19:52:36.209385121 +0100
++++ glibc-2.19/localedata/locales/nl_BE	2014-02-09 21:10:33.472522168 +0100
+@@ -135,10 +135,16 @@
  country_ab2 "<U0042><U0045>"
  country_ab3 "<U0042><U0045><U004C>"
  country_num 056
-+country_car "<U0042>"
+-% Nederlands
+-lang_name    "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064><U0073>"
++% België
++country_name "<U0042><U0065><U006C><U0067><U0069><U00EB>"
++% B
++country_post "<U0042>"
+ % B
+ country_car    "<U0042>"
++% 90
 +country_isbn "<U0039><U0030>"
-+lang_name   "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064><U0073>"
-+lang_ab     "<U006E><U006C>"
-+lang_term   "<U006E><U006C><U0064>"
-+lang_lib    "<U0064><U0075><U0074>"
- END LC_ADDRESS
-diff -uNr libc.orig/localedata/locales/nl_NL libc/localedata/locales/nl_NL
---- libc.orig/localedata/locales/nl_NL	2003-12-05 01:25:59.000000000 +0100
-+++ libc/localedata/locales/nl_NL	2004-11-10 02:36:38.000000000 +0100
-@@ -54,8 +54,10 @@
++% Nederlands
++lang_name    "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064><U0073>"
+ lang_ab "<U006E><U006C>"
+ lang_term "<U006E><U006C><U0064>"
+ lang_lib "<U0064><U0075><U0074>"
+--- glibc-2.19/localedata/locales/nl_NL.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/nl_NL	2014-02-09 21:11:36.792519511 +0100
+@@ -58,8 +58,10 @@
  END LC_COLLATE
  
  LC_MESSAGES
@@ -2899,25 +2951,23 @@ diff -uNr libc.orig/localedata/locales/nl_NL libc/localedata/locales/nl_NL
  END LC_MESSAGES
  
  LC_MONETARY
-@@ -150,11 +152,14 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
-+country_name "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064>"
-+country_post "<U004E><U004C>"
+@@ -161,7 +163,13 @@
  country_ab2 "<U004E><U004C>"
  country_ab3 "<U004E><U004C><U0044>"
  country_num 528
++% Nederland
++country_name "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064>"
++% NL
++country_post "<U004E><U004C>"
  country_car "<U004E><U004C>"
--lang_name "<U0064><U0075><U0074><U0063><U0068>"
++% 90
 +country_isbn "<U0039><U0030>"
-+lang_name "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064><U0073>"
+ % Nederlands
+ lang_name    "<U004E><U0065><U0064><U0065><U0072><U006C><U0061><U006E><U0064><U0073>"
  lang_ab "<U006E><U006C>"
- lang_term "<U006E><U006C><U0064>"
- lang_lib "<U0064><U0075><U0074>"
---- glibc-2.5/localedata/locales/nn_NO.orig	2006-08-22 19:05:13.000000000 +0200
-+++ glibc-2.5/localedata/locales/nn_NO	2006-10-05 13:59:10.945971000 +0200
-@@ -140,8 +140,10 @@
+--- glibc-2.19/localedata/locales/nn_NO.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/localedata/locales/nn_NO	2014-02-09 20:17:19.329322881 +0100
+@@ -135,8 +135,10 @@
  
  
  LC_MESSAGES
@@ -2930,29 +2980,19 @@ diff -uNr libc.orig/localedata/locales/nl_NL libc/localedata/locales/nl_NL
  END LC_MESSAGES
  
  
-@@ -156,7 +158,21 @@
- 
- 
- LC_ADDRESS
--copy "nb_NO"
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
+@@ -159,8 +161,12 @@
+ country_ab2 "<U004E><U004F>"
+ country_ab3 "<U004E><U004F><U0052>"
+ country_num 578
++% Norge
 +country_name "<U004E><U006F><U0072><U0067><U0065>"
-+country_ab2 "<U004E><U004F>"
-+country_ab3 "<U004E><U004F><U0052>"
-+country_num 578
-+country_car "<U004E>"
+ % N
+ country_car    "<U004E>"
++% 82
 +country_isbn "<U0038><U0032>"
-+lang_name   "<U004E><U006F><U0072><U0073><U006B>"
-+lang_ab     "<U006E><U006E>"
-+lang_term   "<U006E><U006E><U006F>"
-+lang_lib    "<U006E><U006E><U006F>"
- END LC_ADDRESS
- 
- 
+ % Nynorsk
+ lang_name    "<U004E><U0079><U006E><U006F><U0072><U0073><U006B>"
+ % nn
 --- glibc-2.5/localedata/locales/nr_ZA.orig	2006-07-31 00:19:43.000000000 +0200
 +++ glibc-2.5/localedata/locales/nr_ZA	2006-10-05 14:01:44.105971000 +0200
 @@ -230,9 +230,7 @@
@@ -2966,15 +3006,6 @@ diff -uNr libc.orig/localedata/locales/nl_NL libc/localedata/locales/nl_NL
  
  % Language name in Southern Ndebele - "IsiNdebele"
  lang_name "<U0049><U0073><U0069><U004E><U0064><U0065><U0062><U0065><U006C><U0065>"
-@@ -242,6 +240,7 @@
- % "nr", "nbl"
- lang_ab   "<U006E><U0072>"
- lang_term "<U006E><U0062><U006C>"
-+lang_lib  "<U006E><U0062><U006C>"
- 
- % Representation of postal addresses (minus the addressee's name) in South
- % Africa. (Ignored for now)
-diff -uNr libc.orig/localedata/locales/nso_ZA libc/localedata/locales/nso_ZA
 --- libc.orig/localedata/locales/nso_ZA	2004-11-10 01:45:57.000000000 +0100
 +++ libc/localedata/locales/nso_ZA	2004-11-10 02:43:45.000000000 +0100
 @@ -156,10 +156,12 @@
