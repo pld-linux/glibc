@@ -445,7 +445,7 @@ diff -urN glibc-2.6.org/localedata/locales/eu_FR@euro glibc-2.6/localedata/local
 diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 --- glibc-2.6.org/localedata/locales/ia	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/ia	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,139 @@
+@@ -0,0 +1,143 @@
 +comment_char %
 +escape_char  /
 +%
@@ -584,6 +584,10 @@ diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 +<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
 +<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
 +<U004E><U0025><U0063><U0025><U004E>"
++lang_name "<U0049><U006E><U0074><U0065><U0072><U006C><U0069><U006E><U0067><U0075><U0061>"
++lang_ab      "<U0069><U0061>"
++lang_term    "<U0069><U006E><U0061>"
++lang_lib     "<U0069><U006E><U0061>"
 +END LC_ADDRESS
 diff -urN glibc-2.6.org/localedata/locales/nds_DE@traditional glibc-2.6/localedata/locales/nds_DE@traditional
 --- glibc-2.6.org/localedata/locales/nds_DE@traditional	1970-01-01 01:00:00.000000000 +0100
