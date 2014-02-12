@@ -5,7 +5,7 @@
  country_ab3   "<U0044><U004A><U0049>"
  country_num   262
 -% country_car   unknown
-+# DJI (unofficial)
++% DJI (unofficial)
 +country_car   "<U0044><U004A><U0049>"
  % country_isbn  unknown, Need ISO 2108
  lang_name     "<U0051><U0061><U0066><U0061><U0072>"
@@ -3545,7 +3545,7 @@
  country_ab3   "<U0044><U004A><U0049>"
  country_num   262
 -% country_car   unknown
-+# DJI (unofficial)
++% DJI (unofficial)
 +country_car   "<U0044><U004A><U0049>"
  % country_isbn  unknown, Need ISO 2108
  lang_name     "<U0053><U006F><U006F><U006D><U0061><U0061><U006C><U0069>"
