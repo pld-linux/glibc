@@ -68,7 +68,9 @@ Patch12:	%{name}-format.patch
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
 Patch16:	%{name}-tzfile-noassert.patch
+# additions pending for upstream merge or taken from other distros
 Patch17:	%{name}-morelocales.patch
+# fixes mostly pending for upstream merge
 Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
 Patch20:	%{name}-thread_start.patch
@@ -953,10 +955,8 @@ exit 1
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
-# DROP THESE TWO PATCHES OR MERGE UPSTREAM
 %patch17 -p1
-# patch successively merged upstream
-#%patch18 -p1
+%patch18 -p1
 %patch19 -p1
 %patch20 -p1
 %{?with_cross:%patch21 -p1}
