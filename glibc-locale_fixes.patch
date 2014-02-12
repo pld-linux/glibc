@@ -398,38 +398,6 @@
  % asturianu
  lang_name    "<U0061><U0073><U0074><U0075><U0072><U0069><U0061><U006E><U0075>"
  % ast
---- glibc-2.19/localedata/locales/ay_PE.orig	2014-02-08 18:42:45.166520202 +0100
-+++ glibc-2.19/localedata/locales/ay_PE	2014-02-08 18:42:49.279853364 +0100
-@@ -88,7 +88,28 @@
- END LC_NAME
- 
- LC_ADDRESS
--copy "es_PE"
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+country_ab2   "<U0050><U0045>"
-+country_ab3   "<U0050><U0045><U0052>"
-+country_num   604
-+% Piruw
-+country_name  "<U0050><U0069><U0072><U0075><U0077>"
-+% PE
-+country_car   "<U0050><U0045>"
-+% 612,9972
-+country_isbn "<U0036><U0031><U0032><U002C><U0039><U0039><U0037><U0032>"
-+% Aymar aru
-+lang_name    "<U0041><U0079><U006D><U0061><U0072><U0020><U0061><U0072><U0075>"
-+% ay
-+lang_ab      "<U0061><U0079>"
-+% aym
-+lang_term    "<U0061><U0079><U006D>"
-+% aym
-+lang_lib     "<U0061><U0079><U006D>"
- END LC_ADDRESS
- 
- LC_TELEPHONE
 --- glibc-2.19/localedata/locales/ayc_PE.orig	2014-02-08 18:31:50.119881024 +0100
 +++ glibc-2.19/localedata/locales/ayc_PE	2014-02-08 18:31:57.319880722 +0100
 @@ -201,8 +201,12 @@
@@ -776,16 +744,6 @@
  % català
  lang_name    "<U0063><U0061><U0074><U0061><U006C><U00E0>"
  % ca
---- glibc-2.19/localedata/locales/ckb_IQ.orig	2014-02-08 19:56:13.156335216 +0100
-+++ glibc-2.19/localedata/locales/ckb_IQ	2014-02-09 07:58:15.197850493 +0100
-@@ -442,6 +442,7 @@
- country_ab2 "<U0049><U0051>"
- country_ab3 "<U0049><U0052><U0051>"
- country_post "<U0049><U0052><U0051>"
-+country_name "<U0639><U06CE><U0631><U0627><U0642>"
- country_num 368
- country_car "<U0049><U0052><U0051>"
- % kurd<U00EE>
 --- glibc-2.19/localedata/locales/crh_UA.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/crh_UA	2014-02-09 08:00:13.971178844 +0100
 @@ -226,8 +226,12 @@
@@ -2276,31 +2234,6 @@
  % ქართული
  lang_name    "<U10E5><U10D0><U10E0><U10D7><U10E3><U10DA><U10D8>"
  % ka
---- glibc-2.19/localedata/locales/kg_CD.orig	2014-02-09 14:18:08.563560612 +0100
-+++ glibc-2.19/localedata/locales/kg_CD	2014-02-09 14:18:12.496893784 +0100
-@@ -176,5 +176,22 @@
- country_ab2 "<U0043><U0044>"
- country_ab3 "<U0043><U004F><U0044>"
- country_num 180
-+% Repubilika ya Kôngo ya Dimokalasi
-+country_name "<U0052><U0065><U0070><U0075><U0062><U0069><U006C><U0069>/
-+<U006B><U0061><U0020><U0079><U0020><U004B><U00F4><U006E><U0067><U006F>/
-+<U0020><U0079><U0061><U0020><U0044><U0069><U006D><U0061><U006C><U0061>/
-+<U0073><U0069>"
-+% ZRE
-+country_car  "<U005A><U0052><U0045>"
-+% 99951
-+country_isbn "<U0039><U0039><U0039><U0035><U0031>"
-+% Kongo
-+lang_name    "<U004B><U006F><U006E><U0067><U006F>"
-+% kg
-+lang_ab      "<U006B><U0067>"
-+% kon
-+lang_term    "<U006B><U006F><U006E>"
-+% kon
-+lang_lib     "<U006B><U006F><U006E>"
- END LC_ADDRESS
- 
 --- glibc-2.19/localedata/locales/kk_KZ.orig	2014-02-08 19:56:13.783001854 +0100
 +++ glibc-2.19/localedata/locales/kk_KZ	2014-02-09 14:19:21.273557563 +0100
 @@ -262,7 +262,15 @@
@@ -2670,27 +2603,6 @@
  % Te Reo
  lang_name    "<U0054><U0065><U0020><U0052><U0065><U006F>"
  % mi
---- glibc-2.19/localedata/locales/mjw_IN.orig	2014-02-08 19:56:13.166335215 +0100
-+++ glibc-2.19/localedata/locales/mjw_IN	2014-02-09 18:07:58.689648563 +0100
-@@ -182,5 +182,17 @@
- END LC_NAME
- 
- LC_ADDRESS
--copy "en_IN"
-+postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
-+<U0025><U0062><U0025><U0065><U0025><U0072>"
-+country_ab2 "<U0049><U004E>"
-+country_ab3 "<U0049><U004E><U0044>"
-+country_num 356
-+% IND
-+country_car "<U0049><U004E><U0044>"
-+% 81,93
-+country_isbn "<U0038><U0031><U002C><U0039><U0033>"
-+% mjw
-+lang_term   "<U006D><U006A><U0077>"
-+% mjw
-+lang_lib    "<U006D><U006A><U0077>"
- END LC_ADDRESS
 --- glibc-2.19/localedata/locales/ml_IN.orig	2014-02-08 19:56:14.983001803 +0100
 +++ glibc-2.19/localedata/locales/ml_IN	2014-02-09 18:11:11.889640457 +0100
 @@ -209,8 +209,11 @@
@@ -2803,50 +2715,6 @@
  lang_ab         "<U006D><U0079>"
  lang_name       "<U1017><U1019><U102C>"
  lang_term   "<U006D><U0079><U0061>"
---- glibc-2.19/localedata/locales/myv_RU.orig	2014-02-08 19:56:13.163001882 +0100
-+++ glibc-2.19/localedata/locales/myv_RU	2014-02-09 19:44:15.056072815 +0100
-@@ -181,11 +181,16 @@
- % RUS
- country_ab3  "<U0052><U0055><U0053>"
- country_num  643
-+% RUS
-+country_car    "<U0052><U0055><U0053>"
-+% 5
-+country_isbn "<U0035>"
- % Erzanj kielj
- lang_name    "<U0045><U0072><U007A><U00E4><U006E><U006A><U0020><U006B><U0069><U0065><U006C><U006A>"
--lang_ab      ""
- % myv
- lang_term    "<U006D><U0079><U0076>"
-+% myv
-+lang_lib     "<U006D><U0079><U0076>"
- END LC_ADDRESS
- 
- LC_TELEPHONE
---- glibc-2.19/localedata/locales/myv_RU@cyrillic.orig	2014-02-08 19:56:13.163001882 +0100
-+++ glibc-2.19/localedata/locales/myv_RU@cyrillic	2014-02-09 19:22:44.846126967 +0100
-@@ -126,11 +126,19 @@
- % RUS
- country_ab3  "<U0052><U0055><U0053>"
- country_num  643
--% ������ ����
-+% Россия Мастор
-+country_name "<U0420><U043E><U0441><U0441><U0438><U044F><U0020><U041C>/
-+<U0430><U0441><U0442><U043E><U0440>"
-+% RUS
-+country_car    "<U0052><U0055><U0053>"
-+% 5
-+country_isbn "<U0035>"
-+% Эрзянь кель
- lang_name    "<U042D><U0440><U0437><U044F><U043D><U044C><U0020><U043A><U0435><U043B><U044C>"
--lang_ab      ""
- % myv
- lang_term    "<U006D><U0079><U0076>"
-+% myv
-+lang_lib     "<U006D><U0079><U0076>"
- END LC_ADDRESS
- 
- LC_TELEPHONE
 --- glibc-2.19/localedata/locales/nan_TW.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/nan_TW	2014-02-09 20:15:00.199328719 +0100
 @@ -200,6 +200,8 @@
@@ -3587,33 +3455,6 @@
  % Davvisámegiella
  lang_name    "<U0044><U0061><U0076><U0076><U0069><U0073><U00E1><U006D><U0065><U0067><U0069><U0065><U006C><U006C><U0061>"
  % se
---- glibc-2.19/localedata/locales/sgs_LT.orig	2014-02-09 19:52:35.862718469 +0100
-+++ glibc-2.19/localedata/locales/sgs_LT	2014-02-10 21:10:39.752229375 +0100
-@@ -2221,4 +2221,10 @@
- country_ab2 "<U004C><U0054>"
- country_ab3 "<U004C><U0054><U0055>"
- country_num 440
-+% LT
-+country_car    "<U004C><U0054>"
-+% 609,9955,9986
-+country_isbn "<U0036><U0030><U0039><U002C><U0039><U0039><U0035><U0035><U002C><U0039><U0039><U0038><U0036>"
-+lang_term    "<U0073><U0067><U0073>"
-+lang_lib     "<U0073><U0067><U0073>"
- END LC_ADDRESS
---- glibc-2.19/localedata/locales/shn_MM.orig	2014-02-09 19:52:35.869385136 +0100
-+++ glibc-2.19/localedata/locales/shn_MM	2014-02-10 21:12:34.455557894 +0100
-@@ -312,6 +312,11 @@
- country_name   "<U1019><U103C><U1014><U103A><U1019><U102C>"
- country_post    "<U004D><U0079><U0061><U006E><U006D><U0061><U0072>"
- country_ab2     "<U004D><U004D>"
-+country_num     104
-+% BA
-+country_car  "<U0042><U0041>"
-+% 99971
-+country_isbn "<U0039><U0039><U0039><U0037><U0031>"
- lang_ab         "<U006D><U0079>"
- lang_name       "<U101B><U103E><U1019><U103A><U1038>"
- lang_term   "<U006D><U0079><U0061>"
 --- glibc-2.19/localedata/locales/si_LK.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/si_LK	2014-02-10 21:17:17.408879354 +0100
 @@ -198,8 +198,12 @@
@@ -3854,19 +3695,6 @@
  % Kiswahili
  lang_name     "<U004B><U0069><U0073><U0077><U0061><U0068><U0069><U006C><U0069>"
  % sw
---- glibc-2.19/localedata/locales/sw_UG.orig	2014-02-09 19:52:35.852718470 +0100
-+++ glibc-2.19/localedata/locales/sw_UG	2014-02-11 16:00:33.266051017 +0100
-@@ -92,8 +92,8 @@
- postal_fmt    "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
- <U0025><U0062><U0025><U0065><U0025><U0072>"
- %
--% FIXME: Uganda in Swahili
--%country_name  ""
-+% Uganda
-+country_name  "<U0055><U0067><U0061><U006E><U0064><U0061>"
- country_post  "<U0055><U0047>"
- country_ab2   "<U0055><U0047>"
- country_ab3   "<U0055><U0047><U0041>"
 --- glibc-2.19/localedata/locales/szl_PL.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/szl_PL	2014-02-11 16:04:30.326041069 +0100
 @@ -216,8 +216,12 @@

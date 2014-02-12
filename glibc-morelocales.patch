@@ -1091,8 +1091,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +postal_fmt    "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
 +<U0025><U0062><U0025><U0065><U0025><U0072>"
 +%
-+% FIXME: Uganda in Swahili
-+%country_name  ""
++% Uganda
++country_name  "<U0055><U0067><U0061><U006E><U0064><U0061>"
 +country_post  "<U0055><U0047>"
 +country_ab2   "<U0055><U0047>"
 +country_ab3   "<U0055><U0047><U0041>"
@@ -1497,7 +1497,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_ADDRESS
 --- glibc-2.14/localedata/locales/ckb_IQ.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/ckb_IQ	2011-06-26 09:30:48.647902668 +0200
-@@ -0,0 +1,472 @@
+@@ -0,0 +1,473 @@
 +comment_char %
 +escape_char  /
 +%
@@ -1942,9 +1942,10 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +country_ab2 "<U0049><U0051>"
 +country_ab3 "<U0049><U0052><U0051>"
 +country_post "<U0049><U0052><U0051>"
++country_name "<U0639><U06CE><U0631><U0627><U0642>"
 +country_num 368
 +country_car "<U0049><U0052><U0051>"
-+% kurd<U00EE>
++% kurdГ®
 +lang_name   "<U0643><U0648><U0631><U062F><U06CC>"
 +lang_ab     ""
 +lang_term   "<U0063><U006B><U0062>"
@@ -1972,7 +1973,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 --- glibc-2.14/localedata/locales/kg_CD.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/kg_CD	2011-06-26 09:30:48.651236002 +0200
-@@ -0,0 +1,180 @@
+@@ -0,0 +1,196 @@
 +comment_char %
 +escape_char  /
 +%
@@ -2151,11 +2152,27 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +country_ab2 "<U0043><U0044>"
 +country_ab3 "<U0043><U004F><U0044>"
 +country_num 180
++% Repubilika ya KГґngo ya Dimokalasi
++country_name "<U0052><U0065><U0070><U0075><U0062><U0069><U006C><U0069>/
++<U006B><U0061><U0020><U0079><U0020><U004B><U00F4><U006E><U0067><U006F>/
++<U0020><U0079><U0061><U0020><U0044><U0069><U006D><U0061><U006C><U0061>/
++<U0073><U0069>"
++% ZRE
++country_car  "<U005A><U0052><U0045>"
++% 99951
++country_isbn "<U0039><U0039><U0039><U0035><U0031>"
++% Kongo
++lang_name    "<U004B><U006F><U006E><U0067><U006F>"
++% kg
++lang_ab      "<U006B><U0067>"
++% kon
++lang_term    "<U006B><U006F><U006E>"
++% kon
++lang_lib     "<U006B><U006F><U006E>"
 +END LC_ADDRESS
-+
 --- glibc-2.14/localedata/locales/sgs_LT.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/sgs_LT	2011-06-26 09:30:48.651236002 +0200
-@@ -0,0 +1,2224 @@
+@@ -0,0 +1,2230 @@
 +escape_char /
 +comment_char %
 +
@@ -4379,10 +4396,16 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +country_ab2 "<U004C><U0054>"
 +country_ab3 "<U004C><U0054><U0055>"
 +country_num 440
++% LT
++country_car    "<U004C><U0054>"
++% 609,9955,9986
++country_isbn "<U0036><U0030><U0039><U002C><U0039><U0039><U0035><U0035><U002C><U0039><U0039><U0038><U0036>"
++lang_term    "<U0073><U0067><U0073>"
++lang_lib     "<U0073><U0067><U0073>"
 +END LC_ADDRESS
 --- glibc-2.15/localedata/locales/myv_RU.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.15/localedata/locales/myv_RU	2012-01-04 18:11:29.748762600 +0100
-@@ -0,0 +1,198 @@
+@@ -0,0 +1,203 @@
 +comment_char %
 +escape_char /
 +% Charset: UTF-8
@@ -4566,11 +4589,16 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +% RUS
 +country_ab3  "<U0052><U0055><U0053>"
 +country_num  643
++% RUS
++country_car    "<U0052><U0055><U0053>"
++% 5
++country_isbn "<U0035>"
 +% Erzanj kielj
 +lang_name    "<U0045><U0072><U007A><U00E4><U006E><U006A><U0020><U006B><U0069><U0065><U006C><U006A>"
-+lang_ab      ""
 +% myv
 +lang_term    "<U006D><U0079><U0076>"
++% myv
++lang_lib     "<U006D><U0079><U0076>"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
@@ -4583,7 +4611,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_TELEPHONE
 --- glibc-2.15/localedata/locales/myv_RU@cyrillic.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.15/localedata/locales/myv_RU@cyrillic	2012-01-04 18:13:38.398766907 +0100
-@@ -0,0 +1,138 @@
+@@ -0,0 +1,146 @@
 +comment_char %
 +escape_char /
 +% Charset: Cyrillic
@@ -4621,7 +4649,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_COLLATE
 +
 +LC_TIME
-+% якшамков, даволков, эйзярков, чадыков, панжиков, аштемков, медьков, умарьков, таштамков, ожоков, суньдерьков, ацамков
++% СЏРєС€Р°РјРєРѕРІ, РґР°РІРѕР»РєРѕРІ, СЌР№Р·СЏСЂРєРѕРІ, С‡Р°РґС‹РєРѕРІ, РїР°РЅР¶РёРєРѕРІ, Р°С€С‚РµРјРєРѕРІ, РјРµРґСЊРєРѕРІ, СѓРјР°СЂСЊРєРѕРІ, С‚Р°С€С‚Р°РјРєРѕРІ, РѕР¶РѕРєРѕРІ, СЃСѓРЅСЊРґРµСЂСЊРєРѕРІ, Р°С†Р°РјРєРѕРІ
 +mon           "<U044F><U043A><U0448><U0430><U043C><U043A><U043E><U0432>";/
 +     "<U0434><U0430><U0432><U043E><U043B><U043A><U043E><U0432>";/
 +     "<U044D><U0439><U0437><U044F><U0440><U043A><U043E><U0432>";/
@@ -4634,7 +4662,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +     "<U043E><U0436><U043E><U043A><U043E><U0432>";/
 +     "<U0441><U0443><U043D><U044C><U0434><U0435><U0440><U044C><U043A><U043E><U0432>";/
 +     "<U0430><U0446><U0430><U043C><U043A><U043E><U0432>"
-+% як., дав., эйз., чад., пан., аш., мед., ума., таш., ож., сун., ац.
++% СЏРє., РґР°РІ., СЌР№Р·., С‡Р°Рґ., РїР°РЅ., Р°С€., РјРµРґ., СѓРјР°., С‚Р°С€., РѕР¶., СЃСѓРЅ., Р°С†.
 +abmon         "<U044F><U043A><U002E>";/
 +       "<U0434><U0430><U0432><U002E>";/
 +       "<U044D><U0439><U0437><U002E>";/
@@ -4647,7 +4675,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +       "<U043E><U0436><U002E>";/
 +       "<U0441><U0443><U043D><U002E>";/
 +       "<U0430><U0446><U002E>"
-+% недлячи, атянчи, вастанчи, кункшканчи, каланчи, сюканчи, шлямочи 
++% РЅРµРґР»СЏС‡Рё, Р°С‚СЏРЅС‡Рё, РІР°СЃС‚Р°РЅС‡Рё, РєСѓРЅРєС€РєР°РЅС‡Рё, РєР°Р»Р°РЅС‡Рё, СЃСЋРєР°РЅС‡Рё, С€Р»СЏРјРѕС‡Рё 
 +day           "<U043D><U0435><U0434><U043B><U044F><U0447><U0438>";/
 +     "<U0430><U0442><U044F><U043D><U0447><U0438>";/
 +     "<U0432><U0430><U0441><U0442><U0430><U043D><U0447><U0438>";/
@@ -4655,7 +4683,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +     "<U043A><U0430><U043B><U0430><U043D><U0447><U0438>";/
 +     "<U0441><U044E><U043A><U0430><U043D><U0447><U0438>";/
 +     "<U0448><U043B><U044F><U043C><U043E><U0447><U0438><U0020>"
-+% нед., ат., вас., кун., кал., сюк., шл.
++% РЅРµРґ., Р°С‚., РІР°СЃ., РєСѓРЅ., РєР°Р»., СЃСЋРє., С€Р».
 +abday         "<U043D><U0435><U0434><U002E>";/
 +       "<U0430><U0442><U002E>";/
 +       "<U0432><U0430><U0441><U002E>";/
@@ -4690,9 +4718,9 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 +
 +LC_MESSAGES
-+% ^[ИиYy].*
++% ^[РРёYy].*
 +yesexpr "<U005E><U005B><U0418><U0438><U0059><U0079><U005D><U002E><U002A>"
-+% ^[АаNn].*
++% ^[РђР°Nn].*
 +noexpr  "<U005E><U005B><U0410><U0430><U004E><U006E><U005D><U002E><U002A>"
 +END LC_MESSAGES
 +
@@ -4712,11 +4740,19 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +% RUS
 +country_ab3  "<U0052><U0055><U0053>"
 +country_num  643
-+% Эрзянь кель
++% Р РѕСЃСЃРёСЏ РњР°СЃС‚РѕСЂ
++country_name "<U0420><U043E><U0441><U0441><U0438><U044F><U0020><U041C>/
++<U0430><U0441><U0442><U043E><U0440>"
++% RUS
++country_car    "<U0052><U0055><U0053>"
++% 5
++country_isbn "<U0035>"
++% Р­СЂР·СЏРЅСЊ РєРµР»СЊ
 +lang_name    "<U042D><U0440><U0437><U044F><U043D><U044C><U0020><U043A><U0435><U043B><U044C>"
-+lang_ab      ""
 +% myv
 +lang_term    "<U006D><U0079><U0076>"
++% myv
++lang_lib     "<U006D><U0079><U0076>"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
@@ -4725,7 +4761,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 --- glibc/localedata/locales.orig/shn_MM	1970-01-01 01:00:00.000000000 +0100
 +++ glibc/localedata/locales/shn_MM	2012-10-07 16:31:46.646361128 +0200
-@@ -0,0 +1,319 @@
+@@ -0,0 +1,324 @@
 +escape_char     /
 +comment_char    %
 +% This is the locale definition file for Myanmar Shan
@@ -5040,6 +5076,11 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +country_name   "<U1019><U103C><U1014><U103A><U1019><U102C>"
 +country_post    "<U004D><U0079><U0061><U006E><U006D><U0061><U0072>"
 +country_ab2     "<U004D><U004D>"
++country_num     104
++% BA
++country_car  "<U0042><U0041>"
++% 99971
++country_isbn "<U0039><U0039><U0039><U0037><U0031>"
 +lang_ab         "<U006D><U0079>"
 +lang_name       "<U101B><U103E><U1019><U103A><U1038>"
 +lang_term   "<U006D><U0079><U0061>"
@@ -5468,7 +5509,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +END LC_MEASUREMENT
 --- glibc-2.17/localedata/locales/ay_PE.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.17/localedata/locales/ay_PE	2013-01-04 19:55:56.207852505 +0100
-@@ -0,0 +1,96 @@
+@@ -0,0 +1,117 @@
 +comment_char %
 +escape_char /
 +% Charset: UTF-8
@@ -5559,7 +5600,28 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +END LC_NAME
 +
 +LC_ADDRESS
-+copy "es_PE"
++postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
++<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
++<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
++<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
++<U004E><U0025><U0063><U0025><U004E>"
++country_ab2   "<U0050><U0045>"
++country_ab3   "<U0050><U0045><U0052>"
++country_num   604
++% Piruw
++country_name  "<U0050><U0069><U0072><U0075><U0077>"
++% PE
++country_car   "<U0050><U0045>"
++% 612,9972
++country_isbn "<U0036><U0031><U0032><U002C><U0039><U0039><U0037><U0032>"
++% Aymar aru
++lang_name    "<U0041><U0079><U006D><U0061><U0072><U0020><U0061><U0072><U0075>"
++% ay
++lang_ab      "<U0061><U0079>"
++% aym
++lang_term    "<U0061><U0079><U006D>"
++% aym
++lang_lib     "<U0061><U0079><U006D>"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
@@ -5987,7 +6049,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +END LC_NAME
 --- glibc-2.18/localedata/locales/mjw_IN.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.18/localedata/locales/mjw_IN	2013-08-24 08:21:01.228215722 +0200
-@@ -0,0 +1,186 @@
+@@ -0,0 +1,198 @@
 +comment_char 	%
 +escape_char  	/
 +
@@ -6172,7 +6234,19 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +END LC_NAME
 +
 +LC_ADDRESS
-+copy "en_IN"
++postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
++<U0025><U0062><U0025><U0065><U0025><U0072>"
++country_ab2 "<U0049><U004E>"
++country_ab3 "<U0049><U004E><U0044>"
++country_num 356
++% IND
++country_car "<U0049><U004E><U0044>"
++% 81,93
++country_isbn "<U0038><U0031><U002C><U0039><U0033>"
++% mjw
++lang_term   "<U006D><U006A><U0077>"
++% mjw
++lang_lib    "<U006D><U006A><U0077>"
 +END LC_ADDRESS
 --- glibc-2.19/localedata/SUPPORTED.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/SUPPORTED	2014-02-08 08:43:20.218029506 +0100
