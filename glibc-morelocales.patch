@@ -6523,3 +6523,21 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  uz_UZ/ISO-8859-1 \
  uz_UZ@cyrillic/UTF-8 \
  ve_ZA/UTF-8 \
+--- glibc-2.19/locale/iso-639.def.orig	2014-02-07 10:04:38.000000000 +0100
++++ glibc-2.19/locale/iso-639.def	2014-02-13 20:30:45.341452266 +0100
+@@ -238,6 +238,7 @@
+ DEFINE_LANGUAGE_CODE ("Kanuri", kr, kau, kau)
+ DEFINE_LANGUAGE_CODE3 ("Kara-Kalpak", kaa, kaa)
+ DEFINE_LANGUAGE_CODE3 ("Karachay-Balkar", krc, krc)
++DEFINE_LANGUAGE_CODE3 ("Karbi", mjw, mjw)
+ DEFINE_LANGUAGE_CODE3 ("Karelian", krl, krl)
+ DEFINE_LANGUAGE_CODE3 ("Karen", kar, kar)
+ DEFINE_LANGUAGE_CODE ("Kashmiri", ks, kas, kas)
+@@ -400,6 +401,7 @@
+ DEFINE_LANGUAGE_CODE3 ("Samaritan Aramaic", sam, sam)
+ DEFINE_LANGUAGE_CODE3 ("Sami languages (Other)", smi, smi)
+ DEFINE_LANGUAGE_CODE ("Samoan", sm, smo, smo)
++DEFINE_LANGUAGE_CODE3 ("Samogitian", sgs, sgs)
+ DEFINE_LANGUAGE_CODE3 ("Sandawe", sad, sad)
+ DEFINE_LANGUAGE_CODE ("Sango", sg, sag, sag)
+ DEFINE_LANGUAGE_CODE ("Sanskrit", sa, san, san)

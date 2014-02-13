@@ -2438,11 +2438,15 @@
  END LC_MESSAGES
  
  LC_MONETARY
-@@ -204,9 +204,12 @@
+@@ -202,11 +202,14 @@
+ <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
+ <U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
  <U004E><U0025><U0063><U0025><U004E>"
- country_ab2 "<U004B><U0059>"
- country_ab3 "<U004B><U0059><U0052>"
+-country_ab2 "<U004B><U0059>"
+-country_ab3 "<U004B><U0059><U0052>"
 -%country_num 643
++country_ab2 "<U004B><U0047>"
++country_ab3 "<U004B><U0047><U005A>"
 +country_num 417
 +country_name "<U041A><U044B><U0440><U0433><U044B><U0437><U0441><U0442><U0430><U043D>"
  % KS
@@ -3811,7 +3815,7 @@
  % tgk
 --- glibc-2.19/localedata/locales/th_TH.orig	2014-02-09 19:52:36.339385116 +0100
 +++ glibc-2.19/localedata/locales/th_TH	2014-02-11 20:10:04.905422716 +0100
-@@ -968,11 +968,11 @@
+@@ -968,14 +968,13 @@
  %country_post  ""
  country_ab2   "<U0054><U0048>"
  country_ab3   "<U0054><U0048><U0041>"
@@ -3826,6 +3830,9 @@
  lang_name     "<U0E44><U0E17><U0E22>"
  lang_ab       "<U0074><U0068>"
  lang_term     "<U0074><U0068><U0061>"
+ lang_lib      "<U0074><U0068><U0061>"
+-country_num 764
+ END LC_ADDRESS
 --- glibc-2.19/localedata/locales/the_NP.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/the_NP	2014-02-11 19:03:12.402257775 +0100
 @@ -209,6 +209,10 @@
