@@ -1029,6 +1029,7 @@ AWK="gawk" \
 
 %{__make} \
 	AWK="gawk" \
+	localedir=%{_prefix}/lib/locale \
 	sLIBdir=%{_libdir}
 
 cd ..
@@ -1066,13 +1067,17 @@ cd builddir
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
+	localedir=%{_prefix}/lib/locale \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
 %if %{with localedb}
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
+	localedir=%{_prefix}/lib/locale \
 	install_root=$RPM_BUILD_ROOT
+%else
+install -d $RPM_BUILD_ROOT%{_prefix}/lib/locale
 %endif
 
 PICFILES="libc_pic.a libc.map
@@ -1268,7 +1273,7 @@ for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu ia id it ja kk
 done
 
 # localedb-gen infrastructure
-sed -e 's,@localedir@,%{_libdir}/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+sed -e 's,@localedir@,%{_prefix}/lib/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
@@ -1435,7 +1440,7 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libutil.so.1
 %endif
-%{?with_localedb:%dir %{_libdir}/locale}
+%dir %{_prefix}/lib/locale
 
 #%files -n nss_db
 %defattr(644,root,root,755)
@@ -1788,7 +1793,7 @@ fi
 %if %{with localedb}
 %files localedb-all
 %defattr(644,root,root,755)
-%{_libdir}/locale/locale-archive
+%{_prefix}/lib/locale/locale-archive
 %endif
 
 %files -n iconv
