@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1316,6 +1316,14 @@ rm -rf $RPM_BUILD_ROOT
 if [ "$1" != 1 ]; then
 	%service -q crond restart
 fi
+
+%ifarch %{x8664}
+# when upgrading from glibc < 6:2.19-3 copy locale-archive
+# from /usr/lib64/locale to /usr/lib/locale
+# but only if the latter doesn't already exist
+%triggerpostun -p /sbin/postshell -- %{name} < 6:2.19-3
+-/bin/cp -an %{_libdir}/locale/locale-archive %{_prefix}/lib/locale/locale-archive
+%endif
 
 %post	libcrypt -p /sbin/ldconfig
 %postun	libcrypt -p /sbin/ldconfig
