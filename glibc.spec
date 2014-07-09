@@ -1185,6 +1185,7 @@ done
 #   kmr (vlc)
 #   man (ccsm; incorrectly named md)
 #   mus (bluez-gnome)
+#   nah (mate-system-monitor)
 #   pms (deluge)
 #   sco (gnomad2, picard, stellarium)
 #   son (gtkspell3)
