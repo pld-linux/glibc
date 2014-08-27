@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -46,7 +46,7 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 #Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
 Source5:	%{name}-man-pages.tar.bz2
-# Source5-md5:	d092f75d5e2d19c71bb8069945b8199a
+# Source5-md5:	0d93d9628f35f1eae015affb11390df3
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
