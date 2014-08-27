@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -51,6 +51,7 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Source9:	nscd.tmpfiles
+Patch100:	%{name}-git.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -939,6 +940,8 @@ Narzędzie do profilowania zużycia pamięci.
 echo "Minimal supported kernel is 2.6.16" >&2
 exit 1
 %endif
+
+%patch100 -p1
 
 %patch2 -p1
 %patch3 -p0
