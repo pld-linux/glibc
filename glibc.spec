@@ -15,14 +15,14 @@
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
 #
-%{!?min_kernel:%global		min_kernel	2.6.16}
+%{!?min_kernel:%global		min_kernel	2.6.32}
 
 %ifarch sparc64
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.19
-%define		llh_version	7:2.6.20.4-1
+%define		core_version	2.20
+%define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
 Summary(de.UTF-8):	GNU libc
@@ -35,12 +35,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	6
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	e26b8cc666b162f999404b03970f14e4
+# Source0-md5:	948a6e06419a01bd51e97206861595b0
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -51,7 +51,6 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Source9:	nscd.tmpfiles
-Patch100:	%{name}-git.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -940,9 +939,6 @@ Narzędzie do profilowania zużycia pamięci.
 echo "Minimal supported kernel is 2.6.16" >&2
 exit 1
 %endif
-
-%patch100 -p1
-
 %patch2 -p1
 %patch3 -p0
 %patch4 -p1
@@ -982,10 +978,6 @@ find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 
 chmod +x scripts/cpp
 
-# i786 (aka pentium4) hack
-ln -s i686 nptl/sysdeps/i386/i786
-ln -s i686 nptl/sysdeps/unix/sysv/linux/i386/i786
-
 %build
 # glibc has its own way to remove PLT relocations. / H. J. Lu.
 unset LD_SYMBOLIC_FUNCTIONS || :
@@ -1001,7 +993,7 @@ cd builddir
 CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 
-AddOns=nptl,libidn
+AddOns=libidn
 %ifarch %{ports_arch}
 AddOns=$AddOns,ports
 %endif
@@ -1149,7 +1141,7 @@ install %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 rm -rf documentation
 install -d documentation
 
-for f in ANNOUNCE ChangeLog DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
+for f in ChangeLog.old DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
 	cp -af nptl/$f documentation/$f.nptl
 done
 cp -af crypt/README.ufc-crypt ChangeLog* documentation

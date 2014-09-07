@@ -6513,13 +6513,13 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  tt_RU/UTF-8 \
  tt_RU@iqtelif/UTF-8 \
  ug_CN/UTF-8 \
-@@ -426,7 +494,9 @@
+@@ -426,8 +494,9 @@
  uk_UA/KOI8-U \
  unm_US/UTF-8 \
  ur_IN/UTF-8 \
 +ur_PK.CP1256/CP1256 \
  ur_PK/UTF-8 \
-+uz_UZ.UTF-8/UTF-8 \
+ uz_UZ.UTF-8/UTF-8 \
  uz_UZ/ISO-8859-1 \
  uz_UZ@cyrillic/UTF-8 \
  ve_ZA/UTF-8 \
