@@ -1030,21 +1030,8 @@ AWK="gawk" \
 cd ..
 
 %if %{with tests}
-cd builddir
 env LANGUAGE=C LC_ALL=C \
-%{__make} -j1 tests 2>&1 | awk '
-BEGIN { file = "" }
-{
-	if (($0 ~ /\*\*\* \[.*\.out\] Error/) && ($0 !~ /annexc/) && (file == "")) {
-		file=$0;
-		gsub(/.*\[/, NIL, file);
-		gsub(/\].*/, NIL, file);
-	}
-	print $0;
-}
-END { if (file != "") { print "ERROR OUTPUT FROM " file; system("cat " file); exit(1); } }'
-cd ..
-done
+%{__make} -j1 -C builddir tests
 %endif
 
 %if %{without cross}
