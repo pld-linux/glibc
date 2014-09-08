@@ -60,7 +60,7 @@ Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
 Patch7:		1070_all_glibc-fadvise64_64.patch
 Patch8:		%{name}-missing-nls.patch
-Patch9:		%{name}-java-libc-wait.patch
+
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
 Patch12:	%{name}-format.patch
@@ -946,7 +946,7 @@ exit 1
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1
+
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
