@@ -8,7 +8,7 @@
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
-# min_kernel	(default is 2.6.16)
+# min_kernel	(default is 2.6.32)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -51,6 +51,7 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Source9:	nscd.tmpfiles
+Patch0:		%{name}-git.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -935,10 +936,12 @@ Narzędzie do profilowania zużycia pamięci.
 %prep
 %setup -q
 
-%if "%{min_kernel}" < "2.6.16"
-echo "Minimal supported kernel is 2.6.16" >&2
+%if "%{min_kernel}" < "2.6.32"
+echo "Minimal supported kernel is 2.6.32" >&2
 exit 1
 %endif
+
+%patch0 -p1
 %patch2 -p1
 %patch3 -p0
 %patch4 -p1
