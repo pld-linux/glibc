@@ -1,0 +1,29 @@
+--- configure.ac.orig	2014-09-27 12:55:02.445395745 +0200
++++ configure.ac	2014-09-27 12:55:39.848729357 +0200
+@@ -277,10 +277,7 @@
+ 	      [nss_crypt=$enableval],
+ 	      [nss_crypt=no])
+ if test x$nss_crypt = xyes; then
+-  nss_includes=-I$(nss-config --includedir 2>/dev/null)
+-  if test $? -ne 0; then
+-    AC_MSG_ERROR([cannot find include directory with nss-config])
+-  fi
++  nss_includes='-I/usr/include/nss -I/usr/include/nspr'
+   old_CFLAGS="$CFLAGS"
+   CFLAGS="$CFLAGS $nss_includes"
+   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([typedef int PRBool;
+--- crypt/Makefile.orig	2014-09-27 13:04:28.422466311 +0200
++++ crypt/Makefile	2014-09-27 13:05:00.672466567 +0200
+@@ -37,9 +37,9 @@
+ endif
+ 
+ ifeq ($(nss-crypt),yes)
+-CPPFLAGS-sha256-crypt.c = -DUSE_NSS -I$(shell nss-config --includedir)
+-CPPFLAGS-sha512-crypt.c = -DUSE_NSS -I$(shell nss-config --includedir)
+-CPPFLAGS-md5-crypt.c = -DUSE_NSS -I$(shell nss-config --includedir)
++CPPFLAGS-sha256-crypt.c = -DUSE_NSS -I/usr/include/nss -I/usr/include/nspr
++CPPFLAGS-sha512-crypt.c = -DUSE_NSS -I/usr/include/nss -I/usr/include/nspr
++CPPFLAGS-md5-crypt.c = -DUSE_NSS -I/usr/include/nss -I/usr/include/nspr
+ LDLIBS-crypt.so = -lfreebl3
+ else
+ libcrypt-routines += md5 sha256 sha512
