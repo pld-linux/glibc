@@ -605,6 +605,7 @@ Requires(pre):	/usr/sbin/useradd
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{?with_selinux:Requires:	libselinux >= 1.18}
 Requires:	rc-scripts >= 0.4.3.0
+Obsoletes:	unscd
 Provides:	group(nscd)
 Provides:	user(nscd)
 
