@@ -605,9 +605,10 @@ Requires(pre):	/usr/sbin/useradd
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{?with_selinux:Requires:	libselinux >= 1.18}
 Requires:	rc-scripts >= 0.4.3.0
-Obsoletes:	unscd
 Provides:	group(nscd)
 Provides:	user(nscd)
+Obsoletes:	gnscd
+Obsoletes:	unscd
 
 %description -n nscd
 nscd caches name service lookups; it can dramatically improve
