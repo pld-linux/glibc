@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -84,7 +84,7 @@ Patch27:	%{name}-locale-C.patch.xz
 # Patch27-md5:	34ebe52a2afb923e33af0fb7c541f540
 Patch28:	%{name}-locale-C-pld.patch
 Patch29:	%{name}-arm-alignment-fix.patch
-
+Patch30:	glibc-rh1124987.patch
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
 
@@ -973,7 +973,7 @@ exit 1
 %patch27 -p1
 %patch28 -p1
 %patch29 -p1
-
+%patch30 -p1
 %patch31 -p1
 %patch32 -p1
 
