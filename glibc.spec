@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -114,6 +114,7 @@ BuildRequires:	texinfo
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
+Provides:	%{name}(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
 Provides:	rtld(GNU_HASH)
@@ -292,6 +293,9 @@ Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Conflicts:	%{name}(x86_64)
+%endif
 
 %description misc
 Utilities and data used by glibc.
@@ -1469,9 +1473,6 @@ fi
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
-%ifarch %{ix86} m68k sparc sparcv9
-%attr(755,root,root) %{_bindir}/lddlibc4
-%endif
 %attr(755,root,root) %{_bindir}/locale
 %attr(755,root,root) %{_bindir}/rpcgen
 %attr(755,root,root) %{_sbindir}/zdump
@@ -1588,6 +1589,9 @@ fi
 %attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/ldd
 %attr(755,root,root) %{_bindir}/pldd
+%ifarch %{ix86} m68k sparc sparcv9
+%attr(755,root,root) %{_bindir}/lddlibc4
+%endif
 %attr(755,root,root) %{_bindir}/sotruss
 %dir %{_libdir}/audit
 %attr(755,root,root) %{_libdir}/audit/sotruss-lib.so
