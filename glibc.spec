@@ -14,7 +14,7 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
-%bcond_without	nss_crypt	# don't build localedb-all (is time consuming)
+%bcond_without	nss_crypt	# disable nss-crypt
 #
 %{!?min_kernel:%global		min_kernel	2.6.32}
 
