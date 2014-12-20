@@ -13,7 +13,7 @@
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
-%bcond_with	cross		# build using crossgcc (without libgcc_eh)
+%bcond_with	cross		# make a cross build, skip native programs
 %bcond_without	nss_crypt	# disable nss-crypt
 #
 %{!?min_kernel:%global		min_kernel	2.6.32}
@@ -76,7 +76,6 @@ Patch17:	%{name}-morelocales.patch
 Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
 Patch20:	%{name}-thread_start.patch
-Patch21:	%{name}-cross-gcc_eh.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
@@ -88,7 +87,7 @@ Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
 Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
-
+Patch33:	fix-broken-echo.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
@@ -138,7 +137,7 @@ Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
-ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
@@ -969,7 +968,6 @@ exit 1
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
-%{?with_cross:%patch21 -p1}
 %patch22 -p1
 %patch23 -p0
 
@@ -981,6 +979,7 @@ exit 1
 %patch30 -p1
 %patch31 -p1
 %patch32 -p1
+%patch33 -p1
 
 %patch38 -p1
 
@@ -1382,10 +1381,13 @@ fi
 %ifarch %{x8664}
 %attr(755,root,root) /%{_lib}/ld-linux-x86-64.so.2
 %endif
+%ifarch x32
+%attr(755,root,root) /%{_lib}/ld-linux-x32.so.2
+%endif
 %ifarch ppc64 s390x
 %attr(755,root,root) /%{_lib}/ld64.so.1
 %endif
-%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} ppc64 s390x %{arm}
+%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} x32 ppc64 s390x %{arm}
 %attr(755,root,root) /%{_lib}/ld.so.1
 %endif
 %attr(755,root,root) /%{_lib}/libBrokenLocale-%{core_version}.so
@@ -1689,7 +1691,7 @@ fi
 %endif
 %{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
-%ifarch %{ix86} %{x8664} ppc ppc64 s390 s390x sparc sparcv9 sparc64
+%ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64
 # ABI-dependent headers
 %{_includedir}/gnu/stubs-*.h
 %endif
