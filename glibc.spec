@@ -14,6 +14,7 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# build using crossgcc (without libgcc_eh)
+%bcond_without	nss_crypt	# don't build localedb-all (is time consuming)
 #
 %{!?min_kernel:%global		min_kernel	2.6.32}
 
@@ -1023,9 +1024,7 @@ AWK="gawk" \
 	--with-tls \
 	--enable-obsolete-rpc \
 	--enable-add-ons=$AddOns \
-%if "%{pld_release}" != "ti"
-	--enable-nss-crypt \
-%endif
+	--%{?with_nss_crypt:en}%{!?with_nss_crypt:dis}able-nss-crypt \
 	--enable-experimental-malloc \
 	--enable-stackguard-randomization \
 	--enable-hidden-plt \
