@@ -16,7 +16,11 @@
 %bcond_with	cross		# make a cross build, skip native programs
 %bcond_without	nss_crypt	# disable nss-crypt
 #
+%ifarch x32
+%{!?min_kernel:%global		min_kernel	3.4.0}
+%else
 %{!?min_kernel:%global		min_kernel	2.6.32}
+%endif
 
 %ifarch sparc64
 %undefine	with_memusage
@@ -102,7 +106,7 @@ BuildRequires:	binutils >= 2:2.15.90.0.3
 BuildRequires:	gawk
 BuildRequires:	gcc >= 6:4.3
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
-BuildRequires:	gettext-devel >= 0.10.36
+BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	nss-devel >= 1:3.15.1-2
