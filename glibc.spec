@@ -119,6 +119,9 @@ Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
 Provides:	%{name}(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}(ix86) = %{epoch}:%{version}-%{release}
+%endif
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
 Provides:	rtld(GNU_HASH)
@@ -298,6 +301,7 @@ Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
+Conflicts:	%{name}(x32)
 Conflicts:	%{name}(x86_64)
 %endif
 
@@ -382,11 +386,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
 Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%if "%{_lib}" == "lib64"
-Requires:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
-%else
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
-%endif
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
@@ -453,10 +453,7 @@ Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-headers(ix86) = %{epoch}:%{version}-%{release}
 %endif
-%if "%{_lib}" == "lib64"
-Provides:	%{name}-headers(64bit) = %{epoch}:%{version}-%{release}
-%endif
-%ifarch %{x8664}
+%ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
 Obsoletes:	glibc-headers(athlon)
@@ -466,6 +463,10 @@ Obsoletes:	glibc-headers(i586)
 Obsoletes:	glibc-headers(i686)
 Obsoletes:	glibc-headers(pentium3)
 Obsoletes:	glibc-headers(pentium4)
+Obsoletes:	glibc-headers(ix86)
+%endif
+%ifarch x32
+Obsoletes:	glibc-headers(x86_64)
 %endif
 %ifarch ppc64
 Obsoletes:	glibc-headers(ppc)
@@ -507,7 +508,7 @@ Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-devel-utils(ix86) = %{epoch}:%{version}-%{release}
 %endif
-%ifarch %{x8664}
+%ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
 # have to be installed, not ix86 one.
 Obsoletes:	glibc-devel-utils(athlon)
@@ -517,6 +518,10 @@ Obsoletes:	glibc-devel-utils(i586)
 Obsoletes:	glibc-devel-utils(i686)
 Obsoletes:	glibc-devel-utils(pentium3)
 Obsoletes:	glibc-devel-utils(pentium4)
+Obsoletes:	glibc-devel-utils(ix86)
+%endif
+%ifarch x32
+Obsoletes:	glibc-devel-utils(x86_64)
 %endif
 %ifarch ppc64
 Obsoletes:	glibc-devel-utils(ppc)
@@ -566,6 +571,10 @@ Obsoletes:	glibc-devel-doc(i586)
 Obsoletes:	glibc-devel-doc(i686)
 Obsoletes:	glibc-devel-doc(pentium3)
 Obsoletes:	glibc-devel-doc(pentium4)
+Obsoletes:	glibc-devel-doc(ix86)
+%endif
+%ifarch x32
+Obsoletes:	glibc-devel-doc(x86_64)
 %endif
 %ifarch ppc64
 Obsoletes:	glibc-devel-doc(ppc)
