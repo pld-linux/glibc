@@ -14,7 +14,7 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# make a cross build, skip native programs
-%bcond_without	nss_crypt	# disable nss-crypt
+%bcond_without	nss_crypt	# disable crypt features based on Mozilla NSS library
 #
 %ifarch x32
 %{!?min_kernel:%global		min_kernel	3.4.0}
@@ -109,7 +109,7 @@ BuildRequires:	gcc >= 6:4.3
 BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
-BuildRequires:	nss-devel >= 1:3.15.1-2
+%{?with_nss_crypt:BuildRequires:	nss-devel >= 1:3.15.1-2}
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpmbuild(macros) >= 1.567
