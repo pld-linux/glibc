@@ -166,9 +166,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %{expand:%%define	__cc	%{__cc} -m32}
 %endif
 
-# Architectures supported in glibc-ports
-%define		ports_arch		alpha %{arm}
-
 # Xen-friendly glibc
 %define		specflags_ia32		-mno-tls-direct-seg-refs
 %define		specflags_x86_64	-mno-tls-direct-seg-refs -fasynchronous-unwind-tables
@@ -1016,11 +1013,6 @@ cd builddir
 CC="%{__cc} -m64 -mcpu=ultrasparc -mvis -fcall-used-g6"
 %endif
 
-AddOns=libidn
-%ifarch %{ports_arch}
-AddOns=$AddOns,ports
-%endif
-
 # force ld bfd (instead of gold)
 install -d alt-tools
 ln -sf %{_bindir}/ld.bfd alt-tools/ld
@@ -1028,20 +1020,20 @@ PATH=$(pwd)/alt-tools:$PATH; export PATH
 
 AWK="gawk" \
 ../%configure \
-	--with-bugurl=http://bugs.pld-linux.org/ \
-	--with-binutils=$(pwd)/alt-tools \
-	--enable-kernel="%{min_kernel}" \
-	--with-headers=%{_includedir} \
-	--with%{!?with_selinux:out}-selinux \
-	--with-tls \
-	--enable-obsolete-rpc \
-	--enable-add-ons=$AddOns \
-	--%{?with_nss_crypt:en}%{!?with_nss_crypt:dis}able-nss-crypt \
-	--enable-experimental-malloc \
-	--enable-stackguard-randomization \
-	--enable-hidden-plt \
+	--enable-add-ons=libidn \
 	--enable-bind-now \
-	--enable-profile
+	--enable-experimental-malloc \
+	--enable-hidden-plt \
+	--enable-kernel="%{min_kernel}" \
+	--enable-nss-crypt%{!?with_nss_crypt:=no} \
+	--enable-obsolete-rpc \
+	--enable-profile \
+	--enable-stackguard-randomization \
+	--with-binutils=$(pwd)/alt-tools \
+	--with-bugurl=http://bugs.pld-linux.org/ \
+	--with-headers=%{_includedir} \
+	--with-selinux%{!?with_selinux:=no} \
+	--with-tls
 
 %{__make} \
 	AWK="gawk" \
@@ -1102,19 +1094,15 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 %{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}}
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
-# moved to tzdata package
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/localtime
-rm -rf $RPM_BUILD_ROOT%{_datadir}/zoneinfo
-
 # make symlinks across top-level directories absolute
 for l in BrokenLocale anl cidn crypt dl m nsl resolv rt thread_db util; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
-	rm -f $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
+	%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 done
 
 # linking nss modules directly is not supported
-rm -f $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 install -p %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 cp -p %{SOURCE8}		$RPM_BUILD_ROOT/etc/init/nscd.conf
@@ -1131,13 +1119,11 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
 echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 : > $RPM_BUILD_ROOT/var/cache/ldconfig/aux-cache
 
-rm -f $RPM_BUILD_ROOT%{_mandir}/hu/man7/man.7
-
 # doesn't fit with out tzdata concept and configure.in is stupid assuming bash
 # is first posix compatible shell making this script depend on bash.
-rm -f $RPM_BUILD_ROOT%{_bindir}/tzselect
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/tzselect.8*
-rm -f $RPM_BUILD_ROOT%{_mandir}/*/man8/tzselect.8*
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/tzselect
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man8/tzselect.8*
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/*/man8/tzselect.8*
 
 : > $RPM_BUILD_ROOT/var/log/nscd
 : > $RPM_BUILD_ROOT/var/lib/nscd/passwd
