@@ -1497,7 +1497,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_ADDRESS
 --- glibc-2.14/localedata/locales/ckb_IQ.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/ckb_IQ	2011-06-26 09:30:48.647902668 +0200
-@@ -0,0 +1,473 @@
+@@ -0,0 +1,471 @@
 +comment_char %
 +escape_char  /
 +%
@@ -1516,10 +1516,11 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +% October 2009: bug fixing and redefine
 +% April 2010 fixing "not found category" problems
 +% March 2011 fixing all bugs
-+%
++% Sept 2014: fixing alphabet and unicode bugs
++% Oct 2014: fixing Address and fmt_name issues
 +
 +LC_IDENTIFICATION
-+title	   "Kurdish language locale for Sorani dialects - Central Kurdish branch"
++title	   "Kurdish language locale based on Arabic letters"
 +source	   "Aras Noori"
 +address    "see e-mail"
 +contact    "Aras Noori"
@@ -1528,8 +1529,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +fax		   ""
 +language   "Kurdish"
 +territory  "Iraq, Iran"
-+revision   "0.5"
-+date	   "2011-03-15"
++revision   "0.8"
++date	   "2014-09-20"
 +
 +category  "ckb_IQ:2000";LC_IDENTIFICATION
 +category  "ckb_IQ:2000";LC_CTYPE
@@ -1551,10 +1552,10 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_CTYPE
 +
 +LC_COLLATE
-+% The Sorani Kurdish dialect is mainly written using a modified Arabic-based alphabet with 33 letters. 
-+% Unlike the regular Arabic alphabet, which is an abjad, Sorani is an alphabet in which vowels are mandatory, making the script easy to read.
++% The Kurdish Sorani, Bahdini, and others dialects is mainly written using a modified (Arabic-based alphabet) with 33 letters. 
++% Unlike the regular Arabic alphabet, which is an abjad, kurdish is an alphabet in which vowels are mandatory, making the script easy to read.
 +%
-+% The CKB (Sorani) alphabet order is: 
++% The kurdish alphabet order is: 
 +% in Latin: a, b, c, ç, d, e, ê, f, g, h, i, î, j, k, l, ll, m, n, o, p, q, r, rr, s, sh, t, u, uu, v, w, x, y, z
 +% vowels: A, E, I, O, U, UU
 +%
@@ -1613,7 +1614,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +<U007E> <U007E> 
 +<U00A0> <U00A0> 
 +% 
-+% Kurish Sorani(CKB) alphabet order. 
++% Kurish alphabet order. 
 +%
 +<U0626> <U0626>
 +<U0627> <U0627>
@@ -1631,11 +1632,11 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +<U0698> <U0698>
 +<U0633> <U0633>
 +<U0634> <U0634>
++<U0639> <U0639>
++<U063A> <U063A>
 +<U0641> <U0641>
 +<U06A4> <U06A4>
 +<U0642> <U0642>
-+<U0639> <U0639>
-+<U063A> <U063A>
 +<U06A9> <U06A9> 
 +<U06AF> <U06AF>
 +<U0644> <U0644>
@@ -1644,8 +1645,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +<U0646> <U0646>
 +<U0648> <U0648>
 +<U06C6> <U06C6>
-+<U06D7> <U06D7>
 +<U0647> <U0647>
++<U06D5> <U06D5>
 +<U06CC> <U06CC>
 +<U06CE> <U06CE>
 +%
@@ -1791,11 +1792,6 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +		<U0640>	IGNORE  
 +order_end 
 +
-+% collating-element <LAM WITH SMALL V-ALEF> from <U06B5><U0627>
-+% collating-element <WAW-WAW> from "<U0648><U0648>"
-+% collating-element <YEH WITH HAMZA ABOVE-ALEF> from "<U0626><U0627>"
-+% collating-element <HEH-AE> from "<U0647><U06D5>"
-+
 +END LC_COLLATE
 +
 +LC_MONETARY
@@ -1925,20 +1921,22 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +
 +
 +LC_NAME
++% This is the ISO_IEC TR14652 Locale definition for the
++% LC_NAME category.
 +%
++name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074>/
++<U0025><U0067>"
 +name_gen    "<U002D><U0073><U0061><U006E>"
 +name_miss   "<U062E><U0627><U062A><U0648>"
 +name_ms     "<U062E><U0627><U062A><U0648>"
 +name_mrs    "<U062E><U0627><U062A><U0648>"
 +name_mr     "<U0643><U0627><U0643>"
-+name_fmt    "<U0025><U0070><U0025><U0074><U0025>/
-+<U0066><U0025><U0074><U0025><U0067>"
 +END LC_NAME
-+
-+
++%
 +LC_ADDRESS
-+postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054>/
-+<U0025><U0073><U0025><U0062><U0025><U0065><U0025><U0072>"
++% This is the ISO_IEC TR14652 Locale definition for the
++postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
++<U0025><U0062><U0025><U0065><U0025><U0072>"
 +country_ab2 "<U0049><U0051>"
 +country_ab3 "<U0049><U0052><U0051>"
 +country_post "<U0049><U0052><U0051>"
@@ -6248,9 +6246,974 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +% mjw
 +lang_lib    "<U006D><U006A><U0077>"
 +END LC_ADDRESS
+--- /dev/null
++++ b/localedata/locales/bh_IN
+@@ -0,0 +1,179 @@
++comment_char    %
++escape_char     /
++% Bhili(devanagari) language locale for India.
++% Contributed by Alexey Merzliakov <alexey.merzlyakov@samsung.com>
++
++LC_IDENTIFICATION
++title      "Bhili(devanagari) language locale for India"
++source     "Samsung Electronics Co., Ltd."
++address    ""
++contact    ""
++email      "alexey.merzlyakov@samsung.com"
++tel        ""
++fax        ""
++language   "Bhili"
++territory  "India"
++revision   "0.1"
++date       "2014-09-30"
++%
++category  "bh_IN:2014";LC_IDENTIFICATION
++category  "bh_IN:2014";LC_CTYPE
++category  "bh_IN:2014";LC_COLLATE
++category  "bh_IN:2014";LC_TIME
++category  "bh_IN:2014";LC_NUMERIC
++category  "bh_IN:2014";LC_MONETARY
++category  "bh_IN:2014";LC_MESSAGES
++category  "bh_IN:2014";LC_PAPER
++category  "bh_IN:2014";LC_NAME
++category  "bh_IN:2014";LC_ADDRESS
++category  "bh_IN:2014";LC_TELEPHONE
++category  "bh_IN:2014";LC_MEASUREMENT
++
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "ks_IN"
++END LC_CTYPE
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_MONETARY
++copy "ks_IN"
++END LC_MONETARY
++
++
++LC_NUMERIC
++copy "hi_IN"
++END LC_NUMERIC
++
++
++LC_TIME
++% This is the POSIX Locale definition for the LC_TIME category.
++% These are generated based on XML base Locale definition file
++% for IBM Class for Unicode/Java
++%
++% Abbreviated weekday names (%a)
++abday       "<U0053><U0075><U006E>";/
++            "<U004D><U006F><U006E>";/
++            "<U0054><U0075><U0065>";/
++            "<U0057><U0065><U0064>";/
++            "<U0054><U0068><U0075>";/
++            "<U0046><U0072><U0069>";/
++            "<U0053><U0061><U0074>"
++%
++% Full weekday names (%A)
++day         "<U0053><U0075><U006E><U0064><U0061><U0079>";/
++            "<U004D><U006F><U006E><U0064><U0061><U0079>";/
++            "<U0054><U0075><U0065><U0073><U0064><U0061><U0079>";/
++            "<U0057><U0065><U0064><U006E><U0065><U0073><U0064><U0061><U0079>";/
++            "<U0054><U0068><U0075><U0072><U0073><U0064><U0061><U0079>";/
++            "<U0046><U0072><U0069><U0064><U0061><U0079>";/
++            "<U0053><U0061><U0074><U0075><U0072><U0064><U0061><U0079>"
++%
++% Abbreviated month names (%b)
++abmon       "<U004A><U0061><U006E>";/
++            "<U0046><U0065><U0062>";/
++            "<U004D><U0061><U0072>";/
++            "<U0041><U0070><U0072>";/
++            "<U004D><U0061><U0079>";/
++            "<U004A><U0075><U006E>";/
++            "<U004A><U0075><U006C>";/
++            "<U0041><U0075><U0067>";/
++            "<U0053><U0065><U0070>";/
++            "<U004F><U0063><U0074>";/
++            "<U004E><U006F><U0076>";/
++            "<U0044><U0065><U0063>"
++%
++% Full month names (%B)
++mon         "<U004A><U0061><U006E><U0075><U0061><U0072><U0079>";/
++            "<U0046><U0065><U0062><U0072><U0075><U0061><U0072><U0079>";/
++            "<U004D><U0061><U0072><U0063><U0068>";/
++            "<U0041><U0070><U0072><U0069><U006C>";/
++            "<U004D><U0061><U0079>";/
++            "<U004A><U0075><U006E><U0065>";/
++            "<U004A><U0075><U006C><U0079>";/
++            "<U0041><U0075><U0067><U0075><U0073><U0074>";/
++            "<U0053><U0065><U0070><U0074><U0065><U006D><U0062><U0065><U0072>";/
++            "<U004F><U0063><U0074><U006F><U0062><U0065><U0072>";/
++            "<U004E><U006F><U0076><U0065><U006D><U0062><U0065><U0072>";/
++            "<U0044><U0065><U0063><U0065><U006D><U0062><U0065><U0072>"
++%
++% Equivalent of AM PM
++am_pm       "<U0041><U004D>";/
++            "<U0050><U004D>"
++%
++% Appropriate date and time representation
++% %A %d %b %Y%I:%M:%S  %Z
++d_t_fmt     "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059><U0020><U0025><U0049><U003A><U0025><U004D><U003A>/
++<U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++% Appropriate date representation
++% %A %d %b %Y
++d_fmt       "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059>"
++%
++% Appropriate time representation
++% %I:%M:%S  %Z
++t_fmt       "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0020><U0025><U005A>"
++%
++% Appropriate 12 h time representation (%r)
++t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
++<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
++<U0025><U005A><U0020><U0025><U0059>"
++%
++END LC_TIME
++
++
++LC_MESSAGES
++yesexpr "<U005E><U005B><U0079><U0059><U005D><U002E><U002A>"
++noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++END LC_MESSAGES
++
++
++LC_PAPER
++copy "hi_IN"
++END LC_PAPER
++
++
++LC_NAME
++name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074>/
++<U0025><U0067>"
++name_gen    ""
++name_mr     "<U004D><U0072><U002E>"
++name_mrs    "<U004D><U0072><U0073><U002E>"
++name_miss   "<U004D><U0069><U0073><U0073><U002E>"
++name_ms     "<U004D><U0073><U002E>"
++
++END LC_NAME
++
++
++LC_ADDRESS
++% This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category
++% generated by IBM Basic CountryPack Transformer.
++postal_fmt "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073><U0025><U0062><U0025><U0065><U0025><U0072>"
++country_ab2 "<U0049><U004E>"
++country_ab3 "<U0049><U004E><U0044>"
++country_car "<U0049><U004E><U0044>"
++country_num 356
++lang_name     "<U0062><U0068><U0069><U006C><U0069>"
++lang_ab       "<U0062><U0068>"
++lang_term     "<U0062><U0068><U0062>"
++lang_lib      "<U0062><U0068><U0062>"
++END LC_ADDRESS
++
++
++LC_TELEPHONE
++copy "hi_IN"
++END LC_TELEPHONE
++
++
++LC_MEASUREMENT
++copy "hi_IN"
++END LC_MEASUREMENT
+diff --git a/localedata/locales/tu_IN b/localedata/locales/tu_IN
+new file mode 100644
+index 0000000..0201bbd
+--- /dev/null
++++ b/localedata/locales/tu_IN
+@@ -0,0 +1,195 @@
++comment_char    %
++escape_char     /
++% Tulu (kannada) language locale for India.
++
++% *** Below just modify to suit your language. I have modified for Kannada
++% *** other language codes - Gujarati - gu, Punjabi - pa, Oriya - or
++
++LC_IDENTIFICATION
++title      "Tulu language locale for India"
++source     "IndLinux.org, Samsung Electronics Co., Ltd."
++address    ""
++contact    ""
++email      "alexey.merzlyakov@samsung.com"
++tel        ""
++fax        ""
++language   "Tulu"
++territory  "India"
++revision   "0.1"
++date       "2014-09-30"
++%
++category  "tu_IN:2014";LC_IDENTIFICATION
++category  "tu_IN:2014";LC_CTYPE
++category  "tu_IN:2014";LC_COLLATE
++category  "tu_IN:2014";LC_TIME
++category  "tu_IN:2014";LC_NUMERIC
++category  "tu_IN:2014";LC_MONETARY
++category  "tu_IN:2014";LC_MESSAGES
++category  "tu_IN:2014";LC_PAPER
++category  "tu_IN:2014";LC_NAME
++category  "tu_IN:2014";LC_ADDRESS
++category  "tu_IN:2014";LC_TELEPHONE
++category  "tu_IN:2014";LC_MEASUREMENT
++
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "kn_IN"
++END LC_CTYPE
++
++LC_COLLATE
++
++% Copy the template from ISO/IEC 14651
++copy "iso14651_t1"
++
++END LC_COLLATE
++
++LC_MONETARY
++copy "kn_IN"
++END LC_MONETARY
++
++
++LC_NUMERIC
++copy "hi_IN"
++END LC_NUMERIC
++
++
++% *** Modify them for Kannada - eg write down on paper - see what all unicode
++% *** characters are needed, look up their codes & put them here - Kannada
++
++LC_TIME
++% This is the POSIX Locale definition for the LC_TIME category.
++% These are generated based on XML base Locale definition file
++% for IBM Class for Unicode/Java
++%
++% Abbreviated weekday names (%a)
++abday       "<U0C90>";/
++            "<U0CB8><U0CCB>";/
++            "<U0C85><U0C82>";/
++            "<U0CAC><U0CC1>";/
++            "<U0C97><U0CC1>";/
++            "<U0CB6><U0CC1>";/
++            "<U0CB6>"
++%
++% Full weekday names (%A)
++day         "<U0C90><U0CA5><U0CBE><U0CB0>";/
++            "<U0CB8><U0CCB><U0CAE><U0CBE><U0CB0>";/
++            "<U0C85><U0C82><U0C97><U0CB0><U0CC6>";/
++            "<U0CAC><U0CC1><U0CA7><U0CBE><U0CB0>";/
++            "<U0C97><U0CC1><U0CB0><U0CC1><U0CB5><U0CBE><U0CB0>";/
++            "<U0CB6><U0CC1><U0C95><U0CCD><U0CB0><U0CB0>";/
++            "<U0CB6><U0CA8><U0CBF><U0CB5><U0CBE><U0CB0>"
++%
++% Abbreviated month names (%b)
++abmon       "<U0C9C>";/
++            "<U0CAB><U0CC6>";/
++            "<U0CAE><U0CBE>";/
++            "<U0C8F>";/
++            "<U0CAE><U0CC7>";/
++            "<U0C9C><U0CC2>";/
++            "<U0C9C><U0CC1>";/
++            "<U0C86>";/
++            "<U0CB8><U0CC6>";/
++            "<U0C85>";/
++            "<U0CA8>";/
++            "<U0CA1><U0CBF>"
++%
++% Full month names (%B)
++mon         "<U0C9C><U0CA8><U0CB5><U0CB0><U0CBF>";/
++            "<U0CAB><U0CC6><U0CAC><U0CCD><U0CB0><U0CC1><U0CB5><U0CB0><U0CBF>";/
++            "<U0CAE><U0CBE><U0CB0><U0CCD><U0C9A><U0CCD>";/
++            "<U0C8F><U0CAA><U0CCD><U0CB0><U0CBF><U0CB2><U0CCD><U200C><U200C>";/
++            "<U0CAE><U0CC7>";/
++            "<U0C9C><U0CC2><U0CA8><U0CCD>";/
++            "<U0C9C><U0CC1><U0CB2><U0CC8>";/
++            "<U0C86><U0C97><U0CB8><U0CCD><U0C9F><U0CCD>";/
++            "<U0CB8><U0CC6><U0CAA><U0CCD><U0C9F><U0CC6><U0C82><U0CAC><U0CB0><U0CCD><U200C>";/
++            "<U0C85><U0C95><U0CCD><U0C9F><U0CCB><U0CAC><U0CB0><U0CCD>";/
++            "<U0CA8><U0CB5><U0CC6><U0C82><U0CAC><U0CB0><U0CCD>";/
++            "<U0CA1><U0CBF><U0CB8><U0CC6><U0C82><U0CAC><U0CB0><U0CCD>"
++%
++% Equivalent of AM PM
++am_pm       "<U0C95><U0CBE><U0C82><U0CA1><U0CC6>";/
++            "<U0CAC><U0CAF><U0CCD><U0CAF>"
++
++% *** There arent any Devanagari characters below, so for time being
++% *** maintain same for Kannada also,  Karunakar
++
++%
++% Appropriate date and time representation
++% %A %d %b %Y%I:%M:%S  %Z
++d_t_fmt     "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059><U0020><U0025><U0049><U003A><U0025><U004D><U003A>/
++<U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++% Appropriate date representation
++% %A %d %b %Y
++d_fmt       "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059>"
++%
++% Appropriate time representation
++% %I:%M:%S  %Z
++t_fmt       "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0020><U0025><U005A>"
++%
++% Appropriate 12 h time representation (%r)
++t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
++<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
++<U0025><U005A><U0020><U0025><U0059>"
++END LC_TIME
++
++
++LC_MESSAGES
++yesexpr "<U005E><U005B><U0079><U0059><U005D><U002E><U002A>"
++noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++END LC_MESSAGES
++
++
++LC_PAPER
++copy "hi_IN"
++END LC_PAPER
++
++
++LC_NAME
++% This is the ISO_IEC TR14652 Locale definition for the
++% LC_NAME category.
++%
++name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074>/
++<U0025><U0067>"
++name_gen    ""
++name_mr     "<U0CB6><U0CCD><U0CB0><U0CC0>"
++name_mrs    "<U0CB6><U0CCD><U0CB0><U0CC0><U0CAE><U0CA4><U0CBF>"
++name_miss   "<U0C95><U0CC1><U0CAE><U0CBE><U0CB0><U0CBF>"
++name_ms     "<U0C95><U0CC1><U0CAE><U0CBE><U0CB0>"
++
++END LC_NAME
++
++
++LC_ADDRESS
++% This is the ISO_IEC TR14652 Locale definition for the
++% LC_ADDRESS
++postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
++<U0025><U0062><U0025><U0065><U0025><U0072>"
++
++country_ab2 "<U0049><U004E>"
++country_ab3 "<U0049><U004E><U0044>"
++country_car "<U0049><U004E><U0044>"
++country_num 356
++lang_name     "<U0CA4><U0CC1><U0CB3><U0CC1>"
++lang_ab       "<U0074><U0075>"
++lang_term     "<U0074><U0063><U0079>"
++lang_lib      "<U0074><U0063><U0079>"
++END LC_ADDRESS
++
++
++LC_TELEPHONE
++copy "hi_IN"
++END LC_TELEPHONE
++
++
++LC_MEASUREMENT
++copy "hi_IN"
++END LC_MEASUREMENT
+--- /dev/null
++++ b/localedata/locales/raj_IN
+@@ -0,0 +1,177 @@
++comment_char    %
++escape_char     /
++% Rajasthani language locale for India.
++% Contributed by Meghraj Suthar <meghrajsuthar03@gmail.com>
++% Rajesh Ranjan <rajeshkajha@yahoo.com>, Chandan Kumar <chandankumar.093047@gmail.com>
++
++LC_IDENTIFICATION
++title      "Rajasthani language locale for India"
++source     ""
++address    ""
++contact    ""
++email      "meghrajsuthar03@gmail.com"
++tel        ""
++fax        ""
++language   "Rajasthani"
++territory  "India"
++revision   "1.0"
++date       "2014-06-13"
++%
++category  "raj_IN:2014";LC_IDENTIFICATION
++category  "raj_IN:2014";LC_CTYPE
++category  "raj_IN:2014";LC_COLLATE
++category  "raj_IN:2014";LC_TIME
++category  "raj_IN:2014";LC_NUMERIC
++category  "raj_IN:2014";LC_MONETARY
++category  "raj_IN:2014";LC_MESSAGES
++category  "raj_IN:2014";LC_PAPER
++category  "raj_IN:2014";LC_NAME
++category  "raj_IN:2014";LC_ADDRESS
++category  "raj_IN:2014";LC_TELEPHONE
++category  "raj_IN:2014";LC_MEASUREMENT
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "hi_IN"
++END LC_CTYPE
++
++LC_COLLATE
++
++% Copy the template from ISO/IEC 14651
++copy "hi_IN"
++
++END LC_COLLATE
++
++LC_MONETARY
++copy "hi_IN"
++END LC_MONETARY
++
++
++LC_NUMERIC
++copy "hi_IN"
++END LC_NUMERIC
++
++
++LC_TIME
++% This is the POSIX Locale definition for the LC_TIME category.
++% These are generated based on XML base Locale definition file
++% for IBM Class for Unicode/Java
++%
++% Abbreviated weekday names (%a)
++abday      "<U0930><U0935><U093F><U0020>";/
++            "<U0938><U094B><U092E><U0020>";/
++            "<U092E><U0902><U0917><U0932><U0020>";/
++            "<U092C><U0941><U0927><U0020>";/
++            "<U092C><U0943><U0939><U0938><U094D><U092A><U0924><U093F><U0020>";/
++            "<U0936><U0941><U0915><U094D><U0930><U0020>";/
++            "<U0936><U0928><U093F><U0020>"
++
++%
++
++% Full weekday names (%A)
++day         "<U0930><U0935><U093F><U0935><U093E><U0930><U0020>";/
++            "<U0938><U094B><U092E><U0935><U093E><U0930><U0020>";/
++            "<U092E><U0902><U0917><U0932><U094D><U0932><U0935><U093E><U0930><U0020>";/
++            "<U092C><U0941><U0927><U0935><U093E><U0930><U0020>";/
++            "<U092C><U0943><U0939><U0938><U094D><U092A><U0924><U093F><U0935><U093E><U0930><U0020>";/
++            "<U0936><U0941><U0915><U094D><U0930><U0935><U093E><U0930><U0020>";/
++            "<U0936><U0928><U093F><U0935><U093E><U0930><U0020>"
++%
++
++
++%
++
++% Abbreviated month names (%b)
++abmon       "<U091C><U0928>";/
++            "<U092B><U0930>";/
++            "<U092E><U093E><U0930><U094D><U091A>";/
++            "<U0905><U092A><U094D><U0930><U0948>";/
++            "<U092E><U0908>";"<U091C><U0942><U0928>";/
++            "<U091C><U0941><U0932>";/
++            "<U0905><U0917>";/
++            "<U0938><U093F><U0924>";/
++            "<U0905><U0915><U094D><U091F><U0942>";/
++            "<U0928><U0935>";/
++            "<U0926><U093F><U0938>"
++%
++
++% Full month names (%B)
++mon         "<U091C><U0928><U0935><U0930><U0940>";/
++            "<U092B><U0930><U0935><U0930><U0940>";/
++            "<U092E><U093E><U0930><U094D><U091A>";/
++            "<U0905><U092A><U094D><U0930><U0948><U0932>";/
++            "<U092E><U0908>";"<U091C><U0942><U0928>";/
++            "<U091C><U0941><U0932><U093E><U0908>";/
++            "<U0905><U0917><U0938><U094D><U0924>";/
++            "<U0938><U093F><U0924><U0902><U092C><U0930>";/
++            "<U0905><U0915><U094D><U091F><U0942><U092C><U0930>";/
++            "<U0928><U0935><U0902><U092C><U0930>";/
++            "<U0926><U093F><U0938><U0902><U092C><U0930>"
++
++%
++% Equivalent of AM PM
++am_pm       "<U092A><U0942><U0930><U094D><U0935><U093E><U0939><U094D><U0928>";/
++            "<U0905><U092A><U0930><U093E><U0939><U094D><U0928>"
++%
++
++% Appropriate date and time representation
++% %A %d %b %Y%I:%M:%S  %Z
++d_t_fmt     "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059><U0020><U0025><U0049><U003A><U0025><U004D><U003A>/
++<U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++% Appropriate date representation
++% %A %d %b %Y
++d_fmt       "<U0025><U0041><U0020><U0025><U0064><U0020><U0025><U0062>/
++<U0020><U0025><U0059>"
++%
++% Appropriate time representation
++% %I:%M:%S  %Z
++t_fmt       "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0020><U0025><U005A>"
++%
++% Appropriate 12 h time representation (%r)
++t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053>/
++<U0020><U0025><U0070><U0020><U0025><U005A>"
++%
++date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
++<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
++<U0025><U005A><U0020><U0025><U0059>"
++END LC_TIME
++
++LC_MESSAGES
++yesexpr "<U005E><U005B><U0079><U0059><U005D><U002E><U002A>"
++noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++END LC_MESSAGES
++
++LC_PAPER
++% This is the ISO_IEC TR14652 Locale definition for the LC_PAPER category
++% generated by IBM Basic CountryPack Transformer.
++height      297
++width       210
++END LC_PAPER
++
++LC_NAME
++% This is the ISO_IEC TR14652 Locale definition for the
++% LC_NAME category.
++%
++name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074>/
++<U0025><U0067>"
++name_gen    ""
++name_mr     "<U0936><U094D><U0930><U0940>"
++name_mrs    "<U0936><U094D><U0930><U0940><U092E><U0924><U0940>"
++name_miss   "<U0915><U0941><U092E><U093E><U0930><U0940>"
++name_ms     "<U0915><U0941><U092E><U093E><U0930>"
++END LC_NAME
++
++LC_ADDRESS
++copy "hi_IN"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "hi_IN"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "hi_IN"
++END LC_MEASUREMENT
+--- /dev/null
++++ b/localedata/locales/ce_RU
+@@ -0,0 +1,169 @@
++comment_char %
++escape_char /
++% Chechen locale for RUSSIAN FEDERATION.
++% Contributed by Kentaroh Noji  Arslanbek Astemirov <s-o-f-t AT mail DOT ru>
++% Charset: UTF-8
++LC_IDENTIFICATION
++title      "Chechen locale for RUSSIAN FEDERATION"
++source       "ANCHR"
++address      "364024, ChR, Grozny, pr-kt of M. Esambayev, 13"
++language  "ce"
++territory "RUSSIAN FEDERATION"
++revision  "1.0"
++date      "2014-08-25"
++%
++category  "ce_RU:2014";LC_IDENTIFICATION
++category  "ce_RU:2014";LC_CTYPE
++category  "ce_RU:2014";LC_COLLATE
++category  "ce_RU:2014";LC_TIME
++category  "ce_RU:2014";LC_NUMERIC
++category  "ce_RU:2014";LC_MONETARY
++category  "ce_RU:2014";LC_PAPER
++category  "ce_RU:2014";LC_MEASUREMENT
++category  "ce_RU:2014";LC_MESSAGES
++category  "ce_RU:2014";LC_NAME
++category  "ce_RU:2014";LC_ADDRESS
++category  "ce_RU:2014";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++
++translit_start
++include "translit_combining";""
++translit_end
++END LC_CTYPE
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_TIME
++% Ð¯Ð½Ð²Ð°ÑÑ, Ð¤ÐµÐ²ÑÐ°Ð»Ñ, ÐÐ°ÑÑ, ÐÐ¿ÑÐµÐ»Ñ, ÐÐ°Ð¹, ÐÑÐ½Ñ, ÐÑÐ»Ñ, ÐÐ²Ð³ÑÑÑ, Ð¡ÐµÐ½ÑÑÐ±ÑÑ, ÐÐºÑÑÐ±ÑÑ, ÐÐ¾ÑÐ±ÑÑ, ÐÐµÐºÐ°Ð±ÑÑ
++mon           "<U042F><U043D><U0432><U0430><U0440><U044C>";/
++     "<U0424><U0435><U0432><U0440><U0430><U043B><U044C>";/
++     "<U041C><U0430><U0440><U0442>";/
++     "<U0410><U043F><U0440><U0435><U043B><U044C>";/
++     "<U041C><U0430><U0439>";/
++     "<U0418><U044E><U043D><U044C>";/
++     "<U0418><U044E><U043B><U044C>";/
++     "<U0410><U0432><U0433><U0443><U0441><U0442>";/
++     "<U0421><U0435><U043D><U0442><U044F><U0431><U0440><U044C>";/
++     "<U041E><U043A><U0442><U044F><U0431><U0440><U044C>";/
++     "<U041D><U043E><U044F><U0431><U0440><U044C>";/
++     "<U0414><U0435><U043A><U0430><U0431><U0440><U044C>"
++% ÑÐ½Ð², ÑÐµÐ², Ð¼Ð°Ñ, Ð°Ð¿Ñ, Ð¼Ð°Ð¹, Ð¸ÑÐ½, Ð¸ÑÐ», Ð°Ð²Ð³, ÑÐµÐ½, Ð¾ÐºÑ, Ð½Ð¾Ñ, Ð´ÐµÐº
++abmon         "<U044F><U043D><U0432>";/
++       "<U0444><U0435><U0432>";/
++       "<U043C><U0430><U0440>";/
++       "<U0430><U043F><U0440>";/
++       "<U043C><U0430><U0439>";/
++       "<U0438><U044E><U043D>";/
++       "<U0438><U044E><U043B>";/
++       "<U0430><U0432><U0433>";/
++       "<U0441><U0435><U043D>";/
++       "<U043E><U043A><U0442>";/
++       "<U043D><U043E><U044F>";/
++       "<U0434><U0435><U043A>"
++% ÐIÐ¸ÑÐ°Ð½Ð´Ðµ , ÐÑÑÐ¾ÑÐ´Ðµ , Ð¨Ð¸Ð½Ð°ÑÐ¸Ð´Ðµ , ÐÑÐ°Ð°ÑÐ¸Ð´Ðµ , ÐÐ°ÑÐ¸Ð´Ðµ , ÐIÐµÑÐ°ÑÐºÐ°Ð´Ðµ, Ð¨Ð¾ÑÐ´Ðµ
++day           "<U041A><U0049><U0438><U0440><U0430><U043D><U0434><U0435><U0020>";/
++     "<U041E><U0440><U0448><U043E><U0442><U0434><U0435><U0020>";/
++     "<U0428><U0438><U043D><U0430><U0440><U0438><U0434><U0435><U0020>";/
++     "<U041A><U0445><U0430><U0430><U0440><U0438><U0434><U0435><U0020>";/
++     "<U0415><U0430><U0440><U0438><U0434><U0435><U0020>";/
++     "<U041F><U0049><U0435><U0440><U0430><U0441><U043A><U0430><U0434><U0435>";/
++     "<U0428><U043E><U0442><U0434><U0435>"
++% ÐI, ÐÑ, Ð¨Ð¸ , ÐÑ , ÐÐ° , ÐI , Ð¨Ð¾
++abday         "<U041A><U0049>";/
++       "<U041E><U0440>";/
++       "<U0428><U0438><U0020>";/
++       "<U041A><U0445><U0020>";/
++       "<U0415><U0430><U0020>";/
++       "<U041F><U0049><U0020>";/
++       "<U0428><U043E>"
++% %Y %d %b %a %T
++d_t_fmt       "<U0025><U0059><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0061><U0020><U0025><U0054>"
++% %Y.%d.%m
++d_fmt         "<U0025><U0059><U002E><U0025><U0064><U002E><U0025><U006D>"
++% %T
++t_fmt         "<U0025><U0054>"
++%
++am_pm         "";""
++t_fmt_ampm    ""
++END LC_TIME
++
++LC_NUMERIC
++% ,
++decimal_point "<U002C>"
++thousands_sep ""
++% 3;3
++grouping      3;3
++END LC_NUMERIC
++
++LC_MONETARY
++% RUB
++int_curr_symbol    "<U0052><U0055><U0042><U0020>"
++currency_symbol    "<U0440><U0443><U0431>"
++% .
++mon_decimal_point  "<U002E>"
++mon_thousands_sep  "<U00A0>"
++mon_grouping       3;3
++positive_sign      ""
++negative_sign      "<U002D>"
++frac_digits        2
++int_frac_digits    2
++p_cs_precedes      0
++p_sep_by_space     1
++n_cs_precedes      0
++n_sep_by_space     1
++p_sign_posn        1
++n_sign_posn        1
++END LC_MONETARY
++
++LC_PAPER
++height 297
++width  210
++END LC_PAPER
++
++LC_MEASUREMENT
++measurement 1
++END LC_MEASUREMENT
++
++LC_MESSAGES
++% ^[ÐÐ´Yy].*
++yesexpr "<U005E><U005B><U0414><U0434><U0059><U0079><U005D><U002E><U002A>"
++% ^[ÐÐ¼Nn].*
++noexpr  "<U005E><U005B><U041C><U043C><U004E><U006E><U005D><U002E><U002A>"
++END LC_MESSAGES
++
++LC_NAME
++name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
++<U0025><U006D><U0025><U0074><U0025><U0066>"
++END LC_NAME
++
++LC_ADDRESS
++% %f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N
++postal_fmt   "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E><U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073><U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025><U004E><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
++% RU
++country_ab2  "<U0052><U0055>"
++% RUS
++country_ab3  "<U0052><U0055><U0053>"
++country_num  643
++% RUS
++country_car  "<U0052><U0055><U0053>"
++% Ð½Ð¾ÑÑÐ¸Ð¹Ð½ Ð¼Ð¾ÑÑ
++lang_name    "<U043D><U043E><U0445><U0447><U0438><U0439><U043D><U0020><U043C><U043E><U0442><U0442>"
++% ce
++lang_ab      "<U0063><U0065>"
++% che
++lang_term    "<U0063><U0068><U0065>"
++END LC_ADDRESS
++
++LC_TELEPHONE
++tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
++<U006C>"
++% 0~10
++int_select  "<U0030><U007E><U0031><U0030>"
++% 7
++int_prefix  "<U0037>"
++END LC_TELEPHONE
+--- glibc-2.19/localedata/locales/sd_PK.orig	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.19/localedata/locales/sd_PK	2015-01-09 21:19:09.722522624 +0100
+@@ -0,0 +1,227 @@
++comment_char    %
++escape_char     /
++% Sindhi language locale for Pakistan.
++% Contributed by Abdul-Majid Bhurgri <majidbhurgri@yahoo.com>
++%            and Abdul-Rahim Nizamani <abdulrahimnizamani@hotmail.com>
++
++LC_IDENTIFICATION
++
++title      "Sindhi language locale for Pakistan"
++source     "Ubuntu, Sindh"
++address    "USA"
++contact    ""
++email      "bug-glibc-locales@gnu.org"
++tel         ""
++fax         ""
++language    "Sindhi"
++territory   "Pakistan"
++revision    "1.0"
++date        "2010,June,5"
++%
++category  "sd_PK:2008";LC_IDENTIFICATION
++category  "sd_PK:2008";LC_CTYPE
++category  "sd_PK:2008";LC_COLLATE
++category  "sd_PK:2008";LC_TIME
++category  "sd_PK:2008";LC_NUMERIC
++category  "sd_PK:2008";LC_MONETARY
++category  "sd_PK:2008";LC_MESSAGES
++category  "sd_PK:2008";LC_PAPER
++category  "sd_PK:2008";LC_NAME
++category  "sd_PK:2008";LC_ADDRESS
++category  "sd_PK:2008";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++
++LC_CTYPE
++copy "i18n"
++
++translit_start
++include  "translit_combining";""
++translit_end
++END LC_CTYPE
++
++
++LC_COLLATE
++% Copy the template from ISO/IEC 14651
++copy "iso14651_t1"
++
++END LC_COLLATE
++
++
++LC_MONETARY
++% This is the POSIX Locale definition the LC_MONETARY category
++% generated by IBM Basic CountryPack Transformer.
++% These are generated based on XML base Locale defintion file
++% for IBM Class for Unicode.
++%
++int_curr_symbol       "<U0050><U004B><U0052><U0020>"
++currency_symbol       "<U20A8>"
++mon_decimal_point     "<U002E>"
++mon_thousands_sep     "<U002C>"
++mon_grouping          3;2
++positive_sign         ""
++negative_sign         "<U002D>"
++int_frac_digits       2
++frac_digits           2
++p_cs_precedes         1
++p_sep_by_space        1
++n_cs_precedes         1
++n_sep_by_space        1
++p_sign_posn           1
++n_sign_posn           1
++%
++END LC_MONETARY
++
++
++LC_NUMERIC
++decimal_point "<U002E>"
++thousands_sep "<U002C>"
++grouping 3;2
++END LC_NUMERIC
++
++
++LC_TIME
++% This is the POSIX Locale definition for the LC_TIME category
++% generated by IBM Basic CountryPack Transformer.
++% These are generated based on XML base Locale definition file
++% for IBM Class for Unicode.
++%
++% Abbreviated weekday names (%a)
++   abday  "<U0622><U0686><U0631>";/
++	       "<U0633><U0648><U0645><U0631>";/
++          "<U0627><U06B1><U0627><U0631><U0648>";/
++	       "<U0627><U0631><U0628><U0639>";/
++          "<U062E><U0645><U064A><U0633>";/
++          "<U062C><U0645><U0639><U0648>";"<U0687><U0646><U0687><U0631>"
++   %
++% Full weekday names (%A)
++   day "<U0622><U0686><U0631>";/
++	    "<U0633><U0648><U0645><U0631>";/
++       "<U0627><U06B1><U0627><U0631><U0648>";/
++	    "<U0627><U0631><U0628><U0639>";/
++       "<U062E><U0645><U064A><U0633>";/
++       "<U062C><U0645><U0639><U0648>";/
++	    "<U0687><U0646><U0687><U0631>"
++   %
++% Abbreviated month names (%b)
++   abmon	 "<U062C><U0646><U0648><U0631><U064A>";/
++	       "<U0641><U064A><U0628><U0631><U0648><U0631><U064A>";/
++	       "<U0645><U0627><U0631><U0686>";/
++	       "<U0627><U067E><U0631><U064A><U0644>";/
++	       "<U0645><U0626><U064A>";/
++	       "<U062C><U0648><U0646>";/
++	       "<U062C><U0648><U0644><U0627><U0621><U0650>";/
++	       "<U0622><U06AF><U0633><U067D>";/
++	       "<U0633><U064A><U067E><U067D><U064A><U0645><U0628><U0631>";/
++	       "<U0622><U06AA><U067D><U0648><U0628><U0631>";/
++	       "<U0646><U0648><U0645><U0628><U0631>";/
++	       "<U068A><U0633><U0645><U0628><U0631>"
++   %
++% Full month names (%B)
++   mon	 "<U062C><U0646><U0648><U0631><U064A>";/
++	       "<U0641><U064A><U0628><U0631><U0648><U0631><U064A>";/
++	       "<U0645><U0627><U0631><U0686>";/
++	       "<U0627><U067E><U0631><U064A><U0644>";/
++	       "<U0645><U0626><U064A>";/
++	       "<U062C><U0648><U0646>";/
++	       "<U062C><U0648><U0644><U0627><U0621><U0650>";/
++	       "<U0622><U06AF><U0633><U067D>";/
++	       "<U0633><U064A><U067E><U067D><U064A><U0645><U0628><U0631>";/
++	       "<U0622><U06AA><U067D><U0648><U0628><U0631>";/
++	       "<U0646><U0648><U0645><U0628><U0631>";/
++	       "<U068A><U0633><U0645><U0628><U0631>"
++   %
++% Equivalent of AM PM
++   am_pm	"<U0635><U0628><U062D>";"<U0634><U0627><U0645>"
++%
++%Date and time format (%c)
++d_t_fmt "%A %d %B %Y<U060C> %H:%M:%S"
++%
++%Date format (%x)
++d_fmt           "%d/%m/%y"
++%
++%Time format (%X)
++t_fmt           "%H:%M:%S"
++
++% Time format with am_pm
++t_fmt_ampm      "%I:%M:%S %p"
++era_year        ""
++era_d_fmt       ""
++
++% Appropriate date representation (date(1))   "%a %b %e %H:%M:%S %Z %Y"
++date_fmt       "%A %e %B %Y %H:%M:%S %Z"
++
++% display columns right to left
++cal_direction	3
++END LC_TIME
++
++
++LC_MESSAGES
++yesexpr "<U005E><U005B><U0079><U0059><U0647><U005D>"
++noexpr  "<U005E><U005B><U006E><U004E><U0646><U005D>"
++yesstr  "<U0647><U0627>"
++nostr   "<U0646><U0647>"
++END LC_MESSAGES
++
++
++LC_PAPER
++copy "ur_PK"
++END LC_PAPER
++
++LC_NAME
++% This is the ISO_IEC TR14652 Locale definition for the LC_NAME category
++% generated by IBM Basic CountryPack Transformer.
++%
++%
++name_fmt "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
++name_gen    ""
++name_mr     "<U0633><U0627><U0626><U064A><U0646>"
++name_mrs    "<U0633><U0627><U0646><U0626><U06BB>"
++name_miss   "<U0633><U0627><U0646><U0626><U06BB>"
++name_ms     "<U0633><U0627><U0646><U0626><U06BB>"
++
++END LC_NAME
++
++
++LC_ADDRESS
++% This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category
++% generated by IBM Basic CountryPack Transformer.
++postal_fmt    "<U0025><U0061><U0025><U004E><U0025><U0066><U0025><U004E>/
++<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0068>/
++<U0020><U0025><U0073><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
++<U004E><U0025><U0054><U0020><U0025><U007A><U0025>/
++<U004E><U0025><U0063><U0025><U004E>"
++
++country_ab2 "<U0050><U004B>"
++country_ab3 "<U0050><U0041><U004B>"
++country_num 586
++% پاڪستان
++country_name "<U067E><U0627><U06AA><U0633><U062A><U0627><U0646>"
++% PK
++country_car    "<U0050><U004B>"
++% 969
++country_isbn "<U0039><U0036><U0039>"
++% سنڌي
++lang_name    "<U0633><U0646><U068C><U064A>"
++% sd
++lang_ab      "<U0073><U0064>"
++% snd
++lang_term    "<U0073><U006E><U0064>"
++% snd
++lang_lib    "<U0073><U006E><U0064>"
++END LC_ADDRESS
++
++
++LC_TELEPHONE
++tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020><U003B><U0025><U006C>"
++int_prefix "<U0039><U0032>"
++int_select "<U0030><U0030>"
++END LC_TELEPHONE
++
++
++LC_MEASUREMENT
++copy "ur_PK"
++END LC_MEASUREMENT
++
++%%%%%%%%%%%%%%%%%%%% locale definition file "sd_PK" ends %%%%%%%%%%%%%%%%%%%%%
 --- glibc-2.19/localedata/SUPPORTED.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/SUPPORTED	2014-02-08 08:43:20.218029506 +0100
-@@ -49,14 +49,19 @@
+@@ -49,19 +49,25 @@
  ar_TN/ISO-8859-6 \
  ar_YE.UTF-8/UTF-8 \
  ar_YE/ISO-8859-6 \
@@ -6270,10 +7233,17 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  bem_ZM/UTF-8 \
  ber_DZ/UTF-8 \
  ber_MA/UTF-8 \
-@@ -83,6 +88,7 @@
+ bg_BG.UTF-8/UTF-8 \
+ bg_BG/CP1251 \
++bh_IN.UTF-8/UTF-8 \
+ bho_IN/UTF-8 \
+ bn_BD/UTF-8 \
+ bn_IN/UTF-8 \
+@@ -83,6 +88,8 @@
  ca_FR/ISO-8859-15 \
  ca_IT.UTF-8/UTF-8 \
  ca_IT/ISO-8859-15 \
++ce_RU/UTF-8 \
 +ckb_IQ/UTF-8 \
  cmn_TW/UTF-8 \
  crh_UA/UTF-8 \
@@ -6420,17 +7390,18 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  ps_AF/UTF-8 \
-@@ -354,6 +393,9 @@
+@@ -354,6 +393,10 @@
  pt_PT/ISO-8859-1 \
  pt_PT@euro/ISO-8859-15 \
  quz_PE/UTF-8 \
++raj_IN/UTF-8 \
 +rm_CH.UTF-8/UTF-8 \
 +rm_CH/ISO-8859-1 \
 +ro_RO.ISO-8859-16/ISO-8859-16 \
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -361,18 +403,24 @@
+@@ -361,18 +403,25 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -6443,6 +7414,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  sc_IT/UTF-8 \
  sd_IN/UTF-8 \
  sd_IN@devanagari/UTF-8 \
++sd_PK/UTF-8 \
  se_NO/UTF-8 \
 +sgs_LT/UTF-8 \
  shs_CA/UTF-8 \
@@ -6496,7 +7468,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  th_TH.UTF-8/UTF-8 \
  th_TH/TIS-620 \
  the_NP/UTF-8 \
-@@ -413,12 +477,16 @@
+@@ -413,14 +477,19 @@
  tk_TM/UTF-8 \
  tl_PH.UTF-8/UTF-8 \
  tl_PH/ISO-8859-1 \
@@ -6512,7 +7484,10 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +tt_RU.TATAR-CYR/TATAR-CYR \
  tt_RU/UTF-8 \
  tt_RU@iqtelif/UTF-8 \
++tu_IN.UTF-8/UTF-8 \
  ug_CN/UTF-8 \
+ uk_UA.UTF-8/UTF-8 \
+ uk_UA/KOI8-U \
 @@ -426,8 +494,9 @@
  uk_UA/KOI8-U \
  unm_US/UTF-8 \
@@ -6525,7 +7500,15 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  ve_ZA/UTF-8 \
 --- glibc-2.19/locale/iso-639.def.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/locale/iso-639.def	2014-02-13 20:30:45.341452266 +0100
-@@ -238,6 +238,7 @@
+@@ -65,6 +65,7 @@
+ DEFINE_LANGUAGE_CODE3 ("Bemba", bem, bem)
+ DEFINE_LANGUAGE_CODE ("Bengali", bn, ben, ben)
+ DEFINE_LANGUAGE_CODE3 ("Berber (Other)", ber, ber)
++DEFINE_LANGUAGE_CODE ("Bhili", bh, bhb, bhb)
+ DEFINE_LANGUAGE_CODE3 ("Bhojpuri", bho, bho)
+ DEFINE_LANGUAGE_CODE ("Bihari", bh, bih, bih)
+ DEFINE_LANGUAGE_CODE3 ("Bikol", bik, bik)
+@@ -238,6 +239,7 @@
  DEFINE_LANGUAGE_CODE ("Kanuri", kr, kau, kau)
  DEFINE_LANGUAGE_CODE3 ("Kara-Kalpak", kaa, kaa)
  DEFINE_LANGUAGE_CODE3 ("Karachay-Balkar", krc, krc)
@@ -6533,7 +7516,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  DEFINE_LANGUAGE_CODE3 ("Karelian", krl, krl)
  DEFINE_LANGUAGE_CODE3 ("Karen", kar, kar)
  DEFINE_LANGUAGE_CODE ("Kashmiri", ks, kas, kas)
-@@ -400,6 +401,7 @@
+@@ -400,6 +402,7 @@
  DEFINE_LANGUAGE_CODE3 ("Samaritan Aramaic", sam, sam)
  DEFINE_LANGUAGE_CODE3 ("Sami languages (Other)", smi, smi)
  DEFINE_LANGUAGE_CODE ("Samoan", sm, smo, smo)
@@ -6541,3 +7524,11 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  DEFINE_LANGUAGE_CODE3 ("Sandawe", sad, sad)
  DEFINE_LANGUAGE_CODE ("Sango", sg, sag, sag)
  DEFINE_LANGUAGE_CODE ("Sanskrit", sa, san, san)
+@@ -474,6 +477,7 @@
+ DEFINE_LANGUAGE_CODE3 ("Tsimshian", tsi, tsi)
+ DEFINE_LANGUAGE_CODE ("Tsonga", ts, tso, tso)
+ DEFINE_LANGUAGE_CODE ("Tswana", tn, tsn, tsn)
++DEFINE_LANGUAGE_CODE ("Tulu", tu, tcy, tcy)
+ DEFINE_LANGUAGE_CODE3 ("Tumbuka", tum, tum)
+ DEFINE_LANGUAGE_CODE3 ("Tupi languages", tup, tup)
+ DEFINE_LANGUAGE_CODE3 ("Turkish, Ottoman (1500-1928)", ota, ota)
