@@ -15,6 +15,7 @@
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# make a cross build, skip native programs
 %bcond_without	nss_crypt	# disable crypt features based on Mozilla NSS library
+%bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 #
 %ifarch x32
 %{!?min_kernel:%global		min_kernel	3.4.0}
@@ -61,7 +62,7 @@ Patch0:		%{name}-git.patch
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
-Patch4:		%{name}-sotruss-sh.patch
+Patch4:		%{name}-no-bash-nls.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
 Patch7:		1070_all_glibc-fadvise64_64.patch
@@ -83,7 +84,6 @@ Patch20:	%{name}-thread_start.patch
 Patch22:	%{name}-with-stroke.patch
 Patch23:	%{name}-pt_pax.patch
 Patch25:	%{name}-cv_gnu89_inline.patch
-Patch26:	%{name}-posix-sh.patch
 Patch27:	%{name}-locale-C.patch.xz
 # Patch27-md5:	34ebe52a2afb923e33af0fb7c541f540
 Patch28:	%{name}-locale-C-pld.patch
@@ -960,7 +960,7 @@ exit 1
 %patch0 -p1
 %patch2 -p1
 %patch3 -p0
-%patch4 -p1
+%{!?with_bash_nls:%patch4 -p1}
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
@@ -982,7 +982,6 @@ exit 1
 %patch23 -p0
 
 %patch25 -p1
-%patch26 -p1
 %patch27 -p1
 %patch28 -p1
 %patch29 -p1

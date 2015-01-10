@@ -106,3 +106,88 @@
      result=1
    fi
  done
+--- glibc-2.20/elf/sotruss.sh.orig	2015-01-10 09:10:21.870731775 +0100
++++ glibc-2.20/elf/sotruss.sh	2015-01-10 09:12:10.734060537 +0100
+@@ -1,4 +1,4 @@
+-#! @BASH@
++#! /bin/sh
+ # Copyright (C) 2011-2014 Free Software Foundation, Inc.
+ # This file is part of the GNU C Library.
+ 
+@@ -29,7 +29,7 @@
+ lib='@PREFIX@/$LIB/audit/sotruss-lib.so'
+ 
+ do_help() {
+-  echo $"Usage: sotruss [OPTION...] [--] EXECUTABLE [EXECUTABLE-OPTION...]
++  echo "Usage: sotruss [OPTION...] [--] EXECUTABLE [EXECUTABLE-OPTION...]
+   -F, --from FROMLIST     Trace calls from objects on FROMLIST
+   -T, --to TOLIST         Trace calls to objects on TOLIST
+ 
+@@ -43,28 +43,28 @@
+       --version           Print program version"
+ 
+   echo
+-  printf $"Mandatory arguments to long options are also mandatory for any corresponding\nshort options.\n"
++  printf "Mandatory arguments to long options are also mandatory for any corresponding\nshort options.\n"
+   echo
+ 
+-  printf $"For bug reporting instructions, please see:\\n%s.\\n" \
++  printf "For bug reporting instructions, please see:\\n%s.\\n" \
+     "@REPORT_BUGS_TO@"
+   exit 0
+ }
+ 
+ do_missing_arg() {
+-  printf >&2 $"%s: option requires an argument -- '%s'\n" sotruss "$1"
+-  printf >&2 $"Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
++  printf >&2 "%s: option requires an argument -- '%s'\n" sotruss "$1"
++  printf >&2 "Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
+   exit 1
+ }
+ 
+ do_ambiguous() {
+-  printf >&2 $"%s: option is ambiguous; possibilities:"
++  printf >&2 "%s: option is ambiguous; possibilities:"
+   while test $# -gt 0; do
+     printf >&2 " '%s'" $1
+     shift
+   done
+   printf >&2 "\n"
+-  printf >&2 $"Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
++  printf >&2 "Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
+   exit 1
+ }
+ 
+@@ -72,18 +72,18 @@
+   case "$1" in
+   --v | --ve | --ver | --vers | --versi | --versio | --version)
+     echo "sotruss @PKGVERSION@@VERSION@"
+-    printf $"Copyright (C) %s Free Software Foundation, Inc.
++    printf "Copyright (C) %s Free Software Foundation, Inc.
+ This is free software; see the source for copying conditions.  There is NO
+ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ " "2014"
+-    printf $"Written by %s.\n" "Ulrich Drepper"
++    printf "Written by %s.\n" "Ulrich Drepper"
+     exit 0
+     ;;
+   -\? | --h | --he | --hel | --help)
+     do_help
+     ;;
+   --u | --us | --usa | --usag | --usage)
+-    printf $"Usage: %s [-ef] [-F FROMLIST] [-o FILENAME] [-T TOLIST] [--exit]
++    printf "Usage: %s [-ef] [-F FROMLIST] [-o FILENAME] [-T TOLIST] [--exit]
+ 	    [--follow] [--from FROMLIST] [--output FILENAME] [--to TOLIST]
+ 	    [--help] [--usage] [--version] [--]
+ 	    EXECUTABLE [EXECUTABLE-OPTION...]\n" sotruss
+@@ -131,8 +131,8 @@
+     break
+     ;;
+   -*)
+-    printf >&2 $"%s: unrecognized option '%c%s'\n" sotruss '-' ${1#-}
+-    printf >&2 $"Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
++    printf >&2 "%s: unrecognized option '%c%s'\n" sotruss '-' ${1#-}
++    printf >&2 "Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
+     exit 1
+     ;;
+   *)
