@@ -86,7 +86,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії 2.3
 Name:		glibc
 Version:	2.3.6
-Release:	20
+Release:	21
 Epoch:		6
 License:	LGPL
 Group:		Libraries
@@ -152,6 +152,7 @@ Patch43:	%{name}-rh219145.patch
 Patch44:	%{name}-posix-sh.patch
 Patch45:	%{name}-bug-2644.patch
 Patch46:	binutils-2.20.patch
+Patch47:	CVE-2015-0235.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -1012,6 +1013,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch44 -p1
 %patch45 -p0
 %patch46 -p1
+%patch47 -p1
 
 chmod +x scripts/cpp
 
