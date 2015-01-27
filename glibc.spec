@@ -151,6 +151,7 @@ Patch42:	%{name}-rh228103.patch
 Patch43:	%{name}-rh219145.patch
 Patch44:	%{name}-posix-sh.patch
 Patch45:	%{name}-bug-2644.patch
+Patch46:	binutils-2.20.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -1010,6 +1011,7 @@ Biblioteki 64-bitowe GNU libc dla architektury 64bit.
 %patch43 -p1
 %patch44 -p1
 %patch45 -p0
+%patch46 -p1
 
 chmod +x scripts/cpp
 
