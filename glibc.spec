@@ -35,7 +35,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	8
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -84,6 +84,9 @@ Patch31:	%{name}-origin.patch
 Patch32:	%{name}-Os-fail-workaround.patch
 
 Patch38:	1055_all_glibc-resolv-dynamic.patch
+
+Patch39:	CVE-2015-0235.patch
+
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf
@@ -968,6 +971,8 @@ exit 1
 %patch32 -p1
 
 %patch38 -p1
+
+%patch39 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
