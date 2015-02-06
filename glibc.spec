@@ -27,7 +27,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.20
+%define		core_version	2.21
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	8
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	948a6e06419a01bd51e97206861595b0
+# Source0-md5:	9cb398828e8f84f57d1f7d5588cf40cd
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -57,7 +57,6 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Source9:	nscd.tmpfiles
-Patch0:		%{name}-git.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -70,7 +69,6 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-nss_include_dirs.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
-Patch12:	%{name}-format.patch
 
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
@@ -89,8 +87,7 @@ Patch27:	%{name}-locale-C.patch.xz
 Patch28:	%{name}-locale-C-pld.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
-Patch31:	%{name}-origin.patch
-Patch32:	%{name}-Os-fail-workaround.patch
+
 Patch33:	fix-broken-echo.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
@@ -104,7 +101,7 @@ BuildRequires:	binutils >= 2:2.15.90.0.3
 %endif
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
-BuildRequires:	gcc >= 6:4.3
+BuildRequires:	gcc >= 6:4.6
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
@@ -957,7 +954,6 @@ echo "Minimal supported kernel is 2.6.32" >&2
 exit 1
 %endif
 
-%patch0 -p1
 %patch2 -p1
 %patch3 -p0
 %{!?with_bash_nls:%patch4 -p1}
@@ -969,12 +965,12 @@ exit 1
 
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
 
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
-%patch17 -p1
+# TODO
+#%patch17 -p1
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
@@ -986,8 +982,7 @@ exit 1
 %patch28 -p1
 %patch29 -p1
 %patch30 -p1
-%patch31 -p1
-%patch32 -p1
+
 %patch33 -p1
 
 %patch38 -p1
@@ -1134,7 +1129,7 @@ install %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 rm -rf documentation
 install -d documentation
 
-for f in ChangeLog.old DESIGN-{barrier,condvar,rwlock,sem}.txt TODO{,-kernel,-testing}; do
+for f in ChangeLog.old DESIGN-{barrier,condvar,rwlock,systemtap-probes}.txt TODO{,-kernel,-testing}; do
 	cp -af nptl/$f documentation/$f.nptl
 done
 cp -af crypt/README.ufc-crypt ChangeLog* documentation
