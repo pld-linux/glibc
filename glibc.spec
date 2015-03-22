@@ -1323,10 +1323,10 @@ if [ "$SUPPORTED_LOCALES" ]; then
 	localedb-gen || :
 fi
 
-%post devel	-p	/sbin/postshell
+%post devel-doc	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun devel	-p	/sbin/postshell
+%postun devel-doc	-p	/sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %pre -n nscd
