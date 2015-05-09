@@ -1258,8 +1258,7 @@ for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu ia id it ja kk
 done
 
 # localedb-gen infrastructure
-sed -e 's,@localedir@,%{_prefix}/lib/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
-chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
+install -p %{SOURCE6} $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 cp -p localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
