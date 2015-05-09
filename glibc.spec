@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -329,6 +329,7 @@ Summary(fr.UTF-8):	Crée un cache de bibliothčque partagée et gčre *.so
 Summary(pl.UTF-8):	Tworzenie cache'u bibliotek dynamicznych i ich dowiązań symbolicznych
 Summary(tr.UTF-8):	Ortak kitaplýk önbelleđi yaratýr ve bađlantýlarý kurar
 Group:		Applications/System
+Requires:	uname(release) >= %{min_kernel}
 # This is needed because previous package (glibc) had autoreq false and had
 # provided this manually. Probably poldek bug that have to have it here.
 Provides:	/sbin/ldconfig
@@ -379,8 +380,8 @@ Summary(uk.UTF-8):	Додаткові бібліотеки, потрібні д�
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
-Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
@@ -455,9 +456,9 @@ Obsoletes:	glibc-headers(i386)
 Obsoletes:	glibc-headers(i486)
 Obsoletes:	glibc-headers(i586)
 Obsoletes:	glibc-headers(i686)
+Obsoletes:	glibc-headers(ix86)
 Obsoletes:	glibc-headers(pentium3)
 Obsoletes:	glibc-headers(pentium4)
-Obsoletes:	glibc-headers(ix86)
 %endif
 %ifarch x32
 Obsoletes:	glibc-headers(x86_64)
@@ -510,9 +511,9 @@ Obsoletes:	glibc-devel-utils(i386)
 Obsoletes:	glibc-devel-utils(i486)
 Obsoletes:	glibc-devel-utils(i586)
 Obsoletes:	glibc-devel-utils(i686)
+Obsoletes:	glibc-devel-utils(ix86)
 Obsoletes:	glibc-devel-utils(pentium3)
 Obsoletes:	glibc-devel-utils(pentium4)
-Obsoletes:	glibc-devel-utils(ix86)
 %endif
 %ifarch x32
 Obsoletes:	glibc-devel-utils(x86_64)
@@ -563,9 +564,9 @@ Obsoletes:	glibc-devel-doc(i386)
 Obsoletes:	glibc-devel-doc(i486)
 Obsoletes:	glibc-devel-doc(i586)
 Obsoletes:	glibc-devel-doc(i686)
+Obsoletes:	glibc-devel-doc(ix86)
 Obsoletes:	glibc-devel-doc(pentium3)
 Obsoletes:	glibc-devel-doc(pentium4)
-Obsoletes:	glibc-devel-doc(ix86)
 %endif
 %ifarch x32
 Obsoletes:	glibc-devel-doc(x86_64)
@@ -1123,7 +1124,7 @@ echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
 : > $RPM_BUILD_ROOT/var/lib/nscd/group
 : > $RPM_BUILD_ROOT/var/lib/nscd/hosts
 
-install %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
+cp -p %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 
 rm -rf documentation
 install -d documentation
@@ -1259,7 +1260,7 @@ done
 # localedb-gen infrastructure
 sed -e 's,@localedir@,%{_prefix}/lib/locale,' %{SOURCE6} > $RPM_BUILD_ROOT%{_bindir}/localedb-gen
 chmod +x $RPM_BUILD_ROOT%{_bindir}/localedb-gen
-install localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
+cp -p localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 
 # shutup check-files
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/README.*
