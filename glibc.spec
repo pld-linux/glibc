@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -50,9 +50,9 @@ Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
-#Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-man-pages.tar.bz2
-Source5:	%{name}-man-pages.tar.bz2
-# Source5-md5:	0d93d9628f35f1eae015affb11390df3
+# from man-pages.spec --with tars
+Source5:	%{name}-man-pages.tar.xz
+# Source5-md5:	3a4eabb7d28db7d35d8204fdb471a863
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
@@ -136,7 +136,7 @@ Conflicts:	kernel < %{min_kernel}
 Conflicts:	kernel24
 Conflicts:	kernel24-smp
 Conflicts:	ld.so < 1.9.9-10
-Conflicts:	man-pages < 3.71-2
+Conflicts:	man-pages < 4.00
 Conflicts:	poldek < 0.18.8-5
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
@@ -298,6 +298,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Conflicts:	%{name}(x32)
 Conflicts:	%{name}(x86_64)
 %endif
+Conflicts:	man-pages < 4.00
 
 %description misc
 Utilities and data used by glibc.
@@ -366,6 +367,116 @@ ldconfig, çalýţmakta olan sistemi araţtýrýr ve ortak kitaplýklarýn
 düzgün bir ţekilde yüklenmesi için gereken simgesel bađlantýlarý
 kurar. Ayrýca ortak kitaplýklarý kullanan programlarýn yüklenmesini
 hýzlandýran /etc/ld.so.cache dosyasýný yaratýr.
+
+%package -n nss_compat
+Summary:	Old style NYS NSS glibc module
+Summary(es.UTF-8):	El antiguo módulo NYS NSS de glibc
+Summary(pl.UTF-8):	Stary moduł NYS NSS glibc
+Group:		Base
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n nss_compat
+Old style NYS NSS glibc module.
+
+%description -n nss_compat -l es.UTF-8
+El antiguo módulo NYS NSS de glibc
+
+%description -n nss_compat -l pl.UTF-8
+Stary moduł NYS NSS glibc.
+
+%package -n nss_dns
+Summary:	BIND NSS glibc module
+Summary(es.UTF-8):	Módulo BIND NSS de glibc
+Summary(pl.UTF-8):	Moduł BIND NSS glibc
+Group:		Base
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n nss_dns
+BIND NSS glibc module.
+
+%description -n nss_dns -l es.UTF-8
+Módulo BIND NSS de glibc.
+
+%description -n nss_dns -l pl.UTF-8
+Moduł BIND NSS glibc.
+
+%package -n nss_files
+Summary:	Traditional files databases NSS glibc module
+Summary(es.UTF-8):	Módulo de tradicionales bases de datos en ficheros para glibc
+Summary(pl.UTF-8):	Moduł tradycyjnych plikowych baz danych NSS glibc
+Group:		Base
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n nss_files
+Traditional files databases NSS glibc module.
+
+%description -n nss_files -l es.UTF-8
+Módulo de tradicionales bases de datos en ficheros para glibc.
+
+%description -n nss_files -l pl.UTF-8
+Moduł tradycyjnych plikowych baz danych NSS glibc.
+
+%package -n nss_hesiod
+Summary:	hesiod NSS glibc module
+Summary(es.UTF-8):	Módulo hesiod NSS de glibc
+Summary(pl.UTF-8):	Moduł hesiod NSS glibc
+Group:		Base
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n nss_hesiod
+glibc NSS (Name Service Switch) module for databases access.
+
+%description -n nss_hesiod -l es.UTF-8
+Módulo hesiod NSS de glibc.
+
+%description -n nss_hesiod -l pl.UTF-8
+Moduł glibc NSS (Name Service Switch) dostępu do baz danych.
+
+%package -n nss_nis
+Summary:	NIS(YP) NSS glibc module
+Summary(es.UTF-8):	Módulo NIS(YP) NSS de glibc
+Summary(pl.UTF-8):	Moduł NIS(YP) NSS glibc
+Group:		Base
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n nss_nis
+glibc NSS (Name Service Switch) module for NIS(YP) databases access.
+
+%description -n nss_nis -l es.UTF-8
+Módulo NSS de glibc para acceder las bases de datos NIS(YP).
+
+%description -n nss_nis -l pl.UTF-8
+Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS(YP).
+
+%package -n nss_nisplus
+Summary:	NIS+ NSS module
+Summary(es.UTF-8):	Módulo NIS+ NSS
+Summary(pl.UTF-8):	Moduł NIS+ NSS
+Group:		Base
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n nss_nisplus
+glibc NSS (Name Service Switch) module for NIS+ databases access.
+
+%description -n nss_nisplus -l es.UTF-8
+Módulo NSS (Name Service Switch) de glibc para acceder las bases de
+datos NIS+.
+
+%description -n nss_nisplus -l pl.UTF-8
+Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS+.
+
+%package memusage
+Summary:	Memory usage profiler
+Summary(pl.UTF-8):	Narzędzie do profilowania zużycia pamięci
+Group:		Development/Tools
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Conflicts:	man-pages < 4.00
+
+%description memusage
+Memory usage profiler.
+
+%description memusage -l pl.UTF-8
+Narzędzie do profilowania zużycia pamięci.
 
 %package devel
 Summary:	Additional libraries required to compile
@@ -527,6 +638,7 @@ Obsoletes:	glibc-devel-utils(s390)
 %ifarch sparc64
 Obsoletes:	glibc-devel-utils(sparc)
 %endif
+Conflicts:	man-pages < 4.00
 
 %description devel-utils
 The glibc-devel-utils package contains utilities necessary for
@@ -580,6 +692,7 @@ Obsoletes:	glibc-devel-doc(s390)
 %ifarch sparc64
 Obsoletes:	glibc-devel-doc(sparc)
 %endif
+Conflicts:	man-pages < 4.00
 
 %description devel-doc
 The glibc-devel-doc package contains info and manual pages necessary
@@ -596,6 +709,111 @@ przez prawie wszystkie programy).
 
 Ten pakiet należy zainstalować jeśli zamierzamy tworzyć programy
 korzystające ze standardowych bibliotek C.
+
+%package static
+Summary:	Static GNU libc libraries
+Summary(es.UTF-8):	Bibliotecas estáticas
+Summary(pl.UTF-8):	Biblioteki statyczne GNU libc
+Summary(ru.UTF-8):	Статические библиотеки glibc
+Summary(uk.UTF-8):	Статичні бібліотеки glibc
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+Provides:	%{name}-static(ix86) = %{epoch}:%{version}-%{release}
+%endif
+Obsoletes:	libiconv-static
+
+%description static
+GNU libc static libraries.
+
+%description static -l es.UTF-8
+Bibliotecas estáticas de GNU libc.
+
+%description static -l pl.UTF-8
+Biblioteki statyczne GNU libc.
+
+%description static -l ru.UTF-8
+Это отдельный пакет со статическими библиотеками, которые больше не
+входят в glibc-devel.
+
+%description static -l uk.UTF-8
+Це окремий пакет зі статичними бібліотеками, що більше не входять в
+склад glibc-devel.
+
+%package profile
+Summary:	glibc with profiling support
+Summary(de.UTF-8):	glibc mit Profil-Unterstützung
+Summary(es.UTF-8):	glibc con soporte de perfilamiento
+Summary(fr.UTF-8):	glibc avec support pour profiling
+Summary(pl.UTF-8):	glibc ze wsparciem dla profilowania
+Summary(ru.UTF-8):	GNU libc с поддержкой профайлера
+Summary(tr.UTF-8):	Ölçüm desteği olan glibc
+Summary(uk.UTF-8):	GNU libc з підтримкою профайлера
+Group:		Development/Libraries/Libc
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Obsoletes:	libc-profile
+
+%description profile
+When programs are being profiled using gprof, they must use these
+libraries instead of the standard C libraries for gprof to be able to
+profile them correctly.
+
+%description profile -l de.UTF-8
+Damit Programmprofile mit gprof richtig erstellt werden, müssen diese
+Libraries anstelle der üblichen C-Libraries verwendet werden.
+
+%description profile -l es.UTF-8
+Cuando programas son perfilidas usando gprof, tienen que usar estas
+biblioteces en vez de las estándares para que gprof pueda perfilarlas
+correctamente.
+
+%description profile -l pl.UTF-8
+Programy profilowane za pomocą gprof muszą używać tych bibliotek
+zamiast standardowych bibliotek C, aby gprof mógł odpowiednio je
+wyprofilować.
+
+%description profile -l uk.UTF-8
+Коли програми досліджуються профайлером gprof, вони повинні
+використовувати замість стандартних бібліотек бібліотеки, що містяться
+в цьому пакеті. При використанні стандартних бібліотек gprof замість
+реальних результатів буде показувати ціни на папайю в Гонолулу в
+позаминулому році...
+
+%description profile -l tr.UTF-8
+gprof kullanılarak ölçülen programlar standart C kitaplığı yerine bu
+kitaplığı kullanmak zorundadırlar.
+
+%description profile -l ru.UTF-8
+Когда программы исследуются профайлером gprof, они должны
+использовать, вместо стандартных библиотек, библиотеки, включенные в
+этот пакет. При использовании стандартных библиотек gprof вместо
+реальных результатов будет показывать цены на папайю в Гонолулу в
+позапрошлом году...
+
+%package pic
+Summary:	glibc PIC archive
+Summary(es.UTF-8):	Archivo PIC de glibc
+Summary(pl.UTF-8):	Archiwum PIC glibc
+Group:		Development/Libraries/Libc
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+
+%description pic
+GNU C Library PIC archive contains an archive library (ar file)
+composed of individual shared objects. This is used for creating a
+library which is a smaller subset of the standard libc shared library.
+
+%description pic -l es.UTF-8
+El archivo PIC de la biblioteca glibc contiene una biblioteca
+archivada (un fichero ar) compuesta de individuales objetos
+compartidos. Es usado para crear una biblioteca que sea un subconjunto
+más pequeño de la biblioteca libc compartida estándar.
+
+%description pic -l pl.UTF-8
+Archiwum PIC biblioteki GNU C zawiera archiwalną bibliotekę (plik ar)
+złożoną z pojedynczych obiektów współdzielonych. Używana jest do
+tworzenia biblioteki będącej mniejszym podzestawem standardowej
+biblioteki współdzielonej libc.
 
 %package -n nscd
 Summary:	Name Service Caching Daemon
@@ -711,6 +929,7 @@ Summary(pl.UTF-8):	Moduły do konwersji plików tekstowych z jednego kodowania d
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	iconv(%{_target_base_arch})
+Conflicts:	man-pages < 4.00
 
 %description -n iconv
 Convert encoding of given files from one encoding to another. You need
@@ -732,220 +951,6 @@ dokumentów z jednego kodowania do innego lub do używania programów
 korzystających z Generic Character Set Conversion Interface w glibc,
 czyli z zestawu funkcji z tej biblioteki, które umożliwiają konwersję
 kodowania danych z poziomu dowolnego programu.
-
-%package static
-Summary:	Static GNU libc libraries
-Summary(es.UTF-8):	Bibliotecas estáticas
-Summary(pl.UTF-8):	Biblioteki statyczne GNU libc
-Summary(ru.UTF-8):	Статические библиотеки glibc
-Summary(uk.UTF-8):	Статичні бібліотеки glibc
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}-static(ix86) = %{epoch}:%{version}-%{release}
-%endif
-Obsoletes:	libiconv-static
-
-%description static
-GNU libc static libraries.
-
-%description static -l es.UTF-8
-Bibliotecas estáticas de GNU libc.
-
-%description static -l pl.UTF-8
-Biblioteki statyczne GNU libc.
-
-%description static -l ru.UTF-8
-Это отдельный пакет со статическими библиотеками, которые больше не
-входят в glibc-devel.
-
-%description static -l uk.UTF-8
-Це окремий пакет зі статичними бібліотеками, що більше не входять в
-склад glibc-devel.
-
-%package profile
-Summary:	glibc with profiling support
-Summary(de.UTF-8):	glibc mit Profil-Unterstützung
-Summary(es.UTF-8):	glibc con soporte de perfilamiento
-Summary(fr.UTF-8):	glibc avec support pour profiling
-Summary(pl.UTF-8):	glibc ze wsparciem dla profilowania
-Summary(ru.UTF-8):	GNU libc с поддержкой профайлера
-Summary(tr.UTF-8):	Ölçüm desteği olan glibc
-Summary(uk.UTF-8):	GNU libc з підтримкою профайлера
-Group:		Development/Libraries/Libc
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Obsoletes:	libc-profile
-
-%description profile
-When programs are being profiled using gprof, they must use these
-libraries instead of the standard C libraries for gprof to be able to
-profile them correctly.
-
-%description profile -l de.UTF-8
-Damit Programmprofile mit gprof richtig erstellt werden, müssen diese
-Libraries anstelle der üblichen C-Libraries verwendet werden.
-
-%description profile -l es.UTF-8
-Cuando programas son perfilidas usando gprof, tienen que usar estas
-biblioteces en vez de las estándares para que gprof pueda perfilarlas
-correctamente.
-
-%description profile -l pl.UTF-8
-Programy profilowane za pomocą gprof muszą używać tych bibliotek
-zamiast standardowych bibliotek C, aby gprof mógł odpowiednio je
-wyprofilować.
-
-%description profile -l uk.UTF-8
-Коли програми досліджуються профайлером gprof, вони повинні
-використовувати замість стандартних бібліотек бібліотеки, що містяться
-в цьому пакеті. При використанні стандартних бібліотек gprof замість
-реальних результатів буде показувати ціни на папайю в Гонолулу в
-позаминулому році...
-
-%description profile -l tr.UTF-8
-gprof kullanılarak ölçülen programlar standart C kitaplığı yerine bu
-kitaplığı kullanmak zorundadırlar.
-
-%description profile -l ru.UTF-8
-Когда программы исследуются профайлером gprof, они должны
-использовать, вместо стандартных библиотек, библиотеки, включенные в
-этот пакет. При использовании стандартных библиотек gprof вместо
-реальных результатов будет показывать цены на папайю в Гонолулу в
-позапрошлом году...
-
-%package pic
-Summary:	glibc PIC archive
-Summary(es.UTF-8):	Archivo PIC de glibc
-Summary(pl.UTF-8):	Archiwum PIC glibc
-Group:		Development/Libraries/Libc
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-
-%description pic
-GNU C Library PIC archive contains an archive library (ar file)
-composed of individual shared objects. This is used for creating a
-library which is a smaller subset of the standard libc shared library.
-
-%description pic -l es.UTF-8
-El archivo PIC de la biblioteca glibc contiene una biblioteca
-archivada (un fichero ar) compuesta de individuales objetos
-compartidos. Es usado para crear una biblioteca que sea un subconjunto
-más pequeño de la biblioteca libc compartida estándar.
-
-%description pic -l pl.UTF-8
-Archiwum PIC biblioteki GNU C zawiera archiwalną bibliotekę (plik ar)
-złożoną z pojedynczych obiektów współdzielonych. Używana jest do
-tworzenia biblioteki będącej mniejszym podzestawem standardowej
-biblioteki współdzielonej libc.
-
-%package -n nss_compat
-Summary:	Old style NYS NSS glibc module
-Summary(es.UTF-8):	El antiguo módulo NYS NSS de glibc
-Summary(pl.UTF-8):	Stary moduł NYS NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_compat
-Old style NYS NSS glibc module.
-
-%description -n nss_compat -l es.UTF-8
-El antiguo módulo NYS NSS de glibc
-
-%description -n nss_compat -l pl.UTF-8
-Stary moduł NYS NSS glibc.
-
-%package -n nss_dns
-Summary:	BIND NSS glibc module
-Summary(es.UTF-8):	Módulo BIND NSS de glibc
-Summary(pl.UTF-8):	Moduł BIND NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_dns
-BIND NSS glibc module.
-
-%description -n nss_dns -l es.UTF-8
-Módulo BIND NSS de glibc.
-
-%description -n nss_dns -l pl.UTF-8
-Moduł BIND NSS glibc.
-
-%package -n nss_files
-Summary:	Traditional files databases NSS glibc module
-Summary(es.UTF-8):	Módulo de tradicionales bases de datos en ficheros para glibc
-Summary(pl.UTF-8):	Moduł tradycyjnych plikowych baz danych NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_files
-Traditional files databases NSS glibc module.
-
-%description -n nss_files -l es.UTF-8
-Módulo de tradicionales bases de datos en ficheros para glibc.
-
-%description -n nss_files -l pl.UTF-8
-Moduł tradycyjnych plikowych baz danych NSS glibc.
-
-%package -n nss_hesiod
-Summary:	hesiod NSS glibc module
-Summary(es.UTF-8):	Módulo hesiod NSS de glibc
-Summary(pl.UTF-8):	Moduł hesiod NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_hesiod
-glibc NSS (Name Service Switch) module for databases access.
-
-%description -n nss_hesiod -l es.UTF-8
-Módulo hesiod NSS de glibc.
-
-%description -n nss_hesiod -l pl.UTF-8
-Moduł glibc NSS (Name Service Switch) dostępu do baz danych.
-
-%package -n nss_nis
-Summary:	NIS(YP) NSS glibc module
-Summary(es.UTF-8):	Módulo NIS(YP) NSS de glibc
-Summary(pl.UTF-8):	Moduł NIS(YP) NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_nis
-glibc NSS (Name Service Switch) module for NIS(YP) databases access.
-
-%description -n nss_nis -l es.UTF-8
-Módulo NSS de glibc para acceder las bases de datos NIS(YP).
-
-%description -n nss_nis -l pl.UTF-8
-Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS(YP).
-
-%package -n nss_nisplus
-Summary:	NIS+ NSS module
-Summary(es.UTF-8):	Módulo NIS+ NSS
-Summary(pl.UTF-8):	Moduł NIS+ NSS
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_nisplus
-glibc NSS (Name Service Switch) module for NIS+ databases access.
-
-%description -n nss_nisplus -l es.UTF-8
-Módulo NSS (Name Service Switch) de glibc para acceder las bases de
-datos NIS+.
-
-%description -n nss_nisplus -l pl.UTF-8
-Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS+.
-
-%package memusage
-Summary:	Memory usage profiler
-Summary(pl.UTF-8):	Narzędzie do profilowania zużycia pamięci
-Group:		Development/Tools
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description memusage
-Memory usage profiler.
-
-%description memusage -l pl.UTF-8
-Narzędzie do profilowania zużycia pamięci.
 
 %prep
 %setup -q
@@ -1049,7 +1054,7 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,default,logrotate.d,init} \
-	$RPM_BUILD_ROOT{%{_mandir}/man{3,8},/var/log,/var/{lib,run}/nscd} \
+	$RPM_BUILD_ROOT{%{_mandir},/var/log,/var/{lib,run}/nscd} \
 	$RPM_BUILD_ROOT{/var/cache/ldconfig,%{systemdtmpfilesdir}}
 
 cd builddir
@@ -1107,7 +1112,7 @@ cp -a posix/gai.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 cp -a nis/nss $RPM_BUILD_ROOT/etc/default/nss
 sed -e 's#\([ \t]\)db\([ \t]\)#\1#g' nss/nsswitch.conf > $RPM_BUILD_ROOT%{_sysconfdir}/nsswitch.conf
 
-bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
+xz -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 : > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
 echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
@@ -1264,12 +1269,10 @@ cp -p localedata/SUPPORTED $RPM_BUILD_ROOT%{_datadir}/i18n
 # shutup check-files
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/README.*
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
-# rpcinfo dropped from glibc, provided by rpcbind now
-%{__rm} $RPM_BUILD_ROOT%{_mandir}/{,*/}man8/rpcinfo.8
 
 # stub for man page from man-pages package to make rpm consistency check happy
 # don't package them here
-install -d $RPM_BUILD_ROOT%{_mandir}{/,/ru,/es,/fr,/ja}/man2
+install -d $RPM_BUILD_ROOT%{_mandir}{,/ru,/es,/fr,/ja}/man2
 :>$RPM_BUILD_ROOT%{_mandir}/man2/syslog.2
 :>$RPM_BUILD_ROOT%{_mandir}/ru/man2/syslog.2
 :>$RPM_BUILD_ROOT%{_mandir}/es/man2/syslog.2
@@ -1278,7 +1281,7 @@ install -d $RPM_BUILD_ROOT%{_mandir}{/,/ru,/es,/fr,/ja}/man2
 
 # remove links to non existant translations
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/pl/man3/{alphasort,cfgetispeed,cfgetospeed,cfmakeraw,cfsetispeed,cfsetospeed,closelog,dn_comp,dn_expand,fscanf}.3
-%{__rm} $RPM_BUILD_ROOT%{_mandir}/it/man7/latin2.7
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/tr/man3/{encrypt_r,setkey,setkey_r}.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -1482,17 +1485,25 @@ fi
 %{_mandir}/man1/iconv.1*
 %{_mandir}/man1/locale.1*
 %{_mandir}/man1/rpcgen.1*
+%{_mandir}/man5/gai.conf.5*
 %{_mandir}/man5/locale.5*
+%{_mandir}/man5/nss.5*
 %{_mandir}/man5/nsswitch.conf.5*
+%{_mandir}/man5/repertoiremap.5*
+%{_mandir}/man5/rpc.5*
 %{_mandir}/man5/tzfile.5*
+%{_mandir}/man7/armscii-8.7*
 %{_mandir}/man7/ascii.7*
 %{_mandir}/man7/charsets.7*
+%{_mandir}/man7/cp1251.7*
+%{_mandir}/man7/cp1252.7*
 %{_mandir}/man7/iso-8859-*.7*
 %{_mandir}/man7/iso_8859-*.7*
 %{_mandir}/man7/iso_8859_*.7*
-%{_mandir}/man7/koi8-r.7*
+%{_mandir}/man7/koi8-*.7*
 %{_mandir}/man7/latin*.7*
 %{_mandir}/man7/locale.7*
+%{_mandir}/man7/tis-620.7*
 %{_mandir}/man7/unicode.7*
 %{_mandir}/man7/utf-8.7*
 %{_mandir}/man7/utf8.7*
@@ -1502,13 +1513,36 @@ fi
 %{_mandir}/man8/sln.8*
 %{_mandir}/man8/zdump.8*
 %{_mandir}/man8/zic.8*
-%lang(cs) %{_mandir}/cs/man7/*
+%lang(cs) %{_mandir}/cs/man7/ascii.7*
+%lang(cs) %{_mandir}/cs/man7/locale.7*
+%lang(cs) %{_mandir}/cs/man7/unicode.7*
+%lang(cs) %{_mandir}/cs/man7/utf-8.7*
+%lang(cs) %{_mandir}/cs/man7/utf8.7*
+%lang(de) %{_mandir}/de/man5/rpc.5*
 %lang(de) %{_mandir}/de/man5/tzfile.5*
-%lang(de) %{_mandir}/de/man7/*
+%lang(de) %{_mandir}/de/man7/ascii.7*
+%lang(de) %{_mandir}/de/man7/iso-8859-*.7*
+%lang(de) %{_mandir}/de/man7/iso_8859-*.7*
+%lang(de) %{_mandir}/de/man7/iso_8859_*.7*
+%lang(de) %{_mandir}/de/man7/latin*.7*
+%lang(de) %{_mandir}/de/man7/locale.7*
+%lang(de) %{_mandir}/de/man7/unicode.7*
+%lang(de) %{_mandir}/de/man7/utf-8.7*
+%lang(de) %{_mandir}/de/man7/utf8.7*
 %lang(es) %{_mandir}/es/man5/locale.5*
 %lang(es) %{_mandir}/es/man5/nsswitch.conf.5*
+%lang(es) %{_mandir}/es/man5/rpc.5*
 %lang(es) %{_mandir}/es/man5/tzfile.5*
-%lang(es) %{_mandir}/es/man7/*
+%lang(es) %{_mandir}/es/man7/ascii.7*
+%lang(es) %{_mandir}/es/man7/charsets.7*
+%lang(es) %{_mandir}/es/man7/iso-8859-*.7*
+%lang(es) %{_mandir}/es/man7/iso_8859-*.7*
+%lang(es) %{_mandir}/es/man7/iso_8859_*.7*
+%lang(es) %{_mandir}/es/man7/latin*.7*
+%lang(es) %{_mandir}/es/man7/locale.7*
+%lang(es) %{_mandir}/es/man7/unicode.7*
+%lang(es) %{_mandir}/es/man7/utf-8.7*
+%lang(es) %{_mandir}/es/man7/utf8.7*
 %lang(es) %{_mandir}/es/man8/ld-linux.8*
 %lang(es) %{_mandir}/es/man8/ld-linux.so.8*
 %lang(es) %{_mandir}/es/man8/ld.so.8*
@@ -1516,26 +1550,74 @@ fi
 %lang(es) %{_mandir}/es/man8/zic.8*
 %lang(fr) %{_mandir}/fr/man5/locale.5*
 %lang(fr) %{_mandir}/fr/man5/nsswitch.conf.5*
+%lang(fr) %{_mandir}/fr/man5/rpc.5*
 %lang(fr) %{_mandir}/fr/man5/tzfile.5*
-%lang(fr) %{_mandir}/fr/man7/*
+%lang(fr) %{_mandir}/fr/man7/ascii.7*
+%lang(fr) %{_mandir}/fr/man7/charsets.7*
+%lang(fr) %{_mandir}/fr/man7/iso-8859-*.7*
+%lang(fr) %{_mandir}/fr/man7/iso_8859-*.7*
+%lang(fr) %{_mandir}/fr/man7/iso_8859_*.7*
+%lang(fr) %{_mandir}/fr/man7/koi8-r.7*
+%lang(fr) %{_mandir}/fr/man7/latin*.7*
+%lang(fr) %{_mandir}/fr/man7/locale.7*
+%lang(fr) %{_mandir}/fr/man7/unicode.7*
+%lang(fr) %{_mandir}/fr/man7/utf-8.7*
+%lang(fr) %{_mandir}/fr/man7/utf8.7*
 %lang(fr) %{_mandir}/fr/man8/ld-linux.8*
 %lang(fr) %{_mandir}/fr/man8/ld-linux.so.8*
 %lang(fr) %{_mandir}/fr/man8/ld.so.8*
 %lang(fr) %{_mandir}/fr/man8/zdump.8*
 %lang(fr) %{_mandir}/fr/man8/zic.8*
-%lang(hu) %{_mandir}/hu/man7/*
+%lang(hu) %{_mandir}/hu/man7/ascii.7*
+%lang(hu) %{_mandir}/hu/man7/iso-8859-*.7*
+%lang(hu) %{_mandir}/hu/man7/iso_8859-*.7*
+%lang(hu) %{_mandir}/hu/man7/iso_8859_*.7*
+%lang(hu) %{_mandir}/hu/man7/latin*.7*
+%lang(hu) %{_mandir}/hu/man7/locale.7*
+%lang(hu) %{_mandir}/hu/man7/utf-8.7*
+%lang(hu) %{_mandir}/hu/man7/utf8.7*
 %lang(hu) %{_mandir}/hu/man8/ld-linux.8*
 %lang(hu) %{_mandir}/hu/man8/ld-linux.so.8*
 %lang(hu) %{_mandir}/hu/man8/ld.so.8*
 %lang(hu) %{_mandir}/hu/man8/zdump.8*
 %lang(it) %{_mandir}/it/man5/locale.5*
-%lang(it) %{_mandir}/it/man7/*
+%lang(it) %{_mandir}/it/man7/ascii.7*
+%lang(it) %{_mandir}/it/man7/charsets.7*
+%lang(it) %{_mandir}/it/man7/iso-8859-*.7*
+%lang(it) %{_mandir}/it/man7/iso_8859-*.7*
+%lang(it) %{_mandir}/it/man7/iso_8859_*.7*
+%lang(it) %{_mandir}/it/man7/latin*.7*
+%lang(it) %{_mandir}/it/man7/locale.7*
+%lang(it) %{_mandir}/it/man7/unicode.7*
+%lang(it) %{_mandir}/it/man7/utf-8.7*
+%lang(it) %{_mandir}/it/man7/utf8.7*
 %lang(it) %{_mandir}/it/man8/zdump.8*
+%lang(ja) %{_mandir}/ja/man1/getent.1*
+%lang(ja) %{_mandir}/ja/man1/iconv.1*
+%lang(ja) %{_mandir}/ja/man1/locale.1*
 %lang(ja) %{_mandir}/ja/man1/rpcgen.1*
+%lang(ja) %{_mandir}/ja/man5/gai.conf.5*
 %lang(ja) %{_mandir}/ja/man5/locale.5*
+%lang(ja) %{_mandir}/ja/man5/nss.5*
 %lang(ja) %{_mandir}/ja/man5/nsswitch.conf.5*
+%lang(ja) %{_mandir}/ja/man5/repertoiremap.5*
+%lang(ja) %{_mandir}/ja/man5/rpc.5*
 %lang(ja) %{_mandir}/ja/man5/tzfile.5*
-%lang(ja) %{_mandir}/ja/man7/*
+%lang(ja) %{_mandir}/ja/man7/armscii-8.7*
+%lang(ja) %{_mandir}/ja/man7/ascii.7*
+%lang(ja) %{_mandir}/ja/man7/charsets.7*
+%lang(ja) %{_mandir}/ja/man7/cp1251.7*
+%lang(ja) %{_mandir}/ja/man7/cp1252.7*
+%lang(ja) %{_mandir}/ja/man7/iso-8859-*.7*
+%lang(ja) %{_mandir}/ja/man7/iso_8859-*.7*
+%lang(ja) %{_mandir}/ja/man7/iso_8859_*.7*
+%lang(ja) %{_mandir}/ja/man7/koi8-*.7*
+%lang(ja) %{_mandir}/ja/man7/latin*.7*
+%lang(ja) %{_mandir}/ja/man7/locale.7*
+%lang(ja) %{_mandir}/ja/man7/tis-620.7*
+%lang(ja) %{_mandir}/ja/man7/unicode.7*
+%lang(ja) %{_mandir}/ja/man7/utf-8.7*
+%lang(ja) %{_mandir}/ja/man7/utf8.7*
 %lang(ja) %{_mandir}/ja/man8/ld-linux.8*
 %lang(ja) %{_mandir}/ja/man8/ld-linux.so.8*
 %lang(ja) %{_mandir}/ja/man8/ld.so.8*
@@ -1543,18 +1625,44 @@ fi
 %lang(ja) %{_mandir}/ja/man8/zdump.8*
 %lang(ja) %{_mandir}/ja/man8/zic.8*
 %lang(ko) %{_mandir}/ko/man5/nsswitch.conf.5*
+%lang(ko) %{_mandir}/ko/man5/rpc.5*
 %lang(ko) %{_mandir}/ko/man5/tzfile.5*
-%lang(ko) %{_mandir}/ko/man7/*
+%lang(ko) %{_mandir}/ko/man7/ascii.7*
+%lang(ko) %{_mandir}/ko/man7/iso-8859-*.7*
+%lang(ko) %{_mandir}/ko/man7/iso_8859-*.7*
+%lang(ko) %{_mandir}/ko/man7/iso_8859_*.7*
+%lang(ko) %{_mandir}/ko/man7/latin*.7*
 %lang(ko) %{_mandir}/ko/man8/zdump.8*
 %lang(pl) %{_mandir}/pl/man5/locale.5*
-%lang(pl) %{_mandir}/pl/man7/*
+%lang(pl) %{_mandir}/pl/man5/rpc.5*
+%lang(pl) %{_mandir}/pl/man7/ascii.7*
+%lang(pl) %{_mandir}/pl/man7/iso-8859-*.7*
+%lang(pl) %{_mandir}/pl/man7/iso_8859-*.7*
+%lang(pl) %{_mandir}/pl/man7/iso_8859_*.7*
+%lang(pl) %{_mandir}/pl/man7/koi8-*.7*
+%lang(pl) %{_mandir}/pl/man7/latin*.7*
+%lang(pl) %{_mandir}/pl/man7/locale.7*
+%lang(pl) %{_mandir}/pl/man7/unicode.7*
+%lang(pl) %{_mandir}/pl/man7/utf-8.7*
+%lang(pl) %{_mandir}/pl/man7/utf8.7*
 %lang(pl) %{_mandir}/pl/man8/ld-linux.8*
 %lang(pl) %{_mandir}/pl/man8/ld-linux.so.8*
 %lang(pl) %{_mandir}/pl/man8/ld.so.8*
 %lang(pt) %{_mandir}/pt/man5/locale.5*
 %lang(pt) %{_mandir}/pt/man5/nsswitch.conf.5*
+%lang(pt) %{_mandir}/pt/man5/rpc.5*
 %lang(pt) %{_mandir}/pt/man5/tzfile.5*
-%lang(pt) %{_mandir}/pt/man7/*
+%lang(pt) %{_mandir}/pt/man7/ascii.7*
+%lang(pt) %{_mandir}/pt/man7/charsets.7*
+%lang(pt) %{_mandir}/pt/man7/iso-8859-*.7*
+%lang(pt) %{_mandir}/pt/man7/iso_8859-*.7*
+%lang(pt) %{_mandir}/pt/man7/iso_8859_*.7*
+%lang(pt) %{_mandir}/pt/man7/koi8-*.7*
+%lang(pt) %{_mandir}/pt/man7/latin*.7*
+%lang(pt) %{_mandir}/pt/man7/locale.7*
+%lang(pt) %{_mandir}/pt/man7/unicode.7*
+%lang(pt) %{_mandir}/pt/man7/utf-8.7*
+%lang(pt) %{_mandir}/pt/man7/utf8.7*
 %lang(pt) %{_mandir}/pt/man8/zdump.8*
 %lang(pt) %{_mandir}/pt/man8/zic.8*
 %lang(ru) %{_mandir}/ru/man1/getent.1*
@@ -1563,17 +1671,35 @@ fi
 %lang(ru) %{_mandir}/ru/man1/rpcgen.1*
 %lang(ru) %{_mandir}/ru/man5/locale.5*
 %lang(ru) %{_mandir}/ru/man5/nsswitch.conf.5*
+%lang(ru) %{_mandir}/ru/man5/rpc.5*
 %lang(ru) %{_mandir}/ru/man5/tzfile.5*
-%lang(ru) %{_mandir}/ru/man7/*
+%lang(ru) %{_mandir}/ru/man7/ascii.7*
+%lang(ru) %{_mandir}/ru/man7/charsets.7*
+%lang(ru) %{_mandir}/ru/man7/iso-8859-*.7*
+%lang(ru) %{_mandir}/ru/man7/iso_8859-*.7*
+%lang(ru) %{_mandir}/ru/man7/iso_8859_*.7*
+%lang(ru) %{_mandir}/ru/man7/koi8-*.7*
+%lang(ru) %{_mandir}/ru/man7/latin*.7*
+%lang(ru) %{_mandir}/ru/man7/locale.7*
+%lang(ru) %{_mandir}/ru/man7/unicode.7*
+%lang(ru) %{_mandir}/ru/man7/utf-8.7*
+%lang(ru) %{_mandir}/ru/man7/utf8.7*
 %lang(ru) %{_mandir}/ru/man8/ld-linux.so.8*
 %lang(ru) %{_mandir}/ru/man8/ld.so.8*
 %lang(ru) %{_mandir}/ru/man8/zdump.8*
 %lang(ru) %{_mandir}/ru/man8/zic.8*
 %lang(tr) %{_mandir}/tr/man1/iconv.1*
+%lang(uk) %{_mandir}/uk/man5/rpc.5*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/iconv.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man5/locale.5*
+%lang(zh_CN) %{_mandir}/zh_CN/man5/rpc.5*
 %lang(zh_CN) %{_mandir}/zh_CN/man5/tzfile.5*
-%lang(zh_CN) %{_mandir}/zh_CN/man7/*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/ascii.7*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/charsets.7*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/locale.7*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/unicode.7*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/utf-8.7*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/utf8.7*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
 
@@ -1591,11 +1717,15 @@ fi
 
 %{_mandir}/man1/catchsegv.1*
 %{_mandir}/man1/ldd.1*
+%{_mandir}/man1/pldd.1*
+%lang(cs) %{_mandir}/cs/man1/ldd.1*
 %lang(es) %{_mandir}/es/man1/ldd.1*
 %lang(fi) %{_mandir}/fi/man1/ldd.1*
 %lang(fr) %{_mandir}/fr/man1/ldd.1*
 %lang(hu) %{_mandir}/hu/man1/ldd.1*
+%lang(it) %{_mandir}/it/man1/ldd.1*
 %lang(ja) %{_mandir}/ja/man1/ldd.1*
+%lang(ja) %{_mandir}/ja/man1/pldd.1*
 %lang(ko) %{_mandir}/ko/man1/ldd.1*
 %lang(pl) %{_mandir}/pl/man1/ldd.1*
 %lang(ru) %{_mandir}/ru/man1/ldd.1*
@@ -1651,8 +1781,13 @@ fi
 %if %{with memusage}
 %files memusage
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/memusage*
+%attr(755,root,root) %{_bindir}/memusage
+%attr(755,root,root) %{_bindir}/memusagestat
 %attr(755,root,root) %{_libdir}/libmemusage.so
+%{_mandir}/man1/memusage.1*
+%{_mandir}/man1/memusagestat.1*
+%lang(ja) %{_mandir}/ja/man1/memusage.1*
+%lang(ja) %{_mandir}/ja/man1/memusagestat.1*
 %endif
 
 %files devel
@@ -1720,8 +1855,12 @@ fi
 %files devel-utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gencat
-%attr(755,root,root) %{_bindir}/*prof*
-%attr(755,root,root) %{_bindir}/*trace
+%attr(755,root,root) %{_bindir}/mtrace
+%attr(755,root,root) %{_bindir}/pcprofiledump
+%attr(755,root,root) %{_bindir}/sprof
+%attr(755,root,root) %{_bindir}/xtrace
+%{_mandir}/man1/mtrace.1*
+%lang(ja) %{_mandir}/ja/man1/mtrace.1*
 
 %files devel-doc
 %defattr(644,root,root,755)
@@ -1729,23 +1868,91 @@ fi
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
+# just a link to getcwd.3
+%{_mandir}/man2/getcwd.2*
 %{_mandir}/man3/*
+%{_mandir}/man7/aio.7*
+%{_mandir}/man7/attributes.7*
+%{_mandir}/man7/complex.7*
+%{_mandir}/man7/feature_test_macros.7*
+%{_mandir}/man7/glibc.7*
+%{_mandir}/man7/glob.7*
+%{_mandir}/man7/libc.7*
+%{_mandir}/man7/math_error.7*
+%{_mandir}/man7/nptl.7*
+%{_mandir}/man7/posixoptions.7*
+%{_mandir}/man7/pthreads.7*
+%{_mandir}/man7/rtld-audit.7*
+%{_mandir}/man7/sem_overview.7*
+%{_mandir}/man7/shm_overview.7*
 %lang(cs) %{_mandir}/cs/man3/*
 %lang(de) %{_mandir}/de/man3/*
 %lang(es) %{_mandir}/es/man3/*
+%lang(es) %{_mandir}/es/man7/glob.7*
+%lang(fr) %{_mandir}/fr/man2/getcwd.2*
 %lang(fr) %{_mandir}/fr/man3/*
+%lang(fr) %{_mandir}/fr/man7/complex.7*
+%lang(fr) %{_mandir}/fr/man7/feature_test_macros.7*
+%lang(fr) %{_mandir}/fr/man7/glob.7*
+%lang(fr) %{_mandir}/fr/man7/posixoptions.7*
+%lang(fr) %{_mandir}/fr/man7/pthreads.7*
+%lang(fr) %{_mandir}/fr/man7/sem_overview.7*
+%lang(fr) %{_mandir}/fr/man7/shm_overview.7*
 %lang(hu) %{_mandir}/hu/man3/*
 %lang(it) %{_mandir}/it/man3/*
+%lang(it) %{_mandir}/it/man7/glob.7*
+%lang(ja) %{_mandir}/ja/man1/sprof.1*
+%lang(ja) %{_mandir}/ja/man2/getcwd.2*
 %lang(ja) %{_mandir}/ja/man3/*
+%lang(ja) %{_mandir}/ja/man7/aio.7*
+%lang(ja) %{_mandir}/ja/man7/complex.7*
+%lang(ja) %{_mandir}/ja/man7/feature_test_macros.7*
+%lang(ja) %{_mandir}/ja/man7/glibc.7*
+%lang(ja) %{_mandir}/ja/man7/glob.7*
+%lang(ja) %{_mandir}/ja/man7/libc.7*
+%lang(ja) %{_mandir}/ja/man7/math_error.7*
+%lang(ja) %{_mandir}/ja/man7/posixoptions.7*
+%lang(ja) %{_mandir}/ja/man7/pthreads.7*
+%lang(ja) %{_mandir}/ja/man7/sem_overview.7*
+%lang(ja) %{_mandir}/ja/man7/shm_overview.7*
 %lang(ko) %{_mandir}/ko/man3/*
 %lang(nl) %{_mandir}/nl/man3/*
 %lang(pl) %{_mandir}/pl/man3/*
 %lang(pt) %{_mandir}/pt/man3/*
+%lang(pt) %{_mandir}/pt/man7/glob.7*
 %lang(ru) %{_mandir}/ru/man1/sprof.1*
 %lang(ru) %{_mandir}/ru/man3/*
+%lang(ru) %{_mandir}/ru/man7/glob.7*
 %lang(tr) %{_mandir}/tr/man3/*
 %lang(uk) %{_mandir}/uk/man3/*
 %lang(zh_CN) %{_mandir}/zh_CN/man3/*
+%lang(zh_CN) %{_mandir}/zh_CN/man7/glob.7*
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libanl.a
+%{_libdir}/libBrokenLocale.a
+%{_libdir}/libc.a
+%{_libdir}/libcrypt.a
+%{_libdir}/libdl.a
+%{_libdir}/libm.a
+%{_libdir}/libmcheck.a
+%{_libdir}/libnsl.a
+%{_libdir}/libpthread.a
+%{_libdir}/libresolv.a
+%{_libdir}/librt.a
+%{_libdir}/libutil.a
+
+%files profile
+%defattr(644,root,root,755)
+%{_libdir}/lib*_p.a
+
+%files pic
+%defattr(644,root,root,755)
+%{_libdir}/lib*_pic.a
+%{_libdir}/lib*.map
+%{_libdir}/soinit.o
+%{_libdir}/sofini.o
 
 %files -n nscd
 %defattr(644,root,root,755)
@@ -1798,29 +2005,5 @@ fi
 %{_libdir}/gconv/gconv-modules
 %verify(not md5 mtime size) %{_libdir}/gconv/gconv-modules.cache
 %attr(755,root,root) %{_libdir}/gconv/*.so
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libanl.a
-%{_libdir}/libBrokenLocale.a
-%{_libdir}/libc.a
-%{_libdir}/libcrypt.a
-%{_libdir}/libdl.a
-%{_libdir}/libm.a
-%{_libdir}/libmcheck.a
-%{_libdir}/libnsl.a
-%{_libdir}/libpthread.a
-%{_libdir}/libresolv.a
-%{_libdir}/librt.a
-%{_libdir}/libutil.a
-
-%files profile
-%defattr(644,root,root,755)
-%{_libdir}/lib*_p.a
-
-%files pic
-%defattr(644,root,root,755)
-%{_libdir}/lib*_pic.a
-%{_libdir}/lib*.map
-%{_libdir}/soinit.o
-%{_libdir}/sofini.o
+%{_mandir}/man8/iconvconfig.8*
+%lang(ja) %{_mandir}/ja/man8/iconvconfig.8*
