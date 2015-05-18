@@ -1158,29 +1158,30 @@ done
 #   tlh - Klingon (bzflag)
 #
 # To be added when they become supported by glibc:
-#   ach (vlc)
-#   ak (gtkspell3)
-#   bal (newt,pessulus)
-#   cgg (vlc)
-#   co  (vlc)
-#   frp (xfce, lxlauncher)
-#   gn  (gn_BR in gnome, maybe gn_PY)
-#   haw (iso-codes, stellarium)
-#   hrx (stellarium)
-#   ilo (kudzu)
-#   io  (gtk+2, gnome, alacarte)
-#   jv  (gmpc, avant-window-navigator, kdesudo)
-#   kmr (vlc)
-#   man (ccsm; incorrectly named md)
-#   mus (bluez-gnome)
-#   nah (mate-system-monitor)
-#   pms (deluge)
-#   sco (gnomad2, picard, stellarium)
-#   son (gtkspell3)
-#   swg (sim)
-#   syr (iso-codes)
-#   tet (vlc)
-#   vec (mate-applet-indicator)
+#   ach    (vlc)
+#   ak     (gtkspell3)
+#   bal    (newt,pessulus)
+#   cgg    (vlc)
+#   co     (vlc)
+#   frp    (xfce, lxlauncher)
+#   gn     (gn_BR in gnome, maybe gn_PY)
+#   haw    (iso-codes, stellarium)
+#   hrx    (stellarium)
+#   ilo    (kudzu)
+#   io     (gtk+2, gnome, alacarte)
+#   jv     (gmpc, avant-window-navigator, kdesudo)
+#   kmr    (vlc)
+#   ku_IQ  (mate-menus)
+#   man    (ccsm; incorrectly named md)
+#   mus    (bluez-gnome)
+#   nah    (mate-system-monitor)
+#   pms    (deluge)
+#   sco    (gnomad2, picard, stellarium)
+#   son    (gtkspell3)
+#   swg    (sim)
+#   syr    (iso-codes)
+#   tet    (vlc)
+#   vec    (mate-applet-indicator)
 #
 # To be removed (after fixing packages still using it):
 #   sr@Latn (use sr@latin instead)
@@ -1206,6 +1207,7 @@ done
 # fy=fy_NL
 # gez=gez_ET (?)
 # it=it_IT
+# ku=ku_TR
 # li=li_NL
 # nds=nds_DE
 # nl=nl_NL
