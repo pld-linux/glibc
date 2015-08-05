@@ -1171,7 +1171,7 @@ done
 #   io     (gtk+2, gnome, alacarte)
 #   jv     (gmpc, avant-window-navigator, kdesudo)
 #   kmr    (vlc)
-#   ku_IQ  (mate-menus)
+#   ku_IQ  (mate-menus,mozo)
 #   man    (ccsm; incorrectly named md)
 #   mus    (bluez-gnome)
 #   nah    (mate-system-monitor)
