@@ -27,7 +27,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.21
+%define		core_version	2.22
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	6
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	9cb398828e8f84f57d1f7d5588cf40cd
+# Source0-md5:	e51e02bf552a0a1fbbdc948fb2f5e83c
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -88,7 +88,6 @@ Patch28:	%{name}-locale-C-pld.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
 
-Patch33:	fix-broken-echo.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
@@ -988,8 +987,6 @@ exit 1
 %patch29 -p1
 %patch30 -p1
 
-%patch33 -p1
-
 %patch38 -p1
 
 # cleanup backups after patching
@@ -1094,7 +1091,7 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl cidn crypt dl m nsl resolv rt thread_db util; do
+for l in BrokenLocale anl cidn crypt dl mvec nsl resolv rt thread_db util; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
@@ -1416,6 +1413,8 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
 %endif
+%attr(755,root,root) /%{_lib}/libmvec-%{core_version}.so
+%attr(755,root,root) /%{_lib}/libmvec.so.1
 %attr(755,root,root) /%{_lib}/libnsl-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libnsl.so.1.1
@@ -1800,6 +1799,7 @@ fi
 %attr(755,root,root) %{_libdir}/libcidn.so
 %attr(755,root,root) %{_libdir}/libdl.so
 %attr(755,root,root) %{_libdir}/libm.so
+%attr(755,root,root) %{_libdir}/libmvec.so
 %attr(755,root,root) %{_libdir}/libnsl.so
 %attr(755,root,root) %{_libdir}/libpcprofile.so
 %attr(755,root,root) %{_libdir}/libresolv.so
@@ -1939,6 +1939,7 @@ fi
 %{_libdir}/libdl.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
+%{_libdir}/libmvec.a
 %{_libdir}/libnsl.a
 %{_libdir}/libpthread.a
 %{_libdir}/libresolv.a

@@ -6500,7 +6500,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  ber_MA/UTF-8 \
  bg_BG.UTF-8/UTF-8 \
  bg_BG/CP1251 \
- bh_IN.UTF-8/UTF-8 \
+ bhb_IN.UTF-8/UTF-8 \
  bho_IN/UTF-8 \
  bn_BD/UTF-8 \
  bn_IN/UTF-8 \
@@ -6712,7 +6712,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  ss_ZA/UTF-8 \
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
-@@ -396,14 +455,20 @@
+@@ -396,15 +455,21 @@
  sv_FI@euro/ISO-8859-15 \
  sv_SE.UTF-8/UTF-8 \
  sv_SE/ISO-8859-1 \
@@ -6725,6 +6725,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  szl_PL/UTF-8 \
  ta_IN/UTF-8 \
  ta_LK/UTF-8 \
+ tcy_IN.UTF-8/UTF-8 \
  te_IN/UTF-8 \
 +tg_TJ.KOI8-K/KOI8-K \
  tg_TJ.UTF-8/UTF-8 \
@@ -6749,10 +6750,10 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +tt_RU.TATAR-CYR/TATAR-CYR \
  tt_RU/UTF-8 \
  tt_RU@iqtelif/UTF-8 \
- tu_IN.UTF-8/UTF-8 \
  ug_CN/UTF-8 \
  uk_UA.UTF-8/UTF-8 \
  uk_UA/KOI8-U \
+ unm_US/UTF-8 \
 @@ -426,8 +495,9 @@
  uk_UA/KOI8-U \
  unm_US/UTF-8 \
@@ -6765,7 +6766,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  ve_ZA/UTF-8 \
 --- glibc-2.19/locale/iso-639.def.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/locale/iso-639.def	2014-02-13 20:30:45.341452266 +0100
-@@ -238,6 +239,7 @@
+@@ -238,6 +238,7 @@
  DEFINE_LANGUAGE_CODE ("Kanuri", kr, kau, kau)
  DEFINE_LANGUAGE_CODE3 ("Kara-Kalpak", kaa, kaa)
  DEFINE_LANGUAGE_CODE3 ("Karachay-Balkar", krc, krc)
@@ -6773,7 +6774,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  DEFINE_LANGUAGE_CODE3 ("Karelian", krl, krl)
  DEFINE_LANGUAGE_CODE3 ("Karen", kar, kar)
  DEFINE_LANGUAGE_CODE ("Kashmiri", ks, kas, kas)
-@@ -400,6 +402,7 @@
+@@ -400,6 +401,7 @@
  DEFINE_LANGUAGE_CODE3 ("Samaritan Aramaic", sam, sam)
  DEFINE_LANGUAGE_CODE3 ("Sami languages (Other)", smi, smi)
  DEFINE_LANGUAGE_CODE ("Samoan", sm, smo, smo)

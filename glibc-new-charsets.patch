@@ -742,21 +742,9 @@ diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/
 +%      the change in the mirroring behaviour of U+00AB and U+00BB
 +%      between versions 2.1.5 and 2.1.8 of the Unicode Standard.
 +
- % I think the mnemonic for upper space (0xA0) should be different from
- % lower space (0x20). Because the semantics are different, although they
- % are mapped to a single Unicode character. This is specially important
-@@ -18,9 +27,9 @@
- % invented on the pattern of Unicode character names. --RP
- %
- % NOTE: Some entries were missing in the mnemonics.ds file; We invented our
--% own. Those are: <zwnj>, <zwj>, <!+>, <Rl>, <%+>, <.+>, <,f>, <(+>,
-+% own. Those are: <zwnj>, <zwj>, <!+>, <Rl>, <%+>, <.a>, <,f>, <(+>,
- % <)+>, <*X+>, <+f>, <-f>, <.f>, <//f>, <0f>..<9f>, <:f>, <<f>, <=f>,
--% </>f>, <kf>, <yf>, <)/>+>, <<(+>, <!)+>, <(!+>, <<<+>, </>/>+>, <*+>,
-+% </>f>, <yf>, <)/>+>, <<(+>, <!)+>, <(!+>, <<<+>, </>/>+>, <*+>,
- % <!!+>, and <////+>. Also, all character sequences
- % <NU>..<US>, <SP>, <DT> have counter-parts <NU+>..<US+>, <SP+>, <DT+>
-  
+ % Please note that the Unicode equivalents of the Persian part (0x80..0xFF)
+ % are for compatiblity purposes only. I have also changed the fourth
+ % column consisting of names to reflect the difference. The names are
 @@ -153,6 +162,7 @@
  <U007D>     /x7d         RIGHT CURLY BRACKET
  <U007E>     /x7e         TILDE
