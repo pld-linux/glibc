@@ -1092,7 +1092,7 @@ mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
 for l in BrokenLocale anl cidn crypt dl \
-%ifarch %{x8664}
+%ifarch %{x8664} x32
 	mvec \
 %endif
 	nsl resolv rt thread_db util; do
@@ -1417,7 +1417,7 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
 %endif
-%ifarch %{x8664}
+%ifarch %{x8664} x32
 %attr(755,root,root) /%{_lib}/libmvec-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libmvec.so.1
 %endif
@@ -1805,7 +1805,7 @@ fi
 %attr(755,root,root) %{_libdir}/libcidn.so
 %attr(755,root,root) %{_libdir}/libdl.so
 %attr(755,root,root) %{_libdir}/libm.so
-%ifarch %{x8664}
+%ifarch %{x8664} x32
 %attr(755,root,root) %{_libdir}/libmvec.so
 %endif
 %attr(755,root,root) %{_libdir}/libnsl.so
@@ -1947,7 +1947,7 @@ fi
 %{_libdir}/libdl.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
-%ifarch %{x8664}
+%ifarch %{x8664} x32
 %{_libdir}/libmvec.a
 %endif
 %{_libdir}/libnsl.a
