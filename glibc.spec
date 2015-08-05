@@ -1091,7 +1091,11 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl cidn crypt dl mvec nsl resolv rt thread_db util; do
+for l in BrokenLocale anl cidn crypt dl \
+%ifarch %{x8664}
+	mvec \
+%endif
+	nsl resolv rt thread_db util; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
@@ -1413,8 +1417,10 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
 %endif
+%ifarch %{x8664}
 %attr(755,root,root) /%{_lib}/libmvec-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libmvec.so.1
+%endif
 %attr(755,root,root) /%{_lib}/libnsl-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libnsl.so.1.1
@@ -1799,7 +1805,9 @@ fi
 %attr(755,root,root) %{_libdir}/libcidn.so
 %attr(755,root,root) %{_libdir}/libdl.so
 %attr(755,root,root) %{_libdir}/libm.so
+%ifarch %{x8664}
 %attr(755,root,root) %{_libdir}/libmvec.so
+%endif
 %attr(755,root,root) %{_libdir}/libnsl.so
 %attr(755,root,root) %{_libdir}/libpcprofile.so
 %attr(755,root,root) %{_libdir}/libresolv.so
@@ -1939,7 +1947,9 @@ fi
 %{_libdir}/libdl.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
+%ifarch %{x8664}
 %{_libdir}/libmvec.a
+%endif
 %{_libdir}/libnsl.a
 %{_libdir}/libpthread.a
 %{_libdir}/libresolv.a
