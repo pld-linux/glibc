@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1.1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -57,6 +57,8 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source8:	nscd.upstart
 Source9:	nscd.tmpfiles
+# git diff glibc-2.22..release/2.22/master
+Patch0:		glibc-git.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -958,6 +960,8 @@ kodowania danych z poziomu dowolnego programu.
 echo "Minimal supported kernel is 2.6.32" >&2
 exit 1
 %endif
+
+%patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
