@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -55,7 +55,6 @@ Source5:	%{name}-man-pages.tar.xz
 # Source5-md5:	3a4eabb7d28db7d35d8204fdb471a863
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
-Source8:	nscd.upstart
 Source9:	nscd.tmpfiles
 # git diff glibc-2.22..release/2.22/master
 Patch0:		glibc-git.patch
@@ -1054,7 +1053,7 @@ diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,default,logrotate.d,init} \
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,default,logrotate.d} \
 	$RPM_BUILD_ROOT{%{_mandir},/var/log,/var/{lib,run}/nscd} \
 	$RPM_BUILD_ROOT{/var/cache/ldconfig,%{systemdtmpfilesdir}}
 
@@ -1109,7 +1108,6 @@ done
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 install -p %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
-cp -p %{SOURCE8}		$RPM_BUILD_ROOT/etc/init/nscd.conf
 cp -a %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 cp -a %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 cp -a nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
@@ -1976,7 +1974,6 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/nscd
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nscd.*
 %attr(754,root,root) /etc/rc.d/init.d/nscd
-%config(noreplace) %verify(not md5 mtime size) /etc/init/nscd.conf
 %attr(755,root,root) %{_sbindir}/nscd*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/nscd
 %attr(640,root,root) %ghost /var/log/nscd
