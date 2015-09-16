@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004, 2005 Elan Ruusam‰e <glen@pld-linux.org>.
+ * Copyright (c) 2004, 2005 Elan Ruusam√§e <glen@pld-linux.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -12,12 +12,12 @@
  *    documentation and/or other materials provided with the distribution.
  * 3. All advertising materials mentioning features or use of this software
  *    must display the following acknowledgement:
- *	  This product includes software developed by Elan Ruusam‰e
+ *	  This product includes software developed by Elan Ruusam√§e
  * 4. Neither the name of the author nor the names of any co-contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY ELAN RUUSAMƒE AND CONTRIBUTORS ``AS IS'' AND
+ * THIS SOFTWARE IS PROVIDED BY ELAN RUUSAM√ÑE AND CONTRIBUTORS ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
  * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
@@ -43,7 +43,7 @@
  * /sbin/glibc-postinst /%{_lib}/%{_host_cpu}
  * /sbin/ldconfig /%{_lib} %{_prefix}/%{_lib}
  *
- * Patches and bugreports are welcome, direct them to Elan Ruusam‰e
+ * Patches and bugreports are welcome, direct them to Elan Ruusam√§e
  * <glen@pld-linux.org>.
  */
 
