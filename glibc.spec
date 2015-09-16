@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -137,7 +137,7 @@ Conflicts:	kernel24
 Conflicts:	kernel24-smp
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 4.00
-Conflicts:	poldek < 0.18.8-5
+Conflicts:	poldek < 0.30.1-9
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
