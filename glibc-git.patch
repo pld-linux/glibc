@@ -1,8 +1,18 @@
 diff --git a/ChangeLog b/ChangeLog
-index cb9124e..491d5c7 100644
+index cb9124e..d0d2f56 100644
 --- a/ChangeLog
 +++ b/ChangeLog
-@@ -1,3 +1,130 @@
+@@ -1,3 +1,140 @@
++2015-10-15  Florian Weimer  <fweimer@redhat.com>
++
++	[BZ #18928]
++	* sysdeps/generic/ldsodefs.h (struct rtld_global_ro): Remove
++	_dl_pointer_guard member.
++	* elf/rtld.c (_rtld_global_ro): Remove _dl_pointer_guard
++	initializer.
++	(security_init): Always set up pointer guard.
++	(process_envvars): Do not process LD_POINTER_GUARD.
++
 +2015-10-09  Carlos O'Donell  <carlos@redhat.com>
 +
 +	[BZ #18589]
@@ -134,10 +144,10 @@ index cb9124e..491d5c7 100644
  
  	* version.h (RELEASE): Set to "stable".
 diff --git a/NEWS b/NEWS
-index 4c31de7..9b10bff 100644
+index 4c31de7..fa6f58d 100644
 --- a/NEWS
 +++ b/NEWS
-@@ -5,6 +5,12 @@ See the end for copying conditions.
+@@ -5,6 +5,15 @@ See the end for copying conditions.
  Please send GNU C library bug reports via <http://sourceware.org/bugzilla/>
  using `glibc' in the "product" field.
  
@@ -145,12 +155,15 @@ index 4c31de7..9b10bff 100644
 +
 +* The following bugs are resolved with this release:
 +
-+  18589, 18778, 18781, 18787, 18796, 18870, 18887, 18921, 18969.
++  18589, 18778, 18781, 18787, 18796, 18870, 18887, 18921, 18928, 18969.
++
++* The LD_POINTER_GUARD environment variable can no longer be used to
++  disable the pointer guard feature.  It is always enabled.
 +
  Version 2.22
  
  * The following bugs are resolved with this release:
-@@ -84,7 +90,7 @@ Version 2.22
+@@ -84,7 +93,7 @@ Version 2.22
    release.  Use of this header will trigger a deprecation warning.
    Application developers should update their code to use <regex.h> instead.
  
@@ -235,6 +248,48 @@ index 9105277..c897247 100644
      }
    assert (idx == nloaded);
  
+diff --git a/elf/rtld.c b/elf/rtld.c
+index 69873c2..07e741c 100644
+--- a/elf/rtld.c
++++ b/elf/rtld.c
+@@ -162,7 +162,6 @@ struct rtld_global_ro _rtld_global_ro attribute_relro =
+     ._dl_hwcap_mask = HWCAP_IMPORTANT,
+     ._dl_lazy = 1,
+     ._dl_fpu_control = _FPU_DEFAULT,
+-    ._dl_pointer_guard = 1,
+     ._dl_pagesize = EXEC_PAGESIZE,
+     ._dl_inhibit_cache = 0,
+ 
+@@ -709,15 +708,12 @@ security_init (void)
+ #endif
+ 
+   /* Set up the pointer guard as well, if necessary.  */
+-  if (GLRO(dl_pointer_guard))
+-    {
+-      uintptr_t pointer_chk_guard = _dl_setup_pointer_guard (_dl_random,
+-							     stack_chk_guard);
++  uintptr_t pointer_chk_guard
++    = _dl_setup_pointer_guard (_dl_random, stack_chk_guard);
+ #ifdef THREAD_SET_POINTER_GUARD
+-      THREAD_SET_POINTER_GUARD (pointer_chk_guard);
++  THREAD_SET_POINTER_GUARD (pointer_chk_guard);
+ #endif
+-      __pointer_chk_guard_local = pointer_chk_guard;
+-    }
++  __pointer_chk_guard_local = pointer_chk_guard;
+ 
+   /* We do not need the _dl_random value anymore.  The less
+      information we leave behind, the better, so clear the
+@@ -2471,9 +2467,6 @@ process_envvars (enum mode *modep)
+ 	      GLRO(dl_use_load_bias) = envline[14] == '1' ? -1 : 0;
+ 	      break;
+ 	    }
+-
+-	  if (memcmp (envline, "POINTER_GUARD", 13) == 0)
+-	    GLRO(dl_pointer_guard) = envline[14] != '0';
+ 	  break;
+ 
+ 	case 14:
 diff --git a/elf/tst-nodelete2.c b/elf/tst-nodelete2.c
 new file mode 100644
 index 0000000..388e8af
@@ -904,6 +959,20 @@ index d5a1115..bea5aa2 100644
        res = 1;
      }
    else
+diff --git a/sysdeps/generic/ldsodefs.h b/sysdeps/generic/ldsodefs.h
+index 7a0fe8d..78e3a97 100644
+--- a/sysdeps/generic/ldsodefs.h
++++ b/sysdeps/generic/ldsodefs.h
+@@ -592,9 +592,6 @@ struct rtld_global_ro
+   /* List of auditing interfaces.  */
+   struct audit_ifaces *_dl_audit;
+   unsigned int _dl_naudit;
+-
+-  /* 0 if internal pointer values should not be guarded, 1 if they should.  */
+-  EXTERN int _dl_pointer_guard;
+ };
+ # define __rtld_global_attribute__
+ # if IS_IN (rtld)
 diff --git a/sysdeps/hppa/dl-symaddr.c b/sysdeps/hppa/dl-symaddr.c
 index b707c19..89d8baf 100644
 --- a/sysdeps/hppa/dl-symaddr.c
