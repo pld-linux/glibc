@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	10
+Release:	11
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1171,18 +1171,19 @@ done
 # To be added when they become supported by glibc:
 #   ach    (vlc)
 #   ak     (gtkspell3)
-#   bal    (newt,pessulus)
+#   bal    (libosinfo,newt,pessulus)
 #   cgg    (vlc)
 #   co     (vlc)
 #   frp    (xfce, lxlauncher)
 #   gn     (gn_BR in gnome, maybe gn_PY)
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
-#   ilo    (kudzu)
+#   ilo    (kudzu,libosinfo)
 #   io     (gtk+2, gnome, alacarte)
 #   jv     (gmpc, avant-window-navigator, kdesudo, mate-desktop)
 #   kmr    (vlc)
 #   ku_IQ  (mate-menus,mozo)
+#   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
 #   man    (ccsm; incorrectly named md)
 #   mus    (bluez-gnome)
 #   nah    (mate-system-monitor)
@@ -1193,7 +1194,9 @@ done
 #   swg    (sim)
 #   syr    (iso-codes)
 #   tet    (vlc)
+#   tw     (libosinfo)
 #   vec    (mate-applet-indicator)
+#   wba    (libosinfo)
 #
 # To be removed (after fixing packages still using it):
 #   sr@Latn (use sr@latin instead)
@@ -1201,6 +1204,7 @@ done
 #
 # Short forms (omitted country code, used instead of long form) for ambiguous or unclear cases:
 # aa=aa_ER
+# anp=anp_IN
 # ar=common? (AE, BH, DZ, EG, IQ, JO, KW, LB, LY, MA, OM, QA, SA, SD, SY, TN, YE)
 # az=az_AZ
 # bn=bn_BD
@@ -1248,7 +1252,7 @@ done
 #   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
 #   sv tr zh_CN zh_TW
 #
-for i in aa aa@saaho af am an ang ar ar_TN as ast az az_IR be@latin be@tarask bem \
+for i in aa aa@saaho af am an ang anp ar ar_TN as ast az az_IR be@latin be@tarask bem \
 	bg bho bn bn_IN bo br brx bs byn ca@valencia ckb cmn crh csb cv cy de_AT de_CH doi dv dz en \
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
