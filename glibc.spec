@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	11
+Release:	12
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1840,6 +1840,9 @@ fi
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
 # static-only libs
+%ifarch %{x8664} x32
+%{_libdir}/libmvec_nonshared.a
+%endif
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %{_libdir}/libieee.a
