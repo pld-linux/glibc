@@ -88,13 +88,6 @@ Patch27:	%{name}-locale-C.patch.xz
 Patch28:	%{name}-locale-C-pld.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
-# Our glibc-localedb-src package is allowing state that is considered:
-# "It is a fundamental system misconfiguration issue not to have upgraded
-# the binary locale data from one release to another."
-# Same problem with glibc-localedb-all package - it and glibc are not
-# atomically upgraded causing post scripts to have problems.
-# See https://sourceware.org/ml/libc-alpha/2015-09/msg00656.html for discussion.
-Patch31:	glibc-graceful-locale.patch
 
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
@@ -996,7 +989,6 @@ exit 1
 %patch28 -p1
 %patch29 -p1
 %patch30 -p1
-%patch31 -p1
 
 %patch38 -p1
 
