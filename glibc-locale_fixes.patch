@@ -77,7 +77,7 @@
  country_car    "<U0045>"
 +% 84
 +country_isbn  "<U0038><U0034>"
- % aragon�s
+ % aragonés
  lang_name    "<U0061><U0072><U0061><U0067><U006F><U006E><U00E9><U0073>"
 +% an
 +lang_ab       "<U0061><U006E>"
@@ -861,7 +861,7 @@
  country_ab2 "<U0041><U0054>"
  country_ab3 "<U0041><U0055><U0054>"
  country_num 040
-+% �sterreich
++% ?sterreich
 +country_name "<U00D6><U0073><U0074><U0065><U0072><U0072><U0065><U0069>/
 +<U0063><U0068>"
 +% A
@@ -2269,21 +2269,17 @@
  % kl
 --- glibc-2.19/localedata/locales/km_KH.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/km_KH	2014-02-09 14:21:50.173551317 +0100
-@@ -1896,11 +1896,11 @@
+@@ -1894,8 +1894,8 @@ country_ab2   "<U004C><U0041>"
  country_ab3   "<U004C><U0041><U004F>"
  country_num   418
  country_car   "<U004C><U0041><U004F>"
 -%FIXME
 -%country_isbn  ""
 +% 99950,99963
-+country_isbn  "<U0039><U0039><U0039><U0035><U0030><U002C><U0039><U0039><U0039><U0036><U0033>"
++%country_isbn "<U0039><U0039><U0039><U0035><U0030><U002C><U0039><U0039><U0039><U0036><U0033>" 
  % ភាសាខ្មែរ (Khmer)
  lang_name     "<U1797><U17B6><U179F><U17B6><U1781><U17D2><U1798><U17C2><U179A>"
- lang_ab       "<U006C><U006F>"
--lang_term     "<U006c><U0061><U006F>"
-+lang_term     "<U006C><U0061><U006F>"
- lang_lib      "<U006C><U0061><U006F>"
- END LC_ADDRESS
+ % km
 --- glibc-2.19/localedata/locales/kn_IN.orig	2014-02-08 19:56:13.786335189 +0100
 +++ glibc-2.19/localedata/locales/kn_IN	2014-02-09 14:22:23.576883246 +0100
 @@ -219,8 +219,11 @@
@@ -2384,7 +2380,7 @@
  country_car    "<U0054><U0052>"
 -% "kurdi"
 -lang_name   "<U006B><U0075><U0072><U0064><U0069>"
-+% kurd�
++% kurd?
 +lang_name   "<U006B><U0075><U0072><U0064><U00EE>"
  % ku
  lang_ab      "<U006B><U0075>"
@@ -3971,7 +3967,7 @@
  % TR
  country_post	"<U0054><U0052>"
  % TR
-@@ -3593,12 +3593,12 @@
+@@ -4354,12 +4354,10 @@ country_num	792
  country_ab2	"<U0054><U0052>"
  % TUR
  country_ab3	"<U0054><U0055><U0052>"
@@ -3981,10 +3977,9 @@
 +lang_name	"<U0054><U00FC><U0072><U006B><U00E7><U0065>"
  % tur
  lang_term	"<U0074><U0075><U0072>"
- % tur
--lang_lib	"<U0074><U0072>"
+-% tur
+-lang_lib	"<U0074><U0075><U0072>"
 -%tr
-+lang_lib	"<U0074><U0075><U0072>"
 +% tr
  lang_ab		"<U0074><U0072>"
  END LC_ADDRESS
@@ -4221,9 +4216,9 @@ diff -uNr libc.orig/localedata/locales/uz_UZ@cyrillic libc/localedata/locales/uz
 @@ -62,6 +62,8 @@
  LC_MESSAGES
  % Yes=Waaw
- % No=D�et
+ % No=Déet
 +yesstr  "waaw"
-+nostr   "d�et"
++nostr   "déet"
  yesexpr "<U005E><U005B><U0077><U0057><U0079><U0059><U005D><U002E><U002A>"
  noexpr  "<U005E><U005B><U0064><U0044><U006E><U004E><U005D><U002E><U002A>"
  END LC_MESSAGES
