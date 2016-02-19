@@ -10,7 +10,7 @@ http://bugs.gentoo.org/177416
 @@ -22,6 +22,7 @@
  #include <arpa/nameser.h>
  #include <resolv.h>
- #include <bits/libc-lock.h>
+ #include <libc-lock.h>
 +#include <sys/stat.h>
  
  

@@ -27,7 +27,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.22
+%define		core_version	2.23
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	14
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	e51e02bf552a0a1fbbdc948fb2f5e83c
+# Source0-md5:	456995968f3acadbed39f5eba31678df
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -56,7 +56,7 @@ Source5:	%{name}-man-pages.tar.xz
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
-# git diff glibc-2.22..release/2.22/master
+# git diff glibc-2.23..release/2.23/master
 Patch0:		glibc-git.patch
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
@@ -80,9 +80,9 @@ Patch17:	%{name}-morelocales.patch
 Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
 Patch20:	%{name}-thread_start.patch
-Patch22:	%{name}-with-stroke.patch
+
 Patch23:	%{name}-pt_pax.patch
-Patch25:	%{name}-cv_gnu89_inline.patch
+
 Patch27:	%{name}-locale-C.patch.xz
 # Patch27-md5:	34ebe52a2afb923e33af0fb7c541f540
 Patch28:	%{name}-locale-C-pld.patch
@@ -101,7 +101,7 @@ BuildRequires:	binutils >= 2:2.15.90.0.3
 %endif
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
-BuildRequires:	gcc >= 6:4.6
+BuildRequires:	gcc >= 6:4.7
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
@@ -981,10 +981,9 @@ exit 1
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
-%patch22 -p1
+
 %patch23 -p0
 
-%patch25 -p1
 %patch27 -p1
 %patch28 -p1
 %patch29 -p1
@@ -1036,7 +1035,7 @@ AWK="gawk" \
 
 %{__make} \
 	AWK="gawk" \
-	localedir=%{_prefix}/lib/locale \
+	complocaledir=%{_prefix}/lib/locale \
 	sLIBdir=%{_libdir}
 
 cd ..
@@ -1061,14 +1060,14 @@ cd builddir
 env LANGUAGE=C LC_ALL=C \
 %{__make} install \
 	install_root=$RPM_BUILD_ROOT \
-	localedir=%{_prefix}/lib/locale \
+	complocaledir=%{_prefix}/lib/locale \
 	infodir=%{_infodir} \
 	mandir=%{_mandir}
 
 %if %{with localedb}
 env LANGUAGE=C LC_ALL=C \
 %{__make} localedata/install-locales \
-	localedir=%{_prefix}/lib/locale \
+	complocaledir=%{_prefix}/lib/locale \
 	install_root=$RPM_BUILD_ROOT
 %else
 install -d $RPM_BUILD_ROOT%{_prefix}/lib/locale
@@ -1137,7 +1136,7 @@ cp -p %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 rm -rf documentation
 install -d documentation
 
-for f in ChangeLog.old DESIGN-{barrier,condvar,rwlock,systemtap-probes}.txt TODO{,-kernel,-testing}; do
+for f in ChangeLog.old DESIGN-{condvar,rwlock,systemtap-probes}.txt TODO{,-kernel,-testing}; do
 	cp -af nptl/$f documentation/$f.nptl
 done
 cp -af crypt/README.ufc-crypt ChangeLog* documentation
