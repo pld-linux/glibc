@@ -52,7 +52,7 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 # from man-pages.spec --with tars
 Source5:	%{name}-man-pages.tar.xz
-# Source5-md5:	465a940929350ceea2302ec4fbc90729
+# Source5-md5:	82537aa7f6ee31dd782e7e085cc21018
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
