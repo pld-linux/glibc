@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -499,6 +499,12 @@ Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
 %endif
 Obsoletes:	libiconv-devel
+%ifarch %{x8664}
+# see http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2016-May/024902.html
+%if "%(rpm -q --qf '%{E}:%{V}' binutils)" >= "4:2.26"
+Conflicts: binutils < 4:2.26
+%endif
+%endif
 
 %description devel
 To develop programs which use the standard C libraries (which nearly
