@@ -58,7 +58,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # git diff glibc-2.23..release/2.23/master
 Patch0:		glibc-git.patch
-# Patch0-md5:	13fd232a8c5c26d378e56f72172b26dd
+# Patch0-md5:	81f2d6ff537163af59651db296df5d3f
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
