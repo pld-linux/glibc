@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	8
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1190,7 +1190,6 @@ done
 #   pms    (deluge)
 #   sco    (gnomad2, picard, stellarium)
 #   son    (gtkspell3)
-#   shn    (mate-tweak)
 #   swg    (sim)
 #   syr    (iso-codes)
 #   tet    (vlc)
@@ -1235,6 +1234,7 @@ done
 # quz=quz_PE
 # ru=ru_RU
 # sd=sd_IN
+# shn=shn_MM
 # so=so_SO
 # sr=sr_RS [cyrillic]
 # sr@latin=sr_RS@latin
@@ -1260,7 +1260,7 @@ for i in aa aa@saaho af am an ang anp ar ar_TN as ast az az_IR be@latin be@taras
 	es_VE et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
 	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn kok ks ku kw ky la lb \
 	lg li lo lt lv mai mg mhr mi mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso \
-	oc om or pa pap ps pt ps quz rm ro sa sat sc sd se si sid sl so sq sr sr@Latn szl tl \
+	oc om or pa pap ps pt ps quz rm ro sa sat sc sd se shn si sid sl so sq sr sr@Latn szl tl \
 	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
 	tig tk tl tlh tn ts tt tt@iqtelif ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo \
 	zh_HK zu; do
