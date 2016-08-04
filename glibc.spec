@@ -84,9 +84,9 @@ Patch20:	%{name}-thread_start.patch
 
 Patch23:	%{name}-pt_pax.patch
 
-Patch27:	%{name}-locale-C.patch.xz
-# Patch27-md5:	34ebe52a2afb923e33af0fb7c541f540
-Patch28:	%{name}-locale-C-pld.patch
+# http://pkgs.fedoraproject.org/cgit/rpms/glibc.git/plain/glibc-c-utf8-locale.patch
+Patch27:	%{name}-c-utf8-locale.patch
+
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
 
@@ -992,7 +992,7 @@ exit 1
 %patch23 -p0
 
 %patch27 -p1
-%patch28 -p1
+
 %patch29 -p1
 %patch30 -p1
 
