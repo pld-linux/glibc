@@ -8,7 +8,7 @@
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
-# min_kernel	(default is 2.6.32)
+# min_kernel	(default is 3.4.0 except for x86/x86_64 where 2.6.32 suffices)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
@@ -17,17 +17,17 @@
 %bcond_without	nss_crypt	# disable crypt features based on Mozilla NSS library
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 #
-%ifarch x32
-%{!?min_kernel:%global		min_kernel	3.4.0}
+%ifarch %{ix86} %{x8664}
+%{!?min_kernel:%global		min_kernel	2.6.32} 
 %else
-%{!?min_kernel:%global		min_kernel	2.6.32}
+%{!?min_kernel:%global		min_kernel	3.4.0}
 %endif
 
 %ifarch sparc64
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.23
+%define		core_version	2.24
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	8
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	456995968f3acadbed39f5eba31678df
+# Source0-md5:	97dc5517f92016f3d70d83e3162ad318
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -56,7 +56,7 @@ Source5:	%{name}-man-pages.tar.xz
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
-# git diff glibc-2.23..release/2.23/master
+# git diff glibc-2.24..release/2.24/master > ~/rpm/packages/glibc/glibc-git.patch
 Patch0:		glibc-git.patch
 # Patch0-md5:	d4cee8cacc0b59ae773651de9600cb37
 # against GNU TP (libc domain)
