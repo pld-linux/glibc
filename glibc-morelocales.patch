@@ -63,17 +63,17 @@ diff -urN glibc-2.6.org/localedata/locales/eu_FR glibc-2.6/localedata/locales/eu
 +revision   "1.0"
 +date       "2004-06-24"
 +%
-+category  "eu_FR:2000";LC_IDENTIFICATION
-+category  "eu_FR:2000";LC_CTYPE
-+category  "eu_FR:2000";LC_COLLATE
-+category  "eu_FR:2000";LC_TIME
-+category  "eu_FR:2000";LC_NUMERIC
-+category  "eu_FR:2000";LC_MONETARY
-+category  "eu_FR:2000";LC_MESSAGES
-+category  "eu_FR:2000";LC_PAPER
-+category  "eu_FR:2000";LC_NAME
-+category  "eu_FR:2000";LC_ADDRESS
-+category  "eu_FR:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -165,17 +165,17 @@ diff -urN glibc-2.6.org/localedata/locales/eu_FR@euro glibc-2.6/localedata/local
 +revision   "1.0"
 +date       "2004-06-24"
 +%
-+category  "eu_FR:2000";LC_IDENTIFICATION
-+category  "eu_FR:2000";LC_CTYPE
-+category  "eu_FR:2000";LC_COLLATE
-+category  "eu_FR:2000";LC_TIME
-+category  "eu_FR:2000";LC_NUMERIC
-+category  "eu_FR:2000";LC_MONETARY
-+category  "eu_FR:2000";LC_MESSAGES
-+category  "eu_FR:2000";LC_PAPER
-+category  "eu_FR:2000";LC_NAME
-+category  "eu_FR:2000";LC_ADDRESS
-+category  "eu_FR:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -244,17 +244,17 @@ diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 +revision   "1.0"
 +date       "2003-11-25"
 +%
-+category  "ia:2000";LC_IDENTIFICATION
-+category  "ia:2000";LC_CTYPE
-+category  "ia:2000";LC_COLLATE
-+category  "ia:2000";LC_TIME
-+category  "ia:2000";LC_NUMERIC
-+category  "ia:2000";LC_MONETARY
-+category  "ia:2000";LC_MESSAGES
-+category  "ia:2000";LC_PAPER
-+category  "ia:2000";LC_NAME
-+category  "ia:2000";LC_ADDRESS
-+category  "ia:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -392,18 +392,18 @@ diff -urN glibc-2.6.org/localedata/locales/nds_DE@traditional glibc-2.6/localeda
 +revision  "0.1"
 +date      "2003-11-30"
 +
-+category i18n:2000;LC_IDENTIFICATION
-+category i18n:2000;LC_COLLATE
-+category i18n:2000;LC_CTYPE
-+category i18n:2000;LC_MESSAGES
-+category i18n:2000;LC_MONETARY
-+category i18n:2000;LC_NUMERIC
-+category i18n:2000;LC_TIME
-+category i18n:2000;LC_PAPER
-+category i18n:2000;LC_NAME
-+category i18n:2000;LC_MEASUREMENT
-+category i18n:2000;LC_TELEPHONE
-+category i18n:2000;LC_ADDRESS
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_ADDRESS
 +
 +% ISO/IEC 14652: Converted comments to LC_IDENTIFICATION
 +%  added LC_PAPER, LC_MEASUREMENT, LC_TELEPHONE, LC_ADDRESS
@@ -519,17 +519,17 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +revision   "1.0"
 +date       "2004-11-23"
 +%
-+category  "i18n:2000";LC_IDENTIFICATION
-+category  "i18n:2000";LC_CTYPE
-+category  "i18n:2000";LC_COLLATE
-+category  "i18n:2000";LC_TIME
-+category  "i18n:2000";LC_NUMERIC
-+category  "i18n:2000";LC_MONETARY
-+category  "i18n:2000";LC_MESSAGES
-+category  "i18n:2000";LC_PAPER
-+category  "i18n:2000";LC_NAME
-+category  "i18n:2000";LC_ADDRESS
-+category  "i18n:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -601,17 +601,17 @@ diff -urN glibc-2.6.org/localedata/locales/rm_CH glibc-2.6/localedata/locales/rm
 +revision   "0.1"
 +date       "2003-11-12"
 +%
-+category  "rm_CH:2000";LC_IDENTIFICATION
-+category  "rm_CH:2000";LC_CTYPE
-+category  "rm_CH:2000";LC_COLLATE
-+category  "rm_CH:2000";LC_TIME
-+category  "rm_CH:2000";LC_NUMERIC
-+category  "rm_CH:2000";LC_MONETARY
-+category  "rm_CH:2000";LC_MESSAGES
-+category  "rm_CH:2000";LC_PAPER
-+category  "rm_CH:2000";LC_NAME
-+category  "rm_CH:2000";LC_ADDRESS
-+category  "rm_CH:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -807,17 +807,17 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +revision   "0.3"
 +date       "2005-10-14"
 +%
-+category  "i18n:1997";LC_IDENTIFICATION
-+category  "i18n:1997";LC_CTYPE
-+category  "i18n:1997";LC_COLLATE
-+category  "i18n:1997";LC_TIME
-+category  "i18n:1997";LC_NUMERIC
-+category  "i18n:1997";LC_MONETARY
-+category  "i18n:1997";LC_MESSAGES
-+category  "i18n:1997";LC_PAPER
-+category  "i18n:1997";LC_NAME
-+category  "i18n:1997";LC_ADDRESS
-+category  "i18n:1997";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +END LC_IDENTIFICATION
 +
 +%%%%%%%%%%%%%%%%
@@ -911,17 +911,17 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +revision   "1.0"
 +date       "2010-10-06"
 +%
-+category  "ary_MA:2000";LC_IDENTIFICATION
-+category  "ary_MA:2000";LC_CTYPE
-+category  "ary_MA:2000";LC_COLLATE
-+category  "ary_MA:2000";LC_TIME
-+category  "ary_MA:2000";LC_NUMERIC
-+category  "ary_MA:2000";LC_MONETARY
-+category  "ary_MA:2000";LC_MESSAGES
-+category  "ary_MA:2000";LC_PAPER
-+category  "ary_MA:2000";LC_NAME
-+category  "ary_MA:2000";LC_ADDRESS
-+category  "ary_MA:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -1169,18 +1169,18 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +application ""
 +abbreviation "tarask"
 +%
-+category  "be_BY:2000";LC_IDENTIFICATION
-+category  "be_BY:2000";LC_CTYPE
-+category  "be_BY:2000";LC_COLLATE
-+category  "be_BY:2000";LC_TIME
-+category  "be_BY:2000";LC_NUMERIC
-+category  "be_BY:2000";LC_MONETARY
-+category  "be_BY:2000";LC_MESSAGES
-+category  "be_BY:2000";LC_PAPER
-+category  "be_BY:2000";LC_TELEPHONE
-+category  "be_BY:2000";LC_MEASUREMENT
-+category  "be_BY:2000";LC_NAME
-+category  "be_BY:2000";LC_ADDRESS
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
 +
 +END LC_IDENTIFICATION
 +
@@ -1312,18 +1312,18 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +revision   "0.8"
 +date	   "2014-09-20"
 +
-+category  "ckb_IQ:2000";LC_IDENTIFICATION
-+category  "ckb_IQ:2000";LC_CTYPE
-+category  "ckb_IQ:2000";LC_COLLATE
-+category  "ckb_IQ:2000";LC_MONETARY
-+category  "ckb_IQ:2000";LC_NUMERIC
-+category  "ckb_IQ:2000";LC_TIME
-+category  "ckb_IQ:2000";LC_MESSAGES
-+category  "ckb_IQ:2000";LC_PAPER
-+category  "ckb_IQ:2000";LC_NAME
-+category  "ckb_IQ:2000";LC_ADDRESS
-+category  "ckb_IQ:2000";LC_TELEPHONE
-+category  "ckb_IQ:2000";LC_MEASUREMENT
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
 +
 +END LC_IDENTIFICATION
 +
@@ -1787,17 +1787,17 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +revision   "1.0"
 +date       "2008-03-15"
 +%
-+category  "kg_CD:2000";LC_IDENTIFICATION
-+category  "kg_CD:2000";LC_CTYPE
-+category  "kg_CD:2000";LC_COLLATE
-+category  "kg_CD:2000";LC_TIME
-+category  "kg_CD:2000";LC_NUMERIC
-+category  "kg_CD:2000";LC_MONETARY
-+category  "kg_CD:2000";LC_MESSAGES
-+category  "kg_CD:2000";LC_PAPER
-+category  "kg_CD:2000";LC_NAME
-+category  "kg_CD:2000";LC_ADDRESS
-+category  "kg_CD:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -1962,18 +1962,18 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +date      "2012-02-22"
 +% add ecaron
 +
-+category  "myv_RU:2000";LC_IDENTIFICATION
-+category  "myv_RU:2000";LC_CTYPE
-+category  "myv_RU:2000";LC_COLLATE
-+category  "myv_RU:2000";LC_TIME
-+category  "myv_RU:2000";LC_NUMERIC
-+category  "myv_RU:2000";LC_MONETARY
-+category  "myv_RU:2000";LC_PAPER
-+category  "myv_RU:2000";LC_MEASUREMENT
-+category  "myv_RU:2000";LC_MESSAGES
-+category  "myv_RU:2000";LC_NAME
-+category  "myv_RU:2000";LC_ADDRESS
-+category  "myv_RU:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -2167,18 +2167,18 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +revision  "1.1"
 +date      "2011-12-24"
 +%
-+category  "myv_RU@cyrillic:2000";LC_IDENTIFICATION
-+category  "myv_RU@cyrillic:2000";LC_CTYPE
-+category  "myv_RU@cyrillic:2000";LC_COLLATE
-+category  "myv_RU@cyrillic:2000";LC_TIME
-+category  "myv_RU@cyrillic:2000";LC_NUMERIC
-+category  "myv_RU@cyrillic:2000";LC_MONETARY
-+category  "myv_RU@cyrillic:2000";LC_PAPER
-+category  "myv_RU@cyrillic:2000";LC_MEASUREMENT
-+category  "myv_RU@cyrillic:2000";LC_MESSAGES
-+category  "myv_RU@cyrillic:2000";LC_NAME
-+category  "myv_RU@cyrillic:2000";LC_ADDRESS
-+category  "myv_RU@cyrillic:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -2328,18 +2328,18 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +revision "1.3"
 +date       "2012-07-01"
 +
-+category "shn_MM:2012";LC_IDENTIFICATION
-+category "shn_MM:2012";LC_COLLATE
-+category "shn_MM:2012";LC_CTYPE
-+category "shn_MM:2012";LC_MESSAGES
-+category "shn_MM:2012";LC_MONETARY
-+category "shn_MM:2012";LC_NUMERIC
-+category "shn_MM:2012";LC_TIME
-+category "shn_MM:2012";LC_PAPER
-+category "shn_MM:2012";LC_MEASUREMENT
-+category "shn_MM:2012";LC_TELEPHONE
-+category "shn_MM:2012";LC_ADDRESS
-+category "shn_MM:2012";LC_NAME
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_NAME
 +END LC_IDENTIFICATION
 +
 +
@@ -2671,18 +2671,18 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +application   "GNU locale"
 +abbreviation  ""
 +%
-+category  i18n:1997;LC_IDENTIFICATION
-+category  i18n:1997;LC_CTYPE
-+category  i18n:1997;LC_COLLATE
-+category  i18n:1997;LC_MONETARY
-+category  i18n:1997;LC_NUMERIC
-+category  i18n:1997;LC_TIME
-+category  i18n:1997;LC_MESSAGES
-+category  i18n:1997;LC_PAPER
-+category  i18n:1997;LC_NAME
-+category  i18n:1997;LC_ADDRESS
-+category  i18n:1997;LC_TELEPHONE
-+category  i18n:1997;LC_MEASUREMENT
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -2822,18 +2822,18 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +application   "GNU locale"
 +abbreviation  ""
 +%
-+category  i18n:1997;LC_IDENTIFICATION
-+category  i18n:1997;LC_CTYPE
-+category  i18n:1997;LC_COLLATE
-+category  i18n:1997;LC_MONETARY
-+category  i18n:1997;LC_NUMERIC
-+category  i18n:1997;LC_TIME
-+category  i18n:1997;LC_MESSAGES
-+category  i18n:1997;LC_PAPER
-+category  i18n:1997;LC_NAME
-+category  i18n:1997;LC_ADDRESS
-+category  i18n:1997;LC_TELEPHONE
-+category  i18n:1997;LC_MEASUREMENT
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -2957,18 +2957,18 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +application   "GNU locale"
 +abbreviation  ""
 +%
-+category  i18n:1997;LC_IDENTIFICATION
-+category  i18n:1997;LC_CTYPE
-+category  i18n:1997;LC_COLLATE
-+category  i18n:1997;LC_MONETARY
-+category  i18n:1997;LC_NUMERIC
-+category  i18n:1997;LC_TIME
-+category  i18n:1997;LC_MESSAGES
-+category  i18n:1997;LC_PAPER
-+category  i18n:1997;LC_NAME
-+category  i18n:1997;LC_ADDRESS
-+category  i18n:1997;LC_TELEPHONE
-+category  i18n:1997;LC_MEASUREMENT
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -3068,18 +3068,18 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +revision  "1.0"
 +date      "2013-01-04"
 +%
-+category  "ay_PE:2000";LC_IDENTIFICATION
-+category  "ay_PE:2000";LC_CTYPE
-+category  "ay_PE:2000";LC_COLLATE
-+category  "ay_PE:2000";LC_TIME
-+category  "ay_PE:2000";LC_NUMERIC
-+category  "ay_PE:2000";LC_MONETARY
-+category  "ay_PE:2000";LC_PAPER
-+category  "ay_PE:2000";LC_MEASUREMENT
-+category  "ay_PE:2000";LC_MESSAGES
-+category  "ay_PE:2000";LC_NAME
-+category  "ay_PE:2000";LC_ADDRESS
-+category  "ay_PE:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -3194,18 +3194,18 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +revision     "0.01"
 +date         "2010-04-08"
 +%
-+category  "sq_KV:2000";LC_IDENTIFICATION
-+category  "sq_KV:2000";LC_CTYPE
-+category  "sq_KV:2000";LC_COLLATE
-+category  "sq_KV:2000";LC_TIME
-+category  "sq_KV:2000";LC_NUMERIC
-+category  "sq_KV:2000";LC_MONETARY
-+category  "sq_KV:2000";LC_PAPER
-+category  "sq_KV:2000";LC_MEASUREMENT
-+category  "sq_KV:2000";LC_MESSAGES
-+category  "sq_KV:2000";LC_NAME
-+category  "sq_KV:2000";LC_ADDRESS
-+category  "sq_KV:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +END LC_IDENTIFICATION
 +
 +LC_CTYPE
@@ -3340,17 +3340,17 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +revision "0.1"
 +date "2012-05-23"
 +
-+category az_IR:2000;LC_IDENTIFICATION
-+category az_IR:2000;LC_CTYPE
-+category az_IR:2000;LC_COLLATE
-+category az_IR:2000;LC_TIME
-+category az_IR:2000;LC_NUMERIC
-+category az_IR:2000;LC_PAPER
-+category az_IR:2000;LC_TELEPHONE
-+category az_IR:2000;LC_MEASUREMENT
-+category az_IR:2000;LC_ADDRESS
-+category az_IR:2000;LC_MONETARY
-+category az_IR:2000;LC_MESSAGES
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
 +
 +END LC_IDENTIFICATION
 +
@@ -3620,17 +3620,17 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +revision   "1.1"
 +date       "2013-08-08"
 +
-+category  "mjw:2000";LC_IDENTIFICATION
-+category  "mjw:2000";LC_CTYPE
-+category  "mjw:2000";LC_COLLATE
-+category  "mjw:2000";LC_TIME
-+category  "mjw:2000";LC_NUMERIC
-+category  "mjw:2000";LC_MONETARY
-+category  "mjw:2000";LC_MESSAGES
-+category  "mjw:2000";LC_PAPER
-+category  "mjw:2000";LC_NAME
-+category  "mjw:2000";LC_ADDRESS
-+category  "mjw:2000";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +END LC_IDENTIFICATION
 +
 +
@@ -3816,17 +3816,17 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
 +revision    "1.0"
 +date        "2010,June,5"
 +%
-+category  "sd_PK:2008";LC_IDENTIFICATION
-+category  "sd_PK:2008";LC_CTYPE
-+category  "sd_PK:2008";LC_COLLATE
-+category  "sd_PK:2008";LC_TIME
-+category  "sd_PK:2008";LC_NUMERIC
-+category  "sd_PK:2008";LC_MONETARY
-+category  "sd_PK:2008";LC_MESSAGES
-+category  "sd_PK:2008";LC_PAPER
-+category  "sd_PK:2008";LC_NAME
-+category  "sd_PK:2008";LC_ADDRESS
-+category  "sd_PK:2008";LC_TELEPHONE
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
 +
 +END LC_IDENTIFICATION
 +
@@ -4178,19 +4178,15 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  om_ET/UTF-8 \
  om_KE.UTF-8/UTF-8 \
  om_KE/ISO-8859-1 \
-@@ -342,8 +378,11 @@
- os_RU/UTF-8 \
- pa_IN/UTF-8 \
+@@ -344,6 +380,7 @@
  pa_PK/UTF-8 \
-+pap_AN.ISO-8859-1/ISO-8859-1 \
-+pap_AN.ISO-8859-15/ISO-8859-15 \
  pap_AW/UTF-8 \
  pap_CW/UTF-8 \
 +pl_PL.ISO-8859-16/ISO-8859-16 \
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  ps_AF/UTF-8 \
-@@ -354,7 +393,10 @@
+@@ -354,7 +391,10 @@
  pt_PT/ISO-8859-1 \
  pt_PT@euro/ISO-8859-15 \
  quz_PE/UTF-8 \
@@ -4201,7 +4197,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -361,19 +403,25 @@
+@@ -361,19 +401,25 @@
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -4227,7 +4223,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
  so_DJ.UTF-8/UTF-8 \
-@@ -385,9 +433,19 @@
+@@ -385,9 +431,19 @@
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
  sq_MK/UTF-8 \
@@ -4247,7 +4243,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  ss_ZA/UTF-8 \
  st_ZA.UTF-8/UTF-8 \
  st_ZA/ISO-8859-1 \
-@@ -396,15 +454,21 @@
+@@ -396,15 +452,21 @@
  sv_FI@euro/ISO-8859-15 \
  sv_SE.UTF-8/UTF-8 \
  sv_SE/ISO-8859-1 \
@@ -4269,7 +4265,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  th_TH.UTF-8/UTF-8 \
  th_TH/TIS-620 \
  the_NP/UTF-8 \
-@@ -413,15 +477,19 @@
+@@ -413,15 +475,19 @@
  tk_TM/UTF-8 \
  tl_PH.UTF-8/UTF-8 \
  tl_PH/ISO-8859-1 \
@@ -4289,7 +4285,7 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  uk_UA.UTF-8/UTF-8 \
  uk_UA/KOI8-U \
  unm_US/UTF-8 \
-@@ -426,8 +494,9 @@
+@@ -426,8 +492,9 @@
  uk_UA/KOI8-U \
  unm_US/UTF-8 \
  ur_IN/UTF-8 \
@@ -4309,11 +4305,3 @@ diff -Nur glibc/localedata/locales.orig/shn_MM glibc/localedata/locales/shn_MM
  DEFINE_LANGUAGE_CODE3 ("Karelian", krl, krl)
  DEFINE_LANGUAGE_CODE3 ("Karen", kar, kar)
  DEFINE_LANGUAGE_CODE ("Kashmiri", ks, kas, kas)
-@@ -400,6 +401,7 @@
- DEFINE_LANGUAGE_CODE3 ("Samaritan Aramaic", sam, sam)
- DEFINE_LANGUAGE_CODE3 ("Sami languages (Other)", smi, smi)
- DEFINE_LANGUAGE_CODE ("Samoan", sm, smo, smo)
-+DEFINE_LANGUAGE_CODE3 ("Samogitian", sgs, sgs)
- DEFINE_LANGUAGE_CODE3 ("Sandawe", sad, sad)
- DEFINE_LANGUAGE_CODE ("Sango", sg, sag, sag)
- DEFINE_LANGUAGE_CODE ("Sanskrit", sa, san, san)
