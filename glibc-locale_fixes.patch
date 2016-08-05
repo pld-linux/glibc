@@ -1,15 +1,3 @@
---- glibc-2.19/localedata/locales/aa_DJ.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/aa_DJ	2014-02-08 16:58:27.910116127 +0100
-@@ -153,7 +153,8 @@
- country_ab2   "<U0044><U004A>"
- country_ab3   "<U0044><U004A><U0049>"
- country_num   262
--% country_car   unknown
-+% DJI (unofficial)
-+country_car   "<U0044><U004A><U0049>"
- % country_isbn  unknown, Need ISO 2108
- lang_name     "<U0051><U0061><U0066><U0061><U0072>"
- % aa
 --- glibc-2.19/localedata/locales/aa_ER.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/aa_ER	2014-02-08 16:48:24.786808103 +0100
 @@ -112,7 +112,8 @@
@@ -38,17 +26,6 @@
  lang_name     "<U0051><U0061><U0066><U0061><U0072>"
  % aa
  lang_ab       "<U0061><U0061>"
---- glibc-2.19/localedata/locales/ak_GH.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/ak_GH	2014-02-08 17:00:00.123445589 +0100
-@@ -195,6 +195,8 @@
- % GHA
- country_ab3  "<U0047><U0048><U0041>"
- country_num  288
-+% GH
-+country_car  "<U0049><U0048>"
- country_isbn 9964
- % Akan
- lang_name    "<U0041><U006B><U0061><U006E>"
 --- glibc-2.19/localedata/locales/am_ET.orig	2014-02-08 09:08:14.917966780 +0100
 +++ glibc-2.19/localedata/locales/am_ET	2014-02-08 10:02:02.634497992 +0100
 @@ -1444,10 +1444,11 @@
@@ -65,20 +42,21 @@
  lang_name     "<U12A0><U121B><U122D><U129B>"
  % am
  lang_ab      "<U0061><U006D>"
---- glibc-2.19/localedata/locales/an_ES.orig	2014-02-08 09:08:14.921300113 +0100
-+++ glibc-2.19/localedata/locales/an_ES	2014-02-08 15:29:26.960340264 +0100
-@@ -134,8 +134,18 @@
+--- glibc-2.24/localedata/locales/an_ES.orig	2016-08-05 17:06:36.007888874 +0200
++++ glibc-2.24/localedata/locales/an_ES	2016-08-05 17:12:50.561217929 +0200
+@@ -137,9 +137,16 @@
  country_ab2   "<U0045><U0053>"
  country_ab3   "<U0045><U0053><U0050>"
  country_num   724
+-lang_ab       "<U0061><U006E>"
 +% Espanya
 +country_name  "<U0045><U0063><U0070><U0061><U006E><U0077><U0061>"
  % E
- country_car    "<U0045>"
-+% 84
-+country_isbn  "<U0038><U0034>"
+-country_car    "<U0045>"
++country_car   "<U0045>"
  % aragonés
- lang_name    "<U0061><U0072><U0061><U0067><U006F><U006E><U00E9><U0073>"
+-lang_name    "<U0061><U0072><U0061><U0067><U006F><U006E><U00E9><U0073>"
++lang_name     "<U0061><U0072><U0061><U0067><U006F><U006E><U00E9><U0073>"
 +% an
 +lang_ab       "<U0061><U006E>"
 +% arg
@@ -97,15 +75,10 @@
  % अंगिका
  lang_name    "<U0905><U0902><U0917><U093F><U0915><U093E>"
  % anp
---- glibc-2.19/localedata/locales/ar_AE.orig	2014-02-08 09:08:14.921300113 +0100
-+++ glibc-2.19/localedata/locales/ar_AE	2014-02-08 15:42:46.260306721 +0100
-@@ -182,8 +182,13 @@
- country_ab2 "<U0041><U0045>"
- country_ab3 "<U0041><U0052><U0045>"
+--- glibc-2.24/localedata/locales/ar_AE.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_AE	2016-08-05 17:17:48.814547857 +0200
+@@ -186,6 +186,8 @@
  country_num 784
-+country_name "<U0627><U0644><U0625><U0645><U0627><U0631><U0627><U062A>/
-+<U0020><U0627><U0644><U0639><U0631><U0628><U064A><U0651><U0629><U0020>/
-+<U0627><U0644><U0645><U062A><U062D><U062F><U0651><U0629>"
  % UAE
  country_car    "<U0055><U0041><U0045>"
 +% 9948
@@ -113,13 +86,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_BH.orig	2014-02-08 09:08:14.921300113 +0100
-+++ glibc-2.19/localedata/locales/ar_BH	2014-02-08 15:42:13.416974766 +0100
-@@ -186,8 +186,11 @@
- country_ab2 "<U0042><U0048>"
- country_ab3 "<U0042><U0048><U0052>"
+--- glibc-2.24/localedata/locales/ar_BH.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_BH	2016-08-05 17:22:47.541211114 +0200
+@@ -190,6 +190,8 @@
  country_num 048
-+country_name "<U0627><U0644><U0628><U062D><U0631><U064A><U0646>"
  % BRN
  country_car    "<U0042><U0052><U004E>"
 +% 99901
@@ -127,13 +97,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_DZ.orig	2014-02-08 09:08:14.924633446 +0100
-+++ glibc-2.19/localedata/locales/ar_DZ	2014-02-08 15:44:05.220303407 +0100
-@@ -185,8 +185,11 @@
- country_ab2 "<U0044><U005A>"
- country_ab3 "<U0044><U005A><U0041>"
+--- glibc-2.24/localedata/locales/ar_DZ.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_DZ	2016-08-05 17:24:22.714543360 +0200
+@@ -189,6 +189,8 @@
  country_num 012
-+country_name "<U0627><U0644><U062C><U0632><U0627><U0626><U0631>"
  % DZ
  country_car    "<U0044><U005A>"
 +% 9931,9947,9961
@@ -141,24 +108,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_EG.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/ar_EG	2014-02-08 15:44:47.636968294 +0100
-@@ -153,8 +153,8 @@
- 
- 
- LC_MESSAGES
--yesexpr     "<U005E><U005B><U0646><U0079><U0059><U005D><U002E><U002A>"
--noexpr      "<U005E><U005B><U0644><U006E><U004E><U005D><U002E><U002A>"
-+yesexpr     "<U005E><U005B><U0646><U0079><U0059><U005D>"
-+noexpr      "<U005E><U005B><U0644><U006E><U004E><U005D>"
- 
- yesstr      "<U0646><U0639><U0645>"
- nostr       "<U0644><U0627>"
-@@ -193,8 +193,11 @@
- country_ab2 "<U0045><U0047>"
- country_ab3 "<U0045><U0047><U0059>"
+--- glibc-2.24/localedata/locales/ar_EG.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_EG	2016-08-05 17:27:18.327874687 +0200
+@@ -196,6 +196,8 @@
  country_num 818
-+country_name "<U0645><U0635><U0631>"
  % ET
  country_car    "<U0045><U0054>"
 +% 977
@@ -166,13 +119,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_IN.orig	2014-02-08 09:08:14.924633446 +0100
-+++ glibc-2.19/localedata/locales/ar_IN	2014-02-08 15:52:51.660281315 +0100
-@@ -162,8 +162,11 @@
- country_ab2 "<U0049><U004E>"
- country_ab3 "<U0049><U004E><U0044>"
+--- glibc-2.24/localedata/locales/ar_IN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_IN	2016-08-05 17:39:58.247866014 +0200
+@@ -173,6 +173,8 @@
  country_num 356
-+country_name "<U0627><U0644><U0647><U0646><U062F>"
  % IND
  country_car    "<U0049><U004E><U0044>"
 +% 81,93
@@ -180,23 +130,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_IQ.orig	2014-02-08 09:08:14.927966779 +0100
-+++ glibc-2.19/localedata/locales/ar_IQ	2014-02-08 16:08:54.130240919 +0100
-@@ -185,6 +185,7 @@
- country_ab2 "<U0049><U0051>"
- country_ab3 "<U0049><U0052><U0051>"
- country_num 368
-+country_name "<U0627><U0644><U0639><U0631><U0627><U0642>"
- % IRQ
- country_car    "<U0049><U0052><U0051>"
- lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
---- glibc-2.19/localedata/locales/ar_JO.orig	2014-02-08 09:08:14.927966779 +0100
-+++ glibc-2.19/localedata/locales/ar_JO	2014-02-08 16:10:33.910236734 +0100
-@@ -203,8 +203,11 @@
- country_ab2 "<U004A><U004F>"
- country_ab3 "<U004A><U004F><U0052>"
+--- glibc-2.24/localedata/locales/ar_JO.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_JO	2016-08-05 17:45:28.574528907 +0200
+@@ -207,6 +207,8 @@
  country_num 400
-+country_name "<U0627><U0644><U0623><U0631><U062F><U0646>"
  % HKJ
  country_car    "<U0048><U004B><U004A>"
 +% 9957
@@ -204,13 +141,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_KW.orig	2014-02-08 09:08:14.927966779 +0100
-+++ glibc-2.19/localedata/locales/ar_KW	2014-02-08 16:19:24.626881131 +0100
-@@ -185,8 +185,11 @@
- country_ab2 "<U004B><U0057>"
- country_ab3 "<U004B><U0057><U0054>"
+--- glibc-2.24/localedata/locales/ar_KW.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_KW	2016-08-05 17:47:06.014527793 +0200
+@@ -189,6 +189,8 @@
  country_num 414
-+country_name "<U0627><U0644><U0643><U0648><U064A><U062A>"
  % KWT
  country_car    "<U004B><U0057><U0054>"
 +% 99906
@@ -218,13 +152,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_LB.orig	2014-02-08 09:08:14.931300112 +0100
-+++ glibc-2.19/localedata/locales/ar_LB	2014-02-08 16:20:03.090212850 +0100
-@@ -202,8 +202,11 @@
- country_ab2 "<U004C><U0042>"
- country_ab3 "<U004C><U0042><U004E>"
+--- glibc-2.24/localedata/locales/ar_LB.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_LB	2016-08-05 17:47:38.344527424 +0200
+@@ -205,6 +205,8 @@
  country_num 422
-+country_name "<U0644><U0628><U0646><U0627><U0646>"
  % RL
  country_car    "<U0052><U004C>"
 +% 9953
@@ -232,13 +163,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_LY.orig	2014-02-08 09:08:14.931300112 +0100
-+++ glibc-2.19/localedata/locales/ar_LY	2014-02-08 16:20:33.046878260 +0100
-@@ -185,8 +185,11 @@
- country_ab2 "<U004C><U0059>"
- country_ab3 "<U004C><U0042><U0059>"
+--- glibc-2.24/localedata/locales/ar_LY.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_LY	2016-08-05 17:48:23.057860246 +0200
+@@ -189,6 +189,8 @@
  country_num 434
-+country_name "<U0644><U064A><U0628><U064A><U0627>"
  % LAR
  country_car    "<U004C><U0041><U0052>"
 +% 9959
@@ -246,13 +174,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_MA.orig	2014-02-08 09:08:14.931300112 +0100
-+++ glibc-2.19/localedata/locales/ar_MA	2014-02-08 16:21:43.763541955 +0100
-@@ -185,8 +185,11 @@
- country_ab2 "<U004D><U0041>"
- country_ab3 "<U004D><U0041><U0052>"
+--- glibc-2.24/localedata/locales/ar_MA.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_MA	2016-08-05 17:48:51.744526585 +0200
+@@ -189,6 +189,8 @@
  country_num 504
-+country_name "<U0627><U0644><U0645><U063A><U0631><U0628>"
  % MA
  country_car    "<U004D><U0041>"
 +% 9954,9981
@@ -260,27 +185,21 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_OM.orig	2014-02-08 09:08:14.934633446 +0100
-+++ glibc-2.19/localedata/locales/ar_OM	2014-02-08 16:29:37.023522098 +0100
-@@ -185,6 +185,11 @@
- country_ab2 "<U004F><U004D>"
+--- glibc-2.24/localedata/locales/ar_OM.orig	2016-08-05 17:06:36.011222207 +0200
++++ glibc-2.24/localedata/locales/ar_OM	2016-08-05 18:10:23.584511832 +0200
+@@ -188,6 +188,8 @@
  country_ab3 "<U004F><U004D><U004E>"
  country_num 512
-+country_name "<U0639><U0645><U0627><U0646>"
-+% OM (unofficial)
-+country_car "<U004F><U004D>"
+ country_car "<U004F><U004D>"
 +% 99969
 +country_isbn "<U0039><U0039><U0039><U0036><U0039>"
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_QA.orig	2014-02-08 09:08:14.934633446 +0100
-+++ glibc-2.19/localedata/locales/ar_QA	2014-02-08 16:30:11.416853988 +0100
-@@ -185,8 +185,11 @@
- country_ab2 "<U0051><U0041>"
- country_ab3 "<U0051><U0041><U0054>"
+--- glibc-2.24/localedata/locales/ar_QA.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_QA	2016-08-05 18:10:52.017844838 +0200
+@@ -189,6 +189,8 @@
  country_num 634
-+country_name "<U0642><U0637><U0631>"
  % Q
  country_car    "<U0051>"
 +% 99931
@@ -288,13 +207,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_SA.orig	2014-02-08 09:08:14.937966779 +0100
-+++ glibc-2.19/localedata/locales/ar_SA	2014-02-08 16:30:48.376852437 +0100
-@@ -387,8 +387,11 @@
- country_ab2 "<U0053><U0041>"
- country_ab3 "<U0053><U0041><U0055>"
+--- glibc-2.24/localedata/locales/ar_SA.orig	2016-08-05 18:11:53.261177476 +0200
++++ glibc-2.24/localedata/locales/ar_SA	2016-08-05 18:11:56.214510779 +0200
+@@ -389,6 +389,8 @@
  country_num 682
-+country_name "<U0627><U0644><U0633><U0651><U0639><U0648><U062F><U064A><U0651><U0629>"
  % KSA
  country_car    "<U004B><U0053><U0041>"
 +% 9960
@@ -302,13 +218,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_SD.orig	2014-02-08 09:08:14.937966779 +0100
-+++ glibc-2.19/localedata/locales/ar_SD	2014-02-08 16:31:17.343517888 +0100
-@@ -201,8 +201,11 @@
- % SDN
- country_ab3 "<U0053><U0044><U004E>"
+--- glibc-2.24/localedata/locales/ar_SD.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_SD	2016-08-05 18:12:55.921176764 +0200
+@@ -197,6 +197,8 @@
  country_num 729
-+country_name "<U0627><U0644><U0633><U0651><U0648><U062F><U0627><U0646>"
  % SUD
  country_car    "<U0053><U0055><U0044>"
 +% 99942
@@ -316,24 +229,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_SS.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/ar_SS	2014-02-08 16:43:02.056821647 +0100
-@@ -201,6 +201,8 @@
- % SSD
- country_ab3 "<U0053><U0053><U0044>"
- country_num 728
-+country_name "<U062C><U0646><U0648><U0628><U0020><U0627><U0644><U0633>/
-+<U0648><U062F><U0627><U0646>"
- lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
- % ar
- lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_SY.orig	2014-02-08 09:08:14.937966779 +0100
-+++ glibc-2.19/localedata/locales/ar_SY	2014-02-08 16:32:48.830180715 +0100
-@@ -202,8 +202,11 @@
- country_ab2 "<U0053><U0059>"
- country_ab3 "<U0053><U0059><U0052>"
+--- glibc-2.24/localedata/locales/ar_SY.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_SY	2016-08-05 18:14:55.387842064 +0200
+@@ -206,6 +206,8 @@
  country_num 760
-+country_name "<U0633><U0648><U0631><U064A><U0627>"
  % SYR
  country_car    "<U0053><U0059><U0052>"
 +% 9933
@@ -341,13 +240,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_TN.orig	2014-02-08 09:08:14.941300112 +0100
-+++ glibc-2.19/localedata/locales/ar_TN	2014-02-08 16:33:20.493512720 +0100
-@@ -185,8 +185,11 @@
- country_ab2 "<U0054><U004E>"
- country_ab3 "<U0054><U0055><U004E>"
+--- glibc-2.24/localedata/locales/ar_TN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ar_TN	2016-08-05 18:15:26.477841709 +0200
+@@ -188,6 +188,8 @@
  country_num 788
-+country_name "<U062A><U0648><U0646><U0633>"
  % TN
  country_car    "<U0054><U004E>"
 +% 9973
@@ -355,42 +251,23 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  % ar
  lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/ar_YE.orig	2014-02-08 09:08:14.941300112 +0100
-+++ glibc-2.19/localedata/locales/ar_YE	2014-02-08 16:36:36.273504503 +0100
-@@ -185,6 +185,9 @@
- country_ab2 "<U0059><U0045>"
- country_ab3 "<U0059><U0045><U004D>"
- country_num 887
-+country_name "<U0627><U0644><U064A><U0645><U0646>"
-+% YEM (?)
-+country_car "<U0059><U0045><U004D>"
- lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
- % ar
- lang_ab      "<U0061><U0072>"
---- glibc-2.19/localedata/locales/as_IN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/as_IN	2014-02-08 17:30:17.080036008 +0100
-@@ -158,8 +158,14 @@
- % LC_ADDRESS
- postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
- <U0025><U0062><U0025><U0065><U0025><U0072>"
-+country_ab2 "<U0049><U004E>"
-+country_ab3 "<U0049><U004E><U0044>"
-+country_num 356
-+country_name "<U09AD><U09BE><U09F0><U09A4>"
+--- glibc-2.24/localedata/locales/as_IN.orig	2016-08-05 17:06:36.014555539 +0200
++++ glibc-2.24/localedata/locales/as_IN	2016-08-05 18:20:46.171171395 +0200
+@@ -169,6 +169,10 @@
+ country_name "<U09AD><U09BE><U09F0><U09A4>"
  % IND
  country_car  "<U0049><U004E><U0044>"
 +% 81,93
 +country_isbn "<U0038><U0031><U002C><U0039><U0033>"
++country_ab2 "<U0049><U004E>"
++country_ab3 "<U0049><U004E><U0044>"
+ country_num 356
  % অসমীয়া
  lang_name    "<U0985><U09B8><U09AE><U09C0><U09AF><U09BC><U09BE>"
- % as
---- glibc-2.19/localedata/locales/ast_ES.orig	2014-02-08 17:39:53.126678499 +0100
-+++ glibc-2.19/localedata/locales/ast_ES	2014-02-08 17:39:56.573345021 +0100
-@@ -140,8 +140,11 @@
- country_ab2   "<U0045><U0053>"
- country_ab3   "<U0045><U0053><U0050>"
+--- glibc-2.24/localedata/locales/ast_ES.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ast_ES	2016-08-05 18:22:21.731170305 +0200
+@@ -148,6 +148,8 @@
  country_num   724
-+country_name  "<U0045><U0073><U0070><U0061><U00D1><U0061>"
  % E
  country_car    "<U0045>"
 +% 84
@@ -413,14 +290,10 @@
  % Aymar aru
  lang_name    "<U0041><U0079><U006D><U0061><U0072><U0020><U0061><U0072><U0075>"
  % ay
---- glibc-2.19/localedata/locales/az_AZ.orig	2014-02-08 09:08:14.941300112 +0100
-+++ glibc-2.19/localedata/locales/az_AZ	2014-02-08 19:54:28.876339591 +0100
-@@ -293,11 +293,14 @@
- country_ab2 "<U0041><U005A>"
- country_ab3 "<U0041><U005A><U0045>"
+--- glibc-2.24/localedata/locales/az_AZ.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/az_AZ	2016-08-05 18:25:24.501168217 +0200
+@@ -300,9 +300,10 @@
  country_num 031
-+country_name "<U0041><U007A><U0259><U0072><U0062><U0061><U0079><U0063>/
-+<U0061><U006E>"
  % AZ
  country_car    "<U0041><U005A>"
 +% 9952
@@ -431,22 +304,18 @@
  % az
  lang_ab      "<U0061><U007A>"
  % aze
---- glibc-2.19/localedata/locales/be_BY.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/be_BY	2014-02-08 19:59:58.116325775 +0100
-@@ -112,6 +112,8 @@
-         "<U0427><U0446><U0432>";/
-         "<U041F><U044F><U0442>";/
-         "<U0421><U0443><U0431>"
-+first_weekday 2
+--- glibc-2.24/localedata/locales/be_BY.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/be_BY	2016-08-05 18:26:47.601167267 +0200
+@@ -150,6 +150,7 @@
+ t_fmt_ampm ""
+ week 7;19971130;1
+ first_weekday 2
 +first_workday 2
- mon     "<U0421><U0442><U0443><U0434><U0437><U0435><U043D><U044C>";/
-         "<U041B><U044E><U0442><U044B>";/
-         "<U0421><U0430><U043A><U0430><U0432><U0456><U043A>";/
-@@ -180,8 +182,11 @@
- country_ab2 "<U0042><U0059>"
- country_ab3 "<U0042><U004C><U0052>"
+ END LC_TIME
+ 
+ LC_PAPER
+@@ -184,6 +185,8 @@
  country_num 112
-+country_name "<U0411><U0435><U043B><U0430><U0440><U0443><U0441><U044C>"
  % BY
  country_car    "<U0042><U0059>"
 +% 985
@@ -454,9 +323,17 @@
  % беларуская мова
  lang_name    "<U0431><U0435><U043B><U0430><U0440><U0443><U0441><U043A><U0430><U044F><U0020><U043C><U043E><U0432><U0430>"
  % be
---- glibc-2.19/localedata/locales/be_BY@latin.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/be_BY@latin	2014-02-08 20:35:52.762902020 +0100
-@@ -144,8 +144,11 @@
+--- glibc-2.24/localedata/locales/be_BY@latin.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/be_BY@latin	2016-08-05 18:27:35.954500050 +0200
+@@ -106,6 +106,7 @@
+ t_fmt_ampm ""
+ week 7;19971130;1
+ first_weekday 2
++first_workday 2
+ END LC_TIME
+ 
+ LC_COLLATE
+@@ -147,8 +148,11 @@
  country_ab2 "<U0042><U0059>"
  country_ab3 "<U0042><U004C><U0052>"
  country_num 112
@@ -479,12 +356,12 @@
  lang_name     "<U0069><U0063><U0069><U0042><U0065><U006D><U0062><U0061>"
  % bem
  lang_term    "<U0062><U0065><U006D>"
---- glibc-2.19/localedata/locales/ber_DZ.orig	2014-02-08 20:41:17.492888391 +0100
-+++ glibc-2.19/localedata/locales/ber_DZ	2014-02-08 20:41:20.516221598 +0100
-@@ -289,7 +289,8 @@
+--- glibc-2.24/localedata/locales/ber_DZ.orig	2016-08-05 17:06:36.027888874 +0200
++++ glibc-2.24/localedata/locales/ber_DZ	2016-08-05 18:54:11.561148514 +0200
+@@ -292,7 +292,8 @@
  country_ab2 "<U0044><U005A>"
  country_ab3 "<U0044><U005A><U0041>"
- country_num 12
+ country_num 012
 -%country_isbn ""
 +% 9931,9947,9961
 +country_isbn "<U0039><U0039><U0033><U0031><U002C><U0039><U0039><U0034><U0037><U002C><U0039><U0039><U0036><U0031>"
@@ -514,29 +391,9 @@
  % भोजपुरी
  lang_name    "<U092D><U094B><U091C><U092A><U0941><U0930><U0940>"
  % bho
---- glibc-2.19/localedata/locales/bn_BD.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/bn_BD	2014-02-08 21:21:35.689453576 +0100
-@@ -138,8 +138,8 @@
- END LC_TIME
- 
- LC_MESSAGES
--yesexpr     "<U005E><U005B><U09B9><U09CD><U09AF><U09BE><U0981><U0079><U0059><U005D>"
--noexpr      "<U005E><U005B><U09A8><U09BE><U006E><U004E><U005D>"
-+yesexpr     "<U005E><U005B><U09B9><U0059><U0079><U005D>"
-+noexpr      "<U005E><U005B><U09A8><U004E><U006E><U005D>"
- yesstr      "<U09B9><U09CD><U09AF><U09BE><U0981>"
- nostr       "<U09A8><U09BE>"
- END LC_MESSAGES
-@@ -159,7 +159,7 @@
- tel_int_fmt   "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025><U006C>"
- tel_dom_fmt   "<U0025><U0061><U0020><U0025><U006C>"
- int_select    "<U0030><U0030>"
--int_prefix    "<U0038><U0038>"
-+int_prefix    "<U0038><U0038><U0030>"
- END LC_TELEPHONE
- 
- LC_NAME
-@@ -180,13 +180,6 @@
+--- glibc-2.24/localedata/locales/bn_BD.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/bn_BD	2016-08-05 17:06:36.027888875 +0200
+@@ -185,13 +185,6 @@
  country_name    "<U09AC><U09BE><U0982><U09B2><U09BE><U09A6><U09C7><U09B6>"
  country_ab2     "<U0042><U0044>"
  country_ab3     "<U0042><U0047><U0044>"
@@ -550,7 +407,7 @@
  % বাংলা
  lang_name    "<U09AC><U09BE><U0982><U09B2><U09BE>"
  % todo
-@@ -194,7 +187,12 @@
+@@ -199,7 +192,12 @@
  country_num     050
  % BD
  country_car    "<U0042><U0044>"
@@ -566,14 +423,10 @@
 +% ben
 +lang_lib       "<U0062><U0065><U006E>"
  END LC_ADDRESS
---- glibc-2.19/localedata/locales/bn_IN.orig	2014-02-08 19:56:13.193001881 +0100
-+++ glibc-2.19/localedata/locales/bn_IN	2014-02-08 22:26:30.935956774 +0100
-@@ -181,8 +181,12 @@
- country_ab2 "<U0049><U004E>"
- country_ab3 "<U0049><U004E><U0044>"
+--- glibc-2.24/localedata/locales/bn_IN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/bn_IN	2016-08-05 19:34:54.661120601 +0200
+@@ -191,6 +191,8 @@
  country_num 356
-+% ভারত
-+country_name "<U09AD><U09BE><U09B0><U09A4>"
  % IND
  country_car    "<U0049><U004E><U0044>"
 +% 81,93
@@ -581,9 +434,9 @@
  % বাংলা
  lang_name    "<U09AC><U09BE><U0982><U09B2><U09BE>"
  % bn
---- glibc-2.19/localedata/locales/bo_CN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/bo_CN	2014-02-12 20:32:41.241739932 +0100
-@@ -146,7 +146,7 @@
+--- glibc-2.24/localedata/locales/bo_CN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/bo_CN	2016-08-05 17:06:36.027888875 +0200
+@@ -152,7 +152,7 @@
  LC_NAME
  % FIXME
  
@@ -592,16 +445,6 @@
  % name_gen	"FIXME"
  % name_miss	"FIXME"
  % name_mr	"FIXME"
-@@ -163,7 +163,8 @@
- country_ab2	"<U0043><U004E>"
- country_ab3	"<U0043><U0048><U004E>"
- country_num	156
--%country_car	"FIXME"
-+% CHN (2004 agreement)
-+country_car	"<U0043><U0048><U004E>"
- country_isbn	"<U0037>"
- lang_name     "<U0F54><U0F7C><U0F51><U0F0B><U0F66><U0F90><U0F51><U0F0B>"
- % bo
 --- glibc-2.19/localedata/locales/bo_IN.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/bo_IN	2014-02-08 22:29:08.095950180 +0100
 @@ -71,7 +71,7 @@
@@ -622,13 +465,10 @@
  lang_name     "<U0F54><U0F7C><U0F51><U0F0B><U0F66><U0F90><U0F51><U0F0B>"
  % bo
  lang_ab       "<U0062><U006F>"
---- glibc-2.19/localedata/locales/br_FR.orig	2014-02-08 19:56:13.229668546 +0100
-+++ glibc-2.19/localedata/locales/br_FR	2014-02-08 22:33:03.729273626 +0100
-@@ -169,8 +169,11 @@
- country_ab2 "<U0046><U0052>"
- country_ab3 "<U0046><U0052><U0041>"
+--- glibc-2.24/localedata/locales/br_FR.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/br_FR	2016-08-05 19:37:21.777785598 +0200
+@@ -175,6 +175,8 @@
  country_num 250
-+country_name "<U0046><U0072><U0061><U00F1><U0073>"
  % F
  country_car    "<U0046>"
 +% 2
@@ -647,14 +487,10 @@
  % brx
  lang_term    "<U0062><U0072><U0078>"
  % brx
---- glibc-2.19/localedata/locales/bs_BA.orig	2014-02-08 19:56:13.229668546 +0100
-+++ glibc-2.19/localedata/locales/bs_BA	2014-02-08 22:39:03.082591878 +0100
-@@ -235,8 +235,12 @@
- country_ab2 "<U0042><U0041>"
- country_ab3 "<U0042><U0049><U0048>"
+--- glibc-2.24/localedata/locales/bs_BA.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/bs_BA	2016-08-05 19:38:26.307784848 +0200
+@@ -244,6 +244,8 @@
  country_num 070
-+country_name "<U0042><U006F><U0073><U006E><U0061><U0020><U0069><U0020>/
-+<U0048><U0065><U0072><U0063><U0065><U0067><U006F><U0076><U0069><U006E><U0061>"
  % BIH
  country_car    "<U0042><U0049><U0048>"
 +% 9958
@@ -3083,36 +2919,6 @@
  lang_name    "<U067E><U0646><U062C><U0627><U0628><U06CC>"
  % pa
  lang_ab      "<U0070><U0061>"
---- glibc-2.7/localedata/locales/pap_AN.orig	2007-10-22 23:07:20.000000000 +0200
-+++ glibc-2.7/localedata/locales/pap_AN	2007-10-22 23:07:20.000000000 +0200
-@@ -10,8 +10,8 @@
- email "pablo@mandrakesoft.com"
- tel ""
- fax ""
--language "pap"
--territory "AN"
-+language "Papiamento"
-+territory "Antilles"
- revision "0.2"
- date "2000-11-15"
- 
-@@ -37,14 +37,14 @@
- postal_fmt "<U0025><U0064><U0025><U004E><U0025><U0066><U0025><U004E><U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E>/
- <U0025><U0073><U0020><U0025><U0068><U0020><U0035><U0065><U0020><U0025><U0072><U0025><U004E>/
- <U0025><U0043><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
--% FIXME country_name for Antilles in Paplamento
-+country_name "<U0041><U006E><U0074><U0069><U0061><U0073><U0020><U0048><U0075><U006C><U0061><U006E><U0064><U0065><U0073>"
- % FIXME country_post MAIL_CEPTCODE for Nederland Antilles, AN?
- country_ab2 "<U0041><U004E>"
- country_ab3 "<U0041><U004E><U0054>"
- country_num 530
- country_isbn "99904"
- country_car "<U004E><U0041>"
--% lang_ab
-+lang_name "<U0050><U0061><U0070><U0069><U0061><U006D><U0065><U006E><U0074><U0075>"
- lang_term "<U0070><U0061><U0070>"
- lang_lib "<U0070><U0061><U0070>"
- END LC_ADDRESS
 --- glibc-2.19/localedata/locales/pap_AW.orig	2014-02-07 10:04:38.000000000 +0100
 +++ glibc-2.19/localedata/locales/pap_AW	2014-02-10 17:43:27.526084438 +0100
 @@ -23,8 +23,8 @@
