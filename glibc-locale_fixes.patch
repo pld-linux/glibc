@@ -2374,14 +2374,10 @@
  % sd
  lang_ab      "<U0073><U0064>"
  % snd
---- glibc-2.19/localedata/locales/se_NO.orig	2014-02-09 19:52:36.252718453 +0100
-+++ glibc-2.19/localedata/locales/se_NO	2014-02-10 20:51:56.368943185 +0100
-@@ -315,8 +315,12 @@
- country_ab2 "<U004E><U004F>"
- country_ab3 "<U004E><U004F><U0052>"
+--- glibc-2.24/localedata/locales/se_NO.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/se_NO	2016-08-06 06:54:16.603988503 +0200
+@@ -324,6 +324,8 @@
  country_num 578
-+% Norge
-+country_name "<U004E><U006F><U0072><U0067><U0061>"
  % N
  country_car    "<U004E>"
 +% 82
@@ -2389,14 +2385,10 @@
  % Davvisámegiella
  lang_name    "<U0044><U0061><U0076><U0076><U0069><U0073><U00E1><U006D><U0065><U0067><U0069><U0065><U006C><U006C><U0061>"
  % se
---- glibc-2.19/localedata/locales/si_LK.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/si_LK	2014-02-10 21:17:17.408879354 +0100
-@@ -198,8 +198,12 @@
- country_ab2 "<U004C><U004B>"
- country_ab3 "<U004C><U004B><U0041>"
+--- glibc-2.24/localedata/locales/si_LK.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/si_LK	2016-08-06 06:56:22.880653731 +0200
+@@ -197,6 +197,8 @@
  country_num 144
-+% ශ්‍රී ලංකාව
-+country_name "<U0DC1><U0DCA><U200D><U0DBB><U0DD3><U0020><U0DBD><U0D82><U0D9A><U0DCF><U0DC0>"
  % CL
  country_car  "<U0043><U004C>"
 +% 955
@@ -2420,25 +2412,10 @@
  lang_name     "<U0053><U0069><U0064><U0061><U0061><U006D><U0075><U0020><U0041><U0066><U006F>"
  lang_term     "<U0073><U0069><U0064>"
  lang_lib      "<U0073><U0069><U0064>"
---- glibc-2.19/localedata/locales/sk_SK.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/sk_SK	2014-02-10 21:29:49.628847786 +0100
-@@ -79,8 +79,8 @@
- 
- LC_MESSAGES
- 
--yesexpr		"<U005E><U005B><U0061><U0041><U00E1><U00C1><U0079><U0059><U005D><U002E><U002A>"
--noexpr  	"<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
-+yesexpr		"<U005E><U005B><U0041><U0061><U00C1><U00E1><U0059><U0079><U005D>"
-+noexpr  	"<U005E><U005B><U004E><U006E><U005D>"
- yesstr		"<U00E1><U006E><U006F>"
- nostr		"<U006E><U0069><U0065>"
- 
-@@ -224,8 +224,12 @@
- country_ab2 "<U0053><U004B>"
- country_ab3 "<U0053><U0056><U004B>"
+--- glibc-2.24/localedata/locales/sk_SK.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/sk_SK	2016-08-06 06:57:41.817319498 +0200
+@@ -216,6 +216,8 @@
  country_num 703
-+% Slovensko
-+country_name "<U0053><U006C><U006F><U0076><U0065><U006E><U0073><U006B><U006F>"
  % SK
  country_car    "<U0053><U004B>"
 +% 80
@@ -2446,25 +2423,10 @@
  % sk
  lang_ab      "<U0073><U006B>"
  % slk
---- glibc-2.19/localedata/locales/sl_SI.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/sl_SI	2014-02-10 21:30:28.425512825 +0100
-@@ -2121,8 +2121,8 @@
- END LC_CTYPE
- 
- LC_MESSAGES
--yesexpr "<U005E><U005B><U0059><U0079><U004A><U006A><U005D><U002E><U002A>"
--noexpr  "<U005E><U005B><U004E><U006E><U005D><U002E><U002A>"
-+yesexpr "<U005E><U005B><U0059><U0079><U004A><U006A><U005D>"
-+noexpr  "<U005E><U005B><U004E><U006E><U005D>"
- END LC_MESSAGES
- 
- LC_MONETARY
-@@ -2223,8 +2223,12 @@
- country_ab2 "<U0053><U0049>"
- country_ab3 "<U0053><U0056><U004E>"
+--- glibc-2.24/localedata/locales/sl_SI.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/sl_SI	2016-08-06 06:58:30.573985602 +0200
+@@ -2225,6 +2225,8 @@
  country_num 705
-+% Slovenija
-+country_name "<U0053><U006C><U006F><U0076><U0065><U006E><U0069><U006A><U0061>"
  % SLO
  country_car    "<U0053><U004C><U004F>"
 +% 961
@@ -2472,18 +2434,6 @@
  % slovenščina
  lang_name    "<U0073><U006C><U006F><U0076><U0065><U006E><U0161><U010D><U0069><U006E><U0061>"
  % sl
---- glibc-2.19/localedata/locales/so_DJ.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/so_DJ	2014-02-10 21:31:55.252175847 +0100
-@@ -121,7 +121,8 @@
- country_ab2   "<U0044><U004A>"
- country_ab3   "<U0044><U004A><U0049>"
- country_num   262
--% country_car   unknown
-+% DJI (unofficial)
-+country_car   "<U0044><U004A><U0049>"
- % country_isbn  unknown, Need ISO 2108
- lang_name     "<U0053><U006F><U006F><U006D><U0061><U0061><U006C><U0069>"
- lang_ab       "<U0073><U006F>"
 --- glibc-2.19/localedata/locales/so_ET.orig	2014-02-09 19:52:36.262718452 +0100
 +++ glibc-2.19/localedata/locales/so_ET	2014-02-10 21:32:18.238841549 +0100
 @@ -123,7 +123,8 @@
@@ -2517,14 +2467,10 @@
  lang_name     "<U0053><U006F><U006F><U006D><U0061><U0061><U006C><U0069>"
  lang_ab       "<U0073><U006F>"
  lang_term     "<U0073><U006F><U006D>"
---- glibc-2.19/localedata/locales/sq_AL.orig	2014-02-09 19:52:36.276051785 +0100
-+++ glibc-2.19/localedata/locales/sq_AL	2014-02-11 15:25:19.302806398 +0100
-@@ -332,8 +332,12 @@
- country_ab2 "<U0041><U004C>"
- country_ab3 "<U0041><U004C><U0042>"
+--- glibc-2.24/localedata/locales/sq_AL.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/sq_AL	2016-08-06 06:59:53.373984657 +0200
+@@ -337,6 +337,8 @@
  country_num 008
-+% Shqipëria
-+country_name "<U0053><U0068><U0071><U0069><U0070><U00EB><U0072><U0069><U0061>"
  % AL
  country_car    "<U0041><U004C>"
 +% 9928,99927,99943,99956
@@ -2532,47 +2478,30 @@
  % shqip
  lang_name    "<U0073><U0068><U0071><U0069><U0070>"
  % sq
---- glibc-2.17/localedata/locales/sr_ME.orig	2012-12-25 04:02:13.000000000 +0100
-+++ glibc-2.17/localedata/locales/sr_ME	2013-01-04 15:59:24.058148312 +0100
-@@ -149,7 +149,7 @@
+--- glibc-2.24/localedata/locales/sr_ME.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/sr_ME	2016-08-05 17:08:29.854554237 +0200
+@@ -150,7 +150,7 @@
  country_name  "<U0426><U0440><U043D><U0430><U0020><U0413><U043E><U0440><U0430>"
  country_num   499
  country_car   "<U004D><U004E><U0045>"
 -country_isbn  "<U0038><U0036>"
 +country_isbn  "<U0039><U0039><U0034><U0030>"
  lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
+ % srp
  lang_term     "<U0073><U0072><U0070>"
- lang_lib      "<U0073><U0063><U0063>"
-@@ -157,7 +157,11 @@
- END LC_ADDRESS
- 
- LC_TELEPHONE
--copy "sr_RS"
-+tel_int_fmt   "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
-+<U006C>"
-+tel_dom_fmt   "<U0025><U0041><U0020><U0025><U006C>"
-+int_prefix    "<U0033><U0038><U0032>"
-+int_select    "<U0030><U0030>"
- END LC_TELEPHONE
- 
- LC_MEASUREMENT
---- glibc-2.5/localedata/locales/ss_ZA.orig	2006-07-31 00:19:43.000000000 +0200
-+++ glibc-2.5/localedata/locales/ss_ZA	2006-10-05 14:29:58.935971000 +0200
-@@ -174,10 +174,12 @@
- % The affirmative response - yebo
- % "^[yY]"
- yesexpr     "<U005E><U005B><U0079><U0059><U005D>"
-+yesstr      "<U0079><U0065><U0062><U006F>"
- 
- % The negative response - akukho
- % "^[nNaA]"
- noexpr      "<U005E><U005B><U006E><U004E><U0061><U0041><U005D>"
-+nostr       "<U0061><U006B><U0075><U006B><U0068><U006F>"
+--- glibc-2.24/localedata/locales/ss_ZA.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ss_ZA	2016-08-06 07:02:46.767316020 +0200
+@@ -179,6 +179,8 @@
+ LC_MESSAGES
+ yesexpr "<U005E><U005B><U002B><U0031><U0079><U0059><U005D>"
+ noexpr  "<U005E><U005B><U002D><U0030><U006E><U004E><U0061><U0041><U005D>"
++yesstr  "<U0079><U0065><U0062><U006F>"
++nostr   "<U0061><U006B><U0075><U006B><U0068><U006F>"
  END LC_MESSAGES
  
  LC_PAPER
-@@ -235,8 +237,7 @@
- % "ZA"
+@@ -236,8 +238,7 @@
+ % ZA
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
@@ -2592,14 +2521,10 @@
  
  % Language name in Sotho - "Sesotho"
  lang_name "<U0053><U0065><U0073><U006F><U0074><U0068><U006F>"
---- glibc-2.19/localedata/locales/sv_SE.orig	2014-02-09 19:52:36.282718452 +0100
-+++ glibc-2.19/localedata/locales/sv_SE	2014-02-11 15:33:52.466118196 +0100
-@@ -218,8 +218,12 @@
- country_ab2 "<U0053><U0045>"
- country_ab3 "<U0053><U0057><U0045>"
+--- glibc-2.24/localedata/locales/sv_SE.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/sv_SE	2016-08-06 07:05:40.390647362 +0200
+@@ -245,6 +245,8 @@
  country_num 752
-+% Sverige
-+country_name "<U0053><U0076><U0065><U0072><U0069><U0067><U0065>"
  % S
  country_car    "<U0053>"
 +% 91
@@ -2644,25 +2569,10 @@
  % ślōnskŏ gŏdka
  lang_name    "<U015B><U006C><U014D><U006E><U0073><U006B><U014F><U0020><U0067><U014F><U0064><U006B><U0061>"
  % szl
---- glibc-2.19/localedata/locales/ta_IN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/ta_IN	2014-02-11 16:15:10.616014197 +0100
-@@ -163,9 +163,8 @@
- % These are generated based on XML base Locale definition file
- % for IBM Class for Unicode.
- %
--yesexpr     "<U005E><U005B><U0B86><U0BAE><U0BCD><U0079><U0059><U005D>"
--
--noexpr      "<U005E><U005B><U0B87><U0BB2><U0BCD><U0BB2><U0BC8><U006E><U004E><U005D>"
-+yesexpr     "<U005E><U005B><U0B86><U0079><U0059><U005D>"
-+noexpr      "<U005E><U005B><U0B87><U006E><U004E><U005D>"
- 
- % \u0b86\u0bae\u0bcd
- yesstr      "<U0B86><U0BAE><U0BCD>"
-@@ -204,8 +203,12 @@
- country_ab2 "<U0049><U004E>"
- country_ab3 "<U0049><U004E><U0044>"
+--- glibc-2.24/localedata/locales/ta_IN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ta_IN	2016-08-06 07:14:03.310641622 +0200
+@@ -203,6 +203,9 @@
  country_num 356
-+country_name "<U0B87><U0BA8><U0BCD><U0BA4><U0BBF><U0BAF><U0BBE>"
  % IND
  country_car    "<U0049><U004E><U0044>"
 +% 81,93
@@ -2671,9 +2581,9 @@
  % ta
  lang_ab      "<U0074><U0061>"
  % tam
---- glibc-2.19/localedata/locales/ta_LK.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/ta_LK	2014-02-11 16:23:24.662660131 +0100
-@@ -53,11 +53,11 @@
+--- glibc-2.24/localedata/locales/ta_LK.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ta_LK	2016-08-06 07:14:44.040641156 +0200
+@@ -58,11 +58,11 @@
  END LC_MESSAGES
  
  LC_MONETARY
@@ -2687,12 +2597,8 @@
  END LC_NUMERIC
  
  LC_TIME
-@@ -88,8 +88,14 @@
- country_ab2 "<U004C><U004B>"
- country_ab3 "<U004C><U004B><U0041>"
+@@ -121,6 +121,10 @@
  country_num 144
-+% இலங்கை
-+country_name "<U0B87><U0BB2><U0B99><U0BCD><U0B95><U0BC8>"
  % CL
  country_car  "<U0043><U004C>"
 +% 955
@@ -2702,24 +2608,9 @@
  % ta
  lang_ab      "<U0074><U0061>"
  % tam
---- glibc-2.19/localedata/locales/te_IN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/te_IN	2014-02-11 16:35:38.732629326 +0100
-@@ -167,12 +167,12 @@
- %
- % Syntax on Unicode Regular Expression Guidelines TR#18
- % ^[yY\u0C05].*
--yesexpr     "<U005E><U005B><U0079><U0059><U0C05><U005D><U002E><U002A>"
-+yesexpr     "<U005E><U005B><U0079><U0059><U0C05><U005D>"
- 
- %
- % Syntax on Unicode Regular Expression Guidelines TR#18
- % ^[yY\u0C15].*
--noexpr      "<U005E><U005B><U006E><U004E><U0C15><U005D><U002E><U002A>"
-+noexpr      "<U005E><U005B><U006E><U004E><U0C15><U005D>"
- 
- %
- yesstr      "<U0C05><U0C35><U0C28><U0C41>"
-@@ -223,6 +223,8 @@
+--- glibc-2.24/localedata/locales/te_IN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/te_IN	2016-08-05 17:08:29.861220907 +0200
+@@ -216,6 +216,8 @@
  country_num     356
  % IND
  country_car     "<U0049><U004E><U0044>"
@@ -2743,9 +2634,9 @@
  % tg
  lang_ab      "<U0074><U0067>"
  % tgk
---- glibc-2.19/localedata/locales/th_TH.orig	2014-02-09 19:52:36.339385116 +0100
-+++ glibc-2.19/localedata/locales/th_TH	2014-02-11 20:10:04.905422716 +0100
-@@ -968,14 +968,13 @@
+--- glibc-2.24/localedata/locales/th_TH.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/th_TH	2016-08-05 17:08:29.864554241 +0200
+@@ -947,14 +947,13 @@
  %country_post  ""
  country_ab2   "<U0054><U0048>"
  country_ab3   "<U0054><U0048><U0041>"
@@ -2763,14 +2654,12 @@
  lang_lib      "<U0074><U0068><U0061>"
 -country_num 764
  END LC_ADDRESS
---- glibc-2.19/localedata/locales/the_NP.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/the_NP	2014-02-11 19:03:12.402257775 +0100
-@@ -209,6 +209,10 @@
- country_ab2 "<U004E><U0050>"
+--- glibc-2.24/localedata/locales/the_NP.orig	2016-08-05 17:08:29.864554241 +0200
++++ glibc-2.24/localedata/locales/the_NP	2016-08-06 07:19:05.030638173 +0200
+@@ -201,6 +201,8 @@
  country_ab3 "<U004E><U0050><U004C>"
  country_num 524
-+% NEP
-+country_car    "<U004E><U0045><U0050>"
+ country_car "<U004E><U0045><U0050>"
 +% 9937,99933,99946
 +country_isbn "<U0039><U0039><U0033><U0037><U002C><U0039><U0039><U0039><U0033><U0033><U002C><U0039><U0039><U0039><U0034><U0036>"
  END LC_ADDRESS
@@ -2816,23 +2705,9 @@
  lang_name     "<U1275><U130D><U1228>"
  lang_ab       ""
  lang_term     "<U0074><U0069><U0067>"
---- glibc-2.19/localedata/locales/tk_TM.orig	2014-02-09 19:52:36.522718441 +0100
-+++ glibc-2.19/localedata/locales/tk_TM	2014-02-11 20:27:47.362044796 +0100
-@@ -400,9 +400,9 @@
- yesstr  "<U0068><U0061><U0077><U0061>"
- % ýok
- nostr   "<U00FD><U006F><U006B>"
--% [hH]
-+% [hHyY]
- yesexpr "<U005E><U005B><U0068><U0048>/
--<U005D><U002E><U002A>"
-+<U0079><U0059><U005D><U002E><U002A>"
- % [ýÝnN]
- noexpr  "<U005E><U005B><U00FD><U00DD>/
- <U006E><U004E><U005D><U002E><U002A>"
---- glibc-2.19/localedata/locales/tl_PH.orig	2014-02-09 19:52:36.349385115 +0100
-+++ glibc-2.19/localedata/locales/tl_PH	2014-02-11 20:29:39.892040073 +0100
-@@ -140,6 +140,7 @@
+--- glibc-2.24/localedata/locales/tl_PH.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/tl_PH	2016-08-05 17:08:29.867887575 +0200
+@@ -144,6 +144,7 @@
  END LC_TIME
  
  LC_MESSAGES
@@ -2840,7 +2715,7 @@
  copy "en_US"
  END LC_MESSAGES
  
-@@ -168,8 +169,14 @@
+@@ -169,8 +170,14 @@
  country_ab2 "<U0050><U0048>"
  country_ab3 "<U0050><U0048><U004C>"
  country_num 608
@@ -2855,31 +2730,19 @@
  % tl
  lang_ab      "<U0074><U006C>"
  % tgl
-@@ -179,6 +186,5 @@
- END LC_ADDRESS
- 
- LC_TELEPHONE
--% FIXME
--copy "en_US"
-+copy "en_PH"
- END LC_TELEPHONE
---- glibc-2.5/localedata/locales/tn_ZA.orig	2006-07-31 00:19:43.000000000 +0200
-+++ glibc-2.5/localedata/locales/tn_ZA	2006-10-05 14:37:02.925971000 +0200
-@@ -176,10 +176,12 @@
- % The affirmative response - ee
- % "^[yYeE]"
- yesexpr     "<U005E><U005B><U0079><U0059><U0065><U0045><U005D>"
-+yesstr      "<U0065><U0065>"
- 
- % The negative response - nyaa
- % "^[nN]"
- noexpr      "<U005E><U005B><U006E><U004E><U005D>"
-+nostr       "<U006E><U0079><U0061><U0061>"
+--- glibc-2.24/localedata/locales/tn_ZA.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/tn_ZA	2016-08-06 07:25:44.733966952 +0200
+@@ -181,6 +181,8 @@
+ LC_MESSAGES
+ yesexpr "<U005E><U005B><U002B><U0031><U0079><U0059><U0065><U0045><U005D>"
+ noexpr  "<U005E><U005B><U002D><U0030><U006E><U004E><U005D>"
++yesstr  "<U0065><U0065>"
++nostr   "<U006E><U0079><U0061><U0061>"
  END LC_MESSAGES
  
  LC_PAPER
-@@ -238,8 +240,7 @@
- % "ZA"
+@@ -239,8 +241,7 @@
+ % ZA
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
@@ -2888,20 +2751,9 @@
  
  % Language name in Tswana - "Setswana"
  lang_name "<U0053><U0065><U0074><U0073><U0077><U0061><U006E><U0061>"
---- glibc-2.19/localedata/locales/tr_TR.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/tr_TR	2014-02-11 21:16:06.355256473 +0100
-@@ -3581,8 +3581,8 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
--% Turkey
--country_name	"<U0054><U0075><U0072><U006B><U0065><U0079>"
-+% Türkiye
-+country_name	"<U0054><U00FC><U0072><U006B><U0069><U0079><U0065>"
- % TR
- country_post	"<U0054><U0052>"
- % TR
-@@ -4354,12 +4354,12 @@ country_num	792
+--- glibc-2.24/localedata/locales/tr_TR.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/tr_TR	2016-08-05 17:08:29.871220908 +0200
+@@ -4352,12 +4352,12 @@
  country_ab2	"<U0054><U0052>"
  % TUR
  country_ab3	"<U0054><U0055><U0052>"
@@ -2929,9 +2781,9 @@
  
  % Language name in Tsonga - "Xitsonga"
  lang_name "<U0058><U0069><U0074><U0073><U006F><U006E><U0067><U0061>"
---- glibc-2.19/localedata/locales/tt_RU.orig	2014-02-11 20:45:40.498666427 +0100
-+++ glibc-2.19/localedata/locales/tt_RU	2014-02-11 21:23:09.531905377 +0100
-@@ -314,10 +314,22 @@
+--- glibc-2.24/localedata/locales/tt_RU.orig	2016-08-05 17:08:29.871220908 +0200
++++ glibc-2.24/localedata/locales/tt_RU	2016-08-06 07:28:50.720631486 +0200
+@@ -319,11 +319,22 @@
  END LC_NAME
  
  LC_ADDRESS
@@ -2946,7 +2798,7 @@
 +country_ab2 "<U0052><U0055>"
 +% RUS
 +country_ab3 "<U0052><U0055><U0053>"
-+country_num 643
+ country_num 643
 +country_name "<U0420><U0443><U0441><U0438><U044F>"
  % RUS
  country_car    "<U0052><U0055><U0053>"
@@ -2973,38 +2825,21 @@
  % tt
  lang_ab      "<U0074><U0074>"
  % tat
---- glibc-2.19/localedata/locales/ug_CN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/ug_CN	2014-02-12 19:44:55.365193535 +0100
-@@ -317,13 +317,19 @@
- <U0065><U0020><U0025><U0072><U0025><U004E><U0025><U0062><U0025><U004E>/
- <U0025><U0064><U0025><U004E><U0025><U0066><U0025><U004E><U0025><U0061>/
- <U0025><U004E>"
--country_name	"<U4E2D><U534E><U4EBA><U6C11><U5171><U548C><U56FD>"
-+% جۇڭخۇا خەلق جۇمھۇرىيىتى
-+country_name	"<U062C><U06C7><U06AD><U062E><U06C7><U0627><U0020>/
-+<U062E><U06D5><U0644><U0642><U0020><U062C><U06C7><U0645><U06BE>/
-+<U06C7><U0631><U0649><U064A><U0649><U062A><U0649>"
- %country_post	"FIXME"
- country_ab2	"<U0043><U004E>"
- country_ab3	"<U0043><U0048><U004E>"
+--- glibc-2.24/localedata/locales/ug_CN.orig	2016-08-05 17:08:29.874554240 +0200
++++ glibc-2.24/localedata/locales/ug_CN	2016-08-06 07:31:45.020629496 +0200
+@@ -326,6 +326,8 @@
  country_num	156
--%country_car	"FIXME"
-+% CHN (2004 agreement)
-+country_car	"<U0043><U0048><U004E>"
+ country_car "<U0043><U0048><U004E>"
  country_isbn	"<U0037>"
 +% ئۇيغۇرچە
 +lang_name    "<U0626><U06C7><U064A><U063A><U06C7><U0631><U0686><U06D5>"
  % ug
  lang_ab      "<U0075><U0067>"
  % uig
---- glibc-2.19/localedata/locales/ur_IN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/ur_IN	2014-02-12 20:00:47.888486896 +0100
-@@ -176,8 +176,14 @@
- country_ab2 "<U0049><U004E>"
- country_ab3 "<U0049><U004E><U0044>"
+--- glibc-2.24/localedata/locales/ur_IN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ur_IN	2016-08-06 07:32:09.573962552 +0200
+@@ -180,6 +180,10 @@
  country_num 356
-+% بھارت
-+country_name "<U0628><U06BE><U0627><U0631><U062A>"
  % IND
  country_car    "<U0049><U004E><U0044>"
 +% 81,93
@@ -3014,13 +2849,10 @@
  % ur
  lang_ab      "<U0075><U0072>"
  % urd
---- glibc-2.19/localedata/locales/ur_PK.orig	2014-02-11 20:45:40.505333094 +0100
-+++ glibc-2.19/localedata/locales/ur_PK	2014-02-12 20:02:30.025149276 +0100
-@@ -196,8 +196,12 @@
- country_ab2 "<U0050><U004B>"
- country_ab3 "<U0050><U0041><U004B>"
+--- glibc-2.24/localedata/locales/ur_PK.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ur_PK	2016-08-06 07:37:27.390625591 +0200
+@@ -201,6 +201,9 @@
  country_num 586
-+country_name "<U067E><U0627><U06A9><U0633><U062A><U0627><U0646>"
  % PK
  country_car    "<U0050><U004B>"
 +% 969
@@ -3029,28 +2861,9 @@
  % ur
  lang_ab      "<U0075><U0072>"
  % urd
-@@ -207,6 +211,7 @@
- END LC_ADDRESS
- 
- LC_TELEPHONE
--% FIXME
--copy "en_DK"
-+tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020>/
-+<U003B><U0025><U006C>"
-+int_prefix "<U0039><U0032>"
- END LC_TELEPHONE
---- glibc-2.19/localedata/locales/uz_UZ.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/uz_UZ	2014-02-12 20:04:28.515144303 +0100
-@@ -279,7 +279,7 @@
- % FIXME: todo
- tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
- <U006C>"
--int_prefix     "<U0032><U0037>"
-+int_prefix     "<U0039><U0039><U0038>"
- END LC_TELEPHONE
- 
- LC_MEASUREMENT
-@@ -313,8 +313,8 @@
+--- glibc-2.24/localedata/locales/uz_UZ.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/uz_UZ	2016-08-05 17:08:31.287887558 +0200
+@@ -322,8 +322,8 @@
  country_ab2  "UZ"
  country_ab3  "UZB"
  country_num  860
@@ -3061,21 +2874,20 @@
  % UZ
  country_car    "<U0055><U005A>"
  lang_name   "<U004F><U0027><U007A><U0062><U0065><U006B>"
-diff -uNr libc.orig/localedata/locales/uz_UZ@cyrillic libc/localedata/locales/uz_UZ@cyrillic
---- libc.orig/localedata/locales/uz_UZ@cyrillic	2003-12-05 01:26:01.000000000 +0100
-+++ libc/localedata/locales/uz_UZ@cyrillic	2004-11-10 02:36:38.000000000 +0100
-@@ -278,9 +278,7 @@
+--- glibc-2.24/localedata/locales/uz_UZ@cyrillic.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/uz_UZ@cyrillic	2016-08-06 07:38:45.187291367 +0200
+@@ -286,9 +286,7 @@
  END LC_PAPER
  
  LC_TELEPHONE
 -tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
 -<U006C>"
--int_prefix     "<U0032><U0037>"
+-int_prefix     "<U0039><U0039><U0038>"
 +copy "uz_UZ"
  END LC_TELEPHONE
  
  LC_MEASUREMENT
-@@ -313,8 +311,8 @@
+@@ -321,8 +319,8 @@
  country_ab2  "<U0055><U005A>"
  country_ab3  "<U0055><U005A><U0042>"
  country_num  860
@@ -3085,24 +2897,20 @@ diff -uNr libc.orig/localedata/locales/uz_UZ@cyrillic libc/localedata/locales/uz
 +country_isbn "<U0039><U0039><U0034><U0033>"
  country_car "<U0055><U005A>"
  lang_name   "<U040E><U0437><U0431><U0435><U043A><U0447><U0430>"
- lang_ab     "<U0075><U007A>"
---- glibc-2.5/localedata/locales/ve_ZA.orig	2006-07-31 00:19:43.000000000 +0200
-+++ glibc-2.5/localedata/locales/ve_ZA	2006-10-05 14:38:09.005971000 +0200
-@@ -173,10 +173,12 @@
- % The affirmative response - ee
- % "^[yYeE]"
- yesexpr     "<U005E><U005B><U0079><U0059><U0065><U0045><U005D>"
-+yesstr      "<U0065><U0065>"
- 
- % The negative response - hai
- % "^[nNhH]"
- noexpr      "<U005E><U005B><U006E><U004E><U0068><U0048><U005D>"
-+nostr       "<U0068><U0061><U0069>"
+ % uz
+--- glibc-2.24/localedata/locales/ve_ZA.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/ve_ZA	2016-08-06 07:39:25.600624236 +0200
+@@ -162,6 +162,8 @@
+ LC_MESSAGES
+ yesexpr "<U005E><U005B><U002B><U0031><U0079><U0059><U0065><U0045><U005D>"
+ noexpr  "<U005E><U005B><U002D><U0030><U006E><U004E><U0068><U0048><U005D>"
++yesstr  "<U0065><U0065>"
++nostr   "<U0068><U0061><U0069>"
  END LC_MESSAGES
  
  LC_PAPER
-@@ -235,8 +237,7 @@
- % "ZA"
+@@ -220,8 +222,7 @@
+ % ZA
  country_car   "<U005A><U0041>"
  
 -% FIXME define the following correctly
@@ -3111,20 +2919,9 @@ diff -uNr libc.orig/localedata/locales/uz_UZ@cyrillic libc/localedata/locales/uz
  
  % Language name in Venda - "Tshivend^a"
  lang_name "<U0054><U0073><U0068><U0069><U0076><U0065><U006E><U1E13><U0061>"
---- glibc-2.19/localedata/locales/vi_VN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/vi_VN	2014-02-12 20:10:58.575127933 +0100
-@@ -301,8 +301,8 @@
- LC_MESSAGES
- yesstr   "<U0043><U00F3>"
- nostr    "<U004B><U0068><U00F4><U006E><U0067>"
--yesexpr  "<U005E><U005B><U0031><U0079><U0059><U0063><U0043><U005D><U002E><U002A>"
--noexpr   "<U005E><U005B><U0030><U006E><U004E><U006B><U004B><U005D><U002E><U002A>"
-+yesexpr  "<U005E><U005B><U0031><U0079><U0059><U0063><U0043><U005D>"
-+noexpr   "<U005E><U005B><U0030><U006E><U004E><U006B><U004B><U005D>"
- END LC_MESSAGES
- 
- LC_PAPER
-@@ -338,6 +338,8 @@
+--- glibc-2.24/localedata/locales/vi_VN.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/vi_VN	2016-08-05 17:08:31.291220890 +0200
+@@ -340,6 +340,8 @@
  country_num 704
  % VN
  country_car    "<U0056><U004E>"
@@ -3145,27 +2942,21 @@ diff -uNr libc.orig/localedata/locales/uz_UZ@cyrillic libc/localedata/locales/uz
  lang_name     "<U12C8><U120B><U12ED><U1273><U1271>"
  lang_term     "<U0077><U0061><U006C>"
  lang_lib      "<U0077><U0061><U006C>"
---- glibc-2.19/localedata/locales/wo_SN.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/locales/wo_SN	2014-02-12 20:26:40.151755087 +0100
-@@ -62,6 +62,8 @@
+--- glibc-2.24/localedata/locales/wo_SN.orig	2016-08-05 17:08:31.294554222 +0200
++++ glibc-2.24/localedata/locales/wo_SN	2016-08-06 07:42:20.490622249 +0200
+@@ -67,6 +67,8 @@
  LC_MESSAGES
- % Yes=Waaw
- % No=Déet
+ yesexpr "<U005E><U005B><U002B><U0031><U0077><U0057><U0079><U0059><U005D>"
+ noexpr  "<U005E><U005B><U002D><U0030><U0064><U0044><U006E><U004E><U005D>"
 +yesstr  "<U0077><U0061><U0061><U0077>"
 +nostr   "<U0064><U00E9><U0065><U0074>"
- yesexpr "<U005E><U005B><U0077><U0057><U0079><U0059><U005D><U002E><U002A>"
- noexpr  "<U005E><U005B><U0064><U0044><U006E><U004E><U005D><U002E><U002A>"
  END LC_MESSAGES
-@@ -174,11 +176,15 @@
- <U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
- <U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
- <U004E><U0025><U0063><U0025><U004E>"
--country_ab2 "<U004D><U0047>"
--country_ab3 "<U004D><U0044><U0047>"
--country_num 450
-+country_ab2 "<U0053><U004E>"
-+country_ab3 "<U0053><U0045><U004E>"
-+country_num 686
+ 
+ LC_MONETARY
+@@ -176,8 +178,12 @@
+ country_ab2 "<U0053><U004E>"
+ country_ab3 "<U0053><U0045><U004E>"
+ country_num 686
 +% Senegaal
 +country_name "<U0053><U0065><U006E><U0065><U0067><U0061><U0061><U006C>"
  % SN
@@ -3186,34 +2977,21 @@ diff -uNr libc.orig/localedata/locales/xh_ZA libc/localedata/locales/xh_ZA
 +
  END LC_ADDRESS
  
---- libc.orig/localedata/locales/zh_CN	2001-02-10 14:34:20.000000000 +0100
-+++ libc/localedata/locales/zh_CN	2004-11-10 02:36:38.000000000 +0100
-@@ -175,7 +175,8 @@
- country_ab2	"<U0043><U004E>"
- country_ab3	"<U0043><U0048><U004E>"
- country_num	156
--%country_car	"FIXME"
-+% CHN (2004 agreement)
-+country_car	"<U0043><U0048><U004E>"
- country_isbn	"<U0037>"
- lang_name	"<U4E2D><U6587>"
- lang_ab		"<U007A><U0068>"
---- glibc-2.19/localedata/locales/zh_HK.orig	2014-02-11 20:45:40.528666426 +0100
-+++ glibc-2.19/localedata/locales/zh_HK	2014-02-12 20:35:13.741733533 +0100
-@@ -184,6 +184,10 @@
+--- glibc-2.24/localedata/locales/zh_HK.orig	2016-08-05 17:08:31.294554222 +0200
++++ glibc-2.24/localedata/locales/zh_HK	2016-08-06 07:43:48.037287908 +0200
+@@ -181,7 +181,9 @@
  country_ab2 "<U0048><U004B>"
  country_ab3 "<U0048><U004B><U0047>"
  country_num 344
 +country_name "<U9999><U6E2F>"
-+% 962,988
-+country_isbn "<U0039><U0036><U0032><U002C><U0039><U0038><U0038>"
+ country_car "<U0048><U004B>"
 +lang_name   "<U6F22><U8A9E>"
  lang_ab		"<U007A><U0068>"
  lang_term	"<U007A><U0068><U006F>"
  lang_lib	"<U0063><U0068><U0069>"
---- glibc-2.19/localedata/locales/zh_SG.orig	2014-02-11 20:45:40.531999759 +0100
-+++ glibc-2.19/localedata/locales/zh_SG	2014-02-12 20:36:45.391729687 +0100
-@@ -194,8 +194,11 @@
+--- glibc-2.24/localedata/locales/zh_SG.orig	2016-08-02 04:01:36.000000000 +0200
++++ glibc-2.24/localedata/locales/zh_SG	2016-08-06 07:44:59.480620426 +0200
+@@ -177,8 +177,11 @@
  country_ab2 "<U0053><U0047>"
  country_ab3 "<U0053><U0047><U0050>"
  country_num 702
@@ -3225,26 +3003,33 @@ diff -uNr libc.orig/localedata/locales/xh_ZA libc/localedata/locales/xh_ZA
  lang_ab		"<U007A><U0068>"
  lang_term	"<U007A><U0068><U006F>"
  lang_lib	"<U0063><U0068><U0069>"
-@@ -203,10 +206,7 @@
+@@ -186,10 +189,7 @@
  
  
  LC_TELEPHONE
 -% This is the ISO_IEC TR14652 Locale definition for the LC_TELEPHONE
 -% generated by IBM Basic CountryPack Transformer.
 -tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020><U003B><U0025><U006C>"
--
+-int_prefix "<U0036><U0035>"
 +copy "en_SG"
  END LC_TELEPHONE
  
  
---- libc.orig/localedata/locales/zh_TW	2002-09-29 11:11:08.000000000 +0200
-+++ libc/localedata/locales/zh_TW	2004-11-10 02:36:38.000000000 +0100
-@@ -193,7 +193,8 @@
+--- glibc-2.24/localedata/locales/zh_TW.orig	2016-08-05 17:08:31.321220889 +0200
++++ glibc-2.24/localedata/locales/zh_TW	2016-08-06 07:45:52.057286493 +0200
+@@ -182,14 +182,14 @@
+ %		http://www.isbn.spk-berlin.de/html/prefix.htm
+ % country_ab2:	TW
+ % country_ab3:	TWN
+-% country_isbn:	957
++% country_isbn:	957,986
+ country_name	"<U4E2D><U83EF><U6C11><U570B>"
+ %country_post	"FIXME"
+ country_ab2	"<U0054><U0057>"
  country_ab3	"<U0054><U0057><U004E>"
  country_num	158
- %country_car    "FIXME"
+ country_car "<U0052><U0043>"
 -country_isbn	"<U0039><U0035><U0037>"
-+% 957,986
 +country_isbn	"<U0039><U0035><U0037><U002C><U0039><U0038><U0036>"
  
  % Reference:	http://lcweb.loc.gov/standards/iso639-2/langhome.html
