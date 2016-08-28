@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -93,7 +93,7 @@ Patch30:	glibc-rh1124987.patch
 Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 %ifarch alpha
 BuildRequires:	binutils >= 2:2.17.50.0.7
@@ -1168,7 +1168,6 @@ done
 #
 # To be added when they become supported by glibc:
 #   ach    (vlc, libreport)
-#   ak     (gtkspell3)
 #   aln    (vlc, libreport)
 #   bal    (libosinfo, libreport, newt, pessulus)
 #   cgg    (vlc)
@@ -1204,6 +1203,7 @@ done
 #
 # Short forms (omitted country code, used instead of long form) for ambiguous or unclear cases:
 # aa=aa_ER
+# ak=ak_GH
 # anp=anp_IN
 # ar=common? (AE, BH, DZ, EG, IQ, JO, KW, LB, LY, MA, OM, QA, SA, SD, SY, TN, YE)
 # az=az_AZ
@@ -1253,7 +1253,7 @@ done
 #   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
 #   sv tr zh_CN zh_TW
 #
-for i in aa aa@saaho af am an ang anp ar ar_TN as ast az az_IR be@latin be@tarask bem \
+for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR be@latin be@tarask bem \
 	bg bho bn bn_IN bo br brx bs byn ca@valencia ckb cmn crh csb cv cy de_AT de_CH doi dv dz en \
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
