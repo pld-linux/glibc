@@ -17,7 +17,7 @@ if [ ! -d $repo ]; then
 fi
 
 cd $repo
-	git fetch
+	git fetch origin +$branch:$branch +refs/tags/$tag:refs/tags/$tag
 	git log -p --reverse $tag..$branch | filter > ../$out.tmp
 cd ..
 
