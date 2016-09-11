@@ -1189,6 +1189,7 @@ done
 #   pms    (deluge, mate-tweak)
 #   sco    (gnomad2, picard, stellarium, mate)
 #   son    (gtkspell3)
+#   su     (terminator)
 #   swg    (sim)
 #   syr    (iso-codes)
 #   tet    (vlc)
