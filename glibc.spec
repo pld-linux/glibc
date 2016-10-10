@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	3.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -384,6 +384,14 @@ El antiguo módulo NYS NSS de glibc
 
 %description -n nss_compat -l pl.UTF-8
 Stary moduł NYS NSS glibc.
+
+%package -n nss_db
+Summary:	Berkeley DB NSS glibc module
+Group:		Base
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n nss_db
+Berkeley DB NSS glibc module.
 
 %package -n nss_dns
 Summary:	BIND NSS glibc module
@@ -1471,13 +1479,6 @@ fi
 %endif
 %dir %{_prefix}/lib/locale
 
-#%files -n nss_db
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/makedb
-%attr(755,root,root) /%{_lib}/libnss_db-%{core_version}.so
-%attr(755,root,root) /%{_lib}/libnss_db.so.2
-%{_var}/db/Makefile
-
 #%files -n nss_dns
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_dns-%{core_version}.so
@@ -1793,6 +1794,13 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_compat-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_compat.so.2
+
+%files -n nss_db
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/makedb
+%attr(755,root,root) /%{_lib}/libnss_db-%{core_version}.so
+%attr(755,root,root) /%{_lib}/libnss_db.so.2
+%{_var}/db/Makefile
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
