@@ -1054,7 +1054,9 @@ env LANGUAGE=C LC_ALL=C \
 
 %if %{without cross}
 CC="%{__cc}"
-diet ${CC#*ccache } %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
+CC=${CC#*ccache }
+CC=${CC#%{_libdir}/ccache/}
+diet ${CC} %{SOURCE7} %{rpmcflags} -Os -static -o glibc-postinst
 %endif
 
 %install
