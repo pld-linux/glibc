@@ -679,35 +679,10 @@ korzystające ze standardowych bibliotek C.
 Summary:	Documentation needed for development using standard C libraries
 Summary(pl.UTF-8):	Dokumentacja do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Documentation
-Provides:	%{name}-devel-doc(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}-devel-doc(ix86) = %{epoch}:%{version}-%{release}
-%endif
-%ifarch %{x8664}
-# If both -m32 and -m64 is to be supported on x86_64, x86_64 package
-# have to be installed, not ix86 one.
-Obsoletes:	glibc-devel-doc(athlon)
-Obsoletes:	glibc-devel-doc(i386)
-Obsoletes:	glibc-devel-doc(i486)
-Obsoletes:	glibc-devel-doc(i586)
-Obsoletes:	glibc-devel-doc(i686)
-Obsoletes:	glibc-devel-doc(ix86)
-Obsoletes:	glibc-devel-doc(pentium3)
-Obsoletes:	glibc-devel-doc(pentium4)
-%endif
-%ifarch x32
-Obsoletes:	glibc-devel-doc(x86_64)
-%endif
-%ifarch ppc64
-Obsoletes:	glibc-devel-doc(ppc)
-%endif
-%ifarch s390x
-Obsoletes:	glibc-devel-doc(s390)
-%endif
-%ifarch sparc64
-Obsoletes:	glibc-devel-doc(sparc)
-%endif
 Conflicts:	man-pages < 4.00
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description devel-doc
 The glibc-devel-doc package contains info and manual pages necessary
