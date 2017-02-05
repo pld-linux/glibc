@@ -27,7 +27,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.24
+%define		core_version	2.25
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	97dc5517f92016f3d70d83e3162ad318
+# Source0-md5:	1496c3bf41adf9db0ebd0af01f202eed
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -58,7 +58,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	a19b5c057fa2e7df73cbdf716c371485
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -66,7 +66,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
-Patch7:		1070_all_glibc-fadvise64_64.patch
+
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-nss_include_dirs.patch
 Patch10:	%{name}-info.patch
@@ -957,7 +957,7 @@ exit 1
 %{!?with_bash_nls:%patch4 -p1}
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
+
 %patch8 -p1
 %patch9 -p0
 
@@ -1016,7 +1016,9 @@ AWK="gawk" \
 	--enable-nss-crypt%{!?with_nss_crypt:=no} \
 	--enable-obsolete-rpc \
 	--enable-profile \
+	--enable-stack-protector=strong \
 	--enable-stackguard-randomization \
+	--enable-tunables \
 	--with-binutils=$(pwd)/alt-tools \
 	--with-bugurl=http://bugs.pld-linux.org/ \
 	--with-headers=%{_includedir} \
@@ -1128,7 +1130,7 @@ cp -p %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 rm -rf documentation
 install -d documentation
 
-for f in ChangeLog.old DESIGN-{condvar,rwlock,systemtap-probes}.txt TODO{,-kernel,-testing}; do
+for f in ChangeLog.old DESIGN-systemtap-probes.txt TODO{,-kernel,-testing}; do
 	cp -af nptl/$f documentation/$f.nptl
 done
 cp -af crypt/README.ufc-crypt ChangeLog* documentation
@@ -1884,7 +1886,7 @@ fi
 
 %files devel-doc
 %defattr(644,root,root,755)
-%doc documentation/* PROJECTS
+%doc documentation/*
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
@@ -1966,6 +1968,7 @@ fi
 %{_libdir}/libcrypt.a
 %{_libdir}/libdl.a
 %{_libdir}/libm.a
+%{_libdir}/libm-%{core_version}.a
 %{_libdir}/libmcheck.a
 %ifarch %{x8664} x32
 %{_libdir}/libmvec.a
