@@ -1968,9 +1968,9 @@ fi
 %{_libdir}/libcrypt.a
 %{_libdir}/libdl.a
 %{_libdir}/libm.a
-%{_libdir}/libm-%{core_version}.a
 %{_libdir}/libmcheck.a
 %ifarch %{x8664} x32
+%{_libdir}/libm-%{core_version}.a
 %{_libdir}/libmvec.a
 %endif
 %{_libdir}/libnsl.a
