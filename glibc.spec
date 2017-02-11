@@ -1161,6 +1161,7 @@ done
 #   co     (vlc)
 #   frp    (xfce, lxlauncher, mate)
 #   gn     (gn_BR in gnome, maybe gn_PY)
+#   guc    (gtk-vnc)
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
 #   ilo    (kudzu, libosinfo, libreport)
