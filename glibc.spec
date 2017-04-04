@@ -386,12 +386,16 @@ El antiguo módulo NYS NSS de glibc
 Stary moduł NYS NSS glibc.
 
 %package -n nss_db
-Summary:	Berkeley DB NSS glibc module
+Summary:	NSS glibc module that uses hashed key-value database
+Summary(pl.UTF-8):	Moduł NSS glibc wykorzystujący haszowaną bazę danych klucz-wartość
 Group:		Base
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n nss_db
-Berkeley DB NSS glibc module.
+NSS glibc module that uses hashed key-value database.
+
+%description -n nss_db -l pl.UTF-8
+Moduł NSS glibc wykorzystujący haszowaną bazę danych klucz-wartość.
 
 %package -n nss_dns
 Summary:	BIND NSS glibc module
