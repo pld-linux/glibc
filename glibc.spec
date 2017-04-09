@@ -1162,7 +1162,7 @@ done
 #   aln    (vlc, libreport)
 #   bal    (libosinfo, libreport, newt, pessulus)
 #   cgg    (vlc)
-#   co     (vlc)
+#   co     (FileZilla, vlc)
 #   frp    (xfce, lxlauncher, mate)
 #   gn     (gn_BR in gnome, maybe gn_PY)
 #   guc    (gtk-vnc)
@@ -1171,6 +1171,7 @@ done
 #   ilo    (kudzu, libosinfo, libreport)
 #   io     (gtk+2, gnome, alacarte)
 #   jv     (gmpc, avant-window-navigator, kdesudo, mate)
+#   kab    (FileZilla)
 #   kmr    (vlc)
 #   ku_IQ  (mate)
 #   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
@@ -1218,6 +1219,7 @@ done
 # it=it_IT
 # ku=ku_TR
 # li=li_NL
+# lo=lo_LA
 # nds=nds_DE
 # nl=nl_NL
 # om=om_ET
