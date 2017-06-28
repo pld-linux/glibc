@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1172,14 +1172,17 @@ done
 #   io     (gtk+2, gnome, alacarte)
 #   jv     (gmpc, avant-window-navigator, kdesudo, mate)
 #   kab    (FileZilla)
+#   kok@latin  (inkscape)
 #   kmr    (vlc)
 #   ku_IQ  (mate)
 #   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
 #   man    (ccsm; incorrectly named md)
+#   mni@beng[ali]  (inkscape)
 #   mus    (bluez-gnome)
 #   nah    (mate)
 #   nqo	   (mate)
 #   pms    (deluge, mate-tweak)
+#   sat@deva[nagari]  (inkscape)
 #   sco    (gnomad2, picard, stellarium, mate)
 #   son    (gtkspell3)
 #   su     (terminator)
@@ -1217,6 +1220,8 @@ done
 # fy=fy_NL
 # gez=gez_ET (?)
 # it=it_IT
+# ks=ks_IN
+# ks@devanagari=ks_IN@devanagari
 # ku=ku_TR
 # li=li_NL
 # ln=ln_CD
@@ -1230,6 +1235,7 @@ done
 # quz=quz_PE
 # ru=ru_RU
 # sd=sd_IN
+# sd@devanagari=sd_IN@devanagari
 # shn=shn_MM
 # so=so_SO
 # sr=sr_RS [cyrillic]
@@ -1254,9 +1260,9 @@ for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR be@latin be@ta
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
 	es_VE et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
-	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn kok ks ku kw ky la lb \
+	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn kok ks ks@devanagari ku kw ky la lb \
 	lg li ln lo lt lv mai mg mhr mi mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso \
-	oc om or pa pap ps pt ps quz rm ro sa sat sc sd se shn si sid sl so sq sr sr@Latn szl tl \
+	oc om or pa pap ps pt ps quz rm ro sa sat sc sd sd@devanagari se shn si sid sl so sq sr sr@Latn szl tl \
 	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
 	tig tk tl tlh tn ts tt tt@iqtelif ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo \
 	zh_HK zu; do
