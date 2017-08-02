@@ -8,7 +8,7 @@
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
-# min_kernel	(default is 3.4.0 except for x86/x86_64 where 2.6.32 suffices)
+# min_kernel	(default is 3.4.0 except for x86/x86_64 where 3.2.0 suffices)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
@@ -18,7 +18,7 @@
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 #
 %ifarch %{ix86} %{x8664}
-%{!?min_kernel:%global		min_kernel	2.6.32} 
+%{!?min_kernel:%global		min_kernel	3.2.0}
 %else
 %{!?min_kernel:%global		min_kernel	3.4.0}
 %endif
@@ -27,7 +27,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.25
+%define		core_version	2.26
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	1496c3bf41adf9db0ebd0af01f202eed
+# Source0-md5:	102f637c3812f81111f48f2427611be1
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -57,8 +57,8 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
-Patch0:		glibc-git.patch
-# Patch0-md5:	0bf158757ab1c8511e7c9320676a7188
+# Patch0:		glibc-git.patch
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -80,7 +80,6 @@ Patch17:	%{name}-morelocales.patch
 # fixes mostly pending for upstream merge
 Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
-Patch20:	%{name}-thread_start.patch
 
 Patch23:	%{name}-pt_pax.patch
 
@@ -89,8 +88,6 @@ Patch27:	%{name}-c-utf8-locale.patch
 
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
-
-Patch38:	1055_all_glibc-resolv-dynamic.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf >= 2.69
@@ -954,7 +951,7 @@ echo "Minimal supported kernel is 2.6.32" >&2
 exit 1
 %endif
 
-%patch0 -p1
+#%patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
@@ -972,9 +969,9 @@ exit 1
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
-%patch18 -p1
+# FIXME/MERGE UPSTREAM/DROP
+#%patch18 -p1
 %patch19 -p1
-%patch20 -p1
 
 %patch23 -p0
 
@@ -982,8 +979,6 @@ exit 1
 
 %patch29 -p1
 %patch30 -p1
-
-%patch38 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
@@ -1018,6 +1013,7 @@ AWK="gawk" \
 	--enable-hidden-plt \
 	--enable-kernel="%{min_kernel}" \
 	--enable-nss-crypt%{!?with_nss_crypt:=no} \
+	--enable-obsolete-nsl \
 	--enable-obsolete-rpc \
 	--enable-profile \
 	--enable-stack-protector=strong \
