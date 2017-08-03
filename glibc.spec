@@ -970,7 +970,7 @@ exit 1
 %patch16 -p1
 %patch17 -p1
 # FIXME/MERGE UPSTREAM/DROP
-#%patch18 -p1
+%patch18 -p1
 %patch19 -p1
 
 %patch23 -p0
