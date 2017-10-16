@@ -1,0 +1,246 @@
+From 16be5568a0c24b9bd1ade7fa937c94b5d53b6ab1 Mon Sep 17 00:00:00 2001
+From: "H.J. Lu" <hjl.tools@gmail.com>
+Date: Sun, 15 Oct 2017 07:48:58 -0700
+Subject: [PATCH] Define __PTHREAD_MUTEX_HAVE_PREV only if undefined [BZ
+ #22298]
+
+It is incorrect to define __PTHREAD_MUTEX_HAVE_PREV to 1 only when
+__WORDSIZE == 64.  For x32, __PTHREAD_MUTEX_HAVE_PREV should be 1, but
+it has __WORDSIZE == 32.  This patch defines __PTHREAD_MUTEX_HAVE_PREV
+based on __WORDSIZE only if it is undefined.  __PTHREAD_MUTEX_HAVE_PREV
+check is changed from "#ifdef" to "#if" to support values of 0 or 1.
+
+	[BZ #22298]
+	* nptl/allocatestack.c (allocate_stack): Check if
+	__PTHREAD_MUTEX_HAVE_PREV is non-zero, instead if
+	__PTHREAD_MUTEX_HAVE_PREV is defined.
+	* nptl/descr.h (pthread): Likewise.
+	* nptl/nptl-init.c (__pthread_initialize_minimal_internal):
+	Likewise.
+	* nptl/pthread_create.c (START_THREAD_DEFN): Likewise.
+	* sysdeps/nptl/fork.c (__libc_fork): Likewise.
+	* sysdeps/nptl/pthread.h (PTHREAD_MUTEX_INITIALIZER): Likewise.
+	* sysdeps/nptl/bits/thread-shared-types.h
+	(__PTHREAD_MUTEX_HAVE_PREV): Define only if it is undefined.
+	(__pthread_internal_list): Check __pthread_internal_list instead
+	of __WORDSIZE.
+	(__PTHREAD_SPINS_DATA): Likewise.
+	(__PTHREAD_SPINS): Likewise.
+	(__pthread_mutex_s): Likewise.
+	* sysdeps/x86/nptl/bits/pthreadtypes-arch.h
+	(__PTHREAD_MUTEX_HAVE_PREV): Defined.
+---
+ nptl/allocatestack.c                      |  2 +-
+ nptl/descr.h                              |  2 +-
+ nptl/nptl-init.c                          |  2 +-
+ nptl/pthread_create.c                     |  4 ++--
+ sysdeps/nptl/bits/thread-shared-types.h   | 17 ++++++++++++-----
+ sysdeps/nptl/fork.c                       |  2 +-
+ sysdeps/nptl/pthread.h                    |  2 +-
+ sysdeps/x86/nptl/bits/pthreadtypes-arch.h |  2 ++
+ 8 files changed, 21 insertions(+), 12 deletions(-)
+
+diff --git a/nptl/allocatestack.c b/nptl/allocatestack.c
+index ad9add8..1cc7893 100644
+--- a/nptl/allocatestack.c
++++ b/nptl/allocatestack.c
+@@ -753,7 +753,7 @@ allocate_stack (const struct pthread_attr *attr, struct pthread **pdp,
+ 				  - offsetof (pthread_mutex_t,
+ 					      __data.__list.__next));
+   pd->robust_head.list_op_pending = NULL;
+-#ifdef __PTHREAD_MUTEX_HAVE_PREV
++#if __PTHREAD_MUTEX_HAVE_PREV
+   pd->robust_prev = &pd->robust_head;
+ #endif
+   pd->robust_head.list = &pd->robust_head;
+diff --git a/nptl/descr.h b/nptl/descr.h
+index c5ad0c8..c83b17b 100644
+--- a/nptl/descr.h
++++ b/nptl/descr.h
+@@ -169,7 +169,7 @@ struct pthread
+   pid_t pid_ununsed;
+ 
+   /* List of robust mutexes the thread is holding.  */
+-#ifdef __PTHREAD_MUTEX_HAVE_PREV
++#if __PTHREAD_MUTEX_HAVE_PREV
+   void *robust_prev;
+   struct robust_list_head robust_head;
+ 
+diff --git a/nptl/nptl-init.c b/nptl/nptl-init.c
+index 2921607..869e926 100644
+--- a/nptl/nptl-init.c
++++ b/nptl/nptl-init.c
+@@ -297,7 +297,7 @@ __pthread_initialize_minimal_internal (void)
+ 
+   /* Initialize the robust mutex data.  */
+   {
+-#ifdef __PTHREAD_MUTEX_HAVE_PREV
++#if __PTHREAD_MUTEX_HAVE_PREV
+     pd->robust_prev = &pd->robust_head;
+ #endif
+     pd->robust_head.list = &pd->robust_head;
+diff --git a/nptl/pthread_create.c b/nptl/pthread_create.c
+index 992331e..51ae60d 100644
+--- a/nptl/pthread_create.c
++++ b/nptl/pthread_create.c
+@@ -518,7 +518,7 @@ START_THREAD_DEFN
+ 
+ #ifndef __ASSUME_SET_ROBUST_LIST
+   /* If this thread has any robust mutexes locked, handle them now.  */
+-# ifdef __PTHREAD_MUTEX_HAVE_PREV
++# if __PTHREAD_MUTEX_HAVE_PREV
+   void *robust = pd->robust_head.list;
+ # else
+   __pthread_slist_t *robust = pd->robust_list.__next;
+@@ -536,7 +536,7 @@ START_THREAD_DEFN
+ 					 __list.__next));
+ 	  robust = *((void **) robust);
+ 
+-# ifdef __PTHREAD_MUTEX_HAVE_PREV
++# if __PTHREAD_MUTEX_HAVE_PREV
+ 	  this->__list.__prev = NULL;
+ # endif
+ 	  this->__list.__next = NULL;
+diff --git a/sysdeps/nptl/bits/thread-shared-types.h b/sysdeps/nptl/bits/thread-shared-types.h
+index 68b82b6..d2c4f67 100644
+--- a/sysdeps/nptl/bits/thread-shared-types.h
++++ b/sysdeps/nptl/bits/thread-shared-types.h
+@@ -59,7 +59,15 @@
+ 
+ /* Common definition of pthread_mutex_t. */
+ 
+-#if __WORDSIZE == 64
++#ifndef __PTHREAD_MUTEX_HAVE_PREV
++# if __WORDSIZE == 64
++#  define __PTHREAD_MUTEX_HAVE_PREV 1
++# else
++#  define __PTHREAD_MUTEX_HAVE_PREV 0
++# endif
++#endif
++
++#if __PTHREAD_MUTEX_HAVE_PREV
+ typedef struct __pthread_internal_list
+ {
+   struct __pthread_internal_list *__prev;
+@@ -74,7 +82,7 @@ typedef struct __pthread_internal_slist
+ 
+ /* Lock elision support.  */
+ #if __PTHREAD_MUTEX_LOCK_ELISION
+-# if __WORDSIZE == 64
++# if __PTHREAD_MUTEX_HAVE_PREV
+ #  define __PTHREAD_SPINS_DATA	\
+   short __spins;		\
+   short __elision
+@@ -101,17 +109,16 @@ struct __pthread_mutex_s
+   int __lock __LOCK_ALIGNMENT;
+   unsigned int __count;
+   int __owner;
+-#if __WORDSIZE == 64
++#if __PTHREAD_MUTEX_HAVE_PREV
+   unsigned int __nusers;
+ #endif
+   /* KIND must stay at this position in the structure to maintain
+      binary compatibility with static initializers.  */
+   int __kind;
+   __PTHREAD_COMPAT_PADDING_MID
+-#if __WORDSIZE == 64
++#if __PTHREAD_MUTEX_HAVE_PREV
+   __PTHREAD_SPINS_DATA;
+   __pthread_list_t __list;
+-# define __PTHREAD_MUTEX_HAVE_PREV      1
+ #else
+   unsigned int __nusers;
+   __extension__ union
+diff --git a/sysdeps/nptl/fork.c b/sysdeps/nptl/fork.c
+index 4bb87e2..48676c2 100644
+--- a/sysdeps/nptl/fork.c
++++ b/sysdeps/nptl/fork.c
+@@ -166,7 +166,7 @@ __libc_fork (void)
+ 	 inherit the correct value from the parent.  We do not need to clear
+ 	 the pending operation because it must have been zero when fork was
+ 	 called.  */
+-# ifdef __PTHREAD_MUTEX_HAVE_PREV
++# if __PTHREAD_MUTEX_HAVE_PREV
+       self->robust_prev = &self->robust_head;
+ # endif
+       self->robust_head.list = &self->robust_head;
+diff --git a/sysdeps/nptl/pthread.h b/sysdeps/nptl/pthread.h
+index 632ea7b..2b2b386 100644
+--- a/sysdeps/nptl/pthread.h
++++ b/sysdeps/nptl/pthread.h
+@@ -83,7 +83,7 @@ enum
+ #endif
+ 
+ 
+-#ifdef __PTHREAD_MUTEX_HAVE_PREV
++#if __PTHREAD_MUTEX_HAVE_PREV
+ # define PTHREAD_MUTEX_INITIALIZER \
+   { { 0, 0, 0, 0, 0, __PTHREAD_SPINS, { 0, 0 } } }
+ # ifdef __USE_GNU
+diff --git a/sysdeps/x86/nptl/bits/pthreadtypes-arch.h b/sysdeps/x86/nptl/bits/pthreadtypes-arch.h
+index fd86806..2446d8d 100644
+--- a/sysdeps/x86/nptl/bits/pthreadtypes-arch.h
++++ b/sysdeps/x86/nptl/bits/pthreadtypes-arch.h
+@@ -21,6 +21,7 @@
+ #include <bits/wordsize.h>
+ 
+ #ifdef __x86_64__
++# define __PTHREAD_MUTEX_HAVE_PREV 1
+ # if __WORDSIZE == 64
+ #  define __SIZEOF_PTHREAD_MUTEX_T 40
+ #  define __SIZEOF_PTHREAD_ATTR_T 56
+@@ -35,6 +36,7 @@
+ #  define __SIZEOF_PTHREAD_BARRIER_T 20
+ # endif
+ #else
++# define __PTHREAD_MUTEX_HAVE_PREV 0
+ # define __SIZEOF_PTHREAD_MUTEX_T 24
+ # define __SIZEOF_PTHREAD_ATTR_T 36
+ # define __SIZEOF_PTHREAD_MUTEX_T 24
+-- 
+2.9.3
+
+From df44f9d02b68de45ba8c3984f47ecf1a523306ec Mon Sep 17 00:00:00 2001
+From: "H.J. Lu" <hjl.tools@gmail.com>
+Date: Sun, 15 Oct 2017 07:23:41 -0700
+Subject: [PATCH] x32: Verify that NPTL structures are correct [BZ #22298]
+
+Add a build-time check to verify that NPTL structures are correct.
+
+	* sysdeps/x86_64/x32/nptl/Makefile: New file.
+	* sysdeps/x86_64/x32/nptl/nptl-check.sym: Likewise.
+---
+ sysdeps/x86_64/x32/nptl/Makefile       | 4 ++++
+ sysdeps/x86_64/x32/nptl/nptl-check.sym | 9 +++++++++
+ 2 files changed, 13 insertions(+)
+ create mode 100644 sysdeps/x86_64/x32/nptl/Makefile
+ create mode 100644 sysdeps/x86_64/x32/nptl/nptl-check.sym
+
+diff --git a/sysdeps/x86_64/x32/nptl/Makefile b/sysdeps/x86_64/x32/nptl/Makefile
+new file mode 100644
+index 0000000..e780bea
+--- /dev/null
++++ b/sysdeps/x86_64/x32/nptl/Makefile
+@@ -0,0 +1,4 @@
++ifeq ($(subdir),csu)
++# Verify that NPTL structures are correct.
++gen-as-const-headers += nptl-check.sym
++endif
+diff --git a/sysdeps/x86_64/x32/nptl/nptl-check.sym b/sysdeps/x86_64/x32/nptl/nptl-check.sym
+new file mode 100644
+index 0000000..8573250
+--- /dev/null
++++ b/sysdeps/x86_64/x32/nptl/nptl-check.sym
+@@ -0,0 +1,9 @@
++#include <sysdep.h>
++#include <pthread.h>
++
++PREV			offsetof (struct __pthread_internal_list, __prev)
++NEXT			offsetof (struct __pthread_internal_list, __next)
++
++#if __PTHREAD_MUTEX_HAVE_PREV != 1
++#error __PTHREAD_MUTEX_HAVE_PREV must be 1
++#endif
+-- 
+2.9.3
+
