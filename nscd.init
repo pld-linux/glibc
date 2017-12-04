@@ -34,9 +34,7 @@ start() {
 stop() {
 	if [ -f /var/lock/subsys/nscd ]; then
 		msg_stopping "Name Switch Cache Daemon"
-		daemon /usr/sbin/nscd -K
-		# nscd -K only signals nscd to shutdown, so wait a bit
-		waitproc 2 nscd /var/run/nscd/nscd.pid
+		killproc --pidfile /var/run/nscd/nscd.pid nscd -TERM
 		rm -f /var/lock/subsys/nscd >/dev/null 2>&1
 	else
 		msg_not_running "Name Switch Cache Daemon"
