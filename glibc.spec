@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	9
+Release:	10
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -58,7 +58,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	4559fc842715d9badbeb1c99eb919ede
+# Patch0-md5:	24fc47a581875faa11954a5c045030b1
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -960,7 +960,7 @@ exit 1
 %patch6 -p1
 
 %patch8 -p1
-%patch9 -p0
+%patch9 -p1
 
 %patch10 -p1
 %patch11 -p1
