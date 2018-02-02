@@ -24,6 +24,7 @@
  nss-cpp-flags := -DUSE_NSS \
 -  -I$(shell nss-config --includedir) -I$(shell nspr-config --includedir)
 +  -I/usr/include/nss -I/usr/include/nspr
- CPPFLAGS-sha256-crypt.c = $(nss-cpp-flags)
- CPPFLAGS-sha512-crypt.c = $(nss-cpp-flags)
- CPPFLAGS-md5-crypt.c = $(nss-cpp-flags)
+ CPPFLAGS-sha256-crypt.c += $(nss-cpp-flags)
+ CPPFLAGS-sha512-crypt.c += $(nss-cpp-flags)
+ CPPFLAGS-md5-crypt.c += $(nss-cpp-flags)
+

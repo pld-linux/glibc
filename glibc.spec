@@ -27,7 +27,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.26
+%define		core_version	2.27
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	13
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	102f637c3812f81111f48f2427611be1
+# Source0-md5:	898cd5656519ffbc3a03fe811dd89e82
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -58,7 +58,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	2bd490c730eb363719e39c716995e69b
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -92,11 +92,8 @@ URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
-%ifarch alpha
-BuildRequires:	binutils >= 2:2.17.50.0.7
-%else
-BuildRequires:	binutils >= 2:2.15.90.0.3
-%endif
+BuildRequires:	binutils >= 2:2.29
+BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
 BuildRequires:	gcc >= 6:4.7
@@ -968,8 +965,10 @@ exit 1
 %patch14 -p0
 %patch15 -p1
 %patch16 -p1
-%patch17 -p1
-%patch18 -p1
+# ENABLE WHEN "[error] circular dependencies between locale definitions" is fixed
+#%patch17 -p1
+# FIXME
+#%patch18 -p1
 %patch19 -p1
 
 %patch23 -p0
@@ -1017,6 +1016,7 @@ AWK="gawk" \
 	--enable-profile \
 	--enable-stack-protector=strong \
 	--enable-stackguard-randomization \
+	--enable-static-pie \
 	--enable-tunables \
 	--with-binutils=$(pwd)/alt-tools \
 	--with-bugurl=http://bugs.pld-linux.org/ \
@@ -1129,7 +1129,7 @@ cp -p %{SOURCE9} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/nscd.conf
 rm -rf documentation
 install -d documentation
 
-for f in ChangeLog.old DESIGN-systemtap-probes.txt TODO{,-kernel,-testing}; do
+for f in DESIGN-systemtap-probes.txt TODO{,-kernel,-testing}; do
 	cp -af nptl/$f documentation/$f.nptl
 done
 cp -af crypt/README.ufc-crypt ChangeLog* documentation
@@ -1381,7 +1381,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README NEWS BUGS CONFORMANCE
+%doc README NEWS
 %if %{without cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
@@ -1833,7 +1833,8 @@ fi
 %attr(755,root,root) %{_libdir}/libthread_db.so
 %attr(755,root,root) %{_libdir}/libutil.so
 %{_libdir}/crt[1in].o
-%{_libdir}/[MSg]crt1.o
+%{_libdir}/[MSgr]crt1.o
+%{_libdir}/grcrt1.o
 # ld scripts
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
@@ -1843,7 +1844,6 @@ fi
 %endif
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
-%{_libdir}/libieee.a
 %ifarch alpha ppc sparc
 %{_libdir}/libnldbl_nonshared.a
 %endif

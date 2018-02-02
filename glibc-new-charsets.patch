@@ -19,15 +19,17 @@
  
  gen-8bit-gap-modules := koi8-r latin-greek latin-greek-1 ibm256 ibm273	   \
  			ibm277 ibm278 ibm280 ibm281 ibm284 ibm285 ibm290   \
-@@ -232,6 +238,8 @@
- 			ibm865 ibm868 ibm869 ibm875 ibm880 ibm918 ibm1004  \
- 			ibm1026 cp1125 cp1250 cp1251 cp1252 cp1253 cp1254  \
- 			cp1256 cp1257 ibm866 iso8859-5 iso8859-7 iso8859-8 \
+@@ -172,7 +172,9 @@ gen-8bit-gap-modules := koi8-r latin-gre
+ 			mac-centraleurope koi8-ru hp-roman8 hp-roman9	   \
+ 			ebcdic-es ebcdic-es-a ebcdic-is-friss ebcdic-uk    \
+ 			iso8859-16 viscii iso8859-9e hp-turkish8	   \
+-			hp-thai8 hp-greek8 cp770 cp771 cp772 cp773 cp774
++			hp-thai8 hp-greek8 cp770 cp771 cp772 cp773 cp774   \
 +			iscii-dev khmer-ns mulelao-1 tatar-cyr \
-+			koi8-k koi8-ru iso8859-7-euro \
- 			iso8859-10 macintosh iec_p27-1 asmo_449		   \
- 			csn_369103 cwi dec-mcs ecma-cyrillic gost_19768-74 \
- 			greek-ccitt greek7 greek7-old inis inis-8	   \
++			koi8-k koi8-ru iso8859-7-euro
+ 
+ 
+ gen-special-modules := iso8859-7jp
 --- glibc-2.7/iconvdata/gconv-modules.orig	2007-09-30 06:00:14.000000000 +0200
 +++ glibc-2.7/iconvdata/gconv-modules	2007-10-23 20:47:36.423123001 +0200
 @@ -356,23 +356,28 @@
