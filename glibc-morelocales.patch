@@ -3393,17 +3393,17 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
  sq_MK/UTF-8 \
-+sr_BA@ijekavian.ISO-8859-5/ISO-8859-5 \
++sr_BA.ISO-8859-5@ijekavian/ISO-8859-5 \
 +sr_BA@ijekavian/UTF-8 \
-+sr_BA@ijekavianlatin.ISO-8859-2/ISO-8859-2 \
++sr_BA.ISO-8859-2@ijekavianlatin/ISO-8859-2 \
 +sr_BA@ijekavianlatin/UTF-8 \
 +sr_ME.ISO-8859-5/ISO-8859-5 \
  sr_ME/UTF-8 \
 +sr_ME@latin.ISO-8859-16/ISO-8859-16 \
 +sr_ME@latin/UTF-8 \
++$(shell true currently broken: sr_RS.ISO-8859-5/ISO-8859-5) \
  sr_RS/UTF-8 \
 +sr_RS.ISO-8859-2@latin/ISO-8859-2 \
-+sr_RS.ISO-8859-5/ISO-8859-5 \
  sr_RS@latin/UTF-8 \
  ss_ZA/UTF-8 \
  st_ZA.UTF-8/UTF-8 \
