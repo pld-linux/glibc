@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -174,6 +174,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # private symbols
 %define		_noautoprov		.*\(GLIBC_PRIVATE\)
 %define		_noautoreq		.*\(GLIBC_PRIVATE\)
+
+# to avoid multi-arch conflicts on getconf/* files
+%define		_libexecdir		%{_libdir}
 
 %description
 Contains the standard libraries that are used by multiple programs on
