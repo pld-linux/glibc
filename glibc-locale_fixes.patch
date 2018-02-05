@@ -2807,7 +2807,7 @@
  country_num 776
 -% Tongan
 -lang_name    "Tonga<U000A>"
-+# South Pacific, https://www.isbn-international.org/agencies
++% South Pacific, https://www.isbn-international.org/agencies
 +country_isbn "982"
 +lang_name    "Lea fakatonga"
  % https://en.wikipedia.org/wiki/Tongan_language
