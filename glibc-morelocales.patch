@@ -1,4 +1,3 @@
-diff -urN glibc-2.6.org/intl/locale.alias glibc-2.6/intl/locale.alias
 --- glibc-2.6.org/intl/locale.alias	2003-12-04 08:57:47.000000000 +0100
 +++ glibc-2.6/intl/locale.alias	2007-05-18 12:14:44.909053462 +0200
 @@ -49,6 +49,9 @@
@@ -33,10 +32,9 @@ diff -urN glibc-2.6.org/intl/locale.alias glibc-2.6/intl/locale.alias
  swedish         sv_SE.ISO-8859-1
  thai		th_TH.TIS-620
  turkish         tr_TR.ISO-8859-9
-diff -urN glibc-2.6.org/localedata/locales/eu_FR glibc-2.6/localedata/locales/eu_FR
 --- glibc-2.6.org/localedata/locales/eu_FR	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/eu_FR	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,97 @@
+@@ -0,0 +1,93 @@
 +comment_char %
 +escape_char  /
 +%
@@ -118,23 +116,18 @@ diff -urN glibc-2.6.org/localedata/locales/eu_FR glibc-2.6/localedata/locales/eu
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+country_name "<U0046><U0072><U0061><U006E><U0074><U007A><U0069><U0061>"
-+country_ab2  "<U0046><U0052>"
-+country_ab3  "<U0046><U0052><U0041>"
++postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
++country_name "Frantzia"
++country_ab2  "FR"
++country_ab3  "FRA"
 +country_num  250
-+country_car  "<U0046>"
-+country_isbn "<U0032>"
-+lang_name    "<U0045><U0075><U0073><U006B><U0061><U0072><U0061>"
-+lang_ab      "<U0065><U0075>"
-+lang_term    "<U0065><U0075><U0073>"
-+lang_lib     "<U0062><U0061><U0071>"
++country_car  "F"
++country_isbn "2"
++lang_name    "Euskara"
++lang_ab      "eu"
++lang_term    "eus"
++lang_lib     "baq"
 +END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/eu_FR@euro glibc-2.6/localedata/locales/eu_FR@euro
 --- glibc-2.6.org/localedata/locales/eu_FR@euro	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/eu_FR@euro	2007-05-18 12:14:53.726513832 +0200
 @@ -0,0 +1,84 @@
@@ -222,10 +215,9 @@ diff -urN glibc-2.6.org/localedata/locales/eu_FR@euro glibc-2.6/localedata/local
 +LC_ADDRESS
 +copy "eu_FR"
 +END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 --- glibc-2.6.org/localedata/locales/ia	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/ia	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,143 @@
+@@ -0,0 +1,127 @@
 +comment_char %
 +escape_char  /
 +%
@@ -267,18 +259,18 @@ diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 +END LC_CTYPE
 +
 +LC_MESSAGES
-+yesexpr "<U005E><U005B><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
-+noexpr  "<U005E><U005B><U006E><U004E><U005D><U002E><U002A>"
++yesexpr "^[sSyY]"
++noexpr  "^[nN]"
 +END LC_MESSAGES
 +
 +LC_MONETARY
-+int_curr_symbol           "<U0045><U0055><U0052><U0020>"
++int_curr_symbol           "EUR "
 +currency_symbol           "<U20AC>"
-+mon_decimal_point         "<U002C>"
-+mon_thousands_sep         "<U002E>"
++mon_decimal_point         ","
++mon_thousands_sep         "."
 +mon_grouping              3;3
 +positive_sign             ""
-+negative_sign             "<U002D>"
++negative_sign             "-"
 +int_frac_digits           2
 +frac_digits               2
 +p_cs_precedes             1
@@ -290,49 +282,39 @@ diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 +END LC_MONETARY
 +
 +LC_NUMERIC
-+decimal_point             "<U002C>"
++decimal_point             ","
 +thousands_sep             ""
 +grouping                  0;0
 +END LC_NUMERIC
 +
 +LC_TIME
-+abday   "<U0064><U006F><U006D>";"<U006C><U0075><U006E>";/
-+        "<U006D><U0061><U0072>";"<U006D><U0065><U0072>";/
-+        "<U006A><U006F><U0076>";"<U0076><U0065><U006E>";/
-+        "<U0073><U0061><U0062>"
-+day     "<U0064><U006F><U006D><U0069><U006E><U0069><U0063><U0061>";/
-+        "<U006C><U0075><U006E><U0065><U0064><U0069>";/
-+        "<U006D><U0061><U0072><U0074><U0065><U0064><U0069>";/
-+        "<U006D><U0065><U0072><U0063><U0075><U0072><U0069><U0064><U0069>";/
-+        "<U006A><U006F><U0076><U0065><U0064><U0069>";/
-+        "<U0076><U0065><U006E><U0065><U0072><U0064><U0069>";/
-+        "<U0073><U0061><U0062><U0062><U0061><U0074><U006F>"
-+abmon   "<U006A><U0061><U006E>";"<U0066><U0065><U0062>";/
-+        "<U006D><U0061><U0072>";"<U0061><U0070><U0072>";/
-+        "<U006D><U0061><U0069>";"<U006A><U0075><U006E>";/
-+        "<U006A><U0075><U006C>";"<U0061><U0075><U0067>";/
-+        "<U0073><U0065><U0070>";"<U006F><U0063><U0074>";/
-+        "<U006E><U006F><U0076>";"<U0064><U0069><U0063>"
-+mon     "<U006A><U0061><U006e><U0075><U0061><U0072><U0069><U006f>";/
-+        "<U0066><U0065><U0062><U0072><U0075><U0061><U0072><U0069><U006F>";/
-+        "<U006D><U0061><U0072><U0074><U0069><U006F>";/
-+        "<U0061><U0070><U0072><U0069><U006C>";/
-+        "<U006D><U0061><U0069><U006F>";/
-+        "<U006A><U0075><U006E><U0069><U006F>";/
-+        "<U006A><U0075><U006C><U0069><U006F>";/
-+        "<U0061><U0075><U0067><U0075><U0073><U0074><U006F>";/
-+        "<U0073><U0065><U0070><U0074><U0065><U006D><U0062><U0072><U0065>";/
-+        "<U006f><U0063><U0074><U006F><U0062><U0072><U0065>";/
-+        "<U006E><U006F><U0076><U0065><U006D><U0062><U0072><U0065>";/
-+        "<U0064><U0065><U0063><U0065><U006D><U0062><U0072><U0065>"
-+d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+d_fmt   "<U0025><U0064><U002F><U0025><U006D><U002F><U0025><U0059>"
-+t_fmt   "<U0025><U0054>"
++abday   "dom";"lun";"mar";"mer";"jov";"ven";"sab"
++day     "dominica";/
++        "lunedi";/
++        "martedi";/
++        "mercuridi";/
++        "jovedi";/
++        "venerdi";/
++        "sabbato"
++abmon   "jan";"feb";"mar";"apr";"mai";"jun";"jul";"aug";"sep";"oct";"nov";"dic"
++mon     "januario";/
++        "februario";/
++        "martio";/
++        "april";/
++        "maio";/
++        "junio";/
++        "julio";/
++        "augusto";/
++        "septembre";/
++        "octobre";/
++        "novembre";/
++        "decembre"
++d_t_fmt "%a %d %b %Y %T %Z"
++d_fmt   "%d/%m/%Y"
++t_fmt   "%T"
 +am_pm   "";""
 +t_fmt_ampm ""
-+date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
-+<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
-+<U0025><U005A><U0020><U0025><U0059>"
++date_fmt "%a %b %e %H:%M:%S %Z %Y"
 +END LC_TIME
 +
 +LC_PAPER
@@ -343,9 +325,8 @@ diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 +END LC_PAPER
 +
 +LC_TELEPHONE
-+tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
-+<U006C>"
-+int_select	"<U0030><U0030>"
++tel_int_fmt    "+%c %a %l"
++int_select	"00"
 +END LC_TELEPHONE
 +
 +LC_MEASUREMENT
@@ -354,25 +335,19 @@ diff -urN glibc-2.6.org/localedata/locales/ia glibc-2.6/localedata/locales/ia
 +END LC_MEASUREMENT
 +
 +LC_NAME
-+name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
-+<U0025><U006D><U0025><U0074><U0025><U0066>"
++name_fmt    "%d%t%g%t%m%t%f"
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+lang_name "<U0049><U006E><U0074><U0065><U0072><U006C><U0069><U006E><U0067><U0075><U0061>"
-+lang_ab      "<U0069><U0061>"
-+lang_term    "<U0069><U006E><U0061>"
-+lang_lib     "<U0069><U006E><U0061>"
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%%z %T%N%c%N"
++lang_name    "Interlingua"
++lang_ab      "ia"
++lang_term    "ina"
++lang_lib     "ina"
 +END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/nds_DE@traditional glibc-2.6/localedata/locales/nds_DE@traditional
 --- glibc-2.6.org/localedata/locales/nds_DE@traditional	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/nds_DE@traditional	2007-05-18 12:14:53.729847465 +0200
-@@ -0,0 +1,116 @@
+@@ -0,0 +1,107 @@
 +comment_char %
 +escape_char  /
 +repertoiremap mnemonic.ds
@@ -437,8 +412,7 @@ diff -urN glibc-2.6.org/localedata/locales/nds_DE@traditional glibc-2.6/localeda
 +END LC_PAPER
 +
 +LC_NAME
-+name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
-+<U0025><U006D><U0025><U0074><U0025><U0066>"
++name_fmt    "%d%t%g%t%m%t%f"
 +END LC_NAME
 +
 +LC_TELEPHONE
@@ -454,38 +428,30 @@ diff -urN glibc-2.6.org/localedata/locales/nds_DE@traditional glibc-2.6/localeda
 +END LC_NUMERIC
 +
 +LC_TIME
-+abday   "<U0053><U0064><U0061><U0067>";"<U004D><U0061><U0061><U006E>";/
-+        "<U0044><U0069><U006E><U0067>";"<U004D><U0069><U0067><U0067>";/
-+        "<U0044><U0075><U006E><U006E>";"<U0046><U0072><U0065><U0065>";/
-+        "<U0053><U0076><U0064><U002E>"
-+day     "<U0053><U00FC><U006E><U006E><U0064><U0061><U0067>";/
-+        "<U004D><U0061><U0061><U006E><U0064><U0061><U0067>";/
-+        "<U0044><U0069><U006E><U0067><U0073><U0064><U0061><U0067>";/
-+        "<U004D><U0069><U0064><U0064><U0065><U0077><U0065><U0065><U006B>";/
-+        "<U0044><U0075><U006E><U006E><U0065><U0072><U0073><U0064><U0061><U0067>";/
-+        "<U0046><U0072><U0065><U0065><U0064><U0061><U0067>";/
-+        "<U0053><U00FC><U006E><U006E><U0061><U0076><U0065><U006E><U0064>"
-+abmon   "<U0053><U006E><U0065><U0065>";"<U0049><U0065><U0073><U002E>";/
-+        "<U004C><U0065><U006E><U0074>";"<U004F><U006F><U0073><U0074>";/
-+        "<U004D><U0061><U0069><U002E>";"<U0042><U0072><U0061><U0061>";/
-+        "<U0048><U0061><U0075><U002E>";"<U0041><U0075><U0067><U002E>";/
-+        "<U0048><U0061><U0072><U0066>";"<U0057><U0069><U0065><U006E>";/
-+        "<U004E><U0065><U0076><U002E>";"<U0043><U0068><U0072><U0069>"
-+mon     "<U0053><U006E><U0065><U0065><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U0049><U0065><U0073><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U004C><U0065><U006E><U0074><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U004F><U006F><U0073><U0074><U0065><U0072><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U004D><U0061><U0069><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U0042><U0072><U0061><U0061><U006B><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U0048><U0061><U0075><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U0041><U0075><U0067><U0073><U0074><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U0048><U0061><U0072><U0066><U0073><U0074><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U0057><U0069><U0065><U006E><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U004E><U0065><U0076><U0065><U006C><U006D><U0061><U0061><U006E><U0064>";/
-+        "<U0043><U0068><U0072><U0069><U0073><U0074><U006D><U0061><U0061><U006E><U0064>"
-+d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U002E><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+d_fmt   "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059>"
-+t_fmt   "<U0025><U0054>"
++abday   "Sdag";"Maan";"Ding";"Migg";"Dunn";"Free";"Svd."
++day     "S<U00FC>nndag";/
++        "Maandag";/
++        "Dingsdag";/
++        "Middeweek";/
++        "Dunnersdag";/
++        "Freedag";/
++        "S<U00FC>nnavend"
++abmon   "Snee";"Ies.";"Lent";"Oost";"Mai.";"Braa";"Hau.";"Aug.";"Harf";"Wien";"Nev.";"Chri"
++mon     "Sneemaand";/
++        "Iesmaand";/
++        "Lentmaand";/
++        "Oostermaand";/
++        "Maimaand";/
++        "Braakmaand";/
++        "Haumaand";/
++        "Augstmaand";/
++        "Harfstmaand";/
++        "Wienmaand";/
++        "Nevelmaand";/
++        "Christmaand"
++d_t_fmt "%a %d. %b %Y %T %Z"
++d_fmt   "%d.%m.%Y"
++t_fmt   "%T"
 +am_pm   "";""
 +t_fmt_ampm ""
 +END LC_TIME
@@ -576,7 +542,6 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +LC_ADDRESS
 +copy "oc_FR"
 +END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/rm_CH glibc-2.6/localedata/locales/rm_CH
 --- glibc-2.6.org/localedata/locales/rm_CH	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/rm_CH	2007-05-18 12:14:53.733181099 +0200
 @@ -0,0 +1,193 @@
@@ -640,11 +605,11 @@ diff -urN glibc-2.6.org/localedata/locales/rm_CH glibc-2.6/localedata/locales/rm
 +LC_MONETARY
 +int_curr_symbol           "CHF "
 +currency_symbol           "Fr."
-+mon_decimal_point         "<U002E>"	%FULL STOP
-+mon_thousands_sep         "<U0020>"	%SPACE - fvg:Why not an apastroph ?
++mon_decimal_point         "."	%FULL STOP
++mon_thousands_sep         " "	%SPACE - fvg:Why not an apastroph ?
 +mon_grouping              3;3
 +positive_sign             ""
-+negative_sign             "<U002D>"	%HYPHEN-MINUS
++negative_sign             "-"	%HYPHEN-MINUS
 +int_frac_digits           2
 +frac_digits               2
 +p_cs_precedes             1
@@ -656,14 +621,14 @@ diff -urN glibc-2.6.org/localedata/locales/rm_CH glibc-2.6/localedata/locales/rm
 +END LC_MONETARY
 +
 +LC_NUMERIC
-+decimal_point             "<U002E>"
-+thousands_sep             "<U0020>"	%fvg:dito
++decimal_point             "."
++thousands_sep             " "	%fvg:dito
 +grouping                  3;3
 +END LC_NUMERIC
 +
 +LC_TIME
 +%fvg:dictionary says: mixed two-char/three-char abbrev:
-+%abday   "du"; "gli"; "ma"; "me"; "gie"; "ve"; "so"
++%abday  "du"; "gli"; "ma"; "me"; "gie"; "ve"; "so"
 +%but specification wants "of equal length" !
 +abday   "dum"; "gli"; "mar"; "mes"; "gie"; "ven"; "son"
 +day     "dumengia"; "glindesdi"; "mardi"; /
@@ -762,21 +727,20 @@ diff -urN glibc-2.6.org/localedata/locales/rm_CH glibc-2.6/localedata/locales/rm
 +
 +postal_fmt   "%f%N%a%N%d%N%b%N%s %h%t%e%t%r%N%z %T%N%c%N"
 +country_name "Svizra"          % Localized country name.
-+country_post "<U0043><U0048>"  % Postal code for country.
++country_post "CH"              % Postal code for country.
 +country_num  756               % Numeric code for country (ISO 3166).
-+country_ab2  "<U0043><U0048>"  % Two-letter code for country (ISO 3166).
-+country_ab3  "<U0043><U0048><U0045>" % Three-letter code for country (ISO 3166).
-+country_car  "<U0043><U0048>"  % Country code for cars.
-+country_isbn "<U0038><U0038>"  % same as for Italian ?
++country_ab2  "CH"              % Two-letter code for country (ISO 3166).
++country_ab3  "CHE"             % Three-letter code for country (ISO 3166).
++country_car  "CH"              % Country code for cars.
++country_isbn "88"              % same as for Italian ?
 +lang_name    "rumantsch"       % Localized language name.
-+lang_ab      "<U0072><U006D>"  % Two-letter code for language (ISO 639).
-+lang_term    "<U0072><U006F><U0068>" % Three-letter code for language (ISO 639-2).
-+lang_lib     "<U0072><U006F><U0068>" % Three-letter code for language (ISO 639-2).
++lang_ab      "rm"              % Two-letter code for language (ISO 639).
++lang_term    "roh"             % Three-letter code for language (ISO 639-2).
++lang_lib     "roh"             % Three-letter code for language (ISO 639-2).
 +END LC_ADDRESS
-diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw_UG
 --- glibc-2.6.org/localedata/locales/sw_UG	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.6/localedata/locales/sw_UG	2007-05-18 12:14:58.623621321 +0200
-@@ -0,0 +1,111 @@
+@@ -0,0 +1,110 @@
 +comment_char %
 +escape_char  /
 +%
@@ -868,21 +832,20 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +%
 +% This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category.
 +%
-+postal_fmt    "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
-+<U0025><U0062><U0025><U0065><U0025><U0072>"
++postal_fmt    "%z%c%T%s%b%e%r"
 +%
 +% Uganda
-+country_name  "<U0055><U0067><U0061><U006E><U0064><U0061>"
-+country_post  "<U0055><U0047>"
-+country_ab2   "<U0055><U0047>"
-+country_ab3   "<U0055><U0047><U0041>"
++country_name  "Uganda"
++country_post  "UG"
++country_ab2   "UG"
++country_ab3   "UGA"
 +country_num   800
-+country_car   "<U0045><U0041><U0055>"
-+country_isbn  "<U0039><U0039><U0037><U0030>"
-+lang_name     "<U004B><U0069><U0073><U0077><U0061><U0068><U0069><U006C><U0069>"
-+lang_ab       "<U0073><U0077>"
-+lang_term     "<U0073><U0077><U0061>"
-+lang_lib      "<U0073><U0077><U0061>"
++country_car   "EAU"
++country_isbn  "9970"
++lang_name     "Kiswahili"
++lang_ab       "sw"
++lang_term     "swa"
++lang_lib      "swa"
 +END LC_ADDRESS
 +
 +LC_NAME
@@ -890,7 +853,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NAME
 --- glibc-2.14/localedata/locales/ary_MA@latin.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/ary_MA@latin	2011-06-26 09:30:48.647902668 +0200
-@@ -0,0 +1,250 @@
+@@ -0,0 +1,247 @@
 +comment_char    %
 +escape_char     /
 +% Moroccan Arabic language locale for Morocco.
@@ -945,20 +908,20 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +%
 +
 +%"MAD" and space for separator
-+int_curr_symbol       "<U004D><U0041><U0044><U0020>"
++int_curr_symbol       "MAD "
 +
 +%We use the standard latin abreviation "Dh"
-+currency_symbol       "<U0044><U0068>"
++currency_symbol       "Dh"
 +
 +%In Morocco the french convention is used, ',' for decimals and 'space'
 +%for thousands.
-+mon_decimal_point     "<U002C>"
-+mon_thousands_sep     "<U0020>"
++mon_decimal_point     ","
++mon_thousands_sep     " "
 +
 +%Group digits 3 by 3 : 123 456 789...
 +mon_grouping          3
 +positive_sign         ""
-+negative_sign         "<U002D>"
++negative_sign         "-"
 +
 +%Again the french convention widespread, we display only two decimals
 +%after the coma, no matter if we are using international or local
@@ -996,67 +959,67 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +%
 +% Abbreviated weekday names (%a)
 +%hed, tni, tla, lar, hmi, jem, seb
-+abday       "<U1E2A><U0065><U0064>";/
-+			"<U1E6A><U006E><U0069>";/
-+            "<U1E6A><U006C><U0061>";/
-+            "<U004C><U0061><U0072>";/
-+            "<U0124><U006D><U0069>";/
-+            "<U004A><U0065><U006D>";/
-+            "<U0053><U0065><U0062>"
++abday       "<U1E2A>ed";/
++            "<U1E6A>ni";/
++            "<U1E6A>la";/
++            "Lar";/
++            "<U0124>mi";/
++            "Jem";/
++            "Seb"
 +%
 +% Full weekday names (%A)
 +%L-Hed, T-tnin,  etc... the article always precedes the day name, as in 
 +%classical arabic
-+day         "<U004C><U002D><U1E2A><U0065><U0064>";/
-+            "<U1E6A><U002D><U1E6A><U006E><U0069><U006E>";/
-+            "<U1E6A><U002D><U1E6A><U006C><U0061><U1E6B>";/
-+            "<U004C><U002D><U004C><U0061><U0072><U0062><U0065><U011D>";/
-+            "<U004C><U002D><U0124><U006D><U0069><U0073>";/
-+            "<U004A><U002D><U004A><U0065><U006D><U011D><U0061>";/
-+            "<U0053><U002D><U0053><U0065><U0062><U1E6B>"
++day         "L-<U1E2A>ed";/
++            "<U1E6A>-<U1E6A>nin";/
++            "<U1E6A>-<U1E6A>la<U1E6B>";/
++            "L-Larbe<U011D>";/
++            "L-<U0124>mis";/
++            "J-Jem<U011D>a";/
++            "S-Seb<U1E6B>"
 +%
 +% Abbreviated month names (%b)
 +% Moroccans usalluy refers to mouths as, mounth 1, 2, 3...
 +% We use the following abbreavation for mounth : Chr[ ]number
-+abmon       "<U010A><U0068><U0072><U0020><U0031>";/
-+			"<U010A><U0068><U0072><U0020><U0032>";/
-+            "<U010A><U0068><U0072><U0020><U0033>";/
-+            "<U010A><U0068><U0072><U0020><U0034>";/
-+            "<U010A><U0068><U0072><U0020><U0035>";/
-+            "<U010A><U0068><U0072><U0020><U0036>";/
-+            "<U010A><U0068><U0072><U0020><U0037>";/
-+            "<U010A><U0068><U0072><U0020><U0038>";/
-+            "<U010A><U0068><U0072><U0020><U0039>";/
-+            "<U010A><U0068><U0072><U0020><U0031><U0030>";/
-+            "<U010A><U0068><U0072><U0020><U0031><U0031>";/
-+            "<U010A><U0068><U0072><U0020><U0031><U0031>"
++abmon       "<U010A>hr 1";/
++            "<U010A>hr 2";/
++            "<U010A>hr 3";/
++            "<U010A>hr 4";/
++            "<U010A>hr 5";/
++            "<U010A>hr 6";/
++            "<U010A>hr 7";/
++            "<U010A>hr 8";/
++            "<U010A>hr 9";/
++            "<U010A>hr 10";/
++            "<U010A>hr 11";/
++            "<U010A>hr 12"
 +%
 +% Full month names (%B)
 +%same as above but we write the complete word mouth Cher
-+mon         "<U010A><U0068><U0065><U0072><U0020><U0031>";/
-+			"<U010A><U0068><U0065><U0072><U0020><U0032>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0033>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0034>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0035>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0036>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0037>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0038>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0039>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0031><U0030>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0031><U0031>";/
-+            "<U010A><U0068><U0065><U0072><U0020><U0031><U0031>"
++mon         "<U010A>her 1";/
++            "<U010A>her 2";/
++            "<U010A>her 3";/
++            "<U010A>her 4";/
++            "<U010A>her 5";/
++            "<U010A>her 6";/
++            "<U010A>her 7";/
++            "<U010A>her 8";/
++            "<U010A>her 9";/
++            "<U010A>her 10";/
++            "<U010A>her 11";/
++            "<U010A>her 12"
 +
 +%
 +% Appropriate date and time representation
-+d_t_fmt  "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
++d_t_fmt  "%a %d %b %Y %T %Z"
 +%
 +% Appropriate date representation
 +%
-+d_fmt       "<U0025><U0064><U002F><U0025><U006D><U002F><U0025><U0059>"
++d_fmt       "%d/%m/%Y"
 +%
 +% Appropriate time representation
 +%
-+t_fmt      "<U0025><U0054>"
++t_fmt      "%T"
 +%
 +
 +% Equivalent of AM PM
@@ -1069,9 +1032,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +t_fmt_ampm  ""
 +%
 +% Appropriate date representation (date(1))   "%a %b %e %H:%M:%S %Z %Y"
-+date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
-+<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
-+<U0025><U005A><U0020><U0025><U0059>"
++date_fmt	"%a %b %e %H:%M:%S %Z %Y"
 +END LC_TIME
 +
 +
@@ -1099,13 +1060,12 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +% This is the ISO_IEC TR14652 Locale definition for the
 +% LC_NAME category.
 +%
-+name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074>/
-+<U0025><U0067>"
-+name_gen    "<U002D><U0073><U0061><U006E>"
-+name_mr     "<U004D><U0072><U002E>"
-+name_mrs    "<U004D><U0072><U0073><U002E>"
-+name_miss   "<U004D><U0069><U0073><U0073><U002E>"
-+name_ms     "<U004D><U0073><U002E>"
++name_fmt    "%p%t%f%t%g"
++name_gen    "-san"
++name_mr     "Mr."
++name_mrs    "Mrs."
++name_miss   "Miss."
++name_ms     "Ms."
 +
 +END LC_NAME
 +
@@ -1143,7 +1103,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 --- glibc-2.14/localedata/locales/be_BY@tarask.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/be_BY@tarask	2011-06-26 09:30:48.647902668 +0200
-@@ -0,0 +1,139 @@
+@@ -0,0 +1,136 @@
 +comment_char %
 +escape_char  /
 +%
@@ -1253,15 +1213,12 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +        "<U041A><U0441><U0442>";/
 +        "<U041B><U0456><U0441>";/
 +        "<U0421><U043D><U0436>"
-+d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062>/
-+<U0020><U0025><U0059><U0020><U0025><U0054>"
-+d_fmt   "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059>"
-+t_fmt   "<U0025><U0054>"
++d_t_fmt "%a %d %b %Y %T"
++d_fmt   "%d.%m.%Y"
++t_fmt   "%T"
 +am_pm   "";""
 +t_fmt_ampm  ""
-+date_fmt    "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
-+<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
-+<U0025><U005A><U0020><U0025><U0059>"
++date_fmt    "%a %b %e %H:%M:%S %Z %Y"
 +END LC_TIME
 +
 +LC_PAPER
@@ -1285,7 +1242,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_ADDRESS
 --- glibc-2.14/localedata/locales/ckb_IQ.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/ckb_IQ	2011-06-26 09:30:48.647902668 +0200
-@@ -0,0 +1,471 @@
+@@ -0,0 +1,461 @@
 +comment_char %
 +escape_char  /
 +%
@@ -1293,8 +1250,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +%%%%%%%%%%%%%%%% local Definition ku_ckb  | ckb_iq  | ckb_ir %%%%%%%%%%%%%%%%%%%%%%%
 +% Kurdish (Sorani) language locale for Iraq and Iran.
 +% Contributed by Aras Noori <aras.noori@gmail.com>
-+% Filename: ckb_iq
-+% Locale name: ckb_iq.UTF-8
++% Filename: ckb_IQ
++% Locale name: ckb_IQ.UTF-8
 +% Language: kurdish sorani
 +% Charset: UTF-8
 +% Creation Date: 2009-11-03
@@ -1583,13 +1540,13 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_COLLATE
 +
 +LC_MONETARY
-+int_curr_symbol       "<U0049><U0051><U0044><U0020>"
-+currency_symbol       "<U062F><U002E><U0639><U002E>"
-+mon_decimal_point     "<U002E>"
-+mon_thousands_sep     "<U002C>"
++int_curr_symbol       "IQD "
++currency_symbol       "<U062F>.<U0639>."
++mon_decimal_point     "."
++mon_thousands_sep     ","
 +mon_grouping	      3
 +positive_sign	      ""
-+negative_sign	      "<U002D>"
++negative_sign	      "-"
 +int_frac_digits       3
 +frac_digits	          3
 +p_cs_precedes	      1
@@ -1604,8 +1561,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +
 +LC_NUMERIC
 +% This is the POSIX Locale definition for the LC_NUMERIC  category.
-+decimal_point	       "<U002E>"
-+thousands_sep	       "<U002C>"
++decimal_point	       "."
++thousands_sep	       ","
 +grouping	       3
 +END LC_NUMERIC
 +
@@ -1664,29 +1621,22 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +am_pm	    "<U067E><U0646>";"<U062F><U0646>"
 +%
 +% Appropriate date and time representation
-+d_t_fmt     "<U0025><U0064><U0020><U0025><U0062><U002C><U0020><U0025>/
-+<U0059><U0020><U0025><U005A><U0020><U0025><U0049><U003A><U0025><U004D>/
-+<U003A><U0025><U0053><U0020><U0025><U0070>"
++d_t_fmt     "%d %b, %Y %Z %I:%M:%S %p"
 +
 +%
 +% Appropriate date representation(%x)
 +%       "%Oy/%Om/%Od"
-+d_fmt	 "<U0025><U0064><U0020><U0025><U0062><U002C><U0020><U0025><U0059>"
++d_fmt	 "%d %b, %Y"
 +%
 +% Appropriate time representation
 +% 
-+t_fmt	 "<U0025><U005A><U0020><U0025><U0049><U003A>/
-+<U0025><U004D><U003A><U0025><U0053><U0020>"
++t_fmt	 "%Z %I:%M:%S "
 +%
 +% Appropriate 12 h time representation
-+t_fmt_ampm  "<U0025><U005A><U0020><U0025><U0049><U003A>/
-+<U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070>"
++t_fmt_ampm  "%Z %I:%M:%S %p"
 +%
 +% Appropriate date representation 
-+date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
-+<U0020><U0025><U0048><U003A><U0025>/
-+<U004D><U003A><U0025><U0053><U0020>/
-+<U0025><U005A><U0020><U0025><U0059>"
++date_fmt	"%a %b %e %H:%M:%s %Z %Y"
 +
 +%  FIXME: found in CLDR
 +first_weekday 7
@@ -1712,9 +1662,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +% This is the ISO_IEC TR14652 Locale definition for the
 +% LC_NAME category.
 +%
-+name_fmt    "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074>/
-+<U0025><U0067>"
-+name_gen    "<U002D><U0073><U0061><U006E>"
++name_fmt    "%p%t%f%t%g"
++name_gen    "-san"
 +name_miss   "<U062E><U0627><U062A><U0648>"
 +name_ms     "<U062E><U0627><U062A><U0648>"
 +name_mrs    "<U062E><U0627><U062A><U0648>"
@@ -1723,30 +1672,28 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +%
 +LC_ADDRESS
 +% This is the ISO_IEC TR14652 Locale definition for the
-+postal_fmt  "<U0025><U007A><U0025><U0063><U0025><U0054><U0025><U0073>/
-+<U0025><U0062><U0025><U0065><U0025><U0072>"
-+country_ab2 "<U0049><U0051>"
-+country_ab3 "<U0049><U0052><U0051>"
-+country_post "<U0049><U0052><U0051>"
++postal_fmt  "%z%c%T%s%b%e%r"
++country_ab2 "IQ"
++country_ab3 "IRQ"
++country_post "IRQ"
 +country_name "<U0639><U06CE><U0631><U0627><U0642>"
 +country_num 368
-+country_car "<U0049><U0052><U0051>"
++country_car "IRQ"
 +% kurdî
 +lang_name   "<U0643><U0648><U0631><U062F><U06CC>"
 +lang_ab     ""
-+lang_term   "<U0063><U006B><U0062>"
-+lang_lib    "<U0063><U006B><U0062>"
++lang_term   "ckb"
++lang_lib    "ckb"
 +
 +END LC_ADDRESS
 +
 +
 +LC_TELEPHONE
 +%
-+tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020>/
-+<U003B><U0025><U006C>"
-+tel_dom_fmt    "<U202A><U0025><U0041><U2012><U0025><U006C><U202C>"
-+int_select     "<U0030><U0030>"
-+int_prefix  "<U0039><U0036><U0034>"
++tel_int_fmt "+%c ;%a ;%l"
++tel_dom_fmt "<U202A>%A<U2012>%l<U202C>"
++int_select  "00"
++int_prefix  "964"
 +
 +END LC_TELEPHONE
 +
@@ -1759,7 +1706,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 --- glibc-2.14/localedata/locales/kg_CD.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.14/localedata/locales/kg_CD	2011-06-26 09:30:48.651236002 +0200
-@@ -0,0 +1,196 @@
+@@ -0,0 +1,180 @@
 +comment_char %
 +escape_char  /
 +%
@@ -1826,18 +1773,18 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_COLLATE
 +
 +LC_MESSAGES
-+yesexpr "<U005E> <U005B> <U0069> <U0049> <U005D> <U002E> <U002A>"
-+noexpr  "<U005E><U005B><U0076><U004B><U005D><U002E><U002A>"
++yesexpr "^[yY]"
++noexpr  "^[vK]"
 +END LC_MESSAGES
 +
 +LC_MONETARY
-+int_curr_symbol           "<U0043><U0044><U0046><U0020>"
-+currency_symbol           "<U0043><U0044><U0046><U002C>"
-+mon_decimal_point         "<U002C>"
-+mon_thousands_sep         "<U0020>"
++int_curr_symbol           "CDF "
++currency_symbol           "CDF,"
++mon_decimal_point         ","
++mon_thousands_sep         " "
 +mon_grouping              3
 +positive_sign             ""
-+negative_sign             "<U002D>"
++negative_sign             "-"
 +int_frac_digits           2
 +frac_digits               2
 +p_cs_precedes             0
@@ -1849,58 +1796,56 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MONETARY
 +
 +LC_NUMERIC
-+decimal_point             "<U002C>"
-+thousands_sep             "<U0020>"
++decimal_point             ","
++thousands_sep             " "
 +grouping                  3
 +END LC_NUMERIC
 +
 +LC_TIME
-+abday   "<U006C><U0075><U006D><U0049><U0047><U0075>";/
-+        "<U006C><U0065><U0044><U0069>";/
-+        "<U005A><U006F><U006C><U0065>";/
-+        "<U0054><U0061><U0074><U0075>";/
-+        "<U0059><U0061>";/
-+        "<U0054><U0065><U006E><U002E>";/
-+        "<U0073><U0041><U0062><U0061><U006C><U0061>"
-+day     "<U006B><U0069><U0061><U0020><U006C><U0075><U006D><U0049><U0047><U0075>";/
-+        "<U006B><U0069><U0061><U0020><U006C><U0065><U0044><U0069>";/
-+        "<U006B><U0069><U0061><U0020><U005A><U006F><U006C><U0065>";/
-+        "<U006B><U0069><U0061><U0020><U0054><U0061><U0074><U0075>";/
-+        "<U006B><U0069><U0061><U0020><U0059><U0061>";/
-+        "<U006B><U0069><U0061><U0020><U0054><U0065><U006E><U002E>";/
-+        "<U006B><U0069><U0061><U0020><U0073><U0041><U0062><U0061><U006C><U0061>"
-+abmon   "<U0061><U006B><U0075><U006E><U0064><U0065>";/
-+        "<U006B><U0075><U006E><U0064><U0069>";/
-+        "<U006B><U0069><U0061><U006E><U0065><U006E><U0065>";/
-+        "<U006B><U0069><U006E><U0074><U006F><U006D><U0062><U006F>";/
-+        "<U004B><U0069><U0065><U006C><U0061>";/
-+        "<U004C><U0075><U0061><U006E><U007A><U0061>";/
-+        "<U0073><U0069><U0076><U0075>";/
-+        "<U006C><U0075><U004B><U0069><U0065><U0073><U0061>";/
-+        "<U0073><U0065><U006E><U007A><U0061>";/
-+        "<U006D><U0062><U0061><U0047><U0061><U006C><U0061>";/
-+        "<U006B><U0075><U0050><U0075><U0061>";/
-+        "<U0076><U0069><U006C><U0061>"
-+mon      "<U0061><U006B><U0075><U006E><U0064><U0065>";/
-+        "<U006B><U0075><U006E><U0064><U0069>";/
-+        "<U006B><U0069><U0061><U006E><U0065><U006E><U0065><U0020><U006B><U0069><U0061><U006E><U0065><U006E><U0065>";/
-+        "<U006B><U0069><U006E><U0074><U006F><U006D><U0062><U006F>";/
-+        "<U004B><U0069><U0065><U006C><U0061>";/
-+        "<U004C><U0075><U0061><U006E><U007A><U0061>";/
-+        "<U0073><U0069><U0076><U0075>";/
-+        "<U006C><U0075><U004B><U0069><U0065><U0073><U0061>";/
-+        "<U0073><U0065><U006E><U007A><U0061>";/
-+        "<U006D><U0062><U0061><U0047><U0061><U006C><U0061>";/
-+        "<U006B><U0075><U0050><U0075><U0061><U0020><U006B><U0069><U0061><U006D><U0061><U0073><U0061><U005A><U0061>";/
-+        "<U0076><U0069><U006C><U0061>"
-+d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+d_fmt   "<U0025><U0064><U002F><U0025><U006D><U002F><U0025><U0059>"
-+t_fmt   "<U0025><U0054>"
++abday   "lumIGu";/
++        "leDi";/
++        "Zole";/
++        "Tatu";/
++        "Ya";/
++        "Ten.";/
++        "sAbala"
++day     "kia lumIGu";/
++        "kia leDi";/
++        "kia Zole";/
++        "kia Tatu";/
++        "kia Ya";/
++        "kia Ten.";/
++        "kia sAbala"
++abmon   "akunde";/
++        "kundi";/
++        "kianene";/
++        "kintombo";/
++        "Kiela";/
++        "Luanza";/
++        "sivu";/
++        "luKiesa";/
++        "senza";/
++        "mbaGala";/
++        "kuPua";/
++        "vila"
++mon     "akunde";/
++        "kundi";/
++        "kianene kianene";/
++        "kintombo";/
++        "Kiela";/
++        "Luanza";/
++        "sivu";/
++        "luKiesa";/
++        "senza";/
++        "mbaGala";/
++        "kuPua kiamasaZa";/
++        "vila"
++d_t_fmt "%a %d %b %Y %T %Z"
++d_fmt   "%d/%m/%Y"
++t_fmt   "%T"
 +am_pm   "";""
 +t_fmt_ampm ""
-+date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
-+<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
-+<U0025><U005A><U0020><U0025><U0059>"
++date_fmt       "%a %b %e %H:%M:%S %Z %Y"
 +
 +week    7;19971130;4
 +first_weekday 2
@@ -1913,11 +1858,10 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_PAPER
 +
 +LC_TELEPHONE
-+tel_int_fmt    "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025>/
-+<U006C>"
-+tel_dom_fmt    "<U0025><U0061><U0020><U0025><U006C>"
-+int_prefix     "<U0032><U0034><U0033>"
-+int_select     "<U0030><U0030>"
++tel_int_fmt    "+%c %a %l"
++tel_dom_fmt    "%a %l"
++int_prefix     "243"
++int_select     "00"
 +END LC_TELEPHONE
 +
 +LC_MEASUREMENT
@@ -1925,40 +1869,27 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 +
 +LC_NAME
-+name_fmt    "<U0025><U0064><U0025><U0074><U0025><U0067><U0025><U0074>/
-+<U0025><U006D><U0025><U0074><U0025><U0066>"
++name_fmt    "%d%t%g%t%m%t%f"
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+country_ab2 "<U0043><U0044>"
-+country_ab3 "<U0043><U004F><U0044>"
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++country_ab2 "CD"
++country_ab3 "COD"
 +country_num 180
 +% Repubilika ya Kôngo ya Dimokalasi
-+country_name "<U0052><U0065><U0070><U0075><U0062><U0069><U006C><U0069>/
-+<U006B><U0061><U0020><U0079><U0020><U004B><U00F4><U006E><U0067><U006F>/
-+<U0020><U0079><U0061><U0020><U0044><U0069><U006D><U0061><U006C><U0061>/
-+<U0073><U0069>"
-+% ZRE
-+country_car  "<U005A><U0052><U0045>"
++country_name "Repubilika y K<U00F4>ngo ya Dimalasi"
++country_car  "ZRE"
 +% French agency, https://www.isbn-international.org/content/francophone-and-lusophone-countries
 +country_isbn "2"
-+% Kongo
-+lang_name    "<U004B><U006F><U006E><U0067><U006F>"
-+% kg
-+lang_ab      "<U006B><U0067>"
-+% kon
-+lang_term    "<U006B><U006F><U006E>"
-+% kon
-+lang_lib     "<U006B><U006F><U006E>"
++lang_name    "Kongo"
++lang_ab      "kg"
++lang_term    "kon"
++lang_lib     "kon"
 +END LC_ADDRESS
 --- glibc-2.15/localedata/locales/myv_RU.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.15/localedata/locales/myv_RU	2012-01-04 18:11:29.748762600 +0100
-@@ -0,0 +1,203 @@
+@@ -0,0 +1,166 @@
 +comment_char %
 +escape_char /
 +% Charset: UTF-8
@@ -2051,53 +1982,33 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +
 +LC_TIME
 +% Jaksamkov, Davolkov, Eizurkov, Chadykov, Panzykov, Astemkov, Medjkov, Umarjkov, Tastamkov, Ozokov, Sunderjkov, A�amkov, 
-+mon           "<U004A><U0061><U006B><U0161><U0061><U006D><U006B><U006F><U0076>";/
-+     "<U0044><U0061><U0076><U006F><U006C><U006B><U006F><U0076>";/
-+     "<U0045><U0069><U007A><U00FC><U0072><U006B><U006F><U0076>";/
-+     "<U0043><U0068><U0061><U0064><U0079><U006B><U006F><U0076>";/
-+     "<U0050><U0061><U006E><U017E><U0079><U006B><U006F><U0076>";/
-+     "<U0041><U0161><U0074><U0065><U006D><U006B><U006F><U0076>";/
-+     "<U004D><U0065><U0064><U006A><U006B><U006F><U0076>";/
-+     "<U0055><U006D><U0061><U0072><U006A><U006B><U006F><U0076>";/
-+     "<U0054><U0061><U0161><U0074><U0061><U006D><U006B><U006F><U0076>";/
-+     "<U004F><U017E><U006F><U006B><U006F><U0076>";/
-+     "<U0053><U0075><U006E><U0064><U0065><U0072><U006A><U006B><U006F><U0076>";/
-+     "<U0041><U0441><U0061><U006D><U006B><U006F><U0076>"
++mon  "Jak<U0161>amkov";/
++     "Davolkov";/
++     "Eiz<U00FC>rkov";/
++     "Chadykov";/
++     "Pan<U017E>ykov";/
++     "A<U0161>temkov";/
++     "Medjkov";/
++     "Umarjkov";/
++     "Ta<U0161>tamkov";/
++     "O<U017E>okov";/
++     "Sunderjkov";/
++     "A<U0441>amkov"
 +% jak., dav., eiz., cha., pan., ast., med., uma., tas., oz., sun., ac.
-+abmon         "<U006A><U0061><U006B><U002E>";/
-+   "<U0064><U0061><U0076><U002E>";/
-+   "<U0065><U0069><U007A><U002E>";/
-+   "<U0063><U0068><U0061><U002E>";/
-+   "<U0070><U0061><U006E><U002E>";/
-+   "<U0061><U0161><U0074><U002E>";/
-+   "<U006D><U0065><U0064><U002E>";/
-+   "<U0075><U006D><U0061><U002E>";/
-+   "<U0074><U0061><U0161><U002E>";/
-+   "<U006F><U017E><U002E>";/
-+   "<U0073><U0075><U006E><U002E>";/
-+   "<U0061><U0063><U002E>"
++abmon "jak.";"dav.";"eiz.";"cha.";"pan.";"a<U0161>t.";"med.";"uma.";"ta<U0161>.";"o<U017E>.";"sun.";"ac."
 +% nedljachi, atanchi, vastanchi, kunkskachi, kalonchi, sukanchi, slamochi 
-+day           "<U006E><U0065><U0064><U006C><U006A><U0061><U0063><U0068><U0069>";/
-+    "<U0061><U0074><U00E4><U006E><U0063><U0068><U0069>";/
-+    "<U0076><U0061><U0073><U0074><U0061><U006E><U0063><U0068><U0069>";/
-+    "<U006B><U0075><U006E><U006B><U0161><U006B><U0061><U0063><U0068><U0069>";/
-+    "<U006B><U0061><U006C><U006F><U006E><U0063><U0068><U0069>";/
-+    "<U0073><U00FC><U006B><U0061><U006E><U0063><U0068><U0069>";/
-+    "<U0161><U006C><U00E4><U006D><U006F><U0063><U0068><U0069><U0020>"
++day "nedljachi";/
++    "at<U00E4>nchi";/
++    "vastanchi";/
++    "kunk<U0161>kachi";/
++    "kalonchi";/
++    "s<U00FC>kanchi";/
++    "<U0161>l<U00E4>mochi"
 +% ned., ata., vas., kun., kal., suk, sla.
-+abday         "<U006E><U0065><U0064><U002E>";/
-+    "<U0061><U0074><U00E4><U002E>";/
-+    "<U0076><U0061><U0073><U002E>";/
-+    "<U006B><U0075><U006E><U002E>";/
-+    "<U006B><U0061><U006C><U002E>";/
-+    "<U0073><U00FC><U006B>";/
-+    "<U0161><U006C><U00E4><U002E>"
-+% %a %d %b %Y %T %Z
-+d_t_fmt       "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+% %d.%m.%Y
-+d_fmt         "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059>"
-+% %T
-+t_fmt         "<U0025><U0054>"
++abday "ned.";"at<U00E4>.";"vas.";"kun.";"kal.";"s<U00FC>k";"<U0161>l<U00E4>."
++d_t_fmt       "%a %d %b %Y %T %Z"
++d_fmt         "%d.%m.%Y"
++t_fmt         "%T"
 +%am-pm none
 +am_pm  "";""
 +END LC_TIME
@@ -2120,10 +2031,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 +
 +LC_MESSAGES
-+% ^[IiYy].*
-+yesexpr "<U005E><U005B><U0049><U0069><U0059><U0079><U005D><U002E><U002A>"
-+% ^[AaNn].*
-+noexpr  "<U005E><U005B><U0041><U0061><U004E><U006E><U005D><U002E><U002A>"
++yesexpr "^[IiYy]"
++noexpr  "^[AaNn]"
 +END LC_MESSAGES
 +
 +LC_NAME
@@ -2131,40 +2040,25 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+country_post ""
-+% RU
-+country_ab2  "<U0052><U0055>"
-+% RUS
-+country_ab3  "<U0052><U0055><U0053>"
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++%country_post ""
++country_ab2  "RU"
++country_ab3  "RUS"
 +country_num  643
-+% RUS
-+country_car    "<U0052><U0055><U0053>"
-+% 5
-+country_isbn "<U0035>"
++country_car  "RUS"
++country_isbn "5"
 +% Erzanj kielj
-+lang_name    "<U0045><U0072><U007A><U00E4><U006E><U006A><U0020><U006B><U0069><U0065><U006C><U006A>"
-+% myv
-+lang_term    "<U006D><U0079><U0076>"
-+% myv
-+lang_lib     "<U006D><U0079><U0076>"
++lang_name    "Erz<U00E4>nj kielj"
++lang_term    "myv"
++lang_lib     "myv"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
-+% +7 555 5555555 +%c contry code %a area code %l local number 
-+tel_int_fmt "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025><U006C>"
-+% 0~10
-+int_select  "<U0030><U007E><U0031><U0030>"
-+% 7
-+int_prefix  "<U0037>"
++copy "ru_RU"
 +END LC_TELEPHONE
 --- glibc-2.15/localedata/locales/myv_RU@cyrillic.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.15/localedata/locales/myv_RU@cyrillic	2012-01-04 18:13:38.398766907 +0100
-@@ -0,0 +1,146 @@
+@@ -0,0 +1,133 @@
 +comment_char %
 +escape_char /
 +% Charset: Cyrillic
@@ -2216,18 +2110,18 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +     "<U0441><U0443><U043D><U044C><U0434><U0435><U0440><U044C><U043A><U043E><U0432>";/
 +     "<U0430><U0446><U0430><U043C><U043A><U043E><U0432>"
 +% як., дав., эйз., чад., пан., аш., мед., ума., таш., ож., сун., ац.
-+abmon         "<U044F><U043A><U002E>";/
-+       "<U0434><U0430><U0432><U002E>";/
-+       "<U044D><U0439><U0437><U002E>";/
-+       "<U0447><U0430><U0434><U002E>";/
-+       "<U043F><U0430><U043D><U002E>";/
-+       "<U0430><U0448><U002E>";/
-+       "<U043C><U0435><U0434><U002E>";/
-+       "<U0443><U043C><U0430><U002E>";/
-+       "<U0442><U0430><U0448><U002E>";/
-+       "<U043E><U0436><U002E>";/
-+       "<U0441><U0443><U043D><U002E>";/
-+       "<U0430><U0446><U002E>"
++abmon         "<U044F><U043A>.";/
++       "<U0434><U0430><U0432>.";/
++       "<U044D><U0439><U0437>.";/
++       "<U0447><U0430><U0434>.";/
++       "<U043F><U0430><U043D>.";/
++       "<U0430><U0448>.";/
++       "<U043C><U0435><U0434>.";/
++       "<U0443><U043C><U0430>.";/
++       "<U0442><U0430><U0448>.";/
++       "<U043E><U0436>.";/
++       "<U0441><U0443><U043D>.";/
++       "<U0430><U0446>."
 +% недлячи, атянчи, вастанчи, кункшканчи, каланчи, сюканчи, шлямочи 
 +day           "<U043D><U0435><U0434><U043B><U044F><U0447><U0438>";/
 +     "<U0430><U0442><U044F><U043D><U0447><U0438>";/
@@ -2237,19 +2131,16 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +     "<U0441><U044E><U043A><U0430><U043D><U0447><U0438>";/
 +     "<U0448><U043B><U044F><U043C><U043E><U0447><U0438><U0020>"
 +% нед., ат., вас., кун., кал., сюк., шл.
-+abday         "<U043D><U0435><U0434><U002E>";/
-+       "<U0430><U0442><U002E>";/
-+       "<U0432><U0430><U0441><U002E>";/
-+       "<U043A><U0443><U043D><U002E>";/
-+       "<U043A><U0430><U043B><U002E>";/
-+       "<U0441><U044E><U043A><U002E>";/
-+       "<U0448><U043B><U002E>"
-+% %a %d %b %Y %T %Z
-+d_t_fmt       "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+% %d.%m.%Y
-+d_fmt         "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059>"
-+% %T
-+t_fmt         "<U0025><U0054>"
++abday         "<U043D><U0435><U0434>.";/
++       "<U0430><U0442>.";/
++       "<U0432><U0430><U0441>.";/
++       "<U043A><U0443><U043D>.";/
++       "<U043A><U0430><U043B>.";/
++       "<U0441><U044E><U043A>.";/
++       "<U0448><U043B>."
++d_t_fmt       "%a %d %b %Y %T %Z"
++d_fmt         "%d.%m.%Y"
++t_fmt         "%T"
 +am_pm		"";""
 +END LC_TIME
 +
@@ -2271,10 +2162,10 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 +
 +LC_MESSAGES
-+% ^[ИиYy].*
-+yesexpr "<U005E><U005B><U0418><U0438><U0059><U0079><U005D><U002E><U002A>"
-+% ^[АаNn].*
-+noexpr  "<U005E><U005B><U0410><U0430><U004E><U006E><U005D><U002E><U002A>"
++% ^[ИиYy]
++yesexpr "^[<U0418><U0438>Yy]"
++% ^[АаNn]
++noexpr  "^[<U0410><U0430>Nn]"
 +END LC_MESSAGES
 +
 +LC_NAME
@@ -2282,30 +2173,20 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+country_post ""
-+% RU
-+country_ab2  "<U0052><U0055>"
-+% RUS
-+country_ab3  "<U0052><U0055><U0053>"
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++%country_post ""
++country_ab2  "RU"
++country_ab3  "RUS"
 +country_num  643
 +% Россия Мастор
 +country_name "<U0420><U043E><U0441><U0441><U0438><U044F><U0020><U041C>/
 +<U0430><U0441><U0442><U043E><U0440>"
-+% RUS
-+country_car    "<U0052><U0055><U0053>"
-+% 5
-+country_isbn "<U0035>"
++country_car  "RUS"
++country_isbn "5"
 +% Эрзянь кель
 +lang_name    "<U042D><U0440><U0437><U044F><U043D><U044C><U0020><U043A><U0435><U043B><U044C>"
-+% myv
-+lang_term    "<U006D><U0079><U0076>"
-+% myv
-+lang_lib     "<U006D><U0079><U0076>"
++lang_term    "myv"
++lang_lib     "myv"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
@@ -2313,7 +2194,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_TELEPHONE
 --- glibc-2.17/localedata/locales/sr_ME@latin.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.17/localedata/locales/sr_ME@latin	2013-01-04 15:59:23.574814992 +0100
-@@ -0,0 +1,151 @@
+@@ -0,0 +1,135 @@
 +comment_char %
 +escape_char  /
 +%
@@ -2370,7 +2251,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_CTYPE
 +
 +LC_COLLATE
-+copy "sr_RS"
++copy "sr_RS@latin"
 +END LC_COLLATE
 +
 +LC_MONETARY
@@ -2378,51 +2259,39 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MONETARY
 +
 +LC_NUMERIC
-+copy "sr_RS"
++copy "sr_ME"
 +END LC_NUMERIC
 +
 +LC_TIME
-+abday   "<U006E><U0065><U0064>";"<U0070><U006F><U006E>";/
-+        "<U0075><U0074><U006F>";"<U0073><U0072><U0069>";/
-+        "<U010D><U0065><U0074>";"<U0070><U0065><U0074>";/
-+        "<U0073><U0075><U0062>"
-+day     "<U006E><U0065><U0064><U006A><U0065><U006C><U006A><U0061>";/
-+        "<U0070><U006F><U006E><U0065><U0064><U0065><U006C><U006A><U0061><U006B>";/
-+        "<U0075><U0074><U006F><U0072><U0061><U006B>";/
-+	"<U0073><U0072><U0069><U006A><U0065><U0064><U0061>";/
-+        "<U010D><U0065><U0074><U0076><U0072><U0074><U0061><U006B>";/
-+        "<U0070><U0065><U0074><U0061><U006B>";/
-+        "<U0073><U0075><U0062><U006F><U0074><U0061>"
-+abmon   "<U006A><U0061><U006E>";"<U0066><U0065><U0062>";/
-+        "<U006D><U0061><U0072>";"<U0061><U0070><U0072>";/
-+        "<U006D><U0061><U006A>";"<U006A><U0075><U006E>";/
-+        "<U006A><U0075><U006C>";"<U0061><U0076><U0067>";/
-+        "<U0073><U0065><U0070>";"<U006F><U006B><U0074>";/
-+        "<U006E><U006F><U0076>";"<U0064><U0065><U0063>"
-+mon     "<U006A><U0061><U006E><U0075><U0061><U0072>";/
-+        "<U0066><U0065><U0062><U0072><U0075><U0061><U0072>";/
-+        "<U006D><U0061><U0072><U0074>";/
-+        "<U0061><U0070><U0072><U0069><U006C>";/
-+        "<U006D><U0061><U006A>";/
-+        "<U006A><U0075><U006E>";/
-+        "<U006A><U0075><U006C>";/
-+        "<U0061><U0076><U0067><U0075><U0073><U0074>";/
-+        "<U0073><U0065><U0070><U0074><U0065><U006D><U0062><U0061><U0072>";/
-+        "<U006F><U006B><U0074><U006F><U0062><U0061><U0072>";/
-+        "<U006E><U006F><U0076><U0065><U006D><U0062><U0061><U0072>";/
-+        "<U0064><U0065><U0063><U0065><U006D><U0062><U0061><U0072>"
++abday   "ned";"pon";"uto";"sri";"<U010D>et";"pet";"sub"
++day     "nedjelja";/
++        "ponedeljak";/
++        "utorak";/
++	 "srijeda";/
++        "<U010D>etvrtak";/
++        "petak";/
++        "subota"
++abmon   "jan";"feb";"mar";"apr";"maj";"jun";"jul";"avg";"sep";"okt";"nov";"dec"
++mon     "januar";/
++        "februar";/
++        "mart";/
++        "april";/
++        "maj";/
++        "jun";/
++        "jul";/
++        "avgust";/
++        "septembar";/
++        "oktobar";/
++        "novembar";/
++        "decembar"
 +
-+d_t_fmt "<U0025><U0041><U002C><U0020><U0025><U0064><U002E><U0020>/
-+<U0025><U0042><U0020><U0025><U0059><U002E><U0020><U0025><U0054>/
-+<U0020><U0025><U005A>"
-+d_fmt   "<U0025><U0064><U002E><U0025><U006D><U002E><U0025><U0059><U002E>"
-+t_fmt   "<U0025><U0054>"
-+am_pm   "";""
-+t_fmt_ampm "<U0025><U0054>"
-+date_fmt  "<U0025><U0061><U002C><U0020><U0025><U0065><U002E><U0020>/
-+<U0025><U0062><U0020><U0025><U0059><U002E><U0020><U0020><U0025><U0048>/
-+<U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U005A><U000A>"
-+week    7;19971130;4
++d_t_fmt       "%A, %d, %B %Y. %T %Z"
++d_fmt         "%d.%m.%Y."
++t_fmt         "%T"
++am_pm         "";""
++t_fmt_ampm    "%T"
++date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
++week          7;19971130;4
 +first_weekday 2
 +first_workday 2
 +END LC_TIME
@@ -2432,7 +2301,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MESSAGES
 +
 +LC_PAPER
-+copy "sr_RS"
++copy "sr_ME"
 +END LC_PAPER
 +
 +LC_NAME
@@ -2440,22 +2309,18 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+country_ab2   "<U004D><U0045>"
-+country_ab3   "<U004D><U004E><U0045>"
-+country_post  "<U004D><U004E><U0045>"
-+country_name  "<U0043><U0072><U006E><U0061><U0020><U0047><U006F><U0072><U0061>"
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++country_ab2   "ME"
++country_ab3   "MNE"
++country_post  "MNE"
++country_name  "Crna Gora"
 +country_num   499
-+country_car   "<U004D><U004E><U0045>"
-+country_isbn  "<U0039><U0039><U0034><U0030>"
-+lang_name     "<U0073><U0072><U0070><U0073><U006B><U0069>"
-+lang_term     "<U0073><U0072><U0070>"
-+lang_lib      "<U0073><U0063><U0063>"
-+lang_ab	      "<U0073><U0072>"
++country_car   "MNE"
++country_isbn  "9940"
++lang_name     "srpski"
++lang_ab       "sr"
++lang_term     "srp"
++lang_lib      "srp"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
@@ -2463,11 +2328,11 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_TELEPHONE
 +
 +LC_MEASUREMENT
-+copy "sr_RS"
++copy "sr_ME"
 +END LC_MEASUREMENT
 --- glibc-2.17/localedata/locales/sr_BA@ijekavian.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.17/localedata/locales/sr_BA@ijekavian	2013-01-04 16:00:04.688147468 +0100
-@@ -0,0 +1,130 @@
+@@ -0,0 +1,155 @@
 +comment_char %
 +escape_char  /
 +% Serbian Language locale for Ijekavian Serbian in Bosnia and herzegovina
@@ -2547,18 +2412,43 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NUMERIC
 +
 +LC_TIME
-+abday   "<U043D><U0435><U0434>";"<U043F><U043E><U043D>";"<U0443><U0442><U043E>";"<U0441><U0440><U0438>";"<U0447><U0435><U0442>";"<U043F><U0435><U0442>";"<U0441><U0443><U0431>"
-+day     "<U043D><U0435><U0434><U0458><U0435><U0459><U0430>";"<U043F><U043E><U043D><U0435><U0434><U0435><U0459><U0430><U043A>";"<U0443><U0442><U043E><U0440><U0430><U043A>";"<U0441><U0440><U0438><U0458><U0435><U0434><U0430>";"<U0447><U0435><U0442><U0432><U0440><U0442><U0430><U043A>";"<U043F><U0435><U0442><U0430><U043A>";"<U0441><U0443><U0431><U043E><U0442><U0430>"
-+abmon   "<U0458><U0430><U043D>";"<U0444><U0435><U0431>";"<U043C><U0430><U0440>";"<U0430><U043F><U0440>";"<U043C><U0430><U0458>";"<U0458><U0443><U043D>";"<U0458><U0443><U043B>";"<U0430><U0432><U0433>";"<U0441><U0435><U043F>";"<U043E><U043A><U0442>";"<U043D><U043E><U0432>";"<U0434><U0435><U0446>"
-+mon     "<U0458><U0430><U043D><U0443><U0430><U0440>";"<U0444><U0435><U0431><U0440><U0443><U0430><U0440>";"<U043C><U0430><U0440><U0442>";"<U0430><U043F><U0440><U0438><U043B>";"<U043C><U0430><U0458>";"<U0458><U0443><U043D>";"<U0458><U0443><U043B>";"<U0430><U0432><U0433><U0443><U0441><U0442>";"<U0441><U0435><U043F><U0442><U0435><U043C><U0431><U0430><U0440>";"<U043E><U043A><U0442><U043E><U0431><U0430><U0440>";"<U043D><U043E><U0432><U0435><U043C><U0431><U0430><U0440>";"<U0434><U0435><U0446><U0435><U043C><U0431><U0430><U0440>"
++abday   "<U043D><U0435><U0434>";"<U043F><U043E><U043D>";/
++        "<U0443><U0442><U043E>";"<U0441><U0440><U0438>";/
++        "<U0447><U0435><U0442>";"<U043F><U0435><U0442>";/
++        "<U0441><U0443><U0431>"
++day     "<U043D><U0435><U0434><U0458><U0435><U0459><U0430>";/
++        "<U043F><U043E><U043D><U0435><U0434><U0435><U0459><U0430><U043A>";/
++        "<U0443><U0442><U043E><U0440><U0430><U043A>";/
++        "<U0441><U0440><U0438><U0458><U0435><U0434><U0430>";/
++        "<U0447><U0435><U0442><U0432><U0440><U0442><U0430><U043A>";/
++        "<U043F><U0435><U0442><U0430><U043A>";/
++        "<U0441><U0443><U0431><U043E><U0442><U0430>"
++abmon   "<U0458><U0430><U043D>";"<U0444><U0435><U0431>";/
++        "<U043C><U0430><U0440>";"<U0430><U043F><U0440>";/
++        "<U043C><U0430><U0458>";"<U0458><U0443><U043D>";/
++        "<U0458><U0443><U043B>";"<U0430><U0432><U0433>";/
++        "<U0441><U0435><U043F>";"<U043E><U043A><U0442>";/
++        "<U043D><U043E><U0432>";"<U0434><U0435><U0446>"
++mon     "<U0458><U0430><U043D><U0443><U0430><U0440>";/
++        "<U0444><U0435><U0431><U0440><U0443><U0430><U0440>";/
++        "<U043C><U0430><U0440><U0442>";/
++        "<U0430><U043F><U0440><U0438><U043B>";/
++        "<U043C><U0430><U0458>";/
++        "<U0458><U0443><U043D>";/
++        "<U0458><U0443><U043B>";/
++        "<U0430><U0432><U0433><U0443><U0441><U0442>";/
++        "<U0441><U0435><U043F><U0442><U0435><U043C><U0431><U0430><U0440>";/
++        "<U043E><U043A><U0442><U043E><U0431><U0430><U0440>";/
++        "<U043D><U043E><U0432><U0435><U043C><U0431><U0430><U0440>";/
++        "<U0434><U0435><U0446><U0435><U043C><U0431><U0430><U0440>"
 +
-+d_t_fmt "%A, %d. %B %Y. %T %Z"
-+d_fmt   "%d.%m.%Y."
-+t_fmt   "%T"
-+am_pm   "";""
-+t_fmt_ampm "%T"
-+date_fmt  "%a, %e. %b %Y.  %H:%M:%S %Z"
-+week    7;19971130;4
++d_t_fmt       "%A, %d. %B %Y. %T %Z"
++d_fmt         "%d.%m.%Y."
++t_fmt         "%T"
++am_pm         "";""
++t_fmt_ampm    "%T"
++date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
++week          7;19971130;4
 +first_weekday 2
 +first_workday 2
 +END LC_TIME
@@ -2685,13 +2575,13 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +abmon   "jan";"feb";"mar";"apr";"maj";"jun";"jul";"avg";"sep";"okt";"nov";"dec"
 +mon     "januar";"februar";"mart";"april";"maj";"jun";"jul";"avgust";"septembar";"oktobar";"novembar";"decembar"
 +
-+d_t_fmt "%A, %d. %B %Y. %T %Z"
-+d_fmt   "%d.%m.%Y."
-+t_fmt   "%T"
-+am_pm   "";""
-+t_fmt_ampm "%T"
-+date_fmt  "%a, %e. %b %Y.  %H:%M:%S %Z"
-+week    7;19971130;4
++d_t_fmt       "%A, %d. %B %Y. %T %Z"
++d_fmt         "%d.%m.%Y."
++t_fmt         "%T"
++am_pm         "";""
++t_fmt_ampm    "%T"
++date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
++week          7;19971130;4
 +first_weekday 2
 +first_workday 2
 +END LC_TIME
@@ -2733,7 +2623,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 --- glibc-2.17/localedata/locales/ay_PE.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.17/localedata/locales/ay_PE	2013-01-04 19:55:56.207852505 +0100
-@@ -0,0 +1,117 @@
+@@ -0,0 +1,97 @@
 +comment_char %
 +escape_char /
 +% Charset: UTF-8
@@ -2775,21 +2665,16 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +
 +LC_TIME
 +% inïru;phiwriru;marsu;awrila;mayu;junyu;julyu;awustu;sitimri;uktuwri;nuwimri;risimri
-+mon           "<U0069><U006E><U00EF><U0072><U0075>";"<U0070><U0068><U0069><U0077><U0072><U0069><U0072><U0075>";"<U006D><U0061><U0072><U0073><U0075>";"<U0061><U0077><U0072><U0069><U006C><U0061>";"<U006D><U0061><U0079><U0075>";"<U006A><U0075><U006E><U0079><U0075>";"<U006A><U0075><U006C><U0079><U0075>";"<U0061><U0077><U0075><U0073><U0074><U0075>";"<U0073><U0069><U0074><U0069><U006D><U0072><U0069>";"<U0075><U006B><U0074><U0075><U0077><U0072><U0069>";"<U006E><U0075><U0077><U0069><U006D><U0072><U0069>";"<U0072><U0069><U0073><U0069><U006D><U0072><U0069>"
-+% ini;phi;mar;awr;may;jun;jul;awu;sit;ukt;nuw;ris
-+abmon         "<U0069><U006E><U0069>";"<U0070><U0068><U0069>";"<U006D><U0061><U0072>";"<U0061><U0077><U0072>";"<U006D><U0061><U0079>";"<U006A><U0075><U006E>";"<U006A><U0075><U006C>";"<U0061><U0077><U0075>";"<U0073><U0069><U0074>";"<U0075><U006B><U0074>";"<U006E><U0075><U0077>";"<U0072><U0069><U0073>"
++mon           "in<U00EF>ru";"phiwriru";"marsu";"awrila";"mayu";"junyu";"julyu";"awustu";"sitimri";"uktuwri";"nuwimri";"risimri"
++abmon         "ini";"phi";"mar";"awr";"may";"jun";"jul";"awu";"sit";"ukt";"nuw";"ris"
 +% tuminku;lunisa;martisa;mirkulisa;juywisa;wirnisa;sawäru
-+day           "<U0074><U0075><U006D><U0069><U006E><U006B><U0075>";"<U006C><U0075><U006E><U0069><U0073><U0061>";"<U006D><U0061><U0072><U0074><U0069><U0073><U0061>";"<U006D><U0069><U0072><U006B><U0075><U006C><U0069><U0073><U0061>";"<U006A><U0075><U0079><U0077><U0069><U0073><U0061>";"<U0077><U0069><U0072><U006E><U0069><U0073><U0061>";"<U0073><U0061><U0077><U00E4><U0072><U0075>"
-+% tum;lun;mar;mir;juy;wir;saw
-+abday         "<U0074><U0075><U006D>";"<U006C><U0075><U006E>";"<U006D><U0061><U0072>";"<U006D><U0069><U0072>";"<U006A><U0075><U0079>";"<U0077><U0069><U0072>";"<U0073><U0061><U0077>"
++day           "tuminku";"lunisa";"martisa";"mirkulisa";"juywisa";"wirnisa";"saw<U00E4>ru"
++abday         "tum";"lun";"mar";"mir";"juy";"wir";"saw"
 +% FIXME if wrong
 +am_pm         "";""
-+% "%a %d %b %Y %T %Z"
-+d_t_fmt       "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
-+% "%d/%m/%Y"
-+d_fmt         "<U0025><U0064><U002F><U0025><U006D><U002F><U0025><U0079>"
-+% "%T"
-+t_fmt       "<U0025><U0054>"
++d_t_fmt       "%a %d %b %Y %T %Z"
++d_fmt         "%d/%m/%Y"
++t_fmt         "%T"
 +END LC_TIME
 +
 +LC_NUMERIC
@@ -2809,14 +2694,10 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_MEASUREMENT
 +
 +LC_MESSAGES
-+% ^[uUsSyY].*
-+yesexpr "<U005E><U005B><U0075><U0055><U0073><U0053><U0079><U0059><U005D><U002E><U002A>"
-+% ^[jJnN].*
-+noexpr  "<U005E><U005B><U006A><U004A><U006E><U004E><U005D><U002E><U002A>"
-+% Ukhamawa
-+yesstr  "<U0055><U006B><U0068><U0061><U006D><U0061><U0077><U0061>"
-+% Janiwa
-+nostr   "<U004A><U0061><U006E><U0069><U0077><U0061>"
++yesexpr "^[uUsSyY]"
++noexpr  "^[jJnN]"
++yesstr  "Ukhamawa"
++nostr   "Janiwa"
 +END LC_MESSAGES
 +
 +LC_NAME
@@ -2824,28 +2705,17 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073>/
-+<U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U007A><U0020><U0025><U0054><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
-+country_ab2   "<U0050><U0045>"
-+country_ab3   "<U0050><U0045><U0052>"
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
++country_ab2   "PE"
++country_ab3   "PER"
 +country_num   604
-+% Piruw
-+country_name  "<U0050><U0069><U0072><U0075><U0077>"
-+% PE
-+country_car   "<U0050><U0045>"
-+% 612,9972
-+country_isbn "<U0036><U0031><U0032><U002C><U0039><U0039><U0037><U0032>"
-+% Aymar aru
-+lang_name    "<U0041><U0079><U006D><U0061><U0072><U0020><U0061><U0072><U0075>"
-+% ay
-+lang_ab      "<U0061><U0079>"
-+% aym
-+lang_term    "<U0061><U0079><U006D>"
-+% aym
-+lang_lib     "<U0061><U0079><U006D>"
++country_name  "Piruw"
++country_car   "PE"
++country_isbn  "612,9972"
++lang_name     "Aymar aru"
++lang_ab       "ay"
++lang_term     "aym"
++lang_lib      "aym"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
@@ -2853,7 +2723,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_TELEPHONE
 --- glibc-2.17/localedata/locales/sq_KV.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.17/localedata/locales/sq_KV	2013-01-04 19:58:07.801183096 +0100
-@@ -0,0 +1,123 @@
+@@ -0,0 +1,105 @@
 +% not ready to use, KV is not in ISO-3166 yet
 +comment_char %
 +escape_char /
@@ -2906,16 +2776,12 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +LC_MONETARY
 +% €
 +currency_symbol    "<U20AC>"
-+% EUR 
-+int_curr_symbol    "<U0045><U0055><U0052><U0020>"
-+% ,
-+mon_decimal_point  "<U002C>"
-+% .
-+mon_thousands_sep  "<U002E>"
++int_curr_symbol    "EUR "
++mon_decimal_point  ","
++mon_thousands_sep  "."
 +mon_grouping       "3;3"
 +positive_sign      ""
-+% -
-+negative_sign      "<U002D>"
++negative_sign      "-"
 +frac_digits        2
 +int_frac_digits    2
 +p_cs_precedes      0
@@ -2943,43 +2809,29 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +END LC_NAME
 +
 +LC_ADDRESS
-+% %f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N
-+postal_fmt   "<U0025><U0066><U0025><U004E><U0025><U0061><U0025><U004E><U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0073><U0020><U0025><U0068><U0020><U0025><U0065><U0020><U0025><U0072><U0025><U004E><U0025><U007A><U0020><U0025><U0054><U0025><U004E><U0025><U0063><U0025><U004E>"
-+% Kosovo
-+country_name "<U004B><U006F><U0073><U006F><U0076><U006F>"
-+% RKS
-+country_post "<U0052><U004B><U0053>"
-+% KV
-+country_ab2  "<U004B><U0056>"
-+% RKS
-+country_ab3  "<U0052><U004B><U0053>"
-+country_num  0
-+% RKS
-+country_car  "<U0052><U004B><U0053>"
-+country_isbn 9951
-+% Shqip
-+lang_name    "<U0053><U0068><U0071><U0069><U0070>"
-+% sq
-+lang_ab      "<U0073><U0071>"
-+% sqi
-+lang_term    "<U0073><U0071><U0069>"
-+% sqi
-+lang_lib     "<U0073><U0071><U0069>"
++postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++country_name "Kosovo"
++country_post "RKS"
++country_ab2  "KV"  % FIXME when assigned; use "XK" for now?
++country_ab3  "RKS" % FIXME when assigned; "UNK" used in travel documents issued by United Nations Interim Administration in Kosovo
++country_num  0     % FIXME when assigned
++country_car  "RKS"
++country_isbn "9951"
++lang_name    "Shqip"
++lang_ab      "sq"
++lang_term    "sqi"
++lang_lib     "sqi"
 +END LC_ADDRESS
 +
 +LC_TELEPHONE
-+% +%c %a %l
-+tel_int_fmt "<U002B><U0025><U0063><U0020><U0025><U0061><U0020><U0025><U006C>"
-+% %A %l
-+tel_dom_fmt "<U0025><U0041><U0020><U0025><U006C>"
-+% 99
-+int_select  "<U0039><U0039>"
-+% 381
-+int_prefix  "<U0033><U0038><U0031>"
++tel_int_fmt "+%c %a %l"
++tel_dom_fmt "%A %l"
++int_select  "99"
++int_prefix  "381"
 +END LC_TELEPHONE
 --- glibc-2.19/localedata/locales/sd_PK.orig	1970-01-01 01:00:00.000000000 +0100
 +++ glibc-2.19/localedata/locales/sd_PK	2015-01-09 21:19:09.722522624 +0100
-@@ -0,0 +1,227 @@
+@@ -0,0 +1,218 @@
 +comment_char    %
 +escape_char     /
 +% Sindhi language locale for Pakistan.
@@ -3037,13 +2889,13 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +% These are generated based on XML base Locale defintion file
 +% for IBM Class for Unicode.
 +%
-+int_curr_symbol       "<U0050><U004B><U0052><U0020>"
++int_curr_symbol       "PKR "
 +currency_symbol       "<U20A8>"
-+mon_decimal_point     "<U002E>"
-+mon_thousands_sep     "<U002C>"
++mon_decimal_point     "."
++mon_thousands_sep     ","
 +mon_grouping          3;2
 +positive_sign         ""
-+negative_sign         "<U002D>"
++negative_sign         "-"
 +int_frac_digits       2
 +frac_digits           2
 +p_cs_precedes         1
@@ -3057,8 +2909,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +
 +
 +LC_NUMERIC
-+decimal_point "<U002E>"
-+thousands_sep "<U002C>"
++decimal_point "."
++thousands_sep ","
 +grouping 3;2
 +END LC_NUMERIC
 +
@@ -3140,8 +2992,8 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +
 +
 +LC_MESSAGES
-+yesexpr "<U005E><U005B><U0079><U0059><U0647><U005D>"
-+noexpr  "<U005E><U005B><U006E><U004E><U0646><U005D>"
++yesexpr "^[yY<U0647>]"
++noexpr  "^[nN<U0646>]"
 +yesstr  "<U0647><U0627>"
 +nostr   "<U0646><U0647>"
 +END LC_MESSAGES
@@ -3156,7 +3008,7 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +% generated by IBM Basic CountryPack Transformer.
 +%
 +%
-+name_fmt "<U0025><U0070><U0025><U0074><U0025><U0066><U0025><U0074><U0025><U0067>"
++name_fmt    "%p%t%f%t%g"
 +name_gen    ""
 +name_mr     "<U0633><U0627><U0626><U064A><U0646>"
 +name_mrs    "<U0633><U0627><U0646><U0626><U06BB>"
@@ -3169,36 +3021,27 @@ diff -urN glibc-2.6.org/localedata/locales/sw_UG glibc-2.6/localedata/locales/sw
 +LC_ADDRESS
 +% This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category
 +% generated by IBM Basic CountryPack Transformer.
-+postal_fmt    "<U0025><U0061><U0025><U004E><U0025><U0066><U0025><U004E>/
-+<U0025><U0064><U0025><U004E><U0025><U0062><U0025><U004E><U0025><U0068>/
-+<U0020><U0025><U0073><U0020><U0025><U0065><U0020><U0025><U0072><U0025>/
-+<U004E><U0025><U0054><U0020><U0025><U007A><U0025>/
-+<U004E><U0025><U0063><U0025><U004E>"
++postal_fmt    "%a%N%f%N%d%N%b%N%h %s %e %r%N%T %z%N%c%N"
 +
 +country_ab2 "<U0050><U004B>"
 +country_ab3 "<U0050><U0041><U004B>"
 +country_num 586
 +% پاڪستان
 +country_name "<U067E><U0627><U06AA><U0633><U062A><U0627><U0646>"
-+% PK
-+country_car    "<U0050><U004B>"
-+% 969
-+country_isbn "<U0039><U0036><U0039>"
++country_car  "PK"
++country_isbn "969"
 +% سنڌي
 +lang_name    "<U0633><U0646><U068C><U064A>"
-+% sd
-+lang_ab      "<U0073><U0064>"
-+% snd
-+lang_term    "<U0073><U006E><U0064>"
-+% snd
-+lang_lib    "<U0073><U006E><U0064>"
++lang_ab      "sd"
++lang_term    "snd"
++lang_lib     "snd"
 +END LC_ADDRESS
 +
 +
 +LC_TELEPHONE
-+tel_int_fmt "<U002B><U0025><U0063><U0020><U003B><U0025><U0061><U0020><U003B><U0025><U006C>"
-+int_prefix "<U0039><U0032>"
-+int_select "<U0030><U0030>"
++tel_int_fmt "+%c ;%a ;%l"
++int_prefix  "92"
++int_select  "00"
 +END LC_TELEPHONE
 +
 +
