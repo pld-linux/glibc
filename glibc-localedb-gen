@@ -66,6 +66,7 @@ else
 	DESTDIROPT="--prefix ${DESTDIR}"
 fi
 
+rc=0
 for loc in ${SUPPORTED_LOCALES} ; do
 	if echo ${loc} | grep -q / ; then
 		chset="`echo ${loc} | sed -e 's@^.*/@@'`"
@@ -85,7 +86,9 @@ for loc in ${SUPPORTED_LOCALES} ; do
 	else
 		localedef -f ${chset} -i ${iloc} ${loc} ${DESTDIROPT}
 	fi
+	rc=$(($rc + $?))
 	echo
 done
 
 echo "DONE."
+exit $rc
