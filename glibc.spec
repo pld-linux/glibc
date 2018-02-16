@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -976,6 +976,7 @@ exit 1
 
 %patch27 -p1
 
+%patch28 -p1
 %patch29 -p1
 %patch30 -p1
 
