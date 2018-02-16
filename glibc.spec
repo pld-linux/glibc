@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -85,7 +85,7 @@ Patch23:	%{name}-pt_pax.patch
 
 # http://pkgs.fedoraproject.org/cgit/rpms/glibc.git/plain/glibc-c-utf8-locale.patch
 Patch27:	%{name}-c-utf8-locale.patch
-
+Patch28:	localedata-missing-reorder-end.patch
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
 URL:		http://www.gnu.org/software/libc/
