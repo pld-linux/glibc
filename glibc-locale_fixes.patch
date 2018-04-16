@@ -532,18 +532,18 @@
  END LC_PAPER
  
  LC_TELEPHONE
--tel_int_fmt    "+%c %a %l"
--int_prefix     "34"
--int_select     "00"
+-tel_int_fmt  "+%c %a %l"
+-int_prefix   "34"
+-int_select   "00"
 +copy "es_ES"
  END LC_TELEPHONE
  
  LC_MEASUREMENT
 @@ -165,7 +163,8 @@
- country_ab2 "ES"
- country_ab3 "ESP"
- country_num 724
--country_car    "E"
+ country_ab2  "ES"
+ country_ab3  "ESP"
+ country_num  724
+-country_car  "E"
 +country_car  "E"
 +country_isbn "84"
  % catalÃ 
@@ -1995,7 +1995,7 @@
  country_num   533
 -country_car "AUA"
 +country_car   "AUA"
-+% Curaçao agency, https://www.isbn-international.org/agencies
++% Cura?ao agency, https://www.isbn-international.org/agencies
 +country_isbn  "99904"
  lang_name    "Nederlands"
  lang_ab "nl"

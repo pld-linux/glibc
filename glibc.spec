@@ -58,7 +58,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	3860cde3c9be5de4e159bda0955149ba
+# Patch0-md5:	f33654af4f496289f6a6cc79a7fb5d6d
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -85,7 +85,7 @@ Patch23:	%{name}-pt_pax.patch
 
 # http://pkgs.fedoraproject.org/cgit/rpms/glibc.git/plain/glibc-c-utf8-locale.patch
 Patch27:	%{name}-c-utf8-locale.patch
-Patch28:	localedata-missing-reorder-end.patch
+
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
 URL:		http://www.gnu.org/software/libc/
@@ -976,7 +976,6 @@ exit 1
 
 %patch27 -p1
 
-%patch28 -p1
 %patch29 -p1
 %patch30 -p1
 
