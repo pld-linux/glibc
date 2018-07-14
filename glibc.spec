@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	11
+Release:	12
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -66,7 +66,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
-
+Patch7:		%{name}-tzset-default.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-nss_include_dirs.patch
 Patch10:	%{name}-info.patch
@@ -958,7 +958,7 @@ exit 1
 %{!?with_bash_nls:%patch4 -p1}
 %patch5 -p1
 %patch6 -p1
-
+%patch7 -p1
 %patch8 -p1
 %patch9 -p1
 
