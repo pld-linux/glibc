@@ -66,6 +66,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
 Patch5:		%{name}-sparc-softfp-gcc.patch
 Patch6:		%{name}-paths.patch
+# https://sourceware.org/bugzilla/show_bug.cgi?id=23414
 Patch7:		%{name}-tzset-default.patch
 Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-nss_include_dirs.patch
