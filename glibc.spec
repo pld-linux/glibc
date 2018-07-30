@@ -41,7 +41,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	15
+Release:	16
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -72,6 +72,7 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-nss_include_dirs.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
+Patch12:	glibc-nis-build.patch
 
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
@@ -965,6 +966,7 @@ exit 1
 
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 %patch14 -p0
 %patch15 -p1
