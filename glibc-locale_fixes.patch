@@ -71,20 +71,6 @@
  lang_name     "<U12A0><U121B><U122D><U129B>"
  lang_ab      "am"
  lang_term    "amh"
---- glibc-2.27/localedata/locales/an_ES.orig	2018-02-02 19:23:27.279323076 +0100
-+++ glibc-2.27/localedata/locales/an_ES	2018-02-04 12:05:26.590983420 +0100
-@@ -136,9 +136,10 @@
- country_ab2   "ES"
- country_ab3   "ESP"
- country_num   724
-+country_car   "E"
-+country_isbn  "84"
- lang_ab       "an"
- lang_term     "arg"
- lang_lib      "arg"
--country_car   "E"
- lang_name    "aragon<U00E9>s"
- END LC_ADDRESS
 --- glibc-2.27/localedata/locales/anp_IN.orig	2018-02-02 19:23:27.282656408 +0100
 +++ glibc-2.27/localedata/locales/anp_IN	2018-02-02 21:40:03.205896158 +0100
 @@ -175,6 +175,7 @@
@@ -3169,17 +3155,4 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
  order_start <HAN>;forward;forward;forward;forward,position
  <U4E00> <U4E00>;IGNORE;IGNORE;IGNORE
  .. ..;IGNORE;IGNORE;IGNORE
---- glibc-2.6/localedata/locales/iso14651_t1_pinyin.orig	2007-04-28 08:49:17.000000000 +0200
-+++ glibc-2.6/localedata/locales/iso14651_t1_pinyin	2007-05-20 17:28:31.456370501 +0200
-@@ -1,9 +1,9 @@
- LC_COLLATE
- 
--copy "iso14651_t1_common"
--
- script <HAN>
- 
-+copy "iso14651_t1_common"
-+
- order_start <HAN>;forward;forward;forward;forward,position
- <U5416> <U5416>;IGNORE;IGNORE;IGNORE	#吖104
- <U814C> <U814C>;IGNORE;IGNORE;IGNORE	#腌185
+

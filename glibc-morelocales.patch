@@ -3207,13 +3207,14 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -419,12 +419,16 @@ ru_RU.UTF-8/UTF-8 \
+@@ -420,13 +420,17 @@ ru_RU.UTF-8/UTF-8 \
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
 +rw_RW.ISO-8859-1/ISO-8859-1 \
  rw_RW/UTF-8 \
  sa_IN/UTF-8 \
+ sah_RU/UTF-8 \
  sat_IN/UTF-8 \
 +sc_IT.ISO-8859-1/ISO-8859-1 \
 +sc_IT.ISO-8859-15/ISO-8859-15 \

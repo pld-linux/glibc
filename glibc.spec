@@ -27,7 +27,7 @@
 %undefine	with_memusage
 %endif
 
-%define		core_version	2.27
+%define		core_version	2.28
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -41,12 +41,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	16
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	898cd5656519ffbc3a03fe811dd89e82
+# Source0-md5:	c81d2388896379997bc359d4f2084239
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -57,14 +57,14 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
-Patch0:		glibc-git.patch
-# Patch0-md5:	6541f38f2bb26bb288bc298a240912ca
+#Patch0:		glibc-git.patch
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
-Patch5:		%{name}-sparc-softfp-gcc.patch
+
 Patch6:		%{name}-paths.patch
 # https://sourceware.org/bugzilla/show_bug.cgi?id=23414
 Patch7:		%{name}-tzset-default.patch
@@ -72,7 +72,6 @@ Patch8:		%{name}-missing-nls.patch
 Patch9:		%{name}-nss_include_dirs.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
-Patch12:	glibc-nis-build.patch
 
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
@@ -98,7 +97,7 @@ BuildRequires:	binutils >= 2:2.29
 BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
-BuildRequires:	gcc >= 6:4.7
+BuildRequires:	gcc >= 6:8.0
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
@@ -125,6 +124,7 @@ Obsoletes:	glibc-debug
 Provides:	glibc64
 Obsoletes:	glibc64
 %endif
+Suggests:	libidn2 >= 2.0.5
 Suggests:	localedb
 Suggests:	tzdata
 Conflicts:	%{name}-misc < %{epoch}:%{version}-%{release}
@@ -953,12 +953,12 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-%patch0 -p1
+#%patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
 %{!?with_bash_nls:%patch4 -p1}
-%patch5 -p1
+
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
@@ -966,7 +966,6 @@ exit 1
 
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
 
 %patch14 -p0
 %patch15 -p1
@@ -1009,7 +1008,9 @@ PATH=$(pwd)/alt-tools:$PATH; export PATH
 
 AWK="gawk" \
 ../%configure \
-	--enable-add-ons=libidn \
+%ifarch %{x8664} i686 x32
+	--enable-cet \
+%endif
 	--enable-bind-now \
 	--enable-experimental-malloc \
 	--enable-hidden-plt \
@@ -1090,7 +1091,7 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl cidn crypt dl \
+for l in BrokenLocale anl crypt dl \
 %ifarch %{x8664} x32
 	mvec \
 %endif
@@ -1425,8 +1426,6 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libc.so.6
 %endif
-%attr(755,root,root) /%{_lib}/libcidn-%{core_version}.so
-%attr(755,root,root) /%{_lib}/libcidn.so.1
 %attr(755,root,root) /%{_lib}/libdl-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libdl.so.2.1
@@ -1824,7 +1823,6 @@ fi
 %attr(755,root,root) %{_libdir}/libBrokenLocale.so
 %attr(755,root,root) %{_libdir}/libanl.so
 %attr(755,root,root) %{_libdir}/libcrypt.so
-%attr(755,root,root) %{_libdir}/libcidn.so
 %attr(755,root,root) %{_libdir}/libdl.so
 %attr(755,root,root) %{_libdir}/libm.so
 %ifarch %{x8664} x32
@@ -1851,7 +1849,6 @@ fi
 %ifarch alpha ppc sparc
 %{_libdir}/libnldbl_nonshared.a
 %endif
-%{_libdir}/libpthread_nonshared.a
 %{_libdir}/librpcsvc.a
 %ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64
 # ABI-dependent headers
