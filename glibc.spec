@@ -88,6 +88,7 @@ Patch27:	%{name}-c-utf8-locale.patch
 
 Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
+# electron is broken but we have no way to fix it so for now lets break glibc again
 Patch31:	0001-Revert-elf-Correct-absolute-SHN_ABS-symbol-run-time-.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
