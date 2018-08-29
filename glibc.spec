@@ -16,6 +16,7 @@
 %bcond_with	cross		# make a cross build, skip native programs
 %bcond_without	nss_crypt	# disable crypt features based on Mozilla NSS library
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
+%bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
 #
 %ifarch %{ix86} %{x8664}
 %{!?min_kernel:%global		min_kernel	3.2.0}
@@ -25,6 +26,9 @@
 
 %ifarch sparc64
 %undefine	with_memusage
+%endif
+%ifnarch i686 %{x8664} x32
+%undefine	with_cet
 %endif
 
 %define		core_version	2.28
@@ -98,7 +102,11 @@ BuildRequires:	binutils >= 2:2.29
 BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk
+%if %{with cet}
 BuildRequires:	gcc >= 6:8.0
+%else
+BuildRequires:	gcc >= 6:4.7
+%endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
@@ -1010,7 +1018,7 @@ PATH=$(pwd)/alt-tools:$PATH; export PATH
 
 AWK="gawk" \
 ../%configure \
-%ifarch %{x8664} i686 x32
+%if %{with cet}
 	--enable-cet \
 %endif
 	--enable-bind-now \
