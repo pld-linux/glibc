@@ -333,23 +333,32 @@ Biblioteka glibc z funkcją crypt(3).
 
 %package ld
 Summary:	Dynamic linker
+Summary(pl.UTF-8):	Linker (konsolidator) dynamiczny
 Group:		Applications/System
 Requires:	uname(release) >= %{min_kernel}
+# we want FHS being installed before ldconfig, altho they are both unrelated to each-other.
+Requires:	FHS
+Provides:	rtld(GNU_HASH)
 # This is needed because previous package (glibc) had autoreq false and had
 # provided this manually. Probably poldek bug that have to have it here.
-Provides:	rtld(GNU_HASH)
 Provides:	/sbin/ldconfig
 Provides:	ldconfig = %{epoch}:%{version}-%{release}
 Obsoletes:	ldconfig < 6:2.28-6.1
-# we want FHS being installed before ldconfig, altho they are both unrelated to each-other.
-Requires:	FHS
 
 %description ld
-The dynamic linker is used to load shared libraries used by executables linked
-dynamically.
+The dynamic linker is used to load shared libraries used by
+executables linked dynamically.
 
-The package also contains the ldconfig tool used to maintain shared library
-cache for the linker.
+The package also contains the ldconfig tool used to maintain shared
+library cache for the linker.
+
+%description ld -l pl.UTF-8
+Linker (konsolidator) dynamiczny służy do ładowania bibliotek
+współdzielonych używanych przez programy wykonywalne konsolidowane
+dynamicznie.
+
+Pakiet zawiera także narzędzie ldconfig, służące do utrzymywania
+pamięci podręcznej bibliotek współdzielonych dla linkera.
 
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
@@ -1142,33 +1151,43 @@ done
 #   tlh - Klingon (bzflag)
 #
 # To be added when they become supported by glibc:
-#   ach    (vlc, libreport)
-#   aln    (vlc, libreport)
+#   ace    (iso-codes)
+#   ach    (iso-codes, libreport, vlc)
+#   aln    (libreport, vlc)
 #   bal    (libosinfo, libreport, newt, pessulus)
+#   bar    (iso-codes)
 #   cgg    (vlc)
+#   ch     (iso-codes)
 #   co     (FileZilla, vlc)
-#   frp    (xfce, lxlauncher, mate)
-#   gn     (gn_BR in gnome, maybe gn_PY)
+#   frp    (iso-codes, lxlauncher, mate, xfce)
+#   gn     (iso-codes, gnome; gn_BR in gnome, maybe gn_PY)
 #   guc    (gtk-vnc)
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
 #   ilo    (kudzu, libosinfo, libreport)
-#   io     (gtk+2, gnome, alacarte)
-#   jv     (gmpc, avant-window-navigator, kdesudo, mate)
-#   kab    (FileZilla)
+#   io     (alacarte, gtk+2, gnome, iso-codes)
+#   jam    (iso-codes)
+#   jv     (avant-window-navigator, gmpc, kdesudo, mate)
+#   kab    (FileZilla, iso-codes)
+#   ki     (iso-codes)
 #   kok@latin  (inkscape)
 #   kmr    (vlc)
 #   ku_IQ  (mate)
+#   kv     (iso-codes)
 #   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
 #   man    (ccsm; incorrectly named md)
 #   mni@beng[ali]  (inkscape)
+#   mo     (iso-codes)
 #   mus    (bluez-gnome)
-#   nah    (mate)
+#   na     (iso-codes)
+#   nah    (iso-codes, mate)
 #   nqo	   (mate)
+#   nv     (iso-codes)
+#   pi     (iso-codes)
 #   pms    (deluge, mate-tweak)
 #   sat@deva[nagari]  (inkscape)
-#   sco    (gnomad2, picard, stellarium, mate)
-#   son    (gtkspell3)
+#   sco    (gnomad2, mate, picard, stellarium)
+#   son    (gtkspell3, iso-codes)
 #   su     (terminator)
 #   swg    (sim)
 #   syr    (iso-codes)
@@ -1191,6 +1210,8 @@ done
 # bn=bn_BD
 # bo=bo_CN? (or common for CN, IN?)
 # ca=ca_ES
+# ce=ce_RU
+# chr=chr_US
 # ckb=ckb_IQ
 # cv=cv_RU
 # de=de_DE
@@ -1240,11 +1261,11 @@ done
 #   sv tr zh_CN zh_TW
 #
 for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR be@latin be@tarask bem \
-	bg bho bn bn_IN bo br brx bs byn ca@valencia ckb cmn crh csb cv cy de_AT de_CH doi dv dz en \
+	bg bho bn bn_IN bo br brx bs byn ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz en \
 	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
 	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
 	es_VE et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
-	hi hne hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn kok ks ks@devanagari ku kw ky la lb \
+	hi hne ht hsb hy ia id ig ik is it_CH iu ka kg kk kl km kn kok ks ks@devanagari ku kw ky la lb \
 	lg li ln lo lt lv mai mg mhr mi mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso \
 	oc om or pa pap ps pt ps quz rm ro sa sat sc sd sd@devanagari se shn si sid sl so sq sr sr@Latn szl tl \
 	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
