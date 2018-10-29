@@ -117,7 +117,7 @@ BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpmbuild(macros) >= 1.567
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo
-Requires(post):	%{name}-ld = %{epoch}:%{version}-%{release}
+Requires:	%{name}-ld = %{epoch}:%{version}-%{release}
 Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
 Provides:	%{name}(%{_target_cpu}) = %{epoch}:%{version}-%{release}
