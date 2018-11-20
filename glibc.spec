@@ -1159,6 +1159,7 @@ done
 #   cgg    (vlc)
 #   ch     (iso-codes)
 #   co     (FileZilla, vlc)
+#   es_419 (alpm - common "Spanish (Latin America)")
 #   frp    (iso-codes, lxlauncher, mate, xfce)
 #   gn     (iso-codes, gnome; gn_BR in gnome, maybe gn_PY)
 #   guc    (gtk-vnc)
