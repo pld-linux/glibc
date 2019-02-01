@@ -31,7 +31,7 @@
 %undefine	with_cet
 %endif
 
-%define		core_version	2.28
+%define		core_version	2.29
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -45,12 +45,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	10
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	c81d2388896379997bc359d4f2084239
+# Source0-md5:	e6c279d5b2f0736f740216f152acf974
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -62,7 +62,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	9b6b4d90ca7d6edba76adf101fad0694
+# Patch0-md5:	243bcc879aca3b2ae64f05d94e9c8d1a
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -103,7 +103,7 @@ BuildRequires:	gawk
 %if %{with cet}
 BuildRequires:	gcc >= 6:8.0
 %else
-BuildRequires:	gcc >= 6:4.7
+BuildRequires	gcc >= 6:5.0
 %endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
@@ -111,6 +111,8 @@ BuildRequires:	gettext-tools >= 0.10.36
 BuildRequires:	linux-libc-headers >= %{llh_version}
 %{?with_nss_crypt:BuildRequires:	nss-devel >= 1:3.15.1-2}
 BuildRequires:	perl-base
+BuildRequires:	python3 >= 1:3.4
+BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpmbuild(macros) >= 1.567
 BuildRequires:	sed >= 4.0.5
