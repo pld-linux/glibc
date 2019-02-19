@@ -132,7 +132,6 @@ Obsoletes:	glibc-debug
 Provides:	glibc64
 Obsoletes:	glibc64
 %endif
-Suggests:	libidn2 >= 2.0.5
 Suggests:	localedb
 Suggests:	tzdata
 Conflicts:	%{name}-misc < %{epoch}:%{version}-%{release}
@@ -301,6 +300,7 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
+Suggests:	libidn2 >= 2.0.5
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Conflicts:	%{name}(x32)
