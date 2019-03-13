@@ -45,7 +45,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -86,6 +86,7 @@ Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
 
 Patch23:	%{name}-pt_pax.patch
+Patch24:	%{name}-resolv.patch
 
 # http://pkgs.fedoraproject.org/cgit/rpms/glibc.git/plain/glibc-c-utf8-locale.patch
 Patch27:	%{name}-c-utf8-locale.patch
@@ -967,6 +968,7 @@ exit 1
 %patch19 -p1
 
 %patch23 -p0
+%patch24 -p1
 
 %patch27 -p1
 
