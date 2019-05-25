@@ -104,7 +104,7 @@ BuildRequires:	gawk
 %if %{with cet}
 BuildRequires:	gcc >= 6:8.0
 %else
-BuildRequires	gcc >= 6:5.0
+BuildRequires:	gcc >= 6:5.0
 %endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
@@ -1262,17 +1262,20 @@ done
 #   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
 #   sv tr zh_CN zh_TW
 #
-for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR be@latin be@tarask bem \
-	bg bho bn bn_IN bo br brx bs byn ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz en \
-	en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo es_AR es_CL es_CO es_CR \
-	es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY \
-	es_VE et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv ha he \
-	hi hne ht hsb hy ia id ig ik is it_CH iu ka kab kg kk kl km kn kok ks ks@devanagari ku kw ky la lb \
-	lg li ln lo lt lv mai mg mhr mi mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso \
-	oc om or pa pap ps pt ps quz rm ro sa sat sc sd sd@devanagari se shn si sid sl so sq sr sr@Latn szl tl \
-	sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw ta te tg th ti \
-	tig tk tl tlh tn tpi ts tt tt@iqtelif ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo \
-	zh_HK zu; do
+for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR \
+	be@latin be@tarask bem bg bho bn bn_IN bo br brx bs byn \
+	ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz \
+	en en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo \
+	es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE \
+	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
+	ha he hi hne ht hsb hy ia id ig ik is it_CH iu \
+	ka kab kg kk kl km kn kok ks ks@devanagari ku kw ky la lb lg li ln lo lt lv \
+	mai mg mhr mi mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso oc om or \
+	pa pap ps pt ps quz rm ro \
+	sa sat sc sd sd@devanagari se shn si sid sl so sq \
+	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw szl \
+	ta te tg th ti tig tk tl tlh tn tpi ts tt tt@iqtelif \
+	ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
