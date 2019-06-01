@@ -56,7 +56,7 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 # from man-pages.spec --with tars
 Source5:	%{name}-man-pages.tar.xz
-# Source5-md5:	78a8f7f8dfc63123f47a614e99136e61
+# Source5-md5:	852c1c77c7435615c0b17d8e4acf05d8
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
@@ -1305,10 +1305,10 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 # don't package them here
 install -d $RPM_BUILD_ROOT%{_mandir}{,/ru,/es,/fr,/ja}/man2
 :>$RPM_BUILD_ROOT%{_mandir}/man2/syslog.2
-:>$RPM_BUILD_ROOT%{_mandir}/ru/man2/syslog.2
 :>$RPM_BUILD_ROOT%{_mandir}/es/man2/syslog.2
 :>$RPM_BUILD_ROOT%{_mandir}/fr/man2/syslog.2
 :>$RPM_BUILD_ROOT%{_mandir}/ja/man2/syslog.2
+:>$RPM_BUILD_ROOT%{_mandir}/ru/man2/syslog.2
 
 # remove links to non existant translations
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/pl/man3/{alphasort,cfgetispeed,cfgetospeed,cfmakeraw,cfsetispeed,cfsetospeed,closelog,dn_comp,dn_expand,fscanf}.3
@@ -1560,21 +1560,29 @@ fi
 %lang(es) %{_mandir}/es/man7/utf8.7*
 %lang(es) %{_mandir}/es/man8/zdump.8*
 %lang(es) %{_mandir}/es/man8/zic.8*
+%lang(fr) %{_mandir}/fr/man1/getent.1*
+%lang(fr) %{_mandir}/fr/man1/locale.1*
+%lang(fr) %{_mandir}/fr/man5/gai.conf.5*
 %lang(fr) %{_mandir}/fr/man5/locale.5*
+%lang(fr) %{_mandir}/fr/man5/nss.5*
 %lang(fr) %{_mandir}/fr/man5/nsswitch.conf.5*
 %lang(fr) %{_mandir}/fr/man5/rpc.5*
 %lang(fr) %{_mandir}/fr/man5/tzfile.5*
+%lang(fr) %{_mandir}/fr/man7/armscii-8.7*
 %lang(fr) %{_mandir}/fr/man7/ascii.7*
 %lang(fr) %{_mandir}/fr/man7/charsets.7*
+%lang(fr) %{_mandir}/fr/man7/cp1251.7*
 %lang(fr) %{_mandir}/fr/man7/iso-8859-*.7*
 %lang(fr) %{_mandir}/fr/man7/iso_8859-*.7*
 %lang(fr) %{_mandir}/fr/man7/iso_8859_*.7*
 %lang(fr) %{_mandir}/fr/man7/koi8-r.7*
+%lang(fr) %{_mandir}/fr/man7/koi8-u.7*
 %lang(fr) %{_mandir}/fr/man7/latin*.7*
 %lang(fr) %{_mandir}/fr/man7/locale.7*
 %lang(fr) %{_mandir}/fr/man7/unicode.7*
 %lang(fr) %{_mandir}/fr/man7/utf-8.7*
 %lang(fr) %{_mandir}/fr/man7/utf8.7*
+%lang(fr) %{_mandir}/fr/man8/sln.8*
 %lang(fr) %{_mandir}/fr/man8/zdump.8*
 %lang(fr) %{_mandir}/fr/man8/zic.8*
 %lang(hu) %{_mandir}/hu/man7/ascii.7*
@@ -1700,6 +1708,18 @@ fi
 %lang(zh_CN) %{_mandir}/zh_CN/man7/utf8.7*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zdump.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man8/zic.8*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/iconv.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man5/locale.5*
+%lang(zh_TW) %{_mandir}/zh_TW/man5/rpc.5*
+%lang(zh_TW) %{_mandir}/zh_TW/man5/tzfile.5*
+%lang(zh_TW) %{_mandir}/zh_TW/man7/ascii.7*
+%lang(zh_TW) %{_mandir}/zh_TW/man7/charsets.7*
+%lang(zh_TW) %{_mandir}/zh_TW/man7/locale.7*
+%lang(zh_TW) %{_mandir}/zh_TW/man7/unicode.7*
+%lang(zh_TW) %{_mandir}/zh_TW/man7/utf-8.7*
+%lang(zh_TW) %{_mandir}/zh_TW/man7/utf8.7*
+%lang(zh_TW) %{_mandir}/zh_TW/man8/zdump.8*
+%lang(zh_TW) %{_mandir}/zh_TW/man8/zic.8*
 
 %files misc
 %defattr(644,root,root,755)
@@ -1729,6 +1749,7 @@ fi
 %lang(ru) %{_mandir}/ru/man1/ldd.1*
 %lang(tr) %{_mandir}/tr/man1/ldd.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/ldd.1*
 
 %files libcrypt
 %defattr(644,root,root,755)
@@ -1945,11 +1966,16 @@ fi
 %lang(fr) %{_mandir}/fr/man2/getcwd.2*
 %lang(fr) %{_mandir}/fr/man2/killpg.2*
 %lang(fr) %{_mandir}/fr/man3/*
+%lang(fr) %{_mandir}/fr/man7/aio.7*
 %lang(fr) %{_mandir}/fr/man7/complex.7*
 %lang(fr) %{_mandir}/fr/man7/feature_test_macros.7*
+%lang(fr) %{_mandir}/fr/man7/glibc.7*
 %lang(fr) %{_mandir}/fr/man7/glob.7*
+%lang(fr) %{_mandir}/fr/man7/libc.7*
+%lang(fr) %{_mandir}/fr/man7/math_error.7*
 %lang(fr) %{_mandir}/fr/man7/posixoptions.7*
 %lang(fr) %{_mandir}/fr/man7/pthreads.7*
+%lang(fr) %{_mandir}/fr/man7/rtld-audit.7*
 %lang(fr) %{_mandir}/fr/man7/sem_overview.7*
 %lang(fr) %{_mandir}/fr/man7/shm_overview.7*
 %lang(hu) %{_mandir}/hu/man3/*
@@ -1986,6 +2012,8 @@ fi
 %lang(uk) %{_mandir}/uk/man3/*
 %lang(zh_CN) %{_mandir}/zh_CN/man3/*
 %lang(zh_CN) %{_mandir}/zh_CN/man7/glob.7*
+%lang(zh_TW) %{_mandir}/zh_TW/man3/*
+%lang(zh_TW) %{_mandir}/zh_TW/man7/glob.7*
 
 %files static
 %defattr(644,root,root,755)
@@ -2045,6 +2073,7 @@ fi
 %lang(ru) %{_mandir}/ru/man5/nscd.conf.5*
 %lang(ru) %{_mandir}/ru/man8/nscd.8*
 %lang(zh_CN) %{_mandir}/zh_CN/man5/nscd.conf.5*
+%lang(zh_TW) %{_mandir}/zh_TW/man5/nscd.conf.5*
 
 %files -n localedb-src
 %defattr(644,root,root,755)
