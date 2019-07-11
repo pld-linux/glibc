@@ -45,7 +45,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	8
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -56,13 +56,13 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 # from man-pages.spec --with tars
 Source5:	%{name}-man-pages.tar.xz
-# Source5-md5:	852c1c77c7435615c0b17d8e4acf05d8
+# Source5-md5:	78a8f7f8dfc63123f47a614e99136e61
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	1846996a893234311f8193725754f972
+# Patch0-md5:	0a7e1929c62d74e1b45576b570c7528b
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
