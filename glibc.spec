@@ -31,7 +31,7 @@
 %undefine	with_cet
 %endif
 
-%define		core_version	2.29
+%define		core_version	2.30
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -45,12 +45,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	9
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	e6c279d5b2f0736f740216f152acf974
+# Source0-md5:	2b1dbdf27b28620752956c061d62f60c
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -62,7 +62,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	0a7e1929c62d74e1b45576b570c7528b
+# Patch0-md5:	631851a21a95b83264681ad801bf34fd
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -86,7 +86,6 @@ Patch18:	%{name}-locale_fixes.patch
 Patch19:	%{name}-ZA_collate.patch
 
 Patch23:	%{name}-pt_pax.patch
-Patch24:	%{name}-resolv.patch
 
 # http://pkgs.fedoraproject.org/cgit/rpms/glibc.git/plain/glibc-c-utf8-locale.patch
 Patch27:	%{name}-c-utf8-locale.patch
@@ -968,7 +967,6 @@ exit 1
 %patch19 -p1
 
 %patch23 -p0
-%patch24 -p1
 
 %patch27 -p1
 

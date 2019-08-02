@@ -2835,27 +2835,25 @@
  
  % Language name in Tsonga - "Xitsonga"
  lang_name "<U0058><U0069><U0074><U0073><U006F><U006E><U0067><U0061>"
---- glibc-2.27/localedata/locales/tt_RU.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/tt_RU	2018-02-04 09:38:17.091084235 +0100
-@@ -317,14 +317,15 @@
+--- glibc-2.30/localedata/locales/tt_RU~	2019-08-01 06:29:31.000000000 +0200
++++ glibc-2.30/localedata/locales/tt_RU	2019-08-02 10:56:47.618233090 +0200
+@@ -253,14 +253,14 @@ name_fmt "???"
  END LC_NAME
  
  LC_ADDRESS
 -% FIXME
 -postal_fmt "???"
-+postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++postal_fmt "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
  % https://tt.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D0%B8%D1%8F : Русия
  country_name "<U0420><U0443><U0441><U0438><U044F>"
  country_ab2 "RU"
  country_ab3 "RUS"
  country_num 643
--country_car    "RUS"
-+country_car  "RUS"
+ country_car    "RUS"
 +country_isbn "5"
-+lang_name    "<U0422><U0430><U0442><U0430><U0440><U0447><U0430>"
+ lang_name    "<U0442><U0430><U0442><U0430><U0440>"
  lang_ab      "tt"
  lang_term    "tat"
- lang_lib    "tat"
 --- glibc-2.27/localedata/locales/tt_RU@iqtelif.orig	2018-02-02 19:23:56.302656077 +0100
 +++ glibc-2.27/localedata/locales/tt_RU@iqtelif	2018-02-04 09:39:34.111083357 +0100
 @@ -168,7 +168,12 @@
