@@ -45,7 +45,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -103,7 +103,7 @@ BuildRequires:	gawk
 %if %{with cet}
 BuildRequires:	gcc >= 6:8.0
 %else
-BuildRequires:	gcc >= 6:5.0
+BuildRequires:	gcc >= 6:6.2
 %endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
@@ -1144,7 +1144,6 @@ done
 # NOTES:
 # Languages not supported by glibc locales, but usable via $LANGUAGE:
 #   ang - Old English (gtk+, gnome)
-#   ca@valencia (gtk+, gnome; as ca_ES@valencia in FileZilla; locale exists in Debian)
 #   en@shaw - English with Shavian alphabet (gnome)
 #   la - Latin
 #   tlh - Klingon (bzflag)
@@ -1164,6 +1163,7 @@ done
 #   guc    (gtk-vnc)
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
+#   ie     (xfce)
 #   ilo    (kudzu, libosinfo, libreport)
 #   io     (alacarte, gtk+2, gnome, iso-codes)
 #   jam    (iso-codes)
@@ -1230,6 +1230,7 @@ done
 # li=li_NL
 # ln=ln_CD
 # lo=lo_LA
+# mjw=mjw_IN
 # nds=nds_DE
 # nl=nl_NL
 # om=om_ET
@@ -1268,7 +1269,7 @@ for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR \
 	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
 	ha he hi hne ht hsb hy ia id ig ik is it_CH iu \
 	ka kab kg kk kl km kn kok ks ks@devanagari ku kw ky la lb lg li ln lo lt lv \
-	mai mg mhr mi mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso oc om or \
+	mai mg mhr mi mjw mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso oc om or \
 	pa pap ps pt ps quz rm ro \
 	sa sat sc sd sd@devanagari se shn si sid sl so sq \
 	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw szl \
@@ -1899,6 +1900,8 @@ fi
 %endif
 %{_includedir}/arpa
 %{_includedir}/bits
+%dir %{_includedir}/finclude
+%{_includedir}/finclude/math-vector-fortran.h
 %dir %{_includedir}/gnu
 %{_includedir}/gnu/lib*.h
 %{_includedir}/gnu/stubs.h
