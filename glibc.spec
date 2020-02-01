@@ -1016,6 +1016,15 @@ AWK="gawk" \
 	--with-selinux%{!?with_selinux:=no} \
 	--with-tls
 
+# hack: libgd (used by memusagestat) requires librt, which is built after malloc/ subdir.
+# First build all without libgd-dependent components (LIBGD=no)...
+%{__make} \
+	AWK="gawk" \
+	complocaledir=%{_prefix}/lib/locale \
+	sLIBdir=%{_libdir} \
+	LIBGD=no
+
+# ...then, when librt is ready, rerun make to build memusagestat
 %{__make} \
 	AWK="gawk" \
 	complocaledir=%{_prefix}/lib/locale \
