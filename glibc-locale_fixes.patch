@@ -568,17 +568,15 @@
  lang_name     "<U010D>e<U0161>tina"
  lang_ab       "cs"
  lang_term     "ces"
---- glibc-2.27/localedata/locales/csb_PL.orig	2018-02-02 19:23:27.365989741 +0100
-+++ glibc-2.27/localedata/locales/csb_PL	2018-02-03 09:00:04.628763613 +0100
-@@ -206,9 +206,12 @@
+--- glibc-2.31/localedata/locales/csb_PL.orig	2018-02-02 19:23:27.365989741 +0100
++++ glibc-2.31/localedata/locales/csb_PL	2018-02-03 09:00:04.628763613 +0100
+@@ -215,9 +215,10 @@
  country_ab2 "PL"
  country_ab3 "POL"
  country_num 616
 -country_car    "PL"
 -% kaszëbsczi jãzëk
 -lang_name    "kasz<U00EB>bsczi j<U00E3>z<U00EB>k"
-+% Pòlskô
-+country_name  "P<U00F2>lsk<U00F4>"
 +country_car   "PL"
 +country_isbn  "83"
 +% kaszëbsczi
@@ -2565,14 +2563,18 @@
  lang_name     "Kiswahili"
  lang_ab      "sw"
  lang_term    "swa"
---- glibc-2.27/localedata/locales/szl_PL.orig	2018-02-02 19:23:56.272656076 +0100
-+++ glibc-2.27/localedata/locales/szl_PL	2018-02-04 09:12:40.014435119 +0100
-@@ -205,7 +205,9 @@
+--- glibc-2.31/localedata/locales/szl_PL.orig	2020-02-01 20:59:26.300338394 +0100
++++ glibc-2.31/localedata/locales/szl_PL	2020-02-01 20:59:39.576933135 +0100
+@@ -200,11 +200,12 @@
+ 
+ LC_ADDRESS
+ postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
+-country_name "Polska"
++country_name "Polsko"
  country_ab2 "PL"
  country_ab3 "POL"
  country_num 616
 -country_car    "PL"
-+country_name "Polsko"
 +country_car  "PL"
 +country_isbn "83"
  % ślōnskŏ gŏdka
