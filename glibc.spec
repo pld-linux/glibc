@@ -71,8 +71,6 @@ Patch4:		%{name}-no-bash-nls.patch
 
 Patch6:		%{name}-paths.patch
 
-Patch8:		%{name}-missing-nls.patch
-Patch9:		%{name}-nss_include_dirs.patch
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
 
@@ -952,9 +950,6 @@ exit 1
 %{!?with_bash_nls:%patch4 -p1}
 
 %patch6 -p1
-
-%patch8 -p1
-%patch9 -p1
 
 %patch10 -p1
 %patch11 -p1
