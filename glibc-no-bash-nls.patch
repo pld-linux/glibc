@@ -1,12 +1,12 @@
---- glibc-2.21/elf/ldd.bash.in.org	2015-02-06 16:35:42.258090169 +0100
-+++ glibc-2.21/elf/ldd.bash.in	2015-02-06 16:35:57.491784092 +0100
+--- glibc-2.31/elf/ldd.bash.in.orig	2020-02-01 12:52:50.000000000 +0100
++++ glibc-2.31/elf/ldd.bash.in	2020-02-01 14:02:07.365985940 +0100
 @@ -1,4 +1,4 @@
 -#! @BASH@
 +#!/bin/sh
- # Copyright (C) 1996-2019 Free Software Foundation, Inc.
+ # Copyright (C) 1996-2020 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
-@@ -35,16 +35,16 @@ while test $# -gt 0; do
+@@ -35,16 +35,16 @@
    case "$1" in
    --vers | --versi | --versio | --version)
      echo 'ldd @PKGVERSION@@VERSION@'
@@ -14,7 +14,7 @@
 +    printf "Copyright (C) %s Free Software Foundation, Inc.
  This is free software; see the source for copying conditions.  There is NO
  warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- " "2019"
+ " "2020"
 -    printf $"Written by %s and %s.
 +    printf "Written by %s and %s.
  " "Roland McGrath" "Ulrich Drepper"
@@ -35,7 +35,7 @@
        "@REPORT_BUGS_TO@"
      exit 0
      ;;
-@@ -79,15 +79,15 @@
+@@ -77,15 +77,15 @@
      shift
      ;;
    --v | --ve | --ver)
@@ -65,7 +65,7 @@
    exit 1
    ;;
  1)
-@@ -147,13 +141,13 @@
+@@ -144,13 +144,13 @@
       ;;
    esac
    if test ! -e "$file"; then
@@ -82,16 +82,16 @@
  warning: you do not have execution permission for" "\`$file'" >&2
      RTLD=
      ret=1
-@@ -182,7 +176,7 @@
+@@ -167,7 +167,7 @@
      1)
        # This can be a non-ELF binary or no binary at all.
        nonelf "$file" || {
--	echo $"	not a dynamic executable"
-+	echo "	not a dynamic executable"
+-	echo $"	not a dynamic executable" >&2
++	echo "	not a dynamic executable" >&2
  	result=1
        }
        ;;
-@@ -190,12 +184,12 @@
+@@ -175,12 +175,12 @@
        try_trace "$RTLD" "$file" || result=1
        ;;
      *)
@@ -106,15 +106,59 @@
      result=1
    fi
  done
---- glibc-2.21/elf/sotruss.sh~	2015-02-06 16:36:52.000000000 +0100
-+++ glibc-2.21/elf/sotruss.sh	2015-02-06 16:40:23.484746243 +0100
+--- glibc-2.31/elf/sotruss.sh.orig	2020-02-01 13:38:05.830462075 +0100
++++ glibc-2.31/elf/sotruss.sh	2020-02-01 14:06:25.601253626 +0100
 @@ -1,4 +1,4 @@
 -#! @BASH@
 +#!/bin/sh
- # Copyright (C) 2011-2019 Free Software Foundation, Inc.
+ # Copyright (C) 2011-2020 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
  
-@@ -72,18 +72,18 @@ while test $# -gt 0; do
+@@ -29,7 +29,7 @@
+ lib='@PREFIX@/$LIB/audit/sotruss-lib.so'
+ 
+ do_help() {
+-  echo $"Usage: sotruss [OPTION...] [--] EXECUTABLE [EXECUTABLE-OPTION...]
++  echo "Usage: sotruss [OPTION...] [--] EXECUTABLE [EXECUTABLE-OPTION...]
+   -F, --from FROMLIST     Trace calls from objects on FROMLIST
+   -T, --to TOLIST         Trace calls to objects on TOLIST
+ 
+@@ -43,28 +43,28 @@
+       --version           Print program version"
+ 
+   echo
+-  printf $"Mandatory arguments to long options are also mandatory for any corresponding\nshort options.\n"
++  printf "Mandatory arguments to long options are also mandatory for any corresponding\nshort options.\n"
+   echo
+ 
+-  printf $"For bug reporting instructions, please see:\\n%s.\\n" \
++  printf "For bug reporting instructions, please see:\\n%s.\\n" \
+     "@REPORT_BUGS_TO@"
+   exit 0
+ }
+ 
+ do_missing_arg() {
+-  printf >&2 $"%s: option requires an argument -- '%s'\n" sotruss "$1"
+-  printf >&2 $"Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
++  printf >&2 "%s: option requires an argument -- '%s'\n" sotruss "$1"
++  printf >&2 "Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
+   exit 1
+ }
+ 
+ do_ambiguous() {
+-  printf >&2 $"%s: option is ambiguous; possibilities:"
++  printf >&2 "%s: option is ambiguous; possibilities:"
+   while test $# -gt 0; do
+     printf >&2 " '%s'" $1
+     shift
+   done
+   printf >&2 "\n"
+-  printf >&2 $"Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
++  printf >&2 "Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
+   exit 1
+ }
+ 
+@@ -72,18 +72,18 @@
    case "$1" in
    --v | --ve | --ver | --vers | --versi | --versio | --version)
      echo "sotruss @PKGVERSION@@VERSION@"
@@ -122,7 +166,7 @@
 +    printf "Copyright (C) %s Free Software Foundation, Inc.
  This is free software; see the source for copying conditions.  There is NO
  warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- " "2019"
+ " "2020"
 -    printf $"Written by %s.\n" "Ulrich Drepper"
 +    printf "Written by %s.\n" "Ulrich Drepper"
      exit 0
@@ -136,3 +180,14 @@
  	    [--follow] [--from FROMLIST] [--output FILENAME] [--to TOLIST]
  	    [--help] [--usage] [--version] [--]
  	    EXECUTABLE [EXECUTABLE-OPTION...]\n" sotruss
+@@ -131,8 +131,8 @@
+     break
+     ;;
+   -*)
+-    printf >&2 $"%s: unrecognized option '%c%s'\n" sotruss '-' ${1#-}
+-    printf >&2 $"Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
++    printf >&2 "%s: unrecognized option '%c%s'\n" sotruss '-' ${1#-}
++    printf >&2 "Try \`%s --help' or \`%s --usage' for more information.\n" sotruss sotruss
+     exit 1
+     ;;
+   *)

@@ -31,7 +31,7 @@
 %undefine	with_cet
 %endif
 
-%define		core_version	2.30
+%define		core_version	2.31
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -45,12 +45,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	2b1dbdf27b28620752956c061d62f60c
+# Source0-md5:	78a720f17412f3c3282be5a6f3363ec6
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -945,7 +945,7 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-%patch0 -p1
+#patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
@@ -959,7 +959,7 @@ exit 1
 %patch10 -p1
 %patch11 -p1
 
-%patch14 -p0
+%patch14 -p1
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1

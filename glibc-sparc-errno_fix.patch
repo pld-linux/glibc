@@ -1,12 +1,12 @@
---- sysdeps/unix/sysv/linux/sparc/sparc32/clone.S~	2001-07-07 19:21:38.000000000 +0000
-+++ sysdeps/unix/sysv/linux/sparc/sparc32/clone.S	2003-12-27 19:03:44.000000000 +0000
-@@ -20,7 +20,8 @@
+--- glibc-2.31/sysdeps/unix/sysv/linux/sparc/sparc32/clone.S.orig	2020-02-01 14:07:21.920948516 +0100
++++ glibc-2.31/sysdeps/unix/sysv/linux/sparc/sparc32/clone.S	2020-02-01 14:08:17.973978184 +0100
+@@ -19,7 +19,8 @@
  /* clone() is even more special than fork() as it mucks with stacks
     and invokes a function in the right context after its all over.  */
  
-+#define _ERRNO_H        1
 -#include <asm/errno.h>
++#define _ERRNO_H        1
 +#include <bits/errno.h>
- #include <asm/unistd.h>
+ #include <tcb-offsets.h>
+ #include <sysdep.h>
  
- /* int clone(int (*fn)(void *arg), void *child_stack, int flags, void *arg); */
