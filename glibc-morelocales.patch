@@ -1894,12 +1894,12 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +escape_char /
 +% Charset: UTF-8
 +LC_IDENTIFICATION
-+title      "Erzya locale for RUSSIAN FEDERATION"
++title     "Erzya locale for RUSSIAN FEDERATION"
 +language  "Erzyan"
 +territory "RUSSIAN FEDERATION"
 +revision  "1.2"
 +date      "2012-02-22"
-+% add ecaron
++% add e-caron
 +
 +category "i18n:2012";LC_IDENTIFICATION
 +category "i18n:2012";LC_CTYPE
@@ -1926,55 +1926,55 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +LC_COLLATE
 +define UPPERCASE_FIRST
 +copy "iso14651_t1"
-+% copy from ee_ET
-+collating-symbol <ccaron>
-+collating-symbol <ecaron>
-+collating-symbol <scaron>
-+collating-symbol <zcaron>
-+collating-symbol <otilde>
-+collating-symbol <adiaeresis>
-+collating-symbol <odiaeresis>
-+collating-symbol <udiaeresis>
++% copy from et_EE, add c-carpon, e-caron
++collating-symbol <c-caron>
++collating-symbol <e-caron>
++collating-symbol <s-caron>
++collating-symbol <z-caron>
++collating-symbol <o-tilde>
++collating-symbol <a-diaeresis>
++collating-symbol <o-diaeresis>
++collating-symbol <u-diaeresis>
 +
-+reorder-after <c>
-+<ccaron>
-+reorder-after <e>
-+<ecaron>
-+reorder-after <s>
-+<scaron>
-+reorder-after <z>
-+<zcaron>
++reorder-after <BEFORE-D>
++<c-caron>
++reorder-after <BEFORE-F>
++<e-caron>
++reorder-after <BEFORE-T>
++<s-caron>
++reorder-after <BEFORE-EZH>
++<z-caron>
 +
-+reorder-after <v>
-+<otilde>
-+<adiaeresis>
-+<odiaeresis>
-+<udiaeresis>
++reorder-after <BEFORE-W>
++<o-tilde>
++<a-diaeresis>
++<o-diaeresis>
++<u-diaeresis>
 +
 +reorder-after <U0063>
-+<U010D> <ccaron>;<BAS>;<MIN>;IGNORE
++<U010D> <c-caron>;<BASE>;<MIN>;IGNORE
 +reorder-after <U0043>
-+<U010C> <ccaron>;<BAS>;<CAP>;IGNORE
++<U010C> <c-caron>;<BASE>;<CAP>;IGNORE
 +reorder-after <U0065>
-+<U011B> <ecaron>;<BAS>;<MIN>;IGNORE
++<U011B> <e-caron>;<BASE>;<MIN>;IGNORE
 +reorder-after <U0045>
-+<U011A> <ecaron>;<BAS>;<CAP>;IGNORE
++<U011A> <e-caron>;<BASE>;<CAP>;IGNORE
 +reorder-after <U015E>
-+<U0160> <scaron>;<BAS>;<CAP>;IGNORE
++<U0160> <s-caron>;<BASE>;<CAP>;IGNORE
 +reorder-after <U015F>
-+<U0161> <scaron>;<BAS>;<MIN>;IGNORE
++<U0161> <s-caron>;<BASE>;<MIN>;IGNORE
 +reorder-after <U005A>
-+<U017D> <zcaron>;<BAS>;<CAP>;IGNORE
-+<U00D5> <otilde>;<BAS>;<CAP>;IGNORE
-+<U00C4> <adiaeresis>;<BAS>;<CAP>;IGNORE
-+<U00D6> <odiaeresis>;<BAS>;<CAP>;IGNORE
-+<U00DC> <udiaeresis>;<BAS>;<CAP>;IGNORE
++<U017D> <z-caron>;<BASE>;<CAP>;IGNORE
++<U00D5> <o-tilde>;<BASE>;<CAP>;IGNORE
++<U00C4> <a-diaeresis>;<BASE>;<CAP>;IGNORE
++<U00D6> <o-diaeresis>;<BASE>;<CAP>;IGNORE
++<U00DC> <u-diaeresis>;<BASE>;<CAP>;IGNORE
 +reorder-after <U007A>
-+<U017E> <zcaron>;<BAS>;<MIN>;IGNORE
-+<U00F5> <otilde>;<BAS>;<MIN>;IGNORE
-+<U00E4> <adiaeresis>;<BAS>;<MIN>;IGNORE
-+<U00F6> <odiaeresis>;<BAS>;<MIN>;IGNORE
-+<U00FC> <udiaeresis>;<BAS>;<MIN>;IGNORE
++<U017E> <z-caron>;<BASE>;<MIN>;IGNORE
++<U00F5> <o-tilde>;<BASE>;<MIN>;IGNORE
++<U00E4> <a-diaeresis>;<BASE>;<MIN>;IGNORE
++<U00F6> <o-diaeresis>;<BASE>;<MIN>;IGNORE
++<U00FC> <u-diaeresis>;<BASE>;<MIN>;IGNORE
 +
 +reorder-end
 +
