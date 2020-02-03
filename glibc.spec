@@ -45,7 +45,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -97,7 +97,7 @@ BuildRequires:	automake
 BuildRequires:	binutils >= 2:2.29
 BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
-BuildRequires:	gawk
+BuildRequires:	gawk >= 3.1.2
 %if %{with cet}
 BuildRequires:	gcc >= 6:8.0
 %else
@@ -107,6 +107,7 @@ BuildRequires:	gcc >= 6:6.2
 BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
+BuildRequires:	make >= 1:4.0
 %{?with_nss_crypt:BuildRequires:	nss-devel >= 1:3.15.1-2}
 BuildRequires:	perl-base
 BuildRequires:	python3 >= 1:3.4
@@ -114,7 +115,7 @@ BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpmbuild(macros) >= 1.567
 BuildRequires:	sed >= 4.0.5
-BuildRequires:	texinfo
+BuildRequires:	texinfo >= 4.7
 Requires:	%{name}-ld = %{epoch}:%{version}-%{release}
 Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
