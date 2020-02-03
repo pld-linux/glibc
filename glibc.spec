@@ -1882,9 +1882,6 @@ fi
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
 # static-only libs
-%ifarch %{x8664} x32
-%{_libdir}/libmvec_nonshared.a
-%endif
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
 %ifarch alpha ppc sparc
