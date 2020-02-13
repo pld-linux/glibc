@@ -62,7 +62,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	30c72a537fc2b2b893832985d7c41f1f
+# Patch0-md5:	d54976c52204795f7f2f9c2ef8c334bd
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -944,7 +944,7 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-#patch0 -p1
+%patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
