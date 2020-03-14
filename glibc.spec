@@ -45,7 +45,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -62,7 +62,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	d54976c52204795f7f2f9c2ef8c334bd
+# Patch0-md5:	515dfcf3594afb3ec6a38a9ae39c3ee0
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -140,6 +140,7 @@ Conflicts:	kernel24
 Conflicts:	kernel24-smp
 Conflicts:	ld.so < 1.9.9-10
 Conflicts:	man-pages < 4.00
+Conflicts:	openssh-server < 2:8.2p1-1
 Conflicts:	poldek < 0.30.1-9
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
