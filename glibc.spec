@@ -45,7 +45,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -62,7 +62,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	d1127a0c732137212299f256bf96251a
+# Patch0-md5:	e7fee8dad613ea901a1c8621c788bd8b
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -144,6 +144,7 @@ Conflicts:	openssh-server < 2:8.2p1-1
 Conflicts:	poldek < 0.30.1-9
 Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
+Conflicts:	util-linux < 2.35.1-2
 Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
 ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
