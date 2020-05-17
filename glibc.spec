@@ -1170,14 +1170,15 @@ done
 #   guc    (gtk-vnc)
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
-#   ie     (xfce)
+#   ie     (xfce, cinnamon)
 #   ilo    (kudzu, libosinfo, libreport)
 #   io     (alacarte, gtk+2, gnome, iso-codes)
 #   jam    (iso-codes)
-#   jv     (avant-window-navigator, gmpc, kdesudo, mate)
+#   jv     (avant-window-navigator, gmpc, kdesudo, mate, cinnamon)
 #   ki     (iso-codes)
 #   kok@latin  (inkscape)
 #   kmr    (vlc)
+#   ksw    (cinnamon)
 #   ku_IQ  (mate)
 #   kv     (iso-codes)
 #   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
@@ -1187,12 +1188,14 @@ done
 #   mus    (bluez-gnome)
 #   na     (iso-codes)
 #   nah    (iso-codes, mate)
+#   nap    (cinnamon)
 #   nqo	   (mate)
 #   nv     (iso-codes)
 #   pi     (iso-codes)
 #   pms    (deluge, mate-tweak)
+#   rue    (cinnamon)
 #   sat@deva[nagari]  (inkscape)
-#   sco    (gnomad2, mate, picard, stellarium)
+#   sco    (gnomad2, mate, picard, stellarium, cinnamon)
 #   son    (gtkspell3, iso-codes)
 #   su     (terminator)
 #   swg    (sim)
@@ -1271,7 +1274,7 @@ done
 for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR \
 	be@latin be@tarask bem bg bho bn bn_IN bo br brx bs byn \
 	ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz \
-	en en@boldquot en@quot en@shaw en_AU en_CA en_NZ en_US eo \
+	en en@boldquot en@quot en@shaw en_AU en_CA en_IE en_NZ en_US en_ZA eo \
 	es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE \
 	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
 	ha he hi hne ht hsb hy ia id ig ik is it_CH iu \
