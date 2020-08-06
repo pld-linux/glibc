@@ -2344,16 +2344,16 @@
  lang_name    "<U017D>emait<U0117><U0161>k<U0101>"
  lang_term    "sgs"
  lang_lib     "sgs"
---- glibc-2.27/localedata/locales/shn_MM.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/shn_MM	2018-02-03 19:47:54.728319785 +0100
-@@ -286,6 +286,7 @@
+--- glibc-2.32/localedata/locales/shn_MM~	2020-08-05 04:17:00.000000000 +0200
++++ glibc-2.32/localedata/locales/shn_MM	2020-08-06 09:42:57.106364077 +0200
+@@ -280,6 +280,7 @@ country_post "Myanmar"
  country_ab2  "MM"
  country_num  104
  country_car  "MYA"
 +country_isbn "99971"
+ % လိၵ်ႈတႆး
  lang_name    "<U101C><U102D><U1075><U103A><U1088><U1010><U1086><U1038>"
  lang_term    "shn"
- lang_lib     "shn"
 --- glibc-2.27/localedata/locales/si_LK.orig	2018-02-02 19:23:56.252656078 +0100
 +++ glibc-2.27/localedata/locales/si_LK	2018-02-03 19:49:28.281652052 +0100
 @@ -190,6 +190,7 @@

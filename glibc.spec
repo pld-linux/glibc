@@ -31,7 +31,7 @@
 %undefine	with_cet
 %endif
 
-%define		core_version	2.31
+%define		core_version	2.32
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -45,12 +45,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	78a720f17412f3c3282be5a6f3363ec6
+# Source0-md5:	720c7992861c57cf97d66a2f36d8d1fa
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -62,7 +62,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	144db12c89a8af1afbaa6517011511dc
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -436,39 +436,6 @@ Módulo hesiod NSS de glibc.
 
 %description -n nss_hesiod -l pl.UTF-8
 Moduł glibc NSS (Name Service Switch) dostępu do baz danych.
-
-%package -n nss_nis
-Summary:	NIS(YP) NSS glibc module
-Summary(es.UTF-8):	Módulo NIS(YP) NSS de glibc
-Summary(pl.UTF-8):	Moduł NIS(YP) NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_nis
-glibc NSS (Name Service Switch) module for NIS(YP) databases access.
-
-%description -n nss_nis -l es.UTF-8
-Módulo NSS de glibc para acceder las bases de datos NIS(YP).
-
-%description -n nss_nis -l pl.UTF-8
-Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS(YP).
-
-%package -n nss_nisplus
-Summary:	NIS+ NSS module
-Summary(es.UTF-8):	Módulo NIS+ NSS
-Summary(pl.UTF-8):	Moduł NIS+ NSS
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_nisplus
-glibc NSS (Name Service Switch) module for NIS+ databases access.
-
-%description -n nss_nisplus -l es.UTF-8
-Módulo NSS (Name Service Switch) de glibc para acceder las bases de
-datos NIS+.
-
-%description -n nss_nisplus -l pl.UTF-8
-Moduł glibc NSS (Name Service Switch) dostępu do baz danych NIS+.
 
 %package memusage
 Summary:	Memory usage profiler
@@ -946,7 +913,7 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-%patch0 -p1
+#%patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
@@ -1007,7 +974,6 @@ AWK="gawk" \
 	--enable-kernel="%{min_kernel}" \
 	--enable-nss-crypt%{!?with_nss_crypt:=no} \
 	--enable-obsolete-nsl \
-	--enable-obsolete-rpc \
 	--enable-profile \
 	--enable-stack-protector=strong \
 	--enable-stackguard-randomization \
@@ -1075,7 +1041,6 @@ PICFILES="libc_pic.a libc.map
 	resolv/libresolv_pic.a"
 
 install -p $PICFILES				$RPM_BUILD_ROOT%{_libdir}
-install -p elf/soinit.os				$RPM_BUILD_ROOT%{_libdir}/soinit.o
 install -p elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 # Include %{_libdir}/gconv/gconv-modules.cache
@@ -1094,7 +1059,7 @@ for l in BrokenLocale anl crypt dl \
 %ifarch %{x8664} x32
 	mvec \
 %endif
-	nsl resolv rt thread_db util; do
+	resolv rt thread_db util; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
@@ -1497,7 +1462,6 @@ fi
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/locale
-%attr(755,root,root) %{_bindir}/rpcgen
 %attr(755,root,root) %{_sbindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
@@ -1511,7 +1475,6 @@ fi
 %{_mandir}/man1/getent.1*
 %{_mandir}/man1/iconv.1*
 %{_mandir}/man1/locale.1*
-%{_mandir}/man1/rpcgen.1*
 %{_mandir}/man5/gai.conf.5*
 %{_mandir}/man5/locale.5*
 %{_mandir}/man5/nss.5*
@@ -1618,7 +1581,6 @@ fi
 %lang(ja) %{_mandir}/ja/man1/getent.1*
 %lang(ja) %{_mandir}/ja/man1/iconv.1*
 %lang(ja) %{_mandir}/ja/man1/locale.1*
-%lang(ja) %{_mandir}/ja/man1/rpcgen.1*
 %lang(ja) %{_mandir}/ja/man5/gai.conf.5*
 %lang(ja) %{_mandir}/ja/man5/locale.5*
 %lang(ja) %{_mandir}/ja/man5/nss.5*
@@ -1685,7 +1647,6 @@ fi
 %lang(ru) %{_mandir}/ru/man1/getent.1*
 %lang(ru) %{_mandir}/ru/man1/iconv.1*
 %lang(ru) %{_mandir}/ru/man1/locale.1*
-%lang(ru) %{_mandir}/ru/man1/rpcgen.1*
 %lang(ru) %{_mandir}/ru/man5/locale.5*
 %lang(ru) %{_mandir}/ru/man5/nsswitch.conf.5*
 %lang(ru) %{_mandir}/ru/man5/rpc.5*
@@ -1847,16 +1808,6 @@ fi
 %attr(755,root,root) /%{_lib}/libnss_hesiod-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_hesiod.so.2
 
-%files -n nss_nis
-%defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_nis-%{core_version}.so
-%attr(755,root,root) /%{_lib}/libnss_nis.so.2
-
-%files -n nss_nisplus
-%defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_nisplus-%{core_version}.so
-%attr(755,root,root) /%{_lib}/libnss_nisplus.so.2
-
 %if %{with memusage}
 %files memusage
 %defattr(644,root,root,755)
@@ -1879,7 +1830,6 @@ fi
 %ifarch %{x8664} x32
 %attr(755,root,root) %{_libdir}/libmvec.so
 %endif
-%attr(755,root,root) %{_libdir}/libnsl.so
 %attr(755,root,root) %{_libdir}/libpcprofile.so
 %attr(755,root,root) %{_libdir}/libresolv.so
 %attr(755,root,root) %{_libdir}/librt.so
@@ -1897,7 +1847,6 @@ fi
 %ifarch alpha ppc sparc
 %{_libdir}/libnldbl_nonshared.a
 %endif
-%{_libdir}/librpcsvc.a
 %ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64 aarch64
 # ABI-dependent headers
 %{_includedir}/gnu/stubs-*.h
@@ -1930,7 +1879,6 @@ fi
 %{_includedir}/nfs
 %{_includedir}/protocols
 %{_includedir}/rpc
-%{_includedir}/rpcsvc
 %{_includedir}/scsi
 %{_includedir}/sys
 
@@ -2040,7 +1988,6 @@ fi
 %{_libdir}/libm-%{core_version}.a
 %{_libdir}/libmvec.a
 %endif
-%{_libdir}/libnsl.a
 %{_libdir}/libpthread.a
 %{_libdir}/libresolv.a
 %{_libdir}/librt.a
@@ -2054,7 +2001,6 @@ fi
 %defattr(644,root,root,755)
 %{_libdir}/lib*_pic.a
 %{_libdir}/lib*.map
-%{_libdir}/soinit.o
 %{_libdir}/sofini.o
 
 %files -n nscd
