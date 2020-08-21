@@ -49,14 +49,14 @@ Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
+Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
 # Source0-md5:	720c7992861c57cf97d66a2f36d8d1fa
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 # from man-pages.spec --with tars
 Source5:	%{name}-man-pages.tar.xz
-# Source5-md5:	852c1c77c7435615c0b17d8e4acf05d8
+# Source5-md5:	e66023386d2cc0d6a1d5c29bdbf03550
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
@@ -643,7 +643,7 @@ Summary:	Documentation needed for development using standard C libraries
 Summary(pl.UTF-8):	Dokumentacja do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Documentation
 Conflicts:	man-pages < 4.09
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -1898,10 +1898,6 @@ fi
 %{_infodir}/libc.info*
 
 %{_mandir}/man1/sprof.1*
-# just a link to getcwd.3
-%{_mandir}/man2/getcwd.2*
-# just a link to killpg.3
-%{_mandir}/man2/killpg.2*
 %{_mandir}/man3/*
 %{_mandir}/man7/aio.7*
 %{_mandir}/man7/attributes.7*
@@ -1918,13 +1914,9 @@ fi
 %{_mandir}/man7/sem_overview.7*
 %{_mandir}/man7/shm_overview.7*
 %lang(cs) %{_mandir}/cs/man3/*
-%lang(de) %{_mandir}/de/man2/killpg.2*
 %lang(de) %{_mandir}/de/man3/*
-%lang(es) %{_mandir}/es/man2/killpg.2*
 %lang(es) %{_mandir}/es/man3/*
 %lang(es) %{_mandir}/es/man7/glob.7*
-%lang(fr) %{_mandir}/fr/man2/getcwd.2*
-%lang(fr) %{_mandir}/fr/man2/killpg.2*
 %lang(fr) %{_mandir}/fr/man3/*
 %lang(fr) %{_mandir}/fr/man7/aio.7*
 %lang(fr) %{_mandir}/fr/man7/complex.7*
@@ -1942,8 +1934,6 @@ fi
 %lang(it) %{_mandir}/it/man3/*
 %lang(it) %{_mandir}/it/man7/glob.7*
 %lang(ja) %{_mandir}/ja/man1/sprof.1*
-%lang(ja) %{_mandir}/ja/man2/getcwd.2*
-%lang(ja) %{_mandir}/ja/man2/killpg.2*
 %lang(ja) %{_mandir}/ja/man3/*
 %lang(ja) %{_mandir}/ja/man7/aio.7*
 %lang(ja) %{_mandir}/ja/man7/complex.7*
@@ -1956,16 +1946,12 @@ fi
 %lang(ja) %{_mandir}/ja/man7/pthreads.7*
 %lang(ja) %{_mandir}/ja/man7/sem_overview.7*
 %lang(ja) %{_mandir}/ja/man7/shm_overview.7*
-%lang(ko) %{_mandir}/ko/man2/killpg.2*
 %lang(ko) %{_mandir}/ko/man3/*
 %lang(nl) %{_mandir}/nl/man3/*
-%lang(pl) %{_mandir}/pl/man2/killpg.2*
 %lang(pl) %{_mandir}/pl/man3/*
-%lang(pt) %{_mandir}/pt/man2/killpg.2*
 %lang(pt) %{_mandir}/pt/man3/*
 %lang(pt) %{_mandir}/pt/man7/glob.7*
 %lang(ru) %{_mandir}/ru/man1/sprof.1*
-%lang(ru) %{_mandir}/ru/man2/killpg.2*
 %lang(ru) %{_mandir}/ru/man3/*
 %lang(ru) %{_mandir}/ru/man7/glob.7*
 %lang(tr) %{_mandir}/tr/man3/*
