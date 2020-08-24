@@ -17,6 +17,7 @@
 %bcond_without	nss_crypt	# disable crypt features based on Mozilla NSS library
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
+%bcond_without	crypt		# don't build obsolete libcrypt
 #
 %ifarch %{ix86} %{x8664}
 %{!?min_kernel:%global		min_kernel	3.2.0}
@@ -464,7 +465,11 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
+%if %{with crypt}
 Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%else
+Requires:	libxcrypt-devel
+%endif
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
@@ -671,6 +676,7 @@ Summary(ru.UTF-8):	Статические библиотеки glibc
 Summary(uk.UTF-8):	Статичні бібліотеки glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+%{!?with_crypt:Requires:	libxcrypt-static}
 Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-static(ix86) = %{epoch}:%{version}-%{release}
@@ -968,6 +974,9 @@ AWK="gawk" \
 %if %{with cet}
 	--enable-cet \
 %endif
+%if %{without crypt}
+	--disable-crypt \
+%endif
 	--enable-bind-now \
 	--enable-experimental-malloc \
 	--enable-hidden-plt \
@@ -1055,7 +1064,7 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl crypt dl \
+for l in BrokenLocale anl %{?with_crypt:crypt} dl \
 %ifarch %{x8664} x32
 	mvec \
 %endif
@@ -1721,6 +1730,7 @@ fi
 %lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
 %lang(zh_TW) %{_mandir}/zh_TW/man1/ldd.1*
 
+%if %{with crypt}
 %files libcrypt
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libcrypt-%{core_version}.so
@@ -1728,6 +1738,7 @@ fi
 %attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1.1
 %else
 %attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1
+%endif
 %endif
 
 %files ld
@@ -1824,7 +1835,7 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libBrokenLocale.so
 %attr(755,root,root) %{_libdir}/libanl.so
-%attr(755,root,root) %{_libdir}/libcrypt.so
+%{?with_crypt:%attr(755,root,root) %{_libdir}/libcrypt.so}
 %attr(755,root,root) %{_libdir}/libdl.so
 %attr(755,root,root) %{_libdir}/libm.so
 %ifarch %{x8664} x32
@@ -1966,7 +1977,7 @@ fi
 %{_libdir}/libanl.a
 %{_libdir}/libBrokenLocale.a
 %{_libdir}/libc.a
-%{_libdir}/libcrypt.a
+%{?with_crypt:%{_libdir}/libcrypt.a}
 %{_libdir}/libdl.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
