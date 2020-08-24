@@ -1890,14 +1890,16 @@ fi
 %attr(755,root,root) %{_bindir}/sprof
 %attr(755,root,root) %{_bindir}/xtrace
 %{_mandir}/man1/mtrace.1*
+%{_mandir}/man1/sprof.1*
 %lang(ja) %{_mandir}/ja/man1/mtrace.1*
+%lang(ja) %{_mandir}/ja/man1/sprof.1*
+%lang(ru) %{_mandir}/ru/man1/sprof.1*
 
 %files devel-doc
 %defattr(644,root,root,755)
 %doc documentation/*
 %{_infodir}/libc.info*
 
-%{_mandir}/man1/sprof.1*
 %{_mandir}/man3/*
 %{_mandir}/man7/aio.7*
 %{_mandir}/man7/attributes.7*
@@ -1933,7 +1935,6 @@ fi
 %lang(hu) %{_mandir}/hu/man3/*
 %lang(it) %{_mandir}/it/man3/*
 %lang(it) %{_mandir}/it/man7/glob.7*
-%lang(ja) %{_mandir}/ja/man1/sprof.1*
 %lang(ja) %{_mandir}/ja/man3/*
 %lang(ja) %{_mandir}/ja/man7/aio.7*
 %lang(ja) %{_mandir}/ja/man7/complex.7*
@@ -1951,7 +1952,6 @@ fi
 %lang(pl) %{_mandir}/pl/man3/*
 %lang(pt) %{_mandir}/pt/man3/*
 %lang(pt) %{_mandir}/pt/man7/glob.7*
-%lang(ru) %{_mandir}/ru/man1/sprof.1*
 %lang(ru) %{_mandir}/ru/man3/*
 %lang(ru) %{_mandir}/ru/man7/glob.7*
 %lang(tr) %{_mandir}/tr/man3/*
