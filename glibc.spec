@@ -46,7 +46,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1219,6 +1219,7 @@ done
 # nl=nl_NL
 # om=om_ET
 # or=or_IN
+# os=os_RU
 # pa=pa_IN
 # pt=pt_PT
 # quz=quz_PE
@@ -1253,7 +1254,7 @@ for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR \
 	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
 	ha he hi hne ht hsb hy ia id ig ik is it_CH iu \
 	ka kab kg kk kl km kn kok ks ks@devanagari ku kw ky la lb lg li ln lo lt lv \
-	mai mg mhr mi mjw mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso oc om or \
+	mai mg mhr mi mjw mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso oc om or os \
 	pa pap ps pt ps quz rm ro \
 	sa sat sc sd sd@devanagari se shn si sid sl so sq \
 	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw szl \
