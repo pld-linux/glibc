@@ -114,7 +114,7 @@ BuildRequires:	perl-base
 BuildRequires:	python3 >= 1:3.4
 BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
-BuildRequires:	rpmbuild(macros) >= 1.567
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	texinfo >= 4.7
 Requires:	%{name}-ld = %{epoch}:%{version}-%{release}
@@ -648,9 +648,7 @@ Summary:	Documentation needed for development using standard C libraries
 Summary(pl.UTF-8):	Dokumentacja do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Documentation
 Conflicts:	man-pages < 4.09
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description devel-doc
 The glibc-devel-doc package contains info and manual pages necessary
@@ -1144,6 +1142,7 @@ done
 #   guc    (gtk-vnc)
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
+#   hye    (tumbler)
 #   ie     (xfce, cinnamon)
 #   ilo    (kudzu, libosinfo, libreport)
 #   io     (alacarte, gtk+2, gnome, iso-codes)
