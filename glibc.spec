@@ -18,6 +18,7 @@
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
 %bcond_without	crypt		# don't build obsolete libcrypt
+%bcond_without	static_pie	# disable static PIE support
 #
 %ifarch %{ix86} %{x8664}
 %{!?min_kernel:%global		min_kernel	3.2.0}
@@ -31,8 +32,8 @@
 %ifnarch i686 %{x8664} x32
 %undefine	with_cet
 %endif
-%ifnarch %{arm}
-%define		with_static_pie		1
+%ifarch %{arm}
+%undefine		with_static_pie
 %endif
 
 %define		core_version	2.32
