@@ -31,6 +31,9 @@
 %ifnarch i686 %{x8664} x32
 %undefine	with_cet
 %endif
+%ifnarch %{arm}
+%define		with_static_pie		1
+%endif
 
 %define		core_version	2.32
 %define		llh_version	7:2.6.32.1-1
@@ -984,7 +987,7 @@ AWK="gawk" \
 	--enable-profile \
 	--enable-stack-protector=strong \
 	--enable-stackguard-randomization \
-	--enable-static-pie \
+	%{?with_static_pie:--enable-static-pie} \
 	--enable-tunables \
 	--with-binutils=$(pwd)/alt-tools \
 	--with-bugurl=http://bugs.pld-linux.org/ \
