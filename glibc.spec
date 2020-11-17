@@ -1852,7 +1852,7 @@ fi
 %attr(755,root,root) %{_libdir}/libutil.so
 %{_libdir}/crt[1in].o
 %{_libdir}/[MSgr]crt1.o
-%{_libdir}/grcrt1.o
+%{?with_static_pie:%{_libdir}/grcrt1.o}
 # ld scripts
 %{_libdir}/libc.so
 %{_libdir}/libpthread.so
