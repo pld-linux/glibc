@@ -542,7 +542,7 @@ kitaplıklar.
 Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
-Provides:	%{name}-header-cpu-(%{_target_cpu} = %{epoch}:%{version}-%{release}
+Provides:	%{name}-header-cpu-%{_target_cpu} = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-headers-cpu-ix86 = %{epoch}:%{version}-%{release}
 %endif
@@ -597,7 +597,7 @@ korzystające ze standardowych bibliotek C.
 Summary:	Utilities needed for development using standard C libraries
 Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Libraries
-Provides:	%{name}-devel-util-cpu-(%{_target_cpu} = %{epoch}:%{version}-%{release}
+Provides:	%{name}-devel-util-cpu-%{_target_cpu} = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-devel-utils-cpu-ix86 = %{epoch}:%{version}-%{release}
 %endif
