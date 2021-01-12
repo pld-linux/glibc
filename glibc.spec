@@ -542,33 +542,33 @@ kitaplıklar.
 Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
-Provides:	%{name}-headers(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+Provides:	%{name}-header-cpu-(%{_target_cpu} = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
-Provides:	%{name}-headers(ix86) = %{epoch}:%{version}-%{release}
+Provides:	%{name}-headers-cpu-ix86 = %{epoch}:%{version}-%{release}
 %endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-headers(athlon)
-Obsoletes:	glibc-headers(i386)
-Obsoletes:	glibc-headers(i486)
-Obsoletes:	glibc-headers(i586)
-Obsoletes:	glibc-headers(i686)
-Obsoletes:	glibc-headers(ix86)
-Obsoletes:	glibc-headers(pentium3)
-Obsoletes:	glibc-headers(pentium4)
+Obsoletes:	glibc-headers-cpu-athlon
+Obsoletes:	glibc-headers-cpu-i386
+Obsoletes:	glibc-headers-cpu-i486
+Obsoletes:	glibc-headers-cpu-i586
+Obsoletes:	glibc-headers-cpu-i686
+Obsoletes:	glibc-headers-cpu-ix86
+Obsoletes:	glibc-headers-cpu-pentium3
+Obsoletes:	glibc-headers-cpu-pentium4
 %endif
 %ifarch x32
-Obsoletes:	glibc-headers(x86_64)
+Obsoletes:	glibc-headers-cpu-x86_64
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-headers(ppc)
+Obsoletes:	glibc-headers-cpu-ppc
 %endif
 %ifarch s390x
-Obsoletes:	glibc-headers(s390)
+Obsoletes:	glibc-headers-cpu-s390
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-headers(sparc)
+Obsoletes:	glibc-headers-cpu-sparc
 %endif
 Requires:	linux-libc-headers >= %{llh_version}
 
@@ -597,33 +597,33 @@ korzystające ze standardowych bibliotek C.
 Summary:	Utilities needed for development using standard C libraries
 Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Libraries
-Provides:	%{name}-devel-utils(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+Provides:	%{name}-devel-util-cpu-(%{_target_cpu} = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
-Provides:	%{name}-devel-utils(ix86) = %{epoch}:%{version}-%{release}
+Provides:	%{name}-devel-utils-cpu-ix86 = %{epoch}:%{version}-%{release}
 %endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-devel-utils(athlon)
-Obsoletes:	glibc-devel-utils(i386)
-Obsoletes:	glibc-devel-utils(i486)
-Obsoletes:	glibc-devel-utils(i586)
-Obsoletes:	glibc-devel-utils(i686)
-Obsoletes:	glibc-devel-utils(ix86)
-Obsoletes:	glibc-devel-utils(pentium3)
-Obsoletes:	glibc-devel-utils(pentium4)
+Obsoletes:	glibc-devel-utils-cpu-athlon
+Obsoletes:	glibc-devel-utils-cpu-i386
+Obsoletes:	glibc-devel-utils-cpu-i486
+Obsoletes:	glibc-devel-utils-cpu-i586
+Obsoletes:	glibc-devel-utils-cpu-i686
+Obsoletes:	glibc-devel-utils-cpu-ix86
+Obsoletes:	glibc-devel-utils-cpu-pentium3
+Obsoletes:	glibc-devel-utils-cpu-pentium4
 %endif
 %ifarch x32
-Obsoletes:	glibc-devel-utils(x86_64)
+Obsoletes:	glibc-devel-utils-cpu-x86_64
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-devel-utils(ppc)
+Obsoletes:	glibc-devel-utils-cpu-ppc
 %endif
 %ifarch s390x
-Obsoletes:	glibc-devel-utils(s390)
+Obsoletes:	glibc-devel-utils-cpu-s390
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-devel-utils(sparc)
+Obsoletes:	glibc-devel-utils-cpu-sparc
 %endif
 Conflicts:	man-pages < 4.00
 
