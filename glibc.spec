@@ -1300,6 +1300,11 @@ install -d $RPM_BUILD_ROOT%{_mandir}{,/ru,/es,/fr,/ja}/man2
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/pl/man3/{alphasort,cfgetispeed,cfgetospeed,cfmakeraw,cfsetispeed,cfsetospeed,closelog,dn_comp,dn_expand,fscanf}.3
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/tr/man3/{encrypt_r,setkey,setkey_r}.3
 
+%if %{without crypt}
+%{__rm} $RPM_BUILD_ROOT%{_mandir}{,/ja}/man3/crypt{,_r}.3
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/{de,es,fr,pl,pt,ru,tr}/man3/crypt.3
+%endif
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
