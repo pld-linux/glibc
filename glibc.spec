@@ -120,7 +120,9 @@ BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	sed >= 4.0.5
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.7
+BuildRequires:	xz
 Requires:	%{name}-ld = %{epoch}:%{version}-%{release}
 Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
