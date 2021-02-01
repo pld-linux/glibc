@@ -957,7 +957,6 @@ chmod +x scripts/cpp
 # glibc has its own way to remove PLT relocations. / H. J. Lu.
 unset LD_SYMBOLIC_FUNCTIONS || :
 
-cp -f /usr/share/automake/config.sub scripts
 %{__aclocal}
 %{__autoconf}
 
