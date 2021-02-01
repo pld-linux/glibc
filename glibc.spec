@@ -36,7 +36,7 @@
 %undefine		with_static_pie
 %endif
 
-%define		core_version	2.32
+%define		core_version	2.33
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -50,12 +50,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	8
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	720c7992861c57cf97d66a2f36d8d1fa
+# Source0-md5:	390bbd889c7e8e8a7041564cb6b27cca
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -67,7 +67,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	b1ec947dbc001ca41ffa2c4bf79ec4dc
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -1084,7 +1084,6 @@ cp -a %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 cp -a %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
 cp -a nscd/nscd.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 cp -a posix/gai.conf		$RPM_BUILD_ROOT%{_sysconfdir}
-cp -a nis/nss $RPM_BUILD_ROOT/etc/default/nss
 sed -e 's#\([ \t]\)db\([ \t]\)#\1#g' nss/nsswitch.conf > $RPM_BUILD_ROOT%{_sysconfdir}/nsswitch.conf
 
 xz -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
@@ -1466,7 +1465,6 @@ fi
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/default/nss
 
 %config %{_sysconfdir}/rpc
 
@@ -1475,7 +1473,7 @@ fi
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
 %attr(755,root,root) %{_bindir}/locale
-%attr(755,root,root) %{_sbindir}/zdump
+%attr(755,root,root) %{_bindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
 
 %dir %{_libexecdir}/getconf
