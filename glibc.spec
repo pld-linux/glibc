@@ -123,7 +123,7 @@ BuildRequires:	sed >= 4.0.5
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.7
 BuildRequires:	xz
-Requires:	%{name}-ld = %{epoch}:%{version}-%{release}
+Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	filesystem
 Requires:	uname(release) >= %{min_kernel}
 Provides:	%{name}(%{_target_cpu}) = %{epoch}:%{version}-%{release}
@@ -132,6 +132,7 @@ Provides:	%{name}(ix86) = %{epoch}:%{version}-%{release}
 %endif
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
+Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
 %ifarch %{x8664} sparc64 ppc64
@@ -339,9 +340,12 @@ glibc library for crypt(3).
 %description libcrypt -l pl.UTF-8
 Biblioteka glibc z funkcją crypt(3).
 
-%package ld
-Summary:	Dynamic linker
-Summary(pl.UTF-8):	Linker (konsolidator) dynamiczny
+%package -n ldconfig
+Summary:	Create shared library cache and maintains symlinks
+Summary(de.UTF-8):	Erstellt ein shared library cache und verwaltet symlinks
+Summary(fr.UTF-8):	Crée un cache de bibliothčque partagée et gčre *.so
+Summary(pl.UTF-8):	Tworzenie cache'u bibliotek dynamicznych i ich dowiązań symbolicznych
+Summary(tr.UTF-8):	Ortak kitaplýk önbelleđi yaratýr ve bađlantýlarý kurar
 Group:		Applications/System
 Requires:	uname(release) >= %{min_kernel}
 # we want FHS being installed before ldconfig, altho they are both unrelated to each-other.
@@ -350,23 +354,39 @@ Provides:	rtld(GNU_HASH)
 # This is needed because previous package (glibc) had autoreq false and had
 # provided this manually. Probably poldek bug that have to have it here.
 Provides:	/sbin/ldconfig
-Provides:	ldconfig = %{epoch}:%{version}-%{release}
-Obsoletes:	ldconfig < 6:2.28-6.1
+# we want FHS being installed before ldconfig, altho they are both unrelated to each-other.
+Requires:	FHS
 
-%description ld
-The dynamic linker is used to load shared libraries used by
-executables linked dynamically.
+%description -n ldconfig
+ldconfig scans a running system and sets up the symbolic links that
+are used to load shared libraries properly. It also creates
+/etc/ld.so.cache which speeds the loading programs which use shared
+libraries.
 
-The package also contains the ldconfig tool used to maintain shared
-library cache for the linker.
+%description -n ldconfig -l de.UTF-8
+ldconfig scannt ein laufendes System und richtet die symbolischen
+Verknüpfungen zum Laden der gemeinsam genutzten Libraries ein.
+Außerdem erstellt es /etc/ld.so.cache, was das Laden von Programmen
+mit gemeinsam genutzten Libraries beschleunigt.
 
-%description ld -l pl.UTF-8
-Linker (konsolidator) dynamiczny służy do ładowania bibliotek
-współdzielonych używanych przez programy wykonywalne konsolidowane
-dynamicznie.
+%description -n ldconfig -l fr.UTF-8
+ldconfig analyse un systčme et configure les liens symboliques
+utilisés pour charger correctement les bibliothčques partagées. Il
+crée aussi /etc/ld.so.cache qui accélčre le chargement des programmes
+utilisant les bibliothčques partagées.
 
-Pakiet zawiera także narzędzie ldconfig, służące do utrzymywania
-pamięci podręcznej bibliotek współdzielonych dla linkera.
+%description -n ldconfig -l pl.UTF-8
+ldconfig testuje uruchomiony system i tworzy dowiązania symboliczne,
+które są następnie używane do poprawnego ładowania bibliotek
+dynamicznych. Program ten tworzy plik /etc/ld.so.cache, który
+przyśpiesza ładowanie programów korzystających z bibliotek
+dynamicznych.
+
+%description -n ldconfig -l tr.UTF-8
+ldconfig, çalýţmakta olan sistemi araţtýrýr ve ortak kitaplýklarýn
+düzgün bir ţekilde yüklenmesi için gereken simgesel bađlantýlarý
+kurar. Ayrýca ortak kitaplýklarý kullanan programlarýn yüklenmesini
+hýzlandýran /etc/ld.so.cache dosyasýný yaratýr.
 
 %package -n nss_compat
 Summary:	Old style NYS NSS glibc module
@@ -1312,18 +1332,11 @@ rm -rf $RPM_BUILD_ROOT
 %if %{without cross}
 %post	-p /sbin/postshell
 /sbin/glibc-postinst /%{_lib}/%{_host_cpu} /%{_lib}/tls
--/sbin/ldconfig
+/sbin/ldconfig
 
-%postun	-p /sbin/postshell
--/sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
-%post ld -p /sbin/postshell
--/sbin/ldconfig
-
-%postun	ld -p /sbin/postshell
--/sbin/ldconfig
-
-%triggerpostun ld -p /sbin/postshell -- glibc-misc < 6:2.3.5-7.6
+%triggerpostun -p /sbin/postshell -- glibc-misc < 6:2.3.5-7.6
 -/bin/cp -f /etc/ld.so.conf /etc/ld.so.conf.rpmsave
 -/bin/sed -i -e '1iinclude ld.so.conf.d/*.conf' /etc/ld.so.conf
 %endif
@@ -1399,7 +1412,33 @@ fi
 %if %{without cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
-# wildly arch-dependent ld.so SONAME symlink
+# TODO: package ldconfig symlinks as %ghost
+%attr(755,root,root) /%{_lib}/ld-%{core_version}.so
+%ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
+%attr(755,root,root) /%{_lib}/ld-linux.so.2
+%endif
+%ifarch ia64
+%attr(755,root,root) /%{_lib}/ld-linux-ia64.so.2
+%endif
+%ifarch %{x8664}
+%attr(755,root,root) /%{_lib}/ld-linux-x86-64.so.2
+%endif
+%ifarch x32
+%attr(755,root,root) /%{_lib}/ld-linux-x32.so.2
+%endif
+%ifarch ppc64 s390x
+%attr(755,root,root) /%{_lib}/ld64.so.1
+%endif
+%ifarch aarch64
+%attr(755,root,root) /lib/ld-linux-aarch64.so.1
+%attr(755,root,root) /%{_lib}/ld-linux-aarch64.so.1
+%endif
+%ifarch armv6hl
+%attr(755,root,root) /lib/ld-linux-armhf.so.3
+%endif
+%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} x32 ppc64 s390x %{arm} aarch64
+%attr(755,root,root) /%{_lib}/ld.so.1
+%endif
 %attr(755,root,root) /%{_lib}/libBrokenLocale-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libBrokenLocale.so.1.1
@@ -1514,6 +1553,9 @@ fi
 %{_mandir}/man7/unicode.7*
 %{_mandir}/man7/utf-8.7*
 %{_mandir}/man7/utf8.7*
+%{_mandir}/man8/ld-linux.8*
+%{_mandir}/man8/ld-linux.so.8*
+%{_mandir}/man8/ld.so.8*
 %{_mandir}/man8/sln.8*
 %{_mandir}/man8/zdump.8*
 %{_mandir}/man8/zic.8*
@@ -1547,6 +1589,9 @@ fi
 %lang(es) %{_mandir}/es/man7/unicode.7*
 %lang(es) %{_mandir}/es/man7/utf-8.7*
 %lang(es) %{_mandir}/es/man7/utf8.7*
+%lang(es) %{_mandir}/es/man8/ld-linux.8*
+%lang(es) %{_mandir}/es/man8/ld-linux.so.8*
+%lang(es) %{_mandir}/es/man8/ld.so.8*
 %lang(es) %{_mandir}/es/man8/zdump.8*
 %lang(es) %{_mandir}/es/man8/zic.8*
 %lang(fr) %{_mandir}/fr/man1/getent.1*
@@ -1571,6 +1616,9 @@ fi
 %lang(fr) %{_mandir}/fr/man7/unicode.7*
 %lang(fr) %{_mandir}/fr/man7/utf-8.7*
 %lang(fr) %{_mandir}/fr/man7/utf8.7*
+%lang(fr) %{_mandir}/fr/man8/ld-linux.8*
+%lang(fr) %{_mandir}/fr/man8/ld-linux.so.8*
+%lang(fr) %{_mandir}/fr/man8/ld.so.8*
 %lang(fr) %{_mandir}/fr/man8/sln.8*
 %lang(fr) %{_mandir}/fr/man8/zdump.8*
 %lang(fr) %{_mandir}/fr/man8/zic.8*
@@ -1582,6 +1630,9 @@ fi
 %lang(hu) %{_mandir}/hu/man7/locale.7*
 %lang(hu) %{_mandir}/hu/man7/utf-8.7*
 %lang(hu) %{_mandir}/hu/man7/utf8.7*
+%lang(hu) %{_mandir}/hu/man8/ld-linux.8*
+%lang(hu) %{_mandir}/hu/man8/ld-linux.so.8*
+%lang(hu) %{_mandir}/hu/man8/ld.so.8*
 %lang(hu) %{_mandir}/hu/man8/zdump.8*
 %lang(it) %{_mandir}/it/man5/locale.5*
 %lang(it) %{_mandir}/it/man7/ascii.7*
@@ -1620,6 +1671,9 @@ fi
 %lang(ja) %{_mandir}/ja/man7/unicode.7*
 %lang(ja) %{_mandir}/ja/man7/utf-8.7*
 %lang(ja) %{_mandir}/ja/man7/utf8.7*
+%lang(ja) %{_mandir}/ja/man8/ld-linux.8*
+%lang(ja) %{_mandir}/ja/man8/ld-linux.so.8*
+%lang(ja) %{_mandir}/ja/man8/ld.so.8*
 %lang(ja) %{_mandir}/ja/man8/sln.8*
 %lang(ja) %{_mandir}/ja/man8/zdump.8*
 %lang(ja) %{_mandir}/ja/man8/zic.8*
@@ -1644,6 +1698,9 @@ fi
 %lang(pl) %{_mandir}/pl/man7/unicode.7*
 %lang(pl) %{_mandir}/pl/man7/utf-8.7*
 %lang(pl) %{_mandir}/pl/man7/utf8.7*
+%lang(pl) %{_mandir}/pl/man8/ld-linux.8*
+%lang(pl) %{_mandir}/pl/man8/ld-linux.so.8*
+%lang(pl) %{_mandir}/pl/man8/ld.so.8*
 %lang(pt) %{_mandir}/pt/man5/locale.5*
 %lang(pt) %{_mandir}/pt/man5/nsswitch.conf.5*
 %lang(pt) %{_mandir}/pt/man5/rpc.5*
@@ -1679,6 +1736,8 @@ fi
 %lang(ru) %{_mandir}/ru/man7/unicode.7*
 %lang(ru) %{_mandir}/ru/man7/utf-8.7*
 %lang(ru) %{_mandir}/ru/man7/utf8.7*
+%lang(ru) %{_mandir}/ru/man8/ld-linux.so.8*
+%lang(ru) %{_mandir}/ru/man8/ld.so.8*
 %lang(ru) %{_mandir}/ru/man8/zdump.8*
 %lang(ru) %{_mandir}/ru/man8/zic.8*
 %lang(tr) %{_mandir}/tr/man1/iconv.1*
@@ -1749,66 +1808,19 @@ fi
 %endif
 %endif
 
-%files ld
+%files -n ldconfig
 %defattr(644,root,root,755)
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
 %dir %{_sysconfdir}/ld.so.conf.d
 %ghost %{_sysconfdir}/ld.so.cache
-# TODO: package ldconfig symlinks as %ghost
-%attr(755,root,root) /%{_lib}/ld-%{core_version}.so
-%ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
-%attr(755,root,root) /%{_lib}/ld-linux.so.2
-%endif
-%ifarch ia64
-%attr(755,root,root) /%{_lib}/ld-linux-ia64.so.2
-%endif
-%ifarch %{x8664}
-%attr(755,root,root) /%{_lib}/ld-linux-x86-64.so.2
-%endif
-%ifarch x32
-%attr(755,root,root) /%{_lib}/ld-linux-x32.so.2
-%endif
-%ifarch ppc64 s390x
-%attr(755,root,root) /%{_lib}/ld64.so.1
-%endif
-%ifarch aarch64
-%attr(755,root,root) /lib/ld-linux-aarch64.so.1
-%attr(755,root,root) /%{_lib}/ld-linux-aarch64.so.1
-%endif
-%ifarch armv6hl
-%attr(755,root,root) /lib/ld-linux-armhf.so.3
-%endif
-%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} x32 ppc64 s390x %{arm} aarch64
-%attr(755,root,root) /%{_lib}/ld.so.1
-%endif
 %attr(755,root,root) /sbin/ldconfig
-%{_mandir}/man8/ld-linux.8*
-%{_mandir}/man8/ld-linux.so.8*
-%{_mandir}/man8/ld.so.8*
 %{_mandir}/man8/ldconfig.8*
-%lang(es) %{_mandir}/es/man8/ld-linux.8*
-%lang(es) %{_mandir}/es/man8/ld-linux.so.8*
-%lang(es) %{_mandir}/es/man8/ld.so.8*
 %lang(es) %{_mandir}/es/man8/ldconfig.8*
-%lang(fr) %{_mandir}/fr/man8/ld-linux.8*
-%lang(fr) %{_mandir}/fr/man8/ld-linux.so.8*
-%lang(fr) %{_mandir}/fr/man8/ld.so.8*
 %lang(fr) %{_mandir}/fr/man8/ldconfig.8*
-%lang(hu) %{_mandir}/hu/man8/ld-linux.8*
-%lang(hu) %{_mandir}/hu/man8/ld-linux.so.8*
-%lang(hu) %{_mandir}/hu/man8/ld.so.8*
 %lang(hu) %{_mandir}/hu/man8/ldconfig.8*
-%lang(ja) %{_mandir}/ja/man8/ld-linux.8*
-%lang(ja) %{_mandir}/ja/man8/ld-linux.so.8*
-%lang(ja) %{_mandir}/ja/man8/ld.so.8*
 %lang(ja) %{_mandir}/ja/man8/ldconfig.8*
-%lang(pl) %{_mandir}/pl/man8/ld-linux.8*
-%lang(pl) %{_mandir}/pl/man8/ld-linux.so.8*
-%lang(pl) %{_mandir}/pl/man8/ld.so.8*
 %lang(pl) %{_mandir}/pl/man8/ldconfig.8*
 %lang(pt) %{_mandir}/pt/man8/ldconfig.8*
-%lang(ru) %{_mandir}/ru/man8/ld-linux.so.8*
-%lang(ru) %{_mandir}/ru/man8/ld.so.8*
 %lang(ru) %{_mandir}/ru/man8/ldconfig.8*
 %dir %attr(700,root,root) /var/cache/ldconfig
 %attr(600,root,root) %ghost /var/cache/ldconfig/aux-cache
