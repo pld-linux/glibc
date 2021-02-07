@@ -50,7 +50,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -135,6 +135,7 @@ Provides:	glibc(tls)
 Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
 Obsoletes:	glibc-debug
+Obsoletes:	glibc-ld < 6:2.33-2
 %ifarch %{x8664} sparc64 ppc64
 Provides:	glibc64
 Obsoletes:	glibc64
@@ -190,8 +191,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_hack_dontneed_PartialHardlinkSets	1
 %define		_noautochrpath		.*\\(ldconfig\\|sln\\)
 # private symbols
+# don't generate deps for ldconfig to avoid loop and force rpm to install it before glibc
 %define		_noautoprov		.*\(GLIBC_PRIVATE\)
-%define		_noautoreq		.*\(GLIBC_PRIVATE\)
+%define		_noautoreq		.*\(GLIBC_PRIVATE\) /sbin/ldconfig
 
 # to avoid multi-arch conflicts on getconf/* files
 %define		_libexecdir		%{_libdir}
