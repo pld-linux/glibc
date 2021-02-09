@@ -356,8 +356,6 @@ Provides:	rtld(GNU_HASH)
 # This is needed because previous package (glibc) had autoreq false and had
 # provided this manually. Probably poldek bug that have to have it here.
 Provides:	/sbin/ldconfig
-# we want FHS being installed before ldconfig, altho they are both unrelated to each-other.
-Requires:	FHS
 
 %description -n ldconfig
 ldconfig scans a running system and sets up the symbolic links that
