@@ -50,7 +50,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -125,6 +125,7 @@ BuildRequires:	texinfo >= 4.7
 BuildRequires:	xz
 Requires(post):	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	filesystem
+Requires:	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	uname(release) >= %{min_kernel}
 Provides:	%{name}(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
@@ -356,6 +357,7 @@ Provides:	rtld(GNU_HASH)
 # This is needed because previous package (glibc) had autoreq false and had
 # provided this manually. Probably poldek bug that have to have it here.
 Provides:	/sbin/ldconfig
+Conflicts:	glibc-ld < 6:2.33-2
 
 %description -n ldconfig
 ldconfig scans a running system and sets up the symbolic links that
