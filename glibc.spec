@@ -945,7 +945,7 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-#%patch0 -p1
+%patch0 -p1
 
 %patch2 -p1
 %patch3 -p0
