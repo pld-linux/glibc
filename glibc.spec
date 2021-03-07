@@ -676,7 +676,7 @@ Summary:	Documentation needed for development using standard C libraries
 Summary(pl.UTF-8):	Dokumentacja do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Documentation
 Conflicts:	man-pages < 4.09
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description devel-doc
 The glibc-devel-doc package contains info and manual pages necessary
