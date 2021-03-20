@@ -1,8 +1,9 @@
---- glibc-2.17/aclocal.m4~	2012-12-25 04:02:13.000000000 +0100
-+++ glibc-2.17/aclocal.m4	2012-12-25 12:11:19.271094384 +0100
-@@ -2,11 +2,6 @@
- dnl the internal functions defined and used by the main configure script
- dnl match those expected by the fragments.
+diff -urNp -x '*.orig' glibc-2.33.org/aclocal.m4 glibc-2.33/aclocal.m4
+--- glibc-2.33.org/aclocal.m4	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/aclocal.m4	2021-03-20 14:28:43.059826328 +0100
+@@ -3,11 +3,6 @@ dnl the internal functions defined and u
+ dnl match those expected by the fragments.  When changing this version,
+ dnl install.texi also needs to be updated.
  m4_define([GLIBC_AUTOCONF_VERSION], [2.69])
 -m4_if(m4_defn([AC_AUTOCONF_VERSION]), GLIBC_AUTOCONF_VERSION, [],
 -      [m4_fatal(m4_flatten(
@@ -11,4 +12,4 @@
 -), [63])])dnl
  dnl
  dnl We define the macro GLIBC_PROVIDES to do an AC_PROVIDE for each macro
- dnl which appears in configure.in before the sysdep configure scripts are run.
+ dnl which appears in configure.ac before the sysdep configure scripts are run.

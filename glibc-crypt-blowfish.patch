@@ -1,7 +1,54 @@
 Index: crypt/crypt_blowfish.c
 ===================================================================
---- /dev/null
-+++ crypt/crypt_blowfish.c
+diff -urNp -x '*.orig' glibc-2.33.org/crypt/Makefile glibc-2.33/crypt/Makefile
+--- glibc-2.33.org/crypt/Makefile	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/crypt/Makefile	2021-03-20 14:25:48.703826328 +0100
+@@ -28,7 +28,7 @@ extra-libs := libcrypt
+ extra-libs-others := $(extra-libs)
+ 
+ libcrypt-routines := crypt-entry md5-crypt sha256-crypt sha512-crypt crypt \
+-		     crypt_util
++		     crypt_util crypt_blowfish
+ 
+ tests := cert md5c-test sha256c-test sha512c-test badsalttest
+ 
+diff -urNp -x '*.orig' glibc-2.33.org/crypt/crypt-entry.c glibc-2.33/crypt/crypt-entry.c
+--- glibc-2.33.org/crypt/crypt-entry.c	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/crypt/crypt-entry.c	2021-03-20 14:25:48.703826328 +0100
+@@ -52,6 +52,8 @@ extern char *__sha256_crypt (const char
+ extern char *__sha512_crypt_r (const char *key, const char *salt,
+ 			       char *buffer, int buflen);
+ extern char *__sha512_crypt (const char *key, const char *salt);
++extern char *_crypt_blowfish_rn (const char *key, const char *setting,
++				char *output, int size);
+ 
+ /* Define our magic string to mark salt for MD5 encryption
+    replacement.  This is meant to be the same as for other MD5 based
+@@ -64,6 +66,9 @@ static const char sha256_salt_prefix[] =
+ /* Magic string for SHA512 encryption.  */
+ static const char sha512_salt_prefix[] = "$6$";
+ 
++/* Magic string for Blowfish encryption.  */
++static const char blowfish_salt_prefix[] = "$2a$";
++
+ /* For use by the old, non-reentrant routines (crypt/encrypt/setkey)  */
+ extern struct crypt_data _ufc_foobar;
+ 
+@@ -102,6 +107,11 @@ __crypt_r (const char *key, const char *
+   if (strncmp (sha512_salt_prefix, salt, sizeof (sha512_salt_prefix) - 1) == 0)
+     return __sha512_crypt_r (key, salt, (char *) data,
+ 			     sizeof (struct crypt_data));
++
++  /* Try to find out whether we have to use Blowfish encryption replacement.  */
++  if (strncmp (blowfish_salt_prefix, salt, sizeof (blowfish_salt_prefix) - 1) == 0)
++    return _crypt_blowfish_rn (key, salt, (char *) data,
++			     sizeof (struct crypt_data));
+ #endif
+ 
+   /*
+diff -urNp -x '*.orig' glibc-2.33.org/crypt/crypt_blowfish.c glibc-2.33/crypt/crypt_blowfish.c
+--- glibc-2.33.org/crypt/crypt_blowfish.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/crypt/crypt_blowfish.c	2021-03-20 14:25:48.702826328 +0100
 @@ -0,0 +1,743 @@
 +/*
 + * This code comes from John the Ripper password cracker, with reentrant
@@ -746,51 +793,3 @@ Index: crypt/crypt_blowfish.c
 +
 +	return output;
 +}
-Index: crypt/Makefile
-===================================================================
---- crypt/Makefile.orig
-+++ crypt/Makefile
-@@ -27,7 +27,7 @@ extra-libs := libcrypt
- extra-libs-others := $(extra-libs)
- 
- libcrypt-routines := crypt-entry md5-crypt sha256-crypt sha512-crypt crypt \
--		     crypt_util
-+		     crypt_util crypt_blowfish
- 
- tests := cert md5c-test sha256c-test sha512c-test
- 
-Index: crypt/crypt-entry.c
-===================================================================
---- crypt/crypt-entry.c.orig
-+++ crypt/crypt-entry.c
-@@ -59,6 +59,8 @@ extern char *__sha256_crypt (const char
- extern char *__sha512_crypt_r (const char *key, const char *salt,
- 			       char *buffer, int buflen);
- extern char *__sha512_crypt (const char *key, const char *salt);
-+extern char *_crypt_blowfish_rn (const char *key, const char *setting,
-+				char *output, int size);
- 
- /* Define our magic string to mark salt for MD5 encryption
-    replacement.  This is meant to be the same as for other MD5 based
-@@ -74,6 +76,9 @@ static const char sha256_salt_prefix[] =
- /* Magic string for SHA512 encryption.  */
- static const char sha512_salt_prefix[] = "$6$";
- 
-+/* Magic string for Blowfish encryption.  */
-+static const char blowfish_salt_prefix[] = "$2a$";
-+
- /* For use by the old, non-reentrant routines (crypt/encrypt/setkey)  */
- extern struct crypt_data _ufc_foobar;
- 
-@@ -106,6 +111,11 @@ __crypt_r (key, salt, data)
-   if (strncmp (sha512_salt_prefix, salt, sizeof (sha512_salt_prefix) - 1) == 0)
-     return __sha512_crypt_r (key, salt, (char *) data,
- 			     sizeof (struct crypt_data));
-+
-+  /* Try to find out whether we have to use Blowfish encryption replacement.  */
-+  if (strncmp (blowfish_salt_prefix, salt, sizeof (blowfish_salt_prefix) - 1) == 0)
-+    return _crypt_blowfish_rn (key, salt, (char *) data,
-+			     sizeof (struct crypt_data));
- #endif
- 
-   /*

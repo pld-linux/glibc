@@ -1,8 +1,8 @@
-diff -Nru glibc-2.1/manual/libc.texinfo glibc-2.1.new/manual/libc.texinfo
---- glibc-2.1/manual/libc.texinfo	Tue Jan 12 18:22:16 1999
-+++ glibc-2.1.new/manual/libc.texinfo	Sat Feb 27 02:40:12 1999
-@@ -5,9 +5,9 @@
- @c setchapternewpage odd
+diff -urNp -x '*.orig' glibc-2.33.org/manual/libc.texinfo glibc-2.33/manual/libc.texinfo
+--- glibc-2.33.org/manual/libc.texinfo	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/manual/libc.texinfo	2021-03-20 14:27:49.037826328 +0100
+@@ -14,9 +14,9 @@
+ @include macros.texi
  
  @comment Tell install-info what to do.
 -@dircategory Software libraries
@@ -13,4 +13,3 @@ diff -Nru glibc-2.1/manual/libc.texinfo glibc-2.1.new/manual/libc.texinfo
  @end direntry
  @include dir-add.texi
  
-

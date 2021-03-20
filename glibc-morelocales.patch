@@ -1,6 +1,7 @@
---- glibc-2.6.org/intl/locale.alias	2003-12-04 08:57:47.000000000 +0100
-+++ glibc-2.6/intl/locale.alias	2007-05-18 12:14:44.909053462 +0200
-@@ -49,6 +49,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/intl/locale.alias glibc-2.33/intl/locale.alias
+--- glibc-2.33.org/intl/locale.alias	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/intl/locale.alias	2021-03-20 14:29:52.272826328 +0100
+@@ -56,6 +56,9 @@ hrvatski	hr_HR.ISO-8859-2
  hungarian       hu_HU.ISO-8859-2
  icelandic       is_IS.ISO-8859-1
  italian         it_IT.ISO-8859-1
@@ -10,7 +11,7 @@
  japanese	ja_JP.eucJP
  japanese.euc	ja_JP.eucJP
  ja_JP		ja_JP.eucJP
-@@ -60,6 +63,8 @@
+@@ -67,6 +70,8 @@ ko_KR		ko_KR.eucKR
  lithuanian      lt_LT.ISO-8859-13
  no_NO		nb_NO.ISO-8859-1
  no_NO.ISO-8859-1 nb_NO.ISO-8859-1
@@ -19,7 +20,7 @@
  norwegian       nb_NO.ISO-8859-1
  nynorsk		nn_NO.ISO-8859-1
  polish          pl_PL.ISO-8859-2
-@@ -70,6 +75,12 @@
+@@ -77,6 +82,12 @@ slovak          sk_SK.ISO-8859-2
  slovene         sl_SI.ISO-8859-2
  slovenian       sl_SI.ISO-8859-2
  spanish         es_ES.ISO-8859-1
@@ -32,827 +33,254 @@
  swedish         sv_SE.ISO-8859-1
  thai		th_TH.TIS-620
  turkish         tr_TR.ISO-8859-9
---- glibc-2.6.org/localedata/locales/eu_FR	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/eu_FR	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,93 @@
-+comment_char %
-+escape_char  /
-+%
-+% Basque Language Locale for France
-+% Language: eu
-+% Territory: FR
-+% Revision: 1.0
-+% Date: 2004-06-24
-+% Users: general
-+% Charset: ISO-8859-1
-+% Distribution and use is free, also
-+% for commercial purposes.
-+
-+LC_IDENTIFICATION
-+title      "Basque locale for France"
-+source     "Christian Perrier and the Debian Project"
-+address    ""
-+contact    "Christian Perrier"
-+email      "bubulle@debian.org"
-+tel        ""
-+fax        ""
-+language   "Basque"
-+territory  "France"
-+revision   "1.0"
-+date       "2004-06-24"
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "iso14651_t1"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "i18n"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+copy "eu_ES"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "fr_FR"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "fr_FR"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "eu_ES"
-+END LC_TIME
-+
-+LC_PAPER
-+copy "fr_FR"
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+copy "fr_FR"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "fr_FR"
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+copy "eu_ES"
-+END LC_NAME
-+
-+LC_ADDRESS
-+postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
-+country_name "Frantzia"
-+country_ab2  "FR"
-+country_ab3  "FRA"
-+country_num  250
-+country_car  "F"
-+country_isbn "2"
-+lang_name    "Euskara"
-+lang_ab      "eu"
-+lang_term    "eus"
-+lang_lib     "baq"
-+END LC_ADDRESS
---- glibc-2.6.org/localedata/locales/eu_FR@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/eu_FR@euro	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,84 @@
-+comment_char %
-+escape_char  /
-+%
-+% Basque Language Locale for France
-+% Language: eu
-+% Territory: FR
-+% Option: euro
-+% Revision: 1.0
-+% Date: 2004-06-24
-+% Users: general
-+% Charset: ISO-8859-15
-+% Distribution and use is free, also
-+% for commercial purposes.
-+
-+LC_IDENTIFICATION
-+title      "Basque locale for France"
-+source     "Christian Perrier and the Debian Project"
-+address    ""
-+contact    "Christian Perrier"
-+email      "bubulle@debian.org"
-+tel        ""
-+fax        ""
-+language   "Basque"
-+territory  "France"
-+revision   "1.0"
-+date       "2004-06-24"
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "iso14651_t1"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "i18n"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+copy "eu_FR"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "eu_FR"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "eu_FR"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "eu_FR"
-+END LC_TIME
-+
-+LC_PAPER
-+copy "eu_FR"
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+copy "eu_FR"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "eu_FR"
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+copy "eu_FR"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "eu_FR"
-+END LC_ADDRESS
---- glibc-2.6.org/localedata/locales/ia	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/ia	2007-05-18 12:14:53.726513832 +0200
-@@ -0,0 +1,127 @@
-+comment_char %
-+escape_char  /
-+%
-+% Interlingua Language Locale 
-+
-+LC_IDENTIFICATION
-+title      "Interlingua locale"
-+source     ""
-+address    ""
-+contact    ""
-+email      "mardy@despammed.com"
-+tel        ""
-+fax        ""
-+language   "Interlingua"
-+territory  ""
-+revision   "1.0"
-+date       "2003-11-25"
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "iso14651_t1"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "i18n"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+yesexpr "^[sSyY]"
-+noexpr  "^[nN]"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+int_curr_symbol           "EUR "
-+currency_symbol           "<U20AC>"
-+mon_decimal_point         ","
-+mon_thousands_sep         "."
-+mon_grouping              3;3
-+positive_sign             ""
-+negative_sign             "-"
-+int_frac_digits           2
-+frac_digits               2
-+p_cs_precedes             1
-+p_sep_by_space            1
-+n_cs_precedes             1
-+n_sep_by_space            1
-+p_sign_posn               1
-+n_sign_posn               1
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+decimal_point             ","
-+thousands_sep             ""
-+grouping                  0;0
-+END LC_NUMERIC
-+
-+LC_TIME
-+abday   "dom";"lun";"mar";"mer";"jov";"ven";"sab"
-+day     "dominica";/
-+        "lunedi";/
-+        "martedi";/
-+        "mercuridi";/
-+        "jovedi";/
-+        "venerdi";/
-+        "sabbato"
-+abmon   "jan";"feb";"mar";"apr";"mai";"jun";"jul";"aug";"sep";"oct";"nov";"dic"
-+mon     "januario";/
-+        "februario";/
-+        "martio";/
-+        "april";/
-+        "maio";/
-+        "junio";/
-+        "julio";/
-+        "augusto";/
-+        "septembre";/
-+        "octobre";/
-+        "novembre";/
-+        "decembre"
-+d_t_fmt "%a %d %b %Y %T %Z"
-+d_fmt   "%d/%m/%Y"
-+t_fmt   "%T"
-+am_pm   "";""
-+t_fmt_ampm ""
-+date_fmt "%a %b %e %H:%M:%S %Z %Y"
-+END LC_TIME
-+
-+LC_PAPER
-+% FIXME
-+height   297
-+% FIXME
-+width    210
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+tel_int_fmt    "+%c %a %l"
-+int_select	"00"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+% FIXME
-+measurement    1
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+name_fmt    "%d%t%g%t%m%t%f"
-+END LC_NAME
-+
-+LC_ADDRESS
-+postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%%z %T%N%c%N"
-+lang_name    "Interlingua"
-+lang_ab      "ia"
-+lang_term    "ina"
-+lang_lib     "ina"
-+END LC_ADDRESS
---- glibc-2.6.org/localedata/locales/nds_DE@traditional	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/nds_DE@traditional	2007-05-18 12:14:53.729847465 +0200
-@@ -0,0 +1,107 @@
-+comment_char %
-+escape_char  /
-+repertoiremap mnemonic.ds
-+% charset "ISO_8859-1:1987"
-+% Distribution and use is
-+
-+LC_IDENTIFICATION 
-+title     "Low(lands) Saxon Language Locale for Germany"
-+source    "information from Kenneth Christiansen"
-+address   ""
-+contact   "Kenneth Christiansen, Pablo Saratxaga"
-+email     "kenneth@gnu.org, pablo@mandrakesoft.com"
-+tel       ""
-+fax       ""
-+language  "Low Saxon"
-+territory "Germany"
-+revision  "0.1"
-+date      "2003-11-30"
-+
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_MEASUREMENT
-+category "i18n:2012";LC_TELEPHONE
-+category "i18n:2012";LC_ADDRESS
-+
-+% ISO/IEC 14652: Converted comments to LC_IDENTIFICATION
-+%  added LC_PAPER, LC_MEASUREMENT, LC_TELEPHONE, LC_ADDRESS
-+%  copied LC_MONETARY, LC_NUMERIC from de_DE for simplicity
-+% -- mckinstry@computer.org, 2000-07-03
-+
-+END LC_IDENTIFICATION
-+
-+LC_ADDRESS
-+copy "nds_DE"
-+END LC_ADDRESS
-+
-+LC_COLLATE
-+copy "nds_DE"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "nds_DE"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+copy "nds_DE"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "nds_DE"
-+END LC_MONETARY
-+
-+LC_PAPER
-+copy "nds_DE"
-+END LC_PAPER
-+
-+LC_NAME
-+name_fmt    "%d%t%g%t%m%t%f"
-+END LC_NAME
-+
-+LC_TELEPHONE
-+copy "nds_DE"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "nds_DE"
-+END LC_MEASUREMENT
-+
-+LC_NUMERIC
-+copy "nds_DE"
-+END LC_NUMERIC
-+
-+LC_TIME
-+abday   "Sdag";"Maan";"Ding";"Migg";"Dunn";"Free";"Svd."
-+day     "S<U00FC>nndag";/
-+        "Maandag";/
-+        "Dingsdag";/
-+        "Middeweek";/
-+        "Dunnersdag";/
-+        "Freedag";/
-+        "S<U00FC>nnavend"
-+abmon   "Snee";"Ies.";"Lent";"Oost";"Mai.";"Braa";"Hau.";"Aug.";"Harf";"Wien";"Nev.";"Chri"
-+mon     "Sneemaand";/
-+        "Iesmaand";/
-+        "Lentmaand";/
-+        "Oostermaand";/
-+        "Maimaand";/
-+        "Braakmaand";/
-+        "Haumaand";/
-+        "Augstmaand";/
-+        "Harfstmaand";/
-+        "Wienmaand";/
-+        "Nevelmaand";/
-+        "Christmaand"
-+d_t_fmt "%a %d. %b %Y %T %Z"
-+d_fmt   "%d.%m.%Y"
-+t_fmt   "%T"
-+am_pm   "";""
-+t_fmt_ampm ""
-+END LC_TIME
-diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/locales/oc_FR@euro
---- glibc-2.6.org/localedata/locales/oc_FR@euro	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/oc_FR@euro	2007-05-18 12:14:53.733181099 +0200
-@@ -0,0 +1,83 @@
-+comment_char %
-+escape_char  /
-+%
-+% Occitan Language Locale for France with Euro
-+% Language: oc
-+% Territory: FR
-+% Option: euro
-+% Date: 2004-11-23
-+% Users: general
-+% Charset: ISO-8859-15
-+% Distribution and use is free, also
-+% for commercial purposes.
-+
-+LC_IDENTIFICATION
-+title      "Occitan Language Locale for France with Euro"
-+source     "Free Software Foundation, Inc."
-+address    "59 Temple Place - Suite 330, Boston, MA 02111-1307, USA"
-+contact    ""
-+email      "bug-glibc@gnu.org"
-+tel        ""
-+fax        ""
-+language   "Occitan"
-+territory  "France"
-+revision   "1.0"
-+date       "2004-11-23"
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "iso14651_t1"
-+END LC_COLLATE
-+
-+LC_MESSAGES
-+copy "oc_FR"
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+copy "oc_FR"
-+END LC_MONETARY
-+
-+LC_CTYPE
-+copy "oc_FR"
-+END LC_CTYPE
-+
-+LC_NUMERIC
-+copy "oc_FR"
-+END LC_NUMERIC
-+
-+LC_TIME
-+copy "oc_FR"
-+END LC_TIME
-+
-+LC_PAPER
-+copy "oc_FR"
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+copy "oc_FR"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "oc_FR"
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+copy "oc_FR"
-+END LC_NAME
-+
-+LC_ADDRESS
-+copy "oc_FR"
-+END LC_ADDRESS
---- glibc-2.6.org/localedata/locales/rm_CH	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/rm_CH	2007-05-18 12:14:53.733181099 +0200
-@@ -0,0 +1,193 @@
-+comment_char %
-+escape_char  /
-+% Locale for Rhaeto-Romance language in Switzerland (Romansh).
-+% Contributed by Sascha Brawer <brawer at dandelis.ch>, 2003
-+% corrected by Florian Verdet and Reto Lehner, 2003
-+% internal-revision: 0.1.2  2003-11-18
-+
-+LC_IDENTIFICATION
-+%fvg:I assume, this is correct...
-+title      "Rhaeto-Romance locale for Switzerland"
-+source     "Free Software Foundation, Inc."
-+address    "59 Temple Place - Suite 330, Boston, MA 02111-1307, USA"
-+contact    "Sascha Brawer"
-+email      "brawer at dandelis.ch"
-+tel        ""
-+fax        ""
-+language   "Rhaeto-Romance"
-+territory  "Switzerland"
-+revision   "0.1"
-+date       "2003-11-12"
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+
-+END LC_IDENTIFICATION
-+
-+LC_COLLATE
-+copy "iso14651_t1"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+% FIXME: This assumes that Romansh uses the same transliterations
-+% as German. Is this correct?
-+%fvg:FALSE!
-+%-uuml, ouml (and auml) only occur in names
-+% they occur also in idioms, but not in RG !
-+%-[aeiou]grave are used !
-+%-'s-ch' (one collating-symbol ?)(occurs also in RG ??) is collated with 'sch'
-+% (scha, schabain, s-chabè, schablà, schablona, s-chablun, schacal, ...).)
-+copy "de_CH"
-+END LC_CTYPE
-+
-+LC_MESSAGES
-+%fvg: idioms use: eEhHsS (ea,schi,hai) - and nNbB (na,bu?,betg?)
-+yesexpr                   "^[gGyY]"  % User input for accepting.
-+noexpr                    "^[nN]"    % User input for rejecting.
-+END LC_MESSAGES
-+
-+LC_MONETARY
-+int_curr_symbol           "CHF "
-+currency_symbol           "Fr."
-+mon_decimal_point         "."	%FULL STOP
-+mon_thousands_sep         " "	%SPACE - fvg:Why not an apastroph ?
-+mon_grouping              3;3
-+positive_sign             ""
-+negative_sign             "-"	%HYPHEN-MINUS
-+int_frac_digits           2
-+frac_digits               2
-+p_cs_precedes             1
-+p_sep_by_space            1
-+n_cs_precedes             1
-+n_sep_by_space            1
-+p_sign_posn               4
-+n_sign_posn               4
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+decimal_point             "."
-+thousands_sep             " "	%fvg:dito
-+grouping                  3;3
-+END LC_NUMERIC
-+
-+LC_TIME
-+%fvg:dictionary says: mixed two-char/three-char abbrev:
-+%abday  "du"; "gli"; "ma"; "me"; "gie"; "ve"; "so"
-+%but specification wants "of equal length" !
-+abday   "dum"; "gli"; "mar"; "mes"; "gie"; "ven"; "son"
-+day     "dumengia"; "glindesdi"; "mardi"; /
-+        "mesemna"; "gievgia"; "venderdi"; "sonda"
-+%7 days in a week ; date of a Monday (firt day of week) ;
-+%week of first Thursday of a year is week #1  } is ISO 8601 conform
-+week    7;19971201;4
-+%fvg:abbrev not confirmed
-+abmon   "sch"; "fav"; "mar"; "avr"; "mat"; "zer";/
-+        "fan"; "avu"; "set"; "oct"; "nov"; "dec"
-+mon     "schaner"; "favrer"; "mars";/
-+        "avrigl"; "matg"; "zercladur";/
-+        "fanadur"; "avust"; "settember";/
-+        "october"; "november"; "december"
-+am_pm   "";""                % AM and PM are not appended.
-+d_t_fmt "%a %d %b %Y %T %Z"  % Date and time respresentation (%c).
-+d_fmt   "%d-%m-%Y"           % Date representation (%x).
-+t_fmt   "%T"                 % Time representation (%X).
-+t_fmt_ampm ""                % No AM/PM suffix.
-+date_fmt "%a %e %b %H:%M:%S" % Full date.
-+END LC_TIME
-+
-+LC_PAPER
-+height   297  % Height of normal sheet in mm (DIN A4).
-+width    210  % Width of normal sheet in mm (DIN A4).
-+END LC_PAPER
-+
-+LC_TELEPHONE
-+tel_int_fmt    "+%c %a %l"
-+int_prefix     "41"
-+END LC_TELEPHONE
-+
-+
-+LC_MEASUREMENT
-+measurement    1  % metric system
-+END LC_MEASUREMENT
-+
-+LC_NAME
-+
-+% Format of a name, taken from the glibc locale for Ukrainian.
-+% %f Family names.
-+% %F Family names in uppercase. 
-+% %g First given name.
-+% %G First given initial.
-+% %l First given name with Latin letters.
-+% %o Other shorter name.
-+% %m Additional given names.
-+% %M Initials for additional given names.
-+% %p Profession.
-+% %s Salutation, such as "Doctor"
-+% %S Abbreviated salutation, such as "Mr." or "Dr."
-+% %d Salutation, using the FDCC-sets conventions
-+%    1 for the name_gen
-+%    2 for name_mr
-+%    3 for name_mrs
-+%    4 for name_miss
-+%    5 for name_ms
-+% %t If the preceding field descriptor resulted in an empty string,
-+%    then the empty string, else a <space>.
-+
-+name_fmt    "%d%t%g%t%m%t%f"
-+name_gen    ""         % A salutation valid for all persons.
-+name_miss   "Dunna"    % A salutation valid for unmarried females.
-+%'Signur' is not really used any more
-+name_mr     "Sar"      % A salutation valid for males.
-+name_mrs    "Dunna"    % A salutation valid for married females.
-+name_ms     "Dunna"    % A salutation valid for all females.
-+%all these should be written lower-case if they occur inside a phrase !
-+END LC_NAME
-+
-+LC_ADDRESS
-+
-+% Format of an address. The fields have the following meaning
-+% (taken from glibc locale for Ukranian):
-+
-+% %n Person's name, possibly constructed with the LC_NAME
-+%    "name_fmt" keyword. 
-+% %a Care of person, or organization. 
-+% %f Firm name. 
-+% %d Department name. 
-+% %b Building name. 
-+% %s Street or block (eg. Japanese) name. 
-+% %h House number or designation. 
-+% %N Insert an <end-of-line> if the previous descriptor
-+%    value was not an empty string; otherwise ignore.
-+% %t Insert a <space> if the previous descriptor value
-+%    was not an empty string; otherwise ignore.
-+% %r Room number, door designation. 
-+% %e Floor number. 
-+% %C Country designation, from the <country_post> keyword. 
-+% %l Local township within town or city .
-+% %z Zip number, postal code. 
-+% %T Town, city. 
-+% %S State, province, or prefecture. 
-+% %c Country, as taken from data record.
-+
-+postal_fmt   "%f%N%a%N%d%N%b%N%s %h%t%e%t%r%N%z %T%N%c%N"
-+country_name "Svizra"          % Localized country name.
-+country_post "CH"              % Postal code for country.
-+country_num  756               % Numeric code for country (ISO 3166).
-+country_ab2  "CH"              % Two-letter code for country (ISO 3166).
-+country_ab3  "CHE"             % Three-letter code for country (ISO 3166).
-+country_car  "CH"              % Country code for cars.
-+country_isbn "88"              % same as for Italian ?
-+lang_name    "rumantsch"       % Localized language name.
-+lang_ab      "rm"              % Two-letter code for language (ISO 639).
-+lang_term    "roh"             % Three-letter code for language (ISO 639-2).
-+lang_lib     "roh"             % Three-letter code for language (ISO 639-2).
-+END LC_ADDRESS
---- glibc-2.6.org/localedata/locales/sw_UG	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.6/localedata/locales/sw_UG	2007-05-18 12:14:58.623621321 +0200
-@@ -0,0 +1,110 @@
-+comment_char %
-+escape_char  /
-+%
-+% Swahili Language Locale for Uganda
-+% Source: Based on data from Debian/Mandriva
-+% Contact: 
-+% Email: ankry at mif dot pg dot gda dot pl
-+% Language: sw
-+% Territory: Uganda
-+% Revision: 0.2
-+% Date: 2004-08-01
-+% Users: general
-+% Repertoiremap: mnemonic,ds
-+% Charset: UTF-8
-+% Distribution and use is free, also
-+% for commercial purposes.
-+
-+LC_IDENTIFICATION
-+title      "Swahili locale for Uganda"
-+source     "Based on data from Debian/Mandriva"
-+address    ""
-+contact    ""
-+email      ""
-+tel        ""
-+fax        ""
-+language   "Swahili"
-+territory  "Uganda"
-+revision   "0.3"
-+date       "2005-10-14"
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+END LC_IDENTIFICATION
-+
-+%%%%%%%%%%%%%%%%
-+% TODO: check LC_MONETARY, LC_NUMERIC, LC_MESSAGES, LC_COLLATE
-+% 	check time and date formats
-+%%%%%%%%%%%%%%%%
-+
-+LC_COLLATE
-+copy "sw_KE"
-+END LC_COLLATE
-+
-+LC_CTYPE
-+copy "sw_KE"
-+END LC_CTYPE
-+
-+LC_MONETARY
-+copy "lg_UG"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "lg_UG"
-+END LC_NUMERIC
-+
-+LC_TELEPHONE
-+copy "lg_UG"
-+END LC_TELEPHONE
-+
-+LC_TIME
-+copy "sw_KE"
-+END LC_TIME
-+
-+LC_MESSAGES
-+copy "sw_KE"
-+END LC_MESSAGES
-+
-+% Default paper: A4
-+LC_PAPER
-+height 297
-+width 210
-+END LC_PAPER
-+
-+% Metric System (ISO 1000)
-+LC_MEASUREMENT
-+measurement 1
-+END LC_MEASUREMENT
-+
-+LC_ADDRESS
-+%
-+% This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category.
-+%
-+postal_fmt    "%z%c%T%s%b%e%r"
-+%
-+% Uganda
-+country_name  "Uganda"
-+country_post  "UG"
-+country_ab2   "UG"
-+country_ab3   "UGA"
-+country_num   800
-+country_car   "EAU"
-+country_isbn  "9970"
-+lang_name     "Kiswahili"
-+lang_ab       "sw"
-+lang_term     "swa"
-+lang_lib      "swa"
-+END LC_ADDRESS
-+
-+LC_NAME
-+copy "sw_KE"
-+END LC_NAME
---- glibc-2.14/localedata/locales/ary_MA@latin.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.14/localedata/locales/ary_MA@latin	2011-06-26 09:30:48.647902668 +0200
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata/SUPPORTED
+--- glibc-2.33.org/localedata/SUPPORTED	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/SUPPORTED	2021-03-20 14:29:52.275826328 +0100
+@@ -50,6 +50,8 @@ ar_TN.UTF-8/UTF-8 \
+ ar_TN/ISO-8859-6 \
+ ar_YE.UTF-8/UTF-8 \
+ ar_YE/ISO-8859-6 \
++ary_MA@latin/UTF-8 \
++ay_PE/UTF-8 \
+ ayc_PE/UTF-8 \
+ az_AZ/UTF-8 \
+ az_IR/UTF-8 \
+@@ -59,6 +61,8 @@ ast_ES/ISO-8859-15 \
+ be_BY.UTF-8/UTF-8 \
+ be_BY/CP1251 \
+ be_BY@latin/UTF-8 \
++be_BY@tarask.UTF-8/UTF-8 \
++be_BY@tarask/CP1251 \
+ bem_ZM/UTF-8 \
+ ber_DZ/UTF-8 \
+ ber_MA/UTF-8 \
+@@ -210,11 +214,15 @@ et_EE.ISO-8859-15/ISO-8859-15 \
+ eu_ES.UTF-8/UTF-8 \
+ eu_ES/ISO-8859-1 \
+ eu_ES@euro/ISO-8859-15 \
++eu_FR.UTF-8/UTF-8 \
++eu_FR/ISO-8859-1 \
++eu_FR@euro/ISO-8859-15 \
+ fa_IR/UTF-8 \
+ ff_SN/UTF-8 \
+ fi_FI.UTF-8/UTF-8 \
+ fi_FI/ISO-8859-1 \
+ fi_FI@euro/ISO-8859-15 \
++fil_PH.ISO-8859-1/ISO-8859-1 \
+ fil_PH/UTF-8 \
+ fo_FO.UTF-8/UTF-8 \
+ fo_FO/ISO-8859-1 \
+@@ -231,8 +239,14 @@ fr_FR@euro/ISO-8859-15 \
+ fr_LU.UTF-8/UTF-8 \
+ fr_LU/ISO-8859-1 \
+ fr_LU@euro/ISO-8859-15 \
++fur_IT.ISO-8859-1/ISO-8859-1 \
++fur_IT.ISO-8859-15/ISO-8859-15 \
+ fur_IT/UTF-8 \
++fy_NL.ISO-8859-1/ISO-8859-1 \
++fy_NL.ISO-8859-15/ISO-8859-15 \
+ fy_NL/UTF-8 \
++fy_DE.ISO-8859-1/ISO-8859-1 \
++fy_DE.ISO-8859-15/ISO-8859-15 \
+ fy_DE/UTF-8 \
+ ga_IE.UTF-8/UTF-8 \
+ ga_IE/ISO-8859-1 \
+@@ -261,11 +275,13 @@ hr_HR/ISO-8859-2 \
+ hsb_DE/ISO-8859-2 \
+ hsb_DE.UTF-8/UTF-8 \
+ ht_HT/UTF-8 \
++hu_HU.ISO-8859-16/ISO-8859-16 \
+ hu_HU.UTF-8/UTF-8 \
+ hu_HU/ISO-8859-2 \
+ hy_AM/UTF-8 \
+ hy_AM.ARMSCII-8/ARMSCII-8 \
+ ia_FR/UTF-8 \
++ia/UTF-8 \
+ id_ID.UTF-8/UTF-8 \
+ id_ID/ISO-8859-1 \
+ ig_NG/UTF-8 \
+@@ -280,9 +296,11 @@ it_IT@euro/ISO-8859-15 \
+ iu_CA/UTF-8 \
+ ja_JP.EUC-JP/EUC-JP \
+ ja_JP.UTF-8/UTF-8 \
++ka_GE.GEORGIAN-ACADEMY/GEORGIAN-ACADEMY \
+ ka_GE.UTF-8/UTF-8 \
+ ka_GE/GEORGIAN-PS \
+ kab_DZ/UTF-8 \
++kg_CD/UTF-8 \
+ kk_KZ.UTF-8/UTF-8 \
+ kk_KZ/PT154 \
+ kl_GL.UTF-8/UTF-8 \
+@@ -298,14 +316,20 @@ ku_TR.UTF-8/UTF-8 \
+ ku_TR/ISO-8859-9 \
+ kw_GB.UTF-8/UTF-8 \
+ kw_GB/ISO-8859-1 \
++ky_KG.KOI8-K/KOI8-K \
+ ky_KG/UTF-8 \
+ lb_LU/UTF-8 \
+ lg_UG.UTF-8/UTF-8 \
+ lg_UG/ISO-8859-10 \
++li_BE.ISO-8859-1/ISO-8859-1 \
++li_BE.ISO-8859-15/ISO-8859-15 \
+ li_BE/UTF-8 \
++li_NL.ISO-8859-1/ISO-8859-1 \
++li_NL.ISO-8859-15/ISO-8859-15 \
+ li_NL/UTF-8 \
+ lij_IT/UTF-8 \
+ ln_CD/UTF-8 \
++lo_LA.MULELAO-1/MULELAO-1 \
+ lo_LA/UTF-8 \
+ lt_LT.UTF-8/UTF-8 \
+ lt_LT/ISO-8859-13 \
+@@ -335,11 +359,17 @@ ms_MY/ISO-8859-1 \
+ mt_MT.UTF-8/UTF-8 \
+ mt_MT/ISO-8859-3 \
+ my_MM/UTF-8 \
++myv_RU/UTF-8 \
++myv_RU@cyrillic/UTF-8 \
+ nan_TW/UTF-8 \
+ nan_TW@latin/UTF-8 \
+ nb_NO.UTF-8/UTF-8 \
+ nb_NO/ISO-8859-1 \
++nds_DE.ISO-8859-1/ISO-8859-1 \
++nds_DE.ISO-8859-15/ISO-8859-15 \
+ nds_DE/UTF-8 \
++nds_DE.ISO-8859-1@traditional/ISO-8859-1 \
++nds_DE@traditional/UTF-8 \
+ nds_NL/UTF-8 \
+ ne_NP/UTF-8 \
+ nhn_MX/UTF-8 \
+@@ -354,10 +384,13 @@ nl_NL/ISO-8859-1 \
+ nl_NL@euro/ISO-8859-15 \
+ nn_NO.UTF-8/UTF-8 \
+ nn_NO/ISO-8859-1 \
++nr_ZA.ISO-8859-1/ISO-8859-1 \
+ nr_ZA/UTF-8 \
++nso_ZA.ISO-8859-10/ISO-8859-10 \
+ nso_ZA/UTF-8 \
+ oc_FR.UTF-8/UTF-8 \
+ oc_FR/ISO-8859-1 \
++oc_FR@euro/ISO-8859-15 \
+ om_ET/UTF-8 \
+ om_KE.UTF-8/UTF-8 \
+ om_KE/ISO-8859-1 \
+@@ -367,6 +400,7 @@ pa_IN/UTF-8 \
+ pa_PK/UTF-8 \
+ pap_AW/UTF-8 \
+ pap_CW/UTF-8 \
++pl_PL.ISO-8859-16/ISO-8859-16 \
+ pl_PL.UTF-8/UTF-8 \
+ pl_PL/ISO-8859-2 \
+ ps_AF/UTF-8 \
+@@ -377,6 +411,9 @@ pt_PT/ISO-8859-1 \
+ pt_PT@euro/ISO-8859-15 \
+ quz_PE/UTF-8 \
+ raj_IN/UTF-8 \
++rm_CH.UTF-8/UTF-8 \
++rm_CH/ISO-8859-1 \
++ro_RO.ISO-8859-16/ISO-8859-16 \
+ ro_RO.UTF-8/UTF-8 \
+ ro_RO/ISO-8859-2 \
+ ru_RU.KOI8-R/KOI8-R \
+@@ -384,13 +421,17 @@ ru_RU.UTF-8/UTF-8 \
+ ru_RU/ISO-8859-5 \
+ ru_UA.UTF-8/UTF-8 \
+ ru_UA/KOI8-U \
++rw_RW.ISO-8859-1/ISO-8859-1 \
+ rw_RW/UTF-8 \
+ sa_IN/UTF-8 \
+ sah_RU/UTF-8 \
+ sat_IN/UTF-8 \
++sc_IT.ISO-8859-1/ISO-8859-1 \
++sc_IT.ISO-8859-15/ISO-8859-15 \
+ sc_IT/UTF-8 \
+ sd_IN/UTF-8 \
+ sd_IN@devanagari/UTF-8 \
++sd_PK/UTF-8 \
+ se_NO/UTF-8 \
+ sgs_LT/UTF-8 \
+ shn_MM/UTF-8 \
+@@ -399,6 +440,7 @@ si_LK/UTF-8 \
+ sid_ET/UTF-8 \
+ sk_SK.UTF-8/UTF-8 \
+ sk_SK/ISO-8859-2 \
++sl_SI.ISO-8859-16/ISO-8859-16 \
+ sl_SI.UTF-8/UTF-8 \
+ sl_SI/ISO-8859-2 \
+ sm_WS/UTF-8 \
+@@ -412,26 +454,42 @@ so_SO/ISO-8859-1 \
+ sq_AL.UTF-8/UTF-8 \
+ sq_AL/ISO-8859-1 \
+ sq_MK/UTF-8 \
++sr_BA.ISO-8859-5@ijekavian/ISO-8859-5 \
++sr_BA@ijekavian/UTF-8 \
++sr_BA.ISO-8859-2@ijekavianlatin/ISO-8859-2 \
++sr_BA@ijekavianlatin/UTF-8 \
++sr_ME.ISO-8859-5/ISO-8859-5 \
+ sr_ME/UTF-8 \
++sr_ME@latin.ISO-8859-16/ISO-8859-16 \
++sr_ME@latin/UTF-8 \
++$(shell true currently broken: sr_RS.ISO-8859-5/ISO-8859-5) \
+ sr_RS/UTF-8 \
++sr_RS.ISO-8859-2@latin/ISO-8859-2 \
+ sr_RS@latin/UTF-8 \
+ ss_ZA/UTF-8 \
+ st_ZA.UTF-8/UTF-8 \
++ss_ZA.ISO-8859-1/ISO-8859-1 \
+ st_ZA/ISO-8859-1 \
+ sv_FI.UTF-8/UTF-8 \
+ sv_FI/ISO-8859-1 \
+ sv_FI@euro/ISO-8859-15 \
+ sv_SE.UTF-8/UTF-8 \
+ sv_SE/ISO-8859-1 \
++sw_KE.ISO-8859-1/ISO-8859-1 \
+ sw_KE/UTF-8 \
+ sw_TZ/UTF-8 \
++sw_UG.UTF-8/UTF-8 \
++sw_UG.ISO-8859-10/ISO-8859-10 \
++sw_UG/ISO-8859-1 \
+ szl_PL/UTF-8 \
+ ta_IN/UTF-8 \
+ ta_LK/UTF-8 \
+ tcy_IN.UTF-8/UTF-8 \
+ te_IN/UTF-8 \
++tg_TJ.KOI8-K/KOI8-K \
+ tg_TJ.UTF-8/UTF-8 \
+ tg_TJ/KOI8-T \
++th_TH.ISO-8859-11/ISO-8859-11 \
+ th_TH.UTF-8/UTF-8 \
+ th_TH/TIS-620 \
+ the_NP/UTF-8 \
+@@ -441,6 +499,7 @@ tig_ER/UTF-8 \
+ tk_TM/UTF-8 \
+ tl_PH.UTF-8/UTF-8 \
+ tl_PH/ISO-8859-1 \
++tn_ZA.ISO-8859-10/ISO-8859-10 \
+ tn_ZA/UTF-8 \
+ to_TO/UTF-8 \
+ tpi_PG/UTF-8 \
+@@ -448,7 +507,10 @@ tr_CY.UTF-8/UTF-8 \
+ tr_CY/ISO-8859-9 \
+ tr_TR.UTF-8/UTF-8 \
+ tr_TR/ISO-8859-9 \
++ts_ZA.ISO-8859-1/ISO-8859-1 \
+ ts_ZA/UTF-8 \
++tt_RU.KOI8-K/KOI8-K \
++tt_RU.TATAR-CYR/TATAR-CYR \
+ tt_RU/UTF-8 \
+ tt_RU@iqtelif/UTF-8 \
+ ug_CN/UTF-8 \
+@@ -456,6 +518,7 @@ uk_UA.UTF-8/UTF-8 \
+ uk_UA/KOI8-U \
+ unm_US/UTF-8 \
+ ur_IN/UTF-8 \
++ur_PK.CP1256/CP1256 \
+ ur_PK/UTF-8 \
+ uz_UZ.UTF-8/UTF-8 \
+ uz_UZ/ISO-8859-1 \
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ary_MA@latin glibc-2.33/localedata/locales/ary_MA@latin
+--- glibc-2.33.org/localedata/locales/ary_MA@latin	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/ary_MA@latin	2021-03-20 14:29:52.274826328 +0100
 @@ -0,0 +1,247 @@
 +comment_char    %
 +escape_char     /
@@ -1101,8 +529,110 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +measurement 1
 +
 +END LC_MEASUREMENT
---- glibc-2.14/localedata/locales/be_BY@tarask.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.14/localedata/locales/be_BY@tarask	2011-06-26 09:30:48.647902668 +0200
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ay_PE glibc-2.33/localedata/locales/ay_PE
+--- glibc-2.33.org/localedata/locales/ay_PE	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/ay_PE	2021-03-20 14:29:52.275826328 +0100
+@@ -0,0 +1,97 @@
++comment_char %
++escape_char /
++% Charset: UTF-8
++% WARNING: This file has been autogenerated by the Locale Helper application
++%          Check it carefully before using it in production.
++LC_IDENTIFICATION
++title      "Aymara locale for PERU"
++source       "runasimipi.org"
++language  "ay"
++territory "PERU"
++revision  "1.0"
++date      "2013-01-04"
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++
++translit_start
++include "translit_combining";""
++translit_end
++END LC_CTYPE
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_TIME
++% inïru;phiwriru;marsu;awrila;mayu;junyu;julyu;awustu;sitimri;uktuwri;nuwimri;risimri
++mon           "in<U00EF>ru";"phiwriru";"marsu";"awrila";"mayu";"junyu";"julyu";"awustu";"sitimri";"uktuwri";"nuwimri";"risimri"
++abmon         "ini";"phi";"mar";"awr";"may";"jun";"jul";"awu";"sit";"ukt";"nuw";"ris"
++% tuminku;lunisa;martisa;mirkulisa;juywisa;wirnisa;sawäru
++day           "tuminku";"lunisa";"martisa";"mirkulisa";"juywisa";"wirnisa";"saw<U00E4>ru"
++abday         "tum";"lun";"mar";"mir";"juy";"wir";"saw"
++% FIXME if wrong
++am_pm         "";""
++d_t_fmt       "%a %d %b %Y %T %Z"
++d_fmt         "%d/%m/%Y"
++t_fmt         "%T"
++END LC_TIME
++
++LC_NUMERIC
++copy "es_PE"
++END LC_NUMERIC
++
++LC_MONETARY
++copy "es_PE"
++END LC_MONETARY
++
++LC_PAPER
++copy "es_PE"
++END LC_PAPER
++
++LC_MEASUREMENT
++measurement 1
++END LC_MEASUREMENT
++
++LC_MESSAGES
++yesexpr "^[uUsSyY]"
++noexpr  "^[jJnN]"
++yesstr  "Ukhamawa"
++nostr   "Janiwa"
++END LC_MESSAGES
++
++LC_NAME
++copy "es_PE"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
++country_ab2   "PE"
++country_ab3   "PER"
++country_num   604
++country_name  "Piruw"
++country_car   "PE"
++country_isbn  "612,9972"
++lang_name     "Aymar aru"
++lang_ab       "ay"
++lang_term     "aym"
++lang_lib      "aym"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "es_PE"
++END LC_TELEPHONE
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/be_BY@tarask glibc-2.33/localedata/locales/be_BY@tarask
+--- glibc-2.33.org/localedata/locales/be_BY@tarask	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/be_BY@tarask	2021-03-20 14:29:52.274826328 +0100
 @@ -0,0 +1,136 @@
 +comment_char %
 +escape_char  /
@@ -1240,8 +770,325 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +LC_ADDRESS
 +copy "be_BY"
 +END LC_ADDRESS
---- glibc-2.14/localedata/locales/kg_CD.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.14/localedata/locales/kg_CD	2011-06-26 09:30:48.651236002 +0200
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/eu_FR glibc-2.33/localedata/locales/eu_FR
+--- glibc-2.33.org/localedata/locales/eu_FR	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/eu_FR	2021-03-20 14:29:52.273826328 +0100
+@@ -0,0 +1,93 @@
++comment_char %
++escape_char  /
++%
++% Basque Language Locale for France
++% Language: eu
++% Territory: FR
++% Revision: 1.0
++% Date: 2004-06-24
++% Users: general
++% Charset: ISO-8859-1
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Basque locale for France"
++source     "Christian Perrier and the Debian Project"
++address    ""
++contact    "Christian Perrier"
++email      "bubulle@debian.org"
++tel        ""
++fax        ""
++language   "Basque"
++territory  "France"
++revision   "1.0"
++date       "2004-06-24"
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_MESSAGES
++copy "eu_ES"
++END LC_MESSAGES
++
++LC_MONETARY
++copy "fr_FR"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "fr_FR"
++END LC_NUMERIC
++
++LC_TIME
++copy "eu_ES"
++END LC_TIME
++
++LC_PAPER
++copy "fr_FR"
++END LC_PAPER
++
++LC_TELEPHONE
++copy "fr_FR"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "fr_FR"
++END LC_MEASUREMENT
++
++LC_NAME
++copy "eu_ES"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
++country_name "Frantzia"
++country_ab2  "FR"
++country_ab3  "FRA"
++country_num  250
++country_car  "F"
++country_isbn "2"
++lang_name    "Euskara"
++lang_ab      "eu"
++lang_term    "eus"
++lang_lib     "baq"
++END LC_ADDRESS
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/eu_FR@euro glibc-2.33/localedata/locales/eu_FR@euro
+--- glibc-2.33.org/localedata/locales/eu_FR@euro	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/eu_FR@euro	2021-03-20 14:29:52.273826328 +0100
+@@ -0,0 +1,84 @@
++comment_char %
++escape_char  /
++%
++% Basque Language Locale for France
++% Language: eu
++% Territory: FR
++% Option: euro
++% Revision: 1.0
++% Date: 2004-06-24
++% Users: general
++% Charset: ISO-8859-15
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Basque locale for France"
++source     "Christian Perrier and the Debian Project"
++address    ""
++contact    "Christian Perrier"
++email      "bubulle@debian.org"
++tel        ""
++fax        ""
++language   "Basque"
++territory  "France"
++revision   "1.0"
++date       "2004-06-24"
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_MESSAGES
++copy "eu_FR"
++END LC_MESSAGES
++
++LC_MONETARY
++copy "eu_FR"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "eu_FR"
++END LC_NUMERIC
++
++LC_TIME
++copy "eu_FR"
++END LC_TIME
++
++LC_PAPER
++copy "eu_FR"
++END LC_PAPER
++
++LC_TELEPHONE
++copy "eu_FR"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "eu_FR"
++END LC_MEASUREMENT
++
++LC_NAME
++copy "eu_FR"
++END LC_NAME
++
++LC_ADDRESS
++copy "eu_FR"
++END LC_ADDRESS
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ia glibc-2.33/localedata/locales/ia
+--- glibc-2.33.org/localedata/locales/ia	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/ia	2021-03-20 14:29:52.273826328 +0100
+@@ -0,0 +1,127 @@
++comment_char %
++escape_char  /
++%
++% Interlingua Language Locale 
++
++LC_IDENTIFICATION
++title      "Interlingua locale"
++source     ""
++address    ""
++contact    ""
++email      "mardy@despammed.com"
++tel        ""
++fax        ""
++language   "Interlingua"
++territory  ""
++revision   "1.0"
++date       "2003-11-25"
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++
++END LC_IDENTIFICATION
++
++LC_COLLATE
++copy "iso14651_t1"
++END LC_COLLATE
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_MESSAGES
++yesexpr "^[sSyY]"
++noexpr  "^[nN]"
++END LC_MESSAGES
++
++LC_MONETARY
++int_curr_symbol           "EUR "
++currency_symbol           "<U20AC>"
++mon_decimal_point         ","
++mon_thousands_sep         "."
++mon_grouping              3;3
++positive_sign             ""
++negative_sign             "-"
++int_frac_digits           2
++frac_digits               2
++p_cs_precedes             1
++p_sep_by_space            1
++n_cs_precedes             1
++n_sep_by_space            1
++p_sign_posn               1
++n_sign_posn               1
++END LC_MONETARY
++
++LC_NUMERIC
++decimal_point             ","
++thousands_sep             ""
++grouping                  0;0
++END LC_NUMERIC
++
++LC_TIME
++abday   "dom";"lun";"mar";"mer";"jov";"ven";"sab"
++day     "dominica";/
++        "lunedi";/
++        "martedi";/
++        "mercuridi";/
++        "jovedi";/
++        "venerdi";/
++        "sabbato"
++abmon   "jan";"feb";"mar";"apr";"mai";"jun";"jul";"aug";"sep";"oct";"nov";"dic"
++mon     "januario";/
++        "februario";/
++        "martio";/
++        "april";/
++        "maio";/
++        "junio";/
++        "julio";/
++        "augusto";/
++        "septembre";/
++        "octobre";/
++        "novembre";/
++        "decembre"
++d_t_fmt "%a %d %b %Y %T %Z"
++d_fmt   "%d/%m/%Y"
++t_fmt   "%T"
++am_pm   "";""
++t_fmt_ampm ""
++date_fmt "%a %b %e %H:%M:%S %Z %Y"
++END LC_TIME
++
++LC_PAPER
++% FIXME
++height   297
++% FIXME
++width    210
++END LC_PAPER
++
++LC_TELEPHONE
++tel_int_fmt    "+%c %a %l"
++int_select	"00"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++% FIXME
++measurement    1
++END LC_MEASUREMENT
++
++LC_NAME
++name_fmt    "%d%t%g%t%m%t%f"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%%z %T%N%c%N"
++lang_name    "Interlingua"
++lang_ab      "ia"
++lang_term    "ina"
++lang_lib     "ina"
++END LC_ADDRESS
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/kg_CD glibc-2.33/localedata/locales/kg_CD
+--- glibc-2.33.org/localedata/locales/kg_CD	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/kg_CD	2021-03-20 14:29:52.274826328 +0100
 @@ -0,0 +1,180 @@
 +comment_char %
 +escape_char  /
@@ -1423,8 +1270,9 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +lang_term    "kon"
 +lang_lib     "kon"
 +END LC_ADDRESS
---- glibc-2.15/localedata/locales/myv_RU.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.15/localedata/locales/myv_RU	2012-01-04 18:11:29.748762600 +0100
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/myv_RU glibc-2.33/localedata/locales/myv_RU
+--- glibc-2.33.org/localedata/locales/myv_RU	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/myv_RU	2021-03-20 14:29:52.274826328 +0100
 @@ -0,0 +1,166 @@
 +comment_char %
 +escape_char /
@@ -1592,8 +1440,9 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +LC_TELEPHONE
 +copy "ru_RU"
 +END LC_TELEPHONE
---- glibc-2.15/localedata/locales/myv_RU@cyrillic.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.15/localedata/locales/myv_RU@cyrillic	2012-01-04 18:13:38.398766907 +0100
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/myv_RU@cyrillic glibc-2.33/localedata/locales/myv_RU@cyrillic
+--- glibc-2.33.org/localedata/locales/myv_RU@cyrillic	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/myv_RU@cyrillic	2021-03-20 14:29:52.274826328 +0100
 @@ -0,0 +1,133 @@
 +comment_char %
 +escape_char /
@@ -1728,450 +1577,146 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +LC_TELEPHONE
 +copy "ru_RU"
 +END LC_TELEPHONE
---- glibc-2.17/localedata/locales/sr_ME@latin.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.17/localedata/locales/sr_ME@latin	2013-01-04 15:59:23.574814992 +0100
-@@ -0,0 +1,135 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nds_DE@traditional glibc-2.33/localedata/locales/nds_DE@traditional
+--- glibc-2.33.org/localedata/locales/nds_DE@traditional	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/nds_DE@traditional	2021-03-20 14:29:52.273826328 +0100
+@@ -0,0 +1,107 @@
++comment_char %
++escape_char  /
++repertoiremap mnemonic.ds
++% charset "ISO_8859-1:1987"
++% Distribution and use is
++
++LC_IDENTIFICATION 
++title     "Low(lands) Saxon Language Locale for Germany"
++source    "information from Kenneth Christiansen"
++address   ""
++contact   "Kenneth Christiansen, Pablo Saratxaga"
++email     "kenneth@gnu.org, pablo@mandrakesoft.com"
++tel       ""
++fax       ""
++language  "Low Saxon"
++territory "Germany"
++revision  "0.1"
++date      "2003-11-30"
++
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_ADDRESS
++
++% ISO/IEC 14652: Converted comments to LC_IDENTIFICATION
++%  added LC_PAPER, LC_MEASUREMENT, LC_TELEPHONE, LC_ADDRESS
++%  copied LC_MONETARY, LC_NUMERIC from de_DE for simplicity
++% -- mckinstry@computer.org, 2000-07-03
++
++END LC_IDENTIFICATION
++
++LC_ADDRESS
++copy "nds_DE"
++END LC_ADDRESS
++
++LC_COLLATE
++copy "nds_DE"
++END LC_COLLATE
++
++LC_CTYPE
++copy "nds_DE"
++END LC_CTYPE
++
++LC_MESSAGES
++copy "nds_DE"
++END LC_MESSAGES
++
++LC_MONETARY
++copy "nds_DE"
++END LC_MONETARY
++
++LC_PAPER
++copy "nds_DE"
++END LC_PAPER
++
++LC_NAME
++name_fmt    "%d%t%g%t%m%t%f"
++END LC_NAME
++
++LC_TELEPHONE
++copy "nds_DE"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "nds_DE"
++END LC_MEASUREMENT
++
++LC_NUMERIC
++copy "nds_DE"
++END LC_NUMERIC
++
++LC_TIME
++abday   "Sdag";"Maan";"Ding";"Migg";"Dunn";"Free";"Svd."
++day     "S<U00FC>nndag";/
++        "Maandag";/
++        "Dingsdag";/
++        "Middeweek";/
++        "Dunnersdag";/
++        "Freedag";/
++        "S<U00FC>nnavend"
++abmon   "Snee";"Ies.";"Lent";"Oost";"Mai.";"Braa";"Hau.";"Aug.";"Harf";"Wien";"Nev.";"Chri"
++mon     "Sneemaand";/
++        "Iesmaand";/
++        "Lentmaand";/
++        "Oostermaand";/
++        "Maimaand";/
++        "Braakmaand";/
++        "Haumaand";/
++        "Augstmaand";/
++        "Harfstmaand";/
++        "Wienmaand";/
++        "Nevelmaand";/
++        "Christmaand"
++d_t_fmt "%a %d. %b %Y %T %Z"
++d_fmt   "%d.%m.%Y"
++t_fmt   "%T"
++am_pm   "";""
++t_fmt_ampm ""
++END LC_TIME
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/oc_FR@euro glibc-2.33/localedata/locales/oc_FR@euro
+--- glibc-2.33.org/localedata/locales/oc_FR@euro	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/oc_FR@euro	2021-03-20 14:29:52.273826328 +0100
+@@ -0,0 +1,83 @@
 +comment_char %
 +escape_char  /
 +%
-+% Serbian Language locale for Montenegro
-+% Source: sr_YU, sr_CS locale
-+% Address:
-+%
-+% Contact: Danilo Segan
-+% Email: danilo@gnome.org
-+% Tel: +381 63 323456
-+% Fax: none
-+% Language: sr
-+% Territory: ME
-+% Revision: 1.2
-+% Date: 2006-10-11
-+% Application: general
++% Occitan Language Locale for France with Euro
++% Language: oc
++% Territory: FR
++% Option: euro
++% Date: 2004-11-23
 +% Users: general
-+% Charset: UTF-8, ISO-8859-16
++% Charset: ISO-8859-15
 +% Distribution and use is free, also
 +% for commercial purposes.
 +
 +LC_IDENTIFICATION
-+title      "Serbian Latin locale for Montenegro"
-+source     "sr_YU, sr_CS locale"
-+address    ""
-+contact    "Danilo Segan"
++title      "Occitan Language Locale for France with Euro"
++source     "Free Software Foundation, Inc."
++address    "59 Temple Place - Suite 330, Boston, MA 02111-1307, USA"
++contact    ""
 +email      "bug-glibc@gnu.org"
 +tel        ""
 +fax        ""
-+language   "Serbian"
-+territory  "Montenegro"
-+revision   "1.2"
-+date       "2006-10-11"
-+audience   "general"
-+application   "GNU locale"
-+abbreviation  ""
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+category "i18n:2012";LC_MEASUREMENT
-+END LC_IDENTIFICATION
-+
-+LC_CTYPE
-+copy "i18n"
-+END LC_CTYPE
-+
-+LC_COLLATE
-+copy "sr_RS@latin"
-+END LC_COLLATE
-+
-+LC_MONETARY
-+copy "sr_ME"
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "sr_ME"
-+END LC_NUMERIC
-+
-+LC_TIME
-+abday   "ned";"pon";"uto";"sri";"<U010D>et";"pet";"sub"
-+day     "nedjelja";/
-+        "ponedeljak";/
-+        "utorak";/
-+	 "srijeda";/
-+        "<U010D>etvrtak";/
-+        "petak";/
-+        "subota"
-+abmon   "jan";"feb";"mar";"apr";"maj";"jun";"jul";"avg";"sep";"okt";"nov";"dec"
-+mon     "januar";/
-+        "februar";/
-+        "mart";/
-+        "april";/
-+        "maj";/
-+        "jun";/
-+        "jul";/
-+        "avgust";/
-+        "septembar";/
-+        "oktobar";/
-+        "novembar";/
-+        "decembar"
-+
-+d_t_fmt       "%A, %d, %B %Y. %T %Z"
-+d_fmt         "%d.%m.%Y."
-+t_fmt         "%T"
-+am_pm         "";""
-+t_fmt_ampm    "%T"
-+date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
-+week          7;19971130;4
-+first_weekday 2
-+first_workday 2
-+END LC_TIME
-+
-+LC_MESSAGES
-+copy "sr_RS@latin"
-+END LC_MESSAGES
-+
-+LC_PAPER
-+copy "sr_ME"
-+END LC_PAPER
-+
-+LC_NAME
-+copy "sr_RS@latin"
-+END LC_NAME
-+
-+LC_ADDRESS
-+postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
-+country_ab2   "ME"
-+country_ab3   "MNE"
-+country_post  "MNE"
-+country_name  "Crna Gora"
-+country_num   499
-+country_car   "MNE"
-+country_isbn  "9940"
-+lang_name     "srpski"
-+lang_ab       "sr"
-+lang_term     "srp"
-+lang_lib      "srp"
-+END LC_ADDRESS
-+
-+LC_TELEPHONE
-+copy "sr_ME"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "sr_ME"
-+END LC_MEASUREMENT
---- glibc-2.17/localedata/locales/sr_BA@ijekavian.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.17/localedata/locales/sr_BA@ijekavian	2013-01-04 16:00:04.688147468 +0100
-@@ -0,0 +1,155 @@
-+comment_char %
-+escape_char  /
-+% Serbian Language locale for Ijekavian Serbian in Bosnia and herzegovina
-+% Source: sr_ME, sr_YU, sr_CS locale
-+% Address:
-+%
-+% Contact: Debian Serbian l10n team
-+% Email: debian-l10n-serbian@lists.debian.org
-+% Language: sr@ijekavian
-+% Territory: BA
-+% Revision: 0.01
-+% Date: 2011-08-15
-+% Application: general
-+% Users: general
-+% Charset: UTF-8, ISO-8859-5
-+% Distribution and use is free, also
-+% for commercial purposes.
-+
-+LC_IDENTIFICATION
-+title      "Serbian, ijekavian, locale for Bosnia and Herzegovina"
-+source     "sr_ME, sr_YU, sr_CS locales"
-+address    ""
-+contact    "Debian Serbian l10n team"
-+email      "debian-l10n-serbian@lists.debian.org"
-+tel        ""
-+fax        ""
-+language   "Serbian ijekavian"
-+territory  "Bosnia and Herzegovina"
-+revision   "0.01"
-+date       "2011-08-15"
-+audience   "general"
-+application   "GNU locale"
-+abbreviation  ""
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+category "i18n:2012";LC_MEASUREMENT
-+END LC_IDENTIFICATION
-+
-+LC_CTYPE
-+copy "i18n"
-+END LC_CTYPE
-+
-+LC_COLLATE
-+copy "sr_RS"
-+END LC_COLLATE
-+
-+LC_MONETARY
-+int_curr_symbol           "BAM "
-+currency_symbol           "<U041A><U041C>"
-+mon_decimal_point         ","
-+mon_thousands_sep         "."
-+mon_grouping              3;3
-+positive_sign             ""
-+negative_sign             "-"
-+int_frac_digits           2
-+frac_digits               2
-+p_cs_precedes             0
-+p_sep_by_space            1
-+n_cs_precedes             0
-+n_sep_by_space            1
-+p_sign_posn               1
-+n_sign_posn               1
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "bs_BA"
-+END LC_NUMERIC
-+
-+LC_TIME
-+abday   "<U043D><U0435><U0434>";"<U043F><U043E><U043D>";/
-+        "<U0443><U0442><U043E>";"<U0441><U0440><U0438>";/
-+        "<U0447><U0435><U0442>";"<U043F><U0435><U0442>";/
-+        "<U0441><U0443><U0431>"
-+day     "<U043D><U0435><U0434><U0458><U0435><U0459><U0430>";/
-+        "<U043F><U043E><U043D><U0435><U0434><U0435><U0459><U0430><U043A>";/
-+        "<U0443><U0442><U043E><U0440><U0430><U043A>";/
-+        "<U0441><U0440><U0438><U0458><U0435><U0434><U0430>";/
-+        "<U0447><U0435><U0442><U0432><U0440><U0442><U0430><U043A>";/
-+        "<U043F><U0435><U0442><U0430><U043A>";/
-+        "<U0441><U0443><U0431><U043E><U0442><U0430>"
-+abmon   "<U0458><U0430><U043D>";"<U0444><U0435><U0431>";/
-+        "<U043C><U0430><U0440>";"<U0430><U043F><U0440>";/
-+        "<U043C><U0430><U0458>";"<U0458><U0443><U043D>";/
-+        "<U0458><U0443><U043B>";"<U0430><U0432><U0433>";/
-+        "<U0441><U0435><U043F>";"<U043E><U043A><U0442>";/
-+        "<U043D><U043E><U0432>";"<U0434><U0435><U0446>"
-+mon     "<U0458><U0430><U043D><U0443><U0430><U0440>";/
-+        "<U0444><U0435><U0431><U0440><U0443><U0430><U0440>";/
-+        "<U043C><U0430><U0440><U0442>";/
-+        "<U0430><U043F><U0440><U0438><U043B>";/
-+        "<U043C><U0430><U0458>";/
-+        "<U0458><U0443><U043D>";/
-+        "<U0458><U0443><U043B>";/
-+        "<U0430><U0432><U0433><U0443><U0441><U0442>";/
-+        "<U0441><U0435><U043F><U0442><U0435><U043C><U0431><U0430><U0440>";/
-+        "<U043E><U043A><U0442><U043E><U0431><U0430><U0440>";/
-+        "<U043D><U043E><U0432><U0435><U043C><U0431><U0430><U0440>";/
-+        "<U0434><U0435><U0446><U0435><U043C><U0431><U0430><U0440>"
-+
-+d_t_fmt       "%A, %d. %B %Y. %T %Z"
-+d_fmt         "%d.%m.%Y."
-+t_fmt         "%T"
-+am_pm         "";""
-+t_fmt_ampm    "%T"
-+date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
-+week          7;19971130;4
-+first_weekday 2
-+first_workday 2
-+END LC_TIME
-+
-+LC_MESSAGES
-+copy "sr_RS"
-+END LC_MESSAGES
-+
-+LC_PAPER
-+copy "bs_BA"
-+END LC_PAPER
-+
-+LC_NAME
-+copy "sr_RS"
-+END LC_NAME
-+
-+LC_ADDRESS
-+postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
-+country_ab2   "BA"
-+country_ab3   "BIH"
-+country_post  "BIH"
-+country_name  "<U0411><U043E><U0441><U043D><U0430><U0020><U0438><U0020><U0425><U0435><U0440><U0446><U0435><U0433><U043E><U0432><U0438><U043D><U0430>"
-+country_num   070
-+country_car   "BIH"
-+% Republika Srpska
-+country_isbn  "99938,99976"
-+lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
-+lang_term     "srp"
-+lang_lib      "srp"
-+lang_ab       "sr"
-+END LC_ADDRESS
-+
-+LC_TELEPHONE
-+copy "bs_BA"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "bs_BA"
-+END LC_MEASUREMENT
---- glibc-2.17/localedata/locales/sr_BA@ijekavianlatin.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.17/localedata/locales/sr_BA@ijekavianlatin	2013-01-04 16:00:03.734814154 +0100
-@@ -0,0 +1,130 @@
-+comment_char %
-+escape_char  /
-+% Serbian Language locale for Ijekavian Serbian in Bosnia and herzegovina
-+% Source: sr_ME, sr_YU, sr_CS locale
-+% Address:
-+%
-+% Contact: Debian Serbian l10n team
-+% Email: debian-l10n-serbian@lists.debian.org
-+% Language: sr@ijekavianlatin
-+% Territory: BA
-+% Revision: 0.01
-+% Date: 2011-08-15
-+% Application: general
-+% Users: general
-+% Charset: UTF-8, ISO-8859-2
-+% Distribution and use is free, also
-+% for commercial purposes.
-+
-+LC_IDENTIFICATION
-+title      "Serbian Latin, ijekavian, locale for Bosnia and Herzegovina"
-+source     "sr_ME, sr_YU, sr_CS locales"
-+address    ""
-+contact    "Debian Serbian l10n team"
-+email      "debian-l10n-serbian@lists.debian.org"
-+tel        ""
-+fax        ""
-+language   "Serbian ijekavian"
-+territory  "Bosnia and Herzegovina"
-+revision   "0.01"
-+date       "2011-08-15"
-+audience   "general"
-+application   "GNU locale"
-+abbreviation  ""
-+%
-+category "i18n:2012";LC_IDENTIFICATION
-+category "i18n:2012";LC_CTYPE
-+category "i18n:2012";LC_COLLATE
-+category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_NUMERIC
-+category "i18n:2012";LC_TIME
-+category "i18n:2012";LC_MESSAGES
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_NAME
-+category "i18n:2012";LC_ADDRESS
-+category "i18n:2012";LC_TELEPHONE
-+category "i18n:2012";LC_MEASUREMENT
-+END LC_IDENTIFICATION
-+
-+LC_CTYPE
-+copy "i18n"
-+END LC_CTYPE
-+
-+LC_COLLATE
-+copy "sr_BA@ijekavian"
-+END LC_COLLATE
-+
-+LC_MONETARY
-+int_curr_symbol           "BAM "
-+currency_symbol           "KM"
-+mon_decimal_point         ","
-+mon_thousands_sep         "."
-+mon_grouping              3;3
-+positive_sign             ""
-+negative_sign             "-"
-+int_frac_digits           2
-+frac_digits               2
-+p_cs_precedes             0
-+p_sep_by_space            1
-+n_cs_precedes             0
-+n_sep_by_space            1
-+p_sign_posn               1
-+n_sign_posn               1
-+END LC_MONETARY
-+
-+LC_NUMERIC
-+copy "bs_BA"
-+END LC_NUMERIC
-+
-+LC_TIME
-+abday   "ned";"pon";"uto";"sri";"<U010D>et";"pet";"sub"
-+day     "nedjelja";"ponedeljak";"utorak";"srijeda";"<U010D>etvrtak";"petak";"subota"
-+abmon   "jan";"feb";"mar";"apr";"maj";"jun";"jul";"avg";"sep";"okt";"nov";"dec"
-+mon     "januar";"februar";"mart";"april";"maj";"jun";"jul";"avgust";"septembar";"oktobar";"novembar";"decembar"
-+
-+d_t_fmt       "%A, %d. %B %Y. %T %Z"
-+d_fmt         "%d.%m.%Y."
-+t_fmt         "%T"
-+am_pm         "";""
-+t_fmt_ampm    "%T"
-+date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
-+week          7;19971130;4
-+first_weekday 2
-+first_workday 2
-+END LC_TIME
-+
-+LC_MESSAGES
-+copy "sr_RS@latin"
-+END LC_MESSAGES
-+
-+LC_PAPER
-+copy "bs_BA"
-+END LC_PAPER
-+
-+LC_NAME
-+copy "sr_RS@latin"
-+END LC_NAME
-+
-+LC_ADDRESS
-+postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
-+country_ab2   "BA"
-+country_ab3   "BIH"
-+country_post  "BIH"
-+country_name  "Bosna i Hercegovina"
-+country_num   070
-+country_car   "BIH"
-+% Republika Srpska
-+country_isbn  "99938,99976"
-+lang_name     "srpski"
-+lang_term     "srp"
-+lang_lib      "srp"
-+lang_ab       "sr"
-+END LC_ADDRESS
-+
-+LC_TELEPHONE
-+copy "bs_BA"
-+END LC_TELEPHONE
-+
-+LC_MEASUREMENT
-+copy "bs_BA"
-+END LC_MEASUREMENT
---- glibc-2.17/localedata/locales/ay_PE.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.17/localedata/locales/ay_PE	2013-01-04 19:55:56.207852505 +0100
-@@ -0,0 +1,97 @@
-+comment_char %
-+escape_char /
-+% Charset: UTF-8
-+% WARNING: This file has been autogenerated by the Locale Helper application
-+%          Check it carefully before using it in production.
-+LC_IDENTIFICATION
-+title      "Aymara locale for PERU"
-+source       "runasimipi.org"
-+language  "ay"
-+territory "PERU"
-+revision  "1.0"
-+date      "2013-01-04"
++language   "Occitan"
++territory  "France"
++revision   "1.0"
++date       "2004-11-23"
 +%
 +category "i18n:2012";LC_IDENTIFICATION
 +category "i18n:2012";LC_CTYPE
@@ -2179,105 +1724,81 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +category "i18n:2012";LC_TIME
 +category "i18n:2012";LC_NUMERIC
 +category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_MEASUREMENT
 +category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
 +category "i18n:2012";LC_NAME
 +category "i18n:2012";LC_ADDRESS
 +category "i18n:2012";LC_TELEPHONE
++
 +END LC_IDENTIFICATION
-+
-+LC_CTYPE
-+copy "i18n"
-+
-+translit_start
-+include "translit_combining";""
-+translit_end
-+END LC_CTYPE
 +
 +LC_COLLATE
 +copy "iso14651_t1"
 +END LC_COLLATE
 +
-+LC_TIME
-+% inïru;phiwriru;marsu;awrila;mayu;junyu;julyu;awustu;sitimri;uktuwri;nuwimri;risimri
-+mon           "in<U00EF>ru";"phiwriru";"marsu";"awrila";"mayu";"junyu";"julyu";"awustu";"sitimri";"uktuwri";"nuwimri";"risimri"
-+abmon         "ini";"phi";"mar";"awr";"may";"jun";"jul";"awu";"sit";"ukt";"nuw";"ris"
-+% tuminku;lunisa;martisa;mirkulisa;juywisa;wirnisa;sawäru
-+day           "tuminku";"lunisa";"martisa";"mirkulisa";"juywisa";"wirnisa";"saw<U00E4>ru"
-+abday         "tum";"lun";"mar";"mir";"juy";"wir";"saw"
-+% FIXME if wrong
-+am_pm         "";""
-+d_t_fmt       "%a %d %b %Y %T %Z"
-+d_fmt         "%d/%m/%Y"
-+t_fmt         "%T"
-+END LC_TIME
-+
-+LC_NUMERIC
-+copy "es_PE"
-+END LC_NUMERIC
-+
-+LC_MONETARY
-+copy "es_PE"
-+END LC_MONETARY
-+
-+LC_PAPER
-+copy "es_PE"
-+END LC_PAPER
-+
-+LC_MEASUREMENT
-+measurement 1
-+END LC_MEASUREMENT
-+
 +LC_MESSAGES
-+yesexpr "^[uUsSyY]"
-+noexpr  "^[jJnN]"
-+yesstr  "Ukhamawa"
-+nostr   "Janiwa"
++copy "oc_FR"
 +END LC_MESSAGES
 +
++LC_MONETARY
++copy "oc_FR"
++END LC_MONETARY
++
++LC_CTYPE
++copy "oc_FR"
++END LC_CTYPE
++
++LC_NUMERIC
++copy "oc_FR"
++END LC_NUMERIC
++
++LC_TIME
++copy "oc_FR"
++END LC_TIME
++
++LC_PAPER
++copy "oc_FR"
++END LC_PAPER
++
++LC_TELEPHONE
++copy "oc_FR"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "oc_FR"
++END LC_MEASUREMENT
++
 +LC_NAME
-+copy "es_PE"
++copy "oc_FR"
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
-+country_ab2   "PE"
-+country_ab3   "PER"
-+country_num   604
-+country_name  "Piruw"
-+country_car   "PE"
-+country_isbn  "612,9972"
-+lang_name     "Aymar aru"
-+lang_ab       "ay"
-+lang_term     "aym"
-+lang_lib      "aym"
++copy "oc_FR"
 +END LC_ADDRESS
-+
-+LC_TELEPHONE
-+copy "es_PE"
-+END LC_TELEPHONE
---- glibc-2.17/localedata/locales/sq_KV.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.17/localedata/locales/sq_KV	2013-01-04 19:58:07.801183096 +0100
-@@ -0,0 +1,105 @@
-+% not ready to use, KV is not in ISO-3166 yet
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/rm_CH glibc-2.33/localedata/locales/rm_CH
+--- glibc-2.33.org/localedata/locales/rm_CH	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/rm_CH	2021-03-20 14:29:52.273826328 +0100
+@@ -0,0 +1,193 @@
 +comment_char %
-+escape_char /
-+% Charset: UTF-8
-+% WARNING: This file has been autogenerated by the Locale Helper application
-+%          Check it carefully before using it in production.
++escape_char  /
++% Locale for Rhaeto-Romance language in Switzerland (Romansh).
++% Contributed by Sascha Brawer <brawer at dandelis.ch>, 2003
++% corrected by Florian Verdet and Reto Lehner, 2003
++% internal-revision: 0.1.2  2003-11-18
++
 +LC_IDENTIFICATION
-+title        "Albanian language locale for Kosovo"
-+source       "Albanian Language Team"
-+address      "465 4th St. 2nd Floor, Palisades Park, NJ 07650, U.S.A."
-+contact      "Agron Selimaj"
-+email        "as9902613@gmail.com"
-+tel          15513339780
-+fax          ""
-+language     "Albanian"
-+territory    "Kosovo"
-+revision     "0.01"
-+date         "2010-04-08"
++%fvg:I assume, this is correct...
++title      "Rhaeto-Romance locale for Switzerland"
++source     "Free Software Foundation, Inc."
++address    "59 Temple Place - Suite 330, Boston, MA 02111-1307, USA"
++contact    "Sascha Brawer"
++email      "brawer at dandelis.ch"
++tel        ""
++fax        ""
++language   "Rhaeto-Romance"
++territory  "Switzerland"
++revision   "0.1"
++date       "2003-11-12"
 +%
 +category "i18n:2012";LC_IDENTIFICATION
 +category "i18n:2012";LC_CTYPE
@@ -2285,88 +1806,175 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +category "i18n:2012";LC_TIME
 +category "i18n:2012";LC_NUMERIC
 +category "i18n:2012";LC_MONETARY
-+category "i18n:2012";LC_PAPER
-+category "i18n:2012";LC_MEASUREMENT
 +category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
 +category "i18n:2012";LC_NAME
 +category "i18n:2012";LC_ADDRESS
 +category "i18n:2012";LC_TELEPHONE
++
 +END LC_IDENTIFICATION
 +
-+LC_CTYPE
-+copy "sq_AL"
-+END LC_CTYPE
-+
 +LC_COLLATE
-+copy "sq_AL"
++copy "iso14651_t1"
 +END LC_COLLATE
 +
-+LC_TIME
-+copy "sq_AL"
-+END LC_TIME
-+
-+LC_NUMERIC
-+copy "sq_AL"
-+END LC_NUMERIC
-+
-+LC_MONETARY
-+% €
-+currency_symbol    "<U20AC>"
-+int_curr_symbol    "EUR "
-+mon_decimal_point  ","
-+mon_thousands_sep  "."
-+mon_grouping       "3;3"
-+positive_sign      ""
-+negative_sign      "-"
-+frac_digits        2
-+int_frac_digits    2
-+p_cs_precedes      0
-+p_sep_by_space     1
-+n_cs_precedes      0
-+n_sep_by_space     1
-+p_sign_posn        1
-+n_sign_posn        1
-+END LC_MONETARY
-+
-+LC_PAPER
-+copy "sq_AL"
-+END LC_PAPER
-+
-+LC_MEASUREMENT
-+measurement 1
-+END LC_MEASUREMENT
++LC_CTYPE
++% FIXME: This assumes that Romansh uses the same transliterations
++% as German. Is this correct?
++%fvg:FALSE!
++%-uuml, ouml (and auml) only occur in names
++% they occur also in idioms, but not in RG !
++%-[aeiou]grave are used !
++%-'s-ch' (one collating-symbol ?)(occurs also in RG ??) is collated with 'sch'
++% (scha, schabain, s-chabè, schablà, schablona, s-chablun, schacal, ...).)
++copy "de_CH"
++END LC_CTYPE
 +
 +LC_MESSAGES
-+copy "sq_AL"
++%fvg: idioms use: eEhHsS (ea,schi,hai) - and nNbB (na,bu?,betg?)
++yesexpr                   "^[gGyY]"  % User input for accepting.
++noexpr                    "^[nN]"    % User input for rejecting.
 +END LC_MESSAGES
 +
++LC_MONETARY
++int_curr_symbol           "CHF "
++currency_symbol           "Fr."
++mon_decimal_point         "."	%FULL STOP
++mon_thousands_sep         " "	%SPACE - fvg:Why not an apastroph ?
++mon_grouping              3;3
++positive_sign             ""
++negative_sign             "-"	%HYPHEN-MINUS
++int_frac_digits           2
++frac_digits               2
++p_cs_precedes             1
++p_sep_by_space            1
++n_cs_precedes             1
++n_sep_by_space            1
++p_sign_posn               4
++n_sign_posn               4
++END LC_MONETARY
++
++LC_NUMERIC
++decimal_point             "."
++thousands_sep             " "	%fvg:dito
++grouping                  3;3
++END LC_NUMERIC
++
++LC_TIME
++%fvg:dictionary says: mixed two-char/three-char abbrev:
++%abday  "du"; "gli"; "ma"; "me"; "gie"; "ve"; "so"
++%but specification wants "of equal length" !
++abday   "dum"; "gli"; "mar"; "mes"; "gie"; "ven"; "son"
++day     "dumengia"; "glindesdi"; "mardi"; /
++        "mesemna"; "gievgia"; "venderdi"; "sonda"
++%7 days in a week ; date of a Monday (firt day of week) ;
++%week of first Thursday of a year is week #1  } is ISO 8601 conform
++week    7;19971201;4
++%fvg:abbrev not confirmed
++abmon   "sch"; "fav"; "mar"; "avr"; "mat"; "zer";/
++        "fan"; "avu"; "set"; "oct"; "nov"; "dec"
++mon     "schaner"; "favrer"; "mars";/
++        "avrigl"; "matg"; "zercladur";/
++        "fanadur"; "avust"; "settember";/
++        "october"; "november"; "december"
++am_pm   "";""                % AM and PM are not appended.
++d_t_fmt "%a %d %b %Y %T %Z"  % Date and time respresentation (%c).
++d_fmt   "%d-%m-%Y"           % Date representation (%x).
++t_fmt   "%T"                 % Time representation (%X).
++t_fmt_ampm ""                % No AM/PM suffix.
++date_fmt "%a %e %b %H:%M:%S" % Full date.
++END LC_TIME
++
++LC_PAPER
++height   297  % Height of normal sheet in mm (DIN A4).
++width    210  % Width of normal sheet in mm (DIN A4).
++END LC_PAPER
++
++LC_TELEPHONE
++tel_int_fmt    "+%c %a %l"
++int_prefix     "41"
++END LC_TELEPHONE
++
++
++LC_MEASUREMENT
++measurement    1  % metric system
++END LC_MEASUREMENT
++
 +LC_NAME
-+copy "sq_AL"
++
++% Format of a name, taken from the glibc locale for Ukrainian.
++% %f Family names.
++% %F Family names in uppercase. 
++% %g First given name.
++% %G First given initial.
++% %l First given name with Latin letters.
++% %o Other shorter name.
++% %m Additional given names.
++% %M Initials for additional given names.
++% %p Profession.
++% %s Salutation, such as "Doctor"
++% %S Abbreviated salutation, such as "Mr." or "Dr."
++% %d Salutation, using the FDCC-sets conventions
++%    1 for the name_gen
++%    2 for name_mr
++%    3 for name_mrs
++%    4 for name_miss
++%    5 for name_ms
++% %t If the preceding field descriptor resulted in an empty string,
++%    then the empty string, else a <space>.
++
++name_fmt    "%d%t%g%t%m%t%f"
++name_gen    ""         % A salutation valid for all persons.
++name_miss   "Dunna"    % A salutation valid for unmarried females.
++%'Signur' is not really used any more
++name_mr     "Sar"      % A salutation valid for males.
++name_mrs    "Dunna"    % A salutation valid for married females.
++name_ms     "Dunna"    % A salutation valid for all females.
++%all these should be written lower-case if they occur inside a phrase !
 +END LC_NAME
 +
 +LC_ADDRESS
-+postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
-+country_name "Kosovo"
-+country_post "RKS"
-+country_ab2  "KV"  % FIXME when assigned; use "XK" for now?
-+country_ab3  "RKS" % FIXME when assigned; "UNK" used in travel documents issued by United Nations Interim Administration in Kosovo
-+country_num  0     % FIXME when assigned
-+country_car  "RKS"
-+country_isbn "9951"
-+lang_name    "Shqip"
-+lang_ab      "sq"
-+lang_term    "sqi"
-+lang_lib     "sqi"
-+END LC_ADDRESS
 +
-+LC_TELEPHONE
-+tel_int_fmt "+%c %a %l"
-+tel_dom_fmt "%A %l"
-+int_select  "99"
-+int_prefix  "381"
-+END LC_TELEPHONE
---- glibc-2.19/localedata/locales/sd_PK.orig	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.19/localedata/locales/sd_PK	2015-01-09 21:19:09.722522624 +0100
++% Format of an address. The fields have the following meaning
++% (taken from glibc locale for Ukranian):
++
++% %n Person's name, possibly constructed with the LC_NAME
++%    "name_fmt" keyword. 
++% %a Care of person, or organization. 
++% %f Firm name. 
++% %d Department name. 
++% %b Building name. 
++% %s Street or block (eg. Japanese) name. 
++% %h House number or designation. 
++% %N Insert an <end-of-line> if the previous descriptor
++%    value was not an empty string; otherwise ignore.
++% %t Insert a <space> if the previous descriptor value
++%    was not an empty string; otherwise ignore.
++% %r Room number, door designation. 
++% %e Floor number. 
++% %C Country designation, from the <country_post> keyword. 
++% %l Local township within town or city .
++% %z Zip number, postal code. 
++% %T Town, city. 
++% %S State, province, or prefecture. 
++% %c Country, as taken from data record.
++
++postal_fmt   "%f%N%a%N%d%N%b%N%s %h%t%e%t%r%N%z %T%N%c%N"
++country_name "Svizra"          % Localized country name.
++country_post "CH"              % Postal code for country.
++country_num  756               % Numeric code for country (ISO 3166).
++country_ab2  "CH"              % Two-letter code for country (ISO 3166).
++country_ab3  "CHE"             % Three-letter code for country (ISO 3166).
++country_car  "CH"              % Country code for cars.
++country_isbn "88"              % same as for Italian ?
++lang_name    "rumantsch"       % Localized language name.
++lang_ab      "rm"              % Two-letter code for language (ISO 639).
++lang_term    "roh"             % Three-letter code for language (ISO 639-2).
++lang_lib     "roh"             % Three-letter code for language (ISO 639-2).
++END LC_ADDRESS
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sd_PK glibc-2.33/localedata/locales/sd_PK
+--- glibc-2.33.org/localedata/locales/sd_PK	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/sd_PK	2021-03-20 14:29:52.275826328 +0100
 @@ -0,0 +1,218 @@
 +comment_char    %
 +escape_char     /
@@ -2586,249 +2194,658 @@ diff -urN glibc-2.6.org/localedata/locales/oc_FR@euro glibc-2.6/localedata/local
 +END LC_MEASUREMENT
 +
 +%%%%%%%%%%%%%%%%%%%% locale definition file "sd_PK" ends %%%%%%%%%%%%%%%%%%%%%
---- glibc-2.19/localedata/SUPPORTED.orig	2014-02-07 10:04:38.000000000 +0100
-+++ glibc-2.19/localedata/SUPPORTED	2014-02-08 08:43:20.218029506 +0100
-@@ -50,6 +50,8 @@ ar_TN.UTF-8/UTF-8 \
- ar_TN/ISO-8859-6 \
- ar_YE.UTF-8/UTF-8 \
- ar_YE/ISO-8859-6 \
-+ary_MA@latin/UTF-8 \
-+ay_PE/UTF-8 \
- ayc_PE/UTF-8 \
- az_AZ/UTF-8 \
- az_IR/UTF-8 \
-@@ -59,6 +61,8 @@ ast_ES/ISO-8859-15 \
- be_BY.UTF-8/UTF-8 \
- be_BY/CP1251 \
- be_BY@latin/UTF-8 \
-+be_BY@tarask.UTF-8/UTF-8 \
-+be_BY@tarask/CP1251 \
- bem_ZM/UTF-8 \
- ber_DZ/UTF-8 \
- ber_MA/UTF-8 \
-@@ -193,11 +198,15 @@
- eu_ES.UTF-8/UTF-8 \
- eu_ES/ISO-8859-1 \
- eu_ES@euro/ISO-8859-15 \
-+eu_FR.UTF-8/UTF-8 \
-+eu_FR/ISO-8859-1 \
-+eu_FR@euro/ISO-8859-15 \
- fa_IR/UTF-8 \
- ff_SN/UTF-8 \
- fi_FI.UTF-8/UTF-8 \
- fi_FI/ISO-8859-1 \
- fi_FI@euro/ISO-8859-15 \
-+fil_PH.ISO-8859-1/ISO-8859-1 \
- fil_PH/UTF-8 \
- fo_FO.UTF-8/UTF-8 \
- fo_FO/ISO-8859-1 \
-@@ -214,8 +223,14 @@
- fr_LU.UTF-8/UTF-8 \
- fr_LU/ISO-8859-1 \
- fr_LU@euro/ISO-8859-15 \
-+fur_IT.ISO-8859-1/ISO-8859-1 \
-+fur_IT.ISO-8859-15/ISO-8859-15 \
- fur_IT/UTF-8 \
-+fy_NL.ISO-8859-1/ISO-8859-1 \
-+fy_NL.ISO-8859-15/ISO-8859-15 \
- fy_NL/UTF-8 \
-+fy_DE.ISO-8859-1/ISO-8859-1 \
-+fy_DE.ISO-8859-15/ISO-8859-15 \
- fy_DE/UTF-8 \
- ga_IE.UTF-8/UTF-8 \
- ga_IE/ISO-8859-1 \
-@@ -243,11 +258,13 @@
- hsb_DE/ISO-8859-2 \
- hsb_DE.UTF-8/UTF-8 \
- ht_HT/UTF-8 \
-+hu_HU.ISO-8859-16/ISO-8859-16 \
- hu_HU.UTF-8/UTF-8 \
- hu_HU/ISO-8859-2 \
- hy_AM/UTF-8 \
- hy_AM.ARMSCII-8/ARMSCII-8 \
- ia_FR/UTF-8 \
-+ia/UTF-8 \
- id_ID.UTF-8/UTF-8 \
- id_ID/ISO-8859-1 \
- ig_NG/UTF-8 \
-@@ -295,9 +295,11 @@ it_IT@euro/ISO-8859-15 \
- iu_CA/UTF-8 \
- ja_JP.EUC-JP/EUC-JP \
- ja_JP.UTF-8/UTF-8 \
-+ka_GE.GEORGIAN-ACADEMY/GEORGIAN-ACADEMY \
- ka_GE.UTF-8/UTF-8 \
- ka_GE/GEORGIAN-PS \
- kab_DZ/UTF-8 \
-+kg_CD/UTF-8 \
- kk_KZ.UTF-8/UTF-8 \
- kk_KZ/PT154 \
- kl_GL.UTF-8/UTF-8 \
-@@ -281,13 +300,19 @@
- ku_TR/ISO-8859-9 \
- kw_GB.UTF-8/UTF-8 \
- kw_GB/ISO-8859-1 \
-+ky_KG.KOI8-K/KOI8-K \
- ky_KG/UTF-8 \
- lb_LU/UTF-8 \
- lg_UG.UTF-8/UTF-8 \
- lg_UG/ISO-8859-10 \
-+li_BE.ISO-8859-1/ISO-8859-1 \
-+li_BE.ISO-8859-15/ISO-8859-15 \
- li_BE/UTF-8 \
-+li_NL.ISO-8859-1/ISO-8859-1 \
-+li_NL.ISO-8859-15/ISO-8859-15 \
- li_NL/UTF-8 \
- lij_IT/UTF-8 \
- ln_CD/UTF-8 \
-+lo_LA.MULELAO-1/MULELAO-1 \
- lo_LA/UTF-8 \
- lt_LT.UTF-8/UTF-8 \
-@@ -312,11 +337,17 @@
- mt_MT.UTF-8/UTF-8 \
- mt_MT/ISO-8859-3 \
- my_MM/UTF-8 \
-+myv_RU/UTF-8 \
-+myv_RU@cyrillic/UTF-8 \
- nan_TW/UTF-8 \
- nan_TW@latin/UTF-8 \
- nb_NO.UTF-8/UTF-8 \
- nb_NO/ISO-8859-1 \
-+nds_DE.ISO-8859-1/ISO-8859-1 \
-+nds_DE.ISO-8859-15/ISO-8859-15 \
- nds_DE/UTF-8 \
-+nds_DE.ISO-8859-1@traditional/ISO-8859-1 \
-+nds_DE@traditional/UTF-8 \
- nds_NL/UTF-8 \
- ne_NP/UTF-8 \
- nhn_MX/UTF-8 \
-@@ -331,10 +362,13 @@
- nl_NL@euro/ISO-8859-15 \
- nn_NO.UTF-8/UTF-8 \
- nn_NO/ISO-8859-1 \
-+nr_ZA.ISO-8859-1/ISO-8859-1 \
- nr_ZA/UTF-8 \
-+nso_ZA.ISO-8859-10/ISO-8859-10 \
- nso_ZA/UTF-8 \
- oc_FR.UTF-8/UTF-8 \
- oc_FR/ISO-8859-1 \
-+oc_FR@euro/ISO-8859-15 \
- om_ET/UTF-8 \
- om_KE.UTF-8/UTF-8 \
- om_KE/ISO-8859-1 \
-@@ -344,6 +378,7 @@
- pa_PK/UTF-8 \
- pap_AW/UTF-8 \
- pap_CW/UTF-8 \
-+pl_PL.ISO-8859-16/ISO-8859-16 \
- pl_PL.UTF-8/UTF-8 \
- pl_PL/ISO-8859-2 \
- ps_AF/UTF-8 \
-@@ -354,7 +389,10 @@
- pt_PT/ISO-8859-1 \
- pt_PT@euro/ISO-8859-15 \
- quz_PE/UTF-8 \
- raj_IN/UTF-8 \
-+rm_CH.UTF-8/UTF-8 \
-+rm_CH/ISO-8859-1 \
-+ro_RO.ISO-8859-16/ISO-8859-16 \
- ro_RO.UTF-8/UTF-8 \
- ro_RO/ISO-8859-2 \
- ru_RU.KOI8-R/KOI8-R \
-@@ -420,13 +420,17 @@ ru_RU.UTF-8/UTF-8 \
- ru_RU/ISO-8859-5 \
- ru_UA.UTF-8/UTF-8 \
- ru_UA/KOI8-U \
-+rw_RW.ISO-8859-1/ISO-8859-1 \
- rw_RW/UTF-8 \
- sa_IN/UTF-8 \
- sah_RU/UTF-8 \
- sat_IN/UTF-8 \
-+sc_IT.ISO-8859-1/ISO-8859-1 \
-+sc_IT.ISO-8859-15/ISO-8859-15 \
- sc_IT/UTF-8 \
- sd_IN/UTF-8 \
- sd_IN@devanagari/UTF-8 \
-+sd_PK/UTF-8 \
- se_NO/UTF-8 \
- sgs_LT/UTF-8 \
- shn_MM/UTF-8 \
-@@ -433,6 +437,7 @@ si_LK/UTF-8 \
- sid_ET/UTF-8 \
- sk_SK.UTF-8/UTF-8 \
- sk_SK/ISO-8859-2 \
-+sl_SI.ISO-8859-16/ISO-8859-16 \
- sl_SI.UTF-8/UTF-8 \
- sl_SI/ISO-8859-2 \
- sm_WS/UTF-8 \
-@@ -385,9 +428,19 @@
- sq_AL.UTF-8/UTF-8 \
- sq_AL/ISO-8859-1 \
- sq_MK/UTF-8 \
-+sr_BA.ISO-8859-5@ijekavian/ISO-8859-5 \
-+sr_BA@ijekavian/UTF-8 \
-+sr_BA.ISO-8859-2@ijekavianlatin/ISO-8859-2 \
-+sr_BA@ijekavianlatin/UTF-8 \
-+sr_ME.ISO-8859-5/ISO-8859-5 \
- sr_ME/UTF-8 \
-+sr_ME@latin.ISO-8859-16/ISO-8859-16 \
-+sr_ME@latin/UTF-8 \
-+$(shell true currently broken: sr_RS.ISO-8859-5/ISO-8859-5) \
- sr_RS/UTF-8 \
-+sr_RS.ISO-8859-2@latin/ISO-8859-2 \
- sr_RS@latin/UTF-8 \
- ss_ZA/UTF-8 \
- st_ZA.UTF-8/UTF-8 \
-+ss_ZA.ISO-8859-1/ISO-8859-1 \
- st_ZA/ISO-8859-1 \
-@@ -396,15 +449,21 @@
- sv_FI@euro/ISO-8859-15 \
- sv_SE.UTF-8/UTF-8 \
- sv_SE/ISO-8859-1 \
-+sw_KE.ISO-8859-1/ISO-8859-1 \
- sw_KE/UTF-8 \
- sw_TZ/UTF-8 \
-+sw_UG.UTF-8/UTF-8 \
-+sw_UG.ISO-8859-10/ISO-8859-10 \
-+sw_UG/ISO-8859-1 \
- szl_PL/UTF-8 \
- ta_IN/UTF-8 \
- ta_LK/UTF-8 \
- tcy_IN.UTF-8/UTF-8 \
- te_IN/UTF-8 \
-+tg_TJ.KOI8-K/KOI8-K \
- tg_TJ.UTF-8/UTF-8 \
- tg_TJ/KOI8-T \
-+th_TH.ISO-8859-11/ISO-8859-11 \
- th_TH.UTF-8/UTF-8 \
- th_TH/TIS-620 \
- the_NP/UTF-8 \
-@@ -490,6 +549,7 @@ tig_ER/UTF-8 \
- tk_TM/UTF-8 \
- tl_PH.UTF-8/UTF-8 \
- tl_PH/ISO-8859-1 \
-+tn_ZA.ISO-8859-10/ISO-8859-10 \
- tn_ZA/UTF-8 \
- to_TO/UTF-8 \
- tpi_PG/UTF-8 \
-@@ -497,7 +557,10 @@ tr_CY.UTF-8/UTF-8 \
- tr_CY/ISO-8859-9 \
- tr_TR.UTF-8/UTF-8 \
- tr_TR/ISO-8859-9 \
-+ts_ZA.ISO-8859-1/ISO-8859-1 \
- ts_ZA/UTF-8 \
-+tt_RU.KOI8-K/KOI8-K \
-+tt_RU.TATAR-CYR/TATAR-CYR \
- tt_RU/UTF-8 \
- tt_RU@iqtelif/UTF-8 \
- ug_CN/UTF-8 \
-@@ -426,8 +489,9 @@
- uk_UA/KOI8-U \
- unm_US/UTF-8 \
- ur_IN/UTF-8 \
-+ur_PK.CP1256/CP1256 \
- ur_PK/UTF-8 \
- uz_UZ.UTF-8/UTF-8 \
- uz_UZ/ISO-8859-1 \
- uz_UZ@cyrillic/UTF-8 \
- ve_ZA/UTF-8 \
-
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sq_KV glibc-2.33/localedata/locales/sq_KV
+--- glibc-2.33.org/localedata/locales/sq_KV	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/sq_KV	2021-03-20 14:29:52.275826328 +0100
+@@ -0,0 +1,105 @@
++% not ready to use, KV is not in ISO-3166 yet
++comment_char %
++escape_char /
++% Charset: UTF-8
++% WARNING: This file has been autogenerated by the Locale Helper application
++%          Check it carefully before using it in production.
++LC_IDENTIFICATION
++title        "Albanian language locale for Kosovo"
++source       "Albanian Language Team"
++address      "465 4th St. 2nd Floor, Palisades Park, NJ 07650, U.S.A."
++contact      "Agron Selimaj"
++email        "as9902613@gmail.com"
++tel          15513339780
++fax          ""
++language     "Albanian"
++territory    "Kosovo"
++revision     "0.01"
++date         "2010-04-08"
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_MEASUREMENT
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "sq_AL"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sq_AL"
++END LC_COLLATE
++
++LC_TIME
++copy "sq_AL"
++END LC_TIME
++
++LC_NUMERIC
++copy "sq_AL"
++END LC_NUMERIC
++
++LC_MONETARY
++% €
++currency_symbol    "<U20AC>"
++int_curr_symbol    "EUR "
++mon_decimal_point  ","
++mon_thousands_sep  "."
++mon_grouping       "3;3"
++positive_sign      ""
++negative_sign      "-"
++frac_digits        2
++int_frac_digits    2
++p_cs_precedes      0
++p_sep_by_space     1
++n_cs_precedes      0
++n_sep_by_space     1
++p_sign_posn        1
++n_sign_posn        1
++END LC_MONETARY
++
++LC_PAPER
++copy "sq_AL"
++END LC_PAPER
++
++LC_MEASUREMENT
++measurement 1
++END LC_MEASUREMENT
++
++LC_MESSAGES
++copy "sq_AL"
++END LC_MESSAGES
++
++LC_NAME
++copy "sq_AL"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++country_name "Kosovo"
++country_post "RKS"
++country_ab2  "KV"  % FIXME when assigned; use "XK" for now?
++country_ab3  "RKS" % FIXME when assigned; "UNK" used in travel documents issued by United Nations Interim Administration in Kosovo
++country_num  0     % FIXME when assigned
++country_car  "RKS"
++country_isbn "9951"
++lang_name    "Shqip"
++lang_ab      "sq"
++lang_term    "sqi"
++lang_lib     "sqi"
++END LC_ADDRESS
++
++LC_TELEPHONE
++tel_int_fmt "+%c %a %l"
++tel_dom_fmt "%A %l"
++int_select  "99"
++int_prefix  "381"
++END LC_TELEPHONE
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sr_BA@ijekavian glibc-2.33/localedata/locales/sr_BA@ijekavian
+--- glibc-2.33.org/localedata/locales/sr_BA@ijekavian	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/sr_BA@ijekavian	2021-03-20 14:29:52.275826328 +0100
+@@ -0,0 +1,155 @@
++comment_char %
++escape_char  /
++% Serbian Language locale for Ijekavian Serbian in Bosnia and herzegovina
++% Source: sr_ME, sr_YU, sr_CS locale
++% Address:
++%
++% Contact: Debian Serbian l10n team
++% Email: debian-l10n-serbian@lists.debian.org
++% Language: sr@ijekavian
++% Territory: BA
++% Revision: 0.01
++% Date: 2011-08-15
++% Application: general
++% Users: general
++% Charset: UTF-8, ISO-8859-5
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Serbian, ijekavian, locale for Bosnia and Herzegovina"
++source     "sr_ME, sr_YU, sr_CS locales"
++address    ""
++contact    "Debian Serbian l10n team"
++email      "debian-l10n-serbian@lists.debian.org"
++tel        ""
++fax        ""
++language   "Serbian ijekavian"
++territory  "Bosnia and Herzegovina"
++revision   "0.01"
++date       "2011-08-15"
++audience   "general"
++application   "GNU locale"
++abbreviation  ""
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sr_RS"
++END LC_COLLATE
++
++LC_MONETARY
++int_curr_symbol           "BAM "
++currency_symbol           "<U041A><U041C>"
++mon_decimal_point         ","
++mon_thousands_sep         "."
++mon_grouping              3;3
++positive_sign             ""
++negative_sign             "-"
++int_frac_digits           2
++frac_digits               2
++p_cs_precedes             0
++p_sep_by_space            1
++n_cs_precedes             0
++n_sep_by_space            1
++p_sign_posn               1
++n_sign_posn               1
++END LC_MONETARY
++
++LC_NUMERIC
++copy "bs_BA"
++END LC_NUMERIC
++
++LC_TIME
++abday   "<U043D><U0435><U0434>";"<U043F><U043E><U043D>";/
++        "<U0443><U0442><U043E>";"<U0441><U0440><U0438>";/
++        "<U0447><U0435><U0442>";"<U043F><U0435><U0442>";/
++        "<U0441><U0443><U0431>"
++day     "<U043D><U0435><U0434><U0458><U0435><U0459><U0430>";/
++        "<U043F><U043E><U043D><U0435><U0434><U0435><U0459><U0430><U043A>";/
++        "<U0443><U0442><U043E><U0440><U0430><U043A>";/
++        "<U0441><U0440><U0438><U0458><U0435><U0434><U0430>";/
++        "<U0447><U0435><U0442><U0432><U0440><U0442><U0430><U043A>";/
++        "<U043F><U0435><U0442><U0430><U043A>";/
++        "<U0441><U0443><U0431><U043E><U0442><U0430>"
++abmon   "<U0458><U0430><U043D>";"<U0444><U0435><U0431>";/
++        "<U043C><U0430><U0440>";"<U0430><U043F><U0440>";/
++        "<U043C><U0430><U0458>";"<U0458><U0443><U043D>";/
++        "<U0458><U0443><U043B>";"<U0430><U0432><U0433>";/
++        "<U0441><U0435><U043F>";"<U043E><U043A><U0442>";/
++        "<U043D><U043E><U0432>";"<U0434><U0435><U0446>"
++mon     "<U0458><U0430><U043D><U0443><U0430><U0440>";/
++        "<U0444><U0435><U0431><U0440><U0443><U0430><U0440>";/
++        "<U043C><U0430><U0440><U0442>";/
++        "<U0430><U043F><U0440><U0438><U043B>";/
++        "<U043C><U0430><U0458>";/
++        "<U0458><U0443><U043D>";/
++        "<U0458><U0443><U043B>";/
++        "<U0430><U0432><U0433><U0443><U0441><U0442>";/
++        "<U0441><U0435><U043F><U0442><U0435><U043C><U0431><U0430><U0440>";/
++        "<U043E><U043A><U0442><U043E><U0431><U0430><U0440>";/
++        "<U043D><U043E><U0432><U0435><U043C><U0431><U0430><U0440>";/
++        "<U0434><U0435><U0446><U0435><U043C><U0431><U0430><U0440>"
++
++d_t_fmt       "%A, %d. %B %Y. %T %Z"
++d_fmt         "%d.%m.%Y."
++t_fmt         "%T"
++am_pm         "";""
++t_fmt_ampm    "%T"
++date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
++week          7;19971130;4
++first_weekday 2
++first_workday 2
++END LC_TIME
++
++LC_MESSAGES
++copy "sr_RS"
++END LC_MESSAGES
++
++LC_PAPER
++copy "bs_BA"
++END LC_PAPER
++
++LC_NAME
++copy "sr_RS"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++country_ab2   "BA"
++country_ab3   "BIH"
++country_post  "BIH"
++country_name  "<U0411><U043E><U0441><U043D><U0430><U0020><U0438><U0020><U0425><U0435><U0440><U0446><U0435><U0433><U043E><U0432><U0438><U043D><U0430>"
++country_num   070
++country_car   "BIH"
++% Republika Srpska
++country_isbn  "99938,99976"
++lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
++lang_term     "srp"
++lang_lib      "srp"
++lang_ab       "sr"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "bs_BA"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "bs_BA"
++END LC_MEASUREMENT
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sr_BA@ijekavianlatin glibc-2.33/localedata/locales/sr_BA@ijekavianlatin
+--- glibc-2.33.org/localedata/locales/sr_BA@ijekavianlatin	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/sr_BA@ijekavianlatin	2021-03-20 14:29:52.275826328 +0100
+@@ -0,0 +1,130 @@
++comment_char %
++escape_char  /
++% Serbian Language locale for Ijekavian Serbian in Bosnia and herzegovina
++% Source: sr_ME, sr_YU, sr_CS locale
++% Address:
++%
++% Contact: Debian Serbian l10n team
++% Email: debian-l10n-serbian@lists.debian.org
++% Language: sr@ijekavianlatin
++% Territory: BA
++% Revision: 0.01
++% Date: 2011-08-15
++% Application: general
++% Users: general
++% Charset: UTF-8, ISO-8859-2
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Serbian Latin, ijekavian, locale for Bosnia and Herzegovina"
++source     "sr_ME, sr_YU, sr_CS locales"
++address    ""
++contact    "Debian Serbian l10n team"
++email      "debian-l10n-serbian@lists.debian.org"
++tel        ""
++fax        ""
++language   "Serbian ijekavian"
++territory  "Bosnia and Herzegovina"
++revision   "0.01"
++date       "2011-08-15"
++audience   "general"
++application   "GNU locale"
++abbreviation  ""
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sr_BA@ijekavian"
++END LC_COLLATE
++
++LC_MONETARY
++int_curr_symbol           "BAM "
++currency_symbol           "KM"
++mon_decimal_point         ","
++mon_thousands_sep         "."
++mon_grouping              3;3
++positive_sign             ""
++negative_sign             "-"
++int_frac_digits           2
++frac_digits               2
++p_cs_precedes             0
++p_sep_by_space            1
++n_cs_precedes             0
++n_sep_by_space            1
++p_sign_posn               1
++n_sign_posn               1
++END LC_MONETARY
++
++LC_NUMERIC
++copy "bs_BA"
++END LC_NUMERIC
++
++LC_TIME
++abday   "ned";"pon";"uto";"sri";"<U010D>et";"pet";"sub"
++day     "nedjelja";"ponedeljak";"utorak";"srijeda";"<U010D>etvrtak";"petak";"subota"
++abmon   "jan";"feb";"mar";"apr";"maj";"jun";"jul";"avg";"sep";"okt";"nov";"dec"
++mon     "januar";"februar";"mart";"april";"maj";"jun";"jul";"avgust";"septembar";"oktobar";"novembar";"decembar"
++
++d_t_fmt       "%A, %d. %B %Y. %T %Z"
++d_fmt         "%d.%m.%Y."
++t_fmt         "%T"
++am_pm         "";""
++t_fmt_ampm    "%T"
++date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
++week          7;19971130;4
++first_weekday 2
++first_workday 2
++END LC_TIME
++
++LC_MESSAGES
++copy "sr_RS@latin"
++END LC_MESSAGES
++
++LC_PAPER
++copy "bs_BA"
++END LC_PAPER
++
++LC_NAME
++copy "sr_RS@latin"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%s%N"
++country_ab2   "BA"
++country_ab3   "BIH"
++country_post  "BIH"
++country_name  "Bosna i Hercegovina"
++country_num   070
++country_car   "BIH"
++% Republika Srpska
++country_isbn  "99938,99976"
++lang_name     "srpski"
++lang_term     "srp"
++lang_lib      "srp"
++lang_ab       "sr"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "bs_BA"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "bs_BA"
++END LC_MEASUREMENT
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sr_ME@latin glibc-2.33/localedata/locales/sr_ME@latin
+--- glibc-2.33.org/localedata/locales/sr_ME@latin	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/sr_ME@latin	2021-03-20 14:29:52.274826328 +0100
+@@ -0,0 +1,135 @@
++comment_char %
++escape_char  /
++%
++% Serbian Language locale for Montenegro
++% Source: sr_YU, sr_CS locale
++% Address:
++%
++% Contact: Danilo Segan
++% Email: danilo@gnome.org
++% Tel: +381 63 323456
++% Fax: none
++% Language: sr
++% Territory: ME
++% Revision: 1.2
++% Date: 2006-10-11
++% Application: general
++% Users: general
++% Charset: UTF-8, ISO-8859-16
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Serbian Latin locale for Montenegro"
++source     "sr_YU, sr_CS locale"
++address    ""
++contact    "Danilo Segan"
++email      "bug-glibc@gnu.org"
++tel        ""
++fax        ""
++language   "Serbian"
++territory  "Montenegro"
++revision   "1.2"
++date       "2006-10-11"
++audience   "general"
++application   "GNU locale"
++abbreviation  ""
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++category "i18n:2012";LC_MEASUREMENT
++END LC_IDENTIFICATION
++
++LC_CTYPE
++copy "i18n"
++END LC_CTYPE
++
++LC_COLLATE
++copy "sr_RS@latin"
++END LC_COLLATE
++
++LC_MONETARY
++copy "sr_ME"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "sr_ME"
++END LC_NUMERIC
++
++LC_TIME
++abday   "ned";"pon";"uto";"sri";"<U010D>et";"pet";"sub"
++day     "nedjelja";/
++        "ponedeljak";/
++        "utorak";/
++	 "srijeda";/
++        "<U010D>etvrtak";/
++        "petak";/
++        "subota"
++abmon   "jan";"feb";"mar";"apr";"maj";"jun";"jul";"avg";"sep";"okt";"nov";"dec"
++mon     "januar";/
++        "februar";/
++        "mart";/
++        "april";/
++        "maj";/
++        "jun";/
++        "jul";/
++        "avgust";/
++        "septembar";/
++        "oktobar";/
++        "novembar";/
++        "decembar"
++
++d_t_fmt       "%A, %d, %B %Y. %T %Z"
++d_fmt         "%d.%m.%Y."
++t_fmt         "%T"
++am_pm         "";""
++t_fmt_ampm    "%T"
++date_fmt      "%a, %e. %b %Y.  %H:%M:%S %Z"
++week          7;19971130;4
++first_weekday 2
++first_workday 2
++END LC_TIME
++
++LC_MESSAGES
++copy "sr_RS@latin"
++END LC_MESSAGES
++
++LC_PAPER
++copy "sr_ME"
++END LC_PAPER
++
++LC_NAME
++copy "sr_RS@latin"
++END LC_NAME
++
++LC_ADDRESS
++postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
++country_ab2   "ME"
++country_ab3   "MNE"
++country_post  "MNE"
++country_name  "Crna Gora"
++country_num   499
++country_car   "MNE"
++country_isbn  "9940"
++lang_name     "srpski"
++lang_ab       "sr"
++lang_term     "srp"
++lang_lib      "srp"
++END LC_ADDRESS
++
++LC_TELEPHONE
++copy "sr_ME"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "sr_ME"
++END LC_MEASUREMENT
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sw_UG glibc-2.33/localedata/locales/sw_UG
+--- glibc-2.33.org/localedata/locales/sw_UG	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/sw_UG	2021-03-20 14:29:52.273826328 +0100
+@@ -0,0 +1,110 @@
++comment_char %
++escape_char  /
++%
++% Swahili Language Locale for Uganda
++% Source: Based on data from Debian/Mandriva
++% Contact: 
++% Email: ankry at mif dot pg dot gda dot pl
++% Language: sw
++% Territory: Uganda
++% Revision: 0.2
++% Date: 2004-08-01
++% Users: general
++% Repertoiremap: mnemonic,ds
++% Charset: UTF-8
++% Distribution and use is free, also
++% for commercial purposes.
++
++LC_IDENTIFICATION
++title      "Swahili locale for Uganda"
++source     "Based on data from Debian/Mandriva"
++address    ""
++contact    ""
++email      ""
++tel        ""
++fax        ""
++language   "Swahili"
++territory  "Uganda"
++revision   "0.3"
++date       "2005-10-14"
++%
++category "i18n:2012";LC_IDENTIFICATION
++category "i18n:2012";LC_CTYPE
++category "i18n:2012";LC_COLLATE
++category "i18n:2012";LC_TIME
++category "i18n:2012";LC_NUMERIC
++category "i18n:2012";LC_MONETARY
++category "i18n:2012";LC_MESSAGES
++category "i18n:2012";LC_PAPER
++category "i18n:2012";LC_NAME
++category "i18n:2012";LC_ADDRESS
++category "i18n:2012";LC_TELEPHONE
++END LC_IDENTIFICATION
++
++%%%%%%%%%%%%%%%%
++% TODO: check LC_MONETARY, LC_NUMERIC, LC_MESSAGES, LC_COLLATE
++% 	check time and date formats
++%%%%%%%%%%%%%%%%
++
++LC_COLLATE
++copy "sw_KE"
++END LC_COLLATE
++
++LC_CTYPE
++copy "sw_KE"
++END LC_CTYPE
++
++LC_MONETARY
++copy "lg_UG"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "lg_UG"
++END LC_NUMERIC
++
++LC_TELEPHONE
++copy "lg_UG"
++END LC_TELEPHONE
++
++LC_TIME
++copy "sw_KE"
++END LC_TIME
++
++LC_MESSAGES
++copy "sw_KE"
++END LC_MESSAGES
++
++% Default paper: A4
++LC_PAPER
++height 297
++width 210
++END LC_PAPER
++
++% Metric System (ISO 1000)
++LC_MEASUREMENT
++measurement 1
++END LC_MEASUREMENT
++
++LC_ADDRESS
++%
++% This is the ISO_IEC TR14652 Locale definition for the LC_ADDRESS category.
++%
++postal_fmt    "%z%c%T%s%b%e%r"
++%
++% Uganda
++country_name  "Uganda"
++country_post  "UG"
++country_ab2   "UG"
++country_ab3   "UGA"
++country_num   800
++country_car   "EAU"
++country_isbn  "9970"
++lang_name     "Kiswahili"
++lang_ab       "sw"
++lang_term     "swa"
++lang_lib      "swa"
++END LC_ADDRESS
++
++LC_NAME
++copy "sw_KE"
++END LC_NAME

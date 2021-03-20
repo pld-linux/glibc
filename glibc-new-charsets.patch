@@ -1,8 +1,9 @@
---- glibc-2.7/iconvdata/Makefile.orig	2007-09-30 06:00:02.000000000 +0200
-+++ glibc-2.7/iconvdata/Makefile	2007-10-23 20:53:34.467526789 +0200
-@@ -39,6 +39,9 @@
- 	   IBM862 IBM863 IBM864 IBM865 IBM868 IBM869 IBM875 IBM880	 \
- 	   IBM866 CP1258 IBM922 IBM1124 IBM1129 IBM932 IBM943		 \
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/Makefile glibc-2.33/iconvdata/Makefile
+--- glibc-2.33.org/iconvdata/Makefile	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/iconvdata/Makefile	2021-03-20 14:29:23.199826328 +0100
+@@ -40,6 +40,9 @@ modules	:= ISO8859-1 ISO8859-2 ISO8859-3
+ 	   IBM861 IBM862 IBM863 IBM864 IBM865 IBM868 IBM869 IBM875	 \
+ 	   IBM880 IBM866 CP1258 IBM922 IBM1124 IBM1129 IBM932 IBM943	 \
  	   IBM856 IBM930 IBM933 IBM935 IBM937 IBM939 IBM1046		 \
 +	   KHMER-NS \
 +	   ISCII-DEV MULELAO-1 TATAR-CYR KOI8-K KOI8-C \
@@ -10,7 +11,7 @@
  	   IBM1132 IBM1133 IBM1160 IBM1161 IBM1162 IBM1163 IBM1164	 \
  	   IBM918 IBM1004 IBM1026 CP1125 CP1250 CP1251 CP1252 CP1253	 \
  	   CP1254 CP1255 CP1256 CP1257 ISO-2022-JP MACINTOSH IEC_P27-1	 \
-@@ -228,7 +228,7 @@
+@@ -149,7 +152,7 @@ gen-8bit-modules := iso8859-2 iso8859-3
  		    ebcdic-dk-no-a ebcdic-es-s ebcdic-fi-se ebcdic-fi-se-a  \
  		    ebcdic-fr ebcdic-it ebcdic-pt ebcdic-us \
  		    ibm037 ibm038 ibm274 ibm275 ibm423 ibm500 ibm870 ibm871 \
@@ -19,7 +20,7 @@
  
  gen-8bit-gap-modules := koi8-r latin-greek latin-greek-1 ibm256 ibm273	   \
  			ibm277 ibm278 ibm280 ibm281 ibm284 ibm285 ibm290   \
-@@ -172,7 +172,9 @@ gen-8bit-gap-modules := koi8-r latin-gre
+@@ -170,7 +173,9 @@ gen-8bit-gap-modules := koi8-r latin-gre
  			mac-centraleurope koi8-ru hp-roman8 hp-roman9	   \
  			ebcdic-es ebcdic-es-a ebcdic-is-friss ebcdic-uk    \
  			iso8859-16 viscii iso8859-9e hp-turkish8	   \
@@ -30,9 +31,10 @@
  
  
  gen-special-modules := iso8859-7jp
---- glibc-2.7/iconvdata/gconv-modules.orig	2007-09-30 06:00:14.000000000 +0200
-+++ glibc-2.7/iconvdata/gconv-modules	2007-10-23 20:47:36.423123001 +0200
-@@ -356,23 +356,28 @@
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/gconv-modules glibc-2.33/iconvdata/gconv-modules
+--- glibc-2.33.org/iconvdata/gconv-modules	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/iconvdata/gconv-modules	2021-03-20 14:29:23.200826328 +0100
+@@ -355,23 +355,28 @@ alias	ISO8859-10//		ISO-8859-10//
  alias	ISO885910//		ISO-8859-10//
  alias	LATIN6//		ISO-8859-10//
  alias	L6//			ISO-8859-10//
@@ -61,7 +63,7 @@
  alias	BALTIC//		ISO-8859-13//
  module	ISO-8859-13//		INTERNAL		ISO8859-13	1
  module	INTERNAL		ISO-8859-13//		ISO8859-13	1
-@@ -383,6 +388,7 @@
+@@ -382,6 +387,7 @@ alias	ISO885914//		ISO-8859-14//
  alias	ISO-IR-199//		ISO-8859-14//
  alias	LATIN8//		ISO-8859-14//
  alias	L8//			ISO-8859-14//
@@ -69,7 +71,7 @@
  alias	ISO_8859-14:1998//	ISO-8859-14//
  alias	ISO_8859-14//		ISO-8859-14//
  alias	ISO-CELTIC//		ISO-8859-14//
-@@ -395,6 +401,8 @@
+@@ -395,6 +401,8 @@ alias	ISO-IR-203//		ISO-8859-15//
  alias	ISO_8859-15//		ISO-8859-15//
  alias	LATIN-9//		ISO-8859-15//
  alias	LATIN9//		ISO-8859-15//
@@ -78,7 +80,7 @@
  alias	ISO_8859-15:1998//	ISO-8859-15//
  module	ISO-8859-15//		INTERNAL		ISO8859-15	1
  module	INTERNAL		ISO-8859-15//		ISO8859-15	1
-@@ -405,6 +413,7 @@
+@@ -405,6 +413,7 @@ alias	ISO885916//		ISO-8859-16//
  alias	ISO-IR-226//		ISO-8859-16//
  alias	LATIN10//		ISO-8859-16//
  alias	L10//			ISO-8859-16//
@@ -86,7 +88,7 @@
  alias	ISO_8859-16:2001//	ISO-8859-16//
  alias	ISO_8859-16//		ISO-8859-16//
  module	ISO-8859-16//		INTERNAL		ISO8859-16	1
-@@ -1517,18 +1526,24 @@
+@@ -1539,18 +1548,24 @@ module	GB18030//		INTERNAL		GB18030		1
  module	INTERNAL		GB18030//		GB18030		1
  
  #	from			to			module		cost
@@ -111,7 +113,7 @@
  module	GEORGIAN-ACADEMY//	INTERNAL		GEORGIAN-ACADEMY 1
  module	INTERNAL		GEORGIAN-ACADEMY//	GEORGIAN-ACADEMY 1
  
-@@ -1560,10 +1575,14 @@
+@@ -1584,10 +1599,14 @@ module	Shift_JISX0213//	INTERNAL		SHIFT_
  module	INTERNAL		Shift_JISX0213//	SHIFT_JISX0213	1
  
  #	from			to			module		cost
@@ -126,7 +128,7 @@
  module	PT154//			INTERNAL		PT154		1
  module	INTERNAL		PT154//			PT154		1
  
-@@ -1573,6 +1592,49 @@
+@@ -1597,6 +1616,49 @@ module	RK1048//		INTERNAL		RK1048		1
  module	INTERNAL		RK1048//		RK1048		1
  
  #	from			to			module		cost
@@ -176,7 +178,7 @@
  alias	IBM-1025//		IBM1025//
  alias	CP1025//		IBM1025//
  alias	CSIBM1025//		IBM1025//
-@@ -1918,6 +1980,7 @@
+@@ -1935,6 +1997,7 @@ module	MAC-CENTRALEUROPE//	INTERNAL		MAC
  module	INTERNAL		MAC-CENTRALEUROPE//	MAC-CENTRALEUROPE 1
  
  #	from			to			module		cost
@@ -184,16 +186,17 @@
  module	KOI8-RU//		INTERNAL		KOI8-RU		1
  module	INTERNAL		KOI8-RU//		KOI8-RU		1
  
-@@ -1925,5 +1988,6 @@
+@@ -1942,6 +2005,7 @@ module	INTERNAL		KOI8-RU//		KOI8-RU		1
  alias	ISO_8859-9E//		ISO-8859-9E//
  alias	ISO8859-9E//		ISO-8859-9E//
  alias	ISO88599E//		ISO-8859-9E//
 +alias	8859_9E//		ISO-8859-9E//
  module	ISO-8859-9E//		INTERNAL		ISO8859-9E	1
  module	INTERNAL		ISO-8859-9E//		ISO8859-9E	1
-diff -uNr libc/iconvdata/iscii-dev.c libc.charsets/iconvdata/iscii-dev.c
---- libc/iconvdata/iscii-dev.c	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/iconvdata/iscii-dev.c	Mon Jan 12 23:47:54 2004
+ 
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/iscii-dev.c glibc-2.33/iconvdata/iscii-dev.c
+--- glibc-2.33.org/iconvdata/iscii-dev.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/iconvdata/iscii-dev.c	2021-03-20 14:29:23.200826328 +0100
 @@ -0,0 +1,29 @@
 +/* Conversion from and to ISCII-DEV.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -224,10 +227,10 @@ diff -uNr libc/iconvdata/iscii-dev.c libc.charsets/iconvdata/iscii-dev.c
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
-diff -uNr libc/iconvdata/isiri-3342.h libc.charsets/iconvdata/isiri-3342.h
---- libc/iconvdata/isiri-3342.h	Wed Feb 19 18:28:59 2003
-+++ libc.charsets/iconvdata/isiri-3342.h	Mon Jan 12 23:47:54 2004
-@@ -228,8 +228,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/isiri-3342.h glibc-2.33/iconvdata/isiri-3342.h
+--- glibc-2.33.org/iconvdata/isiri-3342.h	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/iconvdata/isiri-3342.h	2021-03-20 14:29:23.200826328 +0100
+@@ -230,8 +230,8 @@ static const uint32_t to_ucs4[256] = {
    [0xe3] = 0x005B,
    [0xe4] = 0x007D,
    [0xe5] = 0x007B,
@@ -238,7 +241,7 @@ diff -uNr libc/iconvdata/isiri-3342.h libc.charsets/iconvdata/isiri-3342.h
    [0xe8] = 0x002A,
    [0xe9] = 0x0640,
    [0xea] = 0x007C,
-@@ -290,9 +290,9 @@
+@@ -292,9 +292,9 @@ static const char from_ucs4[] = {
    /* 0x00a4..0x00a4 */
    '\xa4',
    /* 0x00ab..0x00ab */
@@ -250,9 +253,9 @@ diff -uNr libc/iconvdata/isiri-3342.h libc.charsets/iconvdata/isiri-3342.h
    /* 0x00d7..0x00d7 */
    '\xaa',
    /* 0x060c..0x060c */
-diff -uNr libc/iconvdata/iso8859-7-euro.c libc.charsets/iconvdata/iso8859-7-euro.c
---- libc/iconvdata/iso8859-7-euro.c	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/iconvdata/iso8859-7-euro.c	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/iso8859-7-euro.c glibc-2.33/iconvdata/iso8859-7-euro.c
+--- glibc-2.33.org/iconvdata/iso8859-7-euro.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/iconvdata/iso8859-7-euro.c	2021-03-20 14:29:23.201826328 +0100
 @@ -0,0 +1,28 @@
 +/* Conversion from and to ISO-8859-7:2003.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -282,9 +285,9 @@ diff -uNr libc/iconvdata/iso8859-7-euro.c libc.charsets/iconvdata/iso8859-7-euro
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
-diff -uNr libc/iconvdata/khmer-ns.c libc.charsets/iconvdata/khmer-ns.c
---- libc/iconvdata/khmer-ns.c	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/iconvdata/khmer-ns.c	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/khmer-ns.c glibc-2.33/iconvdata/khmer-ns.c
+--- glibc-2.33.org/iconvdata/khmer-ns.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/iconvdata/khmer-ns.c	2021-03-20 14:29:23.201826328 +0100
 @@ -0,0 +1,29 @@
 +/* Conversion from and to KHMER-NS.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -315,9 +318,9 @@ diff -uNr libc/iconvdata/khmer-ns.c libc.charsets/iconvdata/khmer-ns.c
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
-diff -uNr libc/iconvdata/koi8-c.c libc.charsets/iconvdata/koi8-c.c
---- libc/iconvdata/koi8-c.c	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/iconvdata/koi8-c.c	Tue Jan 13 12:21:25 2004
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/koi8-c.c glibc-2.33/iconvdata/koi8-c.c
+--- glibc-2.33.org/iconvdata/koi8-c.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/iconvdata/koi8-c.c	2021-03-20 14:29:23.201826328 +0100
 @@ -0,0 +1,29 @@
 +/* Conversion from and to KOI8-C.
 +   Copyright (C) 2004 Free Software Foundation, Inc.
@@ -348,9 +351,9 @@ diff -uNr libc/iconvdata/koi8-c.c libc.charsets/iconvdata/koi8-c.c
 +#define HAS_HOLES	0	/* All 256 character are defined.  */
 +
 +#include <8bit-generic.c>
-diff -uNr libc/iconvdata/koi8-k.c libc.charsets/iconvdata/koi8-k.c
---- libc/iconvdata/koi8-k.c	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/iconvdata/koi8-k.c	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/koi8-k.c glibc-2.33/iconvdata/koi8-k.c
+--- glibc-2.33.org/iconvdata/koi8-k.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/iconvdata/koi8-k.c	2021-03-20 14:29:23.201826328 +0100
 @@ -0,0 +1,29 @@
 +/* Conversion from and to KOI8-K.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -381,9 +384,9 @@ diff -uNr libc/iconvdata/koi8-k.c libc.charsets/iconvdata/koi8-k.c
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
-diff -uNr libc/iconvdata/mulelao-1.c libc.charsets/iconvdata/mulelao-1.c
---- libc/iconvdata/mulelao-1.c	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/iconvdata/mulelao-1.c	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/mulelao-1.c glibc-2.33/iconvdata/mulelao-1.c
+--- glibc-2.33.org/iconvdata/mulelao-1.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/iconvdata/mulelao-1.c	2021-03-20 14:29:23.201826328 +0100
 @@ -0,0 +1,29 @@
 +/* Conversion from and to MULELAO-1.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -414,9 +417,9 @@ diff -uNr libc/iconvdata/mulelao-1.c libc.charsets/iconvdata/mulelao-1.c
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
-diff -uNr libc/iconvdata/tatar-cyr.c libc.charsets/iconvdata/tatar-cyr.c
---- libc/iconvdata/tatar-cyr.c	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/iconvdata/tatar-cyr.c	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/tatar-cyr.c glibc-2.33/iconvdata/tatar-cyr.c
+--- glibc-2.33.org/iconvdata/tatar-cyr.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/iconvdata/tatar-cyr.c	2021-03-20 14:29:23.201826328 +0100
 @@ -0,0 +1,29 @@
 +/* Conversion from and to TATAR-CYR.
 +   Copyright (C) 2001 Free Software Foundation, Inc.
@@ -447,9 +450,9 @@ diff -uNr libc/iconvdata/tatar-cyr.c libc.charsets/iconvdata/tatar-cyr.c
 +#define HAS_HOLES	1	/* Not all 256 character are defined.  */
 +
 +#include <8bit-gap.c>
-diff -uNr libc/localedata/charmaps/ISCII-DEV libc.charsets/localedata/charmaps/ISCII-DEV
---- libc/localedata/charmaps/ISCII-DEV	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/localedata/charmaps/ISCII-DEV	Tue Jan 13 13:34:29 2004
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/ISCII-DEV glibc-2.33/localedata/charmaps/ISCII-DEV
+--- glibc-2.33.org/localedata/charmaps/ISCII-DEV	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/charmaps/ISCII-DEV	2021-03-20 14:29:23.201826328 +0100
 @@ -0,0 +1,271 @@
 +<code_set_name> ISCII-DEV
 +<comment_char> %
@@ -722,9 +725,9 @@ diff -uNr libc/localedata/charmaps/ISCII-DEV libc.charsets/localedata/charmaps/I
 +%<dev   >               /x     <U0970> DEVANAGARI ABBREVIATION SIGN
 +
 +END CHARMAP
-diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/ISIRI-3342
---- libc/localedata/charmaps/ISIRI-3342	Sun Oct 22 02:20:07 2000
-+++ libc.charsets/localedata/charmaps/ISIRI-3342	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/ISIRI-3342 glibc-2.33/localedata/charmaps/ISIRI-3342
+--- glibc-2.33.org/localedata/charmaps/ISIRI-3342	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/charmaps/ISIRI-3342	2021-03-20 14:29:23.202826328 +0100
 @@ -1,11 +1,20 @@
  <code_set_name> ISIRI-3342
  <comment_char> %
@@ -747,7 +750,7 @@ diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/
  % Please note that the Unicode equivalents of the Persian part (0x80..0xFF)
  % are for compatiblity purposes only. I have also changed the fourth
  % column consisting of names to reflect the difference. The names are
-@@ -153,6 +162,7 @@
+@@ -140,6 +149,7 @@ CHARMAP
  <U007D>     /x7d         RIGHT CURLY BRACKET
  <U007E>     /x7e         TILDE
  <U007F>     /x7f         DELETE (DEL)
@@ -755,7 +758,7 @@ diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/
  <U0000>     /x80         ARABIC NULL (NUL)
  <U0001>     /x81         ARABIC START OF HEADING (SOH)
  <U0002>     /x82         ARABIC START OF TEXT (STX)
-@@ -185,6 +195,7 @@
+@@ -172,6 +182,7 @@ CHARMAP
  <U001D>     /x9d         ARABIC GROUP SEPARATOR (IS3)
  <U001E>     /x9e         ARABIC RECORD SEPARATOR (IS2)
  <U001F>     /x9f         ARABIC UNIT SEPARATOR (IS1)
@@ -763,7 +766,7 @@ diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/
  <U0020>     /xa0         ARABIC SPACE
  <U200C>     /xa1         ZERO WIDTH NON-JOINER
  <U200D>     /xa2         ZERO WIDTH JOINER
-@@ -255,8 +266,8 @@
+@@ -242,8 +253,8 @@ CHARMAP
  <U005B>     /xe3         ARABIC OPENING SQUARE BRACKET
  <U007D>     /xe4         ARABIC CLOSING CURLY BRACKET
  <U007B>     /xe5         ARABIC OPENING CURLY BRACKET
@@ -774,7 +777,7 @@ diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/
  <U002A>     /xe8         ARABIC ASTERISK
  <U0640>     /xe9         ARABIC TATWEEL
  <U007C>     /xea         ARABIC VERTICAL LINE
-@@ -278,3 +289,8 @@
+@@ -265,3 +276,8 @@ CHARMAP
  <U064A>     /xfe         ARABIC LETTER YEH
  <U007F>     /xff         ARABIC DELETE
  END CHARMAP
@@ -783,9 +786,278 @@ diff -uNr libc/localedata/charmaps/ISIRI-3342 libc.charsets/localedata/charmaps/
 +<U064B>...<U0652>      0
 +END WIDTH
 +
-diff -uNr libc/localedata/charmaps/KHMER-NS libc.charsets/localedata/charmaps/KHMER-NS
---- libc/localedata/charmaps/KHMER-NS	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/localedata/charmaps/KHMER-NS	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/ISO-8859-7-EURO glibc-2.33/localedata/charmaps/ISO-8859-7-EURO
+--- glibc-2.33.org/localedata/charmaps/ISO-8859-7-EURO	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/charmaps/ISO-8859-7-EURO	2021-03-20 14:29:23.203826328 +0100
+@@ -0,0 +1,265 @@
++<code_set_name> ISO-8859-7-EURO
++<comment_char> %
++<escape_char> /
++% version: 1.0
++%  source: ISO/IEC SC2 N3678 - FDIS 8859-7
++
++% alias ISO_8859-7:2003
++% alias ISO-8859-7-EURO
++% alias ISO8859-7-EURO
++% alias GREEK8-EURO
++CHARMAP
++<U0000>     /x00         NULL (NUL)
++<U0001>     /x01         START OF HEADING (SOH)
++<U0002>     /x02         START OF TEXT (STX)
++<U0003>     /x03         END OF TEXT (ETX)
++<U0004>     /x04         END OF TRANSMISSION (EOT)
++<U0005>     /x05         ENQUIRY (ENQ)
++<U0006>     /x06         ACKNOWLEDGE (ACK)
++<U0007>     /x07         BELL (BEL)
++<U0008>     /x08         BACKSPACE (BS)
++<U0009>     /x09         CHARACTER TABULATION (HT)
++<U000A>     /x0a         LINE FEED (LF)
++<U000B>     /x0b         LINE TABULATION (VT)
++<U000C>     /x0c         FORM FEED (FF)
++<U000D>     /x0d         CARRIAGE RETURN (CR)
++<U000E>     /x0e         SHIFT OUT (SO)
++<U000F>     /x0f         SHIFT IN (SI)
++<U0010>     /x10         DATALINK ESCAPE (DLE)
++<U0011>     /x11         DEVICE CONTROL ONE (DC1)
++<U0012>     /x12         DEVICE CONTROL TWO (DC2)
++<U0013>     /x13         DEVICE CONTROL THREE (DC3)
++<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
++<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
++<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
++<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
++<U0018>     /x18         CANCEL (CAN)
++<U0019>     /x19         END OF MEDIUM (EM)
++<U001A>     /x1a         SUBSTITUTE (SUB)
++<U001B>     /x1b         ESCAPE (ESC)
++<U001C>     /x1c         FILE SEPARATOR (IS4)
++<U001D>     /x1d         GROUP SEPARATOR (IS3)
++<U001E>     /x1e         RECORD SEPARATOR (IS2)
++<U001F>     /x1f         UNIT SEPARATOR (IS1)
++<U0020>     /x20         SPACE
++<U0021>     /x21         EXCLAMATION MARK
++<U0022>     /x22         QUOTATION MARK
++<U0023>     /x23         NUMBER SIGN
++<U0024>     /x24         DOLLAR SIGN
++<U0025>     /x25         PERCENT SIGN
++<U0026>     /x26         AMPERSAND
++<U0027>     /x27         APOSTROPHE
++<U0028>     /x28         LEFT PARENTHESIS
++<U0029>     /x29         RIGHT PARENTHESIS
++<U002A>     /x2a         ASTERISK
++<U002B>     /x2b         PLUS SIGN
++<U002C>     /x2c         COMMA
++<U002D>     /x2d         HYPHEN-MINUS
++<U002E>     /x2e         FULL STOP
++<U002F>     /x2f         SOLIDUS
++<U0030>     /x30         DIGIT ZERO
++<U0031>     /x31         DIGIT ONE
++<U0032>     /x32         DIGIT TWO
++<U0033>     /x33         DIGIT THREE
++<U0034>     /x34         DIGIT FOUR
++<U0035>     /x35         DIGIT FIVE
++<U0036>     /x36         DIGIT SIX
++<U0037>     /x37         DIGIT SEVEN
++<U0038>     /x38         DIGIT EIGHT
++<U0039>     /x39         DIGIT NINE
++<U003A>     /x3a         COLON
++<U003B>     /x3b         SEMICOLON
++<U003C>     /x3c         LESS-THAN SIGN
++<U003D>     /x3d         EQUALS SIGN
++<U003E>     /x3e         GREATER-THAN SIGN
++<U003F>     /x3f         QUESTION MARK
++<U0040>     /x40         COMMERCIAL AT
++<U0041>     /x41         LATIN CAPITAL LETTER A
++<U0042>     /x42         LATIN CAPITAL LETTER B
++<U0043>     /x43         LATIN CAPITAL LETTER C
++<U0044>     /x44         LATIN CAPITAL LETTER D
++<U0045>     /x45         LATIN CAPITAL LETTER E
++<U0046>     /x46         LATIN CAPITAL LETTER F
++<U0047>     /x47         LATIN CAPITAL LETTER G
++<U0048>     /x48         LATIN CAPITAL LETTER H
++<U0049>     /x49         LATIN CAPITAL LETTER I
++<U004A>     /x4a         LATIN CAPITAL LETTER J
++<U004B>     /x4b         LATIN CAPITAL LETTER K
++<U004C>     /x4c         LATIN CAPITAL LETTER L
++<U004D>     /x4d         LATIN CAPITAL LETTER M
++<U004E>     /x4e         LATIN CAPITAL LETTER N
++<U004F>     /x4f         LATIN CAPITAL LETTER O
++<U0050>     /x50         LATIN CAPITAL LETTER P
++<U0051>     /x51         LATIN CAPITAL LETTER Q
++<U0052>     /x52         LATIN CAPITAL LETTER R
++<U0053>     /x53         LATIN CAPITAL LETTER S
++<U0054>     /x54         LATIN CAPITAL LETTER T
++<U0055>     /x55         LATIN CAPITAL LETTER U
++<U0056>     /x56         LATIN CAPITAL LETTER V
++<U0057>     /x57         LATIN CAPITAL LETTER W
++<U0058>     /x58         LATIN CAPITAL LETTER X
++<U0059>     /x59         LATIN CAPITAL LETTER Y
++<U005A>     /x5a         LATIN CAPITAL LETTER Z
++<U005B>     /x5b         LEFT SQUARE BRACKET
++<U005C>     /x5c         REVERSE SOLIDUS
++<U005D>     /x5d         RIGHT SQUARE BRACKET
++<U005E>     /x5e         CIRCUMFLEX ACCENT
++<U005F>     /x5f         LOW LINE
++<U0060>     /x60         GRAVE ACCENT
++<U0061>     /x61         LATIN SMALL LETTER A
++<U0062>     /x62         LATIN SMALL LETTER B
++<U0063>     /x63         LATIN SMALL LETTER C
++<U0064>     /x64         LATIN SMALL LETTER D
++<U0065>     /x65         LATIN SMALL LETTER E
++<U0066>     /x66         LATIN SMALL LETTER F
++<U0067>     /x67         LATIN SMALL LETTER G
++<U0068>     /x68         LATIN SMALL LETTER H
++<U0069>     /x69         LATIN SMALL LETTER I
++<U006A>     /x6a         LATIN SMALL LETTER J
++<U006B>     /x6b         LATIN SMALL LETTER K
++<U006C>     /x6c         LATIN SMALL LETTER L
++<U006D>     /x6d         LATIN SMALL LETTER M
++<U006E>     /x6e         LATIN SMALL LETTER N
++<U006F>     /x6f         LATIN SMALL LETTER O
++<U0070>     /x70         LATIN SMALL LETTER P
++<U0071>     /x71         LATIN SMALL LETTER Q
++<U0072>     /x72         LATIN SMALL LETTER R
++<U0073>     /x73         LATIN SMALL LETTER S
++<U0074>     /x74         LATIN SMALL LETTER T
++<U0075>     /x75         LATIN SMALL LETTER U
++<U0076>     /x76         LATIN SMALL LETTER V
++<U0077>     /x77         LATIN SMALL LETTER W
++<U0078>     /x78         LATIN SMALL LETTER X
++<U0079>     /x79         LATIN SMALL LETTER Y
++<U007A>     /x7a         LATIN SMALL LETTER Z
++<U007B>     /x7b         LEFT CURLY BRACKET
++<U007C>     /x7c         VERTICAL LINE
++<U007D>     /x7d         RIGHT CURLY BRACKET
++<U007E>     /x7e         TILDE
++<U007F>     /x7f         DELETE (DEL)
++<U0080>     /x80         PADDING CHARACTER (PAD)
++<U0081>     /x81         HIGH OCTET PRESET (HOP)
++<U0082>     /x82         BREAK PERMITTED HERE (BPH)
++<U0083>     /x83         NO BREAK HERE (NBH)
++<U0084>     /x84         INDEX (IND)
++<U0085>     /x85         NEXT LINE (NEL)
++<U0086>     /x86         START OF SELECTED AREA (SSA)
++<U0087>     /x87         END OF SELECTED AREA (ESA)
++<U0088>     /x88         CHARACTER TABULATION SET (HTS)
++<U0089>     /x89         CHARACTER TABULATION WITH JUSTIFICATION (HTJ)
++<U008A>     /x8a         LINE TABULATION SET (VTS)
++<U008B>     /x8b         PARTIAL LINE FORWARD (PLD)
++<U008C>     /x8c         PARTIAL LINE BACKWARD (PLU)
++<U008D>     /x8d         REVERSE LINE FEED (RI)
++<U008E>     /x8e         SINGLE-SHIFT TWO (SS2)
++<U008F>     /x8f         SINGLE-SHIFT THREE (SS3)
++<U0090>     /x90         DEVICE CONTROL STRING (DCS)
++<U0091>     /x91         PRIVATE USE ONE (PU1)
++<U0092>     /x92         PRIVATE USE TWO (PU2)
++<U0093>     /x93         SET TRANSMIT STATE (STS)
++<U0094>     /x94         CANCEL CHARACTER (CCH)
++<U0095>     /x95         MESSAGE WAITING (MW)
++<U0096>     /x96         START OF GUARDED AREA (SPA)
++<U0097>     /x97         END OF GUARDED AREA (EPA)
++<U0098>     /x98         START OF STRING (SOS)
++<U0099>     /x99         SINGLE GRAPHIC CHARACTER INTRODUCER (SGCI)
++<U009A>     /x9a         SINGLE CHARACTER INTRODUCER (SCI)
++<U009B>     /x9b         CONTROL SEQUENCE INTRODUCER (CSI)
++<U009C>     /x9c         STRING TERMINATOR (ST)
++<U009D>     /x9d         OPERATING SYSTEM COMMAND (OSC)
++<U009E>     /x9e         PRIVACY MESSAGE (PM)
++<U009F>     /x9f         APPLICATION PROGRAM COMMAND (APC)
++<U00A0>     /xa0         NO-BREAK SPACE
++<U2018>     /xa1         LEFT SINGLE QUOTATION MARK
++<U2019>     /xa2         RIGHT SINGLE QUOTATION MARK
++<U00A3>     /xa3         POUND SIGN
++<U20AC>     /xa4         EURO SIGN
++<U20AF>     /xa5         DRACHMA SIGN
++<U00A6>     /xa6         BROKEN BAR
++<U00A7>     /xa7         SECTION SIGN
++<U00A8>     /xa8         DIAERESIS
++<U00A9>     /xa9         COPYRIGHT SIGN
++<U037A>     /xaa         GREEK YPOGEGRAMMENI
++<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U00AC>     /xac         NOT SIGN
++<U00AD>     /xad         SOFT HYPHEN
++<U2015>     /xaf         HORIZONTAL BAR
++<U00B0>     /xb0         DEGREE SIGN
++<U00B1>     /xb1         PLUS-MINUS SIGN
++<U00B2>     /xb2         SUPERSCRIPT TWO
++<U00B3>     /xb3         SUPERSCRIPT THREE
++<U0384>     /xb4         GREEK TONOS
++<U0385>     /xb5         GREEK DIALYTIKA TONOS
++<U0386>     /xb6         GREEK CAPITAL LETTER ALPHA WITH TONOS
++<U00B7>     /xb7         MIDDLE DOT
++<U0388>     /xb8         GREEK CAPITAL LETTER EPSILON WITH TONOS
++<U0389>     /xb9         GREEK CAPITAL LETTER ETA WITH TONOS
++<U038A>     /xba         GREEK CAPITAL LETTER IOTA WITH TONOS
++<U00BB>     /xbb         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
++<U038C>     /xbc         GREEK CAPITAL LETTER OMICRON WITH TONOS
++<U00BD>     /xbd         VULGAR FRACTION ONE HALF
++<U038E>     /xbe         GREEK CAPITAL LETTER UPSILON WITH TONOS
++<U038F>     /xbf         GREEK CAPITAL LETTER OMEGA WITH TONOS
++<U0390>     /xc0         GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS
++<U0391>     /xc1         GREEK CAPITAL LETTER ALPHA
++<U0392>     /xc2         GREEK CAPITAL LETTER BETA
++<U0393>     /xc3         GREEK CAPITAL LETTER GAMMA
++<U0394>     /xc4         GREEK CAPITAL LETTER DELTA
++<U0395>     /xc5         GREEK CAPITAL LETTER EPSILON
++<U0396>     /xc6         GREEK CAPITAL LETTER ZETA
++<U0397>     /xc7         GREEK CAPITAL LETTER ETA
++<U0398>     /xc8         GREEK CAPITAL LETTER THETA
++<U0399>     /xc9         GREEK CAPITAL LETTER IOTA
++<U039A>     /xca         GREEK CAPITAL LETTER KAPPA
++<U039B>     /xcb         GREEK CAPITAL LETTER LAMDA
++<U039C>     /xcc         GREEK CAPITAL LETTER MU
++<U039D>     /xcd         GREEK CAPITAL LETTER NU
++<U039E>     /xce         GREEK CAPITAL LETTER XI
++<U039F>     /xcf         GREEK CAPITAL LETTER OMICRON
++<U03A0>     /xd0         GREEK CAPITAL LETTER PI
++<U03A1>     /xd1         GREEK CAPITAL LETTER RHO
++<U03A3>     /xd3         GREEK CAPITAL LETTER SIGMA
++<U03A4>     /xd4         GREEK CAPITAL LETTER TAU
++<U03A5>     /xd5         GREEK CAPITAL LETTER UPSILON
++<U03A6>     /xd6         GREEK CAPITAL LETTER PHI
++<U03A7>     /xd7         GREEK CAPITAL LETTER CHI
++<U03A8>     /xd8         GREEK CAPITAL LETTER PSI
++<U03A9>     /xd9         GREEK CAPITAL LETTER OMEGA
++<U03AA>     /xda         GREEK CAPITAL LETTER IOTA WITH DIALYTIKA
++<U03AB>     /xdb         GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA
++<U03AC>     /xdc         GREEK SMALL LETTER ALPHA WITH TONOS
++<U03AD>     /xdd         GREEK SMALL LETTER EPSILON WITH TONOS
++<U03AE>     /xde         GREEK SMALL LETTER ETA WITH TONOS
++<U03AF>     /xdf         GREEK SMALL LETTER IOTA WITH TONOS
++<U03B0>     /xe0         GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS
++<U03B1>     /xe1         GREEK SMALL LETTER ALPHA
++<U03B2>     /xe2         GREEK SMALL LETTER BETA
++<U03B3>     /xe3         GREEK SMALL LETTER GAMMA
++<U03B4>     /xe4         GREEK SMALL LETTER DELTA
++<U03B5>     /xe5         GREEK SMALL LETTER EPSILON
++<U03B6>     /xe6         GREEK SMALL LETTER ZETA
++<U03B7>     /xe7         GREEK SMALL LETTER ETA
++<U03B8>     /xe8         GREEK SMALL LETTER THETA
++<U03B9>     /xe9         GREEK SMALL LETTER IOTA
++<U03BA>     /xea         GREEK SMALL LETTER KAPPA
++<U03BB>     /xeb         GREEK SMALL LETTER LAMDA
++<U03BC>     /xec         GREEK SMALL LETTER MU
++<U03BD>     /xed         GREEK SMALL LETTER NU
++<U03BE>     /xee         GREEK SMALL LETTER XI
++<U03BF>     /xef         GREEK SMALL LETTER OMICRON
++<U03C0>     /xf0         GREEK SMALL LETTER PI
++<U03C1>     /xf1         GREEK SMALL LETTER RHO
++<U03C2>     /xf2         GREEK SMALL LETTER FINAL SIGMA
++<U03C3>     /xf3         GREEK SMALL LETTER SIGMA
++<U03C4>     /xf4         GREEK SMALL LETTER TAU
++<U03C5>     /xf5         GREEK SMALL LETTER UPSILON
++<U03C6>     /xf6         GREEK SMALL LETTER PHI
++<U03C7>     /xf7         GREEK SMALL LETTER CHI
++<U03C8>     /xf8         GREEK SMALL LETTER PSI
++<U03C9>     /xf9         GREEK SMALL LETTER OMEGA
++<U03CA>     /xfa         GREEK SMALL LETTER IOTA WITH DIALYTIKA
++<U03CB>     /xfb         GREEK SMALL LETTER UPSILON WITH DIALYTIKA
++<U03CC>     /xfc         GREEK SMALL LETTER OMICRON WITH TONOS
++<U03CD>     /xfd         GREEK SMALL LETTER UPSILON WITH TONOS
++<U03CE>     /xfe         GREEK SMALL LETTER OMEGA WITH TONOS
++END CHARMAP
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/KHMER-NS glibc-2.33/localedata/charmaps/KHMER-NS
+--- glibc-2.33.org/localedata/charmaps/KHMER-NS	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/charmaps/KHMER-NS	2021-03-20 14:29:23.202826328 +0100
 @@ -0,0 +1,263 @@
 +<code_set_name> KHMER-NS
 +<comment_char> %
@@ -1050,9 +1322,9 @@ diff -uNr libc/localedata/charmaps/KHMER-NS libc.charsets/localedata/charmaps/KH
 +<U17E9>     /x98         KHMER DIGIT  PRAM BOURN	(9)
 +%
 +END CHARMAP
-diff -uNr libc/localedata/charmaps/KOI8-C libc.charsets/localedata/charmaps/KOI8-C
---- libc/localedata/charmaps/KOI8-C	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/localedata/charmaps/KOI8-C	Tue Jan 13 12:45:42 2004
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/KOI8-C glibc-2.33/localedata/charmaps/KOI8-C
+--- glibc-2.33.org/localedata/charmaps/KOI8-C	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/charmaps/KOI8-C	2021-03-20 14:29:23.202826328 +0100
 @@ -0,0 +1,267 @@
 +<code_set_name> KOI8-C
 +<comment_char> %
@@ -1321,9 +1593,9 @@ diff -uNr libc/localedata/charmaps/KOI8-C libc.charsets/localedata/charmaps/KOI8
 +<U0427>     /xfe         CYRILLIC CAPITAL LETTER CHE
 +<U042A>     /xff         CYRILLIC CAPITAL LETTER HARD SIGN
 +END CHARMAP
-diff -uNr libc/localedata/charmaps/KOI8-K libc.charsets/localedata/charmaps/KOI8-K
---- libc/localedata/charmaps/KOI8-K	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/localedata/charmaps/KOI8-K	Tue Jan 13 01:06:43 2004
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/KOI8-K glibc-2.33/localedata/charmaps/KOI8-K
+--- glibc-2.33.org/localedata/charmaps/KOI8-K	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/charmaps/KOI8-K	2021-03-20 14:29:23.202826328 +0100
 @@ -0,0 +1,264 @@
 +<code_set_name> KOI8-K
 +<comment_char> %
@@ -1589,9 +1861,9 @@ diff -uNr libc/localedata/charmaps/KOI8-K libc.charsets/localedata/charmaps/KOI8
 +<U0427>     /xfe         CYRILLIC CAPITAL LETTER CHE
 +<U042A>     /xff         CYRILLIC CAPITAL LETTER HARD SIGN
 +END CHARMAP
-diff -uNr libc/localedata/charmaps/MULELAO-1 libc.charsets/localedata/charmaps/MULELAO-1
---- libc/localedata/charmaps/MULELAO-1	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/localedata/charmaps/MULELAO-1	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/MULELAO-1 glibc-2.33/localedata/charmaps/MULELAO-1
+--- glibc-2.33.org/localedata/charmaps/MULELAO-1	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/charmaps/MULELAO-1	2021-03-20 14:29:23.203826328 +0100
 @@ -0,0 +1,236 @@
 +<code_set_name> MULELAO-1
 +<comment_char> %
@@ -1829,9 +2101,9 @@ diff -uNr libc/localedata/charmaps/MULELAO-1 libc.charsets/localedata/charmaps/M
 +<U0EC8>...<U0ECD>       0
 +END WIDTH
 +
-diff -uNr libc/localedata/charmaps/TATAR-CYR libc.charsets/localedata/charmaps/TATAR-CYR
---- libc/localedata/charmaps/TATAR-CYR	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/localedata/charmaps/TATAR-CYR	Mon Jan 12 23:47:54 2004
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/charmaps/TATAR-CYR glibc-2.33/localedata/charmaps/TATAR-CYR
+--- glibc-2.33.org/localedata/charmaps/TATAR-CYR	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/charmaps/TATAR-CYR	2021-03-20 14:29:23.203826328 +0100
 @@ -0,0 +1,265 @@
 +<code_set_name> TATAR-CYR
 +<comment_char> %
@@ -2097,273 +2369,4 @@ diff -uNr libc/localedata/charmaps/TATAR-CYR libc.charsets/localedata/charmaps/T
 +<U044D>     /xfd         CYRILLIC SMALL LETTER E
 +<U044E>     /xfe         CYRILLIC SMALL LETTER YU
 +<U044F>     /xff         CYRILLIC SMALL LETTER YA
-+END CHARMAP
-diff -uNr libc/localedata/charmaps/ISO-8859-7-EURO libc.charsets/localedata/charmaps/ISO-8859-7-EURO
---- libc/localedata/charmaps/ISO-8859-7-EURO	Thu Jan  1 01:00:00 1970
-+++ libc.charsets/localedata/charmaps/ISO-8859-7-EURO	Mon Aug  2 03:00:12 2004
-@@ -0,0 +1,265 @@
-+<code_set_name> ISO-8859-7-EURO
-+<comment_char> %
-+<escape_char> /
-+% version: 1.0
-+%  source: ISO/IEC SC2 N3678 - FDIS 8859-7
-+
-+% alias ISO_8859-7:2003
-+% alias ISO-8859-7-EURO
-+% alias ISO8859-7-EURO
-+% alias GREEK8-EURO
-+CHARMAP
-+<U0000>     /x00         NULL (NUL)
-+<U0001>     /x01         START OF HEADING (SOH)
-+<U0002>     /x02         START OF TEXT (STX)
-+<U0003>     /x03         END OF TEXT (ETX)
-+<U0004>     /x04         END OF TRANSMISSION (EOT)
-+<U0005>     /x05         ENQUIRY (ENQ)
-+<U0006>     /x06         ACKNOWLEDGE (ACK)
-+<U0007>     /x07         BELL (BEL)
-+<U0008>     /x08         BACKSPACE (BS)
-+<U0009>     /x09         CHARACTER TABULATION (HT)
-+<U000A>     /x0a         LINE FEED (LF)
-+<U000B>     /x0b         LINE TABULATION (VT)
-+<U000C>     /x0c         FORM FEED (FF)
-+<U000D>     /x0d         CARRIAGE RETURN (CR)
-+<U000E>     /x0e         SHIFT OUT (SO)
-+<U000F>     /x0f         SHIFT IN (SI)
-+<U0010>     /x10         DATALINK ESCAPE (DLE)
-+<U0011>     /x11         DEVICE CONTROL ONE (DC1)
-+<U0012>     /x12         DEVICE CONTROL TWO (DC2)
-+<U0013>     /x13         DEVICE CONTROL THREE (DC3)
-+<U0014>     /x14         DEVICE CONTROL FOUR (DC4)
-+<U0015>     /x15         NEGATIVE ACKNOWLEDGE (NAK)
-+<U0016>     /x16         SYNCHRONOUS IDLE (SYN)
-+<U0017>     /x17         END OF TRANSMISSION BLOCK (ETB)
-+<U0018>     /x18         CANCEL (CAN)
-+<U0019>     /x19         END OF MEDIUM (EM)
-+<U001A>     /x1a         SUBSTITUTE (SUB)
-+<U001B>     /x1b         ESCAPE (ESC)
-+<U001C>     /x1c         FILE SEPARATOR (IS4)
-+<U001D>     /x1d         GROUP SEPARATOR (IS3)
-+<U001E>     /x1e         RECORD SEPARATOR (IS2)
-+<U001F>     /x1f         UNIT SEPARATOR (IS1)
-+<U0020>     /x20         SPACE
-+<U0021>     /x21         EXCLAMATION MARK
-+<U0022>     /x22         QUOTATION MARK
-+<U0023>     /x23         NUMBER SIGN
-+<U0024>     /x24         DOLLAR SIGN
-+<U0025>     /x25         PERCENT SIGN
-+<U0026>     /x26         AMPERSAND
-+<U0027>     /x27         APOSTROPHE
-+<U0028>     /x28         LEFT PARENTHESIS
-+<U0029>     /x29         RIGHT PARENTHESIS
-+<U002A>     /x2a         ASTERISK
-+<U002B>     /x2b         PLUS SIGN
-+<U002C>     /x2c         COMMA
-+<U002D>     /x2d         HYPHEN-MINUS
-+<U002E>     /x2e         FULL STOP
-+<U002F>     /x2f         SOLIDUS
-+<U0030>     /x30         DIGIT ZERO
-+<U0031>     /x31         DIGIT ONE
-+<U0032>     /x32         DIGIT TWO
-+<U0033>     /x33         DIGIT THREE
-+<U0034>     /x34         DIGIT FOUR
-+<U0035>     /x35         DIGIT FIVE
-+<U0036>     /x36         DIGIT SIX
-+<U0037>     /x37         DIGIT SEVEN
-+<U0038>     /x38         DIGIT EIGHT
-+<U0039>     /x39         DIGIT NINE
-+<U003A>     /x3a         COLON
-+<U003B>     /x3b         SEMICOLON
-+<U003C>     /x3c         LESS-THAN SIGN
-+<U003D>     /x3d         EQUALS SIGN
-+<U003E>     /x3e         GREATER-THAN SIGN
-+<U003F>     /x3f         QUESTION MARK
-+<U0040>     /x40         COMMERCIAL AT
-+<U0041>     /x41         LATIN CAPITAL LETTER A
-+<U0042>     /x42         LATIN CAPITAL LETTER B
-+<U0043>     /x43         LATIN CAPITAL LETTER C
-+<U0044>     /x44         LATIN CAPITAL LETTER D
-+<U0045>     /x45         LATIN CAPITAL LETTER E
-+<U0046>     /x46         LATIN CAPITAL LETTER F
-+<U0047>     /x47         LATIN CAPITAL LETTER G
-+<U0048>     /x48         LATIN CAPITAL LETTER H
-+<U0049>     /x49         LATIN CAPITAL LETTER I
-+<U004A>     /x4a         LATIN CAPITAL LETTER J
-+<U004B>     /x4b         LATIN CAPITAL LETTER K
-+<U004C>     /x4c         LATIN CAPITAL LETTER L
-+<U004D>     /x4d         LATIN CAPITAL LETTER M
-+<U004E>     /x4e         LATIN CAPITAL LETTER N
-+<U004F>     /x4f         LATIN CAPITAL LETTER O
-+<U0050>     /x50         LATIN CAPITAL LETTER P
-+<U0051>     /x51         LATIN CAPITAL LETTER Q
-+<U0052>     /x52         LATIN CAPITAL LETTER R
-+<U0053>     /x53         LATIN CAPITAL LETTER S
-+<U0054>     /x54         LATIN CAPITAL LETTER T
-+<U0055>     /x55         LATIN CAPITAL LETTER U
-+<U0056>     /x56         LATIN CAPITAL LETTER V
-+<U0057>     /x57         LATIN CAPITAL LETTER W
-+<U0058>     /x58         LATIN CAPITAL LETTER X
-+<U0059>     /x59         LATIN CAPITAL LETTER Y
-+<U005A>     /x5a         LATIN CAPITAL LETTER Z
-+<U005B>     /x5b         LEFT SQUARE BRACKET
-+<U005C>     /x5c         REVERSE SOLIDUS
-+<U005D>     /x5d         RIGHT SQUARE BRACKET
-+<U005E>     /x5e         CIRCUMFLEX ACCENT
-+<U005F>     /x5f         LOW LINE
-+<U0060>     /x60         GRAVE ACCENT
-+<U0061>     /x61         LATIN SMALL LETTER A
-+<U0062>     /x62         LATIN SMALL LETTER B
-+<U0063>     /x63         LATIN SMALL LETTER C
-+<U0064>     /x64         LATIN SMALL LETTER D
-+<U0065>     /x65         LATIN SMALL LETTER E
-+<U0066>     /x66         LATIN SMALL LETTER F
-+<U0067>     /x67         LATIN SMALL LETTER G
-+<U0068>     /x68         LATIN SMALL LETTER H
-+<U0069>     /x69         LATIN SMALL LETTER I
-+<U006A>     /x6a         LATIN SMALL LETTER J
-+<U006B>     /x6b         LATIN SMALL LETTER K
-+<U006C>     /x6c         LATIN SMALL LETTER L
-+<U006D>     /x6d         LATIN SMALL LETTER M
-+<U006E>     /x6e         LATIN SMALL LETTER N
-+<U006F>     /x6f         LATIN SMALL LETTER O
-+<U0070>     /x70         LATIN SMALL LETTER P
-+<U0071>     /x71         LATIN SMALL LETTER Q
-+<U0072>     /x72         LATIN SMALL LETTER R
-+<U0073>     /x73         LATIN SMALL LETTER S
-+<U0074>     /x74         LATIN SMALL LETTER T
-+<U0075>     /x75         LATIN SMALL LETTER U
-+<U0076>     /x76         LATIN SMALL LETTER V
-+<U0077>     /x77         LATIN SMALL LETTER W
-+<U0078>     /x78         LATIN SMALL LETTER X
-+<U0079>     /x79         LATIN SMALL LETTER Y
-+<U007A>     /x7a         LATIN SMALL LETTER Z
-+<U007B>     /x7b         LEFT CURLY BRACKET
-+<U007C>     /x7c         VERTICAL LINE
-+<U007D>     /x7d         RIGHT CURLY BRACKET
-+<U007E>     /x7e         TILDE
-+<U007F>     /x7f         DELETE (DEL)
-+<U0080>     /x80         PADDING CHARACTER (PAD)
-+<U0081>     /x81         HIGH OCTET PRESET (HOP)
-+<U0082>     /x82         BREAK PERMITTED HERE (BPH)
-+<U0083>     /x83         NO BREAK HERE (NBH)
-+<U0084>     /x84         INDEX (IND)
-+<U0085>     /x85         NEXT LINE (NEL)
-+<U0086>     /x86         START OF SELECTED AREA (SSA)
-+<U0087>     /x87         END OF SELECTED AREA (ESA)
-+<U0088>     /x88         CHARACTER TABULATION SET (HTS)
-+<U0089>     /x89         CHARACTER TABULATION WITH JUSTIFICATION (HTJ)
-+<U008A>     /x8a         LINE TABULATION SET (VTS)
-+<U008B>     /x8b         PARTIAL LINE FORWARD (PLD)
-+<U008C>     /x8c         PARTIAL LINE BACKWARD (PLU)
-+<U008D>     /x8d         REVERSE LINE FEED (RI)
-+<U008E>     /x8e         SINGLE-SHIFT TWO (SS2)
-+<U008F>     /x8f         SINGLE-SHIFT THREE (SS3)
-+<U0090>     /x90         DEVICE CONTROL STRING (DCS)
-+<U0091>     /x91         PRIVATE USE ONE (PU1)
-+<U0092>     /x92         PRIVATE USE TWO (PU2)
-+<U0093>     /x93         SET TRANSMIT STATE (STS)
-+<U0094>     /x94         CANCEL CHARACTER (CCH)
-+<U0095>     /x95         MESSAGE WAITING (MW)
-+<U0096>     /x96         START OF GUARDED AREA (SPA)
-+<U0097>     /x97         END OF GUARDED AREA (EPA)
-+<U0098>     /x98         START OF STRING (SOS)
-+<U0099>     /x99         SINGLE GRAPHIC CHARACTER INTRODUCER (SGCI)
-+<U009A>     /x9a         SINGLE CHARACTER INTRODUCER (SCI)
-+<U009B>     /x9b         CONTROL SEQUENCE INTRODUCER (CSI)
-+<U009C>     /x9c         STRING TERMINATOR (ST)
-+<U009D>     /x9d         OPERATING SYSTEM COMMAND (OSC)
-+<U009E>     /x9e         PRIVACY MESSAGE (PM)
-+<U009F>     /x9f         APPLICATION PROGRAM COMMAND (APC)
-+<U00A0>     /xa0         NO-BREAK SPACE
-+<U2018>     /xa1         LEFT SINGLE QUOTATION MARK
-+<U2019>     /xa2         RIGHT SINGLE QUOTATION MARK
-+<U00A3>     /xa3         POUND SIGN
-+<U20AC>     /xa4         EURO SIGN
-+<U20AF>     /xa5         DRACHMA SIGN
-+<U00A6>     /xa6         BROKEN BAR
-+<U00A7>     /xa7         SECTION SIGN
-+<U00A8>     /xa8         DIAERESIS
-+<U00A9>     /xa9         COPYRIGHT SIGN
-+<U037A>     /xaa         GREEK YPOGEGRAMMENI
-+<U00AB>     /xab         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U00AC>     /xac         NOT SIGN
-+<U00AD>     /xad         SOFT HYPHEN
-+<U2015>     /xaf         HORIZONTAL BAR
-+<U00B0>     /xb0         DEGREE SIGN
-+<U00B1>     /xb1         PLUS-MINUS SIGN
-+<U00B2>     /xb2         SUPERSCRIPT TWO
-+<U00B3>     /xb3         SUPERSCRIPT THREE
-+<U0384>     /xb4         GREEK TONOS
-+<U0385>     /xb5         GREEK DIALYTIKA TONOS
-+<U0386>     /xb6         GREEK CAPITAL LETTER ALPHA WITH TONOS
-+<U00B7>     /xb7         MIDDLE DOT
-+<U0388>     /xb8         GREEK CAPITAL LETTER EPSILON WITH TONOS
-+<U0389>     /xb9         GREEK CAPITAL LETTER ETA WITH TONOS
-+<U038A>     /xba         GREEK CAPITAL LETTER IOTA WITH TONOS
-+<U00BB>     /xbb         RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-+<U038C>     /xbc         GREEK CAPITAL LETTER OMICRON WITH TONOS
-+<U00BD>     /xbd         VULGAR FRACTION ONE HALF
-+<U038E>     /xbe         GREEK CAPITAL LETTER UPSILON WITH TONOS
-+<U038F>     /xbf         GREEK CAPITAL LETTER OMEGA WITH TONOS
-+<U0390>     /xc0         GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS
-+<U0391>     /xc1         GREEK CAPITAL LETTER ALPHA
-+<U0392>     /xc2         GREEK CAPITAL LETTER BETA
-+<U0393>     /xc3         GREEK CAPITAL LETTER GAMMA
-+<U0394>     /xc4         GREEK CAPITAL LETTER DELTA
-+<U0395>     /xc5         GREEK CAPITAL LETTER EPSILON
-+<U0396>     /xc6         GREEK CAPITAL LETTER ZETA
-+<U0397>     /xc7         GREEK CAPITAL LETTER ETA
-+<U0398>     /xc8         GREEK CAPITAL LETTER THETA
-+<U0399>     /xc9         GREEK CAPITAL LETTER IOTA
-+<U039A>     /xca         GREEK CAPITAL LETTER KAPPA
-+<U039B>     /xcb         GREEK CAPITAL LETTER LAMDA
-+<U039C>     /xcc         GREEK CAPITAL LETTER MU
-+<U039D>     /xcd         GREEK CAPITAL LETTER NU
-+<U039E>     /xce         GREEK CAPITAL LETTER XI
-+<U039F>     /xcf         GREEK CAPITAL LETTER OMICRON
-+<U03A0>     /xd0         GREEK CAPITAL LETTER PI
-+<U03A1>     /xd1         GREEK CAPITAL LETTER RHO
-+<U03A3>     /xd3         GREEK CAPITAL LETTER SIGMA
-+<U03A4>     /xd4         GREEK CAPITAL LETTER TAU
-+<U03A5>     /xd5         GREEK CAPITAL LETTER UPSILON
-+<U03A6>     /xd6         GREEK CAPITAL LETTER PHI
-+<U03A7>     /xd7         GREEK CAPITAL LETTER CHI
-+<U03A8>     /xd8         GREEK CAPITAL LETTER PSI
-+<U03A9>     /xd9         GREEK CAPITAL LETTER OMEGA
-+<U03AA>     /xda         GREEK CAPITAL LETTER IOTA WITH DIALYTIKA
-+<U03AB>     /xdb         GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA
-+<U03AC>     /xdc         GREEK SMALL LETTER ALPHA WITH TONOS
-+<U03AD>     /xdd         GREEK SMALL LETTER EPSILON WITH TONOS
-+<U03AE>     /xde         GREEK SMALL LETTER ETA WITH TONOS
-+<U03AF>     /xdf         GREEK SMALL LETTER IOTA WITH TONOS
-+<U03B0>     /xe0         GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS
-+<U03B1>     /xe1         GREEK SMALL LETTER ALPHA
-+<U03B2>     /xe2         GREEK SMALL LETTER BETA
-+<U03B3>     /xe3         GREEK SMALL LETTER GAMMA
-+<U03B4>     /xe4         GREEK SMALL LETTER DELTA
-+<U03B5>     /xe5         GREEK SMALL LETTER EPSILON
-+<U03B6>     /xe6         GREEK SMALL LETTER ZETA
-+<U03B7>     /xe7         GREEK SMALL LETTER ETA
-+<U03B8>     /xe8         GREEK SMALL LETTER THETA
-+<U03B9>     /xe9         GREEK SMALL LETTER IOTA
-+<U03BA>     /xea         GREEK SMALL LETTER KAPPA
-+<U03BB>     /xeb         GREEK SMALL LETTER LAMDA
-+<U03BC>     /xec         GREEK SMALL LETTER MU
-+<U03BD>     /xed         GREEK SMALL LETTER NU
-+<U03BE>     /xee         GREEK SMALL LETTER XI
-+<U03BF>     /xef         GREEK SMALL LETTER OMICRON
-+<U03C0>     /xf0         GREEK SMALL LETTER PI
-+<U03C1>     /xf1         GREEK SMALL LETTER RHO
-+<U03C2>     /xf2         GREEK SMALL LETTER FINAL SIGMA
-+<U03C3>     /xf3         GREEK SMALL LETTER SIGMA
-+<U03C4>     /xf4         GREEK SMALL LETTER TAU
-+<U03C5>     /xf5         GREEK SMALL LETTER UPSILON
-+<U03C6>     /xf6         GREEK SMALL LETTER PHI
-+<U03C7>     /xf7         GREEK SMALL LETTER CHI
-+<U03C8>     /xf8         GREEK SMALL LETTER PSI
-+<U03C9>     /xf9         GREEK SMALL LETTER OMEGA
-+<U03CA>     /xfa         GREEK SMALL LETTER IOTA WITH DIALYTIKA
-+<U03CB>     /xfb         GREEK SMALL LETTER UPSILON WITH DIALYTIKA
-+<U03CC>     /xfc         GREEK SMALL LETTER OMICRON WITH TONOS
-+<U03CD>     /xfd         GREEK SMALL LETTER UPSILON WITH TONOS
-+<U03CE>     /xfe         GREEK SMALL LETTER OMEGA WITH TONOS
 +END CHARMAP

@@ -1,6 +1,7 @@
---- glibc-2.27/localedata/locales/aa_DJ.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/aa_DJ	2018-02-04 11:34:44.821004448 +0100
-@@ -149,7 +149,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/aa_DJ glibc-2.33/localedata/locales/aa_DJ
+--- glibc-2.33.org/localedata/locales/aa_DJ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/aa_DJ	2021-03-20 14:30:25.068826328 +0100
+@@ -149,7 +149,8 @@ country_ab2   "DJ"
  country_ab3   "DJI"
  country_num   262
  country_car   "DJI"
@@ -10,9 +11,10 @@
  lang_name     "Qafar"
  lang_ab       "aa"
  lang_term     "aar"
---- glibc-2.27/localedata/locales/aa_ER.orig	2018-02-02 19:23:27.259323073 +0100
-+++ glibc-2.27/localedata/locales/aa_ER	2018-02-02 19:26:34.385987605 +0100
-@@ -112,7 +112,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/aa_ER glibc-2.33/localedata/locales/aa_ER
+--- glibc-2.33.org/localedata/locales/aa_ER	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/aa_ER	2021-03-20 14:30:25.068826328 +0100
+@@ -112,7 +112,7 @@ country_ab2   "ER"
  country_ab3   "ERI"
  country_num   232
  country_car   "ER"
@@ -21,9 +23,10 @@
  lang_name     "Qafar"
  lang_ab       "aa"
  lang_term     "aar"
---- glibc-2.27/localedata/locales/aa_ET.orig	2018-02-02 19:23:27.269323076 +0100
-+++ glibc-2.27/localedata/locales/aa_ET	2018-02-02 20:00:53.799297424 +0100
-@@ -110,9 +110,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/aa_ET glibc-2.33/localedata/locales/aa_ET
+--- glibc-2.33.org/localedata/locales/aa_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/aa_ET	2021-03-20 14:30:25.069826328 +0100
+@@ -110,9 +110,9 @@ country_name  "Otobbia"
  country_post  "ETH"
  country_ab2   "ET"
  country_ab3   "ETH"
@@ -35,9 +38,10 @@
  lang_name     "Qafar"
  lang_ab       "aa"
  lang_term     "aar"
---- glibc-2.27/localedata/locales/agr_PE.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/agr_PE	2018-02-03 09:28:42.635410663 +0100
-@@ -171,6 +171,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/agr_PE glibc-2.33/localedata/locales/agr_PE
+--- glibc-2.33.org/localedata/locales/agr_PE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/agr_PE	2021-03-20 14:30:25.069826328 +0100
+@@ -171,6 +171,7 @@ country_ab2   "PE"
  country_ab3   "PER"
  country_num   604
  country_car   "PE"
@@ -45,9 +49,10 @@
  % Awajún
  lang_name     "Awaj<U00FA>n"
  % ISO-639-1
---- glibc-2.27/localedata/locales/ak_GH.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ak_GH	2018-02-03 09:29:07.918743707 +0100
-@@ -158,7 +158,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ak_GH glibc-2.33/localedata/locales/ak_GH
+--- glibc-2.33.org/localedata/locales/ak_GH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ak_GH	2021-03-20 14:30:25.069826328 +0100
+@@ -159,7 +159,7 @@ country_ab2  "GH"
  country_ab3  "GHA"
  country_num  288
  country_car  "GH"
@@ -56,9 +61,10 @@
  lang_name    "Akan"
  lang_ab      "ak"
  lang_term    "aka"
---- glibc-2.27/localedata/locales/am_ET.orig	2018-02-02 19:23:27.272656410 +0100
-+++ glibc-2.27/localedata/locales/am_ET	2018-02-02 20:02:26.485963031 +0100
-@@ -1445,10 +1445,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/am_ET glibc-2.33/localedata/locales/am_ET
+--- glibc-2.33.org/localedata/locales/am_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/am_ET	2021-03-20 14:30:25.070826328 +0100
+@@ -944,10 +944,10 @@ country_name  "<U12A2><U1275><U12EE><U13
  country_post  "ETH"
  country_ab2   "ET"
  country_ab3   "ETH"
@@ -71,9 +77,10 @@
  lang_name     "<U12A0><U121B><U122D><U129B>"
  lang_ab      "am"
  lang_term    "amh"
---- glibc-2.27/localedata/locales/anp_IN.orig	2018-02-02 19:23:27.282656408 +0100
-+++ glibc-2.27/localedata/locales/anp_IN	2018-02-02 21:40:03.205896158 +0100
-@@ -175,6 +175,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/anp_IN glibc-2.33/localedata/locales/anp_IN
+--- glibc-2.33.org/localedata/locales/anp_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/anp_IN	2021-03-20 14:30:25.070826328 +0100
+@@ -178,6 +178,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -81,9 +88,10 @@
  % अंगिका
  lang_name    "<U0905><U0902><U0917><U093F><U0915><U093E>"
  lang_term    "anp"
---- glibc-2.27/localedata/locales/ar_AE.orig	2018-02-02 19:23:27.282656408 +0100
-+++ glibc-2.27/localedata/locales/ar_AE	2018-02-02 21:40:31.515895837 +0100
-@@ -176,6 +176,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_AE glibc-2.33/localedata/locales/ar_AE
+--- glibc-2.33.org/localedata/locales/ar_AE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_AE	2021-03-20 14:30:25.070826328 +0100
+@@ -179,6 +179,7 @@ country_ab2 "AE"
  country_ab3 "ARE"
  country_num 784
  country_car "UAE"
@@ -91,9 +99,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_BH.orig	2018-02-02 19:23:27.285989741 +0100
-+++ glibc-2.27/localedata/locales/ar_BH	2018-02-02 21:40:52.805895592 +0100
-@@ -180,6 +180,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_BH glibc-2.33/localedata/locales/ar_BH
+--- glibc-2.33.org/localedata/locales/ar_BH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_BH	2021-03-20 14:30:25.071826328 +0100
+@@ -183,6 +183,7 @@ country_ab2 "BH"
  country_ab3 "BHR"
  country_num 048
  country_car "BRN"
@@ -101,9 +110,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_DZ.orig	2018-02-02 19:23:27.285989741 +0100
-+++ glibc-2.27/localedata/locales/ar_DZ	2018-02-02 21:41:17.375895311 +0100
-@@ -185,6 +185,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_DZ glibc-2.33/localedata/locales/ar_DZ
+--- glibc-2.33.org/localedata/locales/ar_DZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_DZ	2021-03-20 14:30:25.071826328 +0100
+@@ -188,6 +188,7 @@ country_ab2 "DZ"
  country_ab3 "DZA"
  country_num 012
  country_car "DZ"
@@ -111,9 +121,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_EG.orig	2018-02-02 19:23:27.289323074 +0100
-+++ glibc-2.27/localedata/locales/ar_EG	2018-02-02 21:41:38.355895070 +0100
-@@ -186,6 +186,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_EG glibc-2.33/localedata/locales/ar_EG
+--- glibc-2.33.org/localedata/locales/ar_EG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_EG	2021-03-20 14:30:25.071826328 +0100
+@@ -189,6 +189,7 @@ country_ab2 "EG"
  country_ab3 "EGY"
  country_num 818
  country_car  "ET"
@@ -121,9 +132,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_IN.orig	2018-02-02 19:23:27.292656407 +0100
-+++ glibc-2.27/localedata/locales/ar_IN	2018-02-02 21:41:58.479228173 +0100
-@@ -149,6 +149,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_IN glibc-2.33/localedata/locales/ar_IN
+--- glibc-2.33.org/localedata/locales/ar_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_IN	2021-03-20 14:30:25.072826328 +0100
+@@ -152,6 +152,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -131,9 +143,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_JO.orig	2018-02-02 19:23:27.292656407 +0100
-+++ glibc-2.27/localedata/locales/ar_JO	2018-02-02 21:42:19.805894600 +0100
-@@ -197,6 +197,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_JO glibc-2.33/localedata/locales/ar_JO
+--- glibc-2.33.org/localedata/locales/ar_JO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_JO	2021-03-20 14:30:25.072826328 +0100
+@@ -200,6 +200,7 @@ country_ab2 "JO"
  country_ab3 "JOR"
  country_num 400
  country_car  "HKJ"
@@ -141,9 +154,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_KW.orig	2018-02-02 19:23:27.295989740 +0100
-+++ glibc-2.27/localedata/locales/ar_KW	2018-02-02 23:23:03.515825591 +0100
-@@ -179,6 +179,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_KW glibc-2.33/localedata/locales/ar_KW
+--- glibc-2.33.org/localedata/locales/ar_KW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_KW	2021-03-20 14:30:25.072826328 +0100
+@@ -182,6 +182,7 @@ country_ab2 "KW"
  country_ab3 "KWT"
  country_num 414
  country_car  "KWT"
@@ -151,9 +165,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_LB.orig	2018-02-02 19:23:27.295989740 +0100
-+++ glibc-2.27/localedata/locales/ar_LB	2018-02-02 23:23:20.269158732 +0100
-@@ -195,6 +195,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_LB glibc-2.33/localedata/locales/ar_LB
+--- glibc-2.33.org/localedata/locales/ar_LB	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_LB	2021-03-20 14:30:25.072826328 +0100
+@@ -198,6 +198,7 @@ country_ab2 "LB"
  country_ab3 "LBN"
  country_num 422
  country_car  "RL"
@@ -161,9 +176,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_LY.orig	2018-02-02 19:23:27.299323074 +0100
-+++ glibc-2.27/localedata/locales/ar_LY	2018-02-02 23:23:36.375825221 +0100
-@@ -179,6 +179,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_LY glibc-2.33/localedata/locales/ar_LY
+--- glibc-2.33.org/localedata/locales/ar_LY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_LY	2021-03-20 14:30:25.073826328 +0100
+@@ -182,6 +182,7 @@ country_ab2 "LY"
  country_ab3 "LBY"
  country_num 434
  country_car  "LAR"
@@ -171,9 +187,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_MA.orig	2018-02-02 19:23:27.302656408 +0100
-+++ glibc-2.27/localedata/locales/ar_MA	2018-02-02 23:23:56.845824982 +0100
-@@ -185,6 +185,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_MA glibc-2.33/localedata/locales/ar_MA
+--- glibc-2.33.org/localedata/locales/ar_MA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_MA	2021-03-20 14:30:25.073826328 +0100
+@@ -188,6 +188,7 @@ country_ab2 "MA"
  country_ab3 "MAR"
  country_num 504
  country_car  "MA"
@@ -181,9 +198,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_OM.orig	2018-02-02 19:23:27.302656408 +0100
-+++ glibc-2.27/localedata/locales/ar_OM	2018-02-02 23:24:13.269158129 +0100
-@@ -179,6 +179,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_OM glibc-2.33/localedata/locales/ar_OM
+--- glibc-2.33.org/localedata/locales/ar_OM	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_OM	2021-03-20 14:30:25.073826328 +0100
+@@ -182,6 +182,7 @@ country_ab2 "OM"
  country_ab3 "OMN"
  country_num 512
  country_car "OM"
@@ -191,9 +209,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_QA.orig	2018-02-02 19:23:27.305989742 +0100
-+++ glibc-2.27/localedata/locales/ar_QA	2018-02-02 23:25:05.445824199 +0100
-@@ -179,6 +179,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_QA glibc-2.33/localedata/locales/ar_QA
+--- glibc-2.33.org/localedata/locales/ar_QA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_QA	2021-03-20 14:30:25.074826328 +0100
+@@ -182,6 +182,7 @@ country_ab2 "QA"
  country_ab3 "QAT"
  country_num 634
  country_car  "Q"
@@ -201,9 +220,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_SA.orig	2018-02-02 19:23:27.309323075 +0100
-+++ glibc-2.27/localedata/locales/ar_SA	2018-02-02 23:25:22.115824009 +0100
-@@ -376,6 +376,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_SA glibc-2.33/localedata/locales/ar_SA
+--- glibc-2.33.org/localedata/locales/ar_SA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_SA	2021-03-20 14:30:25.074826328 +0100
+@@ -377,6 +377,7 @@ country_ab2 "SA"
  country_ab3 "SAU"
  country_num 682
  country_car  "KSA"
@@ -211,9 +231,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_SD.orig	2018-02-02 19:23:27.309323075 +0100
-+++ glibc-2.27/localedata/locales/ar_SD	2018-02-02 23:25:36.739157175 +0100
-@@ -185,6 +185,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_SD glibc-2.33/localedata/locales/ar_SD
+--- glibc-2.33.org/localedata/locales/ar_SD	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_SD	2021-03-20 14:30:25.074826328 +0100
+@@ -188,6 +188,7 @@ country_ab2 "SD"
  country_ab3 "SDN"
  country_num 729
  country_car  "SUD"
@@ -221,9 +242,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_SY.orig	2018-02-02 19:23:27.312656408 +0100
-+++ glibc-2.27/localedata/locales/ar_SY	2018-02-02 23:26:04.402490196 +0100
-@@ -196,6 +196,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_SY glibc-2.33/localedata/locales/ar_SY
+--- glibc-2.33.org/localedata/locales/ar_SY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_SY	2021-03-20 14:30:25.074826328 +0100
+@@ -199,6 +199,7 @@ country_ab2 "SY"
  country_ab3 "SYR"
  country_num 760
  country_car  "SYR"
@@ -231,9 +253,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/ar_TN.orig	2018-02-02 19:23:27.312656408 +0100
-+++ glibc-2.27/localedata/locales/ar_TN	2018-02-02 23:26:22.882489980 +0100
-@@ -183,7 +183,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ar_TN glibc-2.33/localedata/locales/ar_TN
+--- glibc-2.33.org/localedata/locales/ar_TN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ar_TN	2021-03-20 14:30:25.075826328 +0100
+@@ -186,7 +186,8 @@ country_name "<U062A><U0648><U0646><U063
  country_ab2 "TN"
  country_ab3 "TUN"
  country_num 788
@@ -243,9 +266,10 @@
  lang_name    "<U0627><U0644><U0639><U0631><U0628><U064A><U0629>"
  lang_ab      "ar"
  lang_term    "ara"
---- glibc-2.27/localedata/locales/as_IN.orig	2018-02-02 19:23:27.315989741 +0100
-+++ glibc-2.27/localedata/locales/as_IN	2018-02-03 08:26:26.855453319 +0100
-@@ -141,7 +141,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/as_IN glibc-2.33/localedata/locales/as_IN
+--- glibc-2.33.org/localedata/locales/as_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/as_IN	2021-03-20 14:30:25.075826328 +0100
+@@ -142,7 +142,10 @@ LC_ADDRESS
  % LC_ADDRESS
  postal_fmt  "%z%c%T%s%b%e%r"
  country_name "<U09AD><U09BE><U09F0><U09A4>"
@@ -256,9 +280,10 @@
  country_num 356
  % অসমীয়া
  lang_name    "<U0985><U09B8><U09AE><U09C0><U09AF><U09BC><U09BE>"
---- glibc-2.27/localedata/locales/ast_ES.orig	2018-02-02 19:23:27.315989741 +0100
-+++ glibc-2.27/localedata/locales/ast_ES	2018-02-03 08:26:55.632119657 +0100
-@@ -140,6 +140,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ast_ES glibc-2.33/localedata/locales/ast_ES
+--- glibc-2.33.org/localedata/locales/ast_ES	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ast_ES	2021-03-20 14:30:25.076826328 +0100
+@@ -156,6 +156,7 @@ country_ab2   "ES"
  country_ab3   "ESP"
  country_num   724
  country_car   "E"
@@ -266,9 +291,10 @@
  lang_name    "asturianu"
  lang_term    "ast"
  lang_lib    "ast"
---- glibc-2.27/localedata/locales/ayc_PE.orig	2018-02-02 19:23:27.319323075 +0100
-+++ glibc-2.27/localedata/locales/ayc_PE	2018-02-03 08:27:34.338785884 +0100
-@@ -175,6 +175,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ayc_PE glibc-2.33/localedata/locales/ayc_PE
+--- glibc-2.33.org/localedata/locales/ayc_PE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ayc_PE	2021-03-20 14:30:25.076826328 +0100
+@@ -178,6 +178,7 @@ country_ab2   "PE"
  country_ab3   "PER"
  country_num   604
  country_car   "PE"
@@ -276,9 +302,10 @@
  lang_name    "Aymar aru"
  lang_ab    "ay"
  lang_term    "ayc"
---- glibc-2.27/localedata/locales/az_AZ.orig	2018-02-02 19:23:27.319323075 +0100
-+++ glibc-2.27/localedata/locales/az_AZ	2018-02-03 08:28:12.658785444 +0100
-@@ -302,7 +302,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/az_AZ glibc-2.33/localedata/locales/az_AZ
+--- glibc-2.33.org/localedata/locales/az_AZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/az_AZ	2021-03-20 14:30:25.076826328 +0100
+@@ -242,7 +242,8 @@ country_name "Az<U0259>rbaycan"
  country_ab2 "AZ"
  country_ab3 "AZE"
  country_num 031
@@ -286,11 +313,12 @@
 +country_car  "AZ"
 +country_isbn "9952"
  % Azərbaycanca
- lang_name    "az<U0259>rbaycan dili"
+ lang_name    "az<U0259>rbaycan"
  lang_ab      "az"
---- glibc-2.27/localedata/locales/be_BY.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/be_BY	2018-02-03 08:40:45.835443508 +0100
-@@ -172,6 +172,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/be_BY glibc-2.33/localedata/locales/be_BY
+--- glibc-2.33.org/localedata/locales/be_BY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/be_BY	2021-03-20 14:30:25.076826328 +0100
+@@ -196,6 +196,7 @@ am_pm     "";""
  t_fmt_ampm ""
  week 7;19971130;1
  first_weekday 2
@@ -298,7 +326,7 @@
  END LC_TIME
  
  LC_PAPER
-@@ -198,7 +199,8 @@
+@@ -222,7 +223,8 @@ country_name "<U0411><U0435><U043B><U043
  country_ab2 "BY"
  country_ab3 "BLR"
  country_num 112
@@ -308,9 +336,10 @@
  % беларуская мова
  lang_name    "<U0431><U0435><U043B><U0430><U0440><U0443><U0441><U043A><U0430><U044F>"
  lang_ab      "be"
---- glibc-2.31/localedata/locales/be_BY@latin.orig	2020-02-01 12:52:50.000000000 +0100
-+++ glibc-2.31/localedata/locales/be_BY@latin	2020-02-01 14:38:21.860872358 +0100
-@@ -117,6 +117,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/be_BY@latin glibc-2.33/localedata/locales/be_BY@latin
+--- glibc-2.33.org/localedata/locales/be_BY@latin	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/be_BY@latin	2021-03-20 14:30:25.077826328 +0100
+@@ -117,6 +117,7 @@ t_fmt     "%T"
  t_fmt_ampm ""
  week 7;19971130;1
  first_weekday 2
@@ -318,7 +347,7 @@
  END LC_TIME
  
  LC_COLLATE
-@@ -156,7 +157,8 @@
+@@ -156,7 +157,8 @@ country_name "Bie<U0142>aru<U015B>"
  country_ab2 "BY"
  country_ab3 "BLR"
  country_num 112
@@ -328,9 +357,10 @@
  lang_name    "bie<U0142>aruskaja"
  lang_ab      "be"
  lang_term    "bel"
---- glibc-2.27/localedata/locales/bem_ZM.orig	2018-02-02 19:23:27.325989741 +0100
-+++ glibc-2.27/localedata/locales/bem_ZM	2018-02-03 08:41:33.942109629 +0100
-@@ -153,6 +153,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bem_ZM glibc-2.33/localedata/locales/bem_ZM
+--- glibc-2.33.org/localedata/locales/bem_ZM	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bem_ZM	2021-03-20 14:30:25.420826328 +0100
+@@ -154,6 +154,7 @@ country_ab2   "ZM"
  country_ab3   "ZMB"
  country_num   894
  country_car   "Z"
@@ -338,20 +368,22 @@
  lang_name     "Ichibemba"
  lang_term    "bem"
  lang_lib    "bem"
---- glibc-2.27/localedata/locales/ber_DZ.orig	2018-02-02 19:23:27.325989741 +0100
-+++ glibc-2.27/localedata/locales/ber_DZ	2018-02-03 08:41:54.372109393 +0100
-@@ -286,7 +286,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ber_DZ glibc-2.33/localedata/locales/ber_DZ
+--- glibc-2.33.org/localedata/locales/ber_DZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ber_DZ	2021-03-20 14:30:25.420826328 +0100
+@@ -259,7 +259,7 @@ country_name "Lezzayer"
  country_ab2 "DZ"
  country_ab3 "DZA"
  country_num 012
 -%country_isbn ""
 +country_isbn "9931,9947,9961"
  country_car  "DZ"
- % ⵜⴰⵎⴰⵣⵉⵖⵜ
- lang_name "<U2D5C><U2D30><U2D4E><U2D30><U2D49><U2D56><U2D5C>"
---- glibc-2.27/localedata/locales/ber_MA.orig	2018-02-02 19:23:27.339323073 +0100
-+++ glibc-2.27/localedata/locales/ber_MA	2018-02-03 08:42:19.602109110 +0100
-@@ -210,7 +210,7 @@
+ % Tamaziɣt
+ lang_name "Tamazi<U0263>t"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ber_MA glibc-2.33/localedata/locales/ber_MA
+--- glibc-2.33.org/localedata/locales/ber_MA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ber_MA	2021-03-20 14:30:25.421826328 +0100
+@@ -211,7 +211,7 @@ country_name "<U2D5C><U2D30><U2D33><U2D4
  country_ab2 "MA"
  country_ab3 "MAR"
  country_num 504
@@ -359,10 +391,11 @@
 +country_isbn "9954,9981"
  country_car  "MA"
  % ⵜⴰⵎⴰⵣⵉⵖⵜ
- lang_name "<U2D5C><U2D30><U2D4E><U2D30><U2D49><U2D56><U2D5C>"
---- glibc-2.31/localedata/locales/bhb_IN.orig	2020-02-01 14:09:11.060357257 +0100
-+++ glibc-2.31/localedata/locales/bhb_IN	2020-02-01 14:39:02.077321153 +0100
-@@ -153,6 +153,7 @@
+ lang_name "<U2D5C><U2D30><U2D4E><U2D30><U2D63><U2D49><U2D56><U2D5C>"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bhb_IN glibc-2.33/localedata/locales/bhb_IN
+--- glibc-2.33.org/localedata/locales/bhb_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bhb_IN	2021-03-20 14:30:25.421826328 +0100
+@@ -153,6 +153,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_car "IND"
  country_num 356
@@ -370,9 +403,10 @@
  % भीली
  lang_name     "<U092D><U0940><U0932><U0940>"
  lang_ab       ""
---- glibc-2.27/localedata/locales/bho_IN.orig	2018-02-02 19:23:27.342656407 +0100
-+++ glibc-2.27/localedata/locales/bho_IN	2018-02-03 08:43:32.858774937 +0100
-@@ -150,8 +150,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bho_IN glibc-2.33/localedata/locales/bho_IN
+--- glibc-2.33.org/localedata/locales/bho_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bho_IN	2021-03-20 14:30:25.421826328 +0100
+@@ -154,8 +154,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -383,9 +417,10 @@
  % भोजपुरी
  lang_name    "<U092D><U094B><U091C><U092A><U0941><U0930><U0940>"
  lang_term    "bho"
---- glibc-2.27/localedata/locales/bho_NP.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/bho_NP	2018-02-03 08:45:43.425440111 +0100
-@@ -78,6 +78,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bho_NP glibc-2.33/localedata/locales/bho_NP
+--- glibc-2.33.org/localedata/locales/bho_NP	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bho_NP	2021-03-20 14:30:25.422826328 +0100
+@@ -78,6 +78,7 @@ country_ab3 "NPL"
  country_num 524
  % NEP
  country_car  "NEP"
@@ -393,9 +428,10 @@
  lang_name    "<U092D><U094B><U091C><U092A><U0941><U0930><U0940>"
  lang_term    "bho"
  lang_lib     "bho"
---- glibc-2.27/localedata/locales/bi_VU.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/bi_VU	2018-02-04 11:00:11.834361452 +0100
-@@ -169,6 +169,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bi_VU glibc-2.33/localedata/locales/bi_VU
+--- glibc-2.33.org/localedata/locales/bi_VU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bi_VU	2021-03-20 14:30:25.422826328 +0100
+@@ -171,6 +171,8 @@ country_ab3  "VUT"
  country_car  "VU"
  % https://en.wikipedia.org/wiki/ISO_3166-1_numeric
  country_num  548
@@ -404,9 +440,10 @@
  lang_name    "Bislama"
  % iso-639-1
  lang_ab      "bi"
---- glibc-2.27/localedata/locales/bn_BD.orig	2018-02-02 19:23:27.342656407 +0100
-+++ glibc-2.27/localedata/locales/bn_BD	2018-02-03 08:44:42.035440815 +0100
-@@ -186,12 +186,11 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bn_BD glibc-2.33/localedata/locales/bn_BD
+--- glibc-2.33.org/localedata/locales/bn_BD	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bn_BD	2021-03-20 14:30:25.423826328 +0100
+@@ -187,12 +187,11 @@ country_ab3     "BGD"
  lang_ab      "bn"
  lang_term    "ben"
  lang_lib       "ben"
@@ -420,9 +457,10 @@
 -%country_isbn   ""
 +country_isbn   "984"
  END LC_ADDRESS
---- glibc-2.27/localedata/locales/bn_IN.orig	2018-02-02 19:23:27.345989740 +0100
-+++ glibc-2.27/localedata/locales/bn_IN	2018-02-03 08:46:27.245439609 +0100
-@@ -166,7 +166,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bn_IN glibc-2.33/localedata/locales/bn_IN
+--- glibc-2.33.org/localedata/locales/bn_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bn_IN	2021-03-20 14:30:25.423826328 +0100
+@@ -169,7 +169,8 @@ country_name "<U09AD><U09BE><U09B0><U09A
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -432,9 +470,10 @@
  % বাংলা
  lang_name    "<U09AC><U09BE><U0982><U09B2><U09BE>"
  lang_ab      "bn"
---- glibc-2.24/localedata/locales/bo_CN.orig	2016-08-02 04:01:36.000000000 +0200
-+++ glibc-2.24/localedata/locales/bo_CN	2016-08-05 17:06:36.027888875 +0200
-@@ -152,7 +152,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bo_CN glibc-2.33/localedata/locales/bo_CN
+--- glibc-2.33.org/localedata/locales/bo_CN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bo_CN	2021-03-20 14:30:25.423826328 +0100
+@@ -158,7 +158,7 @@ END LC_MEASUREMENT
  LC_NAME
  % FIXME
  
@@ -443,9 +482,10 @@
  % name_gen	"FIXME"
  % name_miss	"FIXME"
  % name_mr	"FIXME"
---- glibc-2.27/localedata/locales/bo_IN.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/bo_IN	2018-02-03 08:47:06.382105832 +0100
-@@ -77,7 +77,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bo_IN glibc-2.33/localedata/locales/bo_IN
+--- glibc-2.33.org/localedata/locales/bo_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bo_IN	2021-03-20 14:30:25.424826328 +0100
+@@ -77,7 +77,7 @@ END LC_MEASUREMENT
  
  LC_NAME
  % FIXME
@@ -454,7 +494,7 @@
  % name_gen	"FIXME"
  % name_miss	"FIXME"
  % name_mr	"FIXME"
-@@ -93,7 +93,8 @@
+@@ -93,7 +93,8 @@ country_name "<U0F62><U0F92><U0FB1><U0F0
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -464,9 +504,10 @@
  lang_name     "<U0F56><U0F7C><U0F51><U0F0B><U0F66><U0F90><U0F51><U0F0B>"
  lang_ab       "bo"
  lang_term     "bod"
---- glibc-2.27/localedata/locales/brx_IN.orig	2018-02-02 19:23:27.349323073 +0100
-+++ glibc-2.27/localedata/locales/brx_IN	2018-02-03 08:47:40.292105446 +0100
-@@ -162,7 +162,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/brx_IN glibc-2.33/localedata/locales/brx_IN
+--- glibc-2.33.org/localedata/locales/brx_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/brx_IN	2021-03-20 14:30:25.424826328 +0100
+@@ -165,7 +165,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -476,9 +517,10 @@
  lang_name   "<U092C><U0921><U093C><U094B>"
  lang_term   "brx"
  lang_lib    "brx"
---- glibc-2.27/localedata/locales/bs_BA.orig	2018-02-02 19:23:27.349323073 +0100
-+++ glibc-2.27/localedata/locales/bs_BA	2018-02-03 08:48:03.805438508 +0100
-@@ -152,7 +152,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/bs_BA glibc-2.33/localedata/locales/bs_BA
+--- glibc-2.33.org/localedata/locales/bs_BA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/bs_BA	2021-03-20 14:30:25.424826328 +0100
+@@ -153,7 +153,8 @@ country_name "Bosna i Hercegovina"
  country_ab2 "BA"
  country_ab3 "BIH"
  country_num 070
@@ -488,9 +530,10 @@
  lang_name    "bosanski"
  lang_ab      "bs"
  lang_term    "bos"
---- glibc-2.27/localedata/locales/byn_ER.orig	2018-02-02 19:23:27.352656406 +0100
-+++ glibc-2.27/localedata/locales/byn_ER	2018-02-03 08:51:00.402103156 +0100
-@@ -122,8 +122,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/byn_ER glibc-2.33/localedata/locales/byn_ER
+--- glibc-2.33.org/localedata/locales/byn_ER	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/byn_ER	2021-03-20 14:30:25.425826328 +0100
+@@ -122,8 +122,8 @@ country_post  "ERI"
  country_ab2   "ER"
  country_ab3   "ERI"
  country_num   232
@@ -501,9 +544,10 @@
  lang_name     "<U1265><U120A><U1295>"
  lang_ab       ""
  lang_term     "byn"
---- glibc-2.27/localedata/locales/ca_AD.orig	2018-02-02 19:23:27.352656406 +0100
-+++ glibc-2.27/localedata/locales/ca_AD	2018-02-03 08:51:38.245436063 +0100
-@@ -93,6 +93,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ca_AD glibc-2.33/localedata/locales/ca_AD
+--- glibc-2.33.org/localedata/locales/ca_AD	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ca_AD	2021-03-20 14:30:25.425826328 +0100
+@@ -93,6 +93,7 @@ country_ab2 "AD"
  country_ab3 "AND"
  country_num 020
  country_car  "AND"
@@ -511,10 +555,10 @@
  % català
  lang_name    "catal<U00E0>"
  lang_ab      "ca"
-
---- glibc-2.27/localedata/locales/ca_ES.orig	2018-02-02 19:23:27.352656406 +0100
-+++ glibc-2.27/localedata/locales/ca_ES	2018-02-03 08:55:00.878767080 +0100
-@@ -146,9 +146,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ca_ES glibc-2.33/localedata/locales/ca_ES
+--- glibc-2.33.org/localedata/locales/ca_ES	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ca_ES	2021-03-20 14:30:25.425826328 +0100
+@@ -164,9 +164,7 @@ copy "i18n"
  END LC_PAPER
  
  LC_TELEPHONE
@@ -525,19 +569,18 @@
  END LC_TELEPHONE
  
  LC_MEASUREMENT
-@@ -165,7 +163,8 @@
- country_ab2  "ES"
+@@ -184,6 +182,7 @@ country_ab2  "ES"
  country_ab3  "ESP"
  country_num  724
--country_car  "E"
-+country_car  "E"
+ country_car  "E"
 +country_isbn "84"
  % català
  lang_name    "catal<U00E0>"
  lang_ab      "ca"
---- glibc-2.27/localedata/locales/ce_RU.orig	2018-02-02 19:23:27.355989740 +0100
-+++ glibc-2.27/localedata/locales/ce_RU	2018-02-03 08:56:16.825432880 +0100
-@@ -144,6 +144,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ce_RU glibc-2.33/localedata/locales/ce_RU
+--- glibc-2.33.org/localedata/locales/ce_RU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ce_RU	2021-03-20 14:30:25.426826328 +0100
+@@ -145,6 +145,7 @@ country_ab2  "RU"
  country_ab3  "RUS"
  country_num  643
  country_car  "RUS"
@@ -545,9 +588,10 @@
  % нохчийн мотт
  lang_name    "<U043D><U043E><U0445><U0447><U0438><U0439><U043D>"
  lang_ab      "ce"
---- glibc-2.31/localedata/locales/crh_UA.orig	2020-02-01 14:09:11.090357095 +0100
-+++ glibc-2.31/localedata/locales/crh_UA	2020-02-01 14:39:51.130388743 +0100
-@@ -198,7 +198,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/crh_UA glibc-2.33/localedata/locales/crh_UA
+--- glibc-2.33.org/localedata/locales/crh_UA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/crh_UA	2021-03-20 14:30:25.426826328 +0100
+@@ -198,7 +198,9 @@ postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e
  country_ab2 "UA"
  country_ab3 "UKR"
  country_num 804
@@ -557,9 +601,10 @@
  % qırımtatar tili
  lang_name    "q<U0131>r<U0131>mtatar tili"
  lang_term    "crh"
---- glibc-2.27/localedata/locales/cs_CZ.orig	2018-02-02 19:23:27.365989741 +0100
-+++ glibc-2.27/localedata/locales/cs_CZ	2018-02-03 08:57:43.312098561 +0100
-@@ -381,7 +381,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/cs_CZ glibc-2.33/localedata/locales/cs_CZ
+--- glibc-2.33.org/localedata/locales/cs_CZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/cs_CZ	2021-03-20 14:30:25.810826328 +0100
+@@ -406,7 +406,7 @@ country_ab2   "CZ"
  country_ab3   "CZE"
  country_num   203
  country_car   "CZ"
@@ -568,9 +613,10 @@
  lang_name     "<U010D>e<U0161>tina"
  lang_ab       "cs"
  lang_term     "ces"
---- glibc-2.31/localedata/locales/csb_PL.orig	2018-02-02 19:23:27.365989741 +0100
-+++ glibc-2.31/localedata/locales/csb_PL	2018-02-03 09:00:04.628763613 +0100
-@@ -215,9 +215,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/csb_PL glibc-2.33/localedata/locales/csb_PL
+--- glibc-2.33.org/localedata/locales/csb_PL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/csb_PL	2021-03-20 14:30:25.810826328 +0100
+@@ -215,9 +215,10 @@ country_name "P<U00F2>lsk<U00F4>"
  country_ab2 "PL"
  country_ab3 "POL"
  country_num 616
@@ -584,9 +630,10 @@
  lang_term    "csb"
  lang_lib    "csb"
  END LC_ADDRESS
---- glibc-2.27/localedata/locales/cv_RU.orig	2018-02-02 19:23:27.369323074 +0100
-+++ glibc-2.27/localedata/locales/cv_RU	2018-02-03 09:00:57.195429678 +0100
-@@ -236,7 +236,11 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/cv_RU glibc-2.33/localedata/locales/cv_RU
+--- glibc-2.33.org/localedata/locales/cv_RU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/cv_RU	2021-03-20 14:30:25.810826328 +0100
+@@ -232,7 +232,11 @@ postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e
  country_ab2 "RU"
  country_ab3 "RUS"
  country_num 643
@@ -599,9 +646,10 @@
  % Чӑвашла
  lang_name    "<U0427><U04D1><U0432><U0430><U0448><U043B><U0430>"
  lang_ab      "cv"
---- glibc-2.27/localedata/locales/da_DK.orig	2018-02-02 19:23:27.369323074 +0100
-+++ glibc-2.27/localedata/locales/da_DK	2018-02-03 09:01:36.235429232 +0100
-@@ -260,7 +260,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/da_DK glibc-2.33/localedata/locales/da_DK
+--- glibc-2.33.org/localedata/locales/da_DK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/da_DK	2021-03-20 14:30:25.811826328 +0100
+@@ -268,7 +268,9 @@ country_name "Danmark"
  country_ab2 "DK"
  country_ab3 "DNK"
  country_num 208
@@ -612,9 +660,10 @@
  lang_name    "dansk"
  lang_ab      "da"
  lang_term    "dan"
---- glibc-2.27/localedata/locales/de_AT.orig	2018-02-02 19:23:27.372656407 +0100
-+++ glibc-2.27/localedata/locales/de_AT	2018-02-03 09:02:10.875428838 +0100
-@@ -148,7 +148,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/de_AT glibc-2.33/localedata/locales/de_AT
+--- glibc-2.33.org/localedata/locales/de_AT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/de_AT	2021-03-20 14:30:25.811826328 +0100
+@@ -149,7 +149,9 @@ country_name "<U00D6>sterreich"
  country_ab2 "AT"
  country_ab3 "AUT"
  country_num 040
@@ -625,9 +674,10 @@
  lang_name     "Deutsch"
  lang_ab       "de"
  lang_term     "deu"
---- glibc-2.27/localedata/locales/de_BE.orig	2018-02-02 19:23:27.372656407 +0100
-+++ glibc-2.27/localedata/locales/de_BE	2018-02-03 09:03:26.555427975 +0100
-@@ -137,6 +137,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/de_BE glibc-2.33/localedata/locales/de_BE
+--- glibc-2.33.org/localedata/locales/de_BE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/de_BE	2021-03-20 14:30:25.812826328 +0100
+@@ -138,6 +138,10 @@ END LC_MEASUREMENT
  
  LC_NAME
  name_fmt    "%d%t%g%t%m%t%f"
@@ -638,7 +688,7 @@
  END LC_NAME
  
  LC_ADDRESS
-@@ -145,7 +149,9 @@
+@@ -146,7 +150,9 @@ country_name "Belgien"
  country_ab2 "BE"
  country_ab3 "BEL"
  country_num 056
@@ -649,9 +699,10 @@
  lang_name     "Deutsch"
  lang_ab       "de"
  lang_term     "deu"
---- glibc-2.27/localedata/locales/de_CH.orig	2018-02-02 19:23:27.375989741 +0100
-+++ glibc-2.27/localedata/locales/de_CH	2018-02-03 09:03:43.852094445 +0100
-@@ -150,7 +150,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/de_CH glibc-2.33/localedata/locales/de_CH
+--- glibc-2.33.org/localedata/locales/de_CH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/de_CH	2021-03-20 14:30:25.812826328 +0100
+@@ -151,7 +151,8 @@ country_name "Schweiz"
  country_ab2 "CH"
  country_ab3 "CHE"
  country_num 756
@@ -661,9 +712,10 @@
  lang_name     "Deutsch"
  lang_ab       "de"
  lang_term     "deu"
---- glibc-2.27/localedata/locales/de_LI.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/de_LI	2018-02-03 09:07:37.088758445 +0100
-@@ -87,6 +87,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/de_LI glibc-2.33/localedata/locales/de_LI
+--- glibc-2.33.org/localedata/locales/de_LI	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/de_LI	2021-03-20 14:30:25.812826328 +0100
+@@ -87,6 +87,7 @@ country_ab3	"LIE"
  country_num	438
  country_car	"FL"
  country_post	"LI"
@@ -671,9 +723,10 @@
  lang_name	"Deutsch"
  lang_ab		"de"
  lang_term	"deu"
---- glibc-2.27/localedata/locales/de_LU.orig	2018-02-02 19:23:27.375989741 +0100
-+++ glibc-2.27/localedata/locales/de_LU	2018-02-03 09:08:52.732090918 +0100
-@@ -136,6 +136,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/de_LU glibc-2.33/localedata/locales/de_LU
+--- glibc-2.33.org/localedata/locales/de_LU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/de_LU	2021-03-20 14:30:25.813826328 +0100
+@@ -137,6 +137,10 @@ END LC_MEASUREMENT
  
  LC_NAME
  name_fmt    "%d%t%g%t%m%t%f"
@@ -684,7 +737,7 @@
  END LC_NAME
  
  LC_ADDRESS
-@@ -144,7 +148,8 @@
+@@ -145,7 +149,8 @@ country_name "Luxemburg"
  country_ab2 "LU"
  country_ab3 "LUX"
  country_num 442
@@ -694,9 +747,10 @@
  lang_name     "Deutsch"
  lang_ab       "de"
  lang_term     "deu"
---- glibc-2.27/localedata/locales/doi_IN.orig	2018-02-02 19:23:27.375989741 +0100
-+++ glibc-2.27/localedata/locales/doi_IN	2018-02-03 09:09:28.435423842 +0100
-@@ -159,7 +159,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/doi_IN glibc-2.33/localedata/locales/doi_IN
+--- glibc-2.33.org/localedata/locales/doi_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/doi_IN	2021-03-20 14:30:25.813826328 +0100
+@@ -163,7 +163,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -706,9 +760,10 @@
  % डोगरी
  lang_name    "<U0921><U094B><U0917><U0930><U0940>"
  lang_term    "doi"
---- glibc-2.31/localedata/locales/dv_MV.orig	2020-02-01 14:09:11.093690410 +0100
-+++ glibc-2.31/localedata/locales/dv_MV	2020-02-01 14:40:47.010086017 +0100
-@@ -185,6 +185,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/dv_MV glibc-2.33/localedata/locales/dv_MV
+--- glibc-2.33.org/localedata/locales/dv_MV	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/dv_MV	2021-03-20 14:30:25.813826328 +0100
+@@ -185,6 +185,7 @@ country_ab2 "MV"
  country_ab3 "MDV"
  country_num 462
  country_car "MV"
@@ -716,9 +771,10 @@
  % ދިވެހި
  lang_name    "<U078B><U07A8><U0788><U07AC><U0780><U07A8>"
  lang_ab      "dv"
---- glibc-2.27/localedata/locales/dz_BT.orig	2018-02-02 19:23:27.379323074 +0100
-+++ glibc-2.27/localedata/locales/dz_BT	2018-02-03 09:26:44.808745341 +0100
-@@ -657,8 +657,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/dz_BT glibc-2.33/localedata/locales/dz_BT
+--- glibc-2.33.org/localedata/locales/dz_BT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/dz_BT	2021-03-20 14:30:25.814826328 +0100
+@@ -2256,8 +2256,7 @@ country_ab2 "BT"
  country_ab3 "BTN"
  country_num 064
  country_car "BHT"
@@ -728,9 +784,10 @@
  % རྫོང་ཁ
  lang_name    "<U0F62><U0FAB><U0F7C><U0F44><U0F0B><U0F41>"
  lang_ab      "dz"
---- glibc-2.27/localedata/locales/el_CY.orig	2018-02-02 19:23:27.382656407 +0100
-+++ glibc-2.27/localedata/locales/el_CY	2018-02-03 10:25:21.822038515 +0100
-@@ -137,6 +137,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/el_CY glibc-2.33/localedata/locales/el_CY
+--- glibc-2.33.org/localedata/locales/el_CY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/el_CY	2021-03-20 14:30:25.814826328 +0100
+@@ -143,6 +143,7 @@ country_ab2 "CY"
  country_ab3 "CYP"
  country_num 196
  country_car  "CY"
@@ -738,9 +795,10 @@
  % ελληνικά
  lang_name    "<U0395><U03BB><U03BB><U03B7><U03BD><U03B9><U03BA><U03AC>"
  lang_ab      "el"
---- glibc-2.27/localedata/locales/el_GR.orig	2018-02-02 19:23:27.382656407 +0100
-+++ glibc-2.27/localedata/locales/el_GR	2018-02-03 10:25:59.418704754 +0100
-@@ -181,7 +181,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/el_GR glibc-2.33/localedata/locales/el_GR
+--- glibc-2.33.org/localedata/locales/el_GR	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/el_GR	2021-03-20 14:30:25.815826328 +0100
+@@ -187,7 +187,8 @@ country_name "<U0395><U03BB><U03BB><U03A
  country_ab2 "GR"
  country_ab3 "GRC"
  country_num 300
@@ -750,9 +808,10 @@
  % ελληνικά
  lang_name    "<U0395><U03BB><U03BB><U03B7><U03BD><U03B9><U03BA><U03AC>"
  lang_ab      "el"
---- glibc-2.27/localedata/locales/en_AG.orig	2018-02-02 19:23:27.385989741 +0100
-+++ glibc-2.27/localedata/locales/en_AG	2018-02-04 10:48:49.027702583 +0100
-@@ -123,6 +123,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_AG glibc-2.33/localedata/locales/en_AG
+--- glibc-2.33.org/localedata/locales/en_AG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_AG	2021-03-20 14:30:25.815826328 +0100
+@@ -123,6 +123,8 @@ country_ab2   "AG"
  country_ab3   "ATG"
  country_num 028
  country_car "AG"
@@ -761,9 +820,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_AU.orig	2018-02-02 19:23:27.385989741 +0100
-+++ glibc-2.27/localedata/locales/en_AU	2018-02-03 10:28:22.665369783 +0100
-@@ -144,8 +144,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_AU glibc-2.33/localedata/locales/en_AU
+--- glibc-2.33.org/localedata/locales/en_AU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_AU	2021-03-20 14:30:26.184826328 +0100
+@@ -145,8 +145,10 @@ country_name "Australia"
  country_ab2 "AU"
  country_ab3 "AUS"
  country_num 036
@@ -775,9 +835,10 @@
  lang_ab      "en"
  lang_term    "eng"
  lang_lib    "eng"
---- glibc-2.27/localedata/locales/en_BW.orig	2018-02-02 19:23:27.395989739 +0100
-+++ glibc-2.27/localedata/locales/en_BW	2018-02-03 10:29:07.508702606 +0100
-@@ -109,6 +109,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_BW glibc-2.33/localedata/locales/en_BW
+--- glibc-2.33.org/localedata/locales/en_BW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_BW	2021-03-20 14:30:26.185826328 +0100
+@@ -109,6 +109,7 @@ country_ab2 "BW"
  country_ab3 "BWA"
  country_num 072
  country_car "BW"
@@ -785,9 +846,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_CA.orig	2018-02-02 19:23:27.399323073 +0100
-+++ glibc-2.27/localedata/locales/en_CA	2018-02-03 10:29:44.715368847 +0100
-@@ -170,7 +170,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_CA glibc-2.33/localedata/locales/en_CA
+--- glibc-2.33.org/localedata/locales/en_CA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_CA	2021-03-20 14:30:26.185826328 +0100
+@@ -163,7 +163,9 @@ country_name "Canada"
  country_ab2 "CA"
  country_ab3 "CAN"
  country_num 124
@@ -798,9 +860,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_DK.orig	2018-02-02 19:23:27.399323073 +0100
-+++ glibc-2.27/localedata/locales/en_DK	2018-02-03 10:30:46.878701472 +0100
-@@ -161,7 +161,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_DK glibc-2.33/localedata/locales/en_DK
+--- glibc-2.33.org/localedata/locales/en_DK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_DK	2021-03-20 14:30:26.185826328 +0100
+@@ -162,7 +162,8 @@ country_name "Denmark"
  country_ab2 "DK"
  country_ab3 "DNK"
  country_num 208
@@ -810,9 +873,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_GB.orig	2018-02-02 19:23:27.402656406 +0100
-+++ glibc-2.27/localedata/locales/en_GB	2018-02-03 10:31:11.442034525 +0100
-@@ -152,7 +152,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_GB glibc-2.33/localedata/locales/en_GB
+--- glibc-2.33.org/localedata/locales/en_GB	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_GB	2021-03-20 14:30:26.186826328 +0100
+@@ -152,7 +152,8 @@ country_name "United Kingdom"
  country_ab2   "GB"
  country_ab3   "GBR"
  country_num   826
@@ -822,9 +886,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_HK.orig	2018-02-02 19:23:27.402656406 +0100
-+++ glibc-2.27/localedata/locales/en_HK	2018-02-03 10:32:17.942033767 +0100
-@@ -169,7 +169,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_HK glibc-2.33/localedata/locales/en_HK
+--- glibc-2.33.org/localedata/locales/en_HK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_HK	2021-03-20 14:30:26.186826328 +0100
+@@ -172,7 +172,8 @@ country_name "Hong Kong SAR China"
  country_ab2   "HK"
  country_ab3   "HKG"
  country_num   344
@@ -834,7 +899,7 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
-@@ -178,11 +179,7 @@
+@@ -181,11 +182,7 @@ END LC_ADDRESS
  
  
  LC_TELEPHONE
@@ -847,9 +912,10 @@
  END LC_TELEPHONE
  
  
---- glibc-2.27/localedata/locales/en_IE.orig	2018-02-02 19:23:27.405989739 +0100
-+++ glibc-2.27/localedata/locales/en_IE	2018-02-03 10:32:46.452033438 +0100
-@@ -144,6 +144,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_IE glibc-2.33/localedata/locales/en_IE
+--- glibc-2.33.org/localedata/locales/en_IE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_IE	2021-03-20 14:30:26.186826328 +0100
+@@ -146,6 +146,8 @@ country_ab2   "IE"
  country_ab3   "IRL"
  country_num   372
  country_car   "IRL"
@@ -858,9 +924,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_IL.orig	2018-02-02 19:23:27.405989739 +0100
-+++ glibc-2.27/localedata/locales/en_IL	2018-02-03 10:33:16.392033097 +0100
-@@ -111,6 +111,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_IL glibc-2.33/localedata/locales/en_IL
+--- glibc-2.33.org/localedata/locales/en_IL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_IL	2021-03-20 14:30:26.186826328 +0100
+@@ -112,6 +112,7 @@ country_ab2  "IL"
  country_ab3  "ISR"
  country_num  376
  country_car  "IL"
@@ -868,9 +935,10 @@
  lang_name    "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_IN.orig	2018-02-02 19:23:27.409323073 +0100
-+++ glibc-2.27/localedata/locales/en_IN	2018-02-03 10:33:33.402032903 +0100
-@@ -151,6 +151,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_IN glibc-2.33/localedata/locales/en_IN
+--- glibc-2.33.org/localedata/locales/en_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_IN	2021-03-20 14:30:26.187826328 +0100
+@@ -154,6 +154,7 @@ country_ab2   "IN"
  country_ab3   "IND"
  country_num   356
  country_car   "IND"
@@ -878,9 +946,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_NZ.orig	2018-02-02 19:23:27.409323073 +0100
-+++ glibc-2.27/localedata/locales/en_NZ	2018-02-03 10:34:13.882032443 +0100
-@@ -145,6 +145,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_NZ glibc-2.33/localedata/locales/en_NZ
+--- glibc-2.33.org/localedata/locales/en_NZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_NZ	2021-03-20 14:30:26.187826328 +0100
+@@ -146,6 +146,8 @@ country_ab2   "NZ"
  country_ab3   "NZL"
  country_num   554
  country_car   "NZ"
@@ -889,9 +958,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_PH.orig	2018-02-02 19:23:27.412656406 +0100
-+++ glibc-2.27/localedata/locales/en_PH	2018-02-03 10:34:59.135365257 +0100
-@@ -172,7 +172,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_PH glibc-2.33/localedata/locales/en_PH
+--- glibc-2.33.org/localedata/locales/en_PH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_PH	2021-03-20 14:30:26.187826328 +0100
+@@ -175,7 +175,8 @@ country_name "Philippines"
  country_ab2 "PH"
  country_ab3 "PHL"
  country_num 608
@@ -901,9 +971,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_SG.orig	2018-02-02 19:23:27.412656406 +0100
-+++ glibc-2.27/localedata/locales/en_SG	2018-02-03 11:21:10.765333609 +0100
-@@ -170,6 +170,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_SG glibc-2.33/localedata/locales/en_SG
+--- glibc-2.33.org/localedata/locales/en_SG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_SG	2021-03-20 14:30:26.188826328 +0100
+@@ -173,6 +173,7 @@ country_ab2   "SG"
  country_ab3   "SGP"
  country_num   702
  country_car   "SGP"
@@ -911,9 +982,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_ZM.orig	2018-02-02 19:23:28.015989733 +0100
-+++ glibc-2.27/localedata/locales/en_ZM	2018-02-03 11:22:30.941999367 +0100
-@@ -117,6 +117,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_ZM glibc-2.33/localedata/locales/en_ZM
+--- glibc-2.33.org/localedata/locales/en_ZM	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_ZM	2021-03-20 14:30:26.188826328 +0100
+@@ -117,6 +117,7 @@ country_ab2   "ZM"
  country_ab3   "ZMB"
  country_num   894
  country_car  "Z"
@@ -921,9 +993,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/en_ZW.orig	2018-02-02 19:23:28.015989733 +0100
-+++ glibc-2.27/localedata/locales/en_ZW	2018-02-03 11:25:20.021997434 +0100
-@@ -108,7 +108,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/en_ZW glibc-2.33/localedata/locales/en_ZW
+--- glibc-2.33.org/localedata/locales/en_ZW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/en_ZW	2021-03-20 14:30:26.188826328 +0100
+@@ -108,7 +108,9 @@ country_name "Zimbabwe"
  country_ab2   "ZW"
  country_ab3   "ZWE"
  country_num   716
@@ -934,9 +1007,10 @@
  lang_name     "English"
  lang_ab      "en"
  lang_term    "eng"
---- glibc-2.27/localedata/locales/es_AR.orig	2018-02-02 19:23:28.019323067 +0100
-+++ glibc-2.27/localedata/locales/es_AR	2018-02-03 11:26:04.108663594 +0100
-@@ -148,7 +148,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_AR glibc-2.33/localedata/locales/es_AR
+--- glibc-2.33.org/localedata/locales/es_AR	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_AR	2021-03-20 14:30:26.189826328 +0100
+@@ -149,7 +149,8 @@ country_name "Argentina"
  country_ab2   "AR"
  country_ab3   "ARG"
  country_num   032
@@ -946,9 +1020,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_BO.orig	2018-02-02 19:23:28.019323067 +0100
-+++ glibc-2.27/localedata/locales/es_BO	2018-02-03 11:26:59.695329627 +0100
-@@ -147,7 +147,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_BO glibc-2.33/localedata/locales/es_BO
+--- glibc-2.33.org/localedata/locales/es_BO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_BO	2021-03-20 14:30:26.189826328 +0100
+@@ -148,7 +148,8 @@ country_name "Bolivia"
  country_ab2   "BO"
  country_ab3   "BOL"
  country_num   068
@@ -958,9 +1033,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_CL.orig	2018-02-02 19:23:28.022656400 +0100
-+++ glibc-2.27/localedata/locales/es_CL	2018-02-03 11:27:24.821996007 +0100
-@@ -147,7 +147,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_CL glibc-2.33/localedata/locales/es_CL
+--- glibc-2.33.org/localedata/locales/es_CL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_CL	2021-03-20 14:30:26.189826328 +0100
+@@ -112,7 +112,8 @@ country_name "Chile"
  country_ab2   "CL"
  country_ab3   "CHL"
  country_num   152
@@ -970,9 +1046,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_CO.orig	2018-02-02 19:23:28.022656400 +0100
-+++ glibc-2.27/localedata/locales/es_CO	2018-02-03 11:27:52.658662357 +0100
-@@ -148,6 +148,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_CO glibc-2.33/localedata/locales/es_CO
+--- glibc-2.33.org/localedata/locales/es_CO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_CO	2021-03-20 14:30:26.190826328 +0100
+@@ -149,6 +149,7 @@ country_ab2   "CO"
  country_ab3   "COL"
  country_num   170
  country_car   "CO"
@@ -980,9 +1057,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_CU.orig	2018-02-02 19:23:28.025989733 +0100
-+++ glibc-2.27/localedata/locales/es_CU	2018-02-03 11:28:29.818661930 +0100
-@@ -154,6 +154,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_CU glibc-2.33/localedata/locales/es_CU
+--- glibc-2.33.org/localedata/locales/es_CU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_CU	2021-03-20 14:30:26.190826328 +0100
+@@ -118,6 +118,7 @@ country_ab2   "CU"
  country_ab3   "CUB"
  country_num   192
  country_car   "C"
@@ -990,9 +1068,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_DO.orig	2018-02-02 19:23:28.025989733 +0100
-+++ glibc-2.27/localedata/locales/es_DO	2018-02-03 11:32:30.751992514 +0100
-@@ -148,7 +148,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_DO glibc-2.33/localedata/locales/es_DO
+--- glibc-2.33.org/localedata/locales/es_DO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_DO	2021-03-20 14:30:26.190826328 +0100
+@@ -149,7 +149,8 @@ country_name "Rep<U00FA>blica Dominicana
  country_ab2   "DO"
  country_ab3   "DOM"
  country_num   214
@@ -1002,9 +1081,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_EC.orig	2018-02-02 19:23:28.029323066 +0100
-+++ glibc-2.27/localedata/locales/es_EC	2018-02-03 11:33:53.751991565 +0100
-@@ -148,6 +148,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_EC glibc-2.33/localedata/locales/es_EC
+--- glibc-2.33.org/localedata/locales/es_EC	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_EC	2021-03-20 14:30:26.190826328 +0100
+@@ -113,6 +113,7 @@ country_ab2   "EC"
  country_ab3   "ECU"
  country_num   218
  country_car   "EC"
@@ -1012,9 +1092,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_ES.orig	2018-02-02 19:23:28.029323066 +0100
-+++ glibc-2.27/localedata/locales/es_ES	2018-02-03 11:34:09.651991385 +0100
-@@ -158,6 +158,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_ES glibc-2.33/localedata/locales/es_ES
+--- glibc-2.33.org/localedata/locales/es_ES	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_ES	2021-03-20 14:30:26.191826328 +0100
+@@ -206,6 +206,7 @@ country_ab2   "ES"
  country_ab3   "ESP"
  country_num   724
  country_car   "E"
@@ -1022,9 +1103,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_GT.orig	2018-02-02 19:23:28.032656399 +0100
-+++ glibc-2.27/localedata/locales/es_GT	2018-02-03 11:34:44.945324318 +0100
-@@ -148,7 +148,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_GT glibc-2.33/localedata/locales/es_GT
+--- glibc-2.33.org/localedata/locales/es_GT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_GT	2021-03-20 14:30:26.191826328 +0100
+@@ -149,7 +149,8 @@ country_name "Guatemala"
  country_ab2   "GT"
  country_ab3   "GTM"
  country_num   320
@@ -1034,9 +1116,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_HN.orig	2018-02-02 19:23:28.032656399 +0100
-+++ glibc-2.27/localedata/locales/es_HN	2018-02-03 11:35:34.568657080 +0100
-@@ -148,7 +148,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_HN glibc-2.33/localedata/locales/es_HN
+--- glibc-2.33.org/localedata/locales/es_HN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_HN	2021-03-20 14:30:26.191826328 +0100
+@@ -149,7 +149,8 @@ country_name "Honduras"
  country_ab2   "HN"
  country_ab3   "HND"
  country_num   340
@@ -1046,9 +1129,10 @@
  lang_ab      "es"
  % español
  lang_name     "espa<U00F1>ol"
---- glibc-2.27/localedata/locales/es_MX.orig	2018-02-02 19:23:28.032656399 +0100
-+++ glibc-2.27/localedata/locales/es_MX	2018-02-03 11:36:11.091989998 +0100
-@@ -148,7 +148,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_MX glibc-2.33/localedata/locales/es_MX
+--- glibc-2.33.org/localedata/locales/es_MX	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_MX	2021-03-20 14:30:26.192826328 +0100
+@@ -149,7 +149,8 @@ country_name "M<U00E9>xico"
  country_ab2   "MX"
  country_ab3   "MEX"
  country_num   484
@@ -1058,9 +1142,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_NI.orig	2018-02-02 19:23:28.035989732 +0100
-+++ glibc-2.27/localedata/locales/es_NI	2018-02-03 11:36:43.731989625 +0100
-@@ -141,6 +141,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_NI glibc-2.33/localedata/locales/es_NI
+--- glibc-2.33.org/localedata/locales/es_NI	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_NI	2021-03-20 14:30:26.192826328 +0100
+@@ -142,6 +142,7 @@ country_ab2   "NI"
  country_ab3   "NIC"
  country_num   558
  country_car   "NIC"
@@ -1068,9 +1153,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_PA.orig	2018-02-02 19:23:28.035989732 +0100
-+++ glibc-2.27/localedata/locales/es_PA	2018-02-03 11:40:34.645320319 +0100
-@@ -149,6 +149,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_PA glibc-2.33/localedata/locales/es_PA
+--- glibc-2.33.org/localedata/locales/es_PA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_PA	2021-03-20 14:30:26.192826328 +0100
+@@ -150,6 +150,7 @@ country_ab2   "PA"
  country_ab3   "PAN"
  country_num   591
  country_car   "PA"
@@ -1078,9 +1164,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_PE.orig	2018-02-02 19:23:28.039323065 +0100
-+++ glibc-2.27/localedata/locales/es_PE	2018-02-03 11:41:04.381986649 +0100
-@@ -147,6 +147,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_PE glibc-2.33/localedata/locales/es_PE
+--- glibc-2.33.org/localedata/locales/es_PE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_PE	2021-03-20 14:30:26.192826328 +0100
+@@ -148,6 +148,7 @@ country_ab2   "PE"
  country_ab3   "PER"
  country_num   604
  country_car   "PE"
@@ -1088,9 +1175,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_PY.orig	2018-02-02 19:23:28.039323065 +0100
-+++ glibc-2.27/localedata/locales/es_PY	2018-02-03 11:42:28.148652357 +0100
-@@ -146,7 +146,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_PY glibc-2.33/localedata/locales/es_PY
+--- glibc-2.33.org/localedata/locales/es_PY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_PY	2021-03-20 14:30:26.193826328 +0100
+@@ -147,7 +147,8 @@ country_name "Paraguay"
  country_ab2   "PY"
  country_ab3   "PRY"
  country_num   600
@@ -1100,9 +1188,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_SV.orig	2018-02-02 19:23:28.042656399 +0100
-+++ glibc-2.27/localedata/locales/es_SV	2018-02-03 11:43:00.041985327 +0100
-@@ -149,6 +149,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_SV glibc-2.33/localedata/locales/es_SV
+--- glibc-2.33.org/localedata/locales/es_SV	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_SV	2021-03-20 14:30:26.193826328 +0100
+@@ -150,6 +150,7 @@ country_ab2   "SV"
  country_ab3   "SLV"
  country_num   222
  country_car   "ES"
@@ -1110,9 +1199,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_UY.orig	2018-02-02 19:23:28.042656399 +0100
-+++ glibc-2.27/localedata/locales/es_UY	2018-02-03 11:43:30.808651645 +0100
-@@ -148,6 +148,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_UY glibc-2.33/localedata/locales/es_UY
+--- glibc-2.33.org/localedata/locales/es_UY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_UY	2021-03-20 14:30:26.193826328 +0100
+@@ -149,6 +149,7 @@ country_ab2   "UY"
  country_ab3   "URY"
  country_num   858
  country_car   "UY"
@@ -1120,9 +1210,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/es_VE.orig	2018-02-02 19:23:28.042656399 +0100
-+++ glibc-2.27/localedata/locales/es_VE	2018-02-03 11:43:58.281984662 +0100
-@@ -147,7 +147,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/es_VE glibc-2.33/localedata/locales/es_VE
+--- glibc-2.33.org/localedata/locales/es_VE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/es_VE	2021-03-20 14:30:26.193826328 +0100
+@@ -148,7 +148,8 @@ country_name "Venezuela"
  country_ab2   "VE"
  country_ab3   "VEN"
  country_num   862
@@ -1132,9 +1223,10 @@
  % español
  lang_name     "espa<U00F1>ol"
  lang_ab      "es"
---- glibc-2.27/localedata/locales/eu_ES.orig	2018-02-02 19:23:28.062656401 +0100
-+++ glibc-2.27/localedata/locales/eu_ES	2018-02-03 11:44:47.471984100 +0100
-@@ -137,9 +137,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/eu_ES glibc-2.33/localedata/locales/eu_ES
+--- glibc-2.33.org/localedata/locales/eu_ES	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/eu_ES	2021-03-20 14:30:26.194826328 +0100
+@@ -138,9 +138,7 @@ copy "i18n"
  END LC_PAPER
  
  LC_TELEPHONE
@@ -1145,7 +1237,7 @@
  END LC_TELEPHONE
  
  LC_MEASUREMENT
-@@ -156,7 +154,8 @@
+@@ -157,7 +155,8 @@ country_name "Espainia"
  country_ab2 "ES"
  country_ab3 "ESP"
  country_num 724
@@ -1155,9 +1247,10 @@
  lang_name    "euskara"
  lang_ab      "eu"
  lang_term    "eus"
---- glibc-2.27/localedata/locales/ff_SN.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ff_SN	2018-02-04 11:50:50.284326758 +0100
-@@ -151,6 +151,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ff_SN glibc-2.33/localedata/locales/ff_SN
+--- glibc-2.33.org/localedata/locales/ff_SN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ff_SN	2021-03-20 14:30:26.194826328 +0100
+@@ -152,6 +152,8 @@ country_ab2  "SN"
  country_ab3  "SEN"
  country_num  686
  country_car  "SN"
@@ -1166,9 +1259,10 @@
  lang_name    "Pulaar"
  lang_ab      "ff"
  lang_term    "ful"
---- glibc-2.27/localedata/locales/fil_PH.orig	2018-02-02 19:23:28.062656401 +0100
-+++ glibc-2.27/localedata/locales/fil_PH	2018-02-03 11:46:12.945316456 +0100
-@@ -177,6 +177,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fil_PH glibc-2.33/localedata/locales/fil_PH
+--- glibc-2.33.org/localedata/locales/fil_PH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fil_PH	2021-03-20 14:30:26.194826328 +0100
+@@ -183,6 +183,7 @@ country_ab2 "PH"
  country_ab3 "PHL"
  country_num 608
  country_car  "RP"
@@ -1176,9 +1270,10 @@
  lang_name    "Filipino"
  lang_term    "fil"
  END LC_ADDRESS
---- glibc-2.27/localedata/locales/fo_FO.orig	2018-02-02 19:23:28.065989734 +0100
-+++ glibc-2.27/localedata/locales/fo_FO	2018-02-03 11:48:10.818648446 +0100
-@@ -139,6 +139,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fo_FO glibc-2.33/localedata/locales/fo_FO
+--- glibc-2.33.org/localedata/locales/fo_FO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fo_FO	2021-03-20 14:30:26.195826328 +0100
+@@ -140,6 +140,7 @@ country_ab2 "FO"
  country_ab3 "FRO"
  country_num 234
  country_car  "FO"
@@ -1186,9 +1281,10 @@
  % føroyskt
  lang_name    "f<U00F8>royskt"
  lang_ab      "fo"
---- glibc-2.27/localedata/locales/fr_BE.orig	2018-02-02 19:23:28.065989734 +0100
-+++ glibc-2.27/localedata/locales/fr_BE	2018-02-03 11:48:47.421981364 +0100
-@@ -150,6 +150,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_BE glibc-2.33/localedata/locales/fr_BE
+--- glibc-2.33.org/localedata/locales/fr_BE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fr_BE	2021-03-20 14:30:26.195826328 +0100
+@@ -151,6 +151,9 @@ country_ab2 "BE"
  country_ab3 "BEL"
  country_num 056
  country_car "B"
@@ -1198,9 +1294,10 @@
  lang_name "fran<U00E7>ais"
  lang_ab      "fr"
  lang_term    "fra"
---- glibc-2.27/localedata/locales/fr_CA.orig	2018-02-02 19:23:28.065989734 +0100
-+++ glibc-2.27/localedata/locales/fr_CA	2018-02-03 11:49:19.841980991 +0100
-@@ -142,7 +142,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_CA glibc-2.33/localedata/locales/fr_CA
+--- glibc-2.33.org/localedata/locales/fr_CA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fr_CA	2021-03-20 14:30:26.195826328 +0100
+@@ -143,7 +143,9 @@ country_name "Canada"
  country_ab2 "CA"
  country_ab3 "CAN"
  country_num 124
@@ -1211,9 +1308,10 @@
  lang_name "fran<U00E7>ais"
  lang_ab      "fr"
  lang_term    "fra"
---- glibc-2.27/localedata/locales/fr_CH.orig	2018-02-02 19:23:28.069323066 +0100
-+++ glibc-2.27/localedata/locales/fr_CH	2018-02-03 11:49:44.985314038 +0100
-@@ -133,6 +133,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_CH glibc-2.33/localedata/locales/fr_CH
+--- glibc-2.33.org/localedata/locales/fr_CH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fr_CH	2021-03-20 14:30:26.195826328 +0100
+@@ -134,6 +134,7 @@ country_ab2 "CH"
  country_ab3 "CHE"
  country_num 756
  country_car "CH"
@@ -1221,9 +1319,10 @@
  lang_name "fran<U00E7>ais"
  lang_ab      "fr"
  lang_term    "fra"
---- glibc-2.27/localedata/locales/fr_LU.orig	2018-02-02 19:23:28.069323066 +0100
-+++ glibc-2.27/localedata/locales/fr_LU	2018-02-03 11:51:18.018646308 +0100
-@@ -149,6 +149,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_LU glibc-2.33/localedata/locales/fr_LU
+--- glibc-2.33.org/localedata/locales/fr_LU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fr_LU	2021-03-20 14:30:26.196826328 +0100
+@@ -150,6 +150,7 @@ country_ab2 "LU"
  country_ab3 "LUX"
  country_num 442
  country_car "L"
@@ -1231,9 +1330,10 @@
  lang_name "fran<U00E7>ais"
  lang_ab      "fr"
  lang_term    "fra"
---- glibc-2.24/localedata/locales/fur_IT.orig	2016-08-02 04:01:36.000000000 +0200
-+++ glibc-2.24/localedata/locales/fur_IT	2016-08-05 21:09:27.237722499 +0200
-@@ -131,6 +131,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fur_IT glibc-2.33/localedata/locales/fur_IT
+--- glibc-2.33.org/localedata/locales/fur_IT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fur_IT	2021-03-20 14:30:26.196826328 +0100
+@@ -129,6 +129,7 @@ copy "it_IT"
  END LC_MEASUREMENT
  
  LC_NAME
@@ -1241,9 +1341,10 @@
  copy  "it_IT"
  END LC_NAME
  
---- glibc-2.27/localedata/locales/fy_NL.orig	2018-02-02 19:23:28.079323065 +0100
-+++ glibc-2.27/localedata/locales/fy_NL	2018-02-03 11:51:57.898645852 +0100
-@@ -122,6 +122,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fy_NL glibc-2.33/localedata/locales/fy_NL
+--- glibc-2.33.org/localedata/locales/fy_NL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/fy_NL	2021-03-20 14:30:26.196826328 +0100
+@@ -123,6 +123,7 @@ country_ab2 "NL"
  country_ab3 "NLD"
  country_num 528
  country_car "NL"
@@ -1251,9 +1352,10 @@
  lang_name    "West-Frysk"
  lang_ab      "fy"
  lang_term    "fry"
---- glibc-2.27/localedata/locales/ga_IE.orig	2018-02-02 19:23:28.079323065 +0100
-+++ glibc-2.27/localedata/locales/ga_IE	2018-02-03 11:52:19.968645603 +0100
-@@ -154,6 +154,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ga_IE glibc-2.33/localedata/locales/ga_IE
+--- glibc-2.33.org/localedata/locales/ga_IE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ga_IE	2021-03-20 14:30:26.197826328 +0100
+@@ -156,6 +156,7 @@ country_ab2 "IE"
  country_ab3 "IRL"
  country_num 372
  country_car "IRL"
@@ -1261,9 +1363,10 @@
  lang_name    "Gaeilge"
  lang_ab      "ga"
  lang_term    "gle"
---- glibc-2.27/localedata/locales/gez_ER.orig	2018-02-02 19:23:28.105989731 +0100
-+++ glibc-2.27/localedata/locales/gez_ER	2018-02-03 11:53:15.791978297 +0100
-@@ -110,14 +110,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/gez_ER glibc-2.33/localedata/locales/gez_ER
+--- glibc-2.33.org/localedata/locales/gez_ER	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/gez_ER	2021-03-20 14:30:26.197826328 +0100
+@@ -110,14 +110,10 @@ country_ab2   "ER"
  country_ab3   "ERI"
  country_num   232
  country_car   "ER"
@@ -1280,9 +1383,10 @@
  END LC_ADDRESS
  
  
---- glibc-2.27/localedata/locales/gez_ET.orig	2018-02-02 19:23:28.112656398 +0100
-+++ glibc-2.27/localedata/locales/gez_ET	2018-02-03 11:53:53.711977865 +0100
-@@ -109,15 +109,11 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/gez_ET glibc-2.33/localedata/locales/gez_ET
+--- glibc-2.33.org/localedata/locales/gez_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/gez_ET	2021-03-20 14:30:26.479826328 +0100
+@@ -109,15 +109,11 @@ country_post  "ETH"
  country_ab2   "ET"
  country_ab3   "ETH"
  country_num   231   % 210 found in at least one ISO 3166 doc
@@ -1301,9 +1405,10 @@
  END LC_ADDRESS
  
  
---- glibc-2.27/localedata/locales/gl_ES.orig	2018-02-02 19:23:28.115989731 +0100
-+++ glibc-2.27/localedata/locales/gl_ES	2018-02-03 11:54:29.588644123 +0100
-@@ -133,9 +133,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/gl_ES glibc-2.33/localedata/locales/gl_ES
+--- glibc-2.33.org/localedata/locales/gl_ES	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/gl_ES	2021-03-20 14:30:26.480826328 +0100
+@@ -134,9 +134,7 @@ copy "i18n"
  END LC_PAPER
  
  LC_TELEPHONE
@@ -1314,7 +1419,7 @@
  END LC_TELEPHONE
  
  LC_MEASUREMENT
-@@ -153,6 +151,7 @@
+@@ -154,6 +152,7 @@ country_ab2 "ES"
  country_ab3 "ESP"
  country_num 724
  country_car "E"
@@ -1322,9 +1427,10 @@
  lang_name    "galego"
  lang_ab      "gl"
  lang_term    "glg"
---- glibc-2.27/localedata/locales/gu_IN.orig	2018-02-02 19:23:28.132656398 +0100
-+++ glibc-2.27/localedata/locales/gu_IN	2018-02-03 11:54:46.491977261 +0100
-@@ -194,6 +194,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/gu_IN glibc-2.33/localedata/locales/gu_IN
+--- glibc-2.33.org/localedata/locales/gu_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/gu_IN	2021-03-20 14:30:26.480826328 +0100
+@@ -197,6 +197,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -1332,9 +1438,10 @@
  % ગુજરાતી
  lang_name    "<U0A97><U0AC1><U0A9C><U0AB0><U0ABE><U0AA4><U0AC0>"
  lang_ab      "gu"
---- glibc-2.27/localedata/locales/gv_GB.orig	2018-02-02 19:23:28.135989731 +0100
-+++ glibc-2.27/localedata/locales/gv_GB	2018-02-03 11:59:01.715307680 +0100
-@@ -165,6 +165,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/gv_GB glibc-2.33/localedata/locales/gv_GB
+--- glibc-2.33.org/localedata/locales/gv_GB	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/gv_GB	2021-03-20 14:30:26.481826328 +0100
+@@ -166,6 +166,7 @@ country_ab2 "GB"
  country_ab3 "GBR"
  country_num 826
  country_car "GB"
@@ -1342,9 +1449,10 @@
  lang_name   "Gaelg"
  lang_ab      "gv"
  lang_term    "glv"
---- glibc-2.27/localedata/locales/he_IL.orig	2018-02-02 19:23:28.135989731 +0100
-+++ glibc-2.27/localedata/locales/he_IL	2018-02-03 12:03:09.671971515 +0100
-@@ -159,6 +159,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/he_IL glibc-2.33/localedata/locales/he_IL
+--- glibc-2.33.org/localedata/locales/he_IL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/he_IL	2021-03-20 14:30:26.481826328 +0100
+@@ -160,6 +160,7 @@ country_ab2 "IL"
  country_ab3 "ISR"
  country_num 376
  country_car "IL"
@@ -1352,9 +1460,10 @@
  lang_name   "<U05E2><U05D1><U05E8><U05D9><U05EA>"
  lang_ab      "he"
  lang_term    "heb"
---- glibc-2.27/localedata/locales/hi_IN.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/hi_IN	2018-02-03 12:03:27.948637977 +0100
-@@ -61,6 +61,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/hi_IN glibc-2.33/localedata/locales/hi_IN
+--- glibc-2.33.org/localedata/locales/hi_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/hi_IN	2021-03-20 14:30:26.482826328 +0100
+@@ -61,6 +61,7 @@ map to_inpunct; /
  
  translit_start
  include "translit_combining";""
@@ -1362,7 +1471,7 @@
  translit_end
  END LC_CTYPE
  
-@@ -211,6 +212,7 @@
+@@ -214,6 +215,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -1370,9 +1479,10 @@
  % हिन्दी
  lang_name    "<U0939><U093F><U0928><U094D><U0926><U0940>"
  lang_ab      "hi"
---- glibc-2.27/localedata/locales/hif_FJ.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/hif_FJ	2018-02-03 12:04:01.088637597 +0100
-@@ -174,6 +174,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/hif_FJ glibc-2.33/localedata/locales/hif_FJ
+--- glibc-2.33.org/localedata/locales/hif_FJ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/hif_FJ	2021-03-20 14:30:26.482826328 +0100
+@@ -177,6 +177,8 @@ country_ab2  "FJ"
  country_ab3  "FJI"
  country_car  "FJI"
  country_num 242
@@ -1380,10 +1490,11 @@
 +country_isbn "982"
  % https://en.wikipedia.org/wiki/ISO_3166-1_numeric
  % https://en.wikipedia.org/wiki/Fiji_Hindi
- lang_name    "Fiji Baat"
---- glibc-2.27/localedata/locales/hne_IN.orig	2018-02-02 19:23:28.139323064 +0100
-+++ glibc-2.27/localedata/locales/hne_IN	2018-02-03 12:04:41.985303797 +0100
-@@ -158,6 +158,7 @@
+ % फ़िजी बात
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/hne_IN glibc-2.33/localedata/locales/hne_IN
+--- glibc-2.33.org/localedata/locales/hne_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/hne_IN	2021-03-20 14:30:26.483826328 +0100
+@@ -162,6 +162,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -1391,9 +1502,10 @@
  % छत्तीसगढ़ी
  lang_name    "<U091B><U0924><U094D><U0924><U0940><U0938><U0917><U0922><U093C><U0940>"
  lang_term    "hne"
---- glibc-2.27/localedata/locales/ht_HT.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ht_HT	2018-02-03 12:05:49.115303028 +0100
-@@ -166,7 +166,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ht_HT glibc-2.33/localedata/locales/ht_HT
+--- glibc-2.33.org/localedata/locales/ht_HT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ht_HT	2021-03-20 14:30:26.483826328 +0100
+@@ -167,7 +167,7 @@ country_post "HT"
  country_ab2  "HT"
  country_ab3  "HTI"
  country_num  332
@@ -1402,9 +1514,10 @@
  country_car  "RH"
  %
  % Kreyòl ayisyen
---- glibc-2.27/localedata/locales/hu_HU.orig	2018-02-02 19:23:28.142656397 +0100
-+++ glibc-2.27/localedata/locales/hu_HU	2018-02-03 12:06:17.561969371 +0100
-@@ -579,6 +579,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/hu_HU glibc-2.33/localedata/locales/hu_HU
+--- glibc-2.33.org/localedata/locales/hu_HU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/hu_HU	2021-03-20 14:30:26.484826328 +0100
+@@ -579,6 +579,7 @@ country_ab2 "HU"
  country_ab3 "HUN"
  country_num 348
  country_car "H"
@@ -1412,9 +1525,10 @@
  lang_name    "magyar"
  lang_ab      "hu"
  lang_term    "hun"
---- glibc-2.31/localedata/locales/id_ID.orig	2020-02-01 14:09:11.173689977 +0100
-+++ glibc-2.31/localedata/locales/id_ID	2020-02-01 14:43:13.052628170 +0100
-@@ -155,7 +155,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/id_ID glibc-2.33/localedata/locales/id_ID
+--- glibc-2.33.org/localedata/locales/id_ID	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/id_ID	2021-03-20 14:30:26.484826328 +0100
+@@ -155,7 +155,8 @@ country_name "Indonesia"
  country_ab2 "ID"
  country_ab3 "IDN"
  country_num 360
@@ -1424,9 +1538,10 @@
  lang_name    "Indonesia"
  lang_ab      "id"
  lang_term    "ind"
---- glibc-2.27/localedata/locales/ik_CA.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ik_CA	2018-02-03 12:08:10.775301414 +0100
-@@ -233,7 +233,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ik_CA glibc-2.33/localedata/locales/ik_CA
+--- glibc-2.33.org/localedata/locales/ik_CA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ik_CA	2021-03-20 14:30:26.484826328 +0100
+@@ -213,7 +213,8 @@ country_name "Kanada"
  country_ab2 "CA"
  country_ab3 "CAN"
  country_num 124
@@ -1436,9 +1551,10 @@
  % Iñupiatun
  lang_name    "I<U00F1>upiatun"
  lang_ab      "ik"
---- glibc-2.27/localedata/locales/is_IS.orig	2018-02-02 19:23:28.145989731 +0100
-+++ glibc-2.27/localedata/locales/is_IS	2018-02-03 12:08:53.971967584 +0100
-@@ -247,7 +247,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/is_IS glibc-2.33/localedata/locales/is_IS
+--- glibc-2.33.org/localedata/locales/is_IS	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/is_IS	2021-03-20 14:30:26.485826328 +0100
+@@ -248,7 +248,8 @@ country_name "<U00CD>sland"
  country_ab2 "IS"
  country_ab3 "ISL"
  country_num 352
@@ -1448,9 +1564,26 @@
  % íslenska
  lang_name    "<U00ED>slenska"
  lang_ab      "is"
---- glibc-2.27/localedata/locales/it_CH.orig	2018-02-02 19:23:28.145989731 +0100
-+++ glibc-2.27/localedata/locales/it_CH	2018-02-03 12:09:57.961966853 +0100
-@@ -132,6 +132,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/iso14651_t1 glibc-2.33/localedata/locales/iso14651_t1
+--- glibc-2.33.org/localedata/locales/iso14651_t1	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/iso14651_t1	2021-03-20 14:30:28.786826328 +0100
+@@ -10,10 +10,10 @@ escape_char /
+ 
+ LC_COLLATE
+ 
+-copy "iso14651_t1_common"
+-
+ script <HAN>
+ 
++copy "iso14651_t1_common"
++
+ order_start <HAN>;forward;forward;forward;forward,position
+ <U4E00> <U4E00>;IGNORE;IGNORE;IGNORE
+ .. ..;IGNORE;IGNORE;IGNORE
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/it_CH glibc-2.33/localedata/locales/it_CH
+--- glibc-2.33.org/localedata/locales/it_CH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/it_CH	2021-03-20 14:30:26.485826328 +0100
+@@ -130,6 +130,8 @@ country_ab2 "CH"
  country_ab3 "CHE"
  country_num 756
  country_car "CH"
@@ -1459,9 +1592,10 @@
  lang_name    "italiano"
  lang_ab      "it"
  lang_term    "ita"
---- glibc-2.27/localedata/locales/iu_CA.orig	2018-02-02 19:23:28.145989731 +0100
-+++ glibc-2.27/localedata/locales/iu_CA	2018-02-03 12:10:38.745299722 +0100
-@@ -43,8 +43,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/iu_CA glibc-2.33/localedata/locales/iu_CA
+--- glibc-2.33.org/localedata/locales/iu_CA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/iu_CA	2021-03-20 14:30:26.486826328 +0100
+@@ -43,8 +43,9 @@ country_post "CA"
  country_ab2 "CA"
  country_ab3 "CAN"
  country_num 124
@@ -1472,9 +1606,10 @@
  lang_name "<U1403><U14C4><U1483><U144E><U1450><U1466>"
  lang_ab      "iu"
  lang_term    "iku"
---- glibc-2.27/localedata/locales/ja_JP.orig	2018-02-02 19:23:28.159323065 +0100
-+++ glibc-2.27/localedata/locales/ja_JP	2018-02-03 12:11:07.911966056 +0100
-@@ -15040,6 +15040,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ja_JP glibc-2.33/localedata/locales/ja_JP
+--- glibc-2.33.org/localedata/locales/ja_JP	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ja_JP	2021-03-20 14:30:26.487826328 +0100
+@@ -15060,6 +15060,7 @@ country_ab2 "JP"
  country_ab3 "JPN"
  country_num 392
  country_car "J"
@@ -1482,9 +1617,10 @@
  % 日本語
  lang_name    "<U65E5><U672C><U8A9E>"
  lang_ab      "ja"
---- glibc-2.27/localedata/locales/ka_GE.orig	2018-02-02 19:23:28.162656398 +0100
-+++ glibc-2.27/localedata/locales/ka_GE	2018-02-03 12:11:37.958632379 +0100
-@@ -43,7 +43,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ka_GE glibc-2.33/localedata/locales/ka_GE
+--- glibc-2.33.org/localedata/locales/ka_GE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ka_GE	2021-03-20 14:30:26.488826328 +0100
+@@ -43,7 +43,7 @@ country_ab2 "GE"
  country_ab3 "GEO"
  country_num 268
  country_car "GE"
@@ -1493,9 +1629,10 @@
  % ქართული
  lang_name    "<U10E5><U10D0><U10E0><U10D7><U10E3><U10DA><U10D8>"
  lang_ab      "ka"
---- glibc-2.27/localedata/locales/kab_DZ.orig	2018-02-03 12:13:20.265297878 +0100
-+++ glibc-2.27/localedata/locales/kab_DZ	2018-02-03 12:13:22.945297849 +0100
-@@ -159,6 +159,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/kab_DZ glibc-2.33/localedata/locales/kab_DZ
+--- glibc-2.33.org/localedata/locales/kab_DZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/kab_DZ	2021-03-20 14:30:27.115826328 +0100
+@@ -162,6 +162,7 @@ country_ab2  "DZ"
  country_ab3  "DZA"
  country_num  012
  country_car  "DZ"
@@ -1503,9 +1640,10 @@
  lang_name    "Taqbaylit"
  lang_term    "kab"
  lang_lib     "kab"
---- glibc-2.27/localedata/locales/kk_KZ.orig	2018-02-02 19:23:28.162656398 +0100
-+++ glibc-2.27/localedata/locales/kk_KZ	2018-02-03 12:14:22.818630496 +0100
-@@ -272,7 +272,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/kk_KZ glibc-2.33/localedata/locales/kk_KZ
+--- glibc-2.33.org/localedata/locales/kk_KZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/kk_KZ	2021-03-20 14:30:27.116826328 +0100
+@@ -215,7 +215,7 @@ country_ab2  "KZ"
  country_ab3  "KAZ"
  country_num  398
  country_car  "KZ"
@@ -1514,9 +1652,10 @@
  lang_name    "<U049B><U0430><U0437><U0430><U049B> <U0442><U0456><U043B><U0456>"
  lang_ab      "kk"
  lang_term    "kaz"
---- glibc-2.27/localedata/locales/kl_GL.orig	2018-02-02 19:23:28.162656398 +0100
-+++ glibc-2.27/localedata/locales/kl_GL	2018-02-03 12:15:16.858629880 +0100
-@@ -140,6 +140,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/kl_GL glibc-2.33/localedata/locales/kl_GL
+--- glibc-2.33.org/localedata/locales/kl_GL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/kl_GL	2021-03-20 14:30:27.116826328 +0100
+@@ -153,6 +153,8 @@ country_ab2 "GL"
  country_ab3 "GRL"
  country_num 304
  country_car "KN"
@@ -1525,9 +1664,10 @@
  lang_name    "kalaallisut"
  lang_ab      "kl"
  lang_term    "kal"
---- glibc-2.27/localedata/locales/km_KH.orig	2018-02-02 19:23:28.165989732 +0100
-+++ glibc-2.27/localedata/locales/km_KH	2018-02-03 12:16:02.578629359 +0100
-@@ -1013,7 +1013,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/km_KH glibc-2.33/localedata/locales/km_KH
+--- glibc-2.33.org/localedata/locales/km_KH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/km_KH	2021-03-20 14:30:27.117826328 +0100
+@@ -1015,7 +1015,7 @@ country_ab2 "KH"
  country_ab3 "KHM"
  country_num 116
  country_car "KH"
@@ -1536,9 +1676,10 @@
  % ភាសាខ្មែរ (Khmer)
  lang_name     "<U1781><U17D2><U1798><U17C2><U179A>"
  lang_ab       "km"
---- glibc-2.27/localedata/locales/kn_IN.orig	2018-02-02 19:23:28.165989732 +0100
-+++ glibc-2.27/localedata/locales/kn_IN	2018-02-03 12:16:27.778629067 +0100
-@@ -197,7 +197,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/kn_IN glibc-2.33/localedata/locales/kn_IN
+--- glibc-2.33.org/localedata/locales/kn_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/kn_IN	2021-03-20 14:30:27.117826328 +0100
+@@ -200,7 +200,8 @@ country_name "<U0CAD><U0CBE><U0CB0><U0CA
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -1548,9 +1689,10 @@
  % ಕನ್ನಡ
  lang_name    "<U0C95><U0CA8><U0CCD><U0CA8><U0CA1>"
  lang_ab      "kn"
---- glibc-2.27/localedata/locales/kok_IN.orig	2018-02-02 19:23:28.165989732 +0100
-+++ glibc-2.27/localedata/locales/kok_IN	2018-02-03 12:17:02.328628676 +0100
-@@ -161,7 +161,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/kok_IN glibc-2.33/localedata/locales/kok_IN
+--- glibc-2.33.org/localedata/locales/kok_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/kok_IN	2021-03-20 14:30:27.117826328 +0100
+@@ -164,7 +164,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -1560,9 +1702,10 @@
  % कोंकणी
  lang_name    "<U0915><U094B><U0902><U0915><U0923><U0940>"
  lang_term    "kok"
---- glibc-2.27/localedata/locales/ks_IN.orig	2018-02-02 19:23:28.172656398 +0100
-+++ glibc-2.27/localedata/locales/ks_IN	2018-02-03 12:18:02.998627983 +0100
-@@ -171,8 +171,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ks_IN glibc-2.33/localedata/locales/ks_IN
+--- glibc-2.33.org/localedata/locales/ks_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ks_IN	2021-03-20 14:30:27.118826328 +0100
+@@ -174,8 +174,9 @@ country_name "<U06C1><U0650><U0646><U062
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -1574,9 +1717,10 @@
  lang_name    "<U06A9><U0672><U0634><U064F><U0631>"
  lang_ab      "ks"
  lang_term    "kas"
---- glibc-2.27/localedata/locales/ks_IN@devanagari.orig	2018-02-02 19:23:28.172656398 +0100
-+++ glibc-2.27/localedata/locales/ks_IN@devanagari	2018-02-03 12:18:24.681961070 +0100
-@@ -159,7 +159,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ks_IN@devanagari glibc-2.33/localedata/locales/ks_IN@devanagari
+--- glibc-2.33.org/localedata/locales/ks_IN@devanagari	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ks_IN@devanagari	2021-03-20 14:30:27.118826328 +0100
+@@ -162,7 +162,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -1586,9 +1730,10 @@
  % कॉशुर
  lang_name    "<U0915><U0949><U0936><U0941><U0930>"
  lang_ab      "ks"
---- glibc-2.31/localedata/locales/ku_TR.orig	2020-02-01 14:09:11.213689760 +0100
-+++ glibc-2.31/localedata/locales/ku_TR	2020-02-01 14:43:56.439059792 +0100
-@@ -181,14 +181,13 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ku_TR glibc-2.33/localedata/locales/ku_TR
+--- glibc-2.33.org/localedata/locales/ku_TR	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ku_TR	2021-03-20 14:30:27.119826328 +0100
+@@ -181,14 +181,13 @@ END LC_NAME
  
  LC_ADDRESS
  postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
@@ -1605,9 +1750,10 @@
  lang_name   "kurd<U00EE>"
  lang_ab      "ku"
  lang_term    "kur"
---- glibc-2.27/localedata/locales/kw_GB.orig	2018-02-02 19:23:28.172656398 +0100
-+++ glibc-2.27/localedata/locales/kw_GB	2018-02-03 12:26:48.958621979 +0100
-@@ -158,7 +158,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/kw_GB glibc-2.33/localedata/locales/kw_GB
+--- glibc-2.33.org/localedata/locales/kw_GB	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/kw_GB	2021-03-20 14:30:27.119826328 +0100
+@@ -159,7 +159,8 @@ country_name "Rywvaneth Unys"
  country_ab2 "GB"
  country_ab3 "GBR"
  country_num 826
@@ -1617,9 +1763,10 @@
  lang_name    "kernewek"
  lang_ab      "kw"
  lang_term    "cor"
---- glibc-2.27/localedata/locales/ky_KG.orig	2018-02-02 19:23:56.112656078 +0100
-+++ glibc-2.27/localedata/locales/ky_KG	2018-02-03 12:27:39.098621404 +0100
-@@ -201,6 +201,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ky_KG glibc-2.33/localedata/locales/ky_KG
+--- glibc-2.33.org/localedata/locales/ky_KG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ky_KG	2021-03-20 14:30:27.119826328 +0100
+@@ -196,6 +196,7 @@ country_ab2 "KG"
  country_ab3 "KGZ"
  country_num 417
  country_car    "KS"
@@ -1627,9 +1774,10 @@
  % Кыргызча
  lang_name    "<U043A><U044B><U0440><U0433><U044B><U0437><U0447><U0430>"
  lang_ab      "ky"
---- glibc-2.27/localedata/locales/lb_LU.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/lb_LU	2018-02-03 12:28:23.801954227 +0100
-@@ -169,7 +169,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/lb_LU glibc-2.33/localedata/locales/lb_LU
+--- glibc-2.33.org/localedata/locales/lb_LU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/lb_LU	2021-03-20 14:30:27.120826328 +0100
+@@ -169,7 +169,7 @@ country_ab2   "LU"
  country_ab3   "LUX"
  country_num   442
  country_car   "L"
@@ -1638,9 +1786,10 @@
  lang_name     "L<U00EB>tzebuergesch"
  lang_ab       "lb"
  lang_term     "ltz"
---- glibc-2.27/localedata/locales/lg_UG.orig	2018-02-02 19:23:56.135989412 +0100
-+++ glibc-2.27/localedata/locales/lg_UG	2018-02-03 12:29:24.228620198 +0100
-@@ -302,7 +302,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/lg_UG glibc-2.33/localedata/locales/lg_UG
+--- glibc-2.33.org/localedata/locales/lg_UG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/lg_UG	2021-03-20 14:30:27.343826328 +0100
+@@ -305,7 +305,8 @@ postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e
  %
  country_ab3 "UGA"
  country_num 800
@@ -1650,9 +1799,10 @@
  lang_name    "Luganda"
  lang_ab      "lg"
  lang_term    "lug"
---- glibc-2.27/localedata/locales/li_NL.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/li_NL	2018-02-03 12:30:08.605286364 +0100
-@@ -44,7 +44,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/li_NL glibc-2.33/localedata/locales/li_NL
+--- glibc-2.33.org/localedata/locales/li_NL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/li_NL	2021-03-20 14:30:27.343826328 +0100
+@@ -44,7 +44,7 @@ country_ab2   "NL"
  country_ab3   "NLD"
  country_car   "NL"
  country_num 528
@@ -1661,9 +1811,10 @@
  % Lèmbörgs
  lang_name    "L<U00E8>mb<U00F6>rgs"
  lang_ab "li"
---- glibc-2.27/localedata/locales/lo_LA.orig	2018-02-02 19:23:56.139322746 +0100
-+++ glibc-2.27/localedata/locales/lo_LA	2018-02-03 15:24:16.735167065 +0100
-@@ -739,8 +739,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/lo_LA glibc-2.33/localedata/locales/lo_LA
+--- glibc-2.33.org/localedata/locales/lo_LA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/lo_LA	2021-03-20 14:30:27.343826328 +0100
+@@ -739,8 +739,7 @@ country_ab2   "LA"
  country_ab3   "LAO"
  country_num   418
  country_car   "LAO"
@@ -1673,9 +1824,10 @@
  lang_name     "<U0EA5><U0EB2><U0EA7>"
  lang_ab       "lo"
  lang_term     "lao"
---- glibc-2.27/localedata/locales/lt_LT.orig	2018-02-02 19:23:56.142656079 +0100
-+++ glibc-2.27/localedata/locales/lt_LT	2018-02-03 15:25:14.975166399 +0100
-@@ -271,8 +271,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/lt_LT glibc-2.33/localedata/locales/lt_LT
+--- glibc-2.33.org/localedata/locales/lt_LT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/lt_LT	2021-03-20 14:30:27.343826328 +0100
+@@ -272,8 +272,9 @@ country_name "Lietuva"
  country_ab2 "LT"
  country_ab3 "LTU"
  country_num 440
@@ -1687,9 +1839,10 @@
  lang_name    "lietuvi<U0173>"
  lang_ab      "lt"
  lang_term    "lit"
---- glibc-2.27/localedata/locales/lv_LV.orig	2018-02-02 19:23:56.142656079 +0100
-+++ glibc-2.27/localedata/locales/lv_LV	2018-02-03 15:25:44.661832728 +0100
-@@ -208,7 +208,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/lv_LV glibc-2.33/localedata/locales/lv_LV
+--- glibc-2.33.org/localedata/locales/lv_LV	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/lv_LV	2021-03-20 14:30:27.344826328 +0100
+@@ -224,7 +224,8 @@ country_ab2 "LV"
  country_ab3 "LVA"
  country_num 428
  country_car "LV"
@@ -1699,9 +1852,10 @@
  lang_name    "latvie<U0161>u"
  lang_ab      "lv"
  lang_term    "lav"
---- glibc-2.27/localedata/locales/mag_IN.orig	2018-02-02 19:23:56.142656079 +0100
-+++ glibc-2.27/localedata/locales/mag_IN	2018-02-03 15:26:38.441832113 +0100
-@@ -156,6 +156,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mag_IN glibc-2.33/localedata/locales/mag_IN
+--- glibc-2.33.org/localedata/locales/mag_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mag_IN	2021-03-20 14:30:27.344826328 +0100
+@@ -160,6 +160,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -1709,9 +1863,10 @@
  % मगही
  lang_name    "<U092E><U0917><U0939><U0940>"
  lang_term    "mag"
---- glibc-2.27/localedata/locales/mai_IN.orig	2018-02-02 19:23:56.145989412 +0100
-+++ glibc-2.27/localedata/locales/mai_IN	2018-02-03 15:27:01.971831846 +0100
-@@ -150,6 +150,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mai_IN glibc-2.33/localedata/locales/mai_IN
+--- glibc-2.33.org/localedata/locales/mai_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mai_IN	2021-03-20 14:30:27.345826328 +0100
+@@ -153,6 +153,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -1719,9 +1874,10 @@
  % मैथिली
  lang_name    "<U092E><U0948><U0925><U093F><U0932><U0940>"
  lang_term    "mai"
---- glibc-2.27/localedata/locales/mai_NP.orig	2017-08-02 14:57:16.000000000 +0200
-+++ glibc-2.27/localedata/locales/mai_NP	2017-08-03 17:18:17.059105826 +0200
-@@ -76,6 +76,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mai_NP glibc-2.33/localedata/locales/mai_NP
+--- glibc-2.33.org/localedata/locales/mai_NP	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mai_NP	2021-03-20 14:30:27.345826328 +0100
+@@ -76,6 +76,7 @@ country_name "<U0928><U0947><U092A><U093
  country_ab2 "NP"
  country_ab3 "NPL"
  country_num 524
@@ -1729,9 +1885,10 @@
  % NEP
  country_car  "NEP"
  lang_name    "<U092E><U0948><U0925><U093F><U0932><U0940>"
---- glibc-2.27/localedata/locales/mg_MG.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/mg_MG	2018-02-04 11:49:46.850994149 +0100
-@@ -159,6 +159,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mg_MG glibc-2.33/localedata/locales/mg_MG
+--- glibc-2.33.org/localedata/locales/mg_MG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mg_MG	2021-03-20 14:30:27.345826328 +0100
+@@ -160,6 +160,8 @@ country_ab2 "MG"
  country_ab3 "MDG"
  country_num 450
  country_car "RM"
@@ -1740,9 +1897,10 @@
  lang_name    "Malagasy"
  lang_ab      "mg"
  lang_term    "mlg"
---- glibc-2.31/localedata/locales/mhr_RU.orig	2020-02-01 14:09:11.237022967 +0100
-+++ glibc-2.31/localedata/locales/mhr_RU	2020-02-01 14:45:15.805296495 +0100
-@@ -158,7 +158,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mhr_RU glibc-2.33/localedata/locales/mhr_RU
+--- glibc-2.33.org/localedata/locales/mhr_RU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mhr_RU	2021-03-20 14:30:27.346826328 +0100
+@@ -158,7 +158,10 @@ postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e
  country_ab2 "RU"
  country_ab3 "RUS"
  country_num 643
@@ -1754,9 +1912,10 @@
  % марий йылме
  lang_name    "<U043C><U0430><U0440><U0438><U0439> <U0439><U044B><U043B><U043C><U0435>"
  lang_term    "mhr"
---- glibc-2.31/localedata/locales/mi_NZ.orig	2020-02-01 14:09:11.237022967 +0100
-+++ glibc-2.31/localedata/locales/mi_NZ	2020-02-01 14:45:56.011745345 +0100
-@@ -158,6 +158,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mi_NZ glibc-2.33/localedata/locales/mi_NZ
+--- glibc-2.33.org/localedata/locales/mi_NZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mi_NZ	2021-03-20 14:30:27.346826328 +0100
+@@ -158,6 +158,7 @@ country_ab2   "NZ"
  country_ab3   "NZL"
  country_num   554
  country_car   "NZ"
@@ -1764,9 +1923,10 @@
  lang_name    "M<U0101>ori"
  lang_ab      "mi"
  lang_term    "mri"
---- glibc-2.27/localedata/locales/miq_NI.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/miq_NI	2018-02-03 15:35:06.825159640 +0100
-@@ -178,6 +178,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/miq_NI glibc-2.33/localedata/locales/miq_NI
+--- glibc-2.33.org/localedata/locales/miq_NI	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/miq_NI	2021-03-20 14:30:27.346826328 +0100
+@@ -178,6 +178,7 @@ country_ab2  "NI"
  country_ab3  "NIC"
  country_num   558
  country_car   "NIC"
@@ -1774,9 +1934,10 @@
  lang_name     "M<U00ED>skitu"
  lang_term     "miq"
  lang_lib      "miq"
---- glibc-2.27/localedata/locales/mjw_IN.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/mjw_IN	2018-02-03 16:30:21.678455126 +0100
-@@ -150,6 +150,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mjw_IN glibc-2.33/localedata/locales/mjw_IN
+--- glibc-2.33.org/localedata/locales/mjw_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mjw_IN	2021-03-20 14:30:27.346826328 +0100
+@@ -153,6 +153,7 @@ country_ab2  "IN"
  country_ab3  "IND"
  country_num  356
  country_car  "IND"
@@ -1784,9 +1945,10 @@
  lang_name    "Karbi"
  lang_term    "mjw"
  lang_lib     "mjw"
---- glibc-2.27/localedata/locales/mk_MK.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/mk_MK	2018-02-03 16:31:22.125121103 +0100
-@@ -146,8 +146,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mk_MK glibc-2.33/localedata/locales/mk_MK
+--- glibc-2.33.org/localedata/locales/mk_MK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mk_MK	2021-03-20 14:30:27.346826328 +0100
+@@ -146,8 +146,8 @@ country_ab2 "MK"
  country_ab3 "MKD"
  country_car "MK"
  country_num 807
@@ -1797,9 +1959,10 @@
  lang_name    "<U043C><U0430><U043A><U0435><U0434><U043E><U043D><U0441><U043A><U0438>"
  lang_ab "mk"
  lang_term "mkd"
---- glibc-2.27/localedata/locales/ml_IN.orig	2018-02-02 19:23:56.162656077 +0100
-+++ glibc-2.27/localedata/locales/ml_IN	2018-02-03 16:31:38.858454244 +0100
-@@ -182,6 +182,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ml_IN glibc-2.33/localedata/locales/ml_IN
+--- glibc-2.33.org/localedata/locales/ml_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ml_IN	2021-03-20 14:30:27.347826328 +0100
+@@ -341,6 +341,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -1807,9 +1970,10 @@
  % മലയാളം
  lang_name    "<U0D2E><U0D32><U0D2F><U0D3E><U0D33><U0D02>"
  lang_ab      "ml"
---- glibc-2.27/localedata/locales/mn_MN.orig	2018-02-02 19:23:56.162656077 +0100
-+++ glibc-2.27/localedata/locales/mn_MN	2018-02-03 17:59:12.848394252 +0100
-@@ -256,8 +256,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mn_MN glibc-2.33/localedata/locales/mn_MN
+--- glibc-2.33.org/localedata/locales/mn_MN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mn_MN	2021-03-20 14:30:27.347826328 +0100
+@@ -242,8 +242,8 @@ country_ab2   "MN"
  country_ab3   "MNG"
  country_num   496
  country_car   "MGL"
@@ -1820,9 +1984,10 @@
  lang_name    "<U043C><U043E><U043D><U0433><U043E><U043B>"
  lang_ab       "mn"
  lang_term     "mon"
---- glibc-2.27/localedata/locales/mni_IN.orig	2018-02-02 19:23:56.165989411 +0100
-+++ glibc-2.27/localedata/locales/mni_IN	2018-02-03 17:59:33.545060684 +0100
-@@ -161,6 +161,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mni_IN glibc-2.33/localedata/locales/mni_IN
+--- glibc-2.33.org/localedata/locales/mni_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mni_IN	2021-03-20 14:30:27.347826328 +0100
+@@ -164,6 +164,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -1830,9 +1995,10 @@
  % মৈতৈলোন্
  lang_name    "<U09AE><U09C8><U09A4><U09C8><U09B2><U09CB><U09A8><U09CD>"
  lang_term    "mni"
---- glibc-2.27/localedata/locales/mr_IN.orig	2018-02-02 19:23:56.165989411 +0100
-+++ glibc-2.27/localedata/locales/mr_IN	2018-02-03 18:00:32.138393348 +0100
-@@ -184,7 +184,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mr_IN glibc-2.33/localedata/locales/mr_IN
+--- glibc-2.33.org/localedata/locales/mr_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mr_IN	2021-03-20 14:30:27.348826328 +0100
+@@ -241,7 +241,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -1842,19 +2008,21 @@
  % मराठी
  lang_name    "<U092E><U0930><U093E><U0920><U0940>"
  lang_ab      "mr"
---- glibc-2.27/localedata/locales/ms_MY.orig	2018-02-02 19:23:56.165989411 +0100
-+++ glibc-2.27/localedata/locales/ms_MY	2018-02-03 18:01:14.138392869 +0100
-@@ -183,6 +183,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ms_MY glibc-2.33/localedata/locales/ms_MY
+--- glibc-2.33.org/localedata/locales/ms_MY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ms_MY	2021-03-20 14:30:27.348826328 +0100
+@@ -186,6 +186,7 @@ country_ab2 "MY"
  country_ab3 "MYS"
  country_num 458
  country_car "MAL"
 +country_isbn "967,983"
  % Bahasa Melayu
- lang_name    "Bahasa Melayu"
+ lang_name    "Melayu"
  lang_ab      "ms"
---- glibc-2.27/localedata/locales/mt_MT.orig	2018-02-02 19:23:56.169322745 +0100
-+++ glibc-2.27/localedata/locales/mt_MT	2018-02-03 18:02:22.601725421 +0100
-@@ -269,6 +269,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/mt_MT glibc-2.33/localedata/locales/mt_MT
+--- glibc-2.33.org/localedata/locales/mt_MT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/mt_MT	2021-03-20 14:30:27.348826328 +0100
+@@ -266,6 +266,7 @@ country_ab2 "MT"
  country_ab3 "MLT"
  country_num 470
  country_car  "M"
@@ -1862,9 +2030,10 @@
  lang_name    "Malti"
  lang_ab      "mt"
  lang_term    "mlt"
---- glibc-2.27/localedata/locales/my_MM.orig	2018-02-02 19:23:56.169322745 +0100
-+++ glibc-2.27/localedata/locales/my_MM	2018-02-03 18:03:26.241724692 +0100
-@@ -306,8 +306,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/my_MM glibc-2.33/localedata/locales/my_MM
+--- glibc-2.33.org/localedata/locales/my_MM	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/my_MM	2021-03-20 14:30:27.349826328 +0100
+@@ -307,8 +307,10 @@ postal_fmt   "%a%N%d%N%f%N%b%N%h%t%r%t%e
  country_name   "<U1019><U103C><U1014><U103A><U1019><U102C>"
  country_post    "Myanmar"
  country_ab2     "MM"
@@ -1873,11 +2042,12 @@
  country_car "MYA"
 +country_isbn "99971"
  lang_ab         "my"
- lang_name       "<U1017><U1019><U102C>"
- lang_term   "mya"
---- glibc-2.27/localedata/locales/nb_NO.orig	2018-02-02 19:23:56.169322745 +0100
-+++ glibc-2.27/localedata/locales/nb_NO	2018-02-03 18:04:33.971723919 +0100
-@@ -253,6 +253,7 @@
+ % မြန်မာ
+ lang_name       "<U1019><U103C><U1014><U103A><U1019><U102C>"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nb_NO glibc-2.33/localedata/locales/nb_NO
+--- glibc-2.33.org/localedata/locales/nb_NO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nb_NO	2021-03-20 14:30:27.349826328 +0100
+@@ -265,6 +265,7 @@ country_ab2 "NO"
  country_ab3 "NOR"
  country_num 578
  country_car  "N"
@@ -1885,9 +2055,10 @@
  % Bokmål
  lang_name    "norsk bokm<U00E5>l"
  lang_ab      "nb"
---- glibc-2.31/localedata/locales/nds_DE.orig	2020-02-01 14:09:15.880331145 +0100
-+++ glibc-2.31/localedata/locales/nds_DE	2020-02-01 14:46:24.268258933 +0100
-@@ -46,7 +46,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nds_DE glibc-2.33/localedata/locales/nds_DE
+--- glibc-2.33.org/localedata/locales/nds_DE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nds_DE	2021-03-20 14:30:27.350826328 +0100
+@@ -46,7 +46,7 @@ country_car   "D"
  country_num 276
  country_isbn "3"
  lang_name "Neddersass<U2019>sch"
@@ -1896,9 +2067,10 @@
  lang_term "nds"
  lang_lib "nds"
  END LC_ADDRESS
---- glibc-2.31/localedata/locales/nds_NL.orig	2020-02-01 14:09:15.953664082 +0100
-+++ glibc-2.31/localedata/locales/nds_NL	2020-02-01 14:46:49.958119759 +0100
-@@ -43,9 +43,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nds_NL glibc-2.33/localedata/locales/nds_NL
+--- glibc-2.33.org/localedata/locales/nds_NL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nds_NL	2021-03-20 14:30:27.495826328 +0100
+@@ -43,9 +43,9 @@ country_ab2 "NL"
  country_ab3 "NLD"
  country_car "NL"
  country_num 528
@@ -1910,9 +2082,10 @@
  lang_term "nds"
  lang_lib "nds"
  END LC_ADDRESS
---- glibc-2.27/localedata/locales/ne_NP.orig	2018-02-02 19:23:56.172656079 +0100
-+++ glibc-2.27/localedata/locales/ne_NP	2018-02-03 18:08:06.315054828 +0100
-@@ -162,7 +162,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ne_NP glibc-2.33/localedata/locales/ne_NP
+--- glibc-2.33.org/localedata/locales/ne_NP	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ne_NP	2021-03-20 14:30:27.495826328 +0100
+@@ -163,7 +163,8 @@ country_name "<U0928><U0947><U092A><U093
  country_ab2 "NP"
  country_ab3 "NPL"
  country_num 524
@@ -1922,9 +2095,10 @@
  % नेपाली
  lang_name    "<U0928><U0947><U092A><U093E><U0932><U0940>"
  lang_ab      "ne"
---- glibc-2.31/localedata/locales/nhn_MX.orig	2020-02-01 14:09:16.030330333 +0100
-+++ glibc-2.31/localedata/locales/nhn_MX	2020-02-01 14:47:39.244519418 +0100
-@@ -138,7 +138,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nhn_MX glibc-2.33/localedata/locales/nhn_MX
+--- glibc-2.33.org/localedata/locales/nhn_MX	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nhn_MX	2021-03-20 14:30:27.496826328 +0100
+@@ -138,7 +138,8 @@ country_name  "Mexihco"
  country_ab2   "MX"
  country_ab3   "MEX"
  country_num   484
@@ -1934,9 +2108,10 @@
  lang_name    "Tlahco n<U0101>huatlaht<U014D>lli"
  lang_term    "nhn"
  lang_lib    "nhn"
---- glibc-2.31/localedata/locales/niu_NU.orig	2020-02-01 14:09:16.036996963 +0100
-+++ glibc-2.31/localedata/locales/niu_NU	2020-02-01 14:48:16.947648496 +0100
-@@ -171,6 +171,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/niu_NU glibc-2.33/localedata/locales/niu_NU
+--- glibc-2.33.org/localedata/locales/niu_NU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/niu_NU	2021-03-20 14:30:27.496826328 +0100
+@@ -171,6 +171,8 @@ country_post "NU"
  country_ab2  "NU"
  country_ab3  "NIU"
  country_num  570
@@ -1945,9 +2120,10 @@
  lang_name    "ko e vagahau Niu<U0113>"
  lang_term    "niu"
  lang_lib    "niu"
---- glibc-2.31/localedata/locales/niu_NZ.orig	2020-02-01 14:09:16.043663594 +0100
-+++ glibc-2.31/localedata/locales/niu_NZ	2020-02-01 14:48:41.370849518 +0100
-@@ -98,7 +98,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/niu_NZ glibc-2.33/localedata/locales/niu_NZ
+--- glibc-2.33.org/localedata/locales/niu_NZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/niu_NZ	2021-03-20 14:30:27.496826328 +0100
+@@ -98,7 +98,8 @@ postal_fmt   "%f%N%a%N%d%N%b%N%s %h %e %
  country_ab2  "NZ"
  country_ab3  "NZL"
  country_num  554
@@ -1957,9 +2133,10 @@
  lang_name    "ko e vagahau Niu<U0113>"
  lang_term    "niu"
  lang_lib    "niu"
---- glibc-2.27/localedata/locales/nl_AW.orig	2018-02-02 19:23:56.205989411 +0100
-+++ glibc-2.27/localedata/locales/nl_AW	2018-02-03 18:11:21.425052600 +0100
-@@ -125,7 +125,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nl_AW glibc-2.33/localedata/locales/nl_AW
+--- glibc-2.33.org/localedata/locales/nl_AW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nl_AW	2021-03-20 14:30:27.496826328 +0100
+@@ -125,7 +125,9 @@ country_name "Aruba"
  country_ab2   "AW"
  country_ab3   "ABW"
  country_num   533
@@ -1970,9 +2147,10 @@
  lang_name    "Nederlands"
  lang_ab "nl"
  lang_term "nld"
---- glibc-2.27/localedata/locales/nl_BE.orig	2018-02-02 19:23:56.209322745 +0100
-+++ glibc-2.27/localedata/locales/nl_BE	2018-02-03 18:13:17.145051280 +0100
-@@ -130,8 +130,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nl_BE glibc-2.33/localedata/locales/nl_BE
+--- glibc-2.33.org/localedata/locales/nl_BE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nl_BE	2021-03-20 14:30:27.497826328 +0100
+@@ -131,8 +131,10 @@ country_name "Belgi<U00EB>"
  country_ab2 "BE"
  country_ab3 "BEL"
  country_num 056
@@ -1984,9 +2162,10 @@
  lang_ab "nl"
  lang_term "nld"
  lang_lib "dut"
---- glibc-2.27/localedata/locales/nl_NL.orig	2018-02-02 19:23:56.219322743 +0100
-+++ glibc-2.27/localedata/locales/nl_NL	2018-02-03 18:14:05.031717399 +0100
-@@ -158,7 +158,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nl_NL glibc-2.33/localedata/locales/nl_NL
+--- glibc-2.33.org/localedata/locales/nl_NL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nl_NL	2021-03-20 14:30:27.497826328 +0100
+@@ -163,7 +163,9 @@ country_name "Nederland"
  country_ab2 "NL"
  country_ab3 "NLD"
  country_num 528
@@ -1996,9 +2175,10 @@
  lang_name    "Nederlands"
  lang_ab "nl"
  lang_term "nld"
---- glibc-2.27/localedata/locales/nn_NO.orig	2018-02-02 19:23:56.219322743 +0100
-+++ glibc-2.27/localedata/locales/nn_NO	2018-02-03 18:14:29.768383783 +0100
-@@ -157,6 +157,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nn_NO glibc-2.33/localedata/locales/nn_NO
+--- glibc-2.33.org/localedata/locales/nn_NO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nn_NO	2021-03-20 14:30:27.497826328 +0100
+@@ -157,6 +157,7 @@ country_ab2 "NO"
  country_ab3 "NOR"
  country_num 578
  country_car "N"
@@ -2006,9 +2186,10 @@
  lang_name    "nynorsk"
  lang_ab      "nn"
  lang_term    "nno"
---- glibc-2.27/localedata/locales/nr_ZA.orig	2017-08-02 18:42:51.826701083 +0200
-+++ glibc-2.27/localedata/locales/nr_ZA	2017-08-03 17:59:16.079077749 +0200
-@@ -219,8 +219,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nr_ZA glibc-2.33/localedata/locales/nr_ZA
+--- glibc-2.33.org/localedata/locales/nr_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nr_ZA	2021-03-20 14:30:27.497826328 +0100
+@@ -219,8 +219,7 @@ country_post "ZA"
  % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
  country_car   "ZA"
  
@@ -2018,9 +2199,10 @@
  % https://en.wikipedia.org/wiki/ISO_3166-1_numeric
  country_num 710
  
---- glibc-2.27/localedata/locales/nso_ZA.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/nso_ZA	2018-02-03 18:16:26.458382451 +0100
-@@ -150,6 +150,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/nso_ZA glibc-2.33/localedata/locales/nso_ZA
+--- glibc-2.33.org/localedata/locales/nso_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/nso_ZA	2021-03-20 14:30:27.498826328 +0100
+@@ -153,6 +153,8 @@ END LC_TIME
  LC_MESSAGES
  yesexpr "^[+1yYeE]"
  noexpr  "^[-0nNaA]"
@@ -2029,7 +2211,7 @@
  END LC_MESSAGES
  
  LC_PAPER
-@@ -204,8 +206,7 @@
+@@ -207,8 +209,7 @@ country_post "ZA"
  % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
  country_car   "ZA"
  
@@ -2039,9 +2221,10 @@
  
  % Language name in Northern Sotho
  lang_name "Sesotho sa Leboa"
---- glibc-2.27/localedata/locales/om_ET.orig	2018-02-02 19:23:56.222656077 +0100
-+++ glibc-2.27/localedata/locales/om_ET	2018-02-03 18:25:11.115043127 +0100
-@@ -144,8 +144,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/om_ET glibc-2.33/localedata/locales/om_ET
+--- glibc-2.33.org/localedata/locales/om_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/om_ET	2021-03-20 14:30:27.498826328 +0100
+@@ -144,8 +144,8 @@ country_post  "ETH"
  country_ab2   "ET"
  country_ab3   "ETH"
  country_num   231   % 210 found in at least one ISO 3166 doc
@@ -2052,9 +2235,10 @@
  lang_name     "Oromoo"
  lang_ab       "om"
  lang_term     "orm"
---- glibc-2.27/localedata/locales/om_KE.orig	2018-02-02 19:23:56.222656077 +0100
-+++ glibc-2.27/localedata/locales/om_KE	2018-02-03 18:25:34.538376193 +0100
-@@ -234,7 +234,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/om_KE glibc-2.33/localedata/locales/om_KE
+--- glibc-2.33.org/localedata/locales/om_KE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/om_KE	2021-03-20 14:30:27.498826328 +0100
+@@ -252,7 +252,7 @@ country_ab2   "KE"
  country_ab3   "KEN"
  country_num   404
  country_car   "EAK"
@@ -2063,9 +2247,10 @@
  lang_name     "Oromoo"
  lang_ab       "om"
  lang_term     "orm"
---- glibc-2.27/localedata/locales/or_IN.orig	2018-02-02 19:23:56.225989411 +0100
-+++ glibc-2.27/localedata/locales/or_IN	2018-02-03 18:25:57.791709261 +0100
-@@ -798,7 +798,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/or_IN glibc-2.33/localedata/locales/or_IN
+--- glibc-2.33.org/localedata/locales/or_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/or_IN	2021-03-20 14:30:27.499826328 +0100
+@@ -314,7 +314,8 @@ country_name "<U0B2D><U0B3E><U0B30><U0B2
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -2075,9 +2260,10 @@
  % ଓଡ଼ିଆ
  lang_name    "<U0B13><U0B21><U0B3C><U0B3F><U0B06>"
  lang_ab      "or"
---- glibc-2.27/localedata/locales/os_RU.orig	2018-02-02 19:23:56.225989411 +0100
-+++ glibc-2.27/localedata/locales/os_RU	2018-02-03 18:26:13.928375743 +0100
-@@ -158,6 +158,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/os_RU glibc-2.33/localedata/locales/os_RU
+--- glibc-2.33.org/localedata/locales/os_RU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/os_RU	2021-03-20 14:30:27.499826328 +0100
+@@ -174,6 +174,7 @@ country_ab2 "RU"
  country_ab3 "RUS"
  country_num 643
  country_car "RUS"
@@ -2085,9 +2271,10 @@
  lang_name   "<U0438><U0440><U043E><U043D>"
  lang_ab      "os"
  lang_term    "oss"
---- glibc-2.27/localedata/locales/pa_IN.orig	2018-02-02 19:23:56.225989411 +0100
-+++ glibc-2.27/localedata/locales/pa_IN	2018-02-03 18:26:47.261708696 +0100
-@@ -189,7 +189,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/pa_IN glibc-2.33/localedata/locales/pa_IN
+--- glibc-2.33.org/localedata/locales/pa_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/pa_IN	2021-03-20 14:30:27.499826328 +0100
+@@ -192,7 +192,8 @@ country_name "<U0A2D><U0A3E><U0A30><U0A2
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -2097,9 +2284,10 @@
  % ਪੰਜਾਬੀ
  lang_name    "<U0A2A><U0A70><U0A1C><U0A3E><U0A2C><U0A40>"
  lang_ab      "pa"
---- glibc-2.31/localedata/locales/pa_PK.orig	2020-02-01 14:09:16.050330224 +0100
-+++ glibc-2.31/localedata/locales/pa_PK	2020-02-01 14:49:24.317283523 +0100
-@@ -181,6 +181,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/pa_PK glibc-2.33/localedata/locales/pa_PK
+--- glibc-2.33.org/localedata/locales/pa_PK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/pa_PK	2021-03-20 14:30:27.499826328 +0100
+@@ -181,6 +181,7 @@ country_ab2 "PK"
  country_ab3 "PAK"
  country_num 586
  country_car "PK"
@@ -2107,9 +2295,10 @@
  lang_name    "<U067E><U0646><U062C><U0627><U0628><U06CC>"
  lang_ab      "pa"
  lang_term    "pan"
---- glibc-2.27/localedata/locales/pap_AW.orig	2018-02-02 19:23:56.229322745 +0100
-+++ glibc-2.27/localedata/locales/pap_AW	2018-02-03 18:41:18.768365413 +0100
-@@ -49,10 +49,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/pap_AW glibc-2.33/localedata/locales/pap_AW
+--- glibc-2.33.org/localedata/locales/pap_AW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/pap_AW	2021-03-20 14:30:27.500826328 +0100
+@@ -49,10 +49,10 @@ country_post "AW"
  country_ab2  "AW"
  country_ab3  "ABW"
  country_num  533
@@ -2122,9 +2311,10 @@
  lang_term "pap"
  lang_lib "pap"
  END LC_ADDRESS
---- glibc-2.27/localedata/locales/pap_CW.orig	2018-02-02 19:23:56.229322745 +0100
-+++ glibc-2.27/localedata/locales/pap_CW	2018-02-03 18:41:55.105031664 +0100
-@@ -49,10 +49,10 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/pap_CW glibc-2.33/localedata/locales/pap_CW
+--- glibc-2.33.org/localedata/locales/pap_CW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/pap_CW	2021-03-20 14:30:27.500826328 +0100
+@@ -49,10 +49,10 @@ country_post "CW"
  country_ab2  "CW"
  country_ab3  "CUW"
  country_num  531
@@ -2138,9 +2328,10 @@
  lang_term    "pap"
  lang_lib     "pap"
  END LC_ADDRESS
---- glibc-2.27/localedata/locales/pl_PL.orig	2018-02-02 19:23:56.232656078 +0100
-+++ glibc-2.27/localedata/locales/pl_PL	2018-02-04 19:54:24.440662135 +0100
-@@ -214,7 +214,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/pl_PL glibc-2.33/localedata/locales/pl_PL
+--- glibc-2.33.org/localedata/locales/pl_PL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/pl_PL	2021-03-20 14:30:27.500826328 +0100
+@@ -228,7 +228,8 @@ copy "i18n"
  END LC_PAPER
  
  LC_TELEPHONE
@@ -2150,7 +2341,7 @@
  int_prefix     "48"
  int_select     "00"
  END LC_TELEPHONE
-@@ -225,6 +226,12 @@
+@@ -239,6 +240,12 @@ END LC_MEASUREMENT
  
  LC_NAME
  name_fmt    "%d%t%g%t%m%t%f"
@@ -2163,7 +2354,7 @@
  END LC_NAME
  
  LC_ADDRESS
-@@ -233,7 +240,8 @@
+@@ -247,7 +254,8 @@ country_name "Polska"
  country_ab2 "PL"
  country_ab3 "POL"
  country_num 616
@@ -2173,9 +2364,10 @@
  lang_name    "polski"
  lang_ab      "pl"
  lang_term    "pol"
---- glibc-2.27/localedata/locales/ps_AF.orig	2018-02-02 19:23:56.232656078 +0100
-+++ glibc-2.27/localedata/locales/ps_AF	2018-02-03 19:25:18.701668601 +0100
-@@ -255,10 +255,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ps_AF glibc-2.33/localedata/locales/ps_AF
+--- glibc-2.33.org/localedata/locales/ps_AF	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ps_AF	2021-03-20 14:30:27.500826328 +0100
+@@ -315,10 +315,7 @@ country_ab2	"AF"
  country_ab3	"AFG"
  country_num	004
  country_car	"AFG"
@@ -2187,9 +2379,10 @@
  lang_name	"<U067E><U069A><U062A><U0648>"
  lang_ab	"ps"
  lang_term	"pus"
---- glibc-2.27/localedata/locales/pt_BR.orig	2018-02-02 19:23:56.232656078 +0100
-+++ glibc-2.27/localedata/locales/pt_BR	2018-02-03 19:25:42.161668334 +0100
-@@ -150,7 +150,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/pt_BR glibc-2.33/localedata/locales/pt_BR
+--- glibc-2.33.org/localedata/locales/pt_BR	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/pt_BR	2021-03-20 14:30:27.501826328 +0100
+@@ -151,7 +151,8 @@ country_name "Brasil"
  country_ab2 "BR"
  country_ab3 "BRA"
  country_num 076
@@ -2199,9 +2392,10 @@
  % português
  lang_name    "portugu<U00EA>s"
  lang_ab      "pt"
---- glibc-2.27/localedata/locales/pt_PT.orig	2018-02-02 19:23:56.235989411 +0100
-+++ glibc-2.27/localedata/locales/pt_PT	2018-02-03 19:26:23.371667864 +0100
-@@ -157,6 +157,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/pt_PT glibc-2.33/localedata/locales/pt_PT
+--- glibc-2.33.org/localedata/locales/pt_PT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/pt_PT	2021-03-20 14:30:27.501826328 +0100
+@@ -158,6 +158,7 @@ country_ab2 "PT"
  country_ab3 "PRT"
  country_num 620
  country_car "P"
@@ -2209,9 +2403,10 @@
  % português
  lang_name    "portugu<U00EA>s"
  lang_ab      "pt"
---- glibc-2.31/localedata/locales/quz_PE.orig	2020-02-01 14:09:16.063663486 +0100
-+++ glibc-2.31/localedata/locales/quz_PE	2020-02-01 14:49:56.463776038 +0100
-@@ -145,6 +145,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/quz_PE glibc-2.33/localedata/locales/quz_PE
+--- glibc-2.33.org/localedata/locales/quz_PE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/quz_PE	2021-03-20 14:30:27.501826328 +0100
+@@ -145,6 +145,7 @@ country_ab2   "PE"
  country_ab3   "PER"
  country_num   604
  country_car   "PE"
@@ -2219,9 +2414,10 @@
  lang_name    "Qusqu runasimi"
  lang_term    "quz"
  lang_lib    "quz"
---- glibc-2.31/localedata/locales/raj_IN.orig	2020-02-01 14:09:16.070330116 +0100
-+++ glibc-2.31/localedata/locales/raj_IN	2020-02-01 14:50:45.036846228 +0100
-@@ -165,6 +165,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/raj_IN glibc-2.33/localedata/locales/raj_IN
+--- glibc-2.33.org/localedata/locales/raj_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/raj_IN	2021-03-20 14:30:27.502826328 +0100
+@@ -165,6 +165,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
  country_car "IND"
@@ -2229,9 +2425,10 @@
  % राजस्थानी
  lang_name    "<U0930><U093E><U091C><U0938><U094D><U0925><U093E><U0928><U0940>"
  lang_term    "raj"
---- glibc-2.27/localedata/locales/ro_RO.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ro_RO	2018-02-03 19:38:40.468326114 +0100
-@@ -350,7 +350,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ro_RO glibc-2.33/localedata/locales/ro_RO
+--- glibc-2.33.org/localedata/locales/ro_RO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ro_RO	2021-03-20 14:30:27.502826328 +0100
+@@ -349,7 +349,7 @@ country_car "RO"
  % ISBN code is 973
  % see: http://homepages.cwi.nl/~dik/english/codes/isbn.html
  % and other sources
@@ -2240,9 +2437,10 @@
  % FIXME: is it really RO?
  country_post "RO"
  % language names are not capitalized in Romanian ( roma>na( )
---- glibc-2.27/localedata/locales/ru_RU.orig	2018-02-02 19:23:56.239322744 +0100
-+++ glibc-2.27/localedata/locales/ru_RU	2018-02-03 19:39:09.238325782 +0100
-@@ -203,7 +203,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ru_RU glibc-2.33/localedata/locales/ru_RU
+--- glibc-2.33.org/localedata/locales/ru_RU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ru_RU	2021-03-20 14:30:27.502826328 +0100
+@@ -200,7 +200,8 @@ country_name "<U0420><U043E><U0441><U044
  country_ab2 "RU"
  country_ab3 "RUS"
  country_num 643
@@ -2252,9 +2450,10 @@
  lang_name   "<U0440><U0443><U0441><U0441><U043A><U0438><U0439>"
  lang_ab      "ru"
  lang_term    "rus"
---- glibc-2.27/localedata/locales/ru_UA.orig	2018-02-02 19:23:56.239322744 +0100
-+++ glibc-2.27/localedata/locales/ru_UA	2018-02-03 19:39:35.264992158 +0100
-@@ -192,7 +192,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ru_UA glibc-2.33/localedata/locales/ru_UA
+--- glibc-2.33.org/localedata/locales/ru_UA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ru_UA	2021-03-20 14:30:27.502826328 +0100
+@@ -110,7 +110,8 @@ country_name "<U0423><U043A><U0440><U043
  country_ab2 "UA"
  country_ab3 "UKR"
  country_num 804
@@ -2264,9 +2463,10 @@
  lang_name   "<U0440><U0443><U0441><U0441><U043A><U0438><U0439>"
  lang_ab      "ru"
  lang_term    "rus"
---- glibc-2.27/localedata/locales/rw_RW.orig	2018-02-02 19:23:56.239322744 +0100
-+++ glibc-2.27/localedata/locales/rw_RW	2018-02-03 19:41:02.411657827 +0100
-@@ -136,7 +136,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/rw_RW glibc-2.33/localedata/locales/rw_RW
+--- glibc-2.33.org/localedata/locales/rw_RW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/rw_RW	2021-03-20 14:30:27.503826328 +0100
+@@ -137,7 +137,8 @@ country_name   "U Rwanda"
  country_ab2    "RW"
  country_ab3    "RWA"
  country_num 646
@@ -2276,9 +2476,10 @@
  lang_name      "Kinyarwanda"
  lang_ab        "rw"
  lang_term      "kin"
---- glibc-2.27/localedata/locales/sa_IN.orig	2018-02-02 19:23:56.239322744 +0100
-+++ glibc-2.27/localedata/locales/sa_IN	2018-02-03 19:41:26.324990888 +0100
-@@ -208,7 +208,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sa_IN glibc-2.33/localedata/locales/sa_IN
+--- glibc-2.33.org/localedata/locales/sa_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sa_IN	2021-03-20 14:30:27.503826328 +0100
+@@ -211,7 +211,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -2288,9 +2489,10 @@
  % संस्कृतम्
  lang_name    "<U0938><U0902><U0938><U094D><U0915><U0943><U0924><U092E><U094D>"
  lang_ab      "sa"
---- glibc-2.31/localedata/locales/sat_IN.orig	2020-02-01 14:09:16.080330062 +0100
-+++ glibc-2.31/localedata/locales/sat_IN	2020-02-01 14:51:55.023133747 +0100
-@@ -165,7 +165,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sat_IN glibc-2.33/localedata/locales/sat_IN
+--- glibc-2.33.org/localedata/locales/sat_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sat_IN	2021-03-20 14:30:27.503826328 +0100
+@@ -165,7 +165,8 @@ country_name "<U1C65><U1C64><U1C67><U1C5
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -2300,9 +2502,10 @@
  % ᱥᱟᱱᱛᱟᱲᱤ
  lang_name    "<U1C65><U1C5F><U1C71><U1C5B><U1C5F><U1C72><U1C64>"
  lang_term    "sat"
---- glibc-2.31/localedata/locales/sd_IN.orig	2020-02-01 14:09:16.080330062 +0100
-+++ glibc-2.31/localedata/locales/sd_IN	2020-02-01 14:52:20.346329893 +0100
-@@ -172,7 +172,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sd_IN glibc-2.33/localedata/locales/sd_IN
+--- glibc-2.33.org/localedata/locales/sd_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sd_IN	2021-03-20 14:30:27.687826328 +0100
+@@ -172,7 +172,8 @@ country_name "<U0627><U0646><U068A><U064
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -2312,9 +2515,10 @@
  % سنڌي
  lang_name    "<U0633><U0646><U068C><U064A>"
  lang_ab      "sd"
---- glibc-2.31/localedata/locales/sd_IN@devanagari.orig	2020-02-01 14:09:16.086996693 +0100
-+++ glibc-2.31/localedata/locales/sd_IN@devanagari	2020-02-01 14:52:54.422811951 +0100
-@@ -169,7 +169,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sd_IN@devanagari glibc-2.33/localedata/locales/sd_IN@devanagari
+--- glibc-2.33.org/localedata/locales/sd_IN@devanagari	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sd_IN@devanagari	2021-03-20 14:30:27.687826328 +0100
+@@ -169,7 +169,8 @@ country_name "<U092D><U093E><U0930><U092
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -2324,9 +2528,10 @@
  % सिन्धी
  lang_name    "<U0938><U093F><U0928><U094D><U0927><U0940>"
  lang_ab      "sd"
---- glibc-2.27/localedata/locales/se_NO.orig	2018-02-02 19:23:56.245989411 +0100
-+++ glibc-2.27/localedata/locales/se_NO	2018-02-03 19:46:34.784987364 +0100
-@@ -315,6 +315,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/se_NO glibc-2.33/localedata/locales/se_NO
+--- glibc-2.33.org/localedata/locales/se_NO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/se_NO	2021-03-20 14:30:27.687826328 +0100
+@@ -333,6 +333,7 @@ country_ab2 "NO"
  country_ab3 "NOR"
  country_num 578
  country_car "N"
@@ -2334,9 +2539,10 @@
  % davvisámegiella
  lang_name    "davvis<U00E1>megiella"
  lang_ab      "se"
---- glibc-2.27/localedata/locales/sgs_LT.orig	2018-02-02 19:23:56.245989411 +0100
-+++ glibc-2.27/localedata/locales/sgs_LT	2018-02-03 19:47:15.684986897 +0100
-@@ -142,6 +142,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sgs_LT glibc-2.33/localedata/locales/sgs_LT
+--- glibc-2.33.org/localedata/locales/sgs_LT	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sgs_LT	2021-03-20 14:30:27.688826328 +0100
+@@ -143,6 +143,7 @@ country_ab2  "LT"
  country_ab3  "LTU"
  country_num  440
  country_car  "LT"
@@ -2344,8 +2550,9 @@
  lang_name    "<U017D>emait<U0117><U0161>k<U0101>"
  lang_term    "sgs"
  lang_lib     "sgs"
---- glibc-2.32/localedata/locales/shn_MM~	2020-08-05 04:17:00.000000000 +0200
-+++ glibc-2.32/localedata/locales/shn_MM	2020-08-06 09:42:57.106364077 +0200
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/shn_MM glibc-2.33/localedata/locales/shn_MM
+--- glibc-2.33.org/localedata/locales/shn_MM	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/shn_MM	2021-03-20 14:30:27.688826328 +0100
 @@ -280,6 +280,7 @@ country_post "Myanmar"
  country_ab2  "MM"
  country_num  104
@@ -2354,9 +2561,10 @@
  % လိၵ်ႈတႆး
  lang_name    "<U101C><U102D><U1075><U103A><U1088><U1010><U1086><U1038>"
  lang_term    "shn"
---- glibc-2.27/localedata/locales/si_LK.orig	2018-02-02 19:23:56.252656078 +0100
-+++ glibc-2.27/localedata/locales/si_LK	2018-02-03 19:49:28.281652052 +0100
-@@ -190,6 +190,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/si_LK glibc-2.33/localedata/locales/si_LK
+--- glibc-2.33.org/localedata/locales/si_LK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/si_LK	2021-03-20 14:30:27.689826328 +0100
+@@ -232,6 +232,7 @@ country_ab2 "LK"
  country_ab3 "LKA"
  country_num 144
  country_car  "CL"
@@ -2364,9 +2572,10 @@
  % සිංහල
  lang_name    "<U0DC3><U0DD2><U0D82><U0DC4><U0DBD>"
  lang_ab      "si"
---- glibc-2.27/localedata/locales/sid_ET.orig	2018-02-02 19:23:56.255989411 +0100
-+++ glibc-2.27/localedata/locales/sid_ET	2018-02-03 19:50:33.554984640 +0100
-@@ -111,9 +111,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sid_ET glibc-2.33/localedata/locales/sid_ET
+--- glibc-2.33.org/localedata/locales/sid_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sid_ET	2021-03-20 14:30:27.689826328 +0100
+@@ -111,9 +111,9 @@ country_name  "Itiyoophiya"
  country_post  "ETH"
  country_ab2   "ET"
  country_ab3   "ETH"
@@ -2378,9 +2587,10 @@
  lang_name     "Sidaamu Afo"
  lang_term     "sid"
  lang_lib      "sid"
---- glibc-2.27/localedata/locales/sk_SK.orig	2018-02-02 19:23:56.255989411 +0100
-+++ glibc-2.27/localedata/locales/sk_SK	2018-02-03 19:51:50.484983760 +0100
-@@ -208,7 +208,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sk_SK glibc-2.33/localedata/locales/sk_SK
+--- glibc-2.33.org/localedata/locales/sk_SK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sk_SK	2021-03-20 14:30:27.689826328 +0100
+@@ -209,7 +209,8 @@ country_name "Slovensko"
  country_ab2 "SK"
  country_ab3 "SVK"
  country_num 703
@@ -2390,9 +2600,10 @@
  lang_name   "sloven<U010D>ina"
  lang_ab      "sk"
  lang_term    "slk"
---- glibc-2.27/localedata/locales/sl_SI.orig	2018-02-02 19:23:56.259322744 +0100
-+++ glibc-2.27/localedata/locales/sl_SI	2018-02-03 19:52:08.224983554 +0100
-@@ -2218,6 +2218,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sl_SI glibc-2.33/localedata/locales/sl_SI
+--- glibc-2.33.org/localedata/locales/sl_SI	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sl_SI	2021-03-20 14:30:27.690826328 +0100
+@@ -2219,6 +2219,7 @@ country_ab2 "SI"
  country_ab3 "SVN"
  country_num 705
  country_car "SLO"
@@ -2400,9 +2611,10 @@
  % slovenščina
  lang_name    "sloven<U0161><U010D>ina"
  lang_ab      "sl"
---- glibc-2.27/localedata/locales/sm_WS.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/sm_WS	2018-02-04 11:01:31.594360542 +0100
-@@ -168,7 +168,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sm_WS glibc-2.33/localedata/locales/sm_WS
+--- glibc-2.33.org/localedata/locales/sm_WS	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sm_WS	2021-03-20 14:30:27.690826328 +0100
+@@ -171,7 +171,8 @@ country_ab2  "WS"
  country_ab3  "WSM"
  % locale/iso-3166.def
  country_num 882
@@ -2412,7 +2624,7 @@
  % Gagana faʻa Sāmoa
  lang_name    "Gagana fa<U02BB>a S<U0101>moa"
  % https://en.wikipedia.org/wiki/Samoan_language
-@@ -180,6 +181,7 @@
+@@ -183,6 +184,7 @@ END LC_ADDRESS
  
  LC_TELEPHONE
  tel_int_fmt "+%c %a %l"
@@ -2420,9 +2632,10 @@
  int_select  "0"
  % https://en.wikipedia.org/wiki/Samoa
  int_prefix  "685"
---- glibc-2.27/localedata/locales/so_DJ.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/so_DJ	2018-02-04 11:48:56.347661393 +0100
-@@ -123,7 +123,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/so_DJ glibc-2.33/localedata/locales/so_DJ
+--- glibc-2.33.org/localedata/locales/so_DJ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/so_DJ	2021-03-20 14:30:27.691826328 +0100
+@@ -123,7 +123,8 @@ country_ab2   "DJ"
  country_ab3   "DJI"
  country_num   262
  country_car "DJI"
@@ -2432,9 +2645,10 @@
  lang_name     "Soomaali"
  lang_ab       "so"
  lang_term     "som"
---- glibc-2.27/localedata/locales/so_ET.orig	2018-02-02 19:23:56.259322744 +0100
-+++ glibc-2.27/localedata/locales/so_ET	2018-02-03 23:09:24.761515073 +0100
-@@ -121,9 +121,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/so_ET glibc-2.33/localedata/locales/so_ET
+--- glibc-2.33.org/localedata/locales/so_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/so_ET	2021-03-20 14:30:27.691826328 +0100
+@@ -121,9 +121,9 @@ country_name  "Itoobiya"
  country_post  "ETH"
  country_ab2   "ET"
  country_ab3   "ETH"
@@ -2446,9 +2660,10 @@
  lang_name     "Soomaali"
  lang_ab       "so"
  lang_term     "som"
---- glibc-2.27/localedata/locales/so_KE.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/so_KE	2018-02-03 23:09:51.101514770 +0100
-@@ -108,7 +108,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/so_KE glibc-2.33/localedata/locales/so_KE
+--- glibc-2.33.org/localedata/locales/so_KE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/so_KE	2021-03-20 14:30:27.691826328 +0100
+@@ -108,7 +108,7 @@ END LC_NAME
  
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  %
@@ -2457,7 +2672,7 @@
  %
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-@@ -123,7 +123,7 @@
+@@ -123,7 +123,7 @@ country_ab2   "KE"
  country_ab3   "KEN"
  country_num   404
  country_car   "EAK"
@@ -2466,9 +2681,10 @@
  lang_name     "Soomaali"
  lang_ab       "so"
  lang_term     "som"
---- glibc-2.27/localedata/locales/sq_AL.orig	2018-02-02 19:23:56.265989410 +0100
-+++ glibc-2.27/localedata/locales/sq_AL	2018-02-03 23:10:58.124847340 +0100
-@@ -324,7 +324,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sq_AL glibc-2.33/localedata/locales/sq_AL
+--- glibc-2.33.org/localedata/locales/sq_AL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sq_AL	2021-03-20 14:30:27.692826328 +0100
+@@ -342,7 +342,8 @@ country_name "Shqip<U00EB>ri"
  country_ab2 "AL"
  country_ab3 "ALB"
  country_num 008
@@ -2478,9 +2694,10 @@
  lang_name    "shqip"
  lang_ab      "sq"
  lang_term    "sqi"
---- glibc-2.27/localedata/locales/sr_ME.orig	2018-02-02 19:23:56.265989410 +0100
-+++ glibc-2.27/localedata/locales/sr_ME	2018-02-04 08:34:08.647794845 +0100
-@@ -141,7 +141,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sr_ME glibc-2.33/localedata/locales/sr_ME
+--- glibc-2.33.org/localedata/locales/sr_ME	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sr_ME	2021-03-20 14:30:27.692826328 +0100
+@@ -141,7 +141,7 @@ country_post  "MNE"
  country_name  "<U0426><U0440><U043D><U0430> <U0413><U043E><U0440><U0430>"
  country_num   499
  country_car   "MNE"
@@ -2489,9 +2706,10 @@
  lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
  lang_term     "srp"
  lang_lib      "srp"
---- glibc-2.27/localedata/locales/sr_RS.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/sr_RS	2018-02-04 09:08:24.321104707 +0100
-@@ -241,8 +241,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sr_RS glibc-2.33/localedata/locales/sr_RS
+--- glibc-2.33.org/localedata/locales/sr_RS	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sr_RS	2021-03-20 14:30:27.692826328 +0100
+@@ -241,8 +241,7 @@ country_post  "RS"
  country_name  "<U0421><U0440><U0431><U0438><U0458><U0430>"
  country_num   688
  country_car   "SRB"
@@ -2501,9 +2719,10 @@
  lang_name     "<U0441><U0440><U043F><U0441><U043A><U0438>"
  lang_term     "srp"
  lang_lib      "srp"
---- glibc-2.27/localedata/locales/ss_ZA.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ss_ZA	2018-02-04 09:09:27.577770650 +0100
-@@ -170,6 +170,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ss_ZA glibc-2.33/localedata/locales/ss_ZA
+--- glibc-2.33.org/localedata/locales/ss_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ss_ZA	2021-03-20 14:30:27.693826328 +0100
+@@ -170,6 +170,8 @@ END LC_TIME
  LC_MESSAGES
  yesexpr "^[+1yY]"
  noexpr  "^[-0nNaA]"
@@ -2512,7 +2731,7 @@
  END LC_MESSAGES
  
  LC_PAPER
-@@ -224,8 +226,7 @@
+@@ -224,8 +226,7 @@ country_post "ZA"
  % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
  country_car   "ZA"
  
@@ -2521,21 +2740,23 @@
 +country_isbn  "0"
  
  % Language name in Swati
- lang_name "SiSwati"
---- glibc-2.5/localedata/locales/st_ZA.orig	2006-07-31 00:19:43.000000000 +0200
-+++ glibc-2.5/localedata/locales/st_ZA	2006-10-05 14:36:06.815971000 +0200
-@@ -228,7 +228,7 @@
+ lang_name "siSwati"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/st_ZA glibc-2.33/localedata/locales/st_ZA
+--- glibc-2.33.org/localedata/locales/st_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/st_ZA	2021-03-20 14:30:27.693826328 +0100
+@@ -217,7 +217,7 @@ country_name "Afrika Borwa"
  country_post "ZA"
  
  % FIXME define the following correctly
 -% country_isbn ""
 +country_isbn "0"
  
- % Language name in Sotho - "Sesotho"
- lang_name "<U0053><U0065><U0073><U006F><U0074><U0068><U006F>"
---- glibc-2.27/localedata/locales/sv_SE.orig	2018-02-02 19:23:56.269322743 +0100
-+++ glibc-2.27/localedata/locales/sv_SE	2018-02-04 09:10:09.511103504 +0100
-@@ -237,6 +237,7 @@
+ % Language name in Sotho
+ lang_name "Sesotho"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sv_SE glibc-2.33/localedata/locales/sv_SE
+--- glibc-2.33.org/localedata/locales/sv_SE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sv_SE	2021-03-20 14:30:27.694826328 +0100
+@@ -273,6 +273,7 @@ country_ab2 "SE"
  country_ab3 "SWE"
  country_num 752
  country_car "S"
@@ -2543,9 +2764,10 @@
  lang_name    "svenska"
  lang_ab      "sv"
  lang_term    "swe"
---- glibc-2.27/localedata/locales/sw_KE.orig	2018-02-02 19:23:56.269322743 +0100
-+++ glibc-2.27/localedata/locales/sw_KE	2018-02-04 09:10:36.877769858 +0100
-@@ -128,6 +128,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sw_KE glibc-2.33/localedata/locales/sw_KE
+--- glibc-2.33.org/localedata/locales/sw_KE	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sw_KE	2021-03-20 14:30:27.694826328 +0100
+@@ -129,6 +129,7 @@ country_ab2   "KE"
  country_ab3   "KEN"
  country_num   404
  country_car  "EAK"
@@ -2553,9 +2775,10 @@
  lang_name     "Kiswahili"
  lang_ab      "sw"
  lang_term    "swa"
---- glibc-2.27/localedata/locales/sw_TZ.orig	2018-02-02 19:23:56.272656076 +0100
-+++ glibc-2.27/localedata/locales/sw_TZ	2018-02-04 09:11:10.064436149 +0100
-@@ -134,6 +134,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/sw_TZ glibc-2.33/localedata/locales/sw_TZ
+--- glibc-2.33.org/localedata/locales/sw_TZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/sw_TZ	2021-03-20 14:30:27.695826328 +0100
+@@ -135,6 +135,7 @@ country_ab2   "TZ"
  country_ab3   "TZA"
  country_num   834
  country_car  "EAT"
@@ -2563,9 +2786,10 @@
  lang_name     "Kiswahili"
  lang_ab      "sw"
  lang_term    "swa"
---- glibc-2.31/localedata/locales/szl_PL.orig	2020-02-01 20:59:26.300338394 +0100
-+++ glibc-2.31/localedata/locales/szl_PL	2020-02-01 20:59:39.576933135 +0100
-@@ -200,11 +200,12 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/szl_PL glibc-2.33/localedata/locales/szl_PL
+--- glibc-2.33.org/localedata/locales/szl_PL	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/szl_PL	2021-03-20 14:30:27.695826328 +0100
+@@ -200,11 +200,12 @@ END LC_NAME
  
  LC_ADDRESS
  postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
@@ -2580,9 +2804,10 @@
  % ślōnskŏ gŏdka
  lang_name    "<U015B>l<U014D>nsk<U014F> g<U014F>dka"
  lang_term    "szl"
---- glibc-2.27/localedata/locales/ta_IN.orig	2018-02-02 19:23:56.272656076 +0100
-+++ glibc-2.27/localedata/locales/ta_IN	2018-02-04 09:13:08.664434792 +0100
-@@ -178,7 +178,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ta_IN glibc-2.33/localedata/locales/ta_IN
+--- glibc-2.33.org/localedata/locales/ta_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ta_IN	2021-03-20 14:30:27.943826328 +0100
+@@ -181,7 +181,8 @@ country_name "<U0B87><U0BA8><U0BCD><U0BA
  country_ab2 "IN"
  country_ab3 "IND"
  country_num 356
@@ -2592,9 +2817,10 @@
  lang_name   "<U0BA4><U0BAE><U0BBF><U0BB4><U0BCD>"
  lang_ab      "ta"
  lang_term    "tam"
---- glibc-2.27/localedata/locales/ta_LK.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ta_LK	2018-02-04 09:13:54.861100933 +0100
-@@ -60,7 +60,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ta_LK glibc-2.33/localedata/locales/ta_LK
+--- glibc-2.33.org/localedata/locales/ta_LK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ta_LK	2021-03-20 14:30:28.345826328 +0100
+@@ -60,7 +60,7 @@ copy "si_LK"
  END LC_MONETARY
  
  LC_NUMERIC
@@ -2603,7 +2829,7 @@
  END LC_NUMERIC
  
  LC_TIME
-@@ -118,6 +118,7 @@
+@@ -119,6 +119,7 @@ country_ab2 "LK"
  country_ab3 "LKA"
  country_num 144
  country_car "CL"
@@ -2611,9 +2837,10 @@
  lang_name   "<U0BA4><U0BAE><U0BBF><U0BB4><U0BCD>"
  lang_ab      "ta"
  lang_term    "tam"
---- glibc-2.27/localedata/locales/tcy_IN.orig	2017-08-02 14:57:16.000000000 +0200
-+++ glibc-2.27/localedata/locales/tcy_IN	2017-08-03 19:15:45.662358678 +0200
-@@ -173,6 +173,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tcy_IN glibc-2.33/localedata/locales/tcy_IN
+--- glibc-2.33.org/localedata/locales/tcy_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tcy_IN	2021-03-20 14:30:28.346826328 +0100
+@@ -176,6 +176,7 @@ country_ab2 "IN"
  country_ab3 "IND"
  country_car "IND"
  country_num 356
@@ -2621,9 +2848,10 @@
  lang_name     "<U0CA4><U0CC1><U0CB3><U0CC1>"
  lang_ab       ""
  lang_term     "tcy"
---- glibc-2.27/localedata/locales/te_IN.orig	2018-02-02 19:23:56.275989410 +0100
-+++ glibc-2.27/localedata/locales/te_IN	2018-02-04 09:15:31.544433161 +0100
-@@ -182,6 +182,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/te_IN glibc-2.33/localedata/locales/te_IN
+--- glibc-2.33.org/localedata/locales/te_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/te_IN	2021-03-20 14:30:28.346826328 +0100
+@@ -185,6 +185,7 @@ country_ab2     "IN"
  country_ab3     "IND"
  country_num     356
  country_car     "IND"
@@ -2631,9 +2859,10 @@
  lang_name       "<U0C24><U0C46><U0C32><U0C41><U0C17><U0C41>"
  lang_ab      "te"
  lang_term    "tel"
---- glibc-2.31/localedata/locales/tg_TJ.orig	2020-02-01 14:09:16.096996638 +0100
-+++ glibc-2.31/localedata/locales/tg_TJ	2020-02-01 14:53:21.142667197 +0100
-@@ -222,7 +222,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tg_TJ glibc-2.33/localedata/locales/tg_TJ
+--- glibc-2.33.org/localedata/locales/tg_TJ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tg_TJ	2021-03-20 14:30:28.347826328 +0100
+@@ -222,7 +222,8 @@ country_name "<U0422><U043E><U04B7><U043
  country_ab2 "TJ"
  country_ab3 "TJK"
  country_num 762
@@ -2643,9 +2872,10 @@
  % тоҷикӣ
  lang_name    "<U0442><U043E><U04B7><U0438><U043A><U04E3>"
  lang_ab      "tg"
---- glibc-2.27/localedata/locales/th_TH.orig	2018-02-02 19:23:56.279322743 +0100
-+++ glibc-2.27/localedata/locales/th_TH	2018-02-04 09:17:46.631098286 +0100
-@@ -937,13 +937,11 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/th_TH glibc-2.33/localedata/locales/th_TH
+--- glibc-2.33.org/localedata/locales/th_TH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/th_TH	2021-03-20 14:30:28.428826328 +0100
+@@ -937,13 +937,11 @@ country_name  "<U0E44><U0E17><U0E22>"
  %country_post  ""
  country_ab2   "TH"
  country_ab3   "THA"
@@ -2661,9 +2891,10 @@
  lang_lib      "tha"
 -country_num 764
  END LC_ADDRESS
---- glibc-2.31/localedata/locales/the_NP.orig	2020-02-01 14:09:16.096996638 +0100
-+++ glibc-2.31/localedata/locales/the_NP	2020-02-01 14:54:01.992445895 +0100
-@@ -163,16 +163,17 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/the_NP glibc-2.33/localedata/locales/the_NP
+--- glibc-2.33.org/localedata/locales/the_NP	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/the_NP	2021-03-20 14:30:28.428826328 +0100
+@@ -163,16 +163,17 @@ LC_ADDRESS
  % This is the ISO_IEC TR14652 Locale definition for the
  % LC_ADDRESS
  postal_fmt  "%z%c%T%s%b%e%r"
@@ -2683,9 +2914,10 @@
  END LC_ADDRESS
  
  
---- glibc-2.27/localedata/locales/ti_ER.orig	2018-02-02 19:23:56.282656076 +0100
-+++ glibc-2.27/localedata/locales/ti_ER	2018-02-04 09:26:04.087759273 +0100
-@@ -142,8 +142,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ti_ER glibc-2.33/localedata/locales/ti_ER
+--- glibc-2.33.org/localedata/locales/ti_ER	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ti_ER	2021-03-20 14:30:28.429826328 +0100
+@@ -142,8 +142,8 @@ country_post  "ERI"
  country_ab2   "ER"
  country_ab3   "ERI"
  country_num   232
@@ -2696,9 +2928,10 @@
  lang_name     "<U1275><U130D><U122D><U129B>"
  lang_ab       "ti"
  lang_term     "tir"
---- glibc-2.27/localedata/locales/ti_ET.orig	2018-02-02 19:23:56.282656076 +0100
-+++ glibc-2.27/localedata/locales/ti_ET	2018-02-04 09:26:27.391092340 +0100
-@@ -944,9 +944,9 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ti_ET glibc-2.33/localedata/locales/ti_ET
+--- glibc-2.33.org/localedata/locales/ti_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ti_ET	2021-03-20 14:30:28.429826328 +0100
+@@ -944,9 +944,9 @@ country_name  "<U12A2><U1275><U12EE><U13
  country_post  "ETH"
  country_ab2   "ET"
  country_ab3   "ETH"
@@ -2711,9 +2944,10 @@
  lang_name     "<U1275><U130D><U122D><U129B>"
  lang_ab       "ti"
  lang_term     "tir"
---- glibc-2.27/localedata/locales/tig_ER.orig	2018-02-02 19:23:56.282656076 +0100
-+++ glibc-2.27/localedata/locales/tig_ER	2018-02-04 09:26:42.261092171 +0100
-@@ -122,8 +122,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tig_ER glibc-2.33/localedata/locales/tig_ER
+--- glibc-2.33.org/localedata/locales/tig_ER	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tig_ER	2021-03-20 14:30:28.429826328 +0100
+@@ -122,8 +122,8 @@ country_post  "ERI"
  country_ab2   "ER"
  country_ab3   "ERI"
  country_num   232
@@ -2724,9 +2958,10 @@
  lang_name     "<U1275><U130D><U1228>"
  lang_ab       ""
  lang_term     "tig"
---- glibc-2.31/localedata/locales/tl_PH.orig	2020-02-01 14:09:16.096996638 +0100
-+++ glibc-2.31/localedata/locales/tl_PH	2020-02-01 14:54:27.235642474 +0100
-@@ -138,7 +138,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tl_PH glibc-2.33/localedata/locales/tl_PH
+--- glibc-2.33.org/localedata/locales/tl_PH	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tl_PH	2021-03-20 14:30:28.429826328 +0100
+@@ -138,7 +138,8 @@ country_name "Pilipinas"
  country_ab2 "PH"
  country_ab3 "PHL"
  country_num 608
@@ -2736,9 +2971,10 @@
  lang_name    "Tagalog"
  lang_ab      "tl"
  lang_term    "tgl"
---- glibc-2.27/localedata/locales/tn_ZA.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/tn_ZA	2018-02-04 09:28:50.794424035 +0100
-@@ -165,6 +165,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tn_ZA glibc-2.33/localedata/locales/tn_ZA
+--- glibc-2.33.org/localedata/locales/tn_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tn_ZA	2021-03-20 14:30:28.429826328 +0100
+@@ -165,6 +165,8 @@ END LC_TIME
  LC_MESSAGES
  yesexpr "^[+1yYeE]"
  noexpr  "^[-0nN]"
@@ -2747,7 +2983,7 @@
  END LC_MESSAGES
  
  LC_PAPER
-@@ -219,8 +221,7 @@
+@@ -219,8 +221,7 @@ country_post "ZA"
  % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
  country_car   "ZA"
  
@@ -2757,9 +2993,10 @@
  
  % Language name in Tswana
  lang_name "Setswana"
---- glibc-2.31/localedata/locales/to_TO.orig	2020-02-01 14:09:16.100329954 +0100
-+++ glibc-2.31/localedata/locales/to_TO	2020-02-01 14:55:26.925319107 +0100
-@@ -169,6 +169,8 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/to_TO glibc-2.33/localedata/locales/to_TO
+--- glibc-2.33.org/localedata/locales/to_TO	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/to_TO	2021-03-20 14:30:28.430826328 +0100
+@@ -169,6 +169,8 @@ country_ab2  "TO"
  country_ab3  "TON"
  country_car  "TON"
  country_num 776
@@ -2768,9 +3005,10 @@
  % Tongan
  lang_name    "lea fakatonga"
  % https://en.wikipedia.org/wiki/Tongan_language
---- glibc-2.31/localedata/locales/tpi_PG.orig	2020-02-01 14:09:16.100329954 +0100
-+++ glibc-2.31/localedata/locales/tpi_PG	2020-02-01 14:55:50.045193856 +0100
-@@ -183,6 +183,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tpi_PG glibc-2.33/localedata/locales/tpi_PG
+--- glibc-2.33.org/localedata/locales/tpi_PG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tpi_PG	2021-03-20 14:30:28.430826328 +0100
+@@ -183,6 +183,7 @@ country_ab3  "PNG"
  country_car  "PNG"
  % https://en.wikipedia.org/wiki/ISO_3166-1_numeric
  country_num 598
@@ -2778,9 +3016,10 @@
  % Tok Pisin
  lang_name    "Tok Pisin"
  % https://en.wikipedia.org/wiki/Tok_Pisin
---- glibc-2.27/localedata/locales/tr_CY.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/tr_CY	2018-02-04 09:36:31.491085443 +0100
-@@ -89,7 +89,7 @@
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tr_CY glibc-2.33/localedata/locales/tr_CY
+--- glibc-2.33.org/localedata/locales/tr_CY	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tr_CY	2021-03-20 14:30:28.430826328 +0100
+@@ -89,7 +89,7 @@ postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e
  country_name "K<U0131>br<U0131>s"
  country_post	"TR"
  country_car "CY"
@@ -2789,260 +3028,9 @@
  country_num 196
  country_ab2 "CY"
  country_ab3 "CYP"
---- glibc-2.27/localedata/locales/ts_ZA.orig	2006-07-31 00:19:43.000000000 +0200
-+++ glibc-2.27/localedata/locales/ts_ZA	2006-10-05 14:37:37.395971000 +0200
-@@ -225,8 +225,7 @@
- % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
- country_car   "ZA"
- 
--% FIXME define the following correctly
--% country_isbn ""
-+country_isbn  "0"
- 
- % Language name in Tsonga - "Xitsonga"
- lang_name "<U0058><U0069><U0074><U0073><U006F><U006E><U0067><U0061>"
---- glibc-2.30/localedata/locales/tt_RU~	2019-08-01 06:29:31.000000000 +0200
-+++ glibc-2.30/localedata/locales/tt_RU	2019-08-02 10:56:47.618233090 +0200
-@@ -253,14 +253,14 @@ name_fmt "???"
- END LC_NAME
- 
- LC_ADDRESS
--% FIXME
--postal_fmt "???"
-+postal_fmt "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
- % https://tt.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D0%B8%D1%8F : Русия
- country_name "<U0420><U0443><U0441><U0438><U044F>"
- country_ab2 "RU"
- country_ab3 "RUS"
- country_num 643
- country_car    "RUS"
-+country_isbn "5"
- lang_name    "<U0442><U0430><U0442><U0430><U0440>"
- lang_ab      "tt"
- lang_term    "tat"
---- glibc-2.31/localedata/locales/tt_RU@iqtelif.orig	2020-02-01 14:09:16.100329954 +0100
-+++ glibc-2.31/localedata/locales/tt_RU@iqtelif	2020-02-01 14:56:52.011524822 +0100
-@@ -160,7 +160,8 @@
- country_ab2 "RU"
- country_ab3 "RUS"
- country_num 643
--country_car    "RUS"
-+country_car  "RUS"
-+country_isbn "5"
- lang_name    "tatar tele"
- lang_ab      "tt"
- lang_term    "tat"
---- glibc-2.27/localedata/locales/uk_UA.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/uk_UA	2018-02-04 09:40:19.944416165 +0100
-@@ -1151,7 +1151,7 @@
- country_car   "UA"
- 
- % ISBN code, for books.
--country_isbn  966
-+country_isbn  "617,966"
- 
- % Two-letter abbreviation of the language, see ISO 639.
- lang_ab       "uk"
---- glibc-2.27/localedata/locales/ur_IN.orig	2018-02-02 19:23:56.305989410 +0100
-+++ glibc-2.27/localedata/locales/ur_IN	2018-02-04 09:40:47.937749176 +0100
-@@ -169,7 +169,8 @@
- country_ab2 "IN"
- country_ab3 "IND"
- country_num 356
--country_car    "IND"
-+country_car  "IND"
-+country_isbn "81,93"
- lang_name   "<U0627><U0631><U062F><U0648>"
- lang_ab      "ur"
- lang_term    "urd"
---- glibc-2.27/localedata/locales/ur_PK.orig	2018-02-02 19:23:56.322656076 +0100
-+++ glibc-2.27/localedata/locales/ur_PK	2018-02-04 09:41:20.657748808 +0100
-@@ -195,6 +195,7 @@
- country_ab3 "PAK"
- country_num 586
- country_car "PK"
-+country_isbn "969"
- lang_name   "<U0627><U0631><U062F><U0648>"
- lang_ab      "ur"
- lang_term    "urd"
---- glibc-2.27/localedata/locales/uz_UZ.orig	2018-02-02 19:23:56.325989409 +0100
-+++ glibc-2.27/localedata/locales/uz_UZ	2018-02-04 09:41:45.604415189 +0100
-@@ -316,8 +316,7 @@
- country_ab2  "UZ"
- country_ab3  "UZB"
- country_num  860
--% FIXME: ISBN number?
--%country_isbn ""
-+country_isbn "9943"
- country_car   "UZ"
- lang_name   "o<U2018>zbek"
- lang_ab      "uz"
---- glibc-2.27/localedata/locales/uz_UZ@cyrillic.orig	2018-02-02 19:23:56.325989409 +0100
-+++ glibc-2.27/localedata/locales/uz_UZ@cyrillic	2018-02-04 09:41:56.794415060 +0100
-@@ -312,8 +312,7 @@
- country_ab2  "UZ"
- country_ab3  "UZB"
- country_num  860
--% FIXME: ISBN number?
--%country_isbn ""
-+country_isbn "9943"
- country_car "UZ"
- lang_name   "<U040E><U0437><U0431><U0435><U043A><U0447><U0430>"
- lang_ab      "uz"
---- glibc-2.27/localedata/locales/ve_ZA.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/ve_ZA	2018-02-04 09:42:34.417747964 +0100
-@@ -160,6 +160,8 @@
- LC_MESSAGES
- yesexpr "^[+1yYeE]"
- noexpr  "^[-0nNhH]"
-+yesstr  "ee"
-+nostr   "hai"
- END LC_MESSAGES
- 
- LC_PAPER
-@@ -214,8 +216,7 @@
- % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
- country_car   "ZA"
- 
--% FIXME define the following correctly
--% country_isbn ""
-+country_isbn  "0"
- 
- % Language name in Venda - "Tshivend^a"
- lang_name "Tshiven<U1E13>a"
---- glibc-2.27/localedata/locales/vi_VN.orig	2018-02-02 19:23:56.329322742 +0100
-+++ glibc-2.27/localedata/locales/vi_VN	2018-02-04 09:43:07.531080919 +0100
-@@ -329,7 +329,8 @@
- country_ab2 "VN"
- country_ab3 "VNM"
- country_num 704
--country_car    "VN"
-+country_car  "VN"
-+country_isbn "604"
- lang_ab      "vi"
- lang_term    "vie"
- lang_lib    "vie"
---- glibc-2.27/localedata/locales/wal_ET.orig	2018-02-02 19:23:56.329322742 +0100
-+++ glibc-2.27/localedata/locales/wal_ET	2018-02-04 09:44:04.001080277 +0100
-@@ -108,9 +108,9 @@
- country_post  "ETH"
- country_ab2   "ET"
- country_ab3   "ETH"
--country_num   231   % 210 found in at least one ISO 3166 doc
-+country_num   231
- country_car    "ETH"
--% country_isbn  unknown, Need ISO 2108
-+country_isbn  "99944"
- lang_name     "<U12C8><U120B><U12ED><U1273><U1271>"
- lang_term     "wal"
- lang_lib      "wal"
---- glibc-2.31/localedata/locales/wo_SN.orig	2020-02-01 14:09:16.103663269 +0100
-+++ glibc-2.31/localedata/locales/wo_SN	2020-02-01 14:58:12.131090777 +0100
-@@ -162,6 +162,8 @@
- country_ab3 "SEN"
- country_num 686
- country_car "SN"
-+% French agency, https://www.isbn-international.org/content/francophone-and-lusophone-countries
-+country_isbn "2"
- lang_name    "Wolof"
- lang_ab      "wo"
- lang_term    "wol"
---- libc.orig/localedata/locales/xh_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/xh_ZA	2004-11-10 02:36:38.000000000 +0100
-@@ -262,5 +263,7 @@
- country_ab2   "ZA"
- country_ab3   "ZAF"
- 
-+country_isbn  "0"
-+
- END LC_ADDRESS
- 
---- glibc-2.27/localedata/locales/yue_HK.orig	2018-02-01 17:17:18.000000000 +0100
-+++ glibc-2.27/localedata/locales/yue_HK	2018-02-04 10:38:25.547709701 +0100
-@@ -149,7 +149,7 @@
- country_ab3 "HKG"
- country_num 344
- country_car "HK"
--country_isbn 962
-+country_isbn "962,988"
- lang_name "<U7CB5><U8A9E>"
- lang_term    "yue"
- lang_lib    "yue"
---- glibc-2.31/localedata/locales/yuw_PG.orig	2020-02-01 14:09:16.106996584 +0100
-+++ glibc-2.31/localedata/locales/yuw_PG	2020-02-01 14:58:53.077535618 +0100
-@@ -134,9 +134,10 @@
- country_ab3  "PNG"
- % ISO 3166-1 numeric code for PNG
- country_num 598
-+country_car  "PNG"
-+country_isbn "9980"
- % See: https://en.wikipedia.org/wiki/Yau_language, the endonym seems to be Uruwa
- lang_name    "Uruwa"
--country_car  "PNG"
- lang_ab      ""
- lang_term    "yuw"
- lang_lib     "yuw"
---- glibc-2.31/localedata/locales/zh_HK.orig	2020-02-01 14:09:16.106996584 +0100
-+++ glibc-2.31/localedata/locales/zh_HK	2020-02-01 14:59:29.610671035 +0100
-@@ -180,7 +180,9 @@
- country_ab2 "HK"
- country_ab3 "HKG"
- country_num 344
-+country_name "<U9999><U6E2F>"
- country_car "HK"
-+country_isbn "962,988"
- lang_name       "<U7E41><U9AD4><U4E2D><U6587>"
- lang_ab		"zh"
- lang_term	"zho"
---- glibc-2.31/localedata/locales/zh_SG.orig	2020-02-01 12:52:50.000000000 +0100
-+++ glibc-2.31/localedata/locales/zh_SG	2020-02-01 14:59:51.733884516 +0100
-@@ -176,8 +176,8 @@
- country_ab2 "SG"
- country_ab3 "SGP"
- country_num 702
--% SGP
- country_car    "SGP"
-+country_isbn "981,9971"
- lang_name       "<U7B80><U4F53><U4E2D><U6587>"
- lang_ab		"zh"
- lang_term	"zho"
-@@ -186,11 +186,7 @@
- 
- 
- LC_TELEPHONE
--% This is the ISO_IEC TR14652 Locale definition for the LC_TELEPHONE
--% generated by IBM Basic CountryPack Transformer.
--tel_int_fmt "+%c ;%a ;%l"
--int_prefix "65"
--int_select "001"
-+copy "en_SG"
- END LC_TELEPHONE
- 
- 
---- glibc-2.27/localedata/locales/zh_TW.orig	2018-02-02 19:23:56.342656076 +0100
-+++ glibc-2.27/localedata/locales/zh_TW	2018-02-04 10:42:59.404373239 +0100
-@@ -169,7 +169,7 @@
- country_ab3	"TWN"
- country_num	158
- country_car "RC"
--country_isbn	957
-+country_isbn	"957,986"
- 
- % Reference:	http://lcweb.loc.gov/standards/iso639-2/langhome.html
- lang_name	"<U4E2D><U6587>"
---- libc.orig/localedata/locales/zu_ZA	2004-11-10 01:45:57.000000000 +0100
-+++ libc/localedata/locales/zu_ZA	2004-11-10 02:36:38.000000000 +0100
-@@ -270,5 +270,7 @@
- country_ab2   "ZA"
- country_ab3   "ZAF"
- 
-+country_isbn  "0"
-+
- END LC_ADDRESS
- 
-diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata/locales/translit_devanagari_iscii
---- libc.orig/localedata/locales/translit_devanagari_iscii	2005-11-09 15:29:12.000000000 +0000
-+++ libc/localedata/locales/translit_devanagari_iscii	2005-11-09 15:29:12.000000000 +0000
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/translit_devanagari_iscii glibc-2.33/localedata/locales/translit_devanagari_iscii
+--- glibc-2.33.org/localedata/locales/translit_devanagari_iscii	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.33/localedata/locales/translit_devanagari_iscii	2021-03-20 14:30:28.785826328 +0100
 @@ -0,0 +1,43 @@
 +escape_char /
 +comment_char %
@@ -3087,18 +3075,271 @@ diff -uNr libc.orig/localedata/locales/translit_devanagari_iscii libc/localedata
 +translit_end
 +
 +END LC_CTYPE
---- glibc-2.6/localedata/locales/iso14651_t1.orig	2007-04-28 08:50:05.000000000 +0200
-+++ glibc-2.6/localedata/locales/iso14651_t1	2007-05-20 17:28:23.631924611 +0200
-@@ -1,9 +1,9 @@
- LC_COLLATE
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ts_ZA glibc-2.33/localedata/locales/ts_ZA
+--- glibc-2.33.org/localedata/locales/ts_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ts_ZA	2021-03-20 14:30:28.430826328 +0100
+@@ -224,8 +224,7 @@ country_post "ZA"
+ % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
+ country_car   "ZA"
  
--copy "iso14651_t1_common"
--
- script <HAN>
+-% FIXME define the following correctly
+-% country_isbn ""
++country_isbn  "0"
  
-+copy "iso14651_t1_common"
+ % Language name in Tsonga
+ lang_name "Xitsonga"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tt_RU glibc-2.33/localedata/locales/tt_RU
+--- glibc-2.33.org/localedata/locales/tt_RU	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tt_RU	2021-03-20 14:30:28.431826328 +0100
+@@ -254,14 +254,14 @@ name_fmt "???"
+ END LC_NAME
+ 
+ LC_ADDRESS
+-% FIXME
+-postal_fmt "???"
++postal_fmt "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
+ % https://tt.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D0%B8%D1%8F : Русия
+ country_name "<U0420><U0443><U0441><U0438><U044F>"
+ country_ab2 "RU"
+ country_ab3 "RUS"
+ country_num 643
+ country_car    "RUS"
++country_isbn "5"
+ lang_name    "<U0442><U0430><U0442><U0430><U0440>"
+ lang_ab      "tt"
+ lang_term    "tat"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/tt_RU@iqtelif glibc-2.33/localedata/locales/tt_RU@iqtelif
+--- glibc-2.33.org/localedata/locales/tt_RU@iqtelif	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/tt_RU@iqtelif	2021-03-20 14:30:28.431826328 +0100
+@@ -160,7 +160,8 @@ country_name  "Ur<U0131>s Pat<U015F>ahl<
+ country_ab2 "RU"
+ country_ab3 "RUS"
+ country_num 643
+-country_car    "RUS"
++country_car  "RUS"
++country_isbn "5"
+ lang_name    "tatar tele"
+ lang_ab      "tt"
+ lang_term    "tat"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/uk_UA glibc-2.33/localedata/locales/uk_UA
+--- glibc-2.33.org/localedata/locales/uk_UA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/uk_UA	2021-03-20 14:30:28.431826328 +0100
+@@ -1136,7 +1136,7 @@ country_num   804
+ country_car   "UA"
+ 
+ % ISBN code, for books.
+-country_isbn  966
++country_isbn  "617,966"
+ 
+ % Two-letter abbreviation of the language, see ISO 639.
+ lang_ab       "uk"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ur_IN glibc-2.33/localedata/locales/ur_IN
+--- glibc-2.33.org/localedata/locales/ur_IN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ur_IN	2021-03-20 14:30:28.432826328 +0100
+@@ -172,7 +172,8 @@ country_name "<U0628><U06BE><U0627><U063
+ country_ab2 "IN"
+ country_ab3 "IND"
+ country_num 356
+-country_car    "IND"
++country_car  "IND"
++country_isbn "81,93"
+ lang_name   "<U0627><U0631><U062F><U0648>"
+ lang_ab      "ur"
+ lang_term    "urd"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ur_PK glibc-2.33/localedata/locales/ur_PK
+--- glibc-2.33.org/localedata/locales/ur_PK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ur_PK	2021-03-20 14:30:28.432826328 +0100
+@@ -198,6 +198,7 @@ country_ab2 "PK"
+ country_ab3 "PAK"
+ country_num 586
+ country_car "PK"
++country_isbn "969"
+ lang_name   "<U0627><U0631><U062F><U0648>"
+ lang_ab      "ur"
+ lang_term    "urd"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/uz_UZ glibc-2.33/localedata/locales/uz_UZ
+--- glibc-2.33.org/localedata/locales/uz_UZ	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/uz_UZ	2021-03-20 14:30:28.432826328 +0100
+@@ -355,8 +355,7 @@ country_post "UZ" % ??
+ country_ab2  "UZ"
+ country_ab3  "UZB"
+ country_num  860
+-% FIXME: ISBN number?
+-%country_isbn ""
++country_isbn "9943"
+ country_car   "UZ"
+ lang_name   "o<U2018>zbek"
+ lang_ab      "uz"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/uz_UZ@cyrillic glibc-2.33/localedata/locales/uz_UZ@cyrillic
+--- glibc-2.33.org/localedata/locales/uz_UZ@cyrillic	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/uz_UZ@cyrillic	2021-03-20 14:30:28.433826328 +0100
+@@ -268,8 +268,7 @@ country_post "UZ" % ??
+ country_ab2  "UZ"
+ country_ab3  "UZB"
+ country_num  860
+-% FIXME: ISBN number?
+-%country_isbn ""
++country_isbn "9943"
+ country_car "UZ"
+ lang_name   "<U040E><U0437><U0431><U0435><U043A><U0447><U0430>"
+ lang_ab      "uz"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ve_ZA glibc-2.33/localedata/locales/ve_ZA
+--- glibc-2.33.org/localedata/locales/ve_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/ve_ZA	2021-03-20 14:30:28.433826328 +0100
+@@ -163,6 +163,8 @@ END LC_TIME
+ LC_MESSAGES
+ yesexpr "^[+1yYeE]"
+ noexpr  "^[-0nNhH]"
++yesstr  "ee"
++nostr   "hai"
+ END LC_MESSAGES
+ 
+ LC_PAPER
+@@ -217,8 +219,7 @@ country_post "ZA"
+ % http://www.unece.org/trans/conventn/disting-signs-5-2001.pdf
+ country_car   "ZA"
+ 
+-% FIXME define the following correctly
+-% country_isbn ""
++country_isbn  "0"
+ 
+ % Language name in Venda - "Tshivend^a"
+ lang_name "Tshiven<U1E13>a"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/vi_VN glibc-2.33/localedata/locales/vi_VN
+--- glibc-2.33.org/localedata/locales/vi_VN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/vi_VN	2021-03-20 14:30:28.434826328 +0100
+@@ -253,7 +253,8 @@ lang_name "Ti<U1EBF>ng Vi<U1EC7>t"
+ country_ab2 "VN"
+ country_ab3 "VNM"
+ country_num 704
+-country_car    "VN"
++country_car  "VN"
++country_isbn "604"
+ lang_ab      "vi"
+ lang_term    "vie"
+ lang_lib    "vie"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/wal_ET glibc-2.33/localedata/locales/wal_ET
+--- glibc-2.33.org/localedata/locales/wal_ET	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/wal_ET	2021-03-20 14:30:28.434826328 +0100
+@@ -108,9 +108,9 @@ country_name  "<U12A2><U1275><U12EE><U13
+ country_post  "ETH"
+ country_ab2   "ET"
+ country_ab3   "ETH"
+-country_num   231   % 210 found in at least one ISO 3166 doc
++country_num   231
+ country_car    "ETH"
+-% country_isbn  unknown, Need ISO 2108
++country_isbn  "99944"
+ lang_name     "<U12C8><U120B><U12ED><U1273><U1271>"
+ lang_term     "wal"
+ lang_lib      "wal"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/wo_SN glibc-2.33/localedata/locales/wo_SN
+--- glibc-2.33.org/localedata/locales/wo_SN	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/wo_SN	2021-03-20 14:30:28.783826328 +0100
+@@ -162,6 +162,8 @@ country_ab2 "SN"
+ country_ab3 "SEN"
+ country_num 686
+ country_car "SN"
++% French agency, https://www.isbn-international.org/content/francophone-and-lusophone-countries
++country_isbn "2"
+ lang_name    "Wolof"
+ lang_ab      "wo"
+ lang_term    "wol"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/xh_ZA glibc-2.33/localedata/locales/xh_ZA
+--- glibc-2.33.org/localedata/locales/xh_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/xh_ZA	2021-03-20 14:30:28.783826328 +0100
+@@ -260,4 +260,6 @@ country_num   710
+ country_ab2   "ZA"
+ country_ab3   "ZAF"
+ 
++country_isbn  "0"
 +
- order_start <HAN>;forward;forward;forward;forward,position
- <U4E00> <U4E00>;IGNORE;IGNORE;IGNORE
- .. ..;IGNORE;IGNORE;IGNORE
-
+ END LC_ADDRESS
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/yue_HK glibc-2.33/localedata/locales/yue_HK
+--- glibc-2.33.org/localedata/locales/yue_HK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/yue_HK	2021-03-20 14:30:28.784826328 +0100
+@@ -149,7 +149,7 @@ country_ab2 "HK"
+ country_ab3 "HKG"
+ country_num 344
+ country_car "HK"
+-country_isbn 962
++country_isbn "962,988"
+ lang_name "<U7CB5><U8A9E>"
+ lang_term    "yue"
+ lang_lib    "yue"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/yuw_PG glibc-2.33/localedata/locales/yuw_PG
+--- glibc-2.33.org/localedata/locales/yuw_PG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/yuw_PG	2021-03-20 14:30:28.784826328 +0100
+@@ -134,9 +134,10 @@ country_ab2  "PG"
+ country_ab3  "PNG"
+ % ISO 3166-1 numeric code for PNG
+ country_num 598
++country_car  "PNG"
++country_isbn "9980"
+ % See: https://en.wikipedia.org/wiki/Yau_language, the endonym seems to be Uruwa
+ lang_name    "Uruwa"
+-country_car  "PNG"
+ lang_ab      ""
+ lang_term    "yuw"
+ lang_lib     "yuw"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/zh_HK glibc-2.33/localedata/locales/zh_HK
+--- glibc-2.33.org/localedata/locales/zh_HK	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/zh_HK	2021-03-20 14:30:28.784826328 +0100
+@@ -180,7 +180,9 @@ postal_fmt  "%z%c%T%s%b%e%r"
+ country_ab2 "HK"
+ country_ab3 "HKG"
+ country_num 344
++country_name "<U9999><U6E2F>"
+ country_car "HK"
++country_isbn "962,988"
+ lang_name       "<U7E41><U9AD4><U4E2D><U6587>"
+ lang_ab		"zh"
+ lang_term	"zho"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/zh_SG glibc-2.33/localedata/locales/zh_SG
+--- glibc-2.33.org/localedata/locales/zh_SG	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/zh_SG	2021-03-20 14:30:28.784826328 +0100
+@@ -176,8 +176,8 @@ country_name "<U65B0><U52A0><U5761>"
+ country_ab2 "SG"
+ country_ab3 "SGP"
+ country_num 702
+-% SGP
+ country_car    "SGP"
++country_isbn "981,9971"
+ lang_name       "<U7B80><U4F53><U4E2D><U6587>"
+ lang_ab		"zh"
+ lang_term	"zho"
+@@ -186,11 +186,7 @@ END LC_ADDRESS
+ 
+ 
+ LC_TELEPHONE
+-% This is the ISO_IEC TR14652 Locale definition for the LC_TELEPHONE
+-% generated by IBM Basic CountryPack Transformer.
+-tel_int_fmt "+%c ;%a ;%l"
+-int_prefix "65"
+-int_select "001"
++copy "en_SG"
+ END LC_TELEPHONE
+ 
+ 
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/zh_TW glibc-2.33/localedata/locales/zh_TW
+--- glibc-2.33.org/localedata/locales/zh_TW	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/zh_TW	2021-03-20 14:30:28.785826328 +0100
+@@ -176,7 +176,7 @@ country_ab2	"TW"
+ country_ab3	"TWN"
+ country_num	158
+ country_car "RC"
+-country_isbn	957
++country_isbn	"957,986"
+ 
+ % Reference:	http://lcweb.loc.gov/standards/iso639-2/langhome.html
+ lang_name	"<U4E2D><U6587>"
+diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/zu_ZA glibc-2.33/localedata/locales/zu_ZA
+--- glibc-2.33.org/localedata/locales/zu_ZA	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/localedata/locales/zu_ZA	2021-03-20 14:30:28.785826328 +0100
+@@ -254,4 +254,6 @@ country_num   710
+ country_ab2   "ZA"
+ country_ab3   "ZAF"
+ 
++country_isbn  "0"
++
+ END LC_ADDRESS

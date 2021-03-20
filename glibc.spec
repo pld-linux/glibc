@@ -948,7 +948,7 @@ exit 1
 %patch0 -p1
 
 %patch2 -p1
-%patch3 -p0
+%patch3 -p1
 %{!?with_bash_nls:%patch4 -p1}
 
 %patch6 -p1
