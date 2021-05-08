@@ -50,7 +50,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -61,7 +61,7 @@ Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 # from man-pages.spec --with tars
 Source5:	%{name}-man-pages.tar.xz
-# Source5-md5:	e66023386d2cc0d6a1d5c29bdbf03550
+# Source5-md5:	ff93a5e391bcff0d88dd4f8c3f96577d
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
@@ -1936,6 +1936,7 @@ fi
 %doc documentation/*
 %{_infodir}/libc.info*
 
+%{_mandir}/man2/getcwd.2*
 %{_mandir}/man3/*
 %{_mandir}/man7/aio.7*
 %{_mandir}/man7/attributes.7*
@@ -1948,9 +1949,11 @@ fi
 %{_mandir}/man7/nptl.7*
 %{_mandir}/man7/posixoptions.7*
 %{_mandir}/man7/pthreads.7*
+%{_mandir}/man7/queue.7*
 %{_mandir}/man7/rtld-audit.7*
 %{_mandir}/man7/sem_overview.7*
 %{_mandir}/man7/shm_overview.7*
+%{_mandir}/man7/system_data_types.7*
 %lang(cs) %{_mandir}/cs/man3/*
 %lang(de) %{_mandir}/de/man3/*
 %lang(es) %{_mandir}/es/man3/*
@@ -1971,6 +1974,7 @@ fi
 %lang(hu) %{_mandir}/hu/man3/*
 %lang(it) %{_mandir}/it/man3/*
 %lang(it) %{_mandir}/it/man7/glob.7*
+%lang(ja) %{_mandir}/ja/man2/getcwd.2*
 %lang(ja) %{_mandir}/ja/man3/*
 %lang(ja) %{_mandir}/ja/man7/aio.7*
 %lang(ja) %{_mandir}/ja/man7/complex.7*
