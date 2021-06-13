@@ -156,7 +156,7 @@ Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 Conflicts:	util-linux < 2.35.1-2
 Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
-ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel armv6hl aarch64
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel armv6hl armv7hl armv7hnl aarch64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
@@ -1435,7 +1435,7 @@ fi
 %attr(755,root,root) /lib/ld-linux-aarch64.so.1
 %attr(755,root,root) /%{_lib}/ld-linux-aarch64.so.1
 %endif
-%ifarch armv6hl
+%ifarch armv6hl armv7hl armv7hnl
 %attr(755,root,root) /lib/ld-linux-armhf.so.3
 %endif
 %ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} x32 ppc64 s390x %{arm} aarch64
@@ -1883,7 +1883,7 @@ fi
 %ifarch alpha ppc sparc
 %{_libdir}/libnldbl_nonshared.a
 %endif
-%ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64 aarch64 armv6hl
+%ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64 aarch64 armv6hl armv7hl armv7hnl
 # ABI-dependent headers
 %{_includedir}/gnu/stubs-*.h
 %endif
