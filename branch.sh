@@ -2,8 +2,8 @@
 set -e
 url=git://sourceware.org/git/glibc.git
 package=glibc
-tag=glibc-2.33
-branch=release/2.33/master
+tag=glibc-2.34
+branch=release/2.34/master
 out=$package-git.patch
 repo=$package.git
 

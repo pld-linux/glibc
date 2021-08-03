@@ -34,6 +34,18 @@ diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/Makefile glibc-2.33/iconvdata/Ma
 diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/gconv-modules glibc-2.33/iconvdata/gconv-modules
 --- glibc-2.33.org/iconvdata/gconv-modules	2021-02-01 18:15:33.000000000 +0100
 +++ glibc-2.33/iconvdata/gconv-modules	2021-03-20 14:29:23.200826328 +0100
+@@ -395,6 +401,8 @@ alias	ISO-IR-203//		ISO-8859-15//
+ alias	ISO_8859-15//		ISO-8859-15//
+ alias	LATIN-9//		ISO-8859-15//
+ alias	LATIN9//		ISO-8859-15//
++alias	L9//			ISO-8859-15//
++alias	8859-15//		ISO-8859-15//
+ alias	ISO_8859-15:1998//	ISO-8859-15//
+ module	ISO-8859-15//		INTERNAL		ISO8859-15	1
+ module	INTERNAL		ISO-8859-15//		ISO8859-15	1
+diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/gconv-modules-extra.conf glibc-2.33/iconvdata/gconv-modules-extra.conf
+--- glibc-2.33.org/iconvdata/gconv-modules-extra.conf	2021-02-01 18:15:33.000000000 +0100
++++ glibc-2.33/iconvdata/gconv-modules-extra.conf	2021-03-20 14:29:23.200826328 +0100
 @@ -355,23 +355,28 @@ alias	ISO8859-10//		ISO-8859-10//
  alias	ISO885910//		ISO-8859-10//
  alias	LATIN6//		ISO-8859-10//
@@ -71,15 +83,6 @@ diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/gconv-modules glibc-2.33/iconvda
  alias	ISO_8859-14:1998//	ISO-8859-14//
  alias	ISO_8859-14//		ISO-8859-14//
  alias	ISO-CELTIC//		ISO-8859-14//
-@@ -395,6 +401,8 @@ alias	ISO-IR-203//		ISO-8859-15//
- alias	ISO_8859-15//		ISO-8859-15//
- alias	LATIN-9//		ISO-8859-15//
- alias	LATIN9//		ISO-8859-15//
-+alias	L9//			ISO-8859-15//
-+alias	8859-15//		ISO-8859-15//
- alias	ISO_8859-15:1998//	ISO-8859-15//
- module	ISO-8859-15//		INTERNAL		ISO8859-15	1
- module	INTERNAL		ISO-8859-15//		ISO8859-15	1
 @@ -405,6 +413,7 @@ alias	ISO885916//		ISO-8859-16//
  alias	ISO-IR-226//		ISO-8859-16//
  alias	LATIN10//		ISO-8859-16//

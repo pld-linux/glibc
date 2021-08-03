@@ -36,7 +36,7 @@
 %undefine		with_static_pie
 %endif
 
-%define		core_version	2.33
+%define		core_version	2.34
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -50,24 +50,24 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	390bbd889c7e8e8a7041564cb6b27cca
+# Source0-md5:	31998b53fb39cb946e96abc310af1c89
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
 # from man-pages.spec --with tars
 Source5:	%{name}-man-pages.tar.xz
-# Source5-md5:	ff93a5e391bcff0d88dd4f8c3f96577d
+# Source5-md5:	e66023386d2cc0d6a1d5c29bdbf03550
 Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
-Patch0:		glibc-git.patch
-# Patch0-md5:	049e56141bf71acd5d131ee63e11211d
+#Patch0:		glibc-git.patch
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -945,7 +945,7 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-%patch0 -p1
+#%patch0 -p1
 
 %patch2 -p1
 %patch3 -p1
@@ -1089,11 +1089,11 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl %{?with_crypt:crypt} dl \
+for l in BrokenLocale anl %{?with_crypt:crypt} \
 %ifarch %{x8664} x32
 	mvec \
 %endif
-	resolv rt thread_db util; do
+	; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so

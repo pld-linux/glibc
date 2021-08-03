@@ -1,7 +1,7 @@
 --- glibc-2.31/elf/ldd.bash.in.orig	2020-02-01 12:52:50.000000000 +0100
 +++ glibc-2.31/elf/ldd.bash.in	2020-02-01 14:02:07.365985940 +0100
 @@ -1,4 +1,4 @@
--#! @BASH@
+-#!/bin/bash
 +#!/bin/sh
  # Copyright (C) 1996-2021 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
@@ -109,7 +109,7 @@
 --- glibc-2.31/elf/sotruss.sh.orig	2020-02-01 13:38:05.830462075 +0100
 +++ glibc-2.31/elf/sotruss.sh	2020-02-01 14:06:25.601253626 +0100
 @@ -1,4 +1,4 @@
--#! @BASH@
+-#!/bin/bash
 +#!/bin/sh
  # Copyright (C) 2011-2021 Free Software Foundation, Inc.
  # This file is part of the GNU C Library.
