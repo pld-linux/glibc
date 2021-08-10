@@ -161,7 +161,7 @@ ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # errno, ps_*, __resp, __h_errno symbols
-%define		skip_post_check_so	libm.so.6 libc_malloc_debug.so.0 libcrypt.so.1 libthread_db.so.1 libresolv.so.2 libnss_db.so.2 libnss_compat.so.2 libnss_hesiod.so.2 libnsl.so.1
+%define		skip_post_check_so	libm.so.6 libc_malloc_debug.so.0 libcrypt.so.1 libthread_db.so.1 libresolv.so.2 libnss_db.so.2 libnss_compat.so.2 libnss_hesiod.so.2 libnsl.so.1 librt.so.1
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
