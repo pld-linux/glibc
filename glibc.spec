@@ -1,4 +1,5 @@
 # TODO:
+# - use syslog.2 from here and not from man-pages
 # - restore --with-pkgversion when tcl upstream fixes the #3599098 (broken platform::identify).
 # - --enable-systemtap
 # - look at locale fixes/updates in bugzilla
@@ -50,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -158,6 +159,9 @@ Conflicts:	util-linux < 2.35.1-2
 Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
 ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel armv6hl armv7hl armv7hnl aarch64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# errno, ps_*, __resp, __h_errno symbols
+%define		skip_post_check_so	libm.so.6 libc_malloc_debug.so.0 libcrypt.so.1 libthread_db.so.1 libresolv.so.2 libnss_db.so.2 libnss_compat.so.2 libnss_hesiod.so.2 libnsl.so.1
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
@@ -1089,11 +1093,11 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl %{?with_crypt:crypt} \
+for l in BrokenLocale anl %{?with_crypt:crypt} c_malloc_debug\
 %ifarch %{x8664} x32
 	mvec \
 %endif
-	; do
+	nss_compat nss_db nss_hesiod resolv thread_db; do
 	test -L $RPM_BUILD_ROOT%{_libdir}/lib${l}.so || exit 1
 	%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
 	ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/lib${l}.so.*) $RPM_BUILD_ROOT%{_libdir}/lib${l}.so
@@ -1415,7 +1419,6 @@ fi
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
 # TODO: package ldconfig symlinks as %ghost
-%attr(755,root,root) /%{_lib}/ld-%{core_version}.so
 %ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
 %attr(755,root,root) /%{_lib}/ld-linux.so.2
 %endif
@@ -1441,56 +1444,47 @@ fi
 %ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} x32 ppc64 s390x %{arm} aarch64
 %attr(755,root,root) /%{_lib}/ld.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libBrokenLocale-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libBrokenLocale.so.1.1
 %else
 %attr(755,root,root) /%{_lib}/libBrokenLocale.so.1
 %endif
 %attr(755,root,root) /%{_lib}/libSegFault.so
-%attr(755,root,root) /%{_lib}/libanl-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libanl.so.1
-%attr(755,root,root) /%{_lib}/libc-%{core_version}.so
 %ifarch alpha ia64
 %attr(755,root,root) /%{_lib}/libc.so.6.1
 %else
 %attr(755,root,root) /%{_lib}/libc.so.6
 %endif
-%attr(755,root,root) /%{_lib}/libdl-%{core_version}.so
+# for debugging and not linking
+%attr(755,root,root) /%{_lib}/libc_malloc_debug.so.0
+%attr(755,root,root) %{_libdir}/libc_malloc_debug.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libdl.so.2.1
 %else
 %attr(755,root,root) /%{_lib}/libdl.so.2
 %endif
-%attr(755,root,root) /%{_lib}/libm-%{core_version}.so
 %ifarch alpha ia64
 %attr(755,root,root) /%{_lib}/libm.so.6.1
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
 %endif
 %ifarch %{x8664} x32
-%attr(755,root,root) /%{_lib}/libmvec-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libmvec.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libnsl-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libnsl.so.1.1
 %else
 %attr(755,root,root) /%{_lib}/libnsl.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libpthread-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libpthread.so.0
-%attr(755,root,root) /%{_lib}/libresolv-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libresolv.so.2.1
 %else
 %attr(755,root,root) /%{_lib}/libresolv.so.2
 %endif
-%attr(755,root,root) /%{_lib}/librt-%{core_version}.so
 %attr(755,root,root) /%{_lib}/librt.so.1
-%attr(755,root,root) /%{_lib}/libthread_db-1.0.so
 %attr(755,root,root) /%{_lib}/libthread_db.so.1
-%attr(755,root,root) /%{_lib}/libutil-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libutil.so.1.1
 %else
@@ -1500,12 +1494,10 @@ fi
 
 #%files -n nss_dns
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_dns-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_dns.so.2
 
 #%files -n nss_files
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_files-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_files.so.2
 
 %defattr(644,root,root,755)
@@ -1802,7 +1794,6 @@ fi
 %if %{with crypt}
 %files libcrypt
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libcrypt-%{core_version}.so
 %ifarch alpha
 %attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1.1
 %else
@@ -1829,19 +1820,16 @@ fi
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_compat-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_compat.so.2
 
 %files -n nss_db
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/makedb
-%attr(755,root,root) /%{_lib}/libnss_db-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_db.so.2
 %{_var}/db/Makefile
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_hesiod-%{core_version}.so
 %attr(755,root,root) /%{_lib}/libnss_hesiod.so.2
 
 %if %{with memusage}
@@ -1859,24 +1847,32 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libBrokenLocale.so
-%attr(755,root,root) %{_libdir}/libanl.so
 %{?with_crypt:%attr(755,root,root) %{_libdir}/libcrypt.so}
-%attr(755,root,root) %{_libdir}/libdl.so
+# for dlopen and not linking
+%attr(755,root,root) %{_libdir}/libanl.so
 %attr(755,root,root) %{_libdir}/libm.so
 %ifarch %{x8664} x32
 %attr(755,root,root) %{_libdir}/libmvec.so
 %endif
 %attr(755,root,root) %{_libdir}/libpcprofile.so
 %attr(755,root,root) %{_libdir}/libresolv.so
-%attr(755,root,root) %{_libdir}/librt.so
+# for dlopen and not linking
 %attr(755,root,root) %{_libdir}/libthread_db.so
-%attr(755,root,root) %{_libdir}/libutil.so
+# empty archives, so linking with obsolete -lXX (these below) works
+%{_libdir}/libanl.a
+%{_libdir}/libdl.a
+%{_libdir}/libdl_p.a
+%{_libdir}/libpthread.a
+%{_libdir}/libpthread_p.a
+%{_libdir}/librt.a
+%{_libdir}/librt_p.a
+%{_libdir}/libutil.a
+%{_libdir}/libutil_p.a
 %{_libdir}/crt[1in].o
 %{_libdir}/[MSgr]crt1.o
 %{?with_static_pie:%{_libdir}/grcrt1.o}
 # ld scripts
 %{_libdir}/libc.so
-%{_libdir}/libpthread.so
 # static-only libs
 %{_libdir}/libc_nonshared.a
 %{_libdir}/libg.a
@@ -1936,7 +1932,6 @@ fi
 %doc documentation/*
 %{_infodir}/libc.info*
 
-%{_mandir}/man2/getcwd.2*
 %{_mandir}/man3/*
 %{_mandir}/man7/aio.7*
 %{_mandir}/man7/attributes.7*
@@ -1949,11 +1944,9 @@ fi
 %{_mandir}/man7/nptl.7*
 %{_mandir}/man7/posixoptions.7*
 %{_mandir}/man7/pthreads.7*
-%{_mandir}/man7/queue.7*
 %{_mandir}/man7/rtld-audit.7*
 %{_mandir}/man7/sem_overview.7*
 %{_mandir}/man7/shm_overview.7*
-%{_mandir}/man7/system_data_types.7*
 %lang(cs) %{_mandir}/cs/man3/*
 %lang(de) %{_mandir}/de/man3/*
 %lang(es) %{_mandir}/es/man3/*
@@ -1974,7 +1967,6 @@ fi
 %lang(hu) %{_mandir}/hu/man3/*
 %lang(it) %{_mandir}/it/man3/*
 %lang(it) %{_mandir}/it/man7/glob.7*
-%lang(ja) %{_mandir}/ja/man2/getcwd.2*
 %lang(ja) %{_mandir}/ja/man3/*
 %lang(ja) %{_mandir}/ja/man7/aio.7*
 %lang(ja) %{_mandir}/ja/man7/complex.7*
@@ -2003,21 +1995,16 @@ fi
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libanl.a
 %{_libdir}/libBrokenLocale.a
 %{_libdir}/libc.a
 %{?with_crypt:%{_libdir}/libcrypt.a}
-%{_libdir}/libdl.a
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
 %ifarch %{x8664} x32
 %{_libdir}/libm-%{core_version}.a
 %{_libdir}/libmvec.a
 %endif
-%{_libdir}/libpthread.a
 %{_libdir}/libresolv.a
-%{_libdir}/librt.a
-%{_libdir}/libutil.a
 
 %files profile
 %defattr(644,root,root,755)
@@ -2078,6 +2065,8 @@ fi
 %attr(755,root,root) %{_sbindir}/iconvconfig
 %dir %{_libdir}/gconv
 %{_libdir}/gconv/gconv-modules
+%dir %{_libdir}/gconv/gconv-modules.d
+ %{_libdir}/gconv/gconv-modules.d/gconv-modules-extra.conf
 %verify(not md5 mtime size) %{_libdir}/gconv/gconv-modules.cache
 %attr(755,root,root) %{_libdir}/gconv/*.so
 %{_mandir}/man8/iconvconfig.8*
