@@ -51,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1795,9 +1795,9 @@ fi
 %files libcrypt
 %defattr(644,root,root,755)
 %ifarch alpha
-%attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1.1
+%attr(755,root,root) /%{_lib}/libcrypt.so.1.1
 %else
-%attr(755,root,root) %ghost /%{_lib}/libcrypt.so.1
+%attr(755,root,root) /%{_lib}/libcrypt.so.1
 %endif
 %endif
 
