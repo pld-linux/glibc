@@ -1861,13 +1861,9 @@ fi
 # empty archives, so linking with obsolete -lXX (these below) works
 %{_libdir}/libanl.a
 %{_libdir}/libdl.a
-%{_libdir}/libdl_p.a
 %{_libdir}/libpthread.a
-%{_libdir}/libpthread_p.a
 %{_libdir}/librt.a
-%{_libdir}/librt_p.a
 %{_libdir}/libutil.a
-%{_libdir}/libutil_p.a
 %{_libdir}/crt[1in].o
 %{_libdir}/[MSgr]crt1.o
 %{?with_static_pie:%{_libdir}/grcrt1.o}
@@ -2012,12 +2008,24 @@ fi
 
 %files profile
 %defattr(644,root,root,755)
-%{_libdir}/lib*_p.a
+%{_libdir}/libBrokenLocale_p.a
+%{_libdir}/libanl_p.a
+%{_libdir}/libc_p.a
+%{_libdir}/libcrypt_p.a
+%{_libdir}/libdl_p.a
+%{_libdir}/libm_p.a
+%{_libdir}/libpthread_p.a
+%{_libdir}/libresolv_p.a
+%{_libdir}/librt_p.a
+%{_libdir}/libutil_p.a
 
 %files pic
 %defattr(644,root,root,755)
-%{_libdir}/lib*_pic.a
-%{_libdir}/lib*.map
+%{_libdir}/libc_pic.a
+%{_libdir}/libm_pic.a
+%{_libdir}/libresolv_pic.a
+%{_libdir}/libc.map
+%{_libdir}/libm.map
 %{_libdir}/sofini.o
 
 %files -n nscd
