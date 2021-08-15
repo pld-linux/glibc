@@ -1418,7 +1418,6 @@ fi
 %if %{without cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
-# TODO: package ldconfig symlinks as %ghost
 %ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
 %attr(755,root,root) /%{_lib}/ld-linux.so.2
 %endif
