@@ -51,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1078,11 +1078,11 @@ PICFILES="libc_pic.a libc.map
 	math/libm_pic.a libm.map
 	resolv/libresolv_pic.a"
 
-install -p $PICFILES				$RPM_BUILD_ROOT%{_libdir}
-install -p elf/sofini.os				$RPM_BUILD_ROOT%{_libdir}/sofini.o
+install -p $PICFILES		$RPM_BUILD_ROOT%{_libdir}
+install -p elf/sofini.os	$RPM_BUILD_ROOT%{_libdir}/sofini.o
 
 # Include %{_libdir}/gconv/gconv-modules.cache
-$(pwd)/elf/ld.so --library-path $(pwd) ./iconv/iconvconfig --nostdlib --prefix=$RPM_BUILD_ROOT %{_libdir}/gconv -o $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
+:> $RPM_BUILD_ROOT%{_libdir}/gconv/gconv-modules.cache
 cd ..
 
 %if %{without cross}
@@ -1411,6 +1411,9 @@ if [ "$1" = "0" ]; then
 	%userremove nscd
 	%groupremove nscd
 fi
+
+%post -n iconv
+%{_sbindir}/iconvconfig --nostdlib -o %{_libdir}/gconv/gconv-modules.cache %{_libdir}/gconv
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
