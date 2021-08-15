@@ -1,5 +1,5 @@
 # TODO:
-# - use syslog.2 from here and not from man-pages
+# - consider moving klogctl.3 man to man-pages (and drop syslog.2 stub hacks here)
 # - restore --with-pkgversion when tcl upstream fixes the #3599098 (broken platform::identify).
 # - --enable-systemtap
 # - look at locale fixes/updates in bugzilla
