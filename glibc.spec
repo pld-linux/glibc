@@ -2016,6 +2016,9 @@ fi
 %{?with_crypt:%{_libdir}/libcrypt_p.a}
 %{_libdir}/libdl_p.a
 %{_libdir}/libm_p.a
+%ifarch %{x8664} x32
+%{_libdir}/libmvec_p.a
+%endif
 %{_libdir}/libpthread_p.a
 %{_libdir}/libresolv_p.a
 %{_libdir}/librt_p.a
