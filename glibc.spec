@@ -2013,7 +2013,7 @@ fi
 %{_libdir}/libBrokenLocale_p.a
 %{_libdir}/libanl_p.a
 %{_libdir}/libc_p.a
-%{_libdir}/libcrypt_p.a
+%{?with_crypt:%{_libdir}/libcrypt_p.a}
 %{_libdir}/libdl_p.a
 %{_libdir}/libm_p.a
 %{_libdir}/libpthread_p.a
