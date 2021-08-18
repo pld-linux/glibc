@@ -1412,7 +1412,7 @@ if [ "$1" = "0" ]; then
 	%groupremove nscd
 fi
 
-%post -n iconv
+%posttrans -n iconv
 %{_sbindir}/iconvconfig --nostdlib -o %{_libdir}/gconv/gconv-modules.cache %{_libdir}/gconv
 
 %files -f %{name}.lang
