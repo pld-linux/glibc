@@ -1438,7 +1438,6 @@ fi
 %endif
 %ifarch aarch64
 %attr(755,root,root) /lib/ld-linux-aarch64.so.1
-%attr(755,root,root) /%{_lib}/ld-linux-aarch64.so.1
 %endif
 %ifarch armv6hl armv7hl armv7hnl
 %attr(755,root,root) /lib/ld-linux-armhf.so.3
