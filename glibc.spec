@@ -51,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1158,6 +1158,7 @@ done
 #   tlh - Klingon (bzflag)
 #
 # To be added when they become supported by glibc:
+#   ab     (at-spi2-core)
 #   ace    (iso-codes)
 #   ach    (iso-codes, libreport, vlc)
 #   aln    (libreport, vlc)
@@ -1167,12 +1168,12 @@ done
 #   ch     (iso-codes)
 #   co     (FileZilla, libfilezilla, vlc)
 #   es_419 (alpm - common "Spanish (Latin America)")
-#   frp    (iso-codes, lxlauncher, mate, xfce)
+#   frp    (iso-codes, lxlauncher, cinnamon, mate, xfce)
 #   gn     (iso-codes, gnome; gn_BR in gnome, maybe gn_PY)
 #   guc    (gtk-vnc)
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
-#   hye    (tumbler)
+#   hye    (xfce)
 #   ie     (xfce, cinnamon)
 #   ilo    (kudzu, libosinfo, libreport)
 #   io     (alacarte, gtk+2, gnome, iso-codes)
@@ -1207,6 +1208,7 @@ done
 #   tw     (libosinfo)
 #   vec    (mate-applet-indicator)
 #   wba    (libosinfo)
+#   zgh    (cinnamon, xapps)
 #
 # To be removed (after fixing packages still using it):
 #   sr@Latn (use sr@latin instead)
@@ -1218,6 +1220,7 @@ done
 # anp=anp_IN
 # ar=common? (AE, BH, DZ, EG, IQ, JO, KW, LB, LY, MA, OM, QA, SA, SD, SY, TN, YE)
 # az=az_AZ
+# ber=ber_DZ? (or common for DZ, MA?)
 # bn=bn_BD
 # bo=bo_CN? (or common for CN, IN?)
 # ca=ca_ES
@@ -1235,6 +1238,7 @@ done
 # fr=fr_FR
 # fy=fy_NL
 # gez=gez_ET (?)
+# hy=hy_AM
 # it=it_IT
 # kab=kab_DZ
 # ks=ks_IN
@@ -1276,7 +1280,7 @@ done
 #   sv tr zh_CN zh_TW
 #
 for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR \
-	be@latin be@tarask bem bg bho bn bn_IN bo br brx bs byn \
+	be@latin be@tarask bem ber bg bho bn bn_IN bo br brx bs byn \
 	ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz \
 	en en@boldquot en@quot en@shaw en_AU en_CA en_IE en_NZ en_US en_ZA eo \
 	es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE \
