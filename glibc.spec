@@ -51,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -67,8 +67,8 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
-#Patch0:		glibc-git.patch
-## Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
+Patch0:		glibc-git.patch
+# Patch0-md5:	3ea36c438d2a150c4ffa0d6a1ea23fe4
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -949,7 +949,7 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-#%patch0 -p1
+%patch0 -p1
 
 %patch2 -p1
 %patch3 -p1
