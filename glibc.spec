@@ -18,7 +18,7 @@
 %bcond_without	nss_crypt	# disable crypt features based on Mozilla NSS library
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
-%bcond_without	crypt		# don't build obsolete libcrypt
+%bcond_with	crypt		# don't build obsolete libcrypt
 %bcond_without	static_pie	# disable static PIE support
 #
 %ifarch %{ix86} %{x8664}
@@ -51,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -500,7 +500,7 @@ Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 %if %{with crypt}
 Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %else
-Requires:	libxcrypt-devel
+Requires:	libxcrypt-devel >= 4.0.0
 %endif
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
@@ -706,7 +706,7 @@ Summary(ru.UTF-8):	Статические библиотеки glibc
 Summary(uk.UTF-8):	Статичні бібліотеки glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-%{!?with_crypt:Requires:	libxcrypt-static}
+%{!?with_crypt:Requires:	libxcrypt-static >= 4.0.0}
 Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-static(ix86) = %{epoch}:%{version}-%{release}
