@@ -74,7 +74,7 @@ Patch0:		glibc-git.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
-
+Patch5:		%{name}-regex-bug11053.patch
 Patch6:		%{name}-paths.patch
 
 Patch10:	%{name}-info.patch
@@ -954,7 +954,7 @@ exit 1
 %patch2 -p1
 %patch3 -p1
 %{!?with_bash_nls:%patch4 -p1}
-
+%patch5 -p1
 %patch6 -p1
 
 %patch10 -p1
