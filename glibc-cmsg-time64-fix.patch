@@ -1,0 +1,15 @@
+https://sourceware.org/bugzilla/show_bug.cgi?id=28350
+--- glibc-2.34/sysdeps/unix/sysv/linux/convert_scm_timestamps.c.orig	2021-08-02 03:33:43.000000000 +0200
++++ glibc-2.34/sysdeps/unix/sysv/linux/convert_scm_timestamps.c	2021-12-14 06:27:02.255687500 +0100
+@@ -55,7 +55,10 @@ __convert_scm_timestamps (struct msghdr
+        cmsg = CMSG_NXTHDR (msg, cmsg))
+     {
+       if (cmsg->cmsg_level != SOL_SOCKET)
+-	continue;
++        {
++	  last = cmsg;
++	  continue;
++	}
+ 
+       switch (cmsg->cmsg_type)
+ 	{

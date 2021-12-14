@@ -51,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	9
+Release:	10
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -76,6 +76,7 @@ Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
 Patch5:		%{name}-regex-bug11053.patch
 Patch6:		%{name}-paths.patch
+Patch7:		%{name}-cmsg-time64-fix.patch
 
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
@@ -956,6 +957,7 @@ exit 1
 %{!?with_bash_nls:%patch4 -p1}
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %patch10 -p1
 %patch11 -p1
