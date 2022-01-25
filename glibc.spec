@@ -51,7 +51,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	10
+Release:	11
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -68,7 +68,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	61bcc311b2e01d2d130413099010f982
+# Patch0-md5:	0f273932f5b4a7c6efd0984f5f3176a4
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -83,7 +83,7 @@ Patch11:	%{name}-autoconf.patch
 
 Patch14:	%{name}-sparc-errno_fix.patch
 Patch15:	%{name}-new-charsets.patch
-Patch16:	%{name}-tzfile-noassert.patch
+
 # additions pending for upstream merge or taken from other distros
 Patch17:	%{name}-morelocales.patch
 # fixes mostly pending for upstream merge
@@ -964,7 +964,7 @@ exit 1
 
 %patch14 -p1
 %patch15 -p1
-%patch16 -p1
+
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
