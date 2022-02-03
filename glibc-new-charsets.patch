@@ -27,7 +27,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/iconvdata/Makefile glibc-2.33/iconvdata/Ma
 -			hp-thai8 hp-greek8 cp770 cp771 cp772 cp773 cp774
 +			hp-thai8 hp-greek8 cp770 cp771 cp772 cp773 cp774   \
 +			iscii-dev khmer-ns mulelao-1 tatar-cyr \
-+			koi8-k koi8-ru iso8859-7-euro
++			koi8-k iso8859-7-euro
  
  
  gen-special-modules := iso8859-7jp

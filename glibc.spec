@@ -19,7 +19,6 @@
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
 %bcond_with	crypt		# don't build obsolete libcrypt
-%bcond_without	static_pie	# disable static PIE support
 #
 %ifarch %{ix86} %{x8664}
 %{!?min_kernel:%global		min_kernel	3.2.0}
@@ -33,11 +32,8 @@
 %ifnarch i686 %{x8664} x32
 %undefine	with_cet
 %endif
-%ifarch %{arm}
-%undefine		with_static_pie
-%endif
 
-%define		core_version	2.34
+%define		core_version	2.35
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -51,12 +47,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	11
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	31998b53fb39cb946e96abc310af1c89
+# Source0-md5:	dd571c67d85d89d7f60b854a4e207423
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -68,15 +64,14 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	0f273932f5b4a7c6efd0984f5f3176a4
+# Patch0-md5:	514da08d86b396f7931841c0cd86a660
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
-Patch5:		%{name}-regex-bug11053.patch
+
 Patch6:		%{name}-paths.patch
-Patch7:		%{name}-cmsg-time64-fix.patch
 
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
@@ -92,10 +87,6 @@ Patch19:	%{name}-ZA_collate.patch
 
 Patch23:	%{name}-pt_pax.patch
 
-# http://pkgs.fedoraproject.org/cgit/rpms/glibc.git/plain/glibc-c-utf8-locale.patch
-Patch27:	%{name}-c-utf8-locale.patch
-
-Patch29:	%{name}-arm-alignment-fix.patch
 Patch30:	glibc-rh1124987.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
@@ -955,9 +946,8 @@ exit 1
 %patch2 -p1
 %patch3 -p1
 %{!?with_bash_nls:%patch4 -p1}
-%patch5 -p1
+
 %patch6 -p1
-%patch7 -p1
 
 %patch10 -p1
 %patch11 -p1
@@ -971,9 +961,6 @@ exit 1
 
 %patch23 -p0
 
-%patch27 -p1
-
-%patch29 -p1
 %patch30 -p1
 
 # cleanup backups after patching
@@ -1017,7 +1004,6 @@ AWK="gawk" \
 	--enable-profile \
 	--enable-stack-protector=strong \
 	--enable-stackguard-randomization \
-	%{?with_static_pie:--enable-static-pie} \
 	--enable-tunables \
 	--with-binutils=$(pwd)/alt-tools \
 	--with-bugurl=http://bugs.pld-linux.org/ \
@@ -1456,7 +1442,6 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libBrokenLocale.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libSegFault.so
 %attr(755,root,root) /%{_lib}/libanl.so.1
 %ifarch alpha ia64
 %attr(755,root,root) /%{_lib}/libc.so.6.1
@@ -1518,6 +1503,7 @@ fi
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
+%attr(755,root,root) %{_bindir}/ld.so
 %attr(755,root,root) %{_bindir}/locale
 %attr(755,root,root) %{_bindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
@@ -1770,7 +1756,6 @@ fi
 
 %files misc
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/catchsegv
 %attr(755,root,root) %{_bindir}/ldd
 %attr(755,root,root) %{_bindir}/pldd
 %ifarch %{ix86} m68k sparc sparcv9
@@ -1780,7 +1765,6 @@ fi
 %dir %{_libdir}/audit
 %attr(755,root,root) %{_libdir}/audit/sotruss-lib.so
 
-%{_mandir}/man1/catchsegv.1*
 %{_mandir}/man1/ldd.1*
 %{_mandir}/man1/pldd.1*
 %lang(cs) %{_mandir}/cs/man1/ldd.1*
@@ -1873,7 +1857,7 @@ fi
 %{_libdir}/libutil.a
 %{_libdir}/crt[1in].o
 %{_libdir}/[MSgr]crt1.o
-%{?with_static_pie:%{_libdir}/grcrt1.o}
+%{_libdir}/grcrt1.o
 # ld scripts
 %{_libdir}/libc.so
 # static-only libs
