@@ -47,7 +47,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -64,7 +64,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	5b3d47679e339dacf85a8351b875ff12
+# Patch0-md5:	c5f49c7bc7082bbb8405d01e4a482df9
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -1094,6 +1094,9 @@ done
 # linking nss modules directly is not supported
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
+# avoid conflict on multilib
+mv $RPM_BUILD_ROOT%{_bindir}/ld.so{,-%{_target_cpu}}
+
 install -p %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 cp -a %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
 cp -a %{SOURCE4}		$RPM_BUILD_ROOT/etc/logrotate.d/nscd
@@ -1503,7 +1506,7 @@ fi
 %attr(755,root,root) %{_bindir}/getconf
 %attr(755,root,root) %{_bindir}/getent
 %attr(755,root,root) %{_bindir}/iconv
-%attr(755,root,root) %{_bindir}/ld.so
+%attr(755,root,root) %{_bindir}/ld.so-%{_target_cpu}
 %attr(755,root,root) %{_bindir}/locale
 %attr(755,root,root) %{_bindir}/zdump
 %attr(755,root,root) %{_sbindir}/zic
