@@ -47,7 +47,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1077,8 +1077,8 @@ cd ..
 install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
-%{?with_memusage:mv -f $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}}
-mv -f $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
+%{?with_memusage:%{__mv} $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}}
+%{__mv} $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
 for l in BrokenLocale anl %{?with_crypt:crypt} c_malloc_debug\
@@ -1095,7 +1095,7 @@ done
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libnss_*.so
 
 # avoid conflict on multilib
-mv $RPM_BUILD_ROOT%{_bindir}/ld.so{,-%{_target_cpu}}
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/ld.so{,-%{_target_cpu}}
 
 install -p %{SOURCE2}		$RPM_BUILD_ROOT/etc/rc.d/init.d/nscd
 cp -a %{SOURCE3}		$RPM_BUILD_ROOT/etc/sysconfig/nscd
@@ -1105,6 +1105,9 @@ cp -a posix/gai.conf		$RPM_BUILD_ROOT%{_sysconfdir}
 sed -e 's#\([ \t]\)db\([ \t]\)#\1#g' nss/nsswitch.conf > $RPM_BUILD_ROOT%{_sysconfdir}/nsswitch.conf
 
 xz -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
+# catchsegv was removed in glibc 2.35
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/catchsegv.1
+
 : > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.cache
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf.d
 echo 'include ld.so.conf.d/*.conf' > $RPM_BUILD_ROOT%{_sysconfdir}/ld.so.conf
@@ -1149,7 +1152,6 @@ done
 #   tlh - Klingon (bzflag)
 #
 # To be added when they become supported by glibc:
-#   ab     (at-spi2-core)
 #   ace    (iso-codes)
 #   ach    (iso-codes, libreport, vlc)
 #   aln    (libreport, vlc)
@@ -1207,6 +1209,7 @@ done
 #
 # Short forms (omitted country code, used instead of long form) for ambiguous or unclear cases:
 # aa=aa_ER
+# ab=ab_GE
 # ak=ak_GH
 # anp=anp_IN
 # ar=common? (AE, BH, DZ, EG, IQ, JO, KW, LB, LY, MA, OM, QA, SA, SD, SY, TN, YE)
@@ -1270,7 +1273,7 @@ done
 #   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
 #   sv tr zh_CN zh_TW
 #
-for i in aa aa@saaho af ak am an ang anp ar ar_TN as ast az az_IR \
+for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR \
 	be@latin be@tarask bem ber bg bho bn bn_IN bo br brx bs byn \
 	ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz \
 	en en@boldquot en@quot en@shaw en_AU en_CA en_IE en_NZ en_US en_ZA eo \

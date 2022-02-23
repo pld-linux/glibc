@@ -36,6 +36,14 @@ diff -urNp -x '*.orig' glibc-2.33.org/intl/locale.alias glibc-2.33/intl/locale.a
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata/SUPPORTED
 --- glibc-2.33.org/localedata/SUPPORTED	2021-02-01 18:15:33.000000000 +0100
 +++ glibc-2.33/localedata/SUPPORTED	2021-03-20 14:29:52.275826328 +0100
+@@ -6,6 +6,7 @@ aa_DJ/ISO-8859-1 \
+ aa_ER/UTF-8 \
+ aa_ER@saaho/UTF-8 \
+ aa_ET/UTF-8 \
++ab_GE/UTF-8 \
+ af_ZA.UTF-8/UTF-8 \
+ af_ZA/ISO-8859-1 \
+ agr_PE/UTF-8 \
 @@ -50,6 +50,8 @@ ar_TN.UTF-8/UTF-8 \
  ar_TN/ISO-8859-6 \
  ar_YE.UTF-8/UTF-8 \
