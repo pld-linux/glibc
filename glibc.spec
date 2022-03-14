@@ -103,6 +103,7 @@ BuildRequires:	gcc >= 6:6.2
 %endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
+%{?with_selinux:BuildRequires:	libcap-devel}
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	make >= 1:4.0
