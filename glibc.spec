@@ -32,6 +32,9 @@
 %ifnarch i686 %{x8664} x32
 %undefine	with_cet
 %endif
+%ifnarch %{arm}
+%define		with_static_pie		1
+%endif
 
 %define		core_version	2.35
 %define		llh_version	7:2.6.32.1-1
@@ -1864,7 +1867,7 @@ fi
 %{_libdir}/libutil.a
 %{_libdir}/crt[1in].o
 %{_libdir}/[MSgr]crt1.o
-%{_libdir}/grcrt1.o
+%{?with_static_pie:%{_libdir}/grcrt1.o}
 # ld scripts
 %{_libdir}/libc.so
 # static-only libs
