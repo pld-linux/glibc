@@ -1876,10 +1876,6 @@ fi
 %ifarch alpha ppc sparc
 %{_libdir}/libnldbl_nonshared.a
 %endif
-%ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64 aarch64 armv6hl armv7hl armv7hnl
-# ABI-dependent headers
-%{_includedir}/gnu/stubs-*.h
-%endif
 
 %files headers
 %defattr(644,root,root,755)
@@ -1894,6 +1890,10 @@ fi
 %dir %{_includedir}/gnu
 %{_includedir}/gnu/lib*.h
 %{_includedir}/gnu/stubs.h
+%ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64 aarch64 armv6hl armv7hl armv7hnl
+# ABI-dependent headers
+%{_includedir}/gnu/stubs-*.h
+%endif
 %{_includedir}/net
 %{_includedir}/netash
 %{_includedir}/netatalk
