@@ -50,7 +50,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -73,7 +73,7 @@ Patch0:		glibc-git.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
-
+Patch5:		nss_crash.patch
 Patch6:		%{name}-paths.patch
 
 Patch10:	%{name}-info.patch
@@ -950,6 +950,7 @@ exit 1
 %patch2 -p1
 %patch3 -p1
 %{!?with_bash_nls:%patch4 -p1}
+%patch5 -p1
 
 %patch6 -p1
 
