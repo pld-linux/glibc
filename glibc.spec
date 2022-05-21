@@ -132,7 +132,7 @@ Provides:	glibc(nptl)
 Provides:	glibc(tls)
 Provides:	rtld(GNU_HASH)
 Obsoletes:	glibc-common
-Obsoletes:	glibc-debug
+Obsoletes:	glibc-debug < 2.1
 Obsoletes:	glibc-ld < 6:2.33-2
 %ifarch %{x8664} sparc64 ppc64
 Provides:	glibc64
@@ -737,7 +737,7 @@ Summary(tr.UTF-8):	Ölçüm desteği olan glibc
 Summary(uk.UTF-8):	GNU libc з підтримкою профайлера
 Group:		Development/Libraries/Libc
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Obsoletes:	libc-profile
+Obsoletes:	libc-profile < 6
 
 %description profile
 When programs are being profiled using gprof, they must use these
