@@ -9,7 +9,7 @@
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
-# min_kernel	(default is 3.4.0 except for x86/x86_64 where 3.2.0 suffices)
+# min_kernel	(default is 3.2.0 with arch specific values x32 (3.4.0) aarch64 (3.7.0) ia64 (3.2.18))
 %bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
@@ -20,10 +20,17 @@
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
 %bcond_with	crypt		# don't build obsolete libcrypt
 #
-%ifarch %{ix86} %{x8664}
-%{!?min_kernel:%global		min_kernel	3.2.0}
-%else
+%ifarch aarch64
+%{!?min_kernel:%global		min_kernel	3.7.0}
+%endif
+%ifarch ia64
+%{!?min_kernel:%global		min_kernel	3.2.18}
+%endif
+%ifarch x32
 %{!?min_kernel:%global		min_kernel	3.4.0}
+%endif
+%ifnarch aarch64 ia64 x32
+%{!?min_kernel:%global		min_kernel	3.2.0}
 %endif
 
 %ifarch sparc64
