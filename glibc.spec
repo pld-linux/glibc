@@ -43,7 +43,7 @@
 %define		with_static_pie		1
 %endif
 
-%define		core_version	2.35
+%define		core_version	2.36
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -57,12 +57,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	8
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	dd571c67d85d89d7f60b854a4e207423
+# Source0-md5:	00e9b89e043340f688bc93ec03239b57
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -74,13 +74,12 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	74a4b37b13ce8c8cc15b9f05398c58cd
+# Patch0-md5:	e89572dfaa4ed68f99ca86681d04878c
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 Patch3:		%{name}-crypt-blowfish.patch
 Patch4:		%{name}-no-bash-nls.patch
-Patch5:		nss_crash.patch
 Patch6:		%{name}-paths.patch
 
 Patch10:	%{name}-info.patch
@@ -957,7 +956,6 @@ exit 1
 %patch2 -p1
 %patch3 -p1
 %{!?with_bash_nls:%patch4 -p1}
-%patch5 -p1
 
 %patch6 -p1
 

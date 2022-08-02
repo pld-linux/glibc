@@ -181,9 +181,9 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  pl_PL/ISO-8859-2 \
  ps_AF/UTF-8 \
 @@ -377,6 +411,9 @@ pt_PT/ISO-8859-1 \
- pt_PT@euro/ISO-8859-15 \
  quz_PE/UTF-8 \
  raj_IN/UTF-8 \
+ rif_MA/UTF-8 \
 +rm_CH.UTF-8/UTF-8 \
 +rm_CH/ISO-8859-1 \
 +ro_RO.ISO-8859-16/ISO-8859-16 \
@@ -216,7 +216,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
  sm_WS/UTF-8 \
-@@ -412,26 +454,42 @@ so_SO/ISO-8859-1 \
+@@ -412,27 +454,43 @@ so_SO/ISO-8859-1 \
  sq_AL.UTF-8/UTF-8 \
  sq_AL/ISO-8859-1 \
  sq_MK/UTF-8 \
@@ -247,6 +247,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
 +sw_UG.UTF-8/UTF-8 \
 +sw_UG.ISO-8859-10/ISO-8859-10 \
 +sw_UG/ISO-8859-1 \
+ syr/UTF-8 \
  szl_PL/UTF-8 \
  ta_IN/UTF-8 \
  ta_LK/UTF-8 \
