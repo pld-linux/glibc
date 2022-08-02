@@ -102,7 +102,7 @@ URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
-BuildRequires:	binutils >= 2:2.29
+BuildRequires:	binutils >= 4:2.29
 BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk >= 3.1.2
@@ -149,7 +149,7 @@ Suggests:	localedb
 Suggests:	tzdata
 Conflicts:	%{name}-misc < %{epoch}:%{version}-%{release}
 Conflicts:	SysVinit < 2.86-11
-Conflicts:	kernel < %{min_kernel}
+Conflicts:	kernel < 3:%{min_kernel}
 Conflicts:	kernel24
 Conflicts:	kernel24-smp
 Conflicts:	ld.so < 1.9.9-10
