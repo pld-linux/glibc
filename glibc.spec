@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1206,7 +1206,6 @@ done
 #   son    (gtkspell3, iso-codes)
 #   su     (terminator)
 #   swg    (sim)
-#   syr    (iso-codes)
 #   tet    (vlc)
 #   tw     (libosinfo)
 #   tzm    (iso-codes)
@@ -1295,7 +1294,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR \
 	mai mg mhr mi mjw mk ml mn mni mr ms mt my nds ne nl_BE nn nr nso oc om or os \
 	pa pap ps pt ps quz rm ro \
 	sa sat sc sd sd@devanagari se shn si sid sl so sq \
-	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw szl \
+	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw syr szl \
 	ta te tg th ti tig tk tl tlh tn tpi ts tt tt@iqtelif \
 	ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES ]; then
