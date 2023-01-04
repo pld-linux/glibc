@@ -97,6 +97,7 @@ Patch19:	%{name}-ZA_collate.patch
 Patch23:	%{name}-pt_pax.patch
 
 Patch30:	glibc-rh1124987.patch
+Patch31:	arm-widevine-compat.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf >= 2.69
@@ -972,6 +973,9 @@ exit 1
 %patch23 -p0
 
 %patch30 -p1
+%ifarch %{arm}
+%patch31 -p1
+%endif
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
