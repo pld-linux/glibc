@@ -1778,7 +1778,7 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ldd
 %attr(755,root,root) %{_bindir}/pldd
-%ifarch %{ix86} m68k sparc sparcv9
+%ifarch m68k sparc sparcv9
 %attr(755,root,root) %{_bindir}/lddlibc4
 %endif
 %attr(755,root,root) %{_bindir}/sotruss
