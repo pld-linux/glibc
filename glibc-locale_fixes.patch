@@ -1291,7 +1291,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_BE glibc-2.33/locale
 +country_post "B"
 +% (French language)
 +country_isbn "2"
- lang_name "fran<U00E7>ais"
+ lang_name "français"
  lang_ab      "fr"
  lang_term    "fra"
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_CA glibc-2.33/localedata/locales/fr_CA
@@ -1305,7 +1305,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_CA glibc-2.33/locale
 +country_car  "CDN"
 +% (French language)
 +country_isbn "2"
- lang_name "fran<U00E7>ais"
+ lang_name "français"
  lang_ab      "fr"
  lang_term    "fra"
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_CH glibc-2.33/localedata/locales/fr_CH
@@ -1316,7 +1316,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_CH glibc-2.33/locale
  country_num 756
  country_car "CH"
 +country_isbn "2"
- lang_name "fran<U00E7>ais"
+ lang_name "français"
  lang_ab      "fr"
  lang_term    "fra"
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_LU glibc-2.33/localedata/locales/fr_LU
@@ -1327,7 +1327,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fr_LU glibc-2.33/locale
  country_num 442
  country_car "L"
 +country_isbn "99959"
- lang_name "fran<U00E7>ais"
+ lang_name "français"
  lang_ab      "fr"
  lang_term    "fra"
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/fur_IT glibc-2.33/localedata/locales/fur_IT

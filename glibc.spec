@@ -43,7 +43,7 @@
 %define		with_static_pie		1
 %endif
 
-%define		core_version	2.36
+%define		core_version	2.37
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -57,12 +57,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	00e9b89e043340f688bc93ec03239b57
+# Source0-md5:	e89cf3dcb64939d29f04b4ceead5cc4e
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -73,8 +73,8 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
-Patch0:		glibc-git.patch
-# Patch0-md5:	5cb264ee1f74fd0dfd09aff653c82cba
+#Patch0:		glibc-git.patch
+# Patch0-md5:	d41d8cd98f00b204e9800998ecf8427e
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -952,7 +952,7 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-%patch0 -p1
+#%patch0 -p1
 
 %patch2 -p1
 %patch3 -p1
