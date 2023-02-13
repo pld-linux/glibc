@@ -74,7 +74,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	86e49c7fb74005d2c1f2162c71c1ec9c
+# Patch0-md5:	92fc55255c14b520ce4ed19fc61a6146
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
