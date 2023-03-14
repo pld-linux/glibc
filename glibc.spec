@@ -973,7 +973,7 @@ exit 1
 %patch23 -p0
 
 %patch30 -p1
-%ifarch %{arm}
+%ifarch %{arm} aarch64
 %patch31 -p1
 %endif
 
