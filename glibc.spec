@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1181,7 +1181,7 @@ done
 #   haw    (iso-codes, stellarium)
 #   hrx    (stellarium)
 #   hye    (xfce)
-#   ie     (xfce, cinnamon)
+#   ie     (GNOME, xfce, cinnamon)
 #   ilo    (kudzu, libosinfo, libreport)
 #   io     (alacarte, gtk+2, gnome, iso-codes)
 #   jam    (iso-codes)
@@ -1310,7 +1310,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR \
 done
 
 # LC_TIME category, used for localized date formats (at least by coreutils)
-for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu ia id it ja kk ko lg lt \
+for i in af be bg ca cs da de el en eo es et eu fi fr ga gl hr hu ia id it ja ka kk ko lg lt \
 	ms nb nl pl pt pt_BR ro ru rw sk sl sr sv tr uk vi zh_CN zh_TW; do
 	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i ]; then
 		echo "%lang($lang) %{_localedir}/$i" >> glibc.lang
