@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1195,7 +1195,7 @@ done
 #   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
 #   man    (ccsm; incorrectly named md)
 #   mni@beng[ali]  (inkscape)
-#   mo     (iso-codes)
+#   mo     (cinnamon, iso-codes)
 #   mus    (bluez-gnome)
 #   na     (iso-codes)
 #   nah    (iso-codes, mate)
@@ -1227,6 +1227,7 @@ done
 # ak=ak_GH
 # anp=anp_IN
 # ar=common? (AE, BH, DZ, EG, IQ, JO, KW, LB, LY, MA, OM, QA, SA, SD, SY, TN, YE)
+# ay=ay_PE
 # az=az_AZ
 # ber=ber_DZ? (or common for DZ, MA?)
 # bn=bn_BD
@@ -1287,7 +1288,7 @@ done
 #   be ca cs da de el en_GB es fi fr gl hr hu it ja ko nb nl pl pt_BR ru rw sk
 #   sv tr zh_CN zh_TW
 #
-for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR \
+for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	be@latin be@tarask bem ber bg bho bn bn_IN bo br brx bs byn \
 	ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz \
 	en en@boldquot en@quot en@shaw en_AU en_CA en_IE en_NZ en_US en_ZA eo \
