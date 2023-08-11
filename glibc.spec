@@ -43,7 +43,7 @@
 %define		with_static_pie		1
 %endif
 
-%define		core_version	2.37
+%define		core_version	2.38
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -57,12 +57,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	e89cf3dcb64939d29f04b4ceead5cc4e
+# Source0-md5:	778cce0ea6bf7f84ca8caacf4a01f45b
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -74,7 +74,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	36bc14b5f564dc4a46e3bdce821e7ad0
+# Patch0-md5:	63c1155f91e08053e4f5d3d0fa201962
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -100,16 +100,20 @@ Patch30:	glibc-rh1124987.patch
 Patch31:	arm-widevine-compat.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
-BuildRequires:	autoconf >= 2.69
+BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake
 BuildRequires:	binutils >= 4:2.29
 BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk >= 3.1.2
+%ifarch aarch64
+BuildRequires:	gcc >= 6:10.1.0
+%else
 %if %{with cet}
 BuildRequires:	gcc >= 6:8.0
 %else
 BuildRequires:	gcc >= 6:6.2
+%endif
 %endif
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
@@ -1006,11 +1010,10 @@ AWK="gawk" \
 %if %{with cet}
 	--enable-cet \
 %endif
-%if %{without crypt}
-	--disable-crypt \
+%if %{with crypt}
+	--enable-crypt \
 %endif
 	--enable-bind-now \
-	--enable-experimental-malloc \
 	--enable-hidden-plt \
 	--enable-kernel="%{min_kernel}" \
 	--enable-nss-crypt%{!?with_nss_crypt:=no} \
@@ -1018,7 +1021,6 @@ AWK="gawk" \
 	--enable-profile \
 	--enable-stack-protector=strong \
 	--enable-stackguard-randomization \
-	--enable-tunables \
 	--with-binutils=$(pwd)/alt-tools \
 	--with-bugurl=http://bugs.pld-linux.org/ \
 	--with-headers=%{_includedir} \
@@ -1096,7 +1098,7 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 
 # make symlinks across top-level directories absolute
 for l in BrokenLocale anl %{?with_crypt:crypt} c_malloc_debug\
-%ifarch %{x8664} x32
+%ifarch %{x8664} x32 aarch64
 	mvec \
 %endif
 	nss_compat nss_db nss_hesiod resolv thread_db; do
@@ -1482,7 +1484,7 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
 %endif
-%ifarch %{x8664} x32
+%ifarch %{x8664} x32 aarch64
 %attr(755,root,root) /%{_lib}/libmvec.so.1
 %endif
 %ifarch alpha
@@ -1863,7 +1865,7 @@ fi
 # for dlopen and not linking
 %attr(755,root,root) %{_libdir}/libanl.so
 %attr(755,root,root) %{_libdir}/libm.so
-%ifarch %{x8664} x32
+%ifarch %{x8664} x32 aarch64
 %attr(755,root,root) %{_libdir}/libmvec.so
 %endif
 %attr(755,root,root) %{_libdir}/libpcprofile.so
@@ -2012,7 +2014,7 @@ fi
 %{?with_crypt:%{_libdir}/libcrypt.a}
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
-%ifarch %{x8664} x32
+%ifarch %{x8664} x32 aarch64
 %{_libdir}/libm-%{core_version}.a
 %{_libdir}/libmvec.a
 %endif
@@ -2026,7 +2028,7 @@ fi
 %{?with_crypt:%{_libdir}/libcrypt_p.a}
 %{_libdir}/libdl_p.a
 %{_libdir}/libm_p.a
-%ifarch %{x8664} x32
+%ifarch %{x8664} x32 aarch64
 %{_libdir}/libmvec_p.a
 %endif
 %{_libdir}/libpthread_p.a
