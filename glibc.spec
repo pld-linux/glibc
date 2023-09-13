@@ -1206,6 +1206,7 @@ done
 #   nv     (iso-codes)
 #   pi     (iso-codes)
 #   pms    (deluge, mate-tweak)
+#   ro_MD  (iso-codes)
 #   rue    (cinnamon)
 #   sat@deva[nagari]  (inkscape)
 #   sco    (gnomad2, mate, picard, stellarium, cinnamon)
