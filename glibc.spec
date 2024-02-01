@@ -406,38 +406,6 @@ NSS glibc module that uses hashed key-value database.
 %description -n nss_db -l pl.UTF-8
 Moduł NSS glibc wykorzystujący haszowaną bazę danych klucz-wartość.
 
-%package -n nss_dns
-Summary:	BIND NSS glibc module
-Summary(es.UTF-8):	Módulo BIND NSS de glibc
-Summary(pl.UTF-8):	Moduł BIND NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_dns
-BIND NSS glibc module.
-
-%description -n nss_dns -l es.UTF-8
-Módulo BIND NSS de glibc.
-
-%description -n nss_dns -l pl.UTF-8
-Moduł BIND NSS glibc.
-
-%package -n nss_files
-Summary:	Traditional files databases NSS glibc module
-Summary(es.UTF-8):	Módulo de tradicionales bases de datos en ficheros para glibc
-Summary(pl.UTF-8):	Moduł tradycyjnych plikowych baz danych NSS glibc
-Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description -n nss_files
-Traditional files databases NSS glibc module.
-
-%description -n nss_files -l es.UTF-8
-Módulo de tradicionales bases de datos en ficheros para glibc.
-
-%description -n nss_files -l pl.UTF-8
-Moduł tradycyjnych plikowych baz danych NSS glibc.
-
 %package -n nss_hesiod
 Summary:	hesiod NSS glibc module
 Summary(es.UTF-8):	Módulo hesiod NSS de glibc
@@ -1470,15 +1438,8 @@ fi
 %endif
 %dir %{_prefix}/lib/locale
 
-#%files -n nss_dns
-%defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_dns.so.2
-
-#%files -n nss_files
-%defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libnss_files.so.2
-
-%defattr(644,root,root,755)
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
