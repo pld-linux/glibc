@@ -36,9 +36,9 @@ diff -urNp -x '*.orig' glibc-2.33.org/intl/locale.alias glibc-2.33/intl/locale.a
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata/SUPPORTED
 --- glibc-2.33.org/localedata/SUPPORTED	2021-02-01 18:15:33.000000000 +0100
 +++ glibc-2.33/localedata/SUPPORTED	2021-03-20 14:29:52.275826328 +0100
-@@ -6,6 +6,7 @@ aa_DJ/ISO-8859-1 \
+@@ -5,6 +5,7 @@ aa_DJ.UTF-8/UTF-8 \
+ aa_DJ/ISO-8859-1 \
  aa_ER/UTF-8 \
- aa_ER@saaho/UTF-8 \
  aa_ET/UTF-8 \
 +ab_GE/UTF-8 \
  af_ZA.UTF-8/UTF-8 \
@@ -120,7 +120,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  kk_KZ/PT154 \
  kl_GL.UTF-8/UTF-8 \
 @@ -298,14 +316,20 @@ ku_TR.UTF-8/UTF-8 \
- ku_TR/ISO-8859-9 \
+ kv_RU/UTF-8 \
  kw_GB.UTF-8/UTF-8 \
  kw_GB/ISO-8859-1 \
 +ky_KG.KOI8-K/KOI8-K \
@@ -217,8 +217,6 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  sl_SI/ISO-8859-2 \
  sm_WS/UTF-8 \
 @@ -412,27 +454,43 @@ so_SO/ISO-8859-1 \
- sq_AL.UTF-8/UTF-8 \
- sq_AL/ISO-8859-1 \
  sq_MK/UTF-8 \
 +sr_BA.ISO-8859-5@ijekavian/ISO-8859-5 \
 +sr_BA@ijekavian/UTF-8 \
@@ -233,9 +231,11 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
 +sr_RS.ISO-8859-2@latin/ISO-8859-2 \
  sr_RS@latin/UTF-8 \
  ss_ZA/UTF-8 \
+ ssy_ER/UTF-8 \
  st_ZA.UTF-8/UTF-8 \
 +ss_ZA.ISO-8859-1/ISO-8859-1 \
  st_ZA/ISO-8859-1 \
+ su_ID/UTF-8 \
  sv_FI.UTF-8/UTF-8 \
  sv_FI/ISO-8859-1 \
  sv_FI@euro/ISO-8859-15 \
@@ -267,7 +267,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
 +tn_ZA.ISO-8859-10/ISO-8859-10 \
  tn_ZA/UTF-8 \
  to_TO/UTF-8 \
- tpi_PG/UTF-8 \
+ tok/UTF-8 \
 @@ -448,7 +507,10 @@ tr_CY.UTF-8/UTF-8 \
  tr_CY/ISO-8859-9 \
  tr_TR.UTF-8/UTF-8 \

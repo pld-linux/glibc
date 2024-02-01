@@ -15,10 +15,8 @@
 %bcond_with	tests		# perform "make test"
 %bcond_without	localedb	# don't build localedb-all (is time consuming)
 %bcond_with	cross		# make a cross build, skip native programs
-%bcond_without	nss_crypt	# disable crypt features based on Mozilla NSS library
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
-%bcond_with	crypt		# don't build obsolete libcrypt
 #
 %ifarch aarch64
 %{!?min_kernel:%global		min_kernel	3.7.0}
@@ -36,14 +34,14 @@
 %ifarch sparc64
 %undefine	with_memusage
 %endif
-%ifnarch i686 %{x8664} x32
+%ifnarch %{x8664}
 %undefine	with_cet
 %endif
 %ifnarch %{arm}
 %define		with_static_pie		1
 %endif
 
-%define		core_version	2.38
+%define		core_version	2.39
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -57,12 +55,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	11
+Release:	0.1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	778cce0ea6bf7f84ca8caacf4a01f45b
+# Source0-md5:	be81e87f72b5ea2c0ffe2bedfeb680c6
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -74,14 +72,13 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	7626694ffa506b65bed84158149349f6
+# Patch0-md5:	9a22331f40525058d6fdfb59b04bb5a7
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
-Patch3:		%{name}-crypt-blowfish.patch
+
 Patch4:		%{name}-no-bash-nls.patch
 Patch6:		%{name}-paths.patch
-Patch7:         fstat.patch
 
 Patch10:	%{name}-info.patch
 Patch11:	%{name}-autoconf.patch
@@ -122,7 +119,6 @@ BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libselinux-devel >= 1.18}
 BuildRequires:	linux-libc-headers >= %{llh_version}
 BuildRequires:	make >= 1:4.0
-%{?with_nss_crypt:BuildRequires:	nss-devel >= 1:3.15.1-2}
 BuildRequires:	perl-base
 BuildRequires:	python3 >= 1:3.4
 BuildRequires:	python3-modules >= 1:3.4
@@ -169,7 +165,7 @@ ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # errno, ps_*, __resp, __h_errno symbols
-%define		skip_post_check_so	libm.so.6 libc_malloc_debug.so.0 libcrypt.so.1 libthread_db.so.1 libresolv.so.2 libnss_db.so.2 libnss_compat.so.2 libnss_hesiod.so.2 libnsl.so.1 librt.so.1
+%define		skip_post_check_so	libm.so.6 libc_malloc_debug.so.0 libthread_db.so.1 libresolv.so.2 libnss_db.so.2 libnss_compat.so.2 libnss_hesiod.so.2 libnsl.so.1 librt.so.1
 
 # avoid -s here (ld.so must not be stripped to allow any program debugging)
 %define		filterout_ld		(-Wl,)?-[sS] (-Wl,)?--strip.*
@@ -338,23 +334,6 @@ Utilities and data used by glibc.
 %description misc -l pl.UTF-8
 Narzędzia i dane używane przez glibc.
 
-%package libcrypt
-Summary:	glibc library for crypt(3)
-Summary(pl.UTF-8):	Biblioteka glibc z funkcją crypt(3)
-Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}-libcrypt(ix86) = %{epoch}:%{version}-%{release}
-%endif
-Provides:	crypt(blowfish)
-
-%description libcrypt
-glibc library for crypt(3).
-
-%description libcrypt -l pl.UTF-8
-Biblioteka glibc z funkcją crypt(3).
-
 %package -n ldconfig
 Summary:	Create shared library cache and maintains symlinks
 Summary(de.UTF-8):	Erstellt ein shared library cache und verwaltet symlinks
@@ -505,11 +484,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
-%if %{with crypt}
-Requires:	%{name}-libcrypt(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%else
 Requires:	libxcrypt-devel >= 4.0.0
-%endif
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
@@ -714,7 +689,7 @@ Summary(ru.UTF-8):	Статические библиотеки glibc
 Summary(uk.UTF-8):	Статичні бібліотеки glibc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-%{!?with_crypt:Requires:	libxcrypt-static >= 4.0.0}
+Requires:	libxcrypt-static >= 4.0.0
 Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
 %ifarch %{ix86}
 Provides:	%{name}-static(ix86) = %{epoch}:%{version}-%{release}
@@ -960,11 +935,10 @@ exit 1
 %patch0 -p1
 
 %patch2 -p1
-%patch3 -p1
+
 %{!?with_bash_nls:%patch4 -p1}
 
 %patch6 -p1
-%patch7 -p1
 
 %patch10 -p1
 %patch11 -p1
@@ -1012,13 +986,9 @@ AWK="gawk" \
 %if %{with cet}
 	--enable-cet \
 %endif
-%if %{with crypt}
-	--enable-crypt \
-%endif
 	--enable-bind-now \
 	--enable-hidden-plt \
 	--enable-kernel="%{min_kernel}" \
-	--enable-nss-crypt%{!?with_nss_crypt:=no} \
 	--enable-obsolete-nsl \
 	--enable-profile \
 	--enable-stack-protector=strong \
@@ -1099,7 +1069,7 @@ install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 %{__mv} $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
-for l in BrokenLocale anl %{?with_crypt:crypt} c_malloc_debug\
+for l in BrokenLocale anl c_malloc_debug\
 %ifarch %{x8664} x32 aarch64
 	mvec \
 %endif
@@ -1150,7 +1120,7 @@ install -d documentation
 for f in DESIGN-systemtap-probes.txt TODO{,-kernel,-testing}; do
 	cp -af nptl/$f documentation/$f.nptl
 done
-cp -af crypt/README.ufc-crypt ChangeLog* documentation
+cp -af ChangeLog* documentation
 
 # Collect locale files and mark them with %%lang()
 echo '%defattr(644,root,root,755)' > glibc.lang
@@ -1346,10 +1316,8 @@ install -d $RPM_BUILD_ROOT%{_mandir}{,/ru,/es,/fr,/ja}/man2
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/pl/man3/{alphasort,cfgetispeed,cfgetospeed,cfmakeraw,cfsetispeed,cfsetospeed,closelog,dn_comp,dn_expand,fscanf}.3
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/tr/man3/{encrypt_r,setkey,setkey_r}.3
 
-%if %{without crypt}
 %{__rm} $RPM_BUILD_ROOT%{_mandir}{,/ja}/man3/crypt{,_r}.3
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/{de,es,fr,pl,pt,ru,tr}/man3/crypt.3
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -1384,9 +1352,6 @@ fi
 %triggerpostun -p /sbin/postshell -- %{name} < 6:2.19-3
 -/bin/cp -an %{_libdir}/locale/locale-archive %{_prefix}/lib/locale/locale-archive
 %endif
-
-%post	libcrypt -p /sbin/ldconfig
-%postun	libcrypt -p /sbin/ldconfig
 
 %post	memusage -p /sbin/ldconfig
 %postun	memusage -p /sbin/ldconfig
@@ -1809,16 +1774,6 @@ fi
 %lang(zh_CN) %{_mandir}/zh_CN/man1/ldd.1*
 %lang(zh_TW) %{_mandir}/zh_TW/man1/ldd.1*
 
-%if %{with crypt}
-%files libcrypt
-%defattr(644,root,root,755)
-%ifarch alpha
-%attr(755,root,root) /%{_lib}/libcrypt.so.1.1
-%else
-%attr(755,root,root) /%{_lib}/libcrypt.so.1
-%endif
-%endif
-
 %files -n ldconfig
 %defattr(644,root,root,755)
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ld.so.conf
@@ -1865,7 +1820,6 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libBrokenLocale.so
-%{?with_crypt:%attr(755,root,root) %{_libdir}/libcrypt.so}
 # for dlopen and not linking
 %attr(755,root,root) %{_libdir}/libanl.so
 %attr(755,root,root) %{_libdir}/libm.so
@@ -2015,7 +1969,6 @@ fi
 %defattr(644,root,root,755)
 %{_libdir}/libBrokenLocale.a
 %{_libdir}/libc.a
-%{?with_crypt:%{_libdir}/libcrypt.a}
 %{_libdir}/libm.a
 %{_libdir}/libmcheck.a
 %ifarch %{x8664} x32 aarch64
@@ -2029,7 +1982,6 @@ fi
 %{_libdir}/libBrokenLocale_p.a
 %{_libdir}/libanl_p.a
 %{_libdir}/libc_p.a
-%{?with_crypt:%{_libdir}/libcrypt_p.a}
 %{_libdir}/libdl_p.a
 %{_libdir}/libm_p.a
 %ifarch %{x8664} x32 aarch64

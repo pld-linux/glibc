@@ -41,13 +41,12 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/aa_ET glibc-2.33/locale
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/agr_PE glibc-2.33/localedata/locales/agr_PE
 --- glibc-2.33.org/localedata/locales/agr_PE	2021-02-01 18:15:33.000000000 +0100
 +++ glibc-2.33/localedata/locales/agr_PE	2021-03-20 14:30:25.069826328 +0100
-@@ -171,6 +171,7 @@ country_ab2   "PE"
+@@ -171,5 +171,6 @@ country_ab2   "PE"
  country_ab3   "PER"
  country_num   604
  country_car   "PE"
 +country_isbn  "612,9972"
- % Awajún
- lang_name     "Awaj<U00FA>n"
+ lang_name     "Awajún"
  % ISO-639-1
 diff -urNp -x '*.orig' glibc-2.33.org/localedata/locales/ak_GH glibc-2.33/localedata/locales/ak_GH
 --- glibc-2.33.org/localedata/locales/ak_GH	2021-02-01 18:15:33.000000000 +0100
