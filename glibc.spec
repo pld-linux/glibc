@@ -9,7 +9,7 @@
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
 #
 # Conditional build:
-# min_kernel	(default is 3.2.0 with arch specific values x32 (3.4.0) aarch64 (3.7.0) ia64 (3.2.18))
+# min_kernel	(default is 3.2.0 with arch specific values x32 (3.4.0) aarch64 (3.7.0)
 %bcond_without	memusage	# don't build memusage utility
 %bcond_without	selinux		# without SELinux support (in nscd)
 %bcond_with	tests		# perform "make test"
@@ -21,13 +21,10 @@
 %ifarch aarch64
 %{!?min_kernel:%global		min_kernel	3.7.0}
 %endif
-%ifarch ia64
-%{!?min_kernel:%global		min_kernel	3.2.18}
-%endif
 %ifarch x32
 %{!?min_kernel:%global		min_kernel	3.4.0}
 %endif
-%ifnarch aarch64 ia64 x32
+%ifnarch aarch64 x32
 %{!?min_kernel:%global		min_kernel	3.2.0}
 %endif
 
@@ -161,7 +158,7 @@ Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 Conflicts:	util-linux < 2.35.1-2
 Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
-ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 ia64 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel armv6hl armv7hl armv7hnl aarch64
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel armv6hl armv7hl armv7hnl aarch64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # errno, ps_*, __resp, __h_errno symbols
@@ -1408,9 +1405,6 @@ fi
 %ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
 %attr(755,root,root) /%{_lib}/ld-linux.so.2
 %endif
-%ifarch ia64
-%attr(755,root,root) /%{_lib}/ld-linux-ia64.so.2
-%endif
 %ifarch %{x8664}
 %attr(755,root,root) /%{_lib}/ld-linux-x86-64.so.2
 %endif
@@ -1426,7 +1420,7 @@ fi
 %ifarch armv6hl armv7hl armv7hnl
 %attr(755,root,root) /lib/ld-linux-armhf.so.3
 %endif
-%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh ia64 %{x8664} x32 ppc64 s390x %{arm} aarch64
+%ifnarch %{ix86} sparc sparcv9 sparc64 alpha sh %{x8664} x32 ppc64 s390x %{arm} aarch64
 %attr(755,root,root) /%{_lib}/ld.so.1
 %endif
 %ifarch alpha
@@ -1435,7 +1429,7 @@ fi
 %attr(755,root,root) /%{_lib}/libBrokenLocale.so.1
 %endif
 %attr(755,root,root) /%{_lib}/libanl.so.1
-%ifarch alpha ia64
+%ifarch alpha
 %attr(755,root,root) /%{_lib}/libc.so.6.1
 %else
 %attr(755,root,root) /%{_lib}/libc.so.6
@@ -1448,7 +1442,7 @@ fi
 %else
 %attr(755,root,root) /%{_lib}/libdl.so.2
 %endif
-%ifarch alpha ia64
+%ifarch alpha
 %attr(755,root,root) /%{_lib}/libm.so.6.1
 %else
 %attr(755,root,root) /%{_lib}/libm.so.6
