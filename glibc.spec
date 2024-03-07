@@ -52,7 +52,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1165,6 +1165,7 @@ done
 # aa=aa_ER
 # ab=ab_GE
 # ak=ak_GH
+# as=as_IN
 # anp=anp_IN
 # ar=common? (AE, BH, DZ, EG, IQ, JO, KW, LB, LY, MA, OM, QA, SA, SD, SY, TN, YE)
 # ay=ay_PE
@@ -1210,6 +1211,7 @@ done
 # sd=sd_IN
 # sd@devanagari=sd_IN@devanagari
 # shn=shn_MM
+# sm=sm_WS
 # so=so_SO
 # sr=sr_RS [cyrillic]
 # sr@latin=sr_RS@latin
@@ -1239,7 +1241,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	ka kab kg kk kl km kn kok ks ks@devanagari ku kw ky la lb lg li ln lo lt lv \
 	mai mg mhr mi mjw mk ml mn mni mr ms mt my nan nds ne nl_BE nn nr nso oc om or os \
 	pa pap ps pt ps quz rm ro \
-	sa sat sc sd sd@devanagari se shn si sid sl so sq \
+	sa sat sc sd sd@devanagari se shn si sid sl sm so sq \
 	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw syr szl \
 	ta te tg th ti tig tk tl tlh tn tpi ts tt tt@iqtelif \
 	ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zh_HK zu; do
