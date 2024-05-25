@@ -52,7 +52,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1130,7 +1130,6 @@ done
 #   kmr    (iso-codes, vlc)
 #   ksw    (cinnamon)
 #   ku_IQ  (mate)
-#   kv     (iso-codes)
 #   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
 #   man    (ccsm; incorrectly named md)
 #   mni@beng[ali]  (inkscape)
@@ -1193,6 +1192,7 @@ done
 # ks=ks_IN
 # ks@devanagari=ks_IN@devanagari
 # ku=ku_TR
+# kv=kv_RU
 # li=li_NL
 # ln=ln_CD
 # lo=lo_LA
@@ -1238,7 +1238,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE \
 	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
 	ha he hi hne ht hsb hy ia id ig ik is it_CH iu \
-	ka kab kg kk kl km kn kok ks ks@devanagari ku kw ky la lb lg li ln lo lt lv \
+	ka kab kg kk kl km kn kok ks ks@devanagari ku kv kw ky la lb lg li ln lo lt lv \
 	mai mg mhr mi mjw mk ml mn mni mr ms mt my nan nds ne nl_BE nn nr nso oc om or os \
 	pa pap ps pt ps quz rm ro \
 	sa sat sc sd sd@devanagari se shn si sid sl sm so sq \
