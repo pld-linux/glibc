@@ -641,7 +641,7 @@ diff -ur glibc-2.39.orig/localedata/locales/cv_RU glibc-2.39/localedata/locales/
 +country_car  "RUS"
 +country_isbn "5"
  % Чӑвашла
- lang_name    "Чӑвашла"
+ lang_name    "чӑваш"
  lang_ab      "cv"
 diff -ur glibc-2.39.orig/localedata/locales/da_DK glibc-2.39/localedata/locales/da_DK
 --- glibc-2.39.orig/localedata/locales/da_DK	2024-02-01 09:53:20.562394124 +0100

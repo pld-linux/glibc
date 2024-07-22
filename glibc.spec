@@ -38,7 +38,7 @@
 %define		with_static_pie		1
 %endif
 
-%define		core_version	2.39
+%define		core_version	2.40
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -52,12 +52,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	be81e87f72b5ea2c0ffe2bedfeb680c6
+# Source0-md5:	b390feef233022114950317f10c4fa97
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -69,7 +69,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	f03b7aadd7ead8bfa78cdf23e4cc7a44
+# Patch0-md5:	8d72c03094ec80cdfbbec87abb2f44ad
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -952,8 +952,12 @@ AWK="gawk" \
 	--enable-cet \
 %endif
 	--enable-bind-now \
+	--enable-fortify-source \
 	--enable-hidden-plt \
 	--enable-kernel="%{min_kernel}" \
+%ifarch aarch64
+	--enable-memory-tagging \
+%endif
 	--enable-obsolete-nsl \
 	--enable-profile \
 	--enable-stack-protector=strong \

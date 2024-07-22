@@ -4,7 +4,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/aclocal.m4 glibc-2.33/aclocal.m4
 @@ -3,11 +3,6 @@ dnl the internal functions defined and u
  dnl match those expected by the fragments.  When changing this version,
  dnl install.texi also needs to be updated.
- m4_define([GLIBC_AUTOCONF_VERSION], [2.71])
+ m4_define([GLIBC_AUTOCONF_VERSION], [2.72])
 -m4_if(m4_defn([AC_AUTOCONF_VERSION]), GLIBC_AUTOCONF_VERSION, [],
 -      [m4_fatal(m4_flatten(
 -Exactly version GLIBC_AUTOCONF_VERSION of Autoconf is required but you have

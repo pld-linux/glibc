@@ -44,7 +44,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  af_ZA.UTF-8/UTF-8 \
  af_ZA/ISO-8859-1 \
  agr_PE/UTF-8 \
-@@ -50,6 +50,8 @@ ar_TN.UTF-8/UTF-8 \
+@@ -50,6 +51,8 @@ ar_TN.UTF-8/UTF-8 \
  ar_TN/ISO-8859-6 \
  ar_YE.UTF-8/UTF-8 \
  ar_YE/ISO-8859-6 \
@@ -53,7 +53,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  ayc_PE/UTF-8 \
  az_AZ/UTF-8 \
  az_IR/UTF-8 \
-@@ -59,6 +61,8 @@ ast_ES/ISO-8859-15 \
+@@ -59,6 +62,8 @@ ast_ES/ISO-8859-15 \
  be_BY.UTF-8/UTF-8 \
  be_BY/CP1251 \
  be_BY@latin/UTF-8 \
@@ -62,7 +62,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  bem_ZM/UTF-8 \
  ber_DZ/UTF-8 \
  ber_MA/UTF-8 \
-@@ -210,11 +214,15 @@ et_EE.ISO-8859-15/ISO-8859-15 \
+@@ -210,11 +215,15 @@ et_EE.ISO-8859-15/ISO-8859-15 \
  eu_ES.UTF-8/UTF-8 \
  eu_ES/ISO-8859-1 \
  eu_ES@euro/ISO-8859-15 \
@@ -78,7 +78,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  fil_PH/UTF-8 \
  fo_FO.UTF-8/UTF-8 \
  fo_FO/ISO-8859-1 \
-@@ -231,8 +239,14 @@ fr_FR@euro/ISO-8859-15 \
+@@ -231,8 +240,14 @@ fr_FR@euro/ISO-8859-15 \
  fr_LU.UTF-8/UTF-8 \
  fr_LU/ISO-8859-1 \
  fr_LU@euro/ISO-8859-15 \
@@ -93,7 +93,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  fy_DE/UTF-8 \
  ga_IE.UTF-8/UTF-8 \
  ga_IE/ISO-8859-1 \
-@@ -261,11 +275,13 @@ hr_HR/ISO-8859-2 \
+@@ -261,11 +276,13 @@ hr_HR/ISO-8859-2 \
  hsb_DE/ISO-8859-2 \
  hsb_DE.UTF-8/UTF-8 \
  ht_HT/UTF-8 \
@@ -107,7 +107,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  id_ID.UTF-8/UTF-8 \
  id_ID/ISO-8859-1 \
  ig_NG/UTF-8 \
-@@ -280,9 +296,11 @@ it_IT@euro/ISO-8859-15 \
+@@ -280,9 +297,11 @@ it_IT@euro/ISO-8859-15 \
  iu_CA/UTF-8 \
  ja_JP.EUC-JP/EUC-JP \
  ja_JP.UTF-8/UTF-8 \
@@ -119,7 +119,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  kk_KZ.UTF-8/UTF-8 \
  kk_KZ/PT154 \
  kl_GL.UTF-8/UTF-8 \
-@@ -298,14 +316,20 @@ ku_TR.UTF-8/UTF-8 \
+@@ -298,14 +317,20 @@ ku_TR.UTF-8/UTF-8 \
  kv_RU/UTF-8 \
  kw_GB.UTF-8/UTF-8 \
  kw_GB/ISO-8859-1 \
@@ -140,7 +140,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  lo_LA/UTF-8 \
  lt_LT.UTF-8/UTF-8 \
  lt_LT/ISO-8859-13 \
-@@ -335,11 +359,17 @@ ms_MY/ISO-8859-1 \
+@@ -335,11 +360,17 @@ ms_MY/ISO-8859-1 \
  mt_MT.UTF-8/UTF-8 \
  mt_MT/ISO-8859-3 \
  my_MM/UTF-8 \
@@ -158,7 +158,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  nds_NL/UTF-8 \
  ne_NP/UTF-8 \
  nhn_MX/UTF-8 \
-@@ -354,10 +384,13 @@ nl_NL/ISO-8859-1 \
+@@ -354,10 +385,13 @@ nl_NL/ISO-8859-1 \
  nl_NL@euro/ISO-8859-15 \
  nn_NO.UTF-8/UTF-8 \
  nn_NO/ISO-8859-1 \
@@ -172,7 +172,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  om_ET/UTF-8 \
  om_KE.UTF-8/UTF-8 \
  om_KE/ISO-8859-1 \
-@@ -367,6 +400,7 @@ pa_IN/UTF-8 \
+@@ -367,6 +401,7 @@ pa_IN/UTF-8 \
  pa_PK/UTF-8 \
  pap_AW/UTF-8 \
  pap_CW/UTF-8 \
@@ -180,7 +180,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  pl_PL.UTF-8/UTF-8 \
  pl_PL/ISO-8859-2 \
  ps_AF/UTF-8 \
-@@ -377,6 +411,9 @@ pt_PT/ISO-8859-1 \
+@@ -377,6 +412,9 @@ pt_PT/ISO-8859-1 \
  quz_PE/UTF-8 \
  raj_IN/UTF-8 \
  rif_MA/UTF-8 \
@@ -190,7 +190,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  ro_RO.UTF-8/UTF-8 \
  ro_RO/ISO-8859-2 \
  ru_RU.KOI8-R/KOI8-R \
-@@ -384,13 +421,17 @@ ru_RU.UTF-8/UTF-8 \
+@@ -428,14 +428,18 @@ ru_RU.UTF-8/UTF-8 \
  ru_RU/ISO-8859-5 \
  ru_UA.UTF-8/UTF-8 \
  ru_UA/KOI8-U \
@@ -202,13 +202,14 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
 +sc_IT.ISO-8859-1/ISO-8859-1 \
 +sc_IT.ISO-8859-15/ISO-8859-15 \
  sc_IT/UTF-8 \
+ scn_IT/UTF-8 \
  sd_IN/UTF-8 \
  sd_IN@devanagari/UTF-8 \
 +sd_PK/UTF-8 \
  se_NO/UTF-8 \
  sgs_LT/UTF-8 \
  shn_MM/UTF-8 \
-@@ -399,6 +440,7 @@ si_LK/UTF-8 \
+@@ -399,6 +441,7 @@ si_LK/UTF-8 \
  sid_ET/UTF-8 \
  sk_SK.UTF-8/UTF-8 \
  sk_SK/ISO-8859-2 \
@@ -216,7 +217,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  sl_SI.UTF-8/UTF-8 \
  sl_SI/ISO-8859-2 \
  sm_WS/UTF-8 \
-@@ -412,27 +454,43 @@ so_SO/ISO-8859-1 \
+@@ -412,27 +455,43 @@ so_SO/ISO-8859-1 \
  sq_MK/UTF-8 \
 +sr_BA.ISO-8859-5@ijekavian/ISO-8859-5 \
 +sr_BA@ijekavian/UTF-8 \
@@ -260,7 +261,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  th_TH.UTF-8/UTF-8 \
  th_TH/TIS-620 \
  the_NP/UTF-8 \
-@@ -441,6 +499,7 @@ tig_ER/UTF-8 \
+@@ -441,6 +500,7 @@ tig_ER/UTF-8 \
  tk_TM/UTF-8 \
  tl_PH.UTF-8/UTF-8 \
  tl_PH/ISO-8859-1 \
@@ -268,7 +269,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  tn_ZA/UTF-8 \
  to_TO/UTF-8 \
  tok/UTF-8 \
-@@ -448,7 +507,10 @@ tr_CY.UTF-8/UTF-8 \
+@@ -448,7 +508,10 @@ tr_CY.UTF-8/UTF-8 \
  tr_CY/ISO-8859-9 \
  tr_TR.UTF-8/UTF-8 \
  tr_TR/ISO-8859-9 \
@@ -279,7 +280,7 @@ diff -urNp -x '*.orig' glibc-2.33.org/localedata/SUPPORTED glibc-2.33/localedata
  tt_RU/UTF-8 \
  tt_RU@iqtelif/UTF-8 \
  ug_CN/UTF-8 \
-@@ -456,6 +518,7 @@ uk_UA.UTF-8/UTF-8 \
+@@ -456,6 +519,7 @@ uk_UA.UTF-8/UTF-8 \
  uk_UA/KOI8-U \
  unm_US/UTF-8 \
  ur_IN/UTF-8 \
