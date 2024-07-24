@@ -52,7 +52,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1135,6 +1135,7 @@ done
 #   ksw    (cinnamon)
 #   ku_IQ  (mate)
 #   kw@kkcor, kw@uccor (libosinfo - currently empty) - add as supported variants when non-empty?
+#   lmo    (cinnamon)
 #   man    (ccsm; incorrectly named md)
 #   mni@beng[ali]  (inkscape)
 #   mo     (cinnamon, iso-codes)
@@ -1201,6 +1202,7 @@ done
 # ln=ln_CD
 # lo=lo_LA
 # mjw=mjw_IN
+# mnw=mnw_MM
 # nan=nan_TW
 # nds=nds_DE
 # nl=nl_NL
@@ -1243,7 +1245,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
 	ha he hi hne ht hsb hy ia id ig ik is it_CH iu \
 	ka kab kg kk kl km kn kok ks ks@devanagari ku kv kw ky la lb lg li ln lo lt lv \
-	mai mg mhr mi mjw mk ml mn mni mr ms mt my nan nds ne nl_BE nn nr nso oc om or os \
+	mai mg mhr mi mjw mk ml mn mni mnw mr ms mt my nan nds ne nl_BE nn nr nso oc om or os \
 	pa pap ps pt ps quz rm ro \
 	sa sat sc sd sd@devanagari se shn si sid sl sm so sq \
 	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw syr szl \
