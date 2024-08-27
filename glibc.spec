@@ -52,7 +52,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1249,7 +1249,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	pa pap ps pt ps quz rm ro \
 	sa sat sc sd sd@devanagari se shn si sid sl sm so sq \
 	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw syr szl \
-	ta te tg th ti tig tk tl tlh tn tpi ts tt tt@iqtelif \
+	ta te tg th ti tig tk tl tlh tn tok tpi ts tt tt@iqtelif \
 	ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zgh zh_HK zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES
