@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-url=git://sourceware.org/git/glibc.git
+url=https://sourceware.org/git/glibc.git
 package=glibc
 tag=glibc-2.40
 branch=release/2.40/master
