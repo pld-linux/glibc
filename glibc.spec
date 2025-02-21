@@ -120,7 +120,7 @@ BuildRequires:	perl-base
 BuildRequires:	python3 >= 1:3.4
 BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	rpm-build >= 4.3-0.20030610.28
-BuildRequires:	rpmbuild(macros) >= 1.752
+BuildRequires:	rpmbuild(macros) >= 2.043
 BuildRequires:	sed >= 4.0.5
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.7
@@ -946,8 +946,9 @@ install -d alt-tools
 ln -sf %{_bindir}/ld.bfd alt-tools/ld
 PATH=$(pwd)/alt-tools:$PATH; export PATH
 
+%define configuredir ..
 AWK="gawk" \
-../%configure \
+%configure \
 %if %{with cet}
 	--enable-cet \
 %endif
