@@ -52,7 +52,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -69,7 +69,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	578ce2268507fd8e5b4f87de0ba337c8
+# Patch0-md5:	9049a796ac35b8091b993214d57a1a39
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -897,29 +897,29 @@ echo "Minimal supported kernel is 3.2.0" >&2
 exit 1
 %endif
 
-%patch0 -p1
+%patch -P0 -p1
 
-%patch2 -p1
+%patch -P2 -p1
 
 %{!?with_bash_nls:%patch4 -p1}
 
-%patch6 -p1
+%patch -P6 -p1
 
-%patch10 -p1
-%patch11 -p1
+%patch -P10 -p1
+%patch -P11 -p1
 
-%patch14 -p1
-%patch15 -p1
+%patch -P14 -p1
+%patch -P15 -p1
 
-%patch17 -p1
-%patch18 -p1
-%patch19 -p1
+%patch -P17 -p1
+%patch -P18 -p1
+%patch -P19 -p1
 
-%patch23 -p0
+%patch -P23 -p0
 
-%patch30 -p1
+%patch -P30 -p1
 %ifarch %{arm} aarch64
-%patch31 -p1
+%patch -P31 -p1
 %endif
 
 # cleanup backups after patching
