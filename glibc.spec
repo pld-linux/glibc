@@ -901,7 +901,7 @@ exit 1
 
 %patch -P2 -p1
 
-%{!?with_bash_nls:%patch4 -p1}
+%{!?with_bash_nls:%patch -P4 -p1}
 
 %patch -P6 -p1
 
