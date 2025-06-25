@@ -52,7 +52,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1231,6 +1231,7 @@ done
 # tpi=tpi_PG
 # tr=tr_TR
 # ur=ur_PK (?)
+# yue=yue_HK
 # zgh=zgh_MA
 # zh: no short code used (use zh_CN, zh_HK, zh_SG, zh_TW)
 #
@@ -1251,7 +1252,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	sa sat sc sd sd@devanagari se shn si sid sl sm so sq \
 	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw syr szl \
 	ta te tg th ti tig tk tl tlh tn tok tpi ts tt tt@iqtelif \
-	ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo zgh zh_HK zh_SG zu; do
+	ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo yue zgh zh_HK zh_SG zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES ]; then
 		install -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES
 		# use lang() tags with ll_CC@variant (stripping charset and @quot|@boldquot)
