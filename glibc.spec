@@ -7,6 +7,7 @@
 # [OLD]
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
+# - enable --enable-sframe when binutils 2.45 is available
 #
 # Conditional build:
 # min_kernel	(default is 3.2.0 with arch specific values x32 (3.4.0) aarch64 (3.7.0)
@@ -17,6 +18,7 @@
 %bcond_with	cross		# make a cross build, skip native programs
 %bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
+%bcond_with		sframe	# new stack trace information format which can be used by backtrace
 #
 %ifarch aarch64
 %{!?min_kernel:%global		min_kernel	3.7.0}
@@ -38,7 +40,7 @@
 %define		with_static_pie		1
 %endif
 
-%define		core_version	2.41
+%define		core_version	2.42
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -52,12 +54,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	19862601af60f73ac69e067d3e9267d4
+# Source0-md5:	23c6f5a27932b435cae94e087cb8b1f5
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -69,7 +71,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	9049a796ac35b8091b993214d57a1a39
+# Patch0-md5:	499a8bfa7632c7a9ab14cfd31125a830
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -97,19 +99,12 @@ URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake
-BuildRequires:	binutils >= 4:2.29
+%{?with_sframe:BuildRequires: binutils >= 4:2.45}
+BuildRequires:	binutils >= 4:2.39
 BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk >= 3.1.2
-%ifarch aarch64
-BuildRequires:	gcc >= 6:10.1.0
-%else
-%if %{with cet}
-BuildRequires:	gcc >= 6:8.0
-%else
-BuildRequires:	gcc >= 6:6.2
-%endif
-%endif
+BuildRequires:	gcc >= 6:12.1
 %{?with_memusage:BuildRequires:	gd-devel >= 2.0.1}
 BuildRequires:	gettext-tools >= 0.10.36
 %{?with_selinux:BuildRequires:	libcap-devel}
@@ -961,6 +956,7 @@ AWK="gawk" \
 %endif
 	--enable-obsolete-nsl \
 	--enable-profile \
+	%{?with_sframe:--enable-sframe} \
 	--enable-stack-protector=strong \
 	--enable-stackguard-randomization \
 	--with-binutils=$(pwd)/alt-tools \
