@@ -40,7 +40,7 @@
 %define		with_static_pie		1
 %endif
 
-%define		core_version	2.42
+%define		core_version	2.43
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -54,12 +54,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	23c6f5a27932b435cae94e087cb8b1f5
+# Source0-md5:	7ec2588300b299215a65aec7e6afa04f
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -71,7 +71,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		glibc-git.patch
-# Patch0-md5:	f8bbeaece12e557a4dae115dd55fbcfd
+# Patch0-md5:	41131dbdf0ef220d46cd74c29c0cacbe
 # against GNU TP (libc domain)
 #Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
