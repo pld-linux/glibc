@@ -36,6 +36,9 @@
 %ifnarch %{x8664}
 %undefine	with_cet
 %endif
+%ifnarch %{x8664} aarch64
+%undefine	with_sframe
+%endif
 %ifnarch %{arm}
 %define		with_static_pie		1
 %endif
