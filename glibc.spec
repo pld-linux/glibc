@@ -11,14 +11,14 @@
 #
 # Conditional build:
 # min_kernel	(default is 3.2.0 with arch specific values x32 (3.4.0) aarch64 (3.7.0)
-%bcond_without	memusage	# don't build memusage utility
-%bcond_without	selinux		# without SELinux support (in nscd)
-%bcond_with	tests		# perform "make test"
-%bcond_without	localedb	# don't build localedb-all (is time consuming)
-%bcond_with	cross		# make a cross build, skip native programs
-%bcond_with	bash_nls	# use bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
+%bcond_without	memusage	# memusage utility
+%bcond_without	selinux		# SELinux support (in nscd)
+%bcond_with	tests		# test suite
+%bcond_without	localedb	# localedb-all database (building is time consuming)
+%bcond_with	cross		# cross build, skip native programs
+%bcond_with	bash_nls	# bash NLS in shell scripts (ldd, sotruss); restores /bin/bash dep
 %bcond_without	cet		# Intel Control-flow Enforcement Technology (CET)
-%bcond_with		sframe	# new stack trace information format which can be used by backtrace
+%bcond_with	sframe		# new stack trace information format which can be used by backtrace
 #
 %ifarch aarch64
 %{!?min_kernel:%global		min_kernel	3.7.0}
