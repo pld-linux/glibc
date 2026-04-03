@@ -70,10 +70,10 @@ Source6:	%{name}-localedb-gen
 Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
-Patch0:		glibc-git.patch
+Patch0:		%{name}-git.patch
 # Patch0-md5:	a23cce6392e306a73ab16a5a049ea889
 # against GNU TP (libc domain)
-#Patch1:		%{name}-pl.po-update.patch
+#Patch1: %{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
 
 Patch4:		%{name}-no-bash-nls.patch
@@ -93,14 +93,14 @@ Patch19:	%{name}-ZA_collate.patch
 
 Patch23:	%{name}-pt_pax.patch
 
-Patch30:	glibc-rh1124987.patch
+Patch30:	%{name}-rh1124987.patch
 Patch31:	arm-widevine-compat.patch
 URL:		http://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake
-%{?with_sframe:BuildRequires: binutils >= 4:2.45}
 BuildRequires:	binutils >= 4:2.39
+%{?with_sframe:BuildRequires:	binutils >= 4:2.45}
 BuildRequires:	bison >= 2.7
 %{!?with_cross:BuildRequires:	dietlibc-static}
 BuildRequires:	gawk >= 3.1.2
@@ -248,15 +248,11 @@ langues nationales (locales).
 Can be used on: Linux kernel >= %{min_kernel}.
 
 %description -l ja.UTF-8
-glibc
-パッケージはシステム上の複数のプログラムで使われる標準ライブラリを
-ふくみます。ディスクスペースとメモリを節約したり、アップグレードを
-用意にするために、共通のシステムコードは一つの場所におかれ、プログラム
-間で共有されます。この部分的なパッケージはシェアドライブラリのかなり
-重要なセットをふくみます: 標準 C ライブラリと標準数値ライブラリです。
-この二つのライブラリ抜きでは、Linux システムは機能しません。 glibc
-パッケージはまた地域言語 (locale) サポートとタイムゾーンデータベース
-サポートをふくみます。
+glibc パッケージはシステム上の複数のプログラムで使われる標準ライブラリを
+ふくみます。ディスクスペースとメモリを節約したり、アップグレードを 用意にするために、共通のシステムコードは一つの場所におかれ、プログラム
+間で共有されます。この部分的なパッケージはシェアドライブラリのかなり 重要なセットをふくみます: 標準 C
+ライブラリと標準数値ライブラリです。 この二つのライブラリ抜きでは、Linux システムは機能しません。 glibc
+パッケージはまた地域言語 (locale) サポートとタイムゾーンデータベース サポートをふくみます。
 
 Can be used on: Linux kernel >= %{min_kernel}.
 
@@ -312,8 +308,8 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
-Suggests:	libidn2 >= 2.0.5
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Suggests:	libidn2 >= 2.0.5
 %ifarch %{ix86}
 Conflicts:	%{name}(x32)
 Conflicts:	%{name}(x86_64)
@@ -453,7 +449,7 @@ Obsoletes:	libiconv-devel
 %ifarch %{x8664}
 # see http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2016-May/024902.html
 %if "%(rpm -q --qf '%{E}:%{V}' binutils)" >= "4:2.26"
-Conflicts: binutils < 4:2.26
+Conflicts:	binutils < 4:2.26
 %endif
 %endif
 
@@ -480,11 +476,8 @@ ces fichiers en-têtes et objets standards pour créer les exécutables.
 
 %description devel -l ja.UTF-8
 glibc-devel パッケージは(ほとんどすべてのプログラムで使われる)標準 C
-ライブラリを使用したプログラムを開発するためのヘッダーとオブジェクト
-ファイルを含みます。もし標準 C
-ライブラリを使用するプログラムを開発するなら
-実行ファイルを作成する目的でこれらの標準ヘッダとオブジェクトファイル
-が使用できます。
+ライブラリを使用したプログラムを開発するためのヘッダーとオブジェクト ファイルを含みます。もし標準 C
+ライブラリを使用するプログラムを開発するなら 実行ファイルを作成する目的でこれらの標準ヘッダとオブジェクトファイル が使用できます。
 
 %description devel -l pl.UTF-8
 Pakiet ten jest niezbędny przy tworzeniu własnych programów
@@ -782,8 +775,7 @@ puede aumentar drásticamente las prestaciones de NIS+, y también puede
 ayudar con DNS.
 
 %description -n nscd -l ja.UTF-8
-Nscd はネームサービス参照をキャッシュし、NIS+ のパフォーマンスを
-ドラマティックに改善することができ、DNS を同様に補助します。
+Nscd はネームサービス参照をキャッシュし、NIS+ のパフォーマンスを ドラマティックに改善することができ、DNS を同様に補助します。
 
 %description -n nscd -l pl.UTF-8
 nscd zapamiętuje zapytania i odpowiedzi NIS oraz DNS. Pozwala
@@ -1398,54 +1390,54 @@ fi
 %attr(755,root,root) /%{_lib}/ld.so.1
 %endif
 %ifarch alpha
-%attr(755,root,root) /%{_lib}/libBrokenLocale.so.1.1
+/%{_lib}/libBrokenLocale.so.1.1
 %else
-%attr(755,root,root) /%{_lib}/libBrokenLocale.so.1
+/%{_lib}/libBrokenLocale.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libanl.so.1
+/%{_lib}/libanl.so.1
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libc.so.6.1
 %else
 %attr(755,root,root) /%{_lib}/libc.so.6
 %endif
 # for debugging and not linking
-%attr(755,root,root) /%{_lib}/libc_malloc_debug.so.0
-%attr(755,root,root) %{_libdir}/libc_malloc_debug.so
+/%{_lib}/libc_malloc_debug.so.0
+%{_libdir}/libc_malloc_debug.so
 %ifarch alpha
-%attr(755,root,root) /%{_lib}/libdl.so.2.1
+/%{_lib}/libdl.so.2.1
 %else
-%attr(755,root,root) /%{_lib}/libdl.so.2
+/%{_lib}/libdl.so.2
 %endif
 %ifarch alpha
-%attr(755,root,root) /%{_lib}/libm.so.6.1
+/%{_lib}/libm.so.6.1
 %else
-%attr(755,root,root) /%{_lib}/libm.so.6
+/%{_lib}/libm.so.6
 %endif
 %ifarch %{x8664} x32 aarch64
-%attr(755,root,root) /%{_lib}/libmvec.so.1
+/%{_lib}/libmvec.so.1
 %endif
 %ifarch alpha
-%attr(755,root,root) /%{_lib}/libnsl.so.1.1
+/%{_lib}/libnsl.so.1.1
 %else
-%attr(755,root,root) /%{_lib}/libnsl.so.1
+/%{_lib}/libnsl.so.1
 %endif
-%attr(755,root,root) /%{_lib}/libpthread.so.0
+/%{_lib}/libpthread.so.0
 %ifarch alpha
-%attr(755,root,root) /%{_lib}/libresolv.so.2.1
+/%{_lib}/libresolv.so.2.1
 %else
-%attr(755,root,root) /%{_lib}/libresolv.so.2
+/%{_lib}/libresolv.so.2
 %endif
-%attr(755,root,root) /%{_lib}/librt.so.1
-%attr(755,root,root) /%{_lib}/libthread_db.so.1
+/%{_lib}/librt.so.1
+/%{_lib}/libthread_db.so.1
 %ifarch alpha
-%attr(755,root,root) /%{_lib}/libutil.so.1.1
+/%{_lib}/libutil.so.1.1
 %else
-%attr(755,root,root) /%{_lib}/libutil.so.1
+/%{_lib}/libutil.so.1
 %endif
 %dir %{_prefix}/lib/locale
 
-%attr(755,root,root) /%{_lib}/libnss_dns.so.2
-%attr(755,root,root) /%{_lib}/libnss_files.so.2
+/%{_lib}/libnss_dns.so.2
+/%{_lib}/libnss_files.so.2
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nsswitch.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/gai.conf
@@ -1754,24 +1746,24 @@ fi
 
 %files -n nss_compat
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_compat.so.2
+/%{_lib}/libnss_compat.so.2
 
 %files -n nss_db
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/makedb
-%attr(755,root,root) /%{_lib}/libnss_db.so.2
+/%{_lib}/libnss_db.so.2
 %{_var}/db/Makefile
 
 %files -n nss_hesiod
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/libnss_hesiod.so.2
+/%{_lib}/libnss_hesiod.so.2
 
 %if %{with memusage}
 %files memusage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/memusage
 %attr(755,root,root) %{_bindir}/memusagestat
-%attr(755,root,root) %{_libdir}/libmemusage.so
+%{_libdir}/libmemusage.so
 %{_mandir}/man1/memusage.1*
 %{_mandir}/man1/memusagestat.1*
 %lang(ja) %{_mandir}/ja/man1/memusage.1*
@@ -1780,17 +1772,17 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libBrokenLocale.so
+%{_libdir}/libBrokenLocale.so
 # for dlopen and not linking
-%attr(755,root,root) %{_libdir}/libanl.so
-%attr(755,root,root) %{_libdir}/libm.so
+%{_libdir}/libanl.so
+%{_libdir}/libm.so
 %ifarch %{x8664} x32 aarch64
-%attr(755,root,root) %{_libdir}/libmvec.so
+%{_libdir}/libmvec.so
 %endif
-%attr(755,root,root) %{_libdir}/libpcprofile.so
-%attr(755,root,root) %{_libdir}/libresolv.so
+%{_libdir}/libpcprofile.so
+%{_libdir}/libresolv.so
 # for dlopen and not linking
-%attr(755,root,root) %{_libdir}/libthread_db.so
+%{_libdir}/libthread_db.so
 # empty archives, so linking with obsolete -lXX (these below) works
 %{_libdir}/libanl.a
 %{_libdir}/libdl.a
