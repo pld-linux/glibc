@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1144,7 +1144,6 @@ done
 #   sat@deva[nagari]  (inkscape)
 #   sco    (gnomad2, mate, picard, stellarium, cinnamon)
 #   son    (gtkspell3, iso-codes)
-#   su     (terminator)
 #   swg    (sim)
 #   tet    (vlc)
 #   tw     (libosinfo)
@@ -1214,6 +1213,7 @@ done
 # sr@latin=sr_RS@latin
 # sr@ijekavian=sr_BA@ijekavian
 # sr@ijekavianlatin=sr_BA@ijekavianlatin
+# su=su_ID
 # sv=sv_SE
 # sw=sw_TZ (or common for KE, TZ, UG?)
 # ta=ta_IN
@@ -1241,7 +1241,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	mai mg mhr mi mjw mk ml mn mni mnw mr ms mt my nan nds ne nl_BE nn nr nso oc om or os \
 	pa pap ps pt ps quz rm ro \
 	sa sat sc sd sd@devanagari se shn si sid sl sm so sq \
-	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st sw syr szl \
+	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st su sw syr szl \
 	ta te tg th ti tig tk tl tlh tn tok tpi ts tt tt@iqtelif \
 	ug uk ur uz uz@cyrillic ve vi wa wal wo xh yi yo yue zgh zh_HK zh_SG zu; do
 	if [ ! -d $RPM_BUILD_ROOT%{_localedir}/$i/LC_MESSAGES ]; then
