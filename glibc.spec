@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -78,7 +78,7 @@ Patch0:		%{name}-git.patch
 # against GNU TP (libc domain)
 #Patch1: %{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
-
+Patch3:		%{name}-OPEN_TREE-macros.patch
 Patch4:		%{name}-no-bash-nls.patch
 Patch6:		%{name}-paths.patch
 
@@ -890,7 +890,7 @@ exit 1
 %patch -P0 -p1
 
 %patch -P2 -p1
-
+%patch -P3 -p1
 %{!?with_bash_nls:%patch -P4 -p1}
 
 %patch -P6 -p1
