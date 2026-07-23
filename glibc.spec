@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -74,11 +74,11 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		%{name}-git.patch
-# Patch0-md5:	a23cce6392e306a73ab16a5a049ea889
+# Patch0-md5:	58e568d5f248f8ca48c26e701641804d
 # against GNU TP (libc domain)
 #Patch1: %{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
-Patch3:		%{name}-OPEN_TREE-macros.patch
+
 Patch4:		%{name}-no-bash-nls.patch
 Patch6:		%{name}-paths.patch
 
@@ -890,7 +890,7 @@ exit 1
 %patch -P0 -p1
 
 %patch -P2 -p1
-%patch -P3 -p1
+
 %{!?with_bash_nls:%patch -P4 -p1}
 
 %patch -P6 -p1
