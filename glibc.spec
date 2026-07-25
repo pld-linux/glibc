@@ -7,7 +7,7 @@
 # [OLD]
 # - localedb-gen man pages(?)
 # - math/{test-fenv,test-tgmath,test-float,test-ifloat}, debug/backtrace-tst(SEGV)  fail on alpha
-# - enable --enable-sframe when binutils 2.45 is available
+# - consider enabling --enable-sframe (upstream default and Fedora keep it disabled)
 #
 # Conditional build:
 # min_kernel	(default is 3.2.0 with arch specific values x32 (3.4.0) aarch64 (3.7.0)
@@ -39,11 +39,9 @@
 %ifnarch %{x8664} aarch64
 %undefine	with_sframe
 %endif
-%ifnarch %{arm}
 %define		with_static_pie		1
-%endif
 
-%define		core_version	2.43
+%define		core_version	2.44
 %define		llh_version	7:2.6.32.1-1
 
 Summary:	GNU libc
@@ -57,12 +55,12 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	7
+Release:	1
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/glibc/%{name}-%{version}.tar.xz
-# Source0-md5:	7ec2588300b299215a65aec7e6afa04f
+# Source0-md5:	7677da43ef759c68e005f5d4c37986a6
 Source2:	nscd.init
 Source3:	nscd.sysconfig
 Source4:	nscd.logrotate
@@ -74,7 +72,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		%{name}-git.patch
-# Patch0-md5:	58e568d5f248f8ca48c26e701641804d
+# Patch0-md5:	2069352bb1a72c1a75b41d336542d6f2
 # against GNU TP (libc domain)
 #Patch1: %{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -156,7 +154,7 @@ Conflicts:	rc-scripts < 0.3.1-13
 Conflicts:	rpm < 4.1
 Conflicts:	util-linux < 2.35.1-2
 Conflicts:	xorg-driver-video-nvidia-libs < 1:295.33
-ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 alpha s390 s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel armv6hl armv7hl armv7hnl aarch64
+ExclusiveArch:	i486 i586 i686 pentium3 pentium4 athlon %{x8664} x32 alpha s390x sparc sparc64 sparcv9 ppc ppc64 armv5tel armv6hl armv7hl armv7hnl aarch64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # errno, ps_*, __resp, __h_errno symbols
@@ -946,9 +944,6 @@ AWK="gawk" \
 	--enable-fortify-source \
 	--enable-hidden-plt \
 	--enable-kernel="%{min_kernel}" \
-%ifarch aarch64
-	--enable-memory-tagging \
-%endif
 	--enable-obsolete-nsl \
 	--enable-profile \
 	%{?with_sframe:--enable-sframe} \
@@ -1114,7 +1109,6 @@ done
 #   gn     (iso-codes, gnome; gn_BR in gnome, maybe gn_PY)
 #   guc    (gtk-vnc)
 #   haw    (iso-codes, stellarium)
-#   hrx    (stellarium)
 #   hye    (xfce)
 #   ie     (GNOME, xfce, cinnamon)
 #   ilo    (kudzu, libosinfo, libreport)
@@ -1182,6 +1176,7 @@ done
 # fr=fr_FR
 # fy=fy_NL
 # gez=gez_ET (?)
+# hrx=hrx_BR
 # hy=hy_AM
 # it=it_IT
 # kab=kab_DZ
@@ -1238,7 +1233,7 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	en en@boldquot en@quot en@shaw en_AU en_CA en_IE en_NZ en_US en_ZA eo \
 	es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE \
 	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
-	ha he hi hne ht hsb hy ia id ig ik is it_CH iu \
+	ha he hi hne hrx ht hsb hy ia id ig ik is it_CH iu \
 	ka kab kg kk kl km kn kok ks ks@devanagari ku kv kw ky la lb lg li ln lo lt lv \
 	mai mg mhr mi mjw mk ml mn mni mnw mr ms mt my nan nds ne nl_BE nn nr nso oc om or os \
 	pa pap ps pt ps quz rm ro \
