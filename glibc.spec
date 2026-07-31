@@ -39,7 +39,9 @@
 %ifnarch %{x8664} aarch64
 %undefine	with_sframe
 %endif
+%ifnarch %{arm}
 %define		with_static_pie		1
+%endif
 
 %define		core_version	2.44
 %define		llh_version	7:2.6.32.1-1
