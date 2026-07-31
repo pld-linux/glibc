@@ -937,8 +937,8 @@ ln -sf %{_bindir}/ld.bfd alt-tools/ld
 PATH=$(pwd)/alt-tools:$PATH; export PATH
 
 %define configuredir ..
-AWK="gawk" \
 %configure \
+	AWK="gawk" \
 %if %{with cet}
 	--enable-cet \
 %endif
@@ -960,14 +960,12 @@ AWK="gawk" \
 # hack: libgd (used by memusagestat) requires librt, which is built after malloc/ subdir.
 # First build all without libgd-dependent components (LIBGD=no)...
 %{__make} \
-	AWK="gawk" \
 	complocaledir=%{_prefix}/lib/locale \
 	sLIBdir=%{_libdir} \
 	LIBGD=no
 
 # ...then, when librt is ready, rerun make to build memusagestat
 %{__make} \
-	AWK="gawk" \
 	complocaledir=%{_prefix}/lib/locale \
 	sLIBdir=%{_libdir}
 
