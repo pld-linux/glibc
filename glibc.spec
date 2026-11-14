@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -1104,7 +1104,9 @@ done
 #   cgg    (vlc)
 #   ch     (iso-codes)
 #   co     (FileZilla, libfilezilla, vlc)
+#   en_PR  (duplicity)
 #   es_419 (alpm - common "Spanish (Latin America)")
+#   es_EM  (duplicity)
 #   frp    (iso-codes, lxlauncher, cinnamon, mate, xfce)
 #   gn     (iso-codes, gnome; gn_BR in gnome, maybe gn_PY)
 #   guc    (gtk-vnc)
@@ -1129,11 +1131,13 @@ done
 #   na     (iso-codes)
 #   nah    (iso-codes, mate)
 #   nap    (cinnamon)
+#   nl_SR  (duplicity)
 #   nqo	   (mate)
 #   nv     (iso-codes)
 #   pi     (iso-codes)
 #   pms    (deluge, mate-tweak)
 #   ro_MD  (iso-codes)
+#   ru_BY  (duplicity)
 #   rue    (cinnamon)
 #   sat@deva[nagari]  (inkscape)
 #   sco    (gnomad2, mate, picard, stellarium, cinnamon)
@@ -1144,6 +1148,7 @@ done
 #   tzm    (iso-codes)
 #   vec    (mate-applet-indicator)
 #   wba    (libosinfo)
+#   zh_MO  (duplicity)
 #
 # To be removed (after fixing packages still using it):
 #   sr@Latn (use sr@latin instead)
@@ -1231,12 +1236,12 @@ for i in aa aa@saaho ab af ak am an ang anp ar ar_TN as ast az az_IR ay \
 	be@latin be@tarask bem ber bg bho bn bn_IN bo br brx bs byn \
 	ca@valencia ce chr ckb cmn crh csb cv cy de_AT de_CH doi dv dz \
 	en en@boldquot en@quot en@shaw en_AU en_CA en_IE en_NZ en_US en_ZA eo \
-	es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_UY es_VE \
+	es_AR es_CL es_CO es_CR es_DO es_EC es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_SV es_US es_UY es_VE \
 	et eu fa ff fil fo fr_BE fr_CA fr_CH fur fy ga gd gez gu gv \
 	ha he hi hne hrx ht hsb hy ia id ig ik is it_CH iu \
 	ka kab kg kk kl km kn kok ks ks@devanagari ku kv kw ky la lb lg li ln lo lt lv \
 	mai mg mhr mi mjw mk ml mn mni mnw mr ms mt my nan nds ne nl_BE nn nr nso oc om or os \
-	pa pap ps pt ps quz rm ro \
+	pa pap ps pt ps quz rm ro ru_UA \
 	sa sat sc scn sd sd@devanagari se shn si sid sl sm so sq \
 	sr sr@Latn sr@ije sr@ijekavian sr@ijekavianlatin sr@latin ss st su sw syr szl \
 	ta te tg th ti tig tk tl tlh tn tok tpi ts tt tt@iqtelif \
