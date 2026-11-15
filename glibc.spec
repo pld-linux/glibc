@@ -989,7 +989,9 @@ cd ..
 install -p glibc-postinst				$RPM_BUILD_ROOT/sbin
 %endif
 
-%{?with_memusage:%{__mv} $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}}
+%if %{with memusage}
+%{__mv} $RPM_BUILD_ROOT/%{_lib}/libmemusage.so $RPM_BUILD_ROOT%{_libdir}
+%endif
 %{__mv} $RPM_BUILD_ROOT/%{_lib}/libpcprofile.so	$RPM_BUILD_ROOT%{_libdir}
 
 # make symlinks across top-level directories absolute
@@ -1683,7 +1685,7 @@ fi
 %endif
 %attr(755,root,root) %{_bindir}/sotruss
 %dir %{_libdir}/audit
-%attr(755,root,root) %{_libdir}/audit/sotruss-lib.so
+%{_libdir}/audit/sotruss-lib.so
 
 %{_mandir}/man1/ldd.1*
 %{_mandir}/man1/pldd.1*
@@ -1766,7 +1768,9 @@ fi
 %{_libdir}/libutil.a
 %{_libdir}/crt[1in].o
 %{_libdir}/[MSgr]crt1.o
-%{?with_static_pie:%{_libdir}/grcrt1.o}
+%if %{with static_pie}
+%{_libdir}/grcrt1.o
+%endif
 # ld scripts
 %{_libdir}/libc.so
 # static-only libs
@@ -1981,6 +1985,6 @@ fi
 %dir %{_libdir}/gconv/gconv-modules.d
 %{_libdir}/gconv/gconv-modules.d/gconv-modules-extra.conf
 %verify(not md5 mtime size) %{_libdir}/gconv/gconv-modules.cache
-%attr(755,root,root) %{_libdir}/gconv/*.so
+%{_libdir}/gconv/*.so
 %{_mandir}/man8/iconvconfig.8*
 %lang(ja) %{_mandir}/ja/man8/iconvconfig.8*
