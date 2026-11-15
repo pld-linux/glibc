@@ -505,24 +505,24 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu stand
 Group:		Development/Building
 # current rpm can't stand parentheses in Obsoletes
 %if "%{_isa}" != ""
-Provides:	glibc-headers-isa-%{__isa_name}-%{__isa_bits}
+Provides:	glibc-headers-isa-%{__isa_name}-%{__isa_bits} = %{epoch}:%{version}-%{release}
 %endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-headers-isa-x86-32
+Obsoletes:	glibc-headers-isa-x86-32 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch x32
-Obsoletes:	glibc-headers-isa-x86-64
+Obsoletes:	glibc-headers-isa-x86-64 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-headers-isa-ppc-32
+Obsoletes:	glibc-headers-isa-ppc-32 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch s390x
-Obsoletes:	glibc-headers-isa-s390-32
+Obsoletes:	glibc-headers-isa-s390-32 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-headers-isa-sparc-32
+Obsoletes:	glibc-headers-isa-sparc-32 <= %{epoch}:%{version}-%{release}
 %endif
 Requires:	linux-libc-headers >= %{llh_version}
 
@@ -553,24 +553,24 @@ Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych
 Group:		Development/Libraries
 # current rpm can't stand parentheses in Obsoletes
 %if "%{_isa}" != ""
-Provides:	glibc-devel-utils-isa-%{__isa_name}-%{__isa_bits}
+Provides:	glibc-devel-utils-isa-%{__isa_name}-%{__isa_bits} = %{epoch}:%{version}-%{release}
 %endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-devel-utils-isa-x86-32
+Obsoletes:	glibc-devel-utils-isa-x86-32 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch x32
-Obsoletes:	glibc-devel-utils-isa-x86-64
+Obsoletes:	glibc-devel-utils-isa-x86-64 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-devel-utils-isa-ppc-32
+Obsoletes:	glibc-devel-utils-isa-ppc-32 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch s390x
-Obsoletes:	glibc-devel-utils-isa-s390-32
+Obsoletes:	glibc-devel-utils-isa-s390-32 <= %{epoch}:%{version}-%{release}
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-devel-utils-isa-sparc-32
+Obsoletes:	glibc-devel-utils-isa-sparc-32 <= %{epoch}:%{version}-%{release}
 %endif
 Conflicts:	man-pages < 4.00
 
