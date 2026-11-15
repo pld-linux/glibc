@@ -57,7 +57,7 @@ Summary(tr.UTF-8):	GNU libc
 Summary(uk.UTF-8):	GNU libc версії
 Name:		glibc
 Version:	%{core_version}
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL v2.1+
 Group:		Libraries
@@ -74,7 +74,7 @@ Source7:	%{name}-LD-path.c
 Source9:	nscd.tmpfiles
 # use branch.sh to update glibc-git.patch
 Patch0:		%{name}-git.patch
-# Patch0-md5:	f591cabb3221c15a92e613ed42c07832
+# Patch0-md5:	e931005f3a8758933f3ec440c1cb502f
 # against GNU TP (libc domain)
 #Patch1: %{name}-pl.po-update.patch
 Patch2:		%{name}-pld.patch
@@ -98,7 +98,10 @@ Patch23:	%{name}-pt_pax.patch
 
 Patch30:	%{name}-rh1124987.patch
 Patch31:	arm-widevine-compat.patch
-URL:		http://www.gnu.org/software/libc/
+# from master, not yet on release/2.44/master; drop once branch.sh brings them in
+Patch32:	%{name}-CVE-2026-115819.patch
+Patch33:	%{name}-CVE-2026-100290.patch
+URL:		https://www.gnu.org/software/libc/
 %{?with_selinux:BuildRequires:	audit-libs-devel}
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake
@@ -442,6 +445,10 @@ Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
 Requires:	libxcrypt-devel%{?_isa} >= 4.0.0
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
+%ifarch %{ix86}
+# required by gcc-multilib-32, llvm and linux-kvm
+Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
+%endif
 Obsoletes:	libiconv-devel
 %ifarch %{x8664}
 # see http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2016-May/024902.html
@@ -503,27 +510,6 @@ kitaplıklar.
 Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
-# current rpm can't stand parentheses in Obsoletes
-%if "%{_isa}" != ""
-Provides:	glibc-headers-isa-%{__isa_name}-%{__isa_bits} = %{epoch}:%{version}-%{release}
-%endif
-%ifarch %{x8664} x32
-# If both -m32 and -m64 is to be supported on x86_64, x86_64 package
-# have to be installed, not ix86 one.
-Obsoletes:	glibc-headers-isa-x86-32 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch x32
-Obsoletes:	glibc-headers-isa-x86-64 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch ppc64
-Obsoletes:	glibc-headers-isa-ppc-32 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch s390x
-Obsoletes:	glibc-headers-isa-s390-32 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch sparc64
-Obsoletes:	glibc-headers-isa-sparc-32 <= %{epoch}:%{version}-%{release}
-%endif
 Requires:	linux-libc-headers >= %{llh_version}
 
 %description headers
@@ -551,27 +537,6 @@ korzystające ze standardowych bibliotek C.
 Summary:	Utilities needed for development using standard C libraries
 Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Libraries
-# current rpm can't stand parentheses in Obsoletes
-%if "%{_isa}" != ""
-Provides:	glibc-devel-utils-isa-%{__isa_name}-%{__isa_bits} = %{epoch}:%{version}-%{release}
-%endif
-%ifarch %{x8664} x32
-# If both -m32 and -m64 is to be supported on AMD64, x86_64 package
-# have to be installed, not ix86 one.
-Obsoletes:	glibc-devel-utils-isa-x86-32 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch x32
-Obsoletes:	glibc-devel-utils-isa-x86-64 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch ppc64
-Obsoletes:	glibc-devel-utils-isa-ppc-32 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch s390x
-Obsoletes:	glibc-devel-utils-isa-s390-32 <= %{epoch}:%{version}-%{release}
-%endif
-%ifarch sparc64
-Obsoletes:	glibc-devel-utils-isa-sparc-32 <= %{epoch}:%{version}-%{release}
-%endif
 Conflicts:	man-pages < 4.00
 
 %description devel-utils
@@ -805,7 +770,7 @@ Provides:	localedb
 
 %description localedb-all
 This package contains locale database for all locales supported by
-glibc. In current glibc it's one large file (about 250MB - if you want
+glibc. In current glibc it's one large file (about 250MB) - if you want
 something smaller with support for chosen locales only, consider
 installing localedb-src and regenerating database using localedb-gen
 script (when database is generated, localedb-src can be uninstalled).
@@ -887,6 +852,8 @@ exit 1
 %ifarch %{arm} aarch64
 %patch -P31 -p1
 %endif
+%patch -P32 -p1
+%patch -P33 -p1
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
@@ -1790,6 +1757,7 @@ fi
 %ifarch %{ix86} %{x8664} x32 ppc ppc64 s390 s390x sparc sparcv9 sparc64 aarch64 armv6hl armv7hl armv7hnl
 # ABI-dependent headers
 %{_includedir}/gnu/stubs-*.h
+%{_includedir}/gnu/lib-names-*.h
 %endif
 
 %files headers
@@ -1803,7 +1771,8 @@ fi
 %dir %{_includedir}/finclude
 %{_includedir}/finclude/math-vector-fortran.h
 %dir %{_includedir}/gnu
-%{_includedir}/gnu/lib*.h
+%{_includedir}/gnu/lib-names.h
+%{_includedir}/gnu/libc-version.h
 %{_includedir}/gnu/stubs.h
 %{_includedir}/net
 %{_includedir}/netash
