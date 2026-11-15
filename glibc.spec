@@ -128,9 +128,6 @@ Requires:	filesystem
 Requires:	ldconfig = %{epoch}:%{version}-%{release}
 Requires:	uname(release) >= %{min_kernel}
 Provides:	%{name}(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}(ix86) = %{epoch}:%{version}-%{release}
-%endif
 Provides:	glibc(nptl)
 Provides:	glibc(tls)
 Provides:	rtld(GNU_HASH)
@@ -311,11 +308,11 @@ Can be used on: Linux kernel >= %{min_kernel}.
 Summary:	Utilities and data used by glibc
 Summary(pl.UTF-8):	Narzędzia i dane używane przez glibc
 Group:		Applications/System
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Suggests:	libidn2 >= 2.0.5
 %ifarch %{ix86}
-Conflicts:	%{name}(x32)
-Conflicts:	%{name}(x86_64)
+Conflicts:	%{name}(x86-x32)
+Conflicts:	%{name}(x86-64)
 %endif
 Conflicts:	man-pages < 4.00
 
@@ -377,7 +374,7 @@ Summary:	Old style NYS NSS glibc module
 Summary(es.UTF-8):	El antiguo módulo NYS NSS de glibc
 Summary(pl.UTF-8):	Stary moduł NYS NSS glibc
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description -n nss_compat
 Old style NYS NSS glibc module.
@@ -392,7 +389,7 @@ Stary moduł NYS NSS glibc.
 Summary:	NSS glibc module that uses hashed key-value database
 Summary(pl.UTF-8):	Moduł NSS glibc wykorzystujący haszowaną bazę danych klucz-wartość
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description -n nss_db
 NSS glibc module that uses hashed key-value database.
@@ -405,7 +402,7 @@ Summary:	hesiod NSS glibc module
 Summary(es.UTF-8):	Módulo hesiod NSS de glibc
 Summary(pl.UTF-8):	Moduł hesiod NSS glibc
 Group:		Base
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description -n nss_hesiod
 glibc NSS (Name Service Switch) module for databases access.
@@ -420,7 +417,7 @@ Moduł glibc NSS (Name Service Switch) dostępu do baz danych.
 Summary:	Memory usage profiler
 Summary(pl.UTF-8):	Narzędzie do profilowania zużycia pamięci
 Group:		Development/Tools
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Conflicts:	man-pages < 4.00
 
 %description memusage
@@ -440,14 +437,11 @@ Summary(ru.UTF-8):	Дополнительные библиотеки, необх
 Summary(tr.UTF-8):	Geliştirme için gerekli diğer kitaplıklar
 Summary(uk.UTF-8):	Додаткові бібліотеки, потрібні для компіляції
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-devel-utils = %{epoch}:%{version}-%{release}
 Requires:	%{name}-headers = %{epoch}:%{version}-%{release}
-Requires:	libxcrypt-devel >= 4.0.0
+Requires:	libxcrypt-devel%{?_isa} >= 4.0.0
 Provides:	%{name}-devel(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}-devel(ix86) = %{epoch}:%{version}-%{release}
-%endif
 Obsoletes:	libiconv-devel
 %ifarch %{x8664}
 # see http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2016-May/024902.html
@@ -509,33 +503,22 @@ kitaplıklar.
 Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
-Provides:	%{name}-header-cpu-%{_target_cpu} = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}-headers-cpu-ix86 = %{epoch}:%{version}-%{release}
-%endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-headers-cpu-athlon
-Obsoletes:	glibc-headers-cpu-i386
-Obsoletes:	glibc-headers-cpu-i486
-Obsoletes:	glibc-headers-cpu-i586
-Obsoletes:	glibc-headers-cpu-i686
-Obsoletes:	glibc-headers-cpu-ix86
-Obsoletes:	glibc-headers-cpu-pentium3
-Obsoletes:	glibc-headers-cpu-pentium4
+Obsoletes:	glibc-headers(x86-32)
 %endif
 %ifarch x32
-Obsoletes:	glibc-headers-cpu-x86_64
+Obsoletes:	glibc-headers(x86-64)
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-headers-cpu-ppc
+Obsoletes:	glibc-headers(ppc-32)
 %endif
 %ifarch s390x
-Obsoletes:	glibc-headers-cpu-s390
+Obsoletes:	glibc-headers(s390-32)
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-headers-cpu-sparc
+Obsoletes:	glibc-headers(sparc-32)
 %endif
 Requires:	linux-libc-headers >= %{llh_version}
 
@@ -564,33 +547,22 @@ korzystające ze standardowych bibliotek C.
 Summary:	Utilities needed for development using standard C libraries
 Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Libraries
-Provides:	%{name}-devel-util-cpu-%{_target_cpu} = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}-devel-utils-cpu-ix86 = %{epoch}:%{version}-%{release}
-%endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-devel-utils-cpu-athlon
-Obsoletes:	glibc-devel-utils-cpu-i386
-Obsoletes:	glibc-devel-utils-cpu-i486
-Obsoletes:	glibc-devel-utils-cpu-i586
-Obsoletes:	glibc-devel-utils-cpu-i686
-Obsoletes:	glibc-devel-utils-cpu-ix86
-Obsoletes:	glibc-devel-utils-cpu-pentium3
-Obsoletes:	glibc-devel-utils-cpu-pentium4
+Obsoletes:	glibc-devel-utils(x86-32)
 %endif
 %ifarch x32
-Obsoletes:	glibc-devel-utils-cpu-x86_64
+Obsoletes:	glibc-devel-utils(x86-64)
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-devel-utils-cpu-ppc
+Obsoletes:	glibc-devel-utils(ppc-32)
 %endif
 %ifarch s390x
-Obsoletes:	glibc-devel-utils-cpu-s390
+Obsoletes:	glibc-devel-utils(s390-32)
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-devel-utils-cpu-sparc
+Obsoletes:	glibc-devel-utils(sparc-32)
 %endif
 Conflicts:	man-pages < 4.00
 
@@ -644,12 +616,9 @@ Summary(pl.UTF-8):	Biblioteki statyczne GNU libc
 Summary(ru.UTF-8):	Статические библиотеки glibc
 Summary(uk.UTF-8):	Статичні бібліотеки glibc
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Requires:	libxcrypt-static >= 4.0.0
+Requires:	%{name}-devel%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	libxcrypt-static%{?_isa} >= 4.0.0
 Provides:	%{name}-static(%{_target_cpu}) = %{epoch}:%{version}-%{release}
-%ifarch %{ix86}
-Provides:	%{name}-static(ix86) = %{epoch}:%{version}-%{release}
-%endif
 Obsoletes:	libiconv-static
 
 %description static
@@ -679,7 +648,7 @@ Summary(ru.UTF-8):	GNU libc с поддержкой профайлера
 Summary(tr.UTF-8):	Ölçüm desteği olan glibc
 Summary(uk.UTF-8):	GNU libc з підтримкою профайлера
 Group:		Development/Libraries/Libc
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{epoch}:%{version}-%{release}
 Obsoletes:	libc-profile < 6
 
 %description profile
@@ -724,7 +693,7 @@ Summary:	glibc PIC archive
 Summary(es.UTF-8):	Archivo PIC de glibc
 Summary(pl.UTF-8):	Archiwum PIC glibc
 Group:		Development/Libraries/Libc
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description pic
 GNU C Library PIC archive contains an archive library (ar file)
@@ -760,8 +729,8 @@ Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_selinux:Requires:	libselinux >= 1.18}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
+%{?with_selinux:Requires:	libselinux%{?_isa} >= 1.18}
 Requires:	rc-scripts >= 0.4.3.0
 Provides:	group(nscd)
 Provides:	user(nscd)
@@ -798,7 +767,7 @@ Summary:	locale database source code
 Summary(es.UTF-8):	Código fuente de la base de datos de los locales
 Summary(pl.UTF-8):	Kod źródłowy bazy locale
 Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	gzip
 Requires:	sed
 Provides:	localedb
@@ -828,23 +797,23 @@ Provides:	localedb
 
 %description localedb-all
 This package contains locale database for all locales supported by
-glibc. In glibc 2.3.x it's one large file (about 39MB) - if you want
+glibc. In current glibc it's one large file (about 250MB - if you want
 something smaller with support for chosen locales only, consider
 installing localedb-src and regenerating database using localedb-gen
 script (when database is generated, localedb-src can be uninstalled).
 
 %description localedb-all -l es.UTF-8
 Este paquete contiene una base de datos de todos los locales
-soportados por glibc. En glibc 2.3.x ése es un fichero grande (aprox.
-39 MB) -- si prefiere algo más pequeño, sólo con soporte de unos
+soportados por glibc. En glibc 2.4x ése es un fichero grande (aprox.
+250 MB) -- si prefiere algo más pequeño, sólo con soporte de unos
 locales elegidos, considérese instalar localedb-src y regenerar la
 base de datos usando el escript localedb-gen (una vez que la base de
 datos esté creada, localedb-src se podrá desinstalar).
 
 %description localedb-all -l pl.UTF-8
 Ten pakiet zawiera bazę danych locale dla wszystkich lokalizacji
-obsługiwanych przez glibc. W glibc 2.3.x jest to jeden duży plik
-(około 39MB); aby mieć coś mniejszego, z obsługą tylko wybranych
+obsługiwanych przez glibc. W aktualnym glibc jest to jeden duży plik
+(około 250MB); aby mieć coś mniejszego, z obsługą tylko wybranych
 lokalizacji, należy zainstalować pakiet localedb-src i przegenerować
 bazę danych przy użyciu skryptu localedb-gen (po wygenerowaniu bazy
 pakiet localedb-src można odinstalować).
@@ -854,8 +823,7 @@ Summary:	Convert encoding of given files from one encoding to another
 Summary(es.UTF-8):	Convierte entre varias codificaciones de los ficheros dados
 Summary(pl.UTF-8):	Moduły do konwersji plików tekstowych z jednego kodowania do innego
 Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	iconv(%{_target_base_arch})
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Conflicts:	man-pages < 4.00
 
 %description -n iconv
@@ -1373,6 +1341,7 @@ fi
 %if %{without cross}
 %attr(755,root,root) /sbin/glibc-postinst
 %endif
+# NOTE: dynamic linker (ld*.so) must be executable
 %ifarch %{ix86} sparc sparcv9 sparc64 alpha sh
 %attr(755,root,root) /%{_lib}/ld-linux.so.2
 %endif
@@ -1400,6 +1369,7 @@ fi
 /%{_lib}/libBrokenLocale.so.1
 %endif
 /%{_lib}/libanl.so.1
+# libc.so is executable (outputs version and features information)
 %ifarch alpha
 %attr(755,root,root) /%{_lib}/libc.so.6.1
 %else
