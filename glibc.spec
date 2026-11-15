@@ -138,8 +138,8 @@ Obsoletes:	glibc-common
 Obsoletes:	glibc-debug < 2.1
 Obsoletes:	glibc-ld < 6:2.33-2
 %ifarch %{x8664} sparc64 ppc64
-Provides:	glibc64
-Obsoletes:	glibc64
+Provides:	glibc64 = %{epoch}:%{version}-%{release}
+Obsoletes:	glibc64 < 6:2.4
 %endif
 Suggests:	localedb
 Suggests:	tzdata
