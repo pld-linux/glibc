@@ -503,22 +503,26 @@ kitaplıklar.
 Summary:	Header files for development using standard C libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Building
+# current rpm can't stand parentheses in Obsoletes
+%if "%{_isa}" != ""
+Provides:	glibc-headers-isa-%{__isa_name}-%{__isa_bits}
+%endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on x86_64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-headers(x86-32)
+Obsoletes:	glibc-headers-isa-x86-32
 %endif
 %ifarch x32
-Obsoletes:	glibc-headers(x86-64)
+Obsoletes:	glibc-headers-isa-x86-64
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-headers(ppc-32)
+Obsoletes:	glibc-headers-isa-ppc-32
 %endif
 %ifarch s390x
-Obsoletes:	glibc-headers(s390-32)
+Obsoletes:	glibc-headers-isa-s390-32
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-headers(sparc-32)
+Obsoletes:	glibc-headers-isa-sparc-32
 %endif
 Requires:	linux-libc-headers >= %{llh_version}
 
@@ -547,22 +551,26 @@ korzystające ze standardowych bibliotek C.
 Summary:	Utilities needed for development using standard C libraries
 Summary(pl.UTF-8):	Narzędzia do tworzenia programów przy użyciu standardowych bibliotek C
 Group:		Development/Libraries
+# current rpm can't stand parentheses in Obsoletes
+%if "%{_isa}" != ""
+Provides:	glibc-devel-utils-isa-%{__isa_name}-%{__isa_bits}
+%endif
 %ifarch %{x8664} x32
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 package
 # have to be installed, not ix86 one.
-Obsoletes:	glibc-devel-utils(x86-32)
+Obsoletes:	glibc-devel-utils-isa-x86-32
 %endif
 %ifarch x32
-Obsoletes:	glibc-devel-utils(x86-64)
+Obsoletes:	glibc-devel-utils-isa-x86-64
 %endif
 %ifarch ppc64
-Obsoletes:	glibc-devel-utils(ppc-32)
+Obsoletes:	glibc-devel-utils-isa-ppc-32
 %endif
 %ifarch s390x
-Obsoletes:	glibc-devel-utils(s390-32)
+Obsoletes:	glibc-devel-utils-isa-s390-32
 %endif
 %ifarch sparc64
-Obsoletes:	glibc-devel-utils(sparc-32)
+Obsoletes:	glibc-devel-utils-isa-sparc-32
 %endif
 Conflicts:	man-pages < 4.00
 
